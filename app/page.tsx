@@ -1,95 +1,33 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Box, Typography, Stack, Button, List, ListItem } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      {/* top half */}
+      <Stack direction="row" sx={{justifyContent: "space-between"}}>
+        <Typography variant="h4">Town Name</Typography>
+        <Box>  
+          <Button sx={{mx: 1}} variant="outlined" startIcon={<EditIcon />}> Edit </Button>
+          <Button sx={{mx: 1}} variant="text" startIcon={<DeleteIcon />}> Delete </Button>
+        </Box>
+      </Stack>
+      
+      <Box sx={{display: 'flex'}}>
+        <Box sx={{borderRight: '1px solid #000'}}>
+          <Typography variant="h6"> Details </Typography>
+          <List sx={{listStyleType: 'disc', listStylePosition: 'inside'}}>
+            <ListItem sx={{ display: 'list-item' }}>Size: City</ListItem>
+            <ListItem sx={{ display: 'list-item' }}>Population: 10,000</ListItem>
+            <ListItem sx={{ display: 'list-item' }}>Leaders: NPC Name</ListItem>
+            <ListItem sx={{ display: 'list-item' }}>Wealth Level: Average</ListItem>
+          </List>
+        </Box>
+        <Box sx={{px: 2}}>
+          <Typography variant="h6"> Map </Typography>
+        </Box>
+        </Box>
+    </>
   );
 }
