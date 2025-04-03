@@ -5,7 +5,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function Home() {
   return (
     <>
-      {/* top half */}
       <Stack direction="row" sx={{justifyContent: "space-between"}}>
         <Typography variant="h4">Town Name</Typography>
         <Box>  
