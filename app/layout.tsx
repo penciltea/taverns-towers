@@ -1,5 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import type { Metadata } from "next";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/lib/muiTheme";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 
@@ -12,6 +14,8 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en">
       <body>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Header />
         <Box sx={{display: 'flex'}}>
           <Sidebar />
@@ -19,6 +23,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             {children}
           </Box>
         </Box>
+        </ThemeProvider>
       </body>
     </html>
   );
