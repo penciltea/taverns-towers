@@ -2,8 +2,8 @@ import { Box, CssBaseline } from "@mui/material";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/lib/muiTheme";
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
 
 export const metadata: Metadata = {
   title: "Taverns & Towers",
