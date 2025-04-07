@@ -1,11 +1,11 @@
 'use client'
 import { useState } from "react";
 import { Drawer, List, ListItem, ListItemText, Typography, Button, Box, Toolbar, Divider } from "@mui/material";
+import { useUIStore } from "@/store/uiStore";
 import AddIcon from '@mui/icons-material/Add';
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(false);
-  const toggleDrawer = () => setOpen(!open);
+  const { isDrawerOpen, toggleDrawer } = useUIStore();
 
   interface townInterface {
     name: string
@@ -18,7 +18,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <Drawer anchor="left" variant="permanent" open={open} onClose={toggleDrawer} sx={{p: 2, width: '180px', marginRight: 2}}>
+    <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer} sx={{p: 2, width: '180px', marginRight: 2}}>
         <Toolbar />
         <Box sx={{overflow: 'auto', p: 2, width: '180px'}}>
             <Typography variant="h5">My Towns</Typography>
