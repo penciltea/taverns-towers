@@ -10,7 +10,7 @@ export default function Header(){
     return (
         <AppBar position="sticky" sx={{ zIndex: 1201 /* MUI drawer zindex is 1200, setting this higher to lay over drawer */ }}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
-                <Button variant="text" startIcon={<MenuIcon />} sx={{marginRight: 1}} onClick={toggleDrawer}> Towns</Button>
+                <Button variant="text" startIcon={<MenuIcon />} sx={{marginRight: 3}} onClick={toggleDrawer}> Towns</Button>
                 <Typography variant="h4" sx={{ flexGrow: 1 }}>
                     Taverns & Towers
                 </Typography>
