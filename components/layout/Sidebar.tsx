@@ -3,11 +3,11 @@ import { useRouter } from "next/navigation";
 import { Drawer, List, ListItem, ListItemText, Typography, Button, Box, Toolbar, Divider } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
 import AddIcon from '@mui/icons-material/Add';
-import CasinoIcon from "@mui/icons-material/Casino";
+import AddTownDialog from "../dialog/AddTownDialog";
 
 export default function Sidebar() {
   const router = useRouter();
-  const { isDrawerOpen, toggleDrawer } = useUIStore();
+  const { isDrawerOpen, toggleDrawer, openDialog, closeDialog } = useUIStore();
 
   interface townInterface {
     name: string
@@ -19,17 +19,14 @@ export default function Sidebar() {
     { name: "town 3" }
   ]
 
-  const handleAddTownClick = () => {
-    toggleDrawer();
-    router.push('/towns');
-  };
-
+  
   const handleViewTownClick = (townId: string) => {
     toggleDrawer();
     router.push(`/towns/${townId}`)
   }
 
   return (
+    <>
     <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer} sx={{p: 2, marginRight: 2}}>
         <Toolbar />
         <Box sx={{overflow: 'auto', p: 2, width: '240px'}}>
@@ -40,18 +37,9 @@ export default function Sidebar() {
               startIcon={<AddIcon />} 
               sx={{mt: 2, mb: 0.5}}
               size="large"
-              onClick={handleAddTownClick}
+              onClick={() => useUIStore.getState().setOpenDialog('addTownDialog')}
             > 
               Add Town 
-            </Button>
-            <Button 
-              variant="text"
-              fullWidth
-              startIcon={<CasinoIcon />} 
-              sx={{mb: 2, mt: 0.5}}
-              size="small"
-            >
-              Randomize town
             </Button>
             <List>
                 {DUMMY_TOWN_DATA.map( (town: townInterface, index: number) => (
@@ -72,5 +60,9 @@ export default function Sidebar() {
             </List>
         </Box>
     </Drawer>
+    {openDialog === 'addTownDialog' && (
+      <AddTownDialog open onClose={closeDialog} />
+    )}
+    </>
   );
 }

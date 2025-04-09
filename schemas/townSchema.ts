@@ -4,6 +4,7 @@ const fileSizeLimit = 5 * 1024 * 1024;
 export const townSchema = z.object({
   name: z.string().min(1, "Town name is required"),
   size: z.string().optional(),
+  tags: z.array(z.string()).optional(),
   terrain: z.array(z.string()).optional(),
   climate: z.string().optional(),
   magic: z.string().optional(),
@@ -21,24 +22,16 @@ export const townSchema = z.object({
   crime: z.string().optional(),
   
   //ToDo: Fix image upload validation
-  /*
-  map: z.instanceof(File)
+  map: z.any()
+  .optional()
   .refine(
-    (file) =>
-      [
-        "image/png",
-        "image/jpeg",
-        "image/jpg",
-        "image/svg+xml",
-        "image/gif",
-      ].includes(file.type),
-    { message: "Invalid image file type" }
+    (files) =>
+      files === undefined ||
+      (files instanceof FileList && files.length === 1 && files[0] instanceof File),
+    {
+      message: "Must be a valid image file",
+    }
   )
-  .refine((file) => file.size <= fileSizeLimit, {
-    message: "File size should not exceed 5MB",
-  })
-  .optional(),
-  */
 });
 
 export type TownFormData = z.infer<typeof townSchema>;

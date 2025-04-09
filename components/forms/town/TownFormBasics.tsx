@@ -12,7 +12,7 @@ export default function TownFormBasics(){
         formState: { errors },
     } = useFormContext();
 
-    const mapFile = watch("map");
+    const mapFile = watch("map") as FileList | undefined;
     const previewUrl = mapFile && mapFile[0] ? URL.createObjectURL(mapFile[0]) : null;
 
     return (

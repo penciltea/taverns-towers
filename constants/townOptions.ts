@@ -8,6 +8,20 @@ export const SIZE_TYPES = [
     "Metropolis"
 ];
 
+export const TAG_TYPES = [
+    "Arcane Nexus", 
+    "Border Post", 
+    "Capital",
+    "Criminal Hideout",
+    "Fortress", 
+    "Garrison", 
+    "Mining Camp", 
+    "Port", 
+    "Prison Settlement",
+    "Sacred Site",
+    "Trade Hub"
+];
+
 export const TERRAIN_TYPES = [
     "Forest", 
     "Desert", 
