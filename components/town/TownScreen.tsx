@@ -4,10 +4,7 @@ import TownActions from "@/components/town/TownActions";
 import LocationList from "@/components/location/LocationList";
 import AddLocationButton from "@/components/town/AddLocationButton";
 
-const categories = [
-  "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services",
-  "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous"
-];
+const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
 
 const DUMMY_TOWN = {
   name: "Town A",
