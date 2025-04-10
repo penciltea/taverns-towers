@@ -7,7 +7,7 @@ import TownDetails from "@/components/town/TownDetails";
 import TownActions from "@/components/town/TownActions";
 import LocationList from "@/components/location/LocationList";
 import AddLocationButton from "@/components/town/AddLocationButton";
-import { getTownById } from "@/lib/api/towns/getById";
+import getTownById from "@/lib/api/towns/getById";
 import { Town } from "@/interfaces/town.interface";
 
 const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
@@ -56,7 +56,7 @@ export default function TownScreen({townId}: TownProps) {
     <>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
         <Typography variant="h4">{town?.name}</Typography>
-        <TownActions />
+        <TownActions townId={townId} />
       </Stack>
       <Divider sx={{my: 2}}/>
 
@@ -67,7 +67,7 @@ export default function TownScreen({townId}: TownProps) {
         </Grid>
         <Grid size={{xs: 12, md: 8 }}>
           <Typography variant="h5" sx={{ paddingBottom: 2, marginTop: 1 }}>Map</Typography>
-          <Box>
+          <Box sx={{maxWidth: 1/2, alignItems: 'center'}}>
             <img src={town.map} alt="your town map image" width="100%" />
           </Box>
         </Grid>

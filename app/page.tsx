@@ -1,7 +1,7 @@
 'use client'
-import TownScreen from "@/components/town/TownScreen";
+import { Typography } from "@mui/material";
 
 
 export default function Home() {
-  return <TownScreen />
+  return <Typography>Home screen to follow</Typography>
 }

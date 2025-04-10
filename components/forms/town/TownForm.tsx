@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Typography, } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
+import getTownById from "@/lib/api/towns/getById";
 import { townSchema, TownFormData } from "@/schemas/townSchema";
 import TownFormTabs from '@/components/forms/town/TownFormTabs';
 import TownFormBasics from "./TownFormBasics";
@@ -16,8 +17,9 @@ export default function TownForm() {
   const searchParams = useSearchParams();
   const townId = searchParams.get("id"); // Get ID from URL params
   const router = useRouter();
-
   const { showSnackbar } = useUIStore();
+
+  let town = undefined;
 
   const methods = useForm<TownFormData>({
     resolver: zodResolver(townSchema),
@@ -45,7 +47,26 @@ export default function TownForm() {
   });
 
   const [tab, setTab] = useState(0);
-  const { register, handleSubmit, formState: { errors } } = methods;
+  const { register, handleSubmit, reset, formState: { errors } } = methods;
+
+  useEffect(() => {
+    if (!townId) return;
+
+    const loadTown = async () => {
+      try {
+        const townData = await getTownById(townId);
+        reset(townData);
+        console.log(townData);
+
+        town = townData;
+        console.log(town);
+      } catch (err) {
+        console.error("Failed to load town:", err);
+      }
+    };
+
+    loadTown();
+  }, [townId, reset]);
 
   const onSubmit = async (data: TownFormData) => {
     let imageUrl = '';
@@ -114,7 +135,7 @@ export default function TownForm() {
 
         <TownFormTabs tab={tab} setTab={setTab} />
 
-        {tab === 0 && <TownFormBasics />}
+        {tab === 0 && <TownFormBasics town={town} />}
         {tab === 1 && <TownFormWealth />}
         {tab === 2 && <TownFormCulture />}
 

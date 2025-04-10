@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Drawer, List, ListItem, ListItemText, Typography, Button, Box, Toolbar, Divider, CircularProgress } from "@mui/material";
+import { Drawer, List, ListItem, ListItemText, Typography, Button, Box, Toolbar, Divider } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
 import AddIcon from '@mui/icons-material/Add';
 import AddTownDialog from "../dialog/AddTownDialog";
-import { getAllTowns } from "@/lib/api/towns/getAll";
+import getAllTowns from "@/lib/api/towns/getAll";
 import { Town } from "@/interfaces/town.interface";
 
 export default function Sidebar() {
@@ -52,7 +52,6 @@ export default function Sidebar() {
             > 
               Add Town 
             </Button>
-            {loading && <CircularProgress />}
             {!towns.length && <Typography>No towns found.</Typography>}
             {towns.length && 
               <List>

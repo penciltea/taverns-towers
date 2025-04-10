@@ -4,13 +4,9 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography }
 import CreateIcon from '@mui/icons-material/Create';
 import CasinoIcon from '@mui/icons-material/Casino';
 import { useUIStore } from "@/store/uiStore";
+import { DialogProps } from "@/interfaces/dialogProps.interface";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-}
-
-export default function AddTownDialog({ open, onClose }: Props) {
+export default function AddTownDialog({ open, onClose }: DialogProps) {
     const router = useRouter();
     const { toggleDrawer, closeDialog } = useUIStore();
 

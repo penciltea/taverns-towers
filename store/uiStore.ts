@@ -6,7 +6,7 @@ interface UIState {
     toggleDrawer: () => void;
 
     // Dialog state
-    openDialog: null | 'addTownDialog' | 'townDetails';
+    openDialog: null | 'addTownDialog' | 'TownDetailsDialog';
     setOpenDialog: (dialog: UIState['openDialog']) => void;
     closeDialog: () => void;
 

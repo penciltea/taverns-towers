@@ -1,4 +1,4 @@
-export const TOWN_TABS = ["Basics", "Leadership & Wealth", "Culture"];
+export const TOWN_TABS = ["Basics", "Leadership & Wealth", "Culture & Society"];
 
 export const SIZE_TYPES = [
     "Hamlet", 
