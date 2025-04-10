@@ -20,7 +20,13 @@ export const townSchema = z.object({
   holidays: z.string().optional(),
   folklore: z.string().optional(),
   crime: z.string().optional(),
-  map: z.string().optional(),
+  map: z
+  .any()
+  .refine(
+    (fileList) => fileList instanceof FileList && fileList.length > 0,
+    { message: "Map image is required." }
+  )
+  .optional(),
 });
 
 export type TownFormData = z.infer<typeof townSchema>;

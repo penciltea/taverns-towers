@@ -1,24 +1,19 @@
 import { Box, Typography, List, ListItem, Button } from "@mui/material";
+import { Town } from "@/interfaces/town.interface";
 
-interface TownDetailsProps {
-  town: {
-    name: string;
-    population: string;
-    leadership: string;
-    wealth: string;
-  };
-}
+export default function TownDetails({ town }: { town: Town }) {
 
-export default function TownDetails({ town }: TownDetailsProps) {
+  if (!town) {
+    return <Typography>Loading town details...</Typography>;
+  }
+
   return (
-    <Box>
+    <Box sx={{marginTop: 1}}>
       <Typography variant="h5">Details</Typography>
       <List sx={{ listStyleType: "disc", listStylePosition: "inside" }}>
-        {Object.entries(town).map(([key, value]) => (
-          <ListItem key={key} sx={{ display: "list-item" }}>
-            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-          </ListItem>
-        ))}
+        <ListItem sx={{ display: "list-item" }}><strong>Size: </strong>{town.size || 'N/A'}</ListItem>
+        <ListItem sx={{ display: "list-item" }}><strong>Wealth: </strong>{town.wealth || 'N/A'}</ListItem>
+        <ListItem sx={{ display: "list-item" }}><strong>Leader(s): </strong>{town.leader || 'N/A'}</ListItem>
       </List>
       <Button variant="outlined">Additional Details</Button>
     </Box>

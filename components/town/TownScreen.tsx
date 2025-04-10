@@ -1,17 +1,16 @@
+'use client'
+
+import { useState, useEffect } from "react";
 import { Box, Stack, Typography, Grid } from "@mui/material";
+import Divider from '@mui/material/Divider';
 import TownDetails from "@/components/town/TownDetails";
 import TownActions from "@/components/town/TownActions";
 import LocationList from "@/components/location/LocationList";
 import AddLocationButton from "@/components/town/AddLocationButton";
+import { getTownById } from "@/lib/api/towns/getById";
+import { Town } from "@/interfaces/town.interface";
 
 const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
-
-const DUMMY_TOWN = {
-  name: "Town A",
-  population: "10,000",
-  leadership: "John Smith",
-  wealth: "Average"
-};
 
 const DUMMY_LOCATIONS = [
   { image: "https://picsum.photos/200", name: "Location A", tags: ["Taverns & Inns"] },
@@ -20,23 +19,56 @@ const DUMMY_LOCATIONS = [
   { image: "https://picsum.photos/200", name: "Location D", tags: ["Temples & Shrines", "Crafts & Services"] }
 ];
 
-export default function TownScreen() {
+interface TownProps {
+  townId: string;
+}
+
+export default function TownScreen({townId}: TownProps) {
+  const [town, setTown] = useState<Town | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTown = async () => {
+      try {
+        const data = await getTownById(townId);
+        if(data){
+          setTown(data);
+        }
+      } catch (err) {
+        console.error("Error fetching towns:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadTown();
+  }, [townId]);
+  
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  if (!town) {
+    return <Typography>Town not found!</Typography>;
+  }
+
   return (
     <>
       <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-        <Typography variant="h4">Town Name</Typography>
+        <Typography variant="h4">{town?.name}</Typography>
         <TownActions />
       </Stack>
+      <Divider sx={{my: 2}}/>
 
       <Grid container spacing={2}>
         {/* Top half */}
         <Grid size={{xs: 12, md: 4}}>
-          <TownDetails town={DUMMY_TOWN} />
+          <TownDetails town={town} />
         </Grid>
         <Grid size={{xs: 12, md: 8 }}>
-          <Typography variant="h5" sx={{ paddingBottom: 2 }}>Map</Typography>
+          <Typography variant="h5" sx={{ paddingBottom: 2, marginTop: 1 }}>Map</Typography>
           <Box>
-            <img src="https://picsum.photos/900/400" alt="placeholder" width="100%" />
+            <img src={town.map} alt="your town map image" width="100%" />
           </Box>
         </Grid>
 
