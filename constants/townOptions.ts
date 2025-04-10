@@ -28,6 +28,7 @@ export const TERRAIN_TYPES = [
     "Mountains", 
     "Coast", 
     "Plains", 
+    "River",
     "Swamp"
 ]
 
@@ -69,6 +70,7 @@ export const RULING_TYPES = [
 ];
 
 export type SizeTypes = (typeof SIZE_TYPES)[number];
+export type TagTypes = (typeof TAG_TYPES)[number];
 export type TerrainTypes = (typeof TERRAIN_TYPES)[number];
 export type WealthLevel = (typeof WEALTH_LEVELS)[number];
 export type MagicLevel = (typeof MAGIC_LEVELS)[number];

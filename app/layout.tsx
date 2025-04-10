@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/lib/muiTheme";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+import Snackbar from '@/components/Snackbar';
 
 export const metadata: Metadata = {
   title: "Taverns & Towers",
@@ -16,6 +17,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <body>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Snackbar />
         <Header />
         <Box sx={{display: 'flex'}}>
           <Sidebar />

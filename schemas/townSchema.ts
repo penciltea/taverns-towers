@@ -20,18 +20,7 @@ export const townSchema = z.object({
   holidays: z.string().optional(),
   folklore: z.string().optional(),
   crime: z.string().optional(),
-  
-  //ToDo: Fix image upload validation
-  map: z.any()
-  .optional()
-  .refine(
-    (files) =>
-      files === undefined ||
-      (files instanceof FileList && files.length === 1 && files[0] instanceof File),
-    {
-      message: "Must be a valid image file",
-    }
-  )
+  map: z.string().optional(),
 });
 
 export type TownFormData = z.infer<typeof townSchema>;

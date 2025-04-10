@@ -1,19 +1,25 @@
+'use client'
+
+import { useState } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 import { Box, Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
+import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
+import { CldUploadWidget } from 'next-cloudinary';
 
 export default function TownFormBasics(){
+    const [mapUrl, setMapUrl] = useState("");
+
     const {
         register,
         control,
         watch,
+        setValue,
         formState: { errors },
     } = useFormContext();
 
-    const mapFile = watch("map") as FileList | undefined;
-    const previewUrl = mapFile && mapFile[0] ? URL.createObjectURL(mapFile[0]) : null;
+    console.log("Tracked map field:", watch("map"));
 
     return (
         <Stack
@@ -44,6 +50,34 @@ export default function TownFormBasics(){
                     render={({ field }) => (
                         <Select {...field} label="Size Category">
                         {SIZE_TYPES.map((option) => (
+                            <MenuItem key={option} value={option}>
+                            {option}
+                            </MenuItem>
+                        ))}
+                        </Select>
+                    )}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth margin="normal">
+                    <InputLabel>Tags</InputLabel>
+                    <Controller
+                    name="tags"
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                        {...field}
+                        multiple
+                        input={<OutlinedInput label="Tags" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                            {selected.map((value: string) => (
+                                <Chip key={value} label={value} />
+                            ))}
+                            </Box>
+                        )}
+                        >
+                        {TAG_TYPES.map((option) => (
                             <MenuItem key={option} value={option}>
                             {option}
                             </MenuItem>
@@ -158,20 +192,32 @@ export default function TownFormBasics(){
             <Box>
                 <Box mt={2}>
                     <Typography variant="subtitle1">Upload Town Map</Typography>
-                    <input type="file" accept="image/*" {...register("map")} />
-                    {typeof errors.map?.message === "string" && (
-                    <Typography color="error">{errors.map.message}</Typography>
-                    )}
+                    <CldUploadWidget
+                        uploadPreset="town_maps"
+                        onSuccess={(result: any) => {
+                            if (result?.event.toLowerCase() === "success") {
+                                const url = result.info.secure_url;
+                                setMapUrl(url); // for preview
+                                setValue("map", url); // for submission
+                              }
+                        }}
+                    >
+                        {({ open }) => (
+                        <Button variant="outlined" onClick={() => open()}>
+                            Upload Image
+                        </Button>
+                        )}
+                    </CldUploadWidget>
+                    <input type="hidden" {...register("map")} />
                 </Box>
-
-                {previewUrl && (
+                {mapUrl && (
                     <Box mt={2}>
-                    <Typography variant="subtitle2">Preview:</Typography>
-                    <img
-                        src={previewUrl}
-                        alt="Town map preview"
-                        style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
-                    />
+                        <Typography variant="subtitle2">Preview:</Typography>
+                        <img
+                            src={mapUrl}
+                            alt="Town map preview"
+                            style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
+                        />
                     </Box>
                 )}
             </Box>
