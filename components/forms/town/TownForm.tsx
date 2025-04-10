@@ -19,7 +19,6 @@ export default function TownForm() {
 
   const { showSnackbar } = useUIStore();
 
-
   const methods = useForm<TownFormData>({
     resolver: zodResolver(townSchema),
     defaultValues: {
@@ -57,9 +56,15 @@ export default function TownForm() {
       const formData = new FormData();
       formData.append("file", fileInput[0]);
       formData.append("upload_preset", "town_maps");
-    
-      const cloudinaryRes = await fetch(
-        "https://api.cloudinary.com/v1_1/di1aqfiyc/image/upload",
+      
+      const cloudinaryUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
+      
+      if (!cloudinaryUrl) {
+        showSnackbar('Cloudinary URL is not defined in environment variables', 'error');
+        return;
+      }
+
+      const cloudinaryRes = await fetch(cloudinaryUrl ,
         {
           method: "POST",
           body: formData,
@@ -68,7 +73,6 @@ export default function TownForm() {
     
       const result = await cloudinaryRes.json();
       imageUrl = result.secure_url;
-      console.log("Cloudinary result:", result);
     }
 
     try {
