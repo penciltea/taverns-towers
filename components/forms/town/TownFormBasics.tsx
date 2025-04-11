@@ -12,8 +12,15 @@ export default function TownFormBasics(){
         formState: { errors },
     } = useFormContext();
 
-    const mapFile = watch("map") as FileList | undefined;
-    const previewUrl = mapFile && mapFile[0] ? URL.createObjectURL(mapFile[0]) : null;
+    const mapValue = watch("map");
+    const isBrowser = typeof window !== "undefined";
+
+    const previewUrl =
+    typeof mapValue === "string"
+        ? mapValue // existing URL from DB
+        : isBrowser && mapValue instanceof FileList && mapValue[0]
+        ? URL.createObjectURL(mapValue[0])
+        : null;
 
     return (
         <Stack

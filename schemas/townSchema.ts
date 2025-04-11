@@ -21,12 +21,17 @@ export const townSchema = z.object({
   folklore: z.string().optional(),
   crime: z.string().optional(),
   map: z
-  .any()
-  .refine(
-    (fileList) => fileList instanceof FileList && fileList.length > 0,
-    { message: "Map image is required." }
-  )
-  .optional(),
+    .any()
+    .refine(
+      (val) =>
+        val === undefined ||
+        typeof val === "string" ||
+        (typeof FileList !== "undefined" && val instanceof FileList),
+      {
+        message: "Map must be a URL or FileList",
+      }
+    )
+    .optional(),
 });
 
 export type TownFormData = z.infer<typeof townSchema>;
