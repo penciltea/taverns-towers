@@ -5,7 +5,7 @@ import { Box, Stack, Typography, Grid } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import TownDetails from "@/components/town/TownDetails";
 import TownActions from "@/components/town/TownActions";
-import LocationList from "@/components/location/LocationList";
+import LocationList from "@/components/town/LocationList";
 import AddLocationButton from "@/components/town/AddLocationButton";
 import getTownById from "@/lib/api/towns/getById";
 import { Town } from "@/interfaces/town.interface";

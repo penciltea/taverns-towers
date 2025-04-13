@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/db/connect";
-import Town from '@/lib/models/townModel.model';
+import Town from '@/lib/models/town.model';
 import { ObjectId } from "mongodb";
 
 export async function GET(req: NextRequest) {

@@ -14,6 +14,9 @@ import TownFormBasics from "@/components/forms/town/TownFormBasics";
 import TownFormWealth from '@/components/forms/town/TownFormWealth';
 import TownFormCulture from "@/components/forms/town/TownFormCulture";
 import { Town } from "@/interfaces/town.interface";
+import { createTown, updateTown } from "@/lib/actions/town.actions";
+import { transformTownFormData } from "@/lib/util/transformFormDataForDB";
+import { uploadToCloudinary } from "@/lib/util/uploadToCloudinary";
 
 export default function TownFormPage() {
   const searchParams = useSearchParams();
@@ -26,6 +29,7 @@ export default function TownFormPage() {
 
   const [tab, setTab] = useState(0);
   const [town, setLocalTown] = useState<Town | null>(null);
+  const tabComponents = [<TownFormBasics />, <TownFormWealth />, <TownFormCulture />];
 
   const methods = useForm<TownFormData>({
     resolver: zodResolver(townSchema),
@@ -76,57 +80,39 @@ export default function TownFormPage() {
   }, [townId, reset, setTown, showSnackbar]);
 
   const onSubmit = async (data: TownFormData) => {
-    let imageUrl: string | undefined = undefined;
-
+    let imageUrl: string | undefined;
+  
     const fileInput = data.map as unknown as FileList;
-
+  
     if (fileInput && fileInput[0]) {
-    const formData = new FormData();
-    formData.append("file", fileInput[0]);
-    formData.append("upload_preset", "town_maps");
-
-    const cloudinaryUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
-    if (!cloudinaryUrl) {
-        showSnackbar("Cloudinary URL is not defined in environment variables", "error");
-        return;
+      imageUrl = await uploadToCloudinary(fileInput[0]);
     }
-
-    const cloudinaryRes = await fetch(cloudinaryUrl, {
-        method: "POST",
-        body: formData,
-    });
-
-    const result = await cloudinaryRes.json();
-    imageUrl = result.secure_url;
-    }
-
-    // Determine final `map` value
+  
     const cleanMap =
-    typeof data.map === "string" && data.map.startsWith("http")
-        ? data.map // it's already a URL
-        : imageUrl ?? undefined; // uploaded or nothing
-
+      typeof data.map === "string" && data.map.startsWith("http")
+        ? data.map
+        : imageUrl ?? undefined;
+  
+        try {
+          const townData = {
+            ...transformTownFormData(data),
+            map: cleanMap,
+          };
         
-    try {
-        const response = await fetch(`/api/towns${townId ? `?id=${townId}` : ''}`, {
-            method: townId ? 'PUT' : 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ ...data, map: cleanMap }),
-          });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
-      const { _id } = await response.json();
-      showSnackbar(`Town ${townId ? "updated" : "created"} successfully!`, "success");
-      router.push(`/towns/${_id}?success=true`);
-    } catch (err) {
-      showSnackbar(`Something went wrong: ${err}`, "error");
-    }
+          let savedTown;
+          if (townId) {
+            savedTown = await updateTown(townId, townData);
+          } else {
+            savedTown = await createTown(townData);
+          }
+        
+          showSnackbar(`Town ${townId ? "updated" : "created"} successfully!`, "success");
+          router.push(`/towns/${savedTown._id}?success=true`);
+        } catch (err) {
+          showSnackbar(`Something went wrong: ${err}`, "error");
+        }
   };
+  
 
   return (
     <FormProvider {...methods}>
@@ -137,12 +123,10 @@ export default function TownFormPage() {
 
         <TownFormTabs tab={tab} setTab={setTab} />
 
-        {tab === 0 && <TownFormBasics />}
-        {tab === 1 && <TownFormWealth />}
-        {tab === 2 && <TownFormCulture />}
+        {tabComponents[tab]}
 
         <Button type="submit" variant="contained" sx={{ mt: 3 }} size="large">
-          Save Town
+          {townId ? "Update" : "Create"} Town
         </Button>
       </form>
     </FormProvider>

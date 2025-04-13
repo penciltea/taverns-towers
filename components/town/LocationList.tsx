@@ -1,5 +1,5 @@
 import { Grid, Stack, Chip, Button } from "@mui/material";
-import LocationCard from "@/components/location/LocationCard";
+import LocationCard from "@/components/town/LocationCard";
 
 interface LocationListProps {
   locations: { image: string; name: string; tags: string[] }[];
