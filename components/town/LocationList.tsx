@@ -3,7 +3,7 @@ import GridContainer from "@/components/grid/GridContainer";
 import GridItem from "@/components/grid/GridItem";
 
 interface LocationListProps {
-  locations: { image: string; name: string; tags: string[] }[];
+  locations: { image: string; _id: string; name: string; tags: string[] }[];
   categories: string[];
 }
 
@@ -18,7 +18,7 @@ export default function LocationList({ locations, categories }: LocationListProp
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
       <GridContainer>
         {locations.map((location, index) => (
-          <GridItem key={index} title={location.name} image={location.image} tags={location.tags} />
+          <GridItem key={index} link={`/locations/${location._id}`} title={location.name} image={location.image} tags={location.tags} />
         ))}
       </GridContainer>
     </>

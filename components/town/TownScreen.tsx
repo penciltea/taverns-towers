@@ -6,17 +6,17 @@ import Divider from '@mui/material/Divider';
 import TownDetails from "@/components/town/TownDetails";
 import TownActions from "@/components/town/TownActions";
 import LocationList from "@/components/town/LocationList";
-import AddLocationButton from "@/components/town/AddLocationButton";
 import getTownById from "@/lib/api/towns/getById";
 import { Town } from "@/interfaces/town.interface";
+import FabButton from "@/components/ui/fabButton";
 
 const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
 
 const DUMMY_LOCATIONS = [
-  { image: "https://picsum.photos/200", name: "Location A", tags: ["Taverns & Inns"] },
-  { image: "https://picsum.photos/200", name: "Location B", tags: ["Taverns & Inns", "Entertainment"] },
-  { image: "https://picsum.photos/200", name: "Location C", tags: ["Shopping", "Crafts & Services"] },
-  { image: "https://picsum.photos/200", name: "Location D", tags: ["Temples & Shrines", "Crafts & Services"] }
+  { image: "https://picsum.photos/200", _id: '123', name: "Location A", tags: ["Taverns & Inns"] },
+  { image: "https://picsum.photos/200", _id: '234',name: "Location B", tags: ["Taverns & Inns", "Entertainment"] },
+  { image: "https://picsum.photos/200", _id: '345',name: "Location C", tags: ["Shopping", "Crafts & Services"] },
+  { image: "https://picsum.photos/200", _id: '456',name: "Location D", tags: ["Temples & Shrines", "Crafts & Services"] }
 ];
 
 interface TownProps {
@@ -82,7 +82,7 @@ export default function TownScreen({townId}: TownProps) {
         </Grid>
       </Grid>
 
-      <AddLocationButton />
+      <FabButton label="Add Location" link={`/locations`} />
     </>
   );
 }

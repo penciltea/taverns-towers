@@ -1,6 +1,4 @@
-import { useUIStore } from "@/store/uiStore";
 import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { Town } from "@/interfaces/town.interface";
 import TownAccordion from "../town/townAccordion";
@@ -10,8 +8,6 @@ interface TownDialogProps extends DialogProps {
 }
 
 export default function TownDetailsDialog({ open, onClose, town }: TownDialogProps) {
-    const { closeDialog } = useUIStore();
-
     return(
         <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth scroll="paper">
             <DialogTitle>Additional Details - {town.name}</DialogTitle>
@@ -47,5 +43,4 @@ export default function TownDetailsDialog({ open, onClose, town }: TownDialogPro
             </Box>
         </Dialog>
     )
-
 }

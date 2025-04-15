@@ -94,6 +94,7 @@ export default function Header() {
             </Menu>
 
             {/* NPCs */}
+            {/*
             <Button
                 onClick={(e) => handleMenuOpen(e, 'npcs')}
                 color="inherit"
@@ -109,6 +110,7 @@ export default function Header() {
                 <MenuItem onClick={() => handleNavigate('/npcs/all')}>View Your NPCs</MenuItem>
                 <MenuItem onClick={() => handleNavigate('/npcs')}>Create NPC</MenuItem>
             </Menu>
+            */}
         </Box>
 
         {/* Auth Buttons */}
