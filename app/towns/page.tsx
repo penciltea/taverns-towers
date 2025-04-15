@@ -83,9 +83,9 @@ export default function TownFormPage() {
     let imageUrl: string | undefined;
   
     const fileInput = data.map as unknown as FileList;
-  
-    if (fileInput && fileInput[0]) {
-      imageUrl = await uploadToCloudinary(fileInput[0]);
+
+    if (typeof fileInput !== "string" && fileInput[0]) {
+      imageUrl = await uploadToCloudinary(fileInput[0]); //only attempt to upload to Cloudinary if filetype is not a string (ie., file has been uploaded/not already existing)
     }
   
     const cleanMap =
