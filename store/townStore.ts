@@ -1,4 +1,3 @@
-// stores/townStore.ts
 import { create } from "zustand";
 import getById from "@/lib/api/towns/getById";
 import { Town } from "@/interfaces/town.interface";

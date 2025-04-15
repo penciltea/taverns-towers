@@ -1,5 +1,6 @@
-import { Grid, Stack, Chip, Button } from "@mui/material";
-import LocationCard from "@/components/town/LocationCard";
+import { Stack, Chip, Button } from "@mui/material";
+import GridContainer from "@/components/grid/GridContainer";
+import GridItem from "@/components/grid/GridItem";
 
 interface LocationListProps {
   locations: { image: string; name: string; tags: string[] }[];
@@ -15,11 +16,11 @@ export default function LocationList({ locations, categories }: LocationListProp
         ))}
       </Stack>
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
-      <Grid container spacing={2} sx={{ py: 4, cursor: "pointer" }}>
+      <GridContainer>
         {locations.map((location, index) => (
-          <LocationCard key={index} {...location} />
+          <GridItem key={index} title={location.name} image={location.image} tags={location.tags} />
         ))}
-      </Grid>
+      </GridContainer>
     </>
   );
 }

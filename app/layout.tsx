@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/lib/muiTheme";
 import Header from "@/components/layout/Header";
-import Sidebar from "@/components/layout/Sidebar";
-import Snackbar from '@/components/Snackbar';
+import Snackbar from '@/components/ui/Snackbar';
 
 export const metadata: Metadata = {
   title: "Taverns & Towers",
@@ -19,8 +18,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <CssBaseline />
         <Snackbar />
         <Header />
-        <Box sx={{display: 'flex'}}>
-          <Sidebar />
+        <Box sx={{display: 'flex', paddingTop: '60px'}}>
           <Box component="main" sx={{flexGrow: 1, p: 3}}>
             {children}
           </Box>

@@ -25,20 +25,22 @@ export async function getTownById(id: string) {
 }
 
 export async function getAllTowns() {
-  await connectToDatabase();
+  try {
+    const db = await connectToDatabase();
 
-  const totalTowns = await Town.countDocuments();
-  const towns = await Town.find()
-    //.skip((page - 1) * limit)
-    //.limit(limit)
-    //.sort({ createdAt: -1 });
+    const towns = await Town.find().sort({ createdAt: -1 });
 
-  return {
-    towns,
-    totalTowns,
-    //totalPages: Math.ceil(totalTowns / limit),
-    //currentPage: page,
-  };
+    return {
+      success: true,
+      towns,
+    };
+  } catch (error: any) {
+    console.error("Error fetching towns:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to fetch towns",
+    };
+  }
 }
 
 export async function createTown(data: Partial<ITown>) {
