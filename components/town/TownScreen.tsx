@@ -12,7 +12,6 @@ import FabButton from "@/components/ui/fabButton";
 import { useUIStore } from '@/store/uiStore';
 import LocationTypeDialog from "../dialog/locationTypeDialog";
 import { getLocationsByTown } from "@/lib/actions/location.action";
-import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 
 interface TownProps {
   townId: string;

@@ -1,4 +1,4 @@
-import { Stack, Chip, Button } from "@mui/material";
+import { Stack, Chip, Button, Typography } from "@mui/material";
 import GridContainer from "@/components/grid/GridContainer";
 import GridItem from "@/components/grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
@@ -17,6 +17,7 @@ export default function LocationList({ locations }: LocationListProps) {
       </Stack>
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
       <GridContainer>
+        {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
         {locations.map((location, index) => (
           <GridItem key={index} link={`/locations/${location._id}`} title={location.name} image={location.image} tags={location.tags} />
         ))}
