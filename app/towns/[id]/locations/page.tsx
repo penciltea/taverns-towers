@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Location } from "@/interfaces/location.interface";
@@ -9,14 +9,19 @@ import { locationSchema, defaultLocationValues, LocationFormData } from "@/schem
 import { useUIStore } from "@/store/uiStore";
 import { useLocationStore } from "@/store/locationStore";
 import { Typography, Button, TextField } from "@mui/material";
+import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
 
 export default function LocationForm(){
+    const params = useParams();
     const searchParams = useSearchParams();
+    const townId = params.id as string;
     const typeParam = searchParams?.get("type") as LocationFormData["type"];
     const router = useRouter();
 
     const { showSnackbar } = useUIStore();
     const { setLocation, mode } = useLocationStore();
+
+    console.log(params.id);
 
     const methods = useForm<LocationFormData>({
         resolver: zodResolver(locationSchema),
@@ -37,6 +42,20 @@ export default function LocationForm(){
     const onSubmit = async (data: LocationFormData) => {
         console.log("test")
         console.log(data);
+
+        try {
+            let savedLocation;
+            if (mode === 'edit') {
+                //savedTown = await updateLocation(id, data);
+            } else {
+                savedLocation = await createLocation(data, townId);
+            }
+
+            showSnackbar(`Location ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
+            router.push(`/towns/${townId}`);
+        } catch (err){
+            showSnackbar(`Something went wrong: ${err}`, "error");
+        }
     }
 
     const watchedType = watch("type");

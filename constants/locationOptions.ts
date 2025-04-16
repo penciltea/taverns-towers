@@ -10,3 +10,5 @@ export const LOCATION_CATEGORIES = [
     { value: "residence", label: "Residence"},
     { value: "miscellaneous", label: "Miscellaneous"}
 ]
+
+export type LocationCategory = typeof LOCATION_CATEGORIES[number]["value"];

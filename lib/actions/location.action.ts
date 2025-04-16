@@ -7,24 +7,29 @@ import { revalidatePath } from 'next/cache';
 import { Types } from 'mongoose';
 
 function serializeLocation(location: any) {
-    return {
-      ...location.toObject(),
-      _id: location._id.toString(),
-      createdAt: location.createdAt?.toISOString?.() ?? null,
-      updatedAt: location.updatedAt?.toISOString?.() ?? null,
-    };
-  }
+  const obj = location.toObject?.() ?? location;
+
+  return {
+    ...obj,
+    _id: obj._id?.toString?.() ?? obj._id,
+    townId: obj.townId?.toString?.() ?? null,
+    createdAt: obj.createdAt?.toISOString?.() ?? null,
+    updatedAt: obj.updatedAt?.toISOString?.() ?? null,
+    __v: undefined, // Optional: remove Mongoose version key
+  };
+}
 
 export async function createLocation(data: any, townId: string) {
   await connectToDatabase();
   const newLocation = await Location.create({ ...data, townId });
   revalidatePath(`/town/${townId}`);
-  return newLocation;
+  return serializeLocation(newLocation);
 }
 
 export async function getLocationsByTown(townId: string) {
   await connectToDatabase();
-  return await Location.find({ townId });
+  const locations = await Location.find({ townId }).sort({ createdAt: -1 });
+  return locations.map(serializeLocation);
 }
 
 export async function getLocationById(id: string) {

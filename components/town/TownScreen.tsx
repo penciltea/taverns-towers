@@ -6,11 +6,12 @@ import Divider from '@mui/material/Divider';
 import TownDetails from "@/components/town/TownDetails";
 import TownActions from "@/components/town/TownActions";
 import LocationList from "@/components/town/LocationList";
-import getTownById from "@/lib/api/towns/getById";
+import {getTownById} from "@/lib/actions/town.actions";
 import { Town } from "@/interfaces/town.interface";
 import FabButton from "@/components/ui/fabButton";
 import { useUIStore } from '@/store/uiStore';
 import LocationTypeDialog from "../dialog/locationTypeDialog";
+import { getLocationsByTown } from "@/lib/actions/location.action";
 
 const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
 
@@ -25,26 +26,32 @@ interface TownProps {
   townId: string;
 }
 
+
+
 export default function TownScreen({townId}: TownProps) {
   const [town, setTown] = useState<Town | undefined>(undefined);
+  const [locations, setLocations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const {openDialog, closeDialog} = useUIStore();
 
   useEffect(() => {
-    const loadTown = async () => {
+    const loadTownAndLocations = async () => {
       try {
-        const data = await getTownById(townId);
-        if(data){
-          setTown(data);
-        }
+        const [townData, locationData] = await Promise.all([
+          getTownById(townId),
+          getLocationsByTown(townId)
+        ]);
+  
+        if (townData) setTown(townData);
+        if (locationData) setLocations(locationData);
       } catch (err) {
-        console.error("Error fetching towns:", err);
+        console.error("Error fetching town or locations:", err);
       } finally {
         setLoading(false);
       }
     };
-
-    loadTown();
+  
+    loadTownAndLocations();
   }, [townId]);
   
   if (loading) {
@@ -81,7 +88,7 @@ export default function TownScreen({townId}: TownProps) {
         {/* Bottom half */}
         <Grid size={{xs: 12}}>
           <Typography variant="h5">Locations</Typography>
-          <LocationList locations={DUMMY_LOCATIONS} categories={categories} />
+          <LocationList locations={locations} categories={categories} />
         </Grid>
       </Grid>
 
