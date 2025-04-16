@@ -18,7 +18,7 @@ export default async function ViewAllTownsPage(){
             <Typography variant="h4">My Towns</Typography>
             <GridContainer>
                 {response.towns.map((town: Town) => (
-                    <GridItem key={town._id} link={`/towns/${town._id}`} title={town.name} image={town.map ? town.map : defaultImage} tags={town.tags} />
+                    <GridItem key={town._id} link={`/towns/${town._id}`} title={town.name} subtitle={`Size: ${town.size}`} image={town.map ? town.map : defaultImage} tags={town.tags} />
                 ))}
             </GridContainer>
             <FabButton label="Add Town" link={`/towns/`} />

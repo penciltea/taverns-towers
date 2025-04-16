@@ -4,7 +4,7 @@ import { Grid, Typography, Box, Chip } from '@mui/material';
 import { GridItemProps } from '@/interfaces/gridProps';
 
 
-export default function GridItem({ title, link, image, tags = [] }: GridItemProps) {
+export default function GridItem({ title, subtitle, link, image, tags = [] }: GridItemProps) {
   const router = useRouter();
   const filteredTags = tags.filter(tag => tag.trim() !== '');
   const visibleTags = filteredTags.slice(0, 3);
@@ -24,6 +24,7 @@ export default function GridItem({ title, link, image, tags = [] }: GridItemProp
         />
       )}
       <Typography variant="h6" mt={1}>{title}</Typography>
+      {subtitle && <Typography variant="subtitle1">{subtitle}</Typography>}
 
       {tags.length > 0 && (
         <Box mt={1} display="flex" gap={1} flexWrap="wrap">
@@ -32,7 +33,7 @@ export default function GridItem({ title, link, image, tags = [] }: GridItemProp
               <Chip key={tag} label={tag} />
           ))}
           {extraCount > 0 && (
-            <Chip label={`+${extraCount}`} size="small" />
+            <Chip label={`+${extraCount}`} />
           )}
         </Box>
       )}
