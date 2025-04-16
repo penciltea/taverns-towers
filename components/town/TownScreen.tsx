@@ -12,15 +12,7 @@ import FabButton from "@/components/ui/fabButton";
 import { useUIStore } from '@/store/uiStore';
 import LocationTypeDialog from "../dialog/locationTypeDialog";
 import { getLocationsByTown } from "@/lib/actions/location.action";
-
-const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
-
-const DUMMY_LOCATIONS = [
-  { image: "https://picsum.photos/200", _id: '123', name: "Location A", tags: ["Taverns & Inns"] },
-  { image: "https://picsum.photos/200", _id: '234',name: "Location B", tags: ["Taverns & Inns", "Entertainment"] },
-  { image: "https://picsum.photos/200", _id: '345',name: "Location C", tags: ["Shopping", "Crafts & Services"] },
-  { image: "https://picsum.photos/200", _id: '456',name: "Location D", tags: ["Temples & Shrines", "Crafts & Services"] }
-];
+import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 
 interface TownProps {
   townId: string;
@@ -88,7 +80,7 @@ export default function TownScreen({townId}: TownProps) {
         {/* Bottom half */}
         <Grid size={{xs: 12}}>
           <Typography variant="h5">Locations</Typography>
-          <LocationList locations={locations} categories={categories} />
+          <LocationList locations={locations} />
         </Grid>
       </Grid>
 
