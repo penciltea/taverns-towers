@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Typography } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
 import { useTownStore } from "@/store/townStore";
-import getTownById from "@/lib/api/towns/getById";
+import { getTownById } from "@/lib/actions/town.actions";
 import { townSchema, TownFormData } from "@/schemas/townSchema";
 import TownFormTabs from '@/components/forms/town/TownFormTabs';
 import TownFormBasics from "@/components/forms/town/TownFormBasics";

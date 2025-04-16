@@ -1,14 +1,64 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const locationSchema = z.object({
-  townId: z.string().optional(), // may be injected on backend
-  name: z.string().min(1, "Name is required"),
-  type: z.string().min(1, "Type is required"),
+export const baseLocationSchema = z.object({
+  name: z.string().min(1),
+  type: z.string(),
   description: z.string().optional(),
   owner: z.string().optional(),
-  services: z.array(z.string()).optional(),
-  notes: z.string().optional(),
-  map: z.union([z.string().url().optional(), z.any()]).optional(),
+  publicNotes: z.string().optional(),
+  gmNotes: z.string().optional(),
+  image: z.string().url().optional(),
 });
 
+export const tavernSchema = baseLocationSchema.extend({
+  type: z.literal("tavern"),
+  menu: z.array(z.string()).optional(),
+  roomsAvailable: z.number().int().nonnegative().optional(),
+});
+
+export const templeSchema = baseLocationSchema.extend({
+  type: z.literal("temple"),
+  deity: z.string().optional(),
+  rituals: z.string().optional(),
+});
+
+export const blacksmithSchema = baseLocationSchema.extend({
+  type: z.literal("blacksmith"),
+  weaponsOffered: z.array(z.string()).optional(),
+  armorTypes: z.array(z.string()).optional(),
+});
+
+export const locationSchema = z.discriminatedUnion("type", [
+  tavernSchema,
+  templeSchema,
+  blacksmithSchema
+]);
+
 export type LocationFormData = z.infer<typeof locationSchema>;
+
+export const defaultLocationValues: Record<
+  LocationFormData["type"],
+  Partial<LocationFormData>
+> = {
+  tavern: {
+    name: "",
+    type: "tavern",
+    description: "",
+    menu: [],
+    roomsAvailable: 0,
+  },
+  temple: {
+    name: "",
+    type: "temple",
+    description: "",
+    deity: "",
+    rituals: "",
+  },
+  blacksmith: {
+    name: "",
+    type: "blacksmith",
+    description: "",
+    weaponsOffered: [],
+    armorTypes: [],
+  }
+};

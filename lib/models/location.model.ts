@@ -1,28 +1,33 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-export interface ILocation extends Document {
-  townId: string; // Associated Town ID
-  name: string;
-  type: string;
-  description?: string;
-  owner?: string;
-  services?: string[];
-  notes?: string;
-  map?: string;
-}
+const BaseLocationSchema = new Schema({
+  townId: { type: Schema.Types.ObjectId, ref: "Town" },
+  name: { type: String, required: true },
+  type: { type: String, required: true },
+  description: {type: String, required: false},
+  owner: {type: String, required: false},
+  publicNotes: {type: String, required: false},
+  gmNotes: {type: String, required: false},
+  image: {type: String, required: false},
+}, { discriminatorKey: 'type', timestamps: true });
 
-const LocationSchema: Schema = new Schema(
-  {
-    townId: { type: Schema.Types.ObjectId, ref: 'Town', required: true },
-    name: { type: String, required: true },
-    type: { type: String, required: true },
-    description: { type: String, required: false },
-    owner: { type: String, required: false },
-    services: [{ type: String, required: false }],
-    notes: { type: String, required: false },
-    map: { type: String, required: false },
-  },
-  { timestamps: true }
-);
+const Location = mongoose.model("Location", BaseLocationSchema);
 
-export default mongoose.models.Location || mongoose.model<ILocation>('Location', LocationSchema);
+// Example discriminators:
+const Tavern = Location.discriminator("tavern", new Schema({
+  menu: [String],
+  roomsAvailable: {type: String, required: false},
+}));
+
+const Temple = Location.discriminator("temple", new Schema({
+  deity: {type: String, required: false},
+  rituals: {type: String, required: false},
+}));
+
+const Blacksmith = Location.discriminator("blacksmith", new Schema({
+  weaponsOffered: [String],
+  armorTypes: [String],
+}));
+
+export default Location;

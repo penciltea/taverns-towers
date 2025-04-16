@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import getById from "@/lib/api/towns/getById";
+import { getTownById } from "@/lib/actions/town.actions";
 import { Town } from "@/interfaces/town.interface";
 
 type TownStore = {
@@ -19,7 +19,7 @@ export const useTownStore = create<TownStore>((set) => ({
   fetchTown: async (id: string) => {
     set({ isLoading: true, error: null });
     try {
-      const town = await getById(id);
+      const town = await getTownById(id);
       set({ town, isLoading: false });
     } catch (err: any) {
       set({ error: err.message || "Failed to fetch town", isLoading: false });
