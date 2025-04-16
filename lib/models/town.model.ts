@@ -7,9 +7,9 @@ export interface ITown extends Document {
   _id: Types.ObjectId;
   name: string;
   size: SizeTypes;
-  tags: TagTypes;
+  tags: TagTypes[];
   map: string;
-  terrain: TerrainTypes;
+  terrain: TerrainTypes[];
   climate: ClimateTypes;
   magic: MagicLevel;
   races: string;
