@@ -11,7 +11,7 @@ import DeleteConfirmationDialog from "../dialog/DeleteConfirmationDialog";
 
 export default function TownActions({ townId }: { townId: string }) {
   const router = useRouter();
-  const { openDialog, setOpenDialog } = useUIStore();
+  const { openDialog, setOpenDialog, closeDialog } = useUIStore();
   const [isPending, startTransition] = useTransition();
 
   const handleEdit = () => {
@@ -21,7 +21,8 @@ export default function TownActions({ townId }: { townId: string }) {
   const handleConfirmDelete = () => {
     startTransition(async () => {
       await deleteTown(townId);
-      router.push("/towns");
+      closeDialog();
+      router.push("/towns/all");
     });
   };
 

@@ -9,6 +9,8 @@ import LocationList from "@/components/town/LocationList";
 import getTownById from "@/lib/api/towns/getById";
 import { Town } from "@/interfaces/town.interface";
 import FabButton from "@/components/ui/fabButton";
+import { useUIStore } from '@/store/uiStore';
+import LocationTypeDialog from "../dialog/locationTypeDialog";
 
 const categories = [ "Taverns & Inns", "Temples & Shrines", "Shopping", "Crafts & Services", "Government", "Entertainment", "Medical & Alchemical", "Magical", "Criminal", "Miscellaneous" ];
 
@@ -26,6 +28,7 @@ interface TownProps {
 export default function TownScreen({townId}: TownProps) {
   const [town, setTown] = useState<Town | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+  const {openDialog, closeDialog} = useUIStore();
 
   useEffect(() => {
     const loadTown = async () => {
@@ -82,7 +85,11 @@ export default function TownScreen({townId}: TownProps) {
         </Grid>
       </Grid>
 
-      <FabButton label="Add Location" link={`/locations`} />
+      <FabButton label="Add Location" onClick={() => { useUIStore.getState().setOpenDialog('locationTypeDialog') }} />
+
+        {openDialog === 'locationTypeDialog' && (
+            <LocationTypeDialog open onClose={closeDialog} />
+        )}
     </>
   );
 }

@@ -5,19 +5,28 @@ import AddIcon from "@mui/icons-material/Add";
 
 type FabButtonProps = {
   label: string;
-  link: string;
+  link?: string;
+  onClick?: () => void;
 };
 
-export default function FabButton({label, link}: FabButtonProps) {
+export default function FabButton({ label, link, onClick }: FabButtonProps) {
   const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); // run the custom function
+    } else if (link) {
+      router.push(link); // navigate to the link
+    }
+  };
 
   return (
     <Fab
       variant="extended"
       color="primary"
-      aria-label="add location"
+      aria-label={label}
       sx={{ position: "fixed", bottom: 16, right: 16 }}
-      onClick={() => router.push(link)}
+      onClick={handleClick}
     >
       <AddIcon /> {label}
     </Fab>

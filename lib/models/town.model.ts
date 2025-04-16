@@ -33,7 +33,7 @@ const TownSchema = new Schema<ITown>(
   {
     name: { type: String, required: true },
     size: { type: String, required: false},
-    tags: [{type: String}],
+    tags: [String],
     map: { type: String, required: false},
     terrain: [String],
     climate: { type: String, required: false},

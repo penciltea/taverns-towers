@@ -68,6 +68,7 @@ export default function TownFormPage() {
         setTown(fetchedTown);
         reset({
           ...fetchedTown,
+          tags: fetchedTown.tags?.filter(tag => tag.trim() !== "") ?? [],
           map: fetchedTown.map ?? undefined,
         });
       } catch (err) {
@@ -94,10 +95,16 @@ export default function TownFormPage() {
         : imageUrl ?? undefined;
   
         try {
+          if (Array.isArray(data.tags)) {
+            data.tags = data.tags.filter(tag => tag.trim() !== '');
+          }
+
           const townData = {
             ...transformTownFormData(data),
             map: cleanMap,
           };
+
+          console.log(data.tags);
         
           let savedTown;
           if (townId) {
@@ -107,7 +114,7 @@ export default function TownFormPage() {
           }
         
           showSnackbar(`Town ${townId ? "updated" : "created"} successfully!`, "success");
-          router.push(`/towns/${savedTown._id}?success=true`);
+          router.push(`/towns/${savedTown._id}`);
         } catch (err) {
           showSnackbar(`Something went wrong: ${err}`, "error");
         }
