@@ -2,6 +2,7 @@ import { useFormContext, Controller } from "react-hook-form";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/townOptions";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/town/common";
 
 export default function TownFormWealth(){
     const {
@@ -27,40 +28,21 @@ export default function TownFormWealth(){
                 margin="normal"
             />
 
-            <FormControl fullWidth margin="normal">
-                <InputLabel>Ruling Style</InputLabel>
-                <Controller
-                name="rulingStyle"
-                control={control}
-                render={({ field }) => (
-                    <Select {...field} label="Ruling Style">
-                    {RULING_TYPES.map((option) => (
-                        <MenuItem key={option} value={option}>
-                        {option}
-                        </MenuItem>
-                    ))}
-                    </Select>
-                )}
-                />
-            </FormControl>
-
-
-            <FormControl fullWidth margin="normal">
-                <InputLabel>Wealth Level</InputLabel>
-                <Controller
+            <FormSelect
                 name="wealth"
+                label="Wealth"
                 control={control}
-                render={({ field }) => (
-                    <Select {...field} label="Wealth Level">
-                    {WEALTH_LEVELS.map((option) => (
-                        <MenuItem key={option} value={option}>
-                        {option}
-                        </MenuItem>
-                    ))}
-                    </Select>
-                )}
-                />
-            </FormControl>
+                options={WEALTH_LEVELS}
+                fieldError={errors.wealth}
+            />
+            
+            <FormSelect
+                name="rulingStyle"
+                label="Ruling Style"
+                control={control}
+                options={RULING_TYPES}
+                fieldError={errors.rulingStyle}
+            />
 
             <TextField
                 fullWidth

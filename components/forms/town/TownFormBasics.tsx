@@ -1,8 +1,9 @@
-import { useFormContext, Controller } from "react-hook-form";
-import { Box, Button, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
+import { useFormContext } from "react-hook-form";
+import { Box, Button, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/town/common";
 
 export default function TownFormBasics(){
     const {
@@ -34,59 +35,29 @@ export default function TownFormBasics(){
                     </Button>
                 </Box>
 
-                <TextField
-                    fullWidth
+                <FormTextField
+                    name="name"
                     label="Town Name"
-                    {...register("name")}
-                    error={!!errors.name}
-                    helperText={typeof errors.name?.message === "string" ? errors.name.message : ""}
-                    margin="normal"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                
+                <FormSelect
+                    name="size"
+                    label="Size Category"
+                    control={control}
+                    options={SIZE_TYPES}
+                    fieldError={errors.size}
                 />
 
-                <FormControl fullWidth margin="normal">
-                    <InputLabel>Size Category</InputLabel>
-                    <Controller
-                    name="size"
-                    control={control}
-                    render={({ field }) => (
-                        <Select {...field} label="Size Category">
-                        {SIZE_TYPES.map((option) => (
-                            <MenuItem key={option} value={option}>
-                            {option}
-                            </MenuItem>
-                        ))}
-                        </Select>
-                    )}
-                    />
-                </FormControl>
-
-                <FormControl fullWidth margin="normal">
-                    <InputLabel>Tags</InputLabel>
-                    <Controller
+                <FormChipSelect
                     name="tags"
+                    label="Tags"
                     control={control}
-                    render={({ field }) => (
-                        <Select
-                        {...field}
-                        multiple
-                        input={<OutlinedInput label="Tags" />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                            {selected.map((value: string) => (
-                                <Chip key={value} label={value} />
-                            ))}
-                            </Box>
-                        )}
-                        >
-                        {TAG_TYPES.map((option) => (
-                            <MenuItem key={option} value={option}>
-                            {option}
-                            </MenuItem>
-                        ))}
-                        </Select>
-                    )}
-                    />
-                </FormControl>
+                    options={TAG_TYPES}
+                    fieldError={errors.tags}
+                />
 
                 <Accordion>
                 <AccordionSummary id="extra-details" expandIcon={<ExpandMoreIcon />} sx={{mt: 2}}>
@@ -94,97 +65,49 @@ export default function TownFormBasics(){
                 </AccordionSummary>
                 <AccordionDetails>
 
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel>Terrain</InputLabel>
-                        <Controller
+                    <FormChipSelect
                         name="terrain"
+                        label="Terrain Type"
                         control={control}
-                        render={({ field }) => (
-                            <Select
-                            {...field}
-                            multiple
-                            input={<OutlinedInput label="Terrain" />}
-                            renderValue={(selected) => (
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                                {selected.map((value: string) => (
-                                    <Chip key={value} label={value} />
-                                ))}
-                                </Box>
-                            )}
-                            >
-                            {TERRAIN_TYPES.map((option) => (
-                                <MenuItem key={option} value={option}>
-                                {option}
-                                </MenuItem>
-                            ))}
-                            </Select>
-                        )}
-                        />
-                    </FormControl>
+                        options={TERRAIN_TYPES}
+                        fieldError={errors.terrain}
+                    />
 
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel>Climate</InputLabel>
-                        <Controller
-                            name="climate"
-                            control={control}
-                            render={({ field }) => (
-                                <Select {...field} label="Climate">
-                                    {CLIMATE_TYPES.map((option) => (
-                                        <MenuItem key={option} value={option}>
-                                        {option}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            )}
-                        />
-                    </FormControl>
+                    <FormSelect
+                        name="climate"
+                        label="Climate"
+                        control={control}
+                        options={CLIMATE_TYPES}
+                        fieldError={errors.climate}
+                    />
 
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel>Magic Level</InputLabel>
-                        <Controller
-                            name="magic"
-                            control={control}
-                            render={({ field }) => (
-                                <Select {...field} label="Magic Level">
-                                    {MAGIC_LEVELS.map((option) => (
-                                        <MenuItem key={option} value={option}>
-                                        {option}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            )}
-                        />
-                    </FormControl>
+                    <FormSelect
+                        name="magic"
+                        label="Magic Level / Use"
+                        control={control}
+                        options={MAGIC_LEVELS}
+                        fieldError={errors.magic}
+                    />
 
-                    <TextField
-                        fullWidth
+                    <FormTextField
+                        name="races"
                         label="Common Races"
-                        {...register("races")}
-                        error={!!errors.races}
-                        helperText={typeof errors.races?.message === "string" ? errors.races.message : ""}
-                        margin="normal"
+                        registration={register("races")}
+                        fieldError={errors.races}
                     />
 
-                    <TextField
-                        fullWidth
+                    <FormTextField
+                        name="publicNotes"
                         label="Public Notes"
-                        multiline
-                        rows={6}
-                        {...register("publicNotes")}
-                        error={!!errors.publicNotes}
-                        helperText={typeof errors.publicNotes?.message === "string" ? errors.publicNotes.message : ""}
-                        margin="normal"
+                        registration={register("publicNotes")}
+                        fieldError={errors.publicNotes}
                     />
 
-                    <TextField
-                        fullWidth
+                    <FormTextField
+                        name="gmNotes"
                         label="GM Notes"
-                        multiline
-                        rows={6}
-                        {...register("gmNotes")}
-                        error={!!errors.gmNotes}
-                        helperText={typeof errors.gmNotes?.message === "string" ? errors.gmNotes.message : ""}
-                        margin="normal"
+                        registration={register("gmNotes")}
+                        fieldError={errors.gmNotes}
                     />
 
                     </AccordionDetails>

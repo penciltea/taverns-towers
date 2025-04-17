@@ -10,6 +10,8 @@ import { useUIStore } from "@/store/uiStore";
 import { useLocationStore } from "@/store/locationStore";
 import { Typography, Button, TextField } from "@mui/material";
 import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
+import { FormTextField, FormSelect } from "@/components/forms/town/common";
+import { LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
 
 export default function LocationForm(){
     const params = useParams();
@@ -20,8 +22,6 @@ export default function LocationForm(){
 
     const { showSnackbar } = useUIStore();
     const { setLocation, mode } = useLocationStore();
-
-    console.log(params.id);
 
     const methods = useForm<LocationFormData>({
         resolver: zodResolver(locationSchema),
@@ -40,8 +40,6 @@ export default function LocationForm(){
     } = methods;
 
     const onSubmit = async (data: LocationFormData) => {
-        console.log("test")
-        console.log(data);
 
         try {
             let savedLocation;
@@ -67,13 +65,20 @@ export default function LocationForm(){
                     {mode === 'edit' ? "Edit Location" : "Create Location"}
                 </Typography>
 
-                <TextField
-                    fullWidth
+                <FormTextField
+                    name="name"
                     label="Location Name"
-                    {...register("name")}
-                    error={!!errors.name}
-                    helperText={typeof errors.name?.message === "string" ? errors.name.message : ""}
-                    margin="normal"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+
+                <FormSelect
+                    name="size"
+                    label="Size Category"
+                    control={control}
+                    options={LOCATION_SIZE}
+                    fieldError={errors.size}
                 />
 
                 <Button type="submit" variant="contained" sx={{ mt: 3 }} size="large">
@@ -81,6 +86,5 @@ export default function LocationForm(){
                 </Button>
             </form>
         </FormProvider>
-    
     )
 } 

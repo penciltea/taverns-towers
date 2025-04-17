@@ -4,7 +4,7 @@ import GridItem from "@/components/grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 
 interface LocationListProps {
-  locations: { image: string; _id: string; name: string; tags: string[] }[];
+  locations: { image: string; _id: string; type: string; name: string; tags: string[] }[];
 }
 
 export default function LocationList({ locations }: LocationListProps) {
@@ -19,7 +19,7 @@ export default function LocationList({ locations }: LocationListProps) {
       <GridContainer>
         {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
         {locations.map((location, index) => (
-          <GridItem key={index} link={`/locations/${location._id}`} title={location.name} image={location.image} tags={location.tags} />
+          <GridItem key={index} link={`/locations/${location._id}`} title={location.name} subtitle={location.type} image={location.image} tags={location.tags} />
         ))}
       </GridContainer>
     </>

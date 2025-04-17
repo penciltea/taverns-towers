@@ -19,7 +19,7 @@ export interface Town {
     religion: string;
     holidays: string;
     folklore: string;
-    crime: string;
+    crime: string[];
     isPublic: boolean;
     createdAt: string;
     updatedAt: string;

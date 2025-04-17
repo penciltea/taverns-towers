@@ -19,7 +19,7 @@ export const townSchema = z.object({
   religion: z.string().optional(),
   holidays: z.string().optional(),
   folklore: z.string().optional(),
-  crime: z.string().optional(),
+  crime: z.array(z.string()).optional(),
   map: z
     .any()
     .refine(

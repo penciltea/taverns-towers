@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
-import { SizeTypes, TagTypes, TerrainTypes, WealthLevel, MagicLevel, ClimateTypes, RulingType} from '@/constants/townOptions';
+import { SizeTypes, TagTypes, TerrainTypes, WealthLevel, MagicLevel, ClimateTypes, RulingType, CriminalActivityTypes} from '@/constants/townOptions';
 const { Schema } = mongoose;
 
 export interface ITown extends Document {
@@ -23,7 +23,7 @@ export interface ITown extends Document {
   religion: string;
   holidays: string;
   folklore: string;
-  crime: string;
+  crime: CriminalActivityTypes[];
   createdBy: Types.ObjectId;
   isPublic: boolean;
 }
@@ -35,7 +35,7 @@ const TownSchema = new Schema<ITown>(
     size: { type: String, required: false},
     tags: [String],
     map: { type: String, required: false},
-    terrain: [String],
+    terrain: [{ type: String }],
     climate: { type: String, required: false},
     magic: { type: String, required: false},
     races: { type: String, required: false},
@@ -49,7 +49,7 @@ const TownSchema = new Schema<ITown>(
     religion: { type: String, required: false},
     holidays: { type: String, required: false},
     folklore: { type: String, required: false},
-    crime: { type: String, required: false},
+    crime: [String],
     /* ToDo: Add user/auth
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

@@ -27,7 +27,7 @@ export default function TownDetailsDialog({ open, onClose, town }: TownDialogPro
                     <Typography><strong>Religion:</strong> {town.religion || "N/A"}</Typography>
                     <Typography><strong>Holidays:</strong> {town.holidays || "N/A"}</Typography>
                     <Typography><strong>Folklore:</strong> {town.folklore || "N/A"}</Typography>
-                    <Typography><strong>Criminal Activity:</strong> {town.crime || "N/A"}</Typography>
+                    <Typography><strong>Criminal Activity:</strong> {town.crime?.length ? town.crime.join(", ") : "N/A"}</Typography>
                 </TownAccordion>
 
                 {/* Notes */}

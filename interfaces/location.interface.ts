@@ -1,21 +1,28 @@
+import { LOCATION_SIZE, LOCATION_CONDITION } from '@/constants/locationOptions';
+
+export type LocationSize = (typeof LOCATION_SIZE)[number]['value'];
+export type LocationCondition = (typeof LOCATION_CONDITION)[number]['value'];
+
 export interface BaseLocation {
   _id?: string;
   townId?: string;
   name: string;
   type: string;
-  description?: string;
+  size?: LocationSize;
+  condition?: LocationCondition;
   owner?: string;
   publicNotes?: string;
   gmNotes?: string;
-  map?: string;
+  image?: string;
   createdAt?: string;
   updatedAt?: string;
 }
 
 export interface TavernLocation extends BaseLocation {
   type: "tavern";
-  menu?: string[];
-  roomsAvailable?: number;
+  clientele?: string;
+  entertainment?: string;
+  cost?: string;
 }
 
 export interface TempleLocation extends BaseLocation {

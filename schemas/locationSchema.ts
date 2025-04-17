@@ -3,6 +3,7 @@ import { z } from "zod";
 export const baseLocationSchema = z.object({
   name: z.string().min(1),
   type: z.string(),
+  size: z.string().optional(),
   description: z.string().optional(),
   owner: z.string().optional(),
   publicNotes: z.string().optional(),
@@ -12,8 +13,9 @@ export const baseLocationSchema = z.object({
 
 export const tavernSchema = baseLocationSchema.extend({
   type: z.literal("tavern"),
-  menu: z.array(z.string()).optional(),
-  roomsAvailable: z.number().int().nonnegative().optional(),
+  clientele: z.string().optional(),
+  cost: z.string().optional(),
+  entertainment: z.string().optional()
 });
 
 export const templeSchema = baseLocationSchema.extend({

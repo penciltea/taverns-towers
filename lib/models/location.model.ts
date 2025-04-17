@@ -1,16 +1,31 @@
 import mongoose from "mongoose";
+import { LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
 const { Schema, models, model } = mongoose;
+
+const sizeValues = LOCATION_SIZE.map(option => option.value);
+const conditionValues = LOCATION_CONDITION.map(option => option.value);
 
 const BaseLocationSchema = new Schema(
   {
     townId: { type: Schema.Types.ObjectId, ref: "Town" },
     name: { type: String, required: true },
     type: { type: String, required: true },
-    description: { type: String },
-    owner: { type: String },
-    publicNotes: { type: String },
-    gmNotes: { type: String },
-    image: { type: String },
+    size: {
+      type: String,
+      enum: sizeValues,
+      default: 'modest',
+      required: false
+    },
+    condition: {
+      type: String,
+      enum: conditionValues,
+      default: 'modest',
+      required: false
+    },
+    owner: { type: String, required: false },
+    publicNotes: { type: String, required: false },
+    gmNotes: { type: String, required: false },
+    image: { type: String,required: false },
   },
   { discriminatorKey: "type", timestamps: true }
 );
@@ -24,8 +39,9 @@ const Tavern =
   Location.discriminator(
     "tavern",
     new Schema({
-      menu: [String],
-      roomsAvailable: { type: String },
+      clientele: { type: String, required: false },
+      cost: { type: String, required: false },
+      entertainment: { type: String, required: false }
     })
   );
 

@@ -50,7 +50,7 @@ export default function TownFormPage() {
       religion: "",
       holidays: "",
       folklore: "",
-      crime: "",
+      crime: [],
       map: undefined,
     },
   });
@@ -67,7 +67,9 @@ export default function TownFormPage() {
         setTown(fetchedTown);
         reset({
           ...fetchedTown,
-          tags: fetchedTown.tags?.filter(tag => tag.trim() !== "") ?? [],
+          tags: (fetchedTown.tags as string[])?.filter(tag => tag.trim() !== "") ?? [],
+          terrain: (fetchedTown.terrain as string[])?.filter(terrain => terrain.trim() !== "") ?? [],
+          crime: (fetchedTown.crime as string[])?.filter(crime => crime.trim() !== "") ?? [],
           map: fetchedTown.map ?? undefined,
         });
       } catch (err) {
