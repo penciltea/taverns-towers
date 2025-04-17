@@ -55,6 +55,9 @@ const FormSelect = ({
             label={label}
             {...rest}
           >
+            <MenuItem value="" disabled>
+              <em>Select one…</em>
+            </MenuItem>
             {options.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}

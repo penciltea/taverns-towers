@@ -28,24 +28,35 @@ export interface Town {
     size: string;
     tags: string[];
     map?: string;
-    terrain: string[];
-    climate: string;
-    magic: string;
-    races: string;
-    publicNotes: string;
-    gmNotes: string;
-    leader: string;
-    rulingStyle: string;
-    wealth: string;
-    tradeNotes: string;
-    guilds: string;
-    religion: string;
-    holidays: string;
-    folklore: string;
-    crime: string[];
-    isPublic: boolean;
+    terrain?: string[];
+    climate?: string;
+    magic?: string;
+    races?: string;
+    publicNotes?: string;
+    gmNotes?: string;
+    leader?: string;
+    rulingStyle?: string;
+    wealth?: string;
+    tradeNotes?: string;
+    guilds?: string;
+    religion?: string;
+    holidays?: string;
+    folklore?: string;
+    crime?: string[];
+    isPublic?: boolean;
     createdAt: string;
     updatedAt: string;
     __v?: number;
+  }
+
+  export interface TownFilterProps {
+    filters: {
+      search: string;
+      size: string;
+      climate: string;
+      tags: string[];
+      // Add other inline filter fields as needed
+    };
+    setFilters: (filters: Partial<TownFilterProps["filters"]>) => void;
   }
  

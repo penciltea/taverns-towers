@@ -10,7 +10,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useLocationStore } from "@/store/locationStore";
 import { Typography, Button, TextField } from "@mui/material";
 import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
-import { FormTextField, FormSelect } from "@/components/forms/town/common";
+import { FormTextField, FormSelect } from "@/components/forms/common";
 import { LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
 
 export default function LocationForm(){

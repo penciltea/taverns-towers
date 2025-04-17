@@ -2,7 +2,8 @@ import { useFormContext, Controller } from "react-hook-form";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/town/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormWealth(){
     const {
@@ -32,7 +33,7 @@ export default function TownFormWealth(){
                 name="wealth"
                 label="Wealth"
                 control={control}
-                options={WEALTH_LEVELS}
+                options={toSelectOptions(WEALTH_LEVELS)}
                 fieldError={errors.wealth}
             />
             
@@ -40,7 +41,7 @@ export default function TownFormWealth(){
                 name="rulingStyle"
                 label="Ruling Style"
                 control={control}
-                options={RULING_TYPES}
+                options={toSelectOptions(RULING_TYPES)}
                 fieldError={errors.rulingStyle}
             />
 

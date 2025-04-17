@@ -3,7 +3,8 @@ import { Box, Button, Typography, Accordion, AccordionDetails, AccordionSummary,
 import CasinoIcon from "@mui/icons-material/Casino";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/town/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormBasics(){
     const {
@@ -47,7 +48,7 @@ export default function TownFormBasics(){
                     name="size"
                     label="Size Category"
                     control={control}
-                    options={SIZE_TYPES}
+                    options={toSelectOptions(SIZE_TYPES)}
                     fieldError={errors.size}
                 />
 
@@ -55,7 +56,7 @@ export default function TownFormBasics(){
                     name="tags"
                     label="Tags"
                     control={control}
-                    options={TAG_TYPES}
+                    options={toSelectOptions(TAG_TYPES)}
                     fieldError={errors.tags}
                 />
 
@@ -69,7 +70,7 @@ export default function TownFormBasics(){
                         name="terrain"
                         label="Terrain Type"
                         control={control}
-                        options={TERRAIN_TYPES}
+                        options={toSelectOptions(TERRAIN_TYPES)}
                         fieldError={errors.terrain}
                     />
 
@@ -77,7 +78,7 @@ export default function TownFormBasics(){
                         name="climate"
                         label="Climate"
                         control={control}
-                        options={CLIMATE_TYPES}
+                        options={toSelectOptions(CLIMATE_TYPES)}
                         fieldError={errors.climate}
                     />
 
@@ -85,7 +86,7 @@ export default function TownFormBasics(){
                         name="magic"
                         label="Magic Level / Use"
                         control={control}
-                        options={MAGIC_LEVELS}
+                        options={toSelectOptions(MAGIC_LEVELS)}
                         fieldError={errors.magic}
                     />
 

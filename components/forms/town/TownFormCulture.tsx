@@ -2,7 +2,8 @@ import { useFormContext } from "react-hook-form";
 import { Box, Button } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import {CRIMINAL_ACTIVITY_TYPES  } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/town/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormCulture(){
     const {
@@ -24,7 +25,7 @@ export default function TownFormCulture(){
                 name="crime"
                 label="Criminal Activity"
                 control={control}
-                options={CRIMINAL_ACTIVITY_TYPES}
+                options={toSelectOptions(CRIMINAL_ACTIVITY_TYPES)}
                 fieldError={errors.crime}
             />
 
