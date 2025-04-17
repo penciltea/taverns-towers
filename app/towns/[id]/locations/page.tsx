@@ -84,6 +84,9 @@ export default function LocationForm(){
                 <Button type="submit" variant="contained" sx={{ mt: 3 }} size="large">
                     {mode === 'edit' ? "Update" : "Create"} Location
                 </Button>
+                <Button type="button" variant="outlined" sx={{ marginTop: 3, marginLeft: 3 }} size="small" onClick={() => router.back()}>
+                    cancel
+                </Button>
             </form>
         </FormProvider>
     )

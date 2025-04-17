@@ -1,7 +1,15 @@
 import { LOCATION_SIZE, LOCATION_CONDITION } from '@/constants/locationOptions';
 
-export type LocationSize = (typeof LOCATION_SIZE)[number]['value'];
-export type LocationCondition = (typeof LOCATION_CONDITION)[number]['value'];
+export interface LocationListProps {
+  locations: 
+    { image: string; 
+      _id: string; 
+      type: string; 
+      name: string; 
+      tags: string[] 
+    }[];
+}
+
 
 export interface BaseLocation {
   _id?: string;
@@ -38,3 +46,6 @@ export interface BlacksmithLocation extends BaseLocation {
 }
 
 export type Location = TavernLocation | TempleLocation | BlacksmithLocation | BaseLocation;
+
+export type LocationSize = (typeof LOCATION_SIZE)[number]['value'];
+export type LocationCondition = (typeof LOCATION_CONDITION)[number]['value'];

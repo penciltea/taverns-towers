@@ -1,12 +1,6 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Box, Divider } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { ReactNode } from "react";
-
-interface TownAccordionProps {
-  title: string;
-  children: ReactNode;
-  defaultExpanded?: boolean;
-}
+import { TownAccordionProps } from "@/interfaces/town.interface";
 
 export default function TownAccordion({ title, children, defaultExpanded = false }: TownAccordionProps) {
   return (

@@ -1,3 +1,26 @@
+import { ReactNode } from "react";
+import { DialogProps } from "./dialogProps.interface";
+ 
+export interface TownDialogProps extends DialogProps {
+  town: Town;
+}
+
+export interface TownFormTabsProps {
+  tab: number;
+  setTab: (tab: number) => void;
+}
+
+export interface TownProps {
+  townId: string;
+}
+
+
+export interface TownAccordionProps {
+  title: string;
+  children: ReactNode;
+  defaultExpanded?: boolean;
+}
+
 export interface Town {
     _id: string;
     id: string;
@@ -25,4 +48,4 @@ export interface Town {
     updatedAt: string;
     __v?: number;
   }
-  
+ 

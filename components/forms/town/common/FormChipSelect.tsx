@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Chip, FormControl, FormHelperText, InputLabel, MenuItem, OutlinedInput, Select, SelectProps, TextField } from "@mui/material";
-import { Control, Controller, FieldError } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { useState } from "react";
 
 interface Option {

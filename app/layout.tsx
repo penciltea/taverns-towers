@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+
   return (
     <html lang="en">
       <body>
@@ -18,7 +19,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <CssBaseline />
         <Snackbar />
         <Header />
-        <Box sx={{display: 'flex', paddingTop: '60px'}}>
+        <Box sx={{display: 'flex', paddingTop: { xs: '15vh', sm: '40px', md: '60px' }}}>
           <Box component="main" sx={{flexGrow: 1, p: 3}}>
             {children}
           </Box>

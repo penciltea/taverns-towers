@@ -134,6 +134,9 @@ export default function TownFormPage() {
         <Button type="submit" variant="contained" sx={{ mt: 3 }} size="large">
           {townId ? "Update" : "Create"} Town
         </Button>
+        <Button type="button" variant="outlined" sx={{ marginTop: 3, marginLeft: 3 }} size="small" onClick={() => router.back()}>
+          cancel
+        </Button>
       </form>
     </FormProvider>
   );

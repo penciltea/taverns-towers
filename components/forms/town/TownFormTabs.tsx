@@ -2,11 +2,7 @@
 
 import { Tabs, Tab } from "@mui/material";
 import { TOWN_TABS } from "@/constants/townOptions";
-
-interface TownFormTabsProps {
-    tab: number;
-    setTab: (tab: number) => void;
-  }
+import { TownFormTabsProps } from "@/interfaces/town.interface";
 
 export default function TownFormTabs({ tab, setTab }: TownFormTabsProps) {
     return (
