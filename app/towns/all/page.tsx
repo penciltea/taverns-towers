@@ -10,6 +10,8 @@ export default async function TownsPage() {
     return <div>No towns found</div>;
   }
 
+  console.log(towns);
+
   // Pre-calculate the values for each field
   const fields = towns.map((town) => ({
     link: `/towns/${town._id}`,

@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import GridContainer from './GridContainer';
 import GridItem from './GridItem';
 import FabButton from '@/components/Common/fabButton';
 import { CommonInterface } from '@/interfaces/common.interface';
+import { useTownContentStore } from '@/store/townStore';
 
 type FilteredGridViewProps<T extends CommonInterface> = {
   initialItems: T[];
@@ -16,7 +17,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
     title: string;
     subtitle: string;
     image: string;
-    tags: string[];
+    tags: string[] | undefined;
   }>;
   emptyText?: string;
   fabLabel?: string;
@@ -32,14 +33,12 @@ export default function FilteredGridView<T extends CommonInterface>({
   fabLabel,
   fabLink,
 }: FilteredGridViewProps<T>) {
-  const [items, setItems] = useState<T[]>(initialItems);
-  const [filteredItems, setFilteredItems] = useState<T[]>(initialItems);
+  const { setItems, filteredItems } = useTownContentStore();
 
-  // Handle filtering logic if needed, e.g., search or other filters
+  // Set initial items when component mounts
   useEffect(() => {
     setItems(initialItems);
-    setFilteredItems(initialItems);
-  }, [initialItems]);
+  }, [initialItems, setItems]);
 
   return (
     <>
@@ -51,17 +50,22 @@ export default function FilteredGridView<T extends CommonInterface>({
 
       {filteredItems.length > 0 ? (
         <GridContainer>
-          {filteredItems.map((item, index) => (
+        {filteredItems.map((item) => {
+          const field = fields.find((f) => f.link.includes(item._id));
+          if (!field) return null; // skip if no matching field
+      
+          return (
             <GridItem
-              key={index}
-              link={fields[index].link}  // Access the pre-calculated fields here
-              title={fields[index].title}
-              subtitle={fields[index].subtitle}
-              image={fields[index].image}
-              tags={fields[index].tags}
+              key={item._id}
+              link={field.link}
+              title={field.title}
+              subtitle={field.subtitle}
+              image={field.image}
+              tags={field.tags}
             />
-          ))}
-        </GridContainer>
+          );
+        })}
+      </GridContainer>
       ) : (
         <Typography variant="body1">{emptyText}</Typography>
       )}

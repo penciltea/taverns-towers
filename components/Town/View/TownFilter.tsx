@@ -6,6 +6,24 @@ import SelectInput from "@/components/Common/SelectInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { CLIMATE_TYPES, SIZE_TYPES } from "@/constants/townOptions";
 import { useTownContentStore } from "@/store/townStore";
+import { Town } from "@/interfaces/town.interface";
+import { ContentFilters } from "@/store/contentStore";
+
+const townFilterFn = (item: Town, filters: ContentFilters): boolean => {
+  const matchesSearch =
+    !filters.search || item.name?.toLowerCase().includes(filters.search.toLowerCase());
+
+  const matchesSize =
+    !filters.size || item.size === filters.size;
+
+  const matchesClimate =
+    !filters.climate || item.climate === filters.climate;
+
+  const matchesTags =
+    !filters.tags || filters.tags.every((tag: string) => item.tags?.includes(tag));
+
+  return matchesSearch && matchesSize && matchesClimate && matchesTags;
+};
 
 export default function TownFilters() {
   const theme = useTheme();
@@ -16,12 +34,12 @@ export default function TownFilters() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedFilters = { ...filters, search: e.target.value };
-    applyFilters(updatedFilters);
+    applyFilters(updatedFilters, townFilterFn);
   };
 
   const handleSelectChange = (key: string) => (e: SelectChangeEvent<string>) => {
     const updatedFilters = { ...filters, [key]: e.target.value };
-    applyFilters(updatedFilters);
+    applyFilters(updatedFilters, townFilterFn);
   };  
 
   return (
@@ -44,7 +62,7 @@ export default function TownFilters() {
       {/* Size Filter */}
       <SelectInput
         label="Size"
-        value={filters.size}
+        value={filters.size || ""}
         onChange={handleSelectChange("size")}
         options={toSelectOptions(SIZE_TYPES)}
       />
@@ -52,7 +70,7 @@ export default function TownFilters() {
       {/* Climate Filter */}
       <SelectInput
         label="Climate"
-        value={filters.climate}
+        value={filters.climate || ""}
         onChange={handleSelectChange("climate")}
         options={toSelectOptions(CLIMATE_TYPES)}
       />

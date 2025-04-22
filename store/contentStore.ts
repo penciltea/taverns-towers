@@ -1,14 +1,12 @@
 import { create } from 'zustand';
 
-type ContentFilters = {
-  search?: string;
-  size?: string;
-  climate?: string;
-  tags?: string[];
+export type ContentFilters = {
   [key: string]: any;
 };
 
 type FormMode = 'add' | 'edit' | null;
+
+type FilterFunction<T> = (item: T, filters: ContentFilters) => boolean;
 
 type ContentStore<T> = {
   allItems: T[];
@@ -20,7 +18,7 @@ type ContentStore<T> = {
   mode: FormMode;
 
   setItems: (items: T[]) => void;
-  applyFilters: (filters: ContentFilters) => void;
+  applyFilters: (filters: ContentFilters, filterFn?: FilterFunction<T>) => void;
   clearFilters: () => void;
   setLoading: (value: boolean) => void;
 
@@ -30,8 +28,8 @@ type ContentStore<T> = {
   clearMode: () => void;
 };
 
-export const createContentStore = <T>() =>
-  create<ContentStore<T>>((set, get) => ({
+export function createContentStore<T>() {
+  return create<ContentStore<T>>((set, get) => ({
     allItems: [],
     filteredItems: [],
     selectedItem: null,
@@ -40,30 +38,18 @@ export const createContentStore = <T>() =>
     isLoading: false,
     mode: null,
 
-    setItems: (items: T[]) =>
-      set({ allItems: items, filteredItems: items }),
+    setItems: (items: T[]) => {
+      set({ allItems: items, filteredItems: items });
+    },
 
-    applyFilters: (filters: ContentFilters) => {
+    applyFilters: (filters: ContentFilters, filterFn?: (item: T, filters: ContentFilters) => boolean) => {
       const { allItems } = get();
-
-      // Filter items based on search, size, and climate
-      const filtered = allItems.filter((item: any) => {
-        const matchesSearch =
-          !filters.search ||
-          item.name?.toLowerCase().includes(filters.search.toLowerCase());
-
-        const matchesSize =
-          !filters.size || item.size === filters.size;
-
-        const matchesClimate =
-          !filters.climate || item.climate === filters.climate;
-
-        const matchesTags =
-          !filters.tags || filters.tags.every((tag) => item.tags?.includes(tag));
-
-        return matchesSearch && matchesSize && matchesClimate && matchesTags;
-      });
-
+    
+      const defaultFilterFn = () => true;
+      
+      const finalFilterFn = filterFn || defaultFilterFn;
+      const filtered = allItems.filter((item) => finalFilterFn(item, filters));
+    
       set({ filteredItems: filtered, filters });
     },
 
@@ -80,3 +66,4 @@ export const createContentStore = <T>() =>
     setMode: (mode: FormMode) => set({ mode }),
     clearMode: () => set({ mode: null }),
   }));
+}
