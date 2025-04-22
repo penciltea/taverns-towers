@@ -73,7 +73,7 @@ export default function Header() {
                 onClose={handleMenuClose}
             >
                 <MenuItem onClick={() => handleNavigate('/towns/all')}>View All Towns</MenuItem>
-                <MenuItem onClick={() => handleNavigate('/towns')}>Create Town</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/towns/new')}>Create Town</MenuItem>
             </Menu>
 
             {/* Locations */}

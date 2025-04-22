@@ -7,6 +7,8 @@ type ContentFilters = {
   [key: string]: any;
 };
 
+type FormMode = 'add' | 'edit' | null;
+
 type ContentStore<T> = {
   allItems: T[];
   filteredItems: T[];
@@ -14,6 +16,7 @@ type ContentStore<T> = {
 
   filters: ContentFilters;
   isLoading: boolean;
+  mode: FormMode;
 
   setItems: (items: T[]) => void;
   applyFilters: (filters: ContentFilters) => void;
@@ -22,6 +25,8 @@ type ContentStore<T> = {
 
   setSelectedItem: (item: T) => void;
   clearSelectedItem: () => void;
+  setMode: (mode: FormMode) => void;
+  clearMode: () => void;
 };
 
 export const createContentStore = <T>() =>
@@ -32,6 +37,7 @@ export const createContentStore = <T>() =>
 
     filters: {},
     isLoading: false,
+    mode: null,
 
     setItems: (items: T[]) =>
       set({ allItems: items, filteredItems: items }),
@@ -62,4 +68,7 @@ export const createContentStore = <T>() =>
 
     setSelectedItem: (item: T) => set({ selectedItem: item }),
     clearSelectedItem: () => set({ selectedItem: null }),
+
+    setMode: (mode: FormMode) => set({ mode }),
+    clearMode: () => set({ mode: null })
   }));

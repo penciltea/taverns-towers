@@ -15,7 +15,7 @@ export default function TownActions({ townId }: { townId: string }) {
   const [isPending, startTransition] = useTransition();
 
   const handleEdit = () => {
-    router.push(`/towns?id=${townId}`);
+    router.push(`/towns/${townId}/edit`);
   };
 
   const handleConfirmDelete = () => {
