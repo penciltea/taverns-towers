@@ -1,6 +1,6 @@
 import { Box, Chip, Button, Typography } from "@mui/material";
-import GridContainer from "@/components/grid/GridContainer";
-import GridItem from "@/components/grid/GridItem";
+import GridContainer from "@/components/Grid/GridContainer";
+import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 import { LocationListProps } from "@/interfaces/location.interface";
 

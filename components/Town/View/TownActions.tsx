@@ -7,7 +7,7 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteTown } from "@/lib/actions/town.actions";
-import DeleteConfirmationDialog from "../dialog/DeleteConfirmationDialog";
+import DeleteConfirmationDialog from "../../Dialog/DeleteConfirmationDialog";
 
 export default function TownActions({ townId }: { townId: string }) {
   const router = useRouter();

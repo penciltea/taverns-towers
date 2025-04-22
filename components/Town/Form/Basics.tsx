@@ -3,7 +3,7 @@ import { Box, Button, Typography, Accordion, AccordionDetails, AccordionSummary,
 import CasinoIcon from "@mui/icons-material/Casino";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormBasics(){

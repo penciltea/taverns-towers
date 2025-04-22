@@ -1,4 +1,4 @@
-import TownScreen from "@/components/town/TownScreen";
+import TownScreen from "@/components/town/View/TownScreen";
 
 export default async function ViewTown({
   params,

@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/m
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useUIStore } from '@/store/uiStore';
-import LocationTypeDialog from '@/components/dialog/locationTypeDialog';
+import LocationTypeDialog from '@/components/Dialog/locationTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {

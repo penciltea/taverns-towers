@@ -48,15 +48,3 @@ export interface Town {
     updatedAt: string;
     __v?: number;
   }
-
-  export interface TownFilterProps {
-    filters: {
-      search: string;
-      size: string;
-      climate: string;
-      tags: string[];
-      // Add other inline filter fields as needed
-    };
-    setFilters: (filters: Partial<TownFilterProps["filters"]>) => void;
-  }
- 

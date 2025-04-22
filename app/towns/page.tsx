@@ -6,12 +6,12 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Typography } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
-import { useTownStore } from "@/store/townStore";
+import { useTownContentStore } from "@/store/townStore";
 import { townSchema, TownFormData } from "@/schemas/townSchema";
-import TownFormTabs from '@/components/forms/town/TownFormTabs';
-import TownFormBasics from "@/components/forms/town/TownFormBasics";
-import TownFormWealth from '@/components/forms/town/TownFormWealth';
-import TownFormCulture from "@/components/forms/town/TownFormCulture";
+import TownFormTabs from '@/components/Town/Form/Tabs';
+import TownFormBasics from "@/components/Town/Form/Basics";
+import TownFormWealth from '@/components/Town/Form/Wealth';
+import TownFormCulture from "@/components/Town/Form/Culture";
 import { Town } from "@/interfaces/town.interface";
 import { createTown, updateTown, getTownById } from "@/lib/actions/town.actions";
 import { transformTownFormData } from "@/lib/util/transformFormDataForDB";
@@ -24,7 +24,7 @@ export default function TownFormPage() {
 
   const router = useRouter();
   const { showSnackbar } = useUIStore();
-  const { setTown } = useTownStore();
+  const { selectedItem, setSelectedItem, clearSelectedItem } = useTownContentStore();
 
   const [tab, setTab] = useState(0);
   const [town, setLocalTown] = useState<Town | null>(null);
@@ -64,7 +64,7 @@ export default function TownFormPage() {
       try {
         const fetchedTown = await getTownById(townId);
         setLocalTown(fetchedTown);
-        setTown(fetchedTown);
+        setSelectedItem(fetchedTown);
         reset({
           ...fetchedTown,
           tags: (fetchedTown.tags as string[])?.filter(tag => tag.trim() !== "") ?? [],
@@ -79,15 +79,16 @@ export default function TownFormPage() {
     };
 
     loadTown();
-  }, [townId, reset, setTown, showSnackbar]);
+  }, [townId, reset, setSelectedItem, showSnackbar]);
 
   const onSubmit = async (data: TownFormData) => {
     let imageUrl: string | undefined;
   
     const fileInput = data.map as unknown as FileList;
 
-    if (typeof fileInput !== "string" && fileInput[0]) {
-      imageUrl = await uploadToCloudinary(fileInput[0]); //only attempt to upload to Cloudinary if filetype is not a string (ie., file has been uploaded/not already existing)
+    //only attempt to upload to Cloudinary if filetype is not a string (ie., file has been uploaded/not already existing)
+    if (fileInput instanceof FileList && fileInput.length > 0) {
+      imageUrl = await uploadToCloudinary(fileInput[0]); 
     }
   
     const cleanMap =

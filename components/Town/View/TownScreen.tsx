@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography, Grid } from "@mui/material";
 import Divider from '@mui/material/Divider';
-import TownDetails from "@/components/town/TownDetails";
-import TownActions from "@/components/town/TownActions";
-import LocationList from "@/components/town/LocationList";
+import TownDetails from "@/components/town/View/TownDetails";
+import TownActions from "@/components/town/View/TownActions";
+import LocationList from "@/components/town/View/LocationList";
 import {getTownById} from "@/lib/actions/town.actions";
 import { Town, TownProps } from "@/interfaces/town.interface";
-import FabButton from "@/components/ui/fabButton";
+import FabButton from "@/components/Common/fabButton";
 import { useUIStore } from '@/store/uiStore';
-import LocationTypeDialog from "../dialog/locationTypeDialog";
+import LocationTypeDialog from "../../Dialog/locationTypeDialog";
 import { getLocationsByTown } from "@/lib/actions/location.action";
 
 export default function TownScreen({townId}: TownProps) {
@@ -75,16 +75,17 @@ export default function TownScreen({townId}: TownProps) {
             {!town.map ? (
               <Typography variant="body1">No image was uploaded.</Typography>
             ) : (
-              <Box sx={{ width: '100%' }}>
+              <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
                 <Image
                   src={town.map}
                   alt="Your town map image"
-                  layout="responsive"
-                  width={800} // Set the aspect ratio based on your images
-                  height={600}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{
                     borderRadius: '16px',
                     boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
+                    objectFit: "cover"
                   }}
                 />
               </Box>

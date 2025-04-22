@@ -2,7 +2,7 @@ import { useFormContext, Controller } from "react-hook-form";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormWealth(){

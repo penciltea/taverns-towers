@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import { Box, Button } from "@mui/material";
 import CasinoIcon from "@mui/icons-material/Casino";
 import {CRIMINAL_ACTIVITY_TYPES  } from "@/constants/townOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/forms/common";
+import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TownFormCulture(){

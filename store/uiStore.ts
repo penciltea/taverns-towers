@@ -58,6 +58,7 @@ export const useUIStore = create<UIState>((set) => ({
     set((state) => ({
       townFilters: { ...state.townFilters, ...filters },
     })),
+    
   clearTownFilters: () =>
     set(() => ({
       townFilters: {
