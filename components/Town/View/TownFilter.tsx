@@ -1,72 +1,68 @@
 "use client";
-
-import { useState } from "react";
+import { SelectChangeEvent } from "@mui/material";
 import { Box, IconButton, TextField, useMediaQuery, useTheme } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import SelectInput from "@/components/Common/SelectInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { CLIMATE_TYPES, SIZE_TYPES } from "@/constants/townOptions";
-import { useUIStore } from "@/store/uiStore";
-//import TownFilterDialog from "./TownFilterDialog";
+import { useTownContentStore } from "@/store/townStore";
 
 export default function TownFilters() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const {openDialog, closeDialog, townFilters, setTownFilters} = useUIStore();
+  
+  // Access the store
+  const { filters, applyFilters } = useTownContentStore();
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedFilters = { ...filters, search: e.target.value };
+    applyFilters(updatedFilters);
+  };
+
+  const handleSelectChange = (key: string) => (e: SelectChangeEvent<string>) => {
+    const updatedFilters = { ...filters, [key]: e.target.value };
+    applyFilters(updatedFilters);
+  };  
 
   return (
-    <>
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
-        gap={2}
-        alignItems="center"
-        my={2}
-      >
-        <TextField
-          label="Search by Name"
-          value={townFilters.search}
-          onChange={(e) => setTownFilters({ search: e.target.value })}
-          fullWidth
-          margin="normal"
-        />
-
-        <SelectInput
-          label="Size"
-          value={townFilters.size}
-          onChange={(e) => setTownFilters({ size: e.target.value })}
-          options={toSelectOptions(SIZE_TYPES)}
-        />
-
-        <SelectInput
-          label="Climate"
-          value={townFilters.climate}
-          onChange={(e) => setTownFilters({ climate: e.target.value })}
-          options={toSelectOptions(CLIMATE_TYPES)}
-        />
-        {/*
-        <SelectInput
-          label="Tags"
-          value={townFilters.tags}
-          onChange={(e) => setTownFilters({ tags: e.target.value })}
-          options={toSelectOptions(TAG_OPTIONS)}
-          placeholder="Select tags"
-        />
-        */}
-        {!isDesktop && (
-          <IconButton onClick={() => useUIStore.getState().setOpenDialog('locationTypeDialog') } color="primary">
-            <FilterListIcon />
-          </IconButton>
-        )}
-      </Box>
-        {/*
-      <TownFilterDialog
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        filters={filters}
-        setFilters={setFilters}
+    <Box
+      display="grid"
+      gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
+      gap={2}
+      alignItems="center"
+      my={2}
+    >
+      {/* Search Field */}
+      <TextField
+        label="Search by Name"
+        value={filters.search || ""}
+        onChange={handleSearchChange}
+        fullWidth
+        margin="normal"
       />
-      */}
-    </>
+
+      {/* Size Filter */}
+      <SelectInput
+        label="Size"
+        value={filters.size}
+        onChange={handleSelectChange("size")}
+        options={toSelectOptions(SIZE_TYPES)}
+      />
+
+      {/* Climate Filter */}
+      <SelectInput
+        label="Climate"
+        value={filters.climate}
+        onChange={handleSelectChange("climate")}
+        options={toSelectOptions(CLIMATE_TYPES)}
+      />
+
+      {/* Mobile Filter Icon */}
+      {!isDesktop && (
+        <IconButton onClick={() => { /* Handle filter dialog open if needed */ }} color="primary">
+          <FilterListIcon />
+        </IconButton>
+      )}
+    </Box>
   );
 }

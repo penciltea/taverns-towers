@@ -2,7 +2,8 @@ import { create } from 'zustand';
 
 type ContentFilters = {
   search?: string;
-  sortBy?: string;
+  size?: string;
+  climate?: string;
   tags?: string[];
   [key: string]: any;
 };
@@ -45,15 +46,22 @@ export const createContentStore = <T>() =>
     applyFilters: (filters: ContentFilters) => {
       const { allItems } = get();
 
+      // Filter items based on search, size, and climate
       const filtered = allItems.filter((item: any) => {
         const matchesSearch =
           !filters.search ||
           item.name?.toLowerCase().includes(filters.search.toLowerCase());
 
+        const matchesSize =
+          !filters.size || item.size === filters.size;
+
+        const matchesClimate =
+          !filters.climate || item.climate === filters.climate;
+
         const matchesTags =
           !filters.tags || filters.tags.every((tag) => item.tags?.includes(tag));
 
-        return matchesSearch && matchesTags;
+        return matchesSearch && matchesSize && matchesClimate && matchesTags;
       });
 
       set({ filteredItems: filtered, filters });
@@ -70,5 +78,5 @@ export const createContentStore = <T>() =>
     clearSelectedItem: () => set({ selectedItem: null }),
 
     setMode: (mode: FormMode) => set({ mode }),
-    clearMode: () => set({ mode: null })
+    clearMode: () => set({ mode: null }),
   }));

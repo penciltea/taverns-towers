@@ -1,44 +1,72 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useTownContentStore } from '@/store/townStore';
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import GridContainer from './GridContainer';
 import GridItem from './GridItem';
 import FabButton from '@/components/Common/fabButton';
-import { Town } from '@/interfaces/town.interface';
+import { CommonInterface } from '@/interfaces/common.interface';
 
-export default function FilteredGridView({ initialTowns, title }: { initialTowns: Town[] }) {
-  const { setItems, filteredItems } = useTownContentStore();
+type FilteredGridViewProps<T extends CommonInterface> = {
+  initialItems: T[];
+  title: string;
+  filterComponent: React.ReactNode;
+  fields: Array<{
+    link: string;
+    title: string;
+    subtitle: string;
+    image: string;
+    tags: string[];
+  }>;
+  emptyText?: string;
+  fabLabel?: string;
+  fabLink?: string;
+};
 
+export default function FilteredGridView<T extends CommonInterface>({
+  initialItems,
+  title,
+  filterComponent,
+  fields,
+  emptyText = 'No items found.',
+  fabLabel,
+  fabLink,
+}: FilteredGridViewProps<T>) {
+  const [items, setItems] = useState<T[]>(initialItems);
+  const [filteredItems, setFilteredItems] = useState<T[]>(initialItems);
+
+  // Handle filtering logic if needed, e.g., search or other filters
   useEffect(() => {
-    setItems(initialTowns);
-  }, [initialTowns, setItems]);
+    setItems(initialItems);
+    setFilteredItems(initialItems);
+  }, [initialItems]);
 
-  
   return (
     <>
       <Typography variant="h4">{title}</Typography>
-
       <Box my={2}>
         <Typography variant="h6">Search & Filter</Typography>
-        
+        {filterComponent}
       </Box>
 
-      
+      {filteredItems.length > 0 ? (
         <GridContainer>
-          {filteredItems.map((town) => (
+          {filteredItems.map((item, index) => (
             <GridItem
-              key={town._id}
-              title={town.name}
-              subtitle={`Size: ${town.size || 'N/A'}`}
-              image={town.map || '/placeholders/town.png'}
-              tags={town.tags}
-              link={`/towns/${town._id}`}
+              key={index}
+              link={fields[index].link}  // Access the pre-calculated fields here
+              title={fields[index].title}
+              subtitle={fields[index].subtitle}
+              image={fields[index].image}
+              tags={fields[index].tags}
             />
-        ))}
+          ))}
         </GridContainer>
-      
+      ) : (
+        <Typography variant="body1">{emptyText}</Typography>
+      )}
+
+      {fabLabel && fabLink && <FabButton label={fabLabel} link={fabLink} />}
     </>
   );
 }
