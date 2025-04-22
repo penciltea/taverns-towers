@@ -34,4 +34,26 @@ export const townSchema = z.object({
     .optional(),
 });
 
+export const defaultTownValues =  {
+  name: "",
+  size: "",
+  tags: [],
+  terrain: [],
+  climate: "",
+  magic: "",
+  races: "",
+  publicNotes: "",
+  gmNotes: "",
+  leader: "",
+  rulingStyle: "",
+  wealth: "",
+  tradeNotes: "",
+  guilds: "",
+  religion: "",
+  holidays: "",
+  folklore: "",
+  crime: [],
+  map: undefined,
+}
+
 export type TownFormData = z.infer<typeof townSchema>;

@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider } from "react-hook-form";
+import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useTownContentStore } from "@/store/townStore";
-import { townSchema, TownFormData } from "@/schemas/townSchema";
+import { townSchema, TownFormData, defaultTownValues } from "@/schemas/townSchema";
 import { createTown, getTownById } from "@/lib/actions/town.actions";
 import { transformTownFormData } from "@/lib/util/transformFormDataForDB";
-import { uploadToCloudinary } from "@/lib/util/uploadToCloudinary";
+import { handleDynamicFileUpload  } from "@/lib/util/uploadToCloudinary";
 import { useFormMode } from "@/hooks/useFormMode";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import TownForm from "@/components/Town/Form/TownForm";
@@ -17,51 +16,18 @@ import TownForm from "@/components/Town/Form/TownForm";
 export default function TownFormPage() {
   const router = useRouter();
   const { showSnackbar } = useUIStore();
-  const { setSelectedItem, mode } = useTownContentStore();
+  const { mode } = useTownContentStore();
 
   const { id } = useParams();
   const safeId = getSingleParam(id);
   useFormMode(safeId, useTownContentStore, getTownById);
 
-  const methods = useForm<TownFormData>({
-    resolver: zodResolver(townSchema),
-    defaultValues: {
-      name: "",
-      size: "",
-      tags: [],
-      terrain: [],
-      climate: "",
-      magic: "",
-      races: "",
-      publicNotes: "",
-      gmNotes: "",
-      leader: "",
-      rulingStyle: "",
-      wealth: "",
-      tradeNotes: "",
-      guilds: "",
-      religion: "",
-      holidays: "",
-      folklore: "",
-      crime: [],
-      map: undefined,
-    },
+  const methods = useFormWithSchema(townSchema, {
+    defaultValues: defaultTownValues
   });
 
   const onSubmit = async (data: TownFormData) => {
-    let imageUrl: string | undefined;
-  
-    const fileInput = data.map as unknown as FileList;
-
-    //only attempt to upload to Cloudinary if filetype is not a string (ie., file has been uploaded/not already existing)
-    if (fileInput instanceof FileList && fileInput.length > 0) {
-      imageUrl = await uploadToCloudinary(fileInput[0]); 
-    }
-  
-    const cleanMap =
-      typeof data.map === "string" && data.map.startsWith("http")
-        ? data.map
-        : imageUrl ?? undefined;
+    const cleanMap = await handleDynamicFileUpload(data, "map");
   
     try {
       if (Array.isArray(data.tags)) {
