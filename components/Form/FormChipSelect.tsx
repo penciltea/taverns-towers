@@ -12,7 +12,7 @@ interface Option {
 interface FormChipSelectProps extends Omit<SelectProps, "name"> {
   name: string;
   label: string;
-  control: Control<any>;
+  control?: Control<any>;
   options: Option[];
   fieldError?: { message?: string };
   required?: boolean;

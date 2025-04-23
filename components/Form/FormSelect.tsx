@@ -24,7 +24,7 @@ interface Option {
 interface FormSelectProps extends Omit<SelectProps, "name"> {
   name: string;
   label: string;
-  control: Control<any>;
+  control?: Control<any>;
   options: Option[];
   fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>; // <-- updated here
   required?: boolean;

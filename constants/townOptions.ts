@@ -35,10 +35,10 @@ export const TAG_TYPES = [
 ];
 
 export const TERRAIN_TYPES = [
-    "Forest",
-    "Desert",
-    "Mountains",
     "Coast",
+    "Desert",
+    "Forest",
+    "Mountains",
     "Plains",
     "River",
     "Swamp",

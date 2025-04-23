@@ -34,6 +34,15 @@ export const townSchema = z.object({
     .optional(),
 });
 
+export const townFilterSchema = z.object({
+  climate: z.string().optional(),
+  size: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  terrain: z.array(z.string()).optional(),
+  magic: z.string().optional(),
+  wealth: z.string().optional(),
+});
+
 export const defaultTownValues =  {
   name: "",
   size: "",

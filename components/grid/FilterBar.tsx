@@ -59,7 +59,6 @@ export default function FilterBar<T>({
       gap={2}
       justifyItems="flex-start"
       alignItems="center"
-      my={2}
     >
       <TextField
         label="Search by Name"

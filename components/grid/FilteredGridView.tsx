@@ -56,7 +56,7 @@ export default function FilteredGridView<T extends CommonInterface>({
       }}
     >
       <Typography variant="h4">{title}</Typography>
-      <Box sx={{my: 2}}>
+      <Box sx={{my: 3}}>
         <Typography variant="h6">Search & Filter</Typography>
         {filterComponent}
         
