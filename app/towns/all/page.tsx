@@ -1,16 +1,15 @@
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import TownFilters from '@/components/Town/View/TownFilter';
 import { getAllTowns } from '@/lib/actions/town.actions';
+import { Typography } from '@mui/material';
 
 export default async function TownsPage() {
   const defaultImage = "/placeholders/town.png";
   const { success, towns } = await getAllTowns();
 
   if (!success || !towns) {
-    return <div>No towns found</div>;
+    return <Typography variant="h6">No towns found.</Typography>;
   }
-
-  console.log(towns);
 
   // Pre-calculate the values for each field
   const fields = towns.map((town) => ({
@@ -24,11 +23,12 @@ export default async function TownsPage() {
   return (
     <FilteredGridView
       title="My Towns"
+      content="towns"
       filterComponent={<TownFilters />}
       initialItems={towns || []}  // Ensure towns is defined
       fields={fields} // Pass pre-calculated fields to the child
       fabLabel="Add Town"
-      fabLink="/towns/"
+      fabLink="/towns/new"
     />
   );
 }

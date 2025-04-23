@@ -1,7 +1,7 @@
 "use client";
 import { SelectChangeEvent } from "@mui/material";
-import { Box, IconButton, TextField, useMediaQuery, useTheme } from "@mui/material";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import { Box, Button, TextField, useMediaQuery, useTheme } from "@mui/material";
+import TuneIcon from '@mui/icons-material/Tune';
 import SelectInput from "@/components/Common/SelectInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { CLIMATE_TYPES, SIZE_TYPES } from "@/constants/townOptions";
@@ -30,7 +30,7 @@ export default function TownFilters() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   
   // Access the store
-  const { filters, applyFilters } = useTownContentStore();
+  const { filters, applyFilters, clearFilters } = useTownContentStore();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedFilters = { ...filters, search: e.target.value };
@@ -45,8 +45,10 @@ export default function TownFilters() {
   return (
     <Box
       display="grid"
-      gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
+      gridTemplateColumns="350px 250px auto"
+      gridTemplateRows="2"
       gap={2}
+      justifyItems="flex-start"
       alignItems="center"
       my={2}
     >
@@ -67,20 +69,21 @@ export default function TownFilters() {
         options={toSelectOptions(SIZE_TYPES)}
       />
 
+      <Button startIcon={<TuneIcon />} onClick={() => { /* Handle filter dialog open if needed */ }} color="primary">
+        Advanced
+      </Button>
+
+      <Button variant="text" size="small" sx={{justifySelf: "center", gridColumn: "span 2", gridRow: 2}} onClick={clearFilters}> Reset All </Button>
+
       {/* Climate Filter */}
+      {/*
       <SelectInput
         label="Climate"
         value={filters.climate || ""}
         onChange={handleSelectChange("climate")}
         options={toSelectOptions(CLIMATE_TYPES)}
       />
-
-      {/* Mobile Filter Icon */}
-      {!isDesktop && (
-        <IconButton onClick={() => { /* Handle filter dialog open if needed */ }} color="primary">
-          <FilterListIcon />
-        </IconButton>
-      )}
+      */}
     </Box>
   );
 }
