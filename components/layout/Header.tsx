@@ -4,16 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
 import LocationTypeDialog from '@/components/Dialog/locationTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {
     const router = useRouter();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useIsMobile();
     const {openDialog, closeDialog} = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
