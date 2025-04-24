@@ -1,13 +1,18 @@
+'use client'
+
+import { useState } from "react";
 import { Box, Chip, Button, Typography } from "@mui/material";
 import GridContainer from "@/components/Grid/GridContainer";
 import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 import { LocationListProps } from "@/interfaces/location.interface";
 import { useUIStore } from "@/store/uiStore";
-import LocationDetailsDialog from "@/components/Location/LocationDetailsDialog";
+import LocationDetailsDialog from "@/components/Location/Dialog/LocationDetailsDialog";
+import { LocationType } from '@/interfaces/location.interface';
 
 export default function LocationList({ locations }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
+  const [location, setLocation] = useState<LocationType | null>(null);
 
   return (
     <>
@@ -38,12 +43,22 @@ export default function LocationList({ locations }: LocationListProps) {
       <GridContainer>
         {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
         {locations.map((location, index) => (
-          <GridItem key={index} onClick={() => useUIStore.getState().setOpenDialog('LocationDetailsDialog')} title={location.name} subtitle={location.type} image={location.image} tags={location.tags} />
+          <GridItem 
+            key={index} 
+            onClick={() => {
+              setLocation(location);
+              useUIStore.getState().setOpenDialog('LocationDetailsDialog');
+            }}
+            title={location.name} 
+            subtitle={location.type} 
+            image={location.image} 
+            tags={location.tags} 
+          />
         ))}
       </GridContainer>
 
-      {openDialog === 'LocationDetailsDialog' && (
-        <LocationDetailsDialog open onClose={closeDialog} location={location} />
+      {openDialog === 'LocationDetailsDialog' && location && (
+        <LocationDetailsDialog open onClose={closeDialog} locationData={location} />
       )}
     </>
   );

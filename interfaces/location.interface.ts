@@ -3,7 +3,7 @@ import { DialogProps } from "./dialogProps.interface";
 import { CommonInterface } from "./common.interface";
  
 export interface LocationDialogProps extends DialogProps {
-  location: Location;
+  locationData: LocationType;
 }
 
 export interface LocationListProps {
@@ -37,7 +37,7 @@ export interface TavernLocation extends BaseLocation {
   clientele?: string;
   entertainment?: string;
   cost?: string;
-  menu: [],
+  menu?: { name: string; description: string; price: number }[];
 }
 
 export interface TempleLocation extends BaseLocation {

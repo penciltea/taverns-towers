@@ -11,7 +11,7 @@ import {getTownById} from "@/lib/actions/town.actions";
 import { Town, TownProps } from "@/interfaces/town.interface";
 import FabButton from "@/components/Common/fabButton";
 import { useUIStore } from '@/store/uiStore';
-import LocationTypeDialog from "../../Location/locationTypeDialog";
+import LocationTypeDialog from "../../Location/Dialog/locationTypeDialog";
 import { getLocationsByTown } from "@/lib/actions/location.action";
 
 export default function TownScreen({townId}: TownProps) {

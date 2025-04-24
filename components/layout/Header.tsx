@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
-import LocationTypeDialog from '@/components/Location/locationTypeDialog';
+import LocationTypeDialog from '@/components/Location/Dialog/locationTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {
