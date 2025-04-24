@@ -31,8 +31,6 @@ export default function TownScreen({townId}: TownProps) {
         if (townData) setTown(townData);
         if (locationData) setLocations(locationData);
 
-        console.log(locations);
-
       } catch (err) {
         console.error("Error fetching town or locations:", err);
       } finally {

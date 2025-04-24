@@ -37,7 +37,7 @@ export interface TavernLocation extends BaseLocation {
   clientele?: string;
   entertainment?: string;
   cost?: string;
-  menu?: { name: string; description: string; price: number }[];
+  menu?: { name: string; description: string; price: string }[];
 }
 
 export interface TempleLocation extends BaseLocation {
