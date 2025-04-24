@@ -1,5 +1,6 @@
 "use client";
 
+import { useFormContext } from "react-hook-form";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,7 +45,7 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent dividers>{children}</DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button variant="text" size="small" onClick={handleClose}>Cancel</Button>
             <Button type="submit" variant="contained">Apply</Button>
           </DialogActions>
         </form>

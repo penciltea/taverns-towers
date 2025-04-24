@@ -21,7 +21,7 @@ export default function LocationTypeDialog({ open, onClose }: DialogProps) {
       return;
     }
     setError(false);
-    router.push(`/towns/${townId}/locations?type=${type}`); // or whatever route you use
+    router.push(`/towns/${townId}/locations/new/?type=${type}`); // or whatever route you use
     closeDialog();
   };
 

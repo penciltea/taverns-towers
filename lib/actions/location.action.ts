@@ -4,19 +4,31 @@ import { ObjectId } from "mongodb";
 import connectToDatabase from "@/lib/db/connect";
 import Location from '@/lib/models/location.model';
 import { revalidatePath } from 'next/cache';
-import { Types } from 'mongoose';
 
 function serializeLocation(location: any) {
-  const obj = location.toObject?.() ?? location;
+  const plain = location.toObject ? location.toObject() : location;
 
-  return {
-    ...obj,
-    _id: obj._id?.toString?.() ?? obj._id,
-    townId: obj.townId?.toString?.() ?? null,
-    createdAt: obj.createdAt?.toISOString?.() ?? null,
-    updatedAt: obj.updatedAt?.toISOString?.() ?? null,
-    __v: undefined, // Optional: remove Mongoose version key
+  const baseData = {
+    _id: plain._id.toString(),
+    townId: plain.townId?.toString(),
+    name: plain.name,
+    type: plain.type,
+    createdAt: plain.createdAt?.toISOString(),
+    updatedAt: plain.updatedAt?.toISOString(),
   };
+
+  if (plain.menu) {
+    return {
+      ...baseData,
+      menu: plain.menu.map((item: any) => ({
+        name: item.name,
+        description: item.description,
+        price: item.price,
+      })),
+    };
+  }
+  
+  return baseData;
 }
 
 export async function createLocation(data: any, townId: string) {
@@ -37,7 +49,7 @@ export async function getLocationById(id: string) {
   if (!ObjectId.isValid(id)) throw new Error("Invalid location ID");
 
   const location = await Location.findById(id);
-  if (!location) throw new Error("Town not found");
+  if (!location) throw new Error("Location not found");
   return serializeLocation(location);
 }
 

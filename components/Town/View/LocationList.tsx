@@ -5,7 +5,6 @@ import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 import { LocationListProps } from "@/interfaces/location.interface";
 
 export default function LocationList({ locations }: LocationListProps) {
-
   return (
     <>
       <Typography variant="h6" sx={{width: '100%', marginTop: 2}}>Filter by Category </Typography>

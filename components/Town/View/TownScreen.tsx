@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Box, Stack, Typography, Grid } from "@mui/material";
 import Divider from '@mui/material/Divider';
-import TownDetails from "@/components/town/View/TownDetails";
-import TownActions from "@/components/town/View/TownActions";
-import LocationList from "@/components/town/View/LocationList";
+import TownDetails from "@/components/Town/View/TownDetails";
+import TownActions from "@/components/Town/View/TownActions";
+import LocationList from "@/components/Town/View/LocationList";
 import {getTownById} from "@/lib/actions/town.actions";
 import { Town, TownProps } from "@/interfaces/town.interface";
 import FabButton from "@/components/Common/fabButton";
@@ -30,6 +30,9 @@ export default function TownScreen({townId}: TownProps) {
   
         if (townData) setTown(townData);
         if (locationData) setLocations(locationData);
+
+        console.log(locations);
+
       } catch (err) {
         console.error("Error fetching town or locations:", err);
       } finally {

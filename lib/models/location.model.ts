@@ -13,22 +13,25 @@ const BaseLocationSchema = new Schema(
     size: {
       type: String,
       enum: sizeValues,
-      default: 'modest',
       required: false
     },
     condition: {
       type: String,
       enum: conditionValues,
-      default: 'modest',
       required: false
     },
-    owner: { type: String, required: false },
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
     image: { type: String,required: false },
   },
   { discriminatorKey: "type", timestamps: true }
 );
+
+const MenuItemSchema = new Schema({
+  name: { type: String, required: true },
+  description: { type: String },
+  price: { type: String }, // or Number if you prefer
+});
 
 // Avoid OverwriteModelError in dev by checking if already defined
 const Location = models.Location || model("Location", BaseLocationSchema);
@@ -41,7 +44,8 @@ const Tavern =
     new Schema({
       clientele: { type: String, required: false },
       cost: { type: String, required: false },
-      entertainment: { type: String, required: false }
+      entertainment: { type: String, required: false },
+      menu: [MenuItemSchema]
     })
   );
 

@@ -4,18 +4,24 @@ export const baseLocationSchema = z.object({
   name: z.string().min(1),
   type: z.string(),
   size: z.string().optional(),
-  description: z.string().optional(),
-  owner: z.string().optional(),
+  condition: z.string().optional(),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   image: z.string().url().optional(),
+});
+
+export const menuItemSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  description: z.string().optional(), // or .min(1) if required
+  price: z.string().or(z.number()).transform((val) => val.toString()),
 });
 
 export const tavernSchema = baseLocationSchema.extend({
   type: z.literal("tavern"),
   clientele: z.string().optional(),
   cost: z.string().optional(),
-  entertainment: z.string().optional()
+  entertainment: z.string().optional(),
+  menu: z.array(menuItemSchema).optional(),
 });
 
 export const templeSchema = baseLocationSchema.extend({
@@ -45,21 +51,17 @@ export const defaultLocationValues: Record<
   tavern: {
     name: "",
     type: "tavern",
-    description: "",
-    menu: [],
-    roomsAvailable: 0,
+    menu: []
   },
   temple: {
     name: "",
     type: "temple",
-    description: "",
     deity: "",
     rituals: "",
   },
   blacksmith: {
     name: "",
     type: "blacksmith",
-    description: "",
     weaponsOffered: [],
     armorTypes: [],
   }
