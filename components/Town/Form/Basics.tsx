@@ -5,6 +5,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/townOptions";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import FormImageUpload from "@/components/Form/FormImageUpload";
 
 export default function TownFormBasics(){
     const {
@@ -17,7 +18,6 @@ export default function TownFormBasics(){
     const mapValue = watch("map");
     const isBrowser = typeof window !== "undefined";
 
-    const previewUrl =
     typeof mapValue === "string"
         ? mapValue // existing URL from DB
         : isBrowser && mapValue instanceof FileList && mapValue[0]
@@ -115,24 +115,7 @@ export default function TownFormBasics(){
                 </Accordion>
             </Box>
             <Box>
-                <Box mt={2}>
-                    <Typography variant="subtitle1">Upload Town Map</Typography>
-                    <input type="file" accept="image/*" {...register("map")} />
-                    {typeof errors.map?.message === "string" && (
-                    <Typography color="error">{errors.map.message}</Typography>
-                    )}
-                </Box>
-
-                {previewUrl && (
-                    <Box mt={2}>
-                    <Typography variant="subtitle2">Preview:</Typography>
-                    <img
-                        src={previewUrl}
-                        alt="Town map preview"
-                        style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
-                    />
-                    </Box>
-                )}
+                <FormImageUpload name="map" label="Upload Town Map" />
             </Box>
         </Stack>
     );

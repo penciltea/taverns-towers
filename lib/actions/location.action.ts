@@ -3,32 +3,35 @@
 import { ObjectId } from "mongodb";
 import connectToDatabase from "@/lib/db/connect";
 import Location from '@/lib/models/location.model';
+import { BaseLocation, LocationType } from "@/interfaces/location.interface";
 import { revalidatePath } from 'next/cache';
 
-function serializeLocation(location: any) {
+function serializeLocation(location: any): LocationType {
   const plain = location.toObject ? location.toObject() : location;
 
-  const baseData = {
+  const baseData: BaseLocation = {
     _id: plain._id.toString(),
-    townId: plain.townId?.toString(),
     name: plain.name,
     type: plain.type,
+    townId: plain.townId?.toString(),
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
   };
 
-  if (plain.menu) {
-    return {
-      ...baseData,
-      menu: plain.menu.map((item: any) => ({
-        name: item.name,
-        description: item.description,
-        price: item.price,
-      })),
-    };
+  switch (plain.type) {
+    case "tavern":
+      return {
+        ...baseData,
+        type: "tavern",
+        menu: plain.menu?.map((item: any) => ({
+          name: item.name,
+          description: item.description,
+          price: item.price,
+        })) ?? [],
+      };
+    default:
+      return baseData;
   }
-  
-  return baseData;
 }
 
 export async function createLocation(data: any, townId: string) {

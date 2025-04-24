@@ -8,7 +8,7 @@ import { Location } from "@/interfaces/location.interface";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useLocationStore } from "@/store/locationStore";
-import { Typography, Button, TextField } from "@mui/material";
+import { Paper, Typography, Button, TextField } from "@mui/material";
 import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
 import { FormTextField, FormSelect } from "@/components/Form";
 import { LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
@@ -59,6 +59,15 @@ export default function LocationForm(){
     const watchedType = watch("type");
     
     return (
+        <Paper
+              elevation={3}
+              sx={{
+                p: 3,
+                mb: 4,
+                borderRadius: 2,
+                //backgroundColor: theme.palette.background.paper,
+              }}
+            >
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Typography variant="h4" gutterBottom>
@@ -89,5 +98,6 @@ export default function LocationForm(){
                 </Button>
             </form>
         </FormProvider>
+    </Paper>
     )
 } 

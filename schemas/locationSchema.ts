@@ -7,7 +7,18 @@ export const baseLocationSchema = z.object({
   condition: z.string().optional(),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
-  image: z.string().url().optional(),
+  image: z
+    .any()
+    .refine(
+      (val) =>
+        val === undefined ||
+        typeof val === "string" ||
+        (typeof FileList !== "undefined" && val instanceof FileList),
+      {
+        message: "Image must be a URL or FileList",
+      }
+    )
+    .optional(),
 });
 
 export const menuItemSchema = z.object({

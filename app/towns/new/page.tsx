@@ -13,7 +13,7 @@ import { useFormMode } from "@/hooks/useFormMode";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import TownForm from "@/components/Town/Form/TownForm";
 
-export default function TownFormPage() {
+export default function NewTownPage() {
   const router = useRouter();
   const { showSnackbar } = useUIStore();
   const { mode } = useTownContentStore();

@@ -31,6 +31,7 @@ export interface TavernLocation extends BaseLocation {
   clientele?: string;
   entertainment?: string;
   cost?: string;
+  menu: [],
 }
 
 export interface TempleLocation extends BaseLocation {
@@ -45,7 +46,7 @@ export interface BlacksmithLocation extends BaseLocation {
   armorTypes?: string[];
 }
 
-export type Location = TavernLocation | TempleLocation | BlacksmithLocation | BaseLocation;
+export type LocationType = TavernLocation | TempleLocation | BlacksmithLocation | BaseLocation;
 
 export type LocationSize = (typeof LOCATION_SIZE)[number]['value'];
 export type LocationCondition = (typeof LOCATION_CONDITION)[number]['value'];

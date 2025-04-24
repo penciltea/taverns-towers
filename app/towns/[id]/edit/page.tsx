@@ -14,7 +14,7 @@ import { useFormMode } from "@/hooks/useFormMode";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import TownForm from "@/components/Town/Form/TownForm";
 
-export default function TownFormPage() {
+export default function EditTownFormPage() {
   const router = useRouter();
   const { showSnackbar } = useUIStore();
   const { setSelectedItem, mode } = useTownContentStore();
