@@ -6,7 +6,7 @@ import { Paper, Typography, Stack, Box } from "@mui/material";
 import { LocationFormData } from "@/schemas/locationSchema";
 import { FormTextField, FormSelect } from "@/components/Form";
 import { LOCATION_CATEGORIES, LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
-import { locationFormFieldsByType } from "@/components/Location/FieldsByType";
+import { locationFormFieldsByType } from "@/components/Location/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
 import { useLocationContentStore } from "@/store/locationStore";

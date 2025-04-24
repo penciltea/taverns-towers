@@ -1,4 +1,4 @@
-import TavernFields from "./Form/Tavern";
+import TavernFields from "./Tavern";
 //import TempleFields from "./TempleFields";
 //import BlacksmithFields from "./BlacksmithFields";
 
