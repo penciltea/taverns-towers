@@ -7,9 +7,8 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { Location } from "@/interfaces/location.interface";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
-import { useLocationStore } from "@/store/locationStore";
+import { useLocationContentStore } from "@/store/locationStore";
 import LocationForm from '@/components/Location/Form/LocationForm'
-
 import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
@@ -22,7 +21,7 @@ export default function NewLocationPage(){
     const router = useRouter();
 
     const { showSnackbar } = useUIStore();
-    const { setLocation, mode } = useLocationStore();
+    const { mode } = useLocationContentStore();
 
     const methods = useFormWithSchema(locationSchema, {
         defaultValues: {

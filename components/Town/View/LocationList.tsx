@@ -3,8 +3,12 @@ import GridContainer from "@/components/Grid/GridContainer";
 import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
 import { LocationListProps } from "@/interfaces/location.interface";
+import { useUIStore } from "@/store/uiStore";
+import LocationDetailsDialog from "@/components/Location/LocationDetailsDialog";
 
 export default function LocationList({ locations }: LocationListProps) {
+  const { openDialog, closeDialog } = useUIStore();
+
   return (
     <>
       <Typography variant="h6" sx={{width: '100%', marginTop: 2}}>Filter by Category </Typography>
@@ -34,9 +38,13 @@ export default function LocationList({ locations }: LocationListProps) {
       <GridContainer>
         {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
         {locations.map((location, index) => (
-          <GridItem key={index} link={`/locations/${location._id}`} title={location.name} subtitle={location.type} image={location.image} tags={location.tags} />
+          <GridItem key={index} onClick={() => useUIStore.getState().setOpenDialog('LocationDetailsDialog')} title={location.name} subtitle={location.type} image={location.image} tags={location.tags} />
         ))}
       </GridContainer>
+
+      {openDialog === 'LocationDetailsDialog' && (
+        <LocationDetailsDialog open onClose={closeDialog} location={location} />
+      )}
     </>
   );
 }

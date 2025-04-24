@@ -7,7 +7,7 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteTown } from "@/lib/actions/town.actions";
-import DeleteConfirmationDialog from "../../Dialog/DeleteConfirmationDialog";
+import DeleteConfirmationDialog from "../../Common/DeleteConfirmationDialog";
 
 export default function TownActions({ townId }: { townId: string }) {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function TownActions({ townId }: { townId: string }) {
       {openDialog === 'deleteConfirmationDialog' && (
         <DeleteConfirmationDialog
           open
-          onClose={() => setOpenDialog('deleteConfirmationDialog')}
+          onClose={closeDialog}
           onConfirm={handleConfirmDelete}
           deleting="town"
         />

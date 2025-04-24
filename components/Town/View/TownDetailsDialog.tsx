@@ -1,6 +1,6 @@
-import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography } from '@mui/material';
 import { TownDialogProps } from "@/interfaces/town.interface";
-import TownAccordion from "../town/View/townAccordion";
+import TownAccordion from "./townAccordion";
 
 export default function TownDetailsDialog({ open, onClose, town }: TownDialogProps) {
     return(

@@ -1,4 +1,10 @@
 import { LOCATION_SIZE, LOCATION_CONDITION } from '@/constants/locationOptions';
+import { DialogProps } from "./dialogProps.interface";
+import { CommonInterface } from "./common.interface";
+ 
+export interface LocationDialogProps extends DialogProps {
+  location: Location;
+}
 
 export interface LocationListProps {
   locations: 

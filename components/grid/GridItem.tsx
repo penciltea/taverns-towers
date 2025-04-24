@@ -4,14 +4,22 @@ import { Grid, Typography, Box, Chip } from '@mui/material';
 import { GridItemProps } from '@/interfaces/gridProps';
 
 
-export default function GridItem({ title, subtitle, link, image, tags = [] }: GridItemProps) {
+export default function GridItem({ title, subtitle, link, image, onClick, tags = [] }: GridItemProps) {
   const router = useRouter();
   const filteredTags = tags.filter(tag => tag.trim() !== '');
   const visibleTags = filteredTags.slice(0, 3);
   const extraCount = filteredTags.length - visibleTags.length;
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); // If onClick is passed, call it
+    } else {
+      router.push(link); // Default navigation behavior if no onClick is provided
+    }
+  };
+
   return (
-    <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%' }} onClick={() => router.push(link)}>
+    <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%' }} onClick={handleClick}>
       {image && (
         <Box
           sx={{

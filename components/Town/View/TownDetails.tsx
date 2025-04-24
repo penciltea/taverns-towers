@@ -1,7 +1,7 @@
 import { Box, Typography, List, ListItem, Button } from "@mui/material";
 import { Town } from "@/interfaces/town.interface";
 import { useUIStore } from "@/store/uiStore";
-import TownDetailsDialog from "../../Dialog/TownDetailsDialog";
+import TownDetailsDialog from "./TownDetailsDialog";
 
 export default function TownDetails({ town }: { town: Town }) {
   const { openDialog, closeDialog } = useUIStore();

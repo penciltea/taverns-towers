@@ -9,6 +9,7 @@ import { LOCATION_CATEGORIES, LOCATION_SIZE, LOCATION_CONDITION } from "@/consta
 import { locationFormFieldsByType } from "@/components/Location/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
+import { useLocationContentStore } from "@/store/locationStore";
 
 type LocationFormProps = {
   onSubmit: (data: LocationFormData) => void;
@@ -23,6 +24,7 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     const SpecificFieldsComponent = locationFormFieldsByType[typeParam];
 
     const typeLabel = LOCATION_CATEGORIES.find(c => c.value === typeParam)?.label ?? "Unknown";
+    const { selectedItem } = useLocationContentStore();
 
     const {
         register,
@@ -53,7 +55,7 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Typography variant="h4" gutterBottom>
-                    {mode === 'edit' ? `Edit Location - NAME` : `Create Location (${typeLabel})`}
+                    {mode === 'edit' ? `Edit ${selectedItem?.name}` : `Create Location (${typeLabel})`}
                 </Typography>
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}

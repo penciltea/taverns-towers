@@ -4,8 +4,9 @@ export interface GridContainerProps {
 
 export interface GridItemProps {
   title: string;
-  link: string;
+  link?: string;
   subtitle?: string;
   image?: string;
   tags?: string[];
+  onClick?: () => void;
 }

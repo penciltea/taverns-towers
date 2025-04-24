@@ -9,7 +9,7 @@ import { useTownContentStore } from "@/store/townStore";
 import { Town } from "@/interfaces/town.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 import { ContentFilters } from "@/store/contentStore";
-import FilterDialog from "@/components/Dialog/FilterDialog";
+import FilterDialog from "@/components/Grid/FilterDialog";
 import { townFilterSchema } from "@/schemas/townSchema";
 import { useUIStore } from "@/store/uiStore";
 import * as z from "zod";

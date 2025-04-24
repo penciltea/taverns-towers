@@ -1,53 +1,71 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Location } from "@/interfaces/location.interface";
+import { useFormWithSchema } from "@/hooks/useFormWithSchema";
+import { FormProvider } from "react-hook-form";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
-import { useLocationStore } from "@/store/locationStore";
-import { Paper, Typography, Button, TextField } from "@mui/material";
-import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
-import { FormTextField, FormSelect } from "@/components/Form";
-import { LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/locationOptions";
+import { useLocationContentStore } from "@/store/locationStore";
+import { updateLocation, getLocationById } from "@/lib/actions/location.action";
+import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
+import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
+import LocationForm from '@/components/Location/Form/LocationForm'
+import { getSingleParam } from "@/lib/util/getSingleParam";
+import { useFormMode } from "@/hooks/useFormMode";
 
-export default function LocationForm(){
+export default function EditLocationPage(){
     const params = useParams();
     const searchParams = useSearchParams();
     const townId = params.id as string;
+    const { locId } = useParams();
+    const safeId = getSingleParam(locId);
     const typeParam = searchParams?.get("type") as LocationFormData["type"];
     const router = useRouter();
 
     const { showSnackbar } = useUIStore();
-    const { setLocation, mode } = useLocationStore();
+    const { setSelectedItem, mode } = useLocationContentStore();
+    useFormMode(safeId, useLocationContentStore, getLocationById);
 
-    const methods = useForm<LocationFormData>({
-        resolver: zodResolver(locationSchema),
+    const methods = useFormWithSchema(locationSchema, {
         defaultValues: {
             ...defaultLocationValues[typeParam],
-        },
+        }
     });
 
-    const { 
-        register,
-        handleSubmit,
-        formState: { errors },
-        control,
-        watch,
-        setValue 
-    } = methods;
+    const { reset } = methods;
+
+    useEffect(() => {
+        if (!safeId) return;
+    
+        const loadLocation = async () => {
+          try {
+            const fetchedLocation = await getLocationById(safeId);
+            setSelectedItem(fetchedLocation);
+            reset({
+              ...fetchedLocation,
+              type: fetchedLocation.type as LocationFormData["type"],
+              image: fetchedLocation.image ?? undefined,
+            });
+          } catch (err) {
+            showSnackbar("Failed to load town, please try again later!", "error");
+          }
+        };
+    
+        loadLocation();
+      }, [safeId, reset, setSelectedItem, showSnackbar]);
 
     const onSubmit = async (data: LocationFormData) => {
+        const cleanImage = await handleDynamicFileUpload(data, "image");
 
         try {
+            const locationData = {
+                ...transformLocationFormData(data),
+                image: cleanImage,
+            };
+
             let savedLocation;
-            if (mode === 'edit') {
-                //savedTown = await updateLocation(id, data);
-            } else {
-                savedLocation = await createLocation(data, townId);
-            }
+            savedLocation = await updateLocation(townId, locationData);
 
             showSnackbar(`Location ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
             router.push(`/towns/${townId}`);
@@ -55,49 +73,10 @@ export default function LocationForm(){
             showSnackbar(`Something went wrong: ${err}`, "error");
         }
     }
-
-    const watchedType = watch("type");
     
     return (
-        <Paper
-              elevation={3}
-              sx={{
-                p: 3,
-                mb: 4,
-                borderRadius: 2,
-                //backgroundColor: theme.palette.background.paper,
-              }}
-            >
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Typography variant="h4" gutterBottom>
-                    {mode === 'edit' ? "Edit Location" : "Create Location"}
-                </Typography>
-
-                <FormTextField
-                    name="name"
-                    label="Location Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-
-                <FormSelect
-                    name="size"
-                    label="Size Category"
-                    control={control}
-                    options={LOCATION_SIZE}
-                    fieldError={errors.size}
-                />
-
-                <Button type="submit" variant="contained" sx={{ mt: 3 }} size="large">
-                    {mode === 'edit' ? "Update" : "Create"} Location
-                </Button>
-                <Button type="button" variant="outlined" sx={{ marginTop: 3, marginLeft: 3 }} size="small" onClick={() => router.back()}>
-                    cancel
-                </Button>
-            </form>
+            <LocationForm onSubmit={onSubmit} mode={mode} />
         </FormProvider>
-    </Paper>
     )
 } 
