@@ -41,9 +41,7 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
         : isBrowser && imageValue instanceof FileList && imageValue[0]
         ? URL.createObjectURL(imageValue[0])
         : null;
-
-    console.log(imageValue);
-    console.log(watch);
+        
     return (
         <Paper
             elevation={3}
@@ -86,11 +84,26 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
                             fieldError={errors.condition}
                         />
 
+                        <FormTextField
+                            name="publicNotes"
+                            label="Public Notes"
+                            registration={register("publicNotes")}
+                            fieldError={errors.publicNotes}
+                        />
+
+                        <FormTextField
+                            name="gmNotes"
+                            label="GM Notes"
+                            registration={register("gmNotes")}
+                            fieldError={errors.gmNotes}
+                        />
+
                         {SpecificFieldsComponent ? (
                             <SpecificFieldsComponent />
                         ) : (
                             <Typography variant="body2">Unknown location type: {typeParam}</Typography>
                         )}
+                        
                     </Box>
                     
                     <Box>

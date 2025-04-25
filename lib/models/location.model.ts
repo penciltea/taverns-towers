@@ -22,7 +22,7 @@ const BaseLocationSchema = new Schema(
     },
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
-    image: { type: String,required: false },
+    image: { type: String, required: false },
   },
   { discriminatorKey: "type", timestamps: true }
 );

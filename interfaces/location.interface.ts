@@ -8,7 +8,8 @@ export interface LocationDialogProps extends DialogProps {
 
 export interface LocationListProps {
   locations: 
-    { image: string; 
+    { 
+      image: string; 
       _id: string; 
       type: string; 
       name: string; 

@@ -12,6 +12,7 @@ function serializeLocation(location: any): LocationType {
   const baseData: BaseLocation = {
     _id: plain._id.toString(),
     name: plain.name,
+    image: plain.image,
     type: plain.type,
     townId: plain.townId?.toString(),
     createdAt: plain.createdAt?.toISOString(),

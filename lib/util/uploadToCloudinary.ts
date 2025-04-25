@@ -2,37 +2,29 @@ export const uploadToCloudinary = async (file: File): Promise<string | undefined
   if (!file.type.startsWith("image/")) {
     throw new Error("Only image files are allowed.");
   }
-
+  
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", "town_maps");
 
-  // Cloudinary URL and transformation options
   const cloudinaryUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   if (!cloudinaryUrl) {
     throw new Error("Cloudinary URL is not defined in environment variables");
   }
 
-  // Add transformation options here (e.g., compression, quality settings)
-  const transformationParams = [
-    "q_auto", // Automatically applies the best quality based on the image
-    "f_auto", // Automatically selects the best format (JPEG, PNG, etc.)
-    "c_limit", // Limits the file size
-  ];
-
   try {
-    // Upload the image with transformations applied
-    const cloudinaryRes = await fetch(`${cloudinaryUrl}/upload?${transformationParams.join("&")}`, {
+    const cloudinaryRes = await fetch(cloudinaryUrl, {
       method: "POST",
       body: formData,
     });
 
     const result = await cloudinaryRes.json();
-    return result.secure_url; // Return the URL of the uploaded image
+    return result.secure_url;
   } catch (err) {
     throw new Error("Failed to upload image to Cloudinary");
   }
 };
+
 function isFileList(value: unknown): value is FileList {
   return (
     typeof value === "object" &&

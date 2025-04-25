@@ -38,6 +38,8 @@ export default function NewLocationPage(){
                 image: cleanImage,
             };
 
+            console.log(locationData);
+
             let savedLocation;
             savedLocation = await createLocation(locationData, townId);
 
