@@ -25,7 +25,6 @@ export interface BaseLocation {
   type: string;
   size?: LocationSize;
   condition?: LocationCondition;
-  owner?: string;
   publicNotes?: string;
   gmNotes?: string;
   image?: string;
@@ -35,6 +34,7 @@ export interface BaseLocation {
 
 export interface TavernLocation extends BaseLocation {
   type: "tavern";
+  owner?: string;
   clientele?: string;
   entertainment?: string;
   cost?: string;

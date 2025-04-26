@@ -2,6 +2,7 @@ import { Box, Typography, List, ListItem, Button } from "@mui/material";
 import { Town } from "@/interfaces/town.interface";
 import { useUIStore } from "@/store/uiStore";
 import TownDetailsDialog from "./TownDetailsDialog";
+import InfoListItem from "@/components/Common/InfoListItem";
 
 export default function TownDetails({ town }: { town: Town }) {
   const { openDialog, closeDialog } = useUIStore();
@@ -24,11 +25,10 @@ export default function TownDetails({ town }: { town: Town }) {
     <>
       <Box sx={{marginTop: 1}}>
         <Typography variant="h5">Details</Typography>
-        <List sx={{ listStyleType: "disc", listStylePosition: "inside" }}>
+        
+        <List>
           {fields.map((field) => (
-            <ListItem key={field.label} sx={{ display: "list-item" }}>
-              <strong>{field.label}: </strong> {field.value || "N/A"}
-            </ListItem>
+            <InfoListItem key={ field.label } label={ field.label } value={ field.value } />
           ))}
         </List>
         <Button variant="outlined" onClick={() => useUIStore.getState().setOpenDialog('TownDetailsDialog')}>Additional Details</Button>

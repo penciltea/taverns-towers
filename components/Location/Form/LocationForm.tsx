@@ -10,6 +10,7 @@ import { locationFormFieldsByType } from "@/components/Location/Form/FieldsByTyp
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
 import { useLocationContentStore } from "@/store/locationStore";
+import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 
 type LocationFormProps = {
   onSubmit: (data: LocationFormData) => void;
@@ -23,8 +24,9 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     const typeParam = searchParams?.get("type") as LocationFormData["type"];
     const SpecificFieldsComponent = locationFormFieldsByType[typeParam];
 
-    const typeLabel = LOCATION_CATEGORIES.find(c => c.value === typeParam)?.label ?? "Unknown";
     const { selectedItem } = useLocationContentStore();
+
+    const typeLabel = getLabelFromValue(LOCATION_CATEGORIES, typeParam, "Unknown");
 
     const {
         register,

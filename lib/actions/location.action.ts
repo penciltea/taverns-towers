@@ -14,6 +14,10 @@ function serializeLocation(location: any): LocationType {
     name: plain.name,
     image: plain.image,
     type: plain.type,
+    size: plain.size,
+    condition: plain.condition,
+    publicNotes: plain.publicNotes,
+    gmNotes: plain.gmNotes,
     townId: plain.townId?.toString(),
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
@@ -24,6 +28,10 @@ function serializeLocation(location: any): LocationType {
       return {
         ...baseData,
         type: "tavern",
+        owner: plain.owner,
+        clientele: plain.clientele,
+        entertainment: plain.entertainment,
+        cost: plain.cost,
         menu: plain.menu?.map((item: any) => ({
           name: item.name,
           description: item.description,

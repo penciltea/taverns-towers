@@ -9,11 +9,12 @@ import { LocationListProps } from "@/interfaces/location.interface";
 import { useUIStore } from "@/store/uiStore";
 import LocationDetailsDialog from "@/components/Location/Dialog/LocationDetailsDialog";
 import { LocationType } from '@/interfaces/location.interface';
+import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 
 export default function LocationList({ locations }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
-
+  
   return (
     <>
       <Typography variant="h6" sx={{width: '100%', marginTop: 2}}>Filter by Category </Typography>
@@ -50,7 +51,7 @@ export default function LocationList({ locations }: LocationListProps) {
               useUIStore.getState().setOpenDialog('LocationDetailsDialog');
             }}
             title={location.name} 
-            subtitle={location.type} 
+            subtitle={getLabelFromValue(LOCATION_CATEGORIES, location.type)} 
             image={location.image} 
             tags={location.tags} 
           />

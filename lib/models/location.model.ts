@@ -42,6 +42,7 @@ const Tavern =
   Location.discriminator(
     "tavern",
     new Schema({
+      owner: { type: String, required: false },
       clientele: { type: String, required: false },
       cost: { type: String, required: false },
       entertainment: { type: String, required: false },

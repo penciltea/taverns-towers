@@ -29,6 +29,7 @@ export const menuItemSchema = z.object({
 
 export const tavernSchema = baseLocationSchema.extend({
   type: z.literal("tavern"),
+  owner: z.string().optional(),
   clientele: z.string().optional(),
   cost: z.string().optional(),
   entertainment: z.string().optional(),

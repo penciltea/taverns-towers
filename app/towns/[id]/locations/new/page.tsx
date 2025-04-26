@@ -37,9 +37,7 @@ export default function NewLocationPage(){
                 ...transformLocationFormData(data),
                 image: cleanImage,
             };
-
-            console.log(locationData);
-
+            
             let savedLocation;
             savedLocation = await createLocation(locationData, townId);
 
