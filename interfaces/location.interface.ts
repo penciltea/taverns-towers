@@ -4,17 +4,12 @@ import { CommonInterface } from "./common.interface";
  
 export interface LocationDialogProps extends DialogProps {
   locationData: LocationType;
+  onDelete: (id: string) => void;
 }
 
 export interface LocationListProps {
-  locations: 
-    { 
-      image: string; 
-      _id: string; 
-      type: string; 
-      name: string; 
-      tags: string[] 
-    }[];
+  locations: LocationType[];
+  onDelete: (id: string) => void;
 }
 
 

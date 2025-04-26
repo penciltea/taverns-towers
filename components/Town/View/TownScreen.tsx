@@ -12,11 +12,12 @@ import { Town, TownProps } from "@/interfaces/town.interface";
 import FabButton from "@/components/Common/fabButton";
 import { useUIStore } from '@/store/uiStore';
 import LocationTypeDialog from "../../Location/Dialog/locationTypeDialog";
-import { getLocationsByTown } from "@/lib/actions/location.action";
+import { getLocationsByTown } from "@/lib/actions/location.actions";
+import { LocationType } from "@/interfaces/location.interface";
 
 export default function TownScreen({townId}: TownProps) {
   const [town, setTown] = useState<Town | undefined>(undefined);
-  const [locations, setLocations] = useState<any[]>([]);
+  const [locations, setLocations] = useState<LocationType[]>([]);
   const [loading, setLoading] = useState(true);
   const {openDialog, closeDialog} = useUIStore();
   
@@ -97,14 +98,16 @@ export default function TownScreen({townId}: TownProps) {
         {/* Bottom half */}
         <Grid size={{xs: 12}}>
           <Typography variant="h5">Locations</Typography>
-          <LocationList locations={locations} />
+          <LocationList locations={locations} onDelete={(id: string) => {
+              setLocations(prev => prev.filter(loc => loc._id !== id));
+            }}/>
         </Grid>
       </Grid>
 
       <FabButton label="Add Location" onClick={() => { useUIStore.getState().setOpenDialog('locationTypeDialog') }} />
 
         {openDialog === 'locationTypeDialog' && (
-            <LocationTypeDialog open onClose={closeDialog} />
+            <LocationTypeDialog open onClose={closeDialog}  />
         )}
     </>
   );

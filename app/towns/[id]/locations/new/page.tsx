@@ -9,7 +9,7 @@ import { locationSchema, defaultLocationValues, LocationFormData } from "@/schem
 import { useUIStore } from "@/store/uiStore";
 import { useLocationContentStore } from "@/store/locationStore";
 import LocationForm from '@/components/Location/Form/LocationForm'
-import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.action";
+import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.actions";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 

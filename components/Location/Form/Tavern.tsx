@@ -14,6 +14,13 @@ export default function TavernFields(){
     return (
         <>
             <FormTextField
+                name="owner"
+                label="Owner"
+                registration={register("owner")}
+                fieldError={errors.owner}
+            />
+            
+            <FormTextField
                 name="clientele"
                 label="Clientele"
                 registration={register("clientele")}

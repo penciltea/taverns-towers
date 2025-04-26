@@ -11,7 +11,7 @@ import LocationDetailsDialog from "@/components/Location/Dialog/LocationDetailsD
 import { LocationType } from '@/interfaces/location.interface';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 
-export default function LocationList({ locations }: LocationListProps) {
+export default function LocationList({ locations, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
   
@@ -43,23 +43,23 @@ export default function LocationList({ locations }: LocationListProps) {
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
       <GridContainer>
         {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
-        {locations.map((location, index) => (
+        {locations.map((location) => (
           <GridItem 
-            key={index} 
+            key={location._id} 
             onClick={() => {
               setLocation(location);
               useUIStore.getState().setOpenDialog('LocationDetailsDialog');
             }}
             title={location.name} 
             subtitle={getLabelFromValue(LOCATION_CATEGORIES, location.type)} 
-            image={location.image} 
-            tags={location.tags} 
+            image={location.image}
+            
           />
         ))}
       </GridContainer>
 
       {openDialog === 'LocationDetailsDialog' && location && (
-        <LocationDetailsDialog open onClose={closeDialog} locationData={location} />
+        <LocationDetailsDialog open onClose={closeDialog} locationData={location} onDelete={onDelete} />
       )}
     </>
   );

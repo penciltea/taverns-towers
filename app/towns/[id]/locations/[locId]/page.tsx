@@ -7,7 +7,7 @@ import { FormProvider } from "react-hook-form";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useLocationContentStore } from "@/store/locationStore";
-import { updateLocation, getLocationById } from "@/lib/actions/location.action";
+import { updateLocation, getLocationById } from "@/lib/actions/location.actions";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 import LocationForm from '@/components/Location/Form/LocationForm'

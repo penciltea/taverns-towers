@@ -45,7 +45,9 @@ function serializeLocation(location: any): LocationType {
 
 export async function createLocation(data: any, townId: string) {
   await connectToDatabase();
-  const newLocation = await Location.create({ ...data, townId });
+  const model = Location.discriminators?.[data.type] || Location;
+
+  const newLocation = await model.create({ ...data, townId });
   revalidatePath(`/town/${townId}`);
   return serializeLocation(newLocation);
 }
@@ -67,14 +69,20 @@ export async function getLocationById(id: string) {
 
 export async function updateLocation(id: string, data: any) {
   await connectToDatabase();
-  const updated = await Location.findByIdAndUpdate(id, data, { new: true });
+
+  const existing = await Location.findById(id);
+  if (!existing) throw new Error("Location not found");
+
+  const model = Location.discriminators?.[existing.type] || Location;
+  const updated = await model.findByIdAndUpdate(id, data, { new: true });
+
   if (updated?.townId) revalidatePath(`/town/${updated.townId}`);
-  return updated;
+  return serializeLocation(updated);
 }
 
 export async function deleteLocation(id: string) {
   await connectToDatabase();
   const deleted = await Location.findByIdAndDelete(id);
   if (deleted?.townId) revalidatePath(`/town/${deleted.townId}`);
-  return deleted;
+  return { success: true };
 }

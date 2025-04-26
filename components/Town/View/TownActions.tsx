@@ -8,10 +8,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteTown } from "@/lib/actions/town.actions";
 import DeleteConfirmationDialog from "../../Common/DeleteConfirmationDialog";
+import DeleteButton from "@/components/Common/DeleteButton";
 
 export default function TownActions({ townId }: { townId: string }) {
   const router = useRouter();
-  const { openDialog, setOpenDialog, closeDialog } = useUIStore();
+  const { openDialog, setOpenDialog, closeDialog, showSnackbar } = useUIStore();
   const [isPending, startTransition] = useTransition();
 
   const handleEdit = () => {
@@ -32,25 +33,16 @@ export default function TownActions({ townId }: { townId: string }) {
         <Button sx={{ mx: 1 }} variant="outlined" startIcon={<EditIcon />}  onClick={handleEdit}>
           Edit
         </Button>
-        <Button 
-          sx={{ mx: 1 }} 
-          variant="text" 
-          startIcon={<DeleteIcon />} 
-          onClick={() => useUIStore.getState().setOpenDialog('deleteConfirmationDialog')}
-          disabled={isPending}
-        >
-          {isPending ? "Deleting..." : "Delete"}
-        </Button>
-      </Box>
-
-      {openDialog === 'deleteConfirmationDialog' && (
-        <DeleteConfirmationDialog
-          open
-          onClose={closeDialog}
-          onConfirm={handleConfirmDelete}
-          deleting="town"
+        <DeleteButton
+          id={townId}
+          entity="town"
+          deleteAction={deleteTown}
+          onSuccess={() => {
+            router.push("/towns/all");
+            showSnackbar('Town deleted successfully!', 'success');
+          }}
         />
-      )}
+      </Box>
     </>
   );
 }

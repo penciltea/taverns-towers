@@ -14,6 +14,7 @@ export default function DeleteConfirmationDialog({
   const defaultTitle = `Delete ${deleting}?`;
   const defaultMessage = `Are you sure you want to delete this ${deleting}? This action cannot be undone.`;
 
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title || defaultTitle}</DialogTitle>
