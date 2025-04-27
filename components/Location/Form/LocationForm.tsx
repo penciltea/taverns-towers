@@ -21,12 +21,17 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     const searchParams = useSearchParams();
     const methods = useFormContext<LocationFormData>();
     const { handleSubmit } = methods;
-    const typeParam = searchParams?.get("type") as LocationFormData["type"];
-    const SpecificFieldsComponent = locationFormFieldsByType[typeParam];
-
     const { selectedItem } = useLocationContentStore();
 
-    const typeLabel = getLabelFromValue(LOCATION_CATEGORIES, typeParam, "Unknown");
+    const typeParam = mode === 'edit'
+    ? selectedItem?.type
+    : (searchParams?.get("type") as LocationFormData["type"]);
+
+    const SpecificFieldsComponent = typeParam && locationFormFieldsByType[typeParam];
+
+    const typeLabel = typeParam
+    ? getLabelFromValue(LOCATION_CATEGORIES, typeParam, "Unknown")
+    : "Unknown";
 
     const {
         register,
@@ -86,24 +91,12 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
                             fieldError={errors.condition}
                         />
 
-                        <FormTextField
-                            name="publicNotes"
-                            label="Public Notes"
-                            registration={register("publicNotes")}
-                            fieldError={errors.publicNotes}
-                        />
-
-                        <FormTextField
-                            name="gmNotes"
-                            label="GM Notes"
-                            registration={register("gmNotes")}
-                            fieldError={errors.gmNotes}
-                        />
-
                         {SpecificFieldsComponent ? (
                             <SpecificFieldsComponent />
                         ) : (
-                            <Typography variant="body2">Unknown location type: {typeParam}</Typography>
+                            <Typography variant="body2">
+                                {typeParam ? `Unknown location type: ${typeParam}` : "No location type selected."}
+                            </Typography>
                         )}
                         
                     </Box>

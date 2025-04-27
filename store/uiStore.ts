@@ -17,6 +17,10 @@ interface UIState {
     snackbarSeverity: 'success' | 'error' | 'info' | 'warning';
     showSnackbar: (message: string, severity?: UIState['snackbarSeverity']) => void;
     closeSnackbar: () => void;
+
+    tId: string | null;
+    setTownId: (id: string) => void;   
+    clearTownId: () => void; 
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -32,4 +36,8 @@ export const useUIStore = create<UIState>((set) => ({
   snackbarSeverity: 'info',
   showSnackbar: (snackbarMessage, snackbarSeverity = 'info') => set({ snackbarMessage, snackbarSeverity, isSnackbarOpen: true }),
   closeSnackbar: () => set({ isSnackbarOpen: false }),
+
+  tId: null,
+  setTownId: (id) => set({ tId: id }),
+  clearTownId: () => set({ tId: null})
 }));

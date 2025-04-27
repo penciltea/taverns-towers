@@ -100,6 +100,8 @@ export default function TownFormBasics(){
                     <FormTextField
                         name="publicNotes"
                         label="Public Notes"
+                        multiline
+                        rows={4}
                         registration={register("publicNotes")}
                         fieldError={errors.publicNotes}
                     />
@@ -107,6 +109,8 @@ export default function TownFormBasics(){
                     <FormTextField
                         name="gmNotes"
                         label="GM Notes"
+                        multiline
+                        rows={4}
                         registration={register("gmNotes")}
                         fieldError={errors.gmNotes}
                     />

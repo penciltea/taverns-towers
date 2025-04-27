@@ -42,6 +42,7 @@ export default function EditLocationPage(){
           try {
             const fetchedLocation = await getLocationById(safeId);
             setSelectedItem(fetchedLocation);
+            console.log(fetchedLocation);
             reset({
               ...fetchedLocation,
               type: fetchedLocation.type as LocationFormData["type"],
@@ -58,6 +59,11 @@ export default function EditLocationPage(){
     const onSubmit = async (data: LocationFormData) => {
         const cleanImage = await handleDynamicFileUpload(data, "image");
 
+        if(!safeId){
+          showSnackbar(`There was a problem saving this location, please try again later.`, "error");
+          return;
+        }
+
         try {
             const locationData = {
                 ...transformLocationFormData(data),
@@ -65,7 +71,7 @@ export default function EditLocationPage(){
             };
 
             let savedLocation;
-            savedLocation = await updateLocation(townId, locationData);
+            savedLocation = await updateLocation(locationData, safeId);
 
             showSnackbar(`Location ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
             router.push(`/towns/${townId}`);

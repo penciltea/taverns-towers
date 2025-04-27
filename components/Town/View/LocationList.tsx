@@ -14,6 +14,8 @@ import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 export default function LocationList({ locations, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
+
+  const { tId } = useUIStore();
   
   return (
     <>
@@ -59,7 +61,7 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
       </GridContainer>
 
       {openDialog === 'LocationDetailsDialog' && location && (
-        <LocationDetailsDialog open onClose={closeDialog} locationData={location} onDelete={onDelete} />
+        <LocationDetailsDialog open onClose={closeDialog} locationData={location} townId={tId} onDelete={onDelete} />
       )}
     </>
   );

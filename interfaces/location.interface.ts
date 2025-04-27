@@ -3,6 +3,7 @@ import { DialogProps } from "./dialogProps.interface";
 import { CommonInterface } from "./common.interface";
  
 export interface LocationDialogProps extends DialogProps {
+  townId: string;
   locationData: LocationType;
   onDelete: (id: string) => void;
 }

@@ -19,7 +19,7 @@ export default function TownScreen({townId}: TownProps) {
   const [town, setTown] = useState<Town | undefined>(undefined);
   const [locations, setLocations] = useState<LocationType[]>([]);
   const [loading, setLoading] = useState(true);
-  const {openDialog, closeDialog} = useUIStore();
+  const {openDialog, closeDialog, tId, setTownId} = useUIStore();
   
   useEffect(() => {
     const loadTownAndLocations = async () => {
@@ -29,8 +29,14 @@ export default function TownScreen({townId}: TownProps) {
           getLocationsByTown(townId)
         ]);
   
-        if (townData) setTown(townData);
+        if (townData){
+          setTown(townData);
+          setTownId(townData._id);
+
+          console.log(townData);
+        }
         if (locationData) setLocations(locationData);
+
 
       } catch (err) {
         console.error("Error fetching town or locations:", err);

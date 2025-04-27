@@ -67,7 +67,7 @@ export async function getLocationById(id: string) {
   return serializeLocation(location);
 }
 
-export async function updateLocation(id: string, data: any) {
+export async function updateLocation(data: any, id: string,) {
   await connectToDatabase();
 
   const existing = await Location.findById(id);

@@ -41,8 +41,26 @@ export default function TavernFields(){
                 fieldError={errors.cost}
             />
 
+            <FormTextField
+                name="publicNotes"
+                label="Public Notes"
+                multiline
+                rows={4}
+                registration={register("publicNotes")}
+                fieldError={errors.publicNotes}
+            />
+
+            <FormTextField
+                name="gmNotes"
+                label="GM Notes"
+                multiline
+                rows={4}
+                registration={register("gmNotes")}
+                fieldError={errors.gmNotes}
+            />
+
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Menu</Typography>
+                <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
                 <FormEditableTable
                     name="menu"
                     columns={[

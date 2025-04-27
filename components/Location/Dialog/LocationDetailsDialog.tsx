@@ -3,6 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/navigation';
 import { useUIStore } from "@/store/uiStore";
+import { useTownContentStore } from '@/store/townStore';
 import { deleteLocation } from '@/lib/actions/location.actions';
 import { LocationDialogProps } from '@/interfaces/location.interface';
 import { LOCATION_CATEGORIES } from '@/constants/locationOptions';
@@ -18,14 +19,14 @@ const getLocationLabel = (type: string) => {
   return category ? category.label : type;
 };
 
-export default function LocationDetailsDialog({ open, onClose, onDelete, locationData }: LocationDialogProps) {
+export default function LocationDetailsDialog({ open, onClose, onDelete, townId, locationData }: LocationDialogProps) {
   const Component = (LocationTypeComponents as any)[locationData.type];
   const locationLabel = getLocationLabel(locationData.type);
   const router = useRouter();
   const { showSnackbar } = useUIStore();
 
   const handleEdit = () => {
-    router.push(`/locations/${locationData._id}/edit`);
+    router.push(`/towns/${townId}/locations/${locationData._id}`);
   };
 
   return (
