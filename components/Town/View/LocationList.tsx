@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Box, Chip, Button, Typography } from "@mui/material";
+import { Box, Chip, Button, Typography, Skeleton } from "@mui/material";
 import GridContainer from "@/components/Grid/GridContainer";
 import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
@@ -17,6 +17,9 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
 
   const { tId } = useUIStore();
   
+  // Check if locations are still loading
+  const isLoading = !locations; // You can also check if a loading state is passed down
+
   return (
     <>
       <Typography variant="h6" sx={{width: '100%', marginTop: 2}}>Filter by Category </Typography>
@@ -24,7 +27,7 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: { xs: 3, sm: 3, md: 1 }, // Increased gap for mobile devices
+          gap: { xs: 3, sm: 3, md: 1 },
           justifyContent: {xs: 'center', md: 'flex-start'},
           margin: 1
         }}
@@ -36,32 +39,36 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
             variant="outlined"
             sx={{
               cursor: 'pointer',
-              padding: { xs: '10px 16px', sm: '12px 18px' }, // Add more padding for better touch targets on mobile
-              fontSize: { xs: '0.75rem', sm: '1rem' }, // Adjust font size for mobile devices
+              padding: { xs: '10px 16px', sm: '12px 18px' },
+              fontSize: { xs: '0.75rem', sm: '1rem' },
             }}
           />
         ))}
       </Box>
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
       <GridContainer>
-        {locations.length <= 0 && <Typography variant="subtitle1" sx={{textAlign: 'center', margin: '0 auto'}}>No locations have been added yet!</Typography>}
-        {locations.map((location) => (
-          <GridItem 
-            key={location._id} 
-            onClick={() => {
-              setLocation(location);
-              useUIStore.getState().setOpenDialog('LocationDetailsDialog');
-            }}
-            title={location.name} 
-            subtitle={getLabelFromValue(LOCATION_CATEGORIES, location.type)} 
-            image={location.image}
-            
-          />
-        ))}
+        { locations.length <= 0 ? (
+          <Typography variant="subtitle1" sx={{ textAlign: 'center', margin: '0 auto' }}>
+            No locations have been added yet!
+          </Typography>
+        ) : (
+          locations.map((location) => (
+            <GridItem 
+              key={location._id} 
+              onClick={() => {
+                setLocation(location);
+                useUIStore.getState().setOpenDialog('LocationDetailsDialog');
+              }}
+              title={location.name} 
+              subtitle={getLabelFromValue(LOCATION_CATEGORIES, location.type)} 
+              image={location.image}
+            />
+          ))
+        )}
       </GridContainer>
 
       {openDialog === 'LocationDetailsDialog' && location && (
-        <LocationDetailsDialog open onClose={closeDialog} locationData={location} townId={tId} onDelete={onDelete} />
+        <LocationDetailsDialog open onClose={closeDialog} locationData={location} townId={tId ?? ''} onDelete={onDelete} />
       )}
     </>
   );

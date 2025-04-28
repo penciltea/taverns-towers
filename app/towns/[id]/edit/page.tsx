@@ -16,44 +16,46 @@ import TownForm from "@/components/Town/Form/TownForm";
 
 export default function EditTownFormPage() {
   const router = useRouter();
-  const { showSnackbar } = useUIStore();
+  const { showSnackbar, isLoading, setLoading, isSubmitting, setSubmitting } = useUIStore();
   const { setSelectedItem, mode } = useTownContentStore();
 
   const { id } = useParams();
   const safeId = getSingleParam(id);
   useFormMode(safeId, useTownContentStore, getTownById);
 
-  const methods = useFormWithSchema(townSchema, {
+  const {...methods} = useFormWithSchema(townSchema, {
     defaultValues: defaultTownValues
   });
 
-  const { reset } = methods;
+  const loadTown = async (id: string) => {
+    setLoading(true);
+    try {
+      const fetchedTown = await getTownById(id);
+      setSelectedItem(fetchedTown);
+      reset({
+        ...fetchedTown,
+        tags: (fetchedTown.tags as string[])?.filter(tag => tag.trim() !== "") ?? [],
+        terrain: (fetchedTown.terrain as string[])?.filter(terrain => terrain.trim() !== "") ?? [],
+        crime: (fetchedTown.crime as string[])?.filter(crime => crime.trim() !== "") ?? [],
+        map: fetchedTown.map ?? undefined,
+      });
+    } catch (err) {
+      showSnackbar("Failed to load town, please try again later!", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (!safeId) return;
+    if (!safeId || mode !== 'edit') return;
 
-    const loadTown = async () => {
-      try {
-        const fetchedTown = await getTownById(safeId);
-        setSelectedItem(fetchedTown);
-        reset({
-          ...fetchedTown,
-          tags: (fetchedTown.tags as string[])?.filter(tag => tag.trim() !== "") ?? [],
-          terrain: (fetchedTown.terrain as string[])?.filter(terrain => terrain.trim() !== "") ?? [],
-          crime: (fetchedTown.crime as string[])?.filter(crime => crime.trim() !== "") ?? [],
-          map: fetchedTown.map ?? undefined,
-        });
-      } catch (err) {
-        showSnackbar("Failed to load town, please try again later!", "error");
-      }
-    };
+    loadTown(safeId)
 
-    loadTown();
-  }, [safeId, reset, setSelectedItem, showSnackbar]);
+  }, [safeId]);
 
   const onSubmit = async (data: TownFormData) => {
     const cleanMap = await handleDynamicFileUpload(data, "map");
-    
+    setSubmitting(true);
     try {
       if (Array.isArray(data.tags)) {
         data.tags = data.tags.filter(tag => tag.trim() !== '');
@@ -76,7 +78,10 @@ export default function EditTownFormPage() {
       useTownContentStore.getState().clearMode();
       router.push(`/towns/${savedTown?._id}`);      
     } catch (err) {
-      showSnackbar(`Something went wrong: ${err}`, "error");
+      showSnackbar(`Something went wrong, please try again later!`, "error");
+      console.error(err);
+    } finally {
+      setSubmitting(false);
     }
   };
   

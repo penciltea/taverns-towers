@@ -1,15 +1,13 @@
 'use client'
 
-import { useState, useEffect } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { Location } from "@/interfaces/location.interface";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useLocationContentStore } from "@/store/locationStore";
 import LocationForm from '@/components/Location/Form/LocationForm'
-import { createLocation, updateLocation, getLocationById } from "@/lib/actions/location.actions";
+import { createLocation } from "@/lib/actions/location.actions";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 

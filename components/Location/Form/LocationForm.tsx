@@ -20,7 +20,7 @@ type LocationFormProps = {
 export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     const searchParams = useSearchParams();
     const methods = useFormContext<LocationFormData>();
-    const { handleSubmit } = methods;
+    const { handleSubmit, register, control, formState: { errors } } = methods;
     const { selectedItem } = useLocationContentStore();
 
     const typeParam = mode === 'edit'
@@ -33,22 +33,6 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     ? getLabelFromValue(LOCATION_CATEGORIES, typeParam, "Unknown")
     : "Unknown";
 
-    const {
-        register,
-        control,
-        watch,
-        formState: { errors },
-    } = useFormContext();
-
-    const imageValue = watch("image");
-    const isBrowser = typeof window !== "undefined";
-
-    typeof imageValue === "string"
-        ? imageValue // existing URL from DB
-        : isBrowser && imageValue instanceof FileList && imageValue[0]
-        ? URL.createObjectURL(imageValue[0])
-        : null;
-        
     return (
         <Paper
             elevation={3}
@@ -101,9 +85,11 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
                         
                     </Box>
                     
-                    <Box>
-                        <FormImageUpload name="image" label="Upload Location Image" />
-                    </Box>
+                    {typeParam && (
+                        <Box>
+                            <FormImageUpload name="image" label="Upload Location Image" />
+                        </Box>
+                    )}
                 </Stack>
 
                 <FormActions mode={mode} entityName="Location" />

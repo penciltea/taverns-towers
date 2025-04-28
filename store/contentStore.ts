@@ -14,13 +14,11 @@ type ContentStore<T> = {
   selectedItem: T | null;
 
   filters: ContentFilters;
-  isLoading: boolean;
   mode: FormMode;
 
   setItems: (items: T[]) => void;
   applyFilters: (filters: ContentFilters, filterFn?: FilterFunction<T>) => void;
   clearFilters: () => void;
-  setLoading: (value: boolean) => void;
 
   setSelectedItem: (item: T) => void;
   clearSelectedItem: () => void;
@@ -35,7 +33,6 @@ export function createContentStore<T>() {
     selectedItem: null,
 
     filters: {},
-    isLoading: false,
     mode: null,
 
     setItems: (items: T[]) => {
@@ -57,8 +54,6 @@ export function createContentStore<T>() {
       const { allItems } = get();
       set({ filters: {}, filteredItems: allItems });
     },
-
-    setLoading: (value: boolean) => set({ isLoading: value }),
 
     setSelectedItem: (item: T) => set({ selectedItem: item }),
     clearSelectedItem: () => set({ selectedItem: null }),
