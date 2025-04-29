@@ -4,7 +4,7 @@ import { GridContainerProps } from '@/interfaces/gridProps';
 
 export default function GridContainer({ children }: GridContainerProps) {
   return (
-    <Grid container spacing={4} padding={2} sx={{cursor: 'pointer'}}>
+    <Grid container spacing={4} padding={2}>
       {children}
     </Grid>
   )

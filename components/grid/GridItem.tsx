@@ -19,7 +19,7 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
   };
 
   return (
-    <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%' }} onClick={handleClick}>
+    <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%', cursor: 'pointer' }} onClick={handleClick}>
       {image && (
         <Box
           sx={{

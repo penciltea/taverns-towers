@@ -24,7 +24,7 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
 
   return (
     <>
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, justifyContent: 'space-between' }}>
         <Typography variant="h4">
           <SkeletonLoader loading={loading} skeleton={<Skeleton width={250} />}>
             {town?.name}
@@ -78,12 +78,24 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
         {/* Bottom Half */}
         <Grid size={{xs: 12}}>
           <Typography variant="h5">Locations</Typography>
-          <LocationList
-            locations={locations}
-            onDelete={(id: string) => {
-              deleteLocation(id);
-            }}
-          />
+          <SkeletonLoader
+            loading={loading}
+            skeleton={
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                {/* Simulate 3 loading "location cards" */}
+                <Skeleton variant="rectangular" height={100} width={'30%'} />
+                <Skeleton variant="rectangular" height={100} width={'30%'} />
+                <Skeleton variant="rectangular" height={100} width={'30%'} />
+              </Stack>
+            }
+          >
+            <LocationList
+              locations={locations}
+              onDelete={(id: string) => {
+                deleteLocation(id);
+              }}
+            />
+          </SkeletonLoader>
         </Grid>
       </Grid>
 

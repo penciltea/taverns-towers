@@ -1,60 +1,53 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useTownContentStore } from "@/store/townStore";
 import { townSchema, TownFormData, defaultTownValues } from "@/schemas/townSchema";
-import { createTown, getTownById } from "@/lib/actions/town.actions";
-import { transformTownFormData } from "@/lib/util/transformFormDataForDB";
-import { handleDynamicFileUpload  } from "@/lib/util/uploadToCloudinary";
+import { getTownById } from "@/lib/actions/town.actions";
 import { useFormMode } from "@/hooks/useFormMode";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import TownForm from "@/components/Town/Form/TownForm";
+import { useSaveTownMutation } from "@/hooks/useSaveTownMutation";
+import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
+import { Spinner } from "@/components/Common/Spinner";
 
 export default function NewTownPage() {
   const router = useRouter();
   const { showSnackbar } = useUIStore();
   const { mode } = useTownContentStore();
 
+  const [hasLoaded, setHasLoaded] = useState(false);
+
   const { id } = useParams();
   const safeId = getSingleParam(id);
-  useFormMode(safeId, useTownContentStore, getTownById);
+
+  if (safeId) {
+    useFormMode(safeId, useTownContentStore, getTownById); 
+  }
+
+  const { saveTown } = useSaveTownMutation({ id: safeId, mode: mode ?? "add" });
 
   const methods = useFormWithSchema(townSchema, {
-    defaultValues: defaultTownValues
+    defaultValues: defaultTownValues,
   });
 
-  const onSubmit = async (data: TownFormData) => {
-    const cleanMap = await handleDynamicFileUpload(data, "map");
-  
-    try {
-      if (Array.isArray(data.tags)) {
-        data.tags = data.tags.filter(tag => tag.trim() !== '');
-      }
+  useEffect(() => {
+    setHasLoaded(true);
+  }, []);
 
-      const townData = {
-        ...transformTownFormData(data),
-        map: cleanMap,
-      };
-    
-      let savedTown;
-      savedTown = await createTown(townData);
-    
-      showSnackbar("Town created successfully!", "success");
-      useTownContentStore.getState().clearSelectedItem();
-      useTownContentStore.getState().clearMode();
-      router.push(`/towns/${savedTown._id}`);      
-    } catch (err) {
-      showSnackbar(`Something went wrong: ${err}`, "error");
-    }
+  const onSubmit = async (data: TownFormData) => {
+    await saveTown(data);
   };
-  
 
   return (
-    <FormProvider {...methods}>
-      <TownForm onSubmit={onSubmit} mode={mode} />
-    </FormProvider>
+    <SkeletonLoader loading={!hasLoaded} skeleton={<Spinner />}>
+      <FormProvider {...methods}>
+        <TownForm onSubmit={onSubmit} mode={mode} />
+      </FormProvider>
+    </SkeletonLoader>
   );
 }

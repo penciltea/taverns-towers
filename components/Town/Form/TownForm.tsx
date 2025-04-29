@@ -10,6 +10,7 @@ import TownFormCulture from './Culture';
 import { TownFormData } from "@/schemas/townSchema";
 import FormActions from "@/components/Form/FormActions";
 import { useTownContentStore } from "@/store/townStore";
+import { useUIStore } from "@/store/uiStore";
 
 type TownFormProps = {
   onSubmit: (data: TownFormData) => void;
@@ -21,6 +22,7 @@ export default function TownForm({ onSubmit, mode }: TownFormProps) {
   const methods = useFormContext<TownFormData>();
   const { handleSubmit } = methods;
   const { selectedItem } = useTownContentStore();
+  const { isSubmitting } = useUIStore();
 
   const tabComponents = [<TownFormBasics />, <TownFormWealth />, <TownFormCulture />];
 
@@ -42,7 +44,7 @@ export default function TownForm({ onSubmit, mode }: TownFormProps) {
 
         {tabComponents[tab]}
 
-        <FormActions mode={mode} entityName="Town" />
+        <FormActions mode={mode} entityName="Town" isSubmitting={isSubmitting} />
       </form>
     </Paper>
   );
