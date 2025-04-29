@@ -52,10 +52,32 @@ export async function createLocation(data: any, townId: string) {
   return serializeLocation(newLocation);
 }
 
-export async function getLocationsByTown(townId: string) {
+export async function getLocationsByTownPaginated(
+  townId: string,
+  page: number = 1,
+  limit: number = 10,
+  type?: string
+) {
   await connectToDatabase();
-  const locations = await Location.find({ townId }).sort({ createdAt: -1 });
-  return locations.map(serializeLocation);
+
+  const query: Record<string, any> = { townId };
+  if (type) query.type = type;
+
+  const skip = (page - 1) * limit;
+
+  const [locations, total] = await Promise.all([
+    Location.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
+    Location.countDocuments(query),
+  ]);
+
+  const totalPages = Math.ceil(total / limit);
+
+  return {
+    locations: locations.map(serializeLocation),
+    total,
+    totalPages,
+    currentPage: page,
+  };
 }
 
 export async function getLocationById(id: string) {

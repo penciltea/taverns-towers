@@ -15,12 +15,20 @@ export interface TownProps {
   townId: string;
 }
 
-
 export interface TownAccordionProps {
   title: string;
   children: ReactNode;
   defaultExpanded?: boolean;
 }
+
+export interface TownResponse {
+  success: boolean;
+  towns: Town[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+}
+
 
 export interface Town extends CommonInterface {
   size?: string;
@@ -42,4 +50,16 @@ export interface Town extends CommonInterface {
   folklore?: string;
   crime?: string[];
   isPublic?: boolean;
+}
+
+export const DefaultTownQueryParams = {
+  page: 1,
+  limit: 20,
+  search: '',
+  size: '',
+  climate: '',
+  magic: '',
+  wealth: '',
+  tags: [],
+  terrain: [],
 }

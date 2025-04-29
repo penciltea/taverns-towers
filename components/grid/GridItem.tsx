@@ -1,7 +1,9 @@
 'use client'
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Grid, Typography, Box, Chip } from '@mui/material';
 import { GridItemProps } from '@/interfaces/gridProps';
+import { optimizeCloudinaryImage } from '@/lib/util/optimizeCloudinaryImage';
 
 
 export default function GridItem({ title, subtitle, link, image, onClick, tags = [] }: GridItemProps) {
@@ -21,15 +23,15 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
   return (
     <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%', cursor: 'pointer' }} onClick={handleClick}>
       {image && (
-        <Box
-          sx={{
-            height: 240,
-            backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            borderRadius: 2,
-          }}
-        />
+        <Box sx={{ position: 'relative', height: 240, borderRadius: 4, overflow: 'hidden' }}>
+        <Image
+            src={optimizeCloudinaryImage(image)}
+            alt={title}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 600px) 100vw, 25vw"
+          />
+        </Box>
       )}
       <Typography variant="h6" mt={1}>{title}</Typography>
       {subtitle && <Typography variant="subtitle1">{subtitle}</Typography>}

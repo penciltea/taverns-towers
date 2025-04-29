@@ -3,13 +3,20 @@
 import { Box, Button, TextField, Stack } from "@mui/material";
 import TuneIcon from '@mui/icons-material/Tune';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { FilterBarProps } from "@/interfaces/filterProps.interface";
+import { ContentFilters } from "@/store/contentStore";
+
+interface FilterBarProps<T> {
+    filters: ContentFilters;
+    setFilters: (filters: ContentFilters) => void;
+    clearFilters: () => void;
+    children?: React.ReactNode; // for custom filter fields like size, climate, etc.
+    onOpenAdvanced?: () => void;
+  }
 
 export default function FilterBar<T>({
   filters,
-  applyFilters,
+  setFilters,
   clearFilters,
-  filterFn,
   children,
   onOpenAdvanced,
 }: FilterBarProps<T>) {
@@ -17,7 +24,7 @@ export default function FilterBar<T>({
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedFilters = { ...filters, search: e.target.value };
-    applyFilters(updatedFilters, filterFn);
+    setFilters(updatedFilters); // Directly update filters in the parent component
   };
 
   return isMobile ? (
@@ -46,7 +53,7 @@ export default function FilterBar<T>({
         variant="text"
         size="small"
         sx={{ textDecoration: 'underline', my: 1 }}
-        onClick={clearFilters}
+        onClick={clearFilters} // Reset filters logic will be handled at the parent level
       >
         Reset All
       </Button>
@@ -89,7 +96,7 @@ export default function FilterBar<T>({
           gridRow: 2,
           textDecoration: "underline",
         }}
-        onClick={clearFilters}
+        onClick={clearFilters} // Reset filters logic will be handled at the parent level
       >
         Reset All
       </Button>

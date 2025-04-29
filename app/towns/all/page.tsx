@@ -1,18 +1,22 @@
-import FilteredGridView from '@/components/Grid/FilteredGridView';
+'use client';
+
 import TownFilters from '@/components/Town/View/TownFilter';
-import { getAllTowns } from '@/lib/actions/town.actions';
+import FilteredGridView from '@/components/Grid/FilteredGridView';
+import { useTownsQuery } from '@/hooks/town.query';
+import { useState } from 'react';
 import { Typography } from '@mui/material';
+import { DefaultTownQueryParams } from '@/interfaces/town.interface';
 
-export default async function TownsPage() {
+export default function TownsPage() {
   const defaultImage = "/placeholders/town.png";
-  const { success, towns } = await getAllTowns();
+  const [params, setParams] = useState(DefaultTownQueryParams);
 
-  if (!success || !towns) {
-    return <Typography variant="h6">No towns found.</Typography>;
-  }
+  const { data, isLoading, isError } = useTownsQuery(params);
 
-  // Pre-calculate the values for each field
-  const fields = towns.map((town) => ({
+  if (isLoading) return <Typography>Loading towns...</Typography>;
+  if (isError || !data?.success) return <Typography>Failed to load towns.</Typography>;
+
+  const fields = data.towns.map((town) => ({
     link: `/towns/${town._id}`,
     title: town.name,
     subtitle: `Size: ${town.size || 'N/A'}`,
@@ -24,11 +28,17 @@ export default async function TownsPage() {
     <FilteredGridView
       title="My Towns"
       content="towns"
-      filterComponent={<TownFilters />}
-      initialItems={towns || []}  // Ensure towns is defined
-      fields={fields} // Pass pre-calculated fields to the child
+      filterComponent={
+        <TownFilters
+          filters={params}
+          setFilters={(newFilters) => setParams((prev) => ({ ...prev, ...newFilters, page: 1 }))}
+        />
+      }
+      initialItems={data.towns}
+      fields={fields}
       fabLabel="Add Town"
       fabLink="/towns/new"
+      
     />
   );
 }

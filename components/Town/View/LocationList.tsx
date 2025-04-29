@@ -10,15 +10,26 @@ import { useUIStore } from "@/store/uiStore";
 import LocationDetailsDialog from "@/components/Location/Dialog/LocationDetailsDialog";
 import { LocationType } from '@/interfaces/location.interface';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
+import { usePaginatedLocations } from "@/hooks/useLocationsQuery";
+import PaginationControls from "@/components/Common/Pagination";
+import Pagination from "@/components/Common/Pagination";
 
-export default function LocationList({ locations, onDelete }: LocationListProps) {
+export default function LocationList({ townId, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const { tId } = useUIStore();
-  
-  // Check if locations are still loading
-  const isLoading = !locations; // You can also check if a loading state is passed down
+  const ITEMS_PER_PAGE = 6;
+
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading, isError } = usePaginatedLocations(townId, page, ITEMS_PER_PAGE);
+
+  if (isLoading) return <Typography>Loading locations...</Typography>;
+  if (isError || !data) return <Typography>Error loading locations.</Typography>;
+
+  const { locations, total } = data;
+  const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
 
   return (
     <>
@@ -47,7 +58,7 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
       </Box>
       <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
       <GridContainer>
-        { locations.length <= 0 ? (
+        { locations.length === 0 ? (
           <Typography variant="subtitle1" sx={{ textAlign: 'center', margin: '0 auto' }}>
             No locations have been added yet!
           </Typography>
@@ -66,9 +77,14 @@ export default function LocationList({ locations, onDelete }: LocationListProps)
           ))
         )}
       </GridContainer>
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
 
       {openDialog === 'LocationDetailsDialog' && location && (
-        <LocationDetailsDialog open onClose={closeDialog} locationData={location} townId={tId ?? ''} onDelete={onDelete} />
+        <LocationDetailsDialog open onClose={closeDialog} locationData={location} townId={townId} onDelete={onDelete} />
       )}
     </>
   );

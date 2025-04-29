@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import GridContainer from './GridContainer';
@@ -8,6 +8,7 @@ import GridItem from './GridItem';
 import FabButton from '@/components/Common/fabButton';
 import { CommonInterface } from '@/interfaces/common.interface';
 import { useTownContentStore } from '@/store/townStore';
+import PaginationControls from '@/components/Common/Pagination';
 
 type FilteredGridViewProps<T extends CommonInterface> = {
   initialItems: T[];
@@ -21,6 +22,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
     image: string;
     tags: string[] | undefined;
   }>;
+  pageSize?: number;
   emptyText?: string;
   fabLabel?: string;
   fabLink?: string;
@@ -35,15 +37,26 @@ export default function FilteredGridView<T extends CommonInterface>({
   emptyText = 'No items found.',
   fabLabel,
   fabLink,
+  pageSize = 5,
 }: FilteredGridViewProps<T>) {
 
   const { setItems, filteredItems } = useTownContentStore();
   const theme = useTheme();
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Set initial items when component mounts
   useEffect(() => {
     setItems(initialItems);
   }, [initialItems, setItems]);
+
+  const totalPages = Math.ceil(filteredItems.length / pageSize);
+
+  // Slice the items to show only the items for the current page
+  const displayedItems = filteredItems.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
 
   return (
     <Paper
@@ -61,11 +74,11 @@ export default function FilteredGridView<T extends CommonInterface>({
         {filterComponent}
         
       </Box>
-      {filteredItems.length > 0 ? (
+      {displayedItems.length > 0 ? (
         <>
-          <Typography variant="subtitle1">{filteredItems.length} {content} </Typography>
+          <Typography variant="subtitle1">{displayedItems.length} {content} </Typography>
           <GridContainer>
-          {filteredItems.map((item) => {
+          {displayedItems.map((item) => {
             const field = fields.find((f) => f.link.includes(item._id));
             if (!field) return null; // skip if no matching field
         
@@ -78,9 +91,14 @@ export default function FilteredGridView<T extends CommonInterface>({
                 image={field.image}
                 tags={field.tags}
               />
-            );
+              );
           })}
-        </GridContainer>
+          </GridContainer>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </>
       ) : (
         <Typography variant="body1" sx={{textAlign: "center"}}>{emptyText}</Typography>

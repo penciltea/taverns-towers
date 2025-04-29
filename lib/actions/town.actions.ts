@@ -18,32 +18,61 @@ function serializeTown(town: any): Town {
   };
 }
 
-export async function getAllTowns() {
-  try {
-    await connectToDatabase();
+export async function getTowns({
+  page = 1,
+  limit = 12,
+  search = '',
+  size,
+  climate,
+  magic,
+  wealth,
+  tags = [],
+  terrain = [],
+}: {
+  page?: number;
+  limit?: number;
+  search?: string;
+  size?: string;
+  climate?: string;
+  magic?: string;
+  wealth?: string;
+  tags?: string[];
+  terrain?: string[];
+}) {
+  await connectToDatabase();
 
-    const towns = await TownModel.find({})
-      .sort({ createdAt: -1 })
-      .lean<Town[]>(); // strips out Mongoose methods
+  const query: any = {};
 
-      const serializedTowns = towns.map((town) => ({
-        ...town,
-        _id: town._id.toString(),
-      }));
-
-    return {
-      success: true,
-      towns: serializedTowns as Town[],
-    };
-  } catch (error: any) {
-    console.error("Error fetching towns:", error);
-    return {
-      success: false,
-      message: error.message || "Failed to fetch towns",
-    };
+  if (search) {
+    query.name = { $regex: new RegExp(search, "i") };
   }
-}
+  if (size) query.size = size;
+  if (climate) query.climate = climate;
+  if (magic) query.magic = magic;
+  if (wealth) query.wealth = wealth;
+  if (tags.length > 0) query.tags = { $all: tags };
+  if (terrain.length > 0) query.terrain = { $all: terrain };
 
+  const total = await TownModel.countDocuments(query);
+  const towns = await TownModel.find(query)
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .lean<Town[]>(); 
+
+  const serializedTowns = towns.map((town) => ({
+    ...town,
+    _id: town._id.toString(),
+  }));
+
+  return {
+    success: true,
+    towns: serializedTowns,
+    total,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+  };
+}
 
 
 export async function getTownById(id: string) {

@@ -9,7 +9,7 @@ export interface LocationDialogProps extends DialogProps {
 }
 
 export interface LocationListProps {
-  locations: LocationType[];
+  townId: string;
   onDelete: (id: string) => void;
 }
 

@@ -19,6 +19,8 @@ type ContentStore<T> = {
   setItems: (items: T[]) => void;
   applyFilters: (filters: ContentFilters, filterFn?: FilterFunction<T>) => void;
   clearFilters: () => void;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 
   setSelectedItem: (item: T) => void;
   clearSelectedItem: () => void;
@@ -54,6 +56,9 @@ export function createContentStore<T>() {
       const { allItems } = get();
       set({ filters: {}, filteredItems: allItems });
     },
+
+    currentPage: 1,
+    setCurrentPage: (page) => set({ currentPage: page }),
 
     setSelectedItem: (item: T) => set({ selectedItem: item }),
     clearSelectedItem: () => set({ selectedItem: null }),

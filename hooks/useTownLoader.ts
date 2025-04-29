@@ -1,59 +1,69 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { getTownById } from '@/lib/actions/town.actions';
-import { getLocationsByTown } from '@/lib/actions/location.actions';
-import { useTownContentStore } from '@/store/townStore';
+import { useEffect, useState } from 'react';
+import { useTownQuery } from '@/hooks/town.query';
 import { useLocationContentStore } from '@/store/locationStore';
 import { useUIStore } from '@/store/uiStore';
-import { Town } from '@/interfaces/town.interface';
 import { LocationType } from '@/interfaces/location.interface';
+import { Town } from '@/interfaces/town.interface';
+import { usePaginatedLocations } from '@/hooks/useLocationsQuery';
+import { useTownContentStore } from '@/store/townStore';
+import { createLocation } from '@/lib/actions/location.actions';
 
 export function useTownLoader(townId: string | null) {
   const { setSelectedItem } = useTownContentStore();
   const { setItems: setLocationItems } = useLocationContentStore();
   const { setTownId } = useUIStore();
 
-  const [town, setTown] = useState<Town | null>(null);
-  const [locations, setLocations] = useState<LocationType[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetching the town by its ID
+  const { data: townData, isLoading: townLoading, refetch: refetchTown } = useTownQuery(townId);
+  
+  // Fetching the locations associated with the town
+  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10);
+
   useEffect(() => {
-    if (!townId) return;
-    async function loadTownAndLocations() {
-      if (!townId) return;
-
-      setLoading(true);
-      try {
-        const [townData, locationData] = await Promise.all([
-          getTownById(townId),
-          getLocationsByTown(townId),
-        ]);
-
-        if (townData) {
-          setTown(townData);
-          setSelectedItem(townData);
-          setTownId(townData._id);
-        }
-
-        if (locationData) {
-          setLocations(locationData);
-          setLocationItems(locationData);
-        }
-
-      } catch (err) {
-        console.error('Error loading town or locations:', err);
-      } finally {
-        setLoading(false);
-      }
+    if (townData) {
+      setSelectedItem(townData); // Set the selected town
+      setTownId(townData._id); // Set the townId
     }
 
-    loadTownAndLocations();
-  }, [townId, setSelectedItem, setLocationItems, setTownId]);
+    if (locationData) {
+      setLocationItems(locationData.locations); // Set locations in the store
+    }
 
-  function deleteLocation(id: string) {
-    setLocations(prev => prev.filter(loc => loc._id !== id));
+    setLoading(false);
+  }, [townData, locationData, setSelectedItem, setTownId, setLocationItems]);
+  
+
+  async function addLocation(newLocation: LocationType, townId: string) {
+    try {
+      // Save the new location to the database
+      const savedLocation = await createLocation(newLocation, townId);
+  
+      // Once saved, update the Zustand store with the new location
+      const store = useLocationContentStore.getState();
+      const currentLocations = store.allItems;
+  
+      store.setItems([...currentLocations, savedLocation]); // Add saved location to the store
+  
+      // Optionally, you can refetch the locations if needed
+      await refetchLocations();  // Refresh locations after the new location is added
+    } catch (error) {
+      console.error('Error adding location:', error);
+    }
   }
 
-  return { town, locations, loading, deleteLocation };
+  function deleteLocation(id: string) {
+    const store = useLocationContentStore.getState(); // Access current Zustand store state
+    const currentItems = store.allItems;
+    const filteredItems = currentItems.filter((loc) => loc._id !== id);
+  
+    store.setItems(filteredItems);
+    refetchLocations();
+  }
+  
+
+  return { town: townData, locations: locationData?.locations, loading, addLocation, deleteLocation };
 }

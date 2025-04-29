@@ -4,100 +4,93 @@ import SelectInput from "@/components/Common/SelectInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { Box } from "@mui/material";
 import { FormChipSelect, FormSelect } from "@/components/Form";
-import { SIZE_TYPES, TERRAIN_TYPES, TAG_TYPES, CLIMATE_TYPES, MAGIC_LEVELS, WEALTH_LEVELS } from "@/constants/townOptions";
-import { useTownContentStore } from "@/store/townStore";
-import { Town } from "@/interfaces/town.interface";
+import {
+  SIZE_TYPES, TERRAIN_TYPES, TAG_TYPES,
+  CLIMATE_TYPES, MAGIC_LEVELS, WEALTH_LEVELS
+} from "@/constants/townOptions";
 import FilterBar from "@/components/Grid/FilterBar";
-import { ContentFilters } from "@/store/contentStore";
 import FilterDialog from "@/components/Grid/FilterDialog";
 import { townFilterSchema } from "@/schemas/townSchema";
 import { useUIStore } from "@/store/uiStore";
-import * as z from "zod";
+import { ContentFilters } from "@/store/contentStore";
+import { useTownContentStore } from "@/store/townStore";
+import { DefaultTownQueryParams } from "@/interfaces/town.interface";
+import { z } from "zod";
 
-const townFilterFn = (item: Town, filters: ContentFilters): boolean => {
-  const rules = [
-    () => !filters.search || item.name?.toLowerCase().includes(filters.search.toLowerCase()),
-    () => !filters.size || item.size === filters.size,
-    () => !filters.climate || item.climate === filters.climate,
-    () => !filters.tags || filters.tags.every((tag: string) => item.tags?.includes(tag)),
-    () => !filters.magic || item.magic === filters.magic,
-    () => !filters.wealth || item.wealth === filters.wealth,
-    () => !filters.terrain || filters.terrain.every((terrain: string) => item.terrain?.includes(terrain)),
-  ];
-
-  return rules.every(rule => rule());
+type TownFiltersProps = {
+  filters: ContentFilters;
+  setFilters: (newFilters: Partial<ContentFilters>) => void;
 };
 
-export default function TownFilters() {
+export default function TownFilters({ filters, setFilters }: TownFiltersProps) {
   const { openDialog, setOpenDialog, closeDialog } = useUIStore();
-  const { filters, applyFilters, clearFilters } = useTownContentStore();
 
   const handleApply = (data: z.infer<typeof townFilterSchema>) => {
-    applyFilters({ ...filters, ...data }, townFilterFn);
+    setFilters({ ...data });
     closeDialog();
   };
 
   return (
     <>
-    <FilterBar
-      filters={filters}
-      applyFilters={applyFilters}
-      clearFilters={clearFilters}
-      filterFn={townFilterFn}
-      onOpenAdvanced={() => { setOpenDialog('filterDialog') }}
-    >
-      <SelectInput
-        label="Size"
-        value={filters.size || ""}
-        onChange={(e) =>
-          applyFilters({ ...filters, size: e.target.value }, townFilterFn)
-        }
-        options={toSelectOptions(SIZE_TYPES)}
-      />
-    </FilterBar>
-
-    {openDialog === 'filterDialog' && (
-      <FilterDialog 
-        open
-        onClose={closeDialog}
-        onSubmit={handleApply}
-        schema={townFilterSchema}
-        defaultValues={{
-          ...filters,
-          tags: filters.tags ?? [],
-          terrain: filters.terrain ?? [],
+      <FilterBar
+        filters={filters}
+        setFilters={setFilters}
+        clearFilters={() => {
+          setFilters(DefaultTownQueryParams);
         }}
+        onOpenAdvanced={() => setOpenDialog('filterDialog')}
       >
+        <SelectInput
+          label="Size"
+          value={filters.size || ""}
+          onChange={(e) =>
+            setFilters({ size: e.target.value })
+          }
+          options={toSelectOptions(SIZE_TYPES)}
+        />
+      </FilterBar>
 
-        <Box display="flex" flexDirection="column" gap={2}>
-          <FormChipSelect
-            name="tags"
-            label="Tags"
-            options={toSelectOptions(TAG_TYPES)}
-          />
-          <FormChipSelect
-            name="terrain"
-            label="Terrain"
-            options={toSelectOptions(TERRAIN_TYPES)}
-          />
-          <FormSelect
+      {openDialog === 'filterDialog' && (
+        <FilterDialog
+          open
+          onClose={closeDialog}
+          onSubmit={handleApply}
+          schema={townFilterSchema}
+          defaultValues={{
+            ...filters,
+            tags: filters.tags ?? [],
+            terrain: filters.terrain ?? [],
+          }}
+        >
+          <Box display="flex" flexDirection="column" gap={2}>
+            <FormChipSelect
+              name="tags"
+              label="Tags"
+              options={toSelectOptions(TAG_TYPES)}
+            />
+            <FormChipSelect
+              name="terrain"
+              label="Terrain"
+              options={toSelectOptions(TERRAIN_TYPES)}
+            />
+            <FormSelect
               name="climate"
               label="Climate"
               options={toSelectOptions(CLIMATE_TYPES)}
-          />
-          <FormSelect
+            />
+            <FormSelect
               name="wealth"
               label="Wealth"
               options={toSelectOptions(WEALTH_LEVELS)}
-          />
-          <FormSelect
+            />
+            <FormSelect
               name="magic"
               label="Magic Level / Use"
               options={toSelectOptions(MAGIC_LEVELS)}
-          />
-        </Box>
-      </FilterDialog>
-    )}
+            />
+          </Box>
+        </FilterDialog>
+      )}
     </>
   );
 }

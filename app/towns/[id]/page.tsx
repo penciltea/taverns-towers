@@ -90,7 +90,7 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
             }
           >
             <LocationList
-              locations={locations}
+              townId={tId}
               onDelete={(id: string) => {
                 deleteLocation(id);
               }}

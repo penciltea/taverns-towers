@@ -10,6 +10,8 @@ import LocationForm from '@/components/Location/Form/LocationForm'
 import { createLocation } from "@/lib/actions/location.actions";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
+import { useTownLoader } from "@/hooks/useTownLoader";
+import { usePaginatedLocations } from "@/hooks/useLocationsQuery";
 
 export default function NewLocationPage(){
     const params = useParams();
@@ -20,6 +22,8 @@ export default function NewLocationPage(){
 
     const { showSnackbar } = useUIStore();
     const { mode } = useLocationContentStore();
+    const { refetch } = usePaginatedLocations(townId, 1, 10);
+    const { addLocation } = useTownLoader(townId);
 
     const methods = useFormWithSchema(locationSchema, {
         defaultValues: {
@@ -28,22 +32,23 @@ export default function NewLocationPage(){
     });
 
     const onSubmit = async (data: LocationFormData) => {
-        const cleanImage = await handleDynamicFileUpload(data, "image");
-
         try {
+            // Upload image to Cloudinary if needed
+            const cleanImage = await handleDynamicFileUpload(data, "image");
+        
             const locationData = {
-                ...transformLocationFormData(data),
-                image: cleanImage,
+              ...transformLocationFormData(data),
+              image: cleanImage,
             };
-            
-            let savedLocation;
-            savedLocation = await createLocation(locationData, townId);
-
-            showSnackbar(`Location ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
+        
+            await addLocation(locationData, townId);
+            await refetch(); 
+        
+            showSnackbar("Location created successfully!", "success");
             router.push(`/towns/${townId}`);
-        } catch (err){
+          } catch (err) {
             showSnackbar(`Something went wrong: ${err}`, "error");
-        }
+          }
     }
     
     return (
@@ -52,3 +57,7 @@ export default function NewLocationPage(){
         </FormProvider>
     )
 } 
+
+function refetchLocations() {
+    throw new Error("Function not implemented.");
+}

@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
+    "@tanstack/react-query": "^5.74.9",
     "cloudinary": "^2.6.0",
     "mongoose": "^8.13.2",
     "next": "15.2.4",
