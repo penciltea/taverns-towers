@@ -11,6 +11,7 @@ import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 import { useTownLoader } from "@/hooks/useTownLoader";
 import { usePaginatedLocations } from "@/hooks/location.query";
+import { LocationType } from "@/interfaces/location.interface";
 
 export default function NewLocationPage(){
     const params = useParams();
@@ -21,7 +22,7 @@ export default function NewLocationPage(){
 
     const { showSnackbar } = useUIStore();
     const { mode } = useLocationContentStore();
-    const { refetch } = usePaginatedLocations(townId, 1, 10, []);
+    const { refetch } = usePaginatedLocations(townId, 1, 10, [], "");
     const { addLocation } = useTownLoader(townId);
 
     const methods = useFormWithSchema(locationSchema, {
@@ -38,7 +39,7 @@ export default function NewLocationPage(){
             const locationData = {
               ...transformLocationFormData(data),
               image: cleanImage,
-            };
+            } as LocationType;
         
             await addLocation(locationData, townId);
             await refetch(); 
@@ -55,8 +56,4 @@ export default function NewLocationPage(){
             <LocationForm onSubmit={onSubmit} mode={mode} />
         </FormProvider>
     )
-} 
-
-function refetchLocations() {
-    throw new Error("Function not implemented.");
 }

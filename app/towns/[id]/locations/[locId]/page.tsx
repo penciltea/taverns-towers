@@ -13,6 +13,7 @@ import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 import LocationForm from '@/components/Location/Form/LocationForm'
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
+import { usePaginatedLocations } from "@/hooks/location.query";
 
 export default function EditLocationPage(){
     const params = useParams();
@@ -26,6 +27,7 @@ export default function EditLocationPage(){
     const { showSnackbar } = useUIStore();
     const { setSelectedItem, mode } = useLocationContentStore();
     useFormMode(safeId, useLocationContentStore, getLocationById);
+    const { refetch } = usePaginatedLocations(townId, 1, 10, [], "");
 
     const methods = useFormWithSchema(locationSchema, {
         defaultValues: {
@@ -71,7 +73,7 @@ export default function EditLocationPage(){
 
             let savedLocation;
             savedLocation = await updateLocation(locationData, safeId);
-
+            await refetch(); 
             showSnackbar(`Location ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
             router.push(`/towns/${townId}`);
         } catch (err){

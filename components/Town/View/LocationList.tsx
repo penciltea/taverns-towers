@@ -52,6 +52,10 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
             title={location.name}
             image={location.image}
             subtitle={getLabelFromValue(LOCATION_CATEGORIES, location.type)}
+            onClick={() => {
+              setSelected(location);
+              useUIStore.getState().setOpenDialog('LocationDetailsDialog');
+            }}
           />
         )}
         filterComponent={

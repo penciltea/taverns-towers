@@ -9,6 +9,7 @@ import { LOCATION_CATEGORIES, LOCATION_SIZE, LOCATION_CONDITION } from "@/consta
 import { locationFormFieldsByType } from "@/components/Location/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
+import { useUIStore } from "@/store/uiStore";
 import { useLocationContentStore } from "@/store/locationStore";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 
@@ -22,6 +23,7 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
     const methods = useFormContext<LocationFormData>();
     const { handleSubmit, register, control, formState: { errors } } = methods;
     const { selectedItem } = useLocationContentStore();
+    const { isSubmitting } = useUIStore();
 
     const typeParam = mode === 'edit'
     ? selectedItem?.type
@@ -92,7 +94,7 @@ export default function LocationForm({ onSubmit, mode }: LocationFormProps){
                     )}
                 </Stack>
 
-                <FormActions mode={mode} entityName="Location" />
+                <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Location" />
             </form>
         </Paper>
     )
