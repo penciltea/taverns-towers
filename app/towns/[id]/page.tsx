@@ -15,8 +15,7 @@ import LocationTypeDialog from "@/components/Location/Dialog/locationTypeDialog"
 export default function ViewTownPage({ params }: { params: Promise<{ id: string }> }) {
   const { openDialog, closeDialog } = useUIStore();
   const { id } = use(params);
-  const tId = id;
-  const { town, locations, loading, deleteLocation } = useTownLoader(tId);
+  const { town, loading, deleteLocation } = useTownLoader(id);
 
   if (!loading && !town) {
     return <Typography>Town not found!</Typography>;
@@ -90,7 +89,7 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
             }
           >
             <LocationList
-              townId={tId}
+              townId={id}
               onDelete={(id: string) => {
                 deleteLocation(id);
               }}

@@ -42,7 +42,6 @@ export default function EditLocationPage(){
           try {
             const fetchedLocation = await getLocationById(safeId);
             setSelectedItem(fetchedLocation);
-            console.log(fetchedLocation);
             reset({
               ...fetchedLocation,
               type: fetchedLocation.type as LocationFormData["type"],

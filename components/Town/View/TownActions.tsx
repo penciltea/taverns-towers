@@ -1,30 +1,19 @@
 'use client'
 
-import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useQueryClient } from '@tanstack/react-query';
 import { deleteTown } from "@/lib/actions/town.actions";
-import DeleteConfirmationDialog from "../../Common/DeleteConfirmationDialog";
 import DeleteButton from "@/components/Common/DeleteButton";
 
 export default function TownActions({ townId }: { townId: string }) {
   const router = useRouter();
-  const { openDialog, setOpenDialog, closeDialog, showSnackbar } = useUIStore();
-  const [isPending, startTransition] = useTransition();
-
+  const { showSnackbar } = useUIStore();
+  const queryClient = useQueryClient();
   const handleEdit = () => {
     router.push(`/towns/${townId}/edit`);
-  };
-
-  const handleConfirmDelete = () => {
-    startTransition(async () => {
-      await deleteTown(townId);
-      closeDialog();
-      router.push("/towns/all");
-    });
   };
 
   return (
@@ -38,6 +27,7 @@ export default function TownActions({ townId }: { townId: string }) {
           entity="town"
           deleteAction={deleteTown}
           onSuccess={() => {
+            queryClient.invalidateQueries({ queryKey: ['towns'] });
             router.push("/towns/all");
             showSnackbar('Town deleted successfully!', 'success');
           }}

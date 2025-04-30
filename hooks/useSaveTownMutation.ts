@@ -5,6 +5,7 @@ import { createTown, updateTown } from "@/lib/actions/town.actions";
 import { transformTownFormData } from "@/lib/util/transformFormDataForDB";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { TownFormData } from "@/schemas/townSchema";
+import { useQueryClient } from "@tanstack/react-query";
 
 type SaveTownMutationProps = {
   id?: string;
@@ -15,6 +16,7 @@ export function useSaveTownMutation({ id, mode }: SaveTownMutationProps) {
   const router = useRouter();
   const { showSnackbar, setSubmitting } = useUIStore();
   const { clearSelectedItem, clearMode } = useTownContentStore();
+  const queryClient = useQueryClient();
 
   const saveTown = async (data: TownFormData) => {
     setSubmitting(true);
@@ -44,6 +46,7 @@ export function useSaveTownMutation({ id, mode }: SaveTownMutationProps) {
 
       clearSelectedItem();
       clearMode();
+      queryClient.invalidateQueries({ queryKey: ['towns'] });
       router.push(`/towns/${savedTown._id}`);
     } catch (error) {
       console.error(error);

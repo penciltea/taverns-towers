@@ -6,12 +6,11 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { locationSchema, defaultLocationValues, LocationFormData } from "@/schemas/locationSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useLocationContentStore } from "@/store/locationStore";
-import LocationForm from '@/components/Location/Form/LocationForm'
-import { createLocation } from "@/lib/actions/location.actions";
+import LocationForm from '@/components/Location/Form/LocationForm';
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformLocationFormData } from "@/lib/util/transformFormDataForDB";
 import { useTownLoader } from "@/hooks/useTownLoader";
-import { usePaginatedLocations } from "@/hooks/useLocationsQuery";
+import { usePaginatedLocations } from "@/hooks/location.query";
 
 export default function NewLocationPage(){
     const params = useParams();

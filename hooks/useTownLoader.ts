@@ -6,7 +6,7 @@ import { useLocationContentStore } from '@/store/locationStore';
 import { useUIStore } from '@/store/uiStore';
 import { LocationType } from '@/interfaces/location.interface';
 import { Town } from '@/interfaces/town.interface';
-import { usePaginatedLocations } from '@/hooks/useLocationsQuery';
+import { usePaginatedLocations } from '@/hooks/location.query';
 import { useTownContentStore } from '@/store/townStore';
 import { createLocation } from '@/lib/actions/location.actions';
 
@@ -48,7 +48,6 @@ export function useTownLoader(townId: string | null) {
   
       store.setItems([...currentLocations, savedLocation]); // Add saved location to the store
   
-      // Optionally, you can refetch the locations if needed
       await refetchLocations();  // Refresh locations after the new location is added
     } catch (error) {
       console.error('Error adding location:', error);
@@ -60,10 +59,9 @@ export function useTownLoader(townId: string | null) {
     const currentItems = store.allItems;
     const filteredItems = currentItems.filter((loc) => loc._id !== id);
   
-    store.setItems(filteredItems);
-    refetchLocations();
+    store.setItems(filteredItems);  // Update store after deletion
+    refetchLocations(); // Re-fetch locations to update UI
   }
-  
 
   return { town: townData, locations: locationData?.locations, loading, addLocation, deleteLocation };
 }
