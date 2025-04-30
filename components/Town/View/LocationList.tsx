@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Box, Chip, Button, Typography, Skeleton, Pagination } from "@mui/material";
+import { Box, Chip, Button, Typography, Skeleton } from "@mui/material";
 import GridContainer from "@/components/Grid/GridContainer";
 import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
@@ -10,17 +10,18 @@ import { useUIStore } from "@/store/uiStore";
 import LocationDetailsDialog from "@/components/Location/Dialog/LocationDetailsDialog";
 import { LocationType } from '@/interfaces/location.interface';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
-import { usePaginatedLocations } from "@/hooks/location.query";  // Assuming your custom hook is in this location
+import { usePaginatedLocations } from "@/hooks/location.query";
+import PaginationControls from "@/components/Common/Pagination";
 
 export default function LocationList({ townId, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
-
-  const pageSize = 10; // Adjust the page size as needed
-
-  // Use the custom paginated hook
-  const page = 1; // Adjust as needed based on the selected page (this can be tracked with state)
-  const type = ''; // Adjust to pass a location type if necessary
+  const [params, setParams] = useState({
+    page: 1,
+    limit: 5,
+    townId,
+    type: undefined,
+  });
 
   const {
     data: locationData,
@@ -29,11 +30,10 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
     isFetching,
     refetch,
     error,
-  } = usePaginatedLocations(townId, page, pageSize, type);
+  } = usePaginatedLocations(townId, params.page, params.limit, params.type);
 
-  // Handle page change
-  const handlePageChange = (event: any, newPage: number) => {
-    refetch({ page: newPage, limit: pageSize, townId: townId });
+  const handlePage = (newPage: number) => {
+    setParams((prev) => ({ ...prev, page: newPage }));
   };
 
   return (
@@ -93,11 +93,10 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
 
       {/* Pagination Controls */}
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
-        <Pagination
-          count={locationData?.totalPages || 1}
-          page={locationData?.currentPage || 1}
-          onChange={handlePageChange}
-          color="primary"
+        <PaginationControls
+          currentPage={locationData?.currentPage || 1}
+          totalPages={locationData?.totalPages || 1}
+          onPageChange={handlePage}
         />
       </Box>
 

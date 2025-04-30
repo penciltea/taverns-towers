@@ -1,6 +1,5 @@
 import { LOCATION_SIZE, LOCATION_CONDITION } from '@/constants/locationOptions';
 import { DialogProps } from "./dialogProps.interface";
-import { CommonInterface } from "./common.interface";
  
 export interface LocationDialogProps extends DialogProps {
   townId: string;
@@ -13,6 +12,12 @@ export interface LocationListProps {
   onDelete: (id: string) => void;
 }
 
+export interface LocationResponse {
+  locations: LocationType[];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+}
 
 export interface BaseLocation {
   _id?: string;
