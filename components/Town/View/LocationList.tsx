@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Box, Chip, Button, Typography, Skeleton } from "@mui/material";
+import { Box, Chip, Button, Typography, Skeleton, TextField } from "@mui/material";
 import GridContainer from "@/components/Grid/GridContainer";
 import GridItem from "@/components/Grid/GridItem";
 import { LOCATION_CATEGORIES } from "@/constants/locationOptions";
@@ -12,6 +12,7 @@ import { LocationType } from '@/interfaces/location.interface';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { usePaginatedLocations } from "@/hooks/location.query";
 import PaginationControls from "@/components/Common/Pagination";
+import Searchbar from "@/components/Common/Searchbar";
 
 export default function LocationList({ townId, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
@@ -21,11 +22,13 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
     limit: number;
     townId: string;
     type: string[];
+    name: string;
   }>({
     page: 1,
     limit: 5,
     townId,
     type: [],
+    name: ""
   });
 
   const {
@@ -35,7 +38,18 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
     isFetching,
     refetch,
     error,
-  } = usePaginatedLocations(townId, params.page, params.limit, params.type);
+  } = usePaginatedLocations(townId, params.page, params.limit, params.type, params.name);
+
+  const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(event);
+    if (event.key === "Enter") {
+      setParams((prev) => ({
+        ...prev,
+        name: event.currentTarget.value,
+        page: 1, // Reset to first page on search
+      }));
+    }
+  };
 
   const handlePage = (newPage: number) => {
     setParams((prev) => ({ ...prev, page: newPage }));
@@ -43,13 +57,26 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
 
   return (
     <>
-      <Typography variant="h6" sx={{ width: '100%', marginTop: 2 }}>Filter by Category </Typography>
+      <Typography variant="h6" sx={{my: 2}}>Search</Typography>
+      <Box>
+        <Searchbar
+          onSearch={(name) =>
+            setParams((prev) => ({
+              ...prev,
+              name,
+              page: 1, // optional: reset page on new search
+            }))
+          }
+        />
+      </Box>
+
+      <Typography variant="h6" sx={{ width: '100%', marginTop: 4 }}>Filter by Category </Typography>
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
           gap: { xs: 3, sm: 3, md: 1 },
-          justifyContent: { xs: 'center', md: 'flex-start' },
+          justifyContent: 'flex-start' ,
           margin: 1
         }}
       >

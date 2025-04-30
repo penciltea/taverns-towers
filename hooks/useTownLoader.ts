@@ -5,7 +5,6 @@ import { useTownQuery } from '@/hooks/town.query';
 import { useLocationContentStore } from '@/store/locationStore';
 import { useUIStore } from '@/store/uiStore';
 import { LocationType } from '@/interfaces/location.interface';
-import { Town } from '@/interfaces/town.interface';
 import { usePaginatedLocations } from '@/hooks/location.query';
 import { useTownContentStore } from '@/store/townStore';
 import { createLocation } from '@/lib/actions/location.actions';
@@ -21,7 +20,7 @@ export function useTownLoader(townId: string | null) {
   const { data: townData, isLoading: townLoading, refetch: refetchTown } = useTownQuery(townId);
   
   // Fetching the locations associated with the town
-  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10, []);
+  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10, [], "");
 
   useEffect(() => {
     if (townData) {

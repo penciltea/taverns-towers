@@ -56,7 +56,8 @@ export async function getLocationsByTownPaginated(
   townId: string,
   page: number = 1,
   limit: number = 10,
-  type?: string[]
+  type?: string[],
+  name?: string
 ) {
   await connectToDatabase();
 
@@ -64,6 +65,7 @@ export async function getLocationsByTownPaginated(
   if (type && type.length > 0) {
     query.type = { $in: type };
   }
+  if (name) query.name = new RegExp(name, "i");
 
   const skip = (page - 1) * limit;
 

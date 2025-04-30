@@ -24,7 +24,7 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, justifyContent: 'space-between' }}>
-        <Typography variant="h4">
+        <Typography variant="h3">
           <SkeletonLoader loading={loading} skeleton={<Skeleton width={250} />}>
             {town?.name}
           </SkeletonLoader>
@@ -75,8 +75,8 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
         </Grid>
 
         {/* Bottom Half */}
-        <Grid size={{xs: 12}}>
-          <Typography variant="h5">Locations</Typography>
+        <Grid size={{xs: 12}} sx={{marginTop: 4}}>
+          <Typography variant="h4">Locations</Typography>
           <SkeletonLoader
             loading={loading}
             skeleton={
