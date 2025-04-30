@@ -7,11 +7,11 @@ export const usePaginatedLocations = (
   townId: string,
   page: number,
   limit: number,
-  type?: string
-): UseQueryResult<LocationResponse> => {
+  types: string[]
+) => {
   return useQuery<LocationResponse>({
-    queryKey: locationListKey(townId, page, limit, type),
-    queryFn: () => getLocationsByTownPaginated(townId, page, limit, type),
+    queryKey: locationListKey(townId, page, limit, types),
+    queryFn: () => getLocationsByTownPaginated(townId, page, limit, types),
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5,
   });

@@ -16,11 +16,16 @@ import PaginationControls from "@/components/Common/Pagination";
 export default function LocationList({ townId, onDelete }: LocationListProps) {
   const { openDialog, closeDialog } = useUIStore();
   const [location, setLocation] = useState<LocationType | null>(null);
-  const [params, setParams] = useState({
+  const [params, setParams] = useState<{
+    page: number;
+    limit: number;
+    townId: string;
+    type: string[];
+  }>({
     page: 1,
     limit: 5,
     townId,
-    type: undefined,
+    type: [],
   });
 
   const {
@@ -48,21 +53,50 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
           margin: 1
         }}
       >
-        {LOCATION_CATEGORIES.map((category) => (
-          <Chip
-            key={category.value}
-            label={category.label}
-            variant="outlined"
-            sx={{
-              cursor: 'pointer',
-              padding: { xs: '10px 16px', sm: '12px 18px' },
-              fontSize: { xs: '0.75rem', sm: '1rem' },
-            }}
-          />
-        ))}
+        {LOCATION_CATEGORIES.map((category) => {
+          const isSelected = params.type.includes(category.value);
+
+          return (
+            <Chip
+              key={category.value}
+              label={category.label}
+              variant={isSelected ? 'filled' : 'outlined'}
+              color={isSelected ? 'primary' : 'default'}
+              onClick={() => {
+                setParams((prev) => {
+                  const currentTypes = prev.type;
+                  const isAlreadySelected = currentTypes.includes(category.value);
+                  const updatedTypes = isAlreadySelected
+                    ? currentTypes.filter((t) => t !== category.value) // remove if selected
+                    : [...currentTypes, category.value]; // add if not selected
+              
+                  return {
+                    ...prev,
+                    type: updatedTypes,
+                    page: 1,
+                  };
+                });
+              }}
+              sx={{
+                cursor: 'pointer',
+                padding: { xs: '10px 16px', sm: '12px 18px' },
+                fontSize: { xs: '0.75rem', sm: '1rem' },
+              }}
+            />
+          );
+        })}
       </Box>
 
-      <Button variant="text" sx={{ margin: "0 auto", display: "block" }}>View All</Button>
+      <Button 
+        variant="text" 
+        sx={{ margin: "0 auto", display: "block" }}
+        size="small"
+        onClick={() =>
+          setParams((prev) => ({ ...prev, type: [], page: 1 }))
+        }
+      >
+        Clear All
+      </Button>
 
       <GridContainer>
         {isLoading || isFetching ? (

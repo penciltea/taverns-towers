@@ -21,7 +21,7 @@ export function useTownLoader(townId: string | null) {
   const { data: townData, isLoading: townLoading, refetch: refetchTown } = useTownQuery(townId);
   
   // Fetching the locations associated with the town
-  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10);
+  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10, []);
 
   useEffect(() => {
     if (townData) {

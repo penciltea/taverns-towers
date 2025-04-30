@@ -21,7 +21,7 @@ export default function NewLocationPage(){
 
     const { showSnackbar } = useUIStore();
     const { mode } = useLocationContentStore();
-    const { refetch } = usePaginatedLocations(townId, 1, 10);
+    const { refetch } = usePaginatedLocations(townId, 1, 10, []);
     const { addLocation } = useTownLoader(townId);
 
     const methods = useFormWithSchema(locationSchema, {
