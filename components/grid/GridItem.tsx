@@ -1,10 +1,9 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Grid, Typography, Box, Chip } from '@mui/material';
+import { Typography, Box, Chip, Paper } from '@mui/material';
 import { GridItemProps } from '@/interfaces/gridProps';
 import { optimizeCloudinaryImage } from '@/lib/util/optimizeCloudinaryImage';
-
 
 export default function GridItem({ title, subtitle, link, image, onClick, tags = [] }: GridItemProps) {
   const router = useRouter();
@@ -14,17 +13,29 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
 
   const handleClick = () => {
     if (onClick) {
-      onClick(); // If onClick is passed, call it
+      onClick();
     } else {
-      router.push(link); // Default navigation behavior if no onClick is provided
+      router.push(link);
     }
   };
 
   return (
-    <Grid size={{xs: 12, sm: 6, md: 3}} sx={{ width: '100%', cursor: 'pointer' }} onClick={handleClick}>
+    <Paper
+      elevation={3}
+      onClick={handleClick}
+      sx={{
+        width: '100%',
+        height: '100%',
+        cursor: 'pointer',
+        p: 2,
+        borderRadius: 2,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       {image && (
-        <Box sx={{ position: 'relative', height: 240, borderRadius: 4, overflow: 'hidden' }}>
-        <Image
+        <Box sx={{ position: 'relative', height: 180, borderRadius: 2, overflow: 'hidden' }}>
+          <Image
             src={optimizeCloudinaryImage(image)}
             alt={title}
             fill
@@ -33,20 +44,16 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
           />
         </Box>
       )}
-      <Typography variant="h6" mt={1}>{title}</Typography>
-      {subtitle && <Typography variant="subtitle1">{subtitle}</Typography>}
-
+      <Typography variant="h6" mt={2}>{title}</Typography>
+      {subtitle && <Typography variant="subtitle2">{subtitle}</Typography>}
       {tags.length > 0 && (
         <Box mt={1} display="flex" gap={1} flexWrap="wrap">
-          {Array.isArray(visibleTags) &&
-            visibleTags.map((tag: string) => (
-              <Chip key={tag} label={tag} />
+          {visibleTags.map((tag) => (
+            <Chip key={tag} label={tag} />
           ))}
-          {extraCount > 0 && (
-            <Chip label={`+${extraCount}`} />
-          )}
+          {extraCount > 0 && <Chip label={`+${extraCount}`} />}
         </Box>
       )}
-    </Grid>
+    </Paper>
   );
-};
+}

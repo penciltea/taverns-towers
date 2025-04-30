@@ -76,7 +76,6 @@ export default function ViewTownPage({ params }: { params: Promise<{ id: string 
 
         {/* Bottom Half */}
         <Grid size={{xs: 12}} sx={{marginTop: 4}}>
-          <Typography variant="h4">Locations</Typography>
           <SkeletonLoader
             loading={loading}
             skeleton={

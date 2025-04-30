@@ -12,6 +12,22 @@ export interface LocationListProps {
   onDelete: (id: string) => void;
 }
 
+export interface LocationFilters {
+  page: number;
+  limit: number;
+  townId: string;
+  type: string[];
+  search: string;
+}
+
+export const DefaultLocationFilters = {
+  page: 1,
+  limit: 10,
+  townId: '',
+  type: [],
+  search: ''
+}
+
 export interface LocationResponse {
   locations: LocationType[];
   total: number;
@@ -20,7 +36,7 @@ export interface LocationResponse {
 }
 
 export interface BaseLocation {
-  _id?: string;
+  _id: string;
   townId?: string;
   name: string;
   type: string;
@@ -29,8 +45,8 @@ export interface BaseLocation {
   publicNotes?: string;
   gmNotes?: string;
   image?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface TavernLocation extends BaseLocation {
