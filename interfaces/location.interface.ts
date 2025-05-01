@@ -76,7 +76,7 @@ export interface ShopLocation extends BaseLocation {
 export interface GuildLocation extends BaseLocation {
   type: "guild";
   guildName?: string;
-  focus?: string;
+  guildType?: string;
   leader?: string;
   membershipRequirements?: string;
   knownRivals?: string;

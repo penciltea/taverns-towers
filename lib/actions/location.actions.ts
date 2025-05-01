@@ -68,7 +68,7 @@ function serializeLocation(location: any): LocationType {
         ...baseData,
         type: "guild",
         guildName: plain.guildName,
-        focus: plain.focus,
+        guildType: plain.guildType,
         leader: plain.leader,
         membershipRequirements: plain.membershipRequirements,
         knownRivals: plain.knownRivals,

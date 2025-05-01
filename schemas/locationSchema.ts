@@ -62,7 +62,7 @@ export const shopSchema = baseLocationSchema.extend({
 export const guildSchema = baseLocationSchema.extend({
   type: z.literal("guild"),
   guildName: z.string().optional(),
-  focus: z.string().optional(),
+  guildType: z.string().optional(),
   leader: z.string().optional(),
   membershipRequirements: z.string().optional(),
   knownRivals: z.string().optional(),

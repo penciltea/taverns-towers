@@ -116,7 +116,7 @@ export default function FilterBar<T>({
     <Box
       display="grid"
       gridTemplateColumns="350px 250px 150px auto"
-      gridTemplateRows="2"
+      gridTemplateRows="3"
       gap={2}
       justifyItems="flex-start"
       alignItems="center"

@@ -81,7 +81,7 @@ const Tavern =
     "guild",
     new Schema({
       guildName: { type: String, required: false },
-      focus: { type: String, required: false },
+      guildType: { type: String, required: false },
       leader: { type: String, required: false },
       membershipRequirements: { type: String, required: false },
       knownRivals: { type: String, required: false },

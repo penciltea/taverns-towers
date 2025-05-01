@@ -12,6 +12,7 @@ export const GuildDetails = ({ location }: { location: GuildLocation }) => {
         <InfoListItem label="Size" value={getLabelFromValue(LOCATION_SIZE, location.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(LOCATION_CONDITION, location.condition)} />
         <InfoListItem label="Guild Name" value={location.guildName} />
+        <InfoListItem label="Guild Type" value={location.guildType} />
         <InfoListItem label="Leader(s)" value={location.leader} />
         <InfoListItem label="Membership Requirements" value={location.membershipRequirements} />
         <InfoListItem label="Known Rivals" value={location.knownRivals} />

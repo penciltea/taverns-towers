@@ -19,10 +19,10 @@ export default function GuildFields(){
             />
             
             <FormTextField
-                name="focus"
-                label="Focus"
-                registration={register("focus")}
-                fieldError={errors.focus}
+                name="guildType"
+                label="Guild Type"
+                registration={register("guildType")}
+                fieldError={errors.guildType}
             />
 
             <FormTextField
