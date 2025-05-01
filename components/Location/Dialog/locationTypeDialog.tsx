@@ -12,7 +12,7 @@ export default function LocationTypeDialog({ open, onClose }: DialogProps) {
   const [error, setError] = useState(false);
   const router = useRouter();
   const params = useParams();
-  const townId = params.id as string;
+  const settlementId = params.id as string;
   const { closeDialog } = useUIStore();
 
   const handleConfirm = () => {
@@ -21,7 +21,7 @@ export default function LocationTypeDialog({ open, onClose }: DialogProps) {
       return;
     }
     setError(false);
-    router.push(`/towns/${townId}/locations/new/?type=${type}`); // or whatever route you use
+    router.push(`/settlements/${settlementId}/locations/new/?type=${type}`); // or whatever route you use
     closeDialog();
   };
 

@@ -5,7 +5,7 @@ export const uploadToCloudinary = async (file: File): Promise<string | undefined
   
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "town_maps");
+  formData.append("upload_preset", "settlement_maps");
 
   const cloudinaryUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   if (!cloudinaryUrl) {

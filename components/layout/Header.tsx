@@ -15,7 +15,7 @@ export default function Header() {
     const {openDialog, closeDialog} = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [menuType, setMenuType] = useState<'towns' | 'locations' | 'npcs' | null>(null);
+    const [menuType, setMenuType] = useState<'settlements' | 'locations' | 'npcs' | null>(null);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>, type: typeof menuType) => {
         setAnchorEl(event.currentTarget);
@@ -57,21 +57,21 @@ export default function Header() {
 
         {/* Navigation Buttons */}
         <Box display="flex" gap={2}>
-            {/* Towns */}
+            {/* Settlements */}
             <Button
-                onClick={(e) => handleMenuOpen(e, 'towns')}
+                onClick={(e) => handleMenuOpen(e, 'settlements')}
                 color="inherit"
                 endIcon={<KeyboardArrowDownIcon />}
             >
-                Towns
+                Settlements
             </Button>
             <Menu
                 anchorEl={anchorEl}
-                open={Boolean(anchorEl) && menuType === 'towns'}
+                open={Boolean(anchorEl) && menuType === 'settlements'}
                 onClose={handleMenuClose}
             >
-                <MenuItem onClick={() => handleNavigate('/towns/all')}>View All Towns</MenuItem>
-                <MenuItem onClick={() => handleNavigate('/towns/new')}>Create Town</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/settlements/all')}>View All Settlements</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/settlements/new')}>Create Settlement</MenuItem>
             </Menu>
 
             {/* Locations */}

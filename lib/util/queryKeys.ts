@@ -1,7 +1,7 @@
 export const locationListKey = (
-    townId: string,
+    settlementId: string,
     page: number,
     limit: number,
     type?: string[],
     name?: string
-  ) => ['locations', townId, page, limit, type, name];
+  ) => ['locations', settlementId, page, limit, type, name];

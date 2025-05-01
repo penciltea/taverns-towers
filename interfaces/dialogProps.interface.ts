@@ -4,5 +4,5 @@ export interface DialogProps {
     onConfirm?: () => void;
     title?: string;
     message?: string;
-    deleting?: string; // optional: for context like 'town', 'location'
+    deleting?: string; // optional: for context like 'settlement', 'location'
   }

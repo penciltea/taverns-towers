@@ -33,14 +33,14 @@ const getLocationLabel = (type: string) => {
   return category ? category.label : type;
 };
 
-export default function LocationDetailsDialog({ open, onClose, onDelete, townId, locationData }: LocationDialogProps) {
+export default function LocationDetailsDialog({ open, onClose, onDelete, settlementId, locationData }: LocationDialogProps) {
   const Component = (LocationTypeComponents as any)[locationData.type];
   const locationLabel = getLocationLabel(locationData.type);
   const router = useRouter();
   const { showSnackbar } = useUIStore();
 
   const handleEdit = () => {
-    router.push(`/towns/${townId}/locations/${locationData._id}`);
+    router.push(`/settlements/${settlementId}/locations/${locationData._id}`);
   };
 
   return (

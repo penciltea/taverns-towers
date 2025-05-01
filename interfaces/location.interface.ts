@@ -2,20 +2,20 @@ import { LOCATION_SIZE, LOCATION_CONDITION } from '@/constants/locationOptions';
 import { DialogProps } from "./dialogProps.interface";
  
 export interface LocationDialogProps extends DialogProps {
-  townId: string;
+  settlementId: string;
   locationData: LocationType;
   onDelete: (id: string) => void;
 }
 
 export interface LocationListProps {
-  townId: string;
+  settlementId: string;
   onDelete: (id: string) => void;
 }
 
 export interface LocationFilters {
   page: number;
   limit: number;
-  townId: string;
+  settlementId: string;
   type: string[];
   search: string;
 }
@@ -23,7 +23,7 @@ export interface LocationFilters {
 export const DefaultLocationFilters = {
   page: 1,
   limit: 10,
-  townId: '',
+  settlementId: '',
   type: [],
   search: ''
 }
@@ -37,7 +37,7 @@ export interface LocationResponse {
 
 export interface BaseLocation {
   _id: string;
-  townId?: string;
+  settlementId?: string;
   name: string;
   type: string;
   size?: LocationSize;

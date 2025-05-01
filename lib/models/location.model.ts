@@ -9,7 +9,7 @@ const secrecyValues = SECRECY_LEVELS.map(opt => opt.value);
 
 const BaseLocationSchema = new Schema(
   {
-    townId: { type: Schema.Types.ObjectId, ref: "Town" },
+    settlementId: { type: Schema.Types.ObjectId, ref: "Settlement" },
     name: { type: String, required: true },
     type: { type: String, required: true },
     size: {

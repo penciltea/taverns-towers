@@ -18,7 +18,7 @@ function serializeLocation(location: any): LocationType {
     condition: plain.condition,
     publicNotes: plain.publicNotes,
     gmNotes: plain.gmNotes,
-    townId: plain.townId?.toString(),
+    settlementId: plain.settlementId?.toString(),
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
   };
@@ -125,17 +125,17 @@ function serializeLocation(location: any): LocationType {
   }
 }
 
-export async function createLocation(data: any, townId: string) {
+export async function createLocation(data: any, settlementId: string) {
   await connectToDatabase();
   const model = Location.discriminators?.[data.type] || Location;
 
-  const newLocation = await model.create({ ...data, townId });
-  revalidatePath(`/town/${townId}`);
+  const newLocation = await model.create({ ...data, settlementId });
+  revalidatePath(`/settlement/${settlementId}`);
   return serializeLocation(newLocation);
 }
 
-export async function getLocationsByTownPaginated(
-  townId: string,
+export async function getLocationsBySettlementPaginated(
+  settlementId: string,
   page: number = 1,
   limit: number = 10,
   type?: string[],
@@ -143,7 +143,7 @@ export async function getLocationsByTownPaginated(
 ) {
   await connectToDatabase();
 
-  const query: Record<string, any> = { townId };
+  const query: Record<string, any> = { settlementId };
   if (type && type.length > 0) {
     query.type = { $in: type };
   }
@@ -184,13 +184,13 @@ export async function updateLocation(data: any, id: string,) {
   const model = Location.discriminators?.[existing.type] || Location;
   const updated = await model.findByIdAndUpdate(id, data, { new: true });
 
-  if (updated?.townId) revalidatePath(`/town/${updated.townId}`);
+  if (updated?.settlementId) revalidatePath(`/settlement/${updated.settlementId}`);
   return serializeLocation(updated);
 }
 
 export async function deleteLocation(id: string) {
   await connectToDatabase();
   const deleted = await Location.findByIdAndDelete(id);
-  if (deleted?.townId) revalidatePath(`/town/${deleted.townId}`);
+  if (deleted?.settlementId) revalidatePath(`/settlement/${deleted.settlementId}`);
   return { success: true };
 }

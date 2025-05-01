@@ -1,7 +1,7 @@
 import { LocationFormData } from "@/schemas/locationSchema";
-import { TownFormData } from "@/schemas/townSchema";
+import { SettlementFormData } from "@/schemas/settlementSchema";
 
-export function transformTownFormData(data: TownFormData) {
+export function transformSettlementFormData(data: SettlementFormData) {
   return {
     ...data,
     tags: data.tags || [],

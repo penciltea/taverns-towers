@@ -7,7 +7,7 @@ interface UIState {
     toggleDrawer: () => void;
 
     // Dialog state
-    openDialog: null | 'addTownDialog' | 'TownDetailsDialog' | 'deleteConfirmationDialog' | 'locationTypeDialog' | 'filterDialog' | 'LocationDetailsDialog' | 'deleteLocationDialog';
+    openDialog: null | 'addSettlementDialog' | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'locationTypeDialog' | 'filterDialog' | 'LocationDetailsDialog' | 'deleteLocationDialog';
     setOpenDialog: (dialog: UIState['openDialog']) => void;
     closeDialog: () => void;
 
@@ -25,10 +25,10 @@ interface UIState {
     isSubmitting: boolean;
     setSubmitting: (isSubmitting: boolean) => void;
 
-    // Town
+    // Settlement
     tId: string | null;
-    setTownId: (id: string) => void;   
-    clearTownId: () => void; 
+    setSettlementId: (id: string) => void;   
+    clearSettlementId: () => void; 
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -52,6 +52,6 @@ export const useUIStore = create<UIState>((set) => ({
   setSubmitting: (isSubmitting) => set({ isSubmitting }),
 
   tId: null,
-  setTownId: (id) => set({ tId: id }),
-  clearTownId: () => set({ tId: null})
+  setSettlementId: (id) => set({ tId: id }),
+  clearSettlementId: () => set({ tId: null})
 }));

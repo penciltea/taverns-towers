@@ -7,7 +7,7 @@ import QueryProviderWrapper from "@/components/Layout/QueryProviderWrapper";
 
 export const metadata = {
   title: "Taverns & Towers",
-  description: "A town builder for your TTRPG campaigns",
+  description: "A settlement builder for your TTRPG campaigns",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
