@@ -14,6 +14,9 @@ type FilteredGridViewProps<T extends CommonInterface> = {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
   filterComponent: React.ReactNode;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  totalCount: number;
   pageSize?: number;
   emptyText?: string;
   fabLabel?: string;
@@ -26,44 +29,43 @@ export default function FilteredGridView<T extends CommonInterface>({
   items,
   renderItem,
   filterComponent,
-  pageSize = 5,
+  currentPage,
+  onPageChange,
+  totalCount,
+  pageSize = 30,
   emptyText = 'No items found.',
   fabLabel,
   fabLink,
 }: FilteredGridViewProps<T>) {
-  const theme = useTheme();
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(items.length / pageSize);
-  const displayedItems = items.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
       <Typography variant="h4">{title}</Typography>
+
       <Box sx={{ my: 3 }}>
         <Typography variant="h6">Search & Filter</Typography>
         {filterComponent}
       </Box>
 
-      {displayedItems.length > 0 ? (
+      {items.length > 0 ? (
         <>
           <Typography variant="subtitle1">
-            {items.length} {content}
+            {totalCount} {content}
           </Typography>
+
           <GridContainer>
-            {displayedItems.map((item) => (
-              <Grid key={item._id} size={{xs: 12, sm: 6, md: 4, lg: 3}}>
+            {items.map((item) => (
+              <Grid key={item._id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                 {renderItem(item)}
-             </Grid>
+              </Grid>
             ))}
           </GridContainer>
+
           <PaginationControls
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={setCurrentPage}
+            onPageChange={onPageChange}
           />
         </>
       ) : (

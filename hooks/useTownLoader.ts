@@ -15,12 +15,15 @@ export function useTownLoader(townId: string | null) {
   const { setTownId } = useUIStore();
 
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
   // Fetching the town by its ID
   const { data: townData, isLoading: townLoading, refetch: refetchTown } = useTownQuery(townId);
   
   // Fetching the locations associated with the town
-  const { data: locationData, refetch: refetchLocations } = usePaginatedLocations(townId as string, 1, 10, [], "");
+  const { data: locationData, refetch: refetchLocations, isFetching: locationsLoading } =
+    usePaginatedLocations(townId as string, page, limit, [], "");
 
   useEffect(() => {
     if (townData) {
@@ -62,5 +65,16 @@ export function useTownLoader(townId: string | null) {
     refetchLocations(); // Re-fetch locations to update UI
   }
 
-  return { town: townData, locations: locationData?.locations, loading, addLocation, deleteLocation };
+  return {
+    town: townData,
+    locations: locationData?.locations,
+    page,
+    setPage,
+    limit, 
+    setLimit,
+    totalPages: locationData?.totalPages ?? 1,
+    loading: loading || locationsLoading,
+    addLocation,
+    deleteLocation,
+  };
 }

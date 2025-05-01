@@ -1,25 +1,23 @@
-import { TavernLocation } from '@/interfaces/location.interface';
+import { ShopLocation } from '@/interfaces/location.interface';
 import { List } from '@mui/material';
 import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { LOCATION_CONDITION, LOCATION_SIZE } from '@/constants/locationOptions';
 
-export const TavernDetails = ({ location }: { location: TavernLocation }) => {
+export const ShopDetails = ({ location }: { location: ShopLocation }) => {
   return (
     <>
       <List>
         <InfoListItem label="Size" value={getLabelFromValue(LOCATION_SIZE, location.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(LOCATION_CONDITION, location.condition)} />
+        <InfoListItem label="Shop Type" value={location.shopType} />
         <InfoListItem label="Owner" value={location.owner} />
-        <InfoListItem label="Clientele" value={location.clientele} />
-        <InfoListItem label="Entertainment Offerings" value={location.entertainment} />
-        <InfoListItem label="Room Cost per Night" value={location.cost} />
         <InfoListItem label="Public Notes" value={location.publicNotes} />
         <InfoListItem label="GM Notes" value={location.gmNotes} />
       </List>
 
-      <MenuList menu={location.menu || []} label="Menu" />
+      <MenuList menu={location.wares || []} label="Wares" />
     </>
   );
 };

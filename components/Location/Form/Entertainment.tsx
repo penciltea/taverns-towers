@@ -1,9 +1,7 @@
 import { FormTextField } from "@/components/Form";
-import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function TavernFields(){
+export default function EntertainmentFields(){
     const {
         register,
         formState: { errors },
@@ -12,6 +10,13 @@ export default function TavernFields(){
     return (
         <>
             <FormTextField
+                name="venueType"
+                label="Venue Type"
+                registration={register("venueType")}
+                fieldError={errors.venueType}
+            />
+            
+            <FormTextField
                 name="owner"
                 label="Owner"
                 registration={register("owner")}
@@ -19,22 +24,15 @@ export default function TavernFields(){
             />
             
             <FormTextField
-                name="clientele"
-                label="Clientele"
-                registration={register("clientele")}
-                fieldError={errors.clientele}
-            />
-
-            <FormTextField
-                name="entertainment"
-                label="Entertainment Offerings"
-                registration={register("entertainment")}
-                fieldError={errors.entertainment}
+                name="performances"
+                label="Performances"
+                registration={register("performances")}
+                fieldError={errors.performances}
             />
 
             <FormTextField
                 name="cost"
-                label="Room Cost per Night"
+                label="Cost"
                 registration={register("cost")}
                 fieldError={errors.cost}
             />
@@ -56,18 +54,6 @@ export default function TavernFields(){
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
             />
-
-            <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
-                <FormEditableTable
-                    name="menu"
-                    columns={[
-                        { label: "Name", field: "name" },
-                        { label: "Description", field: "description" },
-                        { label: "Price", field: "price" },
-                    ]}
-                />
-            </Box>
         </>
     )
 }

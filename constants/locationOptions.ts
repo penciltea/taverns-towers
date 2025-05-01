@@ -31,6 +31,29 @@ export const LOCATION_CONDITION = [
     { value: "opulent", label: "Opulent (lavishly maintained, luxurious)"}
 ]
 
+/* For Government location type form */
+export const SECURITY_LEVELS = [
+  { value: "none", label: "None" },
+  { value: "low", label: "Low (Basic patrols)" },
+  { value: "moderate", label: "Moderate (Watch presence, restricted access)" },
+  { value: "high", label: "High (Trained guards, checkpoints)" },
+  { value: "very_high", label: "Very High (Wards, elite protection)" },
+  { value: "top_secret", label: "Top Secret (Highest clearance only)" }
+];
+
+/* For Hidden location type form */
+export const SECRECY_LEVELS = [
+  { value: "unknown", label: "Unknown (Unnoticed, not hidden)" },
+  { value: "concealed", label: "Concealed (Blends into surroundings)" },
+  { value: "guarded", label: "Guarded (Few know of it)" },
+  { value: "encrypted", label: "Encrypted (Codes or riddles required)" },
+  { value: "magically_hidden", label: "Magically Hidden (Arcane concealment)" },
+  { value: "mythical", label: "Mythical (Believed to be legend)" }
+];
+
+
 export type LocationCategory = typeof LOCATION_CATEGORIES[number]["value"];
 export type LocationSize = typeof LOCATION_SIZE[number]["value"];
 export type LocationCondition = typeof LOCATION_CONDITION[number]["value"];
+export type LocationSecurityLevel = typeof SECURITY_LEVELS[number]["value"];
+export type LocationSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];

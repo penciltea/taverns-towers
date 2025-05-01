@@ -3,7 +3,7 @@ import FormEditableTable from "@/components/Form/FormEditableTable";
 import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function TavernFields(){
+export default function TempleFields(){
     const {
         register,
         formState: { errors },
@@ -12,31 +12,24 @@ export default function TavernFields(){
     return (
         <>
             <FormTextField
-                name="owner"
-                label="Owner"
-                registration={register("owner")}
-                fieldError={errors.owner}
-            />
-            
-            <FormTextField
-                name="clientele"
-                label="Clientele"
-                registration={register("clientele")}
-                fieldError={errors.clientele}
+                name="deity"
+                label="Deity"
+                registration={register("deity")}
+                fieldError={errors.deity}
             />
 
             <FormTextField
-                name="entertainment"
-                label="Entertainment Offerings"
-                registration={register("entertainment")}
-                fieldError={errors.entertainment}
+                name="leader"
+                label="Leader(s)"
+                registration={register("leader")}
+                fieldError={errors.leader}
             />
 
             <FormTextField
-                name="cost"
-                label="Room Cost per Night"
-                registration={register("cost")}
-                fieldError={errors.cost}
+                name="relics"
+                label="Relics"
+                registration={register("relics")}
+                fieldError={errors.relics}
             />
 
             <FormTextField
@@ -58,9 +51,9 @@ export default function TavernFields(){
             />
 
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
+                <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
                 <FormEditableTable
-                    name="menu"
+                    name="services"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Description", field: "description" },

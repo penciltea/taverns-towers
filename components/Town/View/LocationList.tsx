@@ -38,8 +38,8 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
   );
   
   const locations = data?.locations || [];
+  const totalCount = data?.total || 0;
   
-
   return (
     <>
       <FilteredGridView<LocationType>
@@ -65,7 +65,7 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
               setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
             }
             clearFilters={() => {
-              setFilters(DefaultLocationFilters);
+              setFilters({ ...DefaultLocationFilters, townId }); // reset to default + town
             }}
           >
             <Box sx={{ gridColumn: '1 / -1', gridRow: 2, width: '100%' }}>
@@ -80,10 +80,13 @@ export default function LocationList({ townId, onDelete }: LocationListProps) {
             </Box>
           </FilterBar>
         }
+        currentPage={filters.page}
+        onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}
+        totalCount={totalCount}
+        pageSize={filters.limit}
         fabLabel="Add Location"
         fabLink={`/towns/${townId}/locations/new`}
       />
-
 
       {openDialog === 'LocationDetailsDialog' && selected && (
         <LocationDetailsDialog

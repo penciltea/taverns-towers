@@ -1,17 +1,31 @@
 import { Dialog, DialogTitle, DialogContent, Box, Button, Typography, Stack, DialogActions, } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from 'next/navigation';
 import { useUIStore } from "@/store/uiStore";
-import { useTownContentStore } from '@/store/townStore';
 import { deleteLocation } from '@/lib/actions/location.actions';
+import DeleteButton from '@/components/Common/DeleteButton';
 import { LocationDialogProps } from '@/interfaces/location.interface';
 import { LOCATION_CATEGORIES } from '@/constants/locationOptions';
 import { TavernDetails } from './TavernDetails';
-import DeleteButton from '@/components/Common/DeleteButton';
+import { TempleDetails } from './TempleDetails';
+import { ShopDetails } from './ShopDetails';
+import { GuildDetails } from './GuildDetails';
+import { GovernmentDetails } from './GovernmentDetails';
+import { EntertainmentDetails } from './Entertainment';
+import { HiddenDetails } from './HiddenDetails';
+import { ResidenceDetails } from './ResidenceDetails';
+import { MiscellaneousDetails } from './MiscellaneousDetails';
 
 const LocationTypeComponents = {
   tavern: TavernDetails,
+  temple: TempleDetails,
+  shop: ShopDetails,
+  guild: GuildDetails,
+  government: GovernmentDetails,
+  entertainment: EntertainmentDetails,
+  hidden: HiddenDetails,
+  residence: ResidenceDetails,
+  miscellaneous: MiscellaneousDetails
 };
 
 const getLocationLabel = (type: string) => {

@@ -40,6 +40,12 @@ export default function TownsPage() {
           }
         />
       }
+      currentPage={params.page}
+      onPageChange={(newPage) =>
+        setParams((prev) => ({ ...prev, page: newPage }))
+      }
+      totalCount={data.total}
+      pageSize={params.limit}
       fabLabel="Add Town"
       fabLink="/towns/new"
     />

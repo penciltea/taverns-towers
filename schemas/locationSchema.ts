@@ -1,4 +1,8 @@
 import { z } from "zod";
+import { SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/locationOptions";
+
+const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value);
+const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
 
 export const baseLocationSchema = z.object({
   name: z.string().min(1),
@@ -39,19 +43,87 @@ export const tavernSchema = baseLocationSchema.extend({
 export const templeSchema = baseLocationSchema.extend({
   type: z.literal("temple"),
   deity: z.string().optional(),
-  rituals: z.string().optional(),
+  leader: z.string().optional(),
+  relics: z.string().optional(),
+  services: z.array(menuItemSchema).optional(),
 });
 
-export const blacksmithSchema = baseLocationSchema.extend({
-  type: z.literal("blacksmith"),
-  weaponsOffered: z.array(z.string()).optional(),
-  armorTypes: z.array(z.string()).optional(),
+export const shopSchema = baseLocationSchema.extend({
+  type: z.literal("shop"),
+  shopType: z.string().optional(),
+  owner: z.string().optional(),
+  wares: z.array(z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    price: z.string(),
+  })).optional(),
+});
+
+export const guildSchema = baseLocationSchema.extend({
+  type: z.literal("guild"),
+  guildName: z.string().optional(),
+  focus: z.string().optional(),
+  leader: z.string().optional(),
+  membershipRequirements: z.string().optional(),
+  knownRivals: z.string().optional(),
+  services: z.array(z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    price: z.string(),
+  })).optional(),
+});
+
+export const governmentSchema = baseLocationSchema.extend({
+  type: z.literal("government"),
+  function: z.string().optional(),
+  officials: z.string().optional(),
+  jurisdiction: z.string().optional(),
+  security: z.enum(securityEnumValues as [string, ...string[]]).optional()
+});
+
+export const entertainmentSchema = baseLocationSchema.extend({
+  type: z.literal("entertainment"),
+  venueType: z.string().optional(),
+  performances: z.string().optional(),
+  owner: z.string().optional(),
+  cost: z.string().optional(),
+});
+
+export const hiddenSchema = baseLocationSchema.extend({
+  type: z.literal("hidden"),
+  secrecy: z
+  .array(z.enum(secrecyEnumValues as [string, ...string[]]))
+  .optional()
+  .default([]),leader: z.string().optional(),
+  knownTo: z.string().optional(),
+  defenses: z.string().optional(),
+  purpose: z.string().optional(),
+});
+
+export const residenceSchema = baseLocationSchema.extend({
+  type: z.literal("residence"),
+  occupant: z.string().optional(),
+  wealth: z.string().optional(),
+  notableFeatures: z.string().optional(),
+});
+
+export const miscSchema = baseLocationSchema.extend({
+  type: z.literal("miscellaneous"),
+  description: z.string().optional(),
+  features: z.string().optional(),
+  use: z.string().optional(),
 });
 
 export const locationSchema = z.discriminatedUnion("type", [
   tavernSchema,
   templeSchema,
-  blacksmithSchema
+  shopSchema,
+  guildSchema,
+  governmentSchema,
+  entertainmentSchema,
+  hiddenSchema,
+  residenceSchema, 
+  miscSchema
 ]);
 
 export type LocationFormData = z.infer<typeof locationSchema>;
@@ -63,18 +135,71 @@ export const defaultLocationValues: Record<
   tavern: {
     name: "",
     type: "tavern",
+    clientele: "",
+    owner: "",
+    entertainment: "",
+    cost: "",
     menu: []
   },
   temple: {
     name: "",
     type: "temple",
     deity: "",
-    rituals: "",
+    leader: "",
+    relics: "",
+    services: []
   },
-  blacksmith: {
+  shop: {
     name: "",
-    type: "blacksmith",
-    weaponsOffered: [],
-    armorTypes: [],
+    type: "shop",
+    shopType: "",
+    owner: "",
+    wares: []
+  },
+  guild: {
+    name: "",
+    type: "guild",
+    guildName: "",
+    focus: "",
+    leader: "",
+    membershipRequirements: "",
+    knownRivals: "",
+    services: []
+  },
+  government: {
+    name: "",
+    type: "government",
+    function: "",
+    officials: "",
+    jurisdiction: "",
+    security: "",
+  },
+  entertainment: {
+    name: "",
+    type: "entertainment",
+    venueType: "",
+    owner: "",
+    performances: "",
+    cost: "",
+  },
+  hidden: {
+    name: "",
+    type: "hidden",
+    secrecy: [],
+    knownTo: "",
+    defenses: "",
+    purpose: "",
+  }, 
+  residence: {
+    name: "",
+    type: "residence",
+    occupant: "",
+    notableFeatures: ""
+  },
+  miscellaneous: {
+    name: "",
+    type: "miscellaneous",
+    features: "",
+    use: ""
   }
 };

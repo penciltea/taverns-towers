@@ -61,16 +61,66 @@ export interface TavernLocation extends BaseLocation {
 export interface TempleLocation extends BaseLocation {
   type: "temple";
   deity?: string;
-  rituals?: string;
+  leader?: string;
+  relics?: string;
+  services?: { name: string; description: string; price: string }[];
 }
 
-export interface BlacksmithLocation extends BaseLocation {
-  type: "blacksmith";
-  weaponsOffered?: string[];
-  armorTypes?: string[];
+export interface ShopLocation extends BaseLocation {
+  type: "shop";
+  shopType?: string;
+  owner?: string;
+  wares?: { name: string; description?: string; price: string }[];
 }
 
-export type LocationType = TavernLocation | TempleLocation | BlacksmithLocation | BaseLocation;
+export interface GuildLocation extends BaseLocation {
+  type: "guild";
+  guildName?: string;
+  focus?: string;
+  leader?: string;
+  membershipRequirements?: string;
+  knownRivals?: string;
+  services?: { name: string; description?: string; price: string }[];
+}
+
+export interface GovernmentLocation extends BaseLocation {
+  type: "government";
+  function?: string;
+  officials?: string;
+  jurisdiction?: string;
+  security?: string;
+}
+
+export interface EntertainmentLocation extends BaseLocation {
+  type: "entertainment";
+  venueType?: string;
+  performances?: string;
+  owner?: string;
+  cost?: string;
+}
+
+export interface HiddenLocation extends BaseLocation {
+  type: "hidden";
+  secrecy?: string[];
+  leader?: string,
+  knownTo?: string;
+  defenses?: string;
+  purpose?: string;
+}
+
+export interface ResidenceLocation extends BaseLocation {
+  type: "residence";
+  occupant?: string;
+  notableFeatures?: string;
+}
+
+export interface MiscellaneousLocation extends BaseLocation {
+  type: "miscellaneous";
+  features?: string;
+  use?: string;
+}
+
+export type LocationType = TavernLocation | TempleLocation | ShopLocation | GuildLocation | GovernmentLocation | EntertainmentLocation | HiddenLocation | ResidenceLocation | MiscLocation | BaseLocation;
 
 export type LocationSize = (typeof LOCATION_SIZE)[number]['value'];
 export type LocationCondition = (typeof LOCATION_CONDITION)[number]['value'];

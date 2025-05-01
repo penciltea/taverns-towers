@@ -3,7 +3,7 @@ import FormEditableTable from "@/components/Form/FormEditableTable";
 import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function TavernFields(){
+export default function GuildFields(){
     const {
         register,
         formState: { errors },
@@ -12,31 +12,38 @@ export default function TavernFields(){
     return (
         <>
             <FormTextField
-                name="owner"
-                label="Owner"
-                registration={register("owner")}
-                fieldError={errors.owner}
+                name="guildName"
+                label="Guild Name"
+                registration={register("guildName")}
+                fieldError={errors.guildName}
             />
             
             <FormTextField
-                name="clientele"
-                label="Clientele"
-                registration={register("clientele")}
-                fieldError={errors.clientele}
+                name="focus"
+                label="Focus"
+                registration={register("focus")}
+                fieldError={errors.focus}
             />
 
             <FormTextField
-                name="entertainment"
-                label="Entertainment Offerings"
-                registration={register("entertainment")}
-                fieldError={errors.entertainment}
+                name="leader"
+                label="Leader(s)"
+                registration={register("leaders")}
+                fieldError={errors.leaders}
             />
 
             <FormTextField
-                name="cost"
-                label="Room Cost per Night"
-                registration={register("cost")}
-                fieldError={errors.cost}
+                name="membershipRequirements"
+                label="Membership Requirements"
+                registration={register("membershipRequirements")}
+                fieldError={errors.membershipRequirements}
+            />
+
+            <FormTextField
+                name="knownRivals"
+                label="Known Rivals"
+                registration={register("knownRivals")}
+                fieldError={errors.knownRivals}
             />
 
             <FormTextField
@@ -58,9 +65,9 @@ export default function TavernFields(){
             />
 
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
+                <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
                 <FormEditableTable
-                    name="menu"
+                    name="services"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Description", field: "description" },
