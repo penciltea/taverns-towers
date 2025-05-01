@@ -54,7 +54,7 @@ export interface Town extends CommonInterface {
 
 export const DefaultTownQueryParams = {
   page: 1,
-  limit: 20,
+  limit: 10,
   search: '',
   size: '',
   climate: '',

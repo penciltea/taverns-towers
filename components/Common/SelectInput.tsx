@@ -11,8 +11,8 @@ interface SelectInputProps {
 const SelectInput = ({ label, value, onChange, options, placeholder }: SelectInputProps) => {
   return (
     <FormControl fullWidth margin="normal">
-      <InputLabel>{label}</InputLabel>
-      <Select value={value} onChange={onChange} label={label}>
+      <InputLabel shrink>{label}</InputLabel> {/* Always shrink the label */}
+      <Select value={value || ""} onChange={onChange} label={label}>
         {placeholder && <MenuItem value="">{placeholder}</MenuItem>}
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

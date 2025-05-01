@@ -1,10 +1,12 @@
 "use client";
 
-import { Box, Button, TextField, Stack } from "@mui/material";
+import { Box, Button, TextField, Stack, MenuItem, SelectChangeEvent } from "@mui/material";
 import TuneIcon from '@mui/icons-material/Tune';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ContentFilters } from "@/store/contentStore";
 import { useState } from "react";
+import SelectInput from "@/components/Common/SelectInput";
+
 
 interface FilterBarProps<T> {
     filters: ContentFilters;
@@ -47,11 +49,25 @@ export default function FilterBar<T>({
     }
   };
 
+  // Handle page size change
+  const handlePageSizeChange = (event: SelectChangeEvent<string>) => {
+    const updatedFilters = { ...filters, limit: parseInt(event.target.value, 10), page: 1 };
+    setFilters(updatedFilters);
+  };
+
   // Clear search input and reset filters
   const handleClearFilters = () => {
     setSearchInput(""); // Clear the search input field
     clearFilters(); // Call the passed-in clearFilters function to reset other filters
   };
+
+  const pageSizeOptions = [
+    { value: "10", label: "10" },
+    { value: "25", label: "25" },
+    { value: "50", label: "50" },
+    { value: "100", label: "100" },
+  ];
+
 
   return isMobile ? (
     <Stack direction="column">
@@ -66,6 +82,13 @@ export default function FilterBar<T>({
       />
 
       {children}
+
+      <SelectInput
+        label="Items per page"
+        value={filters.limit.toString()}
+        onChange={handlePageSizeChange}
+        options={pageSizeOptions}
+      />
       
       {onOpenAdvanced && (
         <Button
@@ -92,7 +115,7 @@ export default function FilterBar<T>({
   ) : (
     <Box
       display="grid"
-      gridTemplateColumns="350px 250px auto"
+      gridTemplateColumns="350px 250px 150px auto"
       gridTemplateRows="2"
       gap={2}
       justifyItems="flex-start"
@@ -108,6 +131,13 @@ export default function FilterBar<T>({
       />
 
       {children}
+
+      <SelectInput
+        label="Items per page"
+        value={filters.limit != null ? filters.limit.toString() : ""}
+        onChange={handlePageSizeChange}
+        options={pageSizeOptions}
+      />
 
       {onOpenAdvanced && (
         <Button

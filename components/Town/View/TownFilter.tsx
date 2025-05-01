@@ -4,16 +4,12 @@ import SelectInput from "@/components/Common/SelectInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { Box } from "@mui/material";
 import { FormChipSelect, FormSelect } from "@/components/Form";
-import {
-  SIZE_TYPES, TERRAIN_TYPES, TAG_TYPES,
-  CLIMATE_TYPES, MAGIC_LEVELS, WEALTH_LEVELS
-} from "@/constants/townOptions";
+import { SIZE_TYPES, TERRAIN_TYPES, TAG_TYPES, CLIMATE_TYPES, MAGIC_LEVELS, WEALTH_LEVELS } from "@/constants/townOptions";
 import FilterBar from "@/components/Grid/FilterBar";
 import FilterDialog from "@/components/Grid/FilterDialog";
 import { townFilterSchema } from "@/schemas/townSchema";
 import { useUIStore } from "@/store/uiStore";
 import { ContentFilters } from "@/store/contentStore";
-import { useTownContentStore } from "@/store/townStore";
 import { DefaultTownQueryParams } from "@/interfaces/town.interface";
 import { z } from "zod";
 
@@ -42,12 +38,13 @@ export default function TownFilters({ filters, setFilters }: TownFiltersProps) {
       >
         <SelectInput
           label="Size"
-          value={filters.size || ""}
+          value={filters.size != null ? filters.size.toString() : ""}
           onChange={(e) =>
             setFilters({ size: e.target.value })
           }
           options={toSelectOptions(SIZE_TYPES)}
         />
+        
       </FilterBar>
 
       {openDialog === 'filterDialog' && (
