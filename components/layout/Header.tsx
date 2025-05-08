@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
-import LocationTypeDialog from '@/components/Location/Dialog/locationTypeDialog';
+import SightTypeDialog from '@/components/Sight/Dialog/SightTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
     const {openDialog, closeDialog} = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [menuType, setMenuType] = useState<'settlements' | 'locations' | 'npcs' | null>(null);
+    const [menuType, setMenuType] = useState<'settlements' | 'sights' | 'npcs' | null>(null);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>, type: typeof menuType) => {
         setAnchorEl(event.currentTarget);
@@ -32,8 +32,8 @@ export default function Header() {
     handleMenuClose();
   };
 
-  const handleLocationDialog = () => {
-    useUIStore.getState().setOpenDialog('locationTypeDialog')
+  const handleSightDialog = () => {
+    useUIStore.getState().setOpenDialog('sightTypeDialog')
     handleMenuClose();
   };
 
@@ -74,21 +74,21 @@ export default function Header() {
                 <MenuItem onClick={() => handleNavigate('/settlements/new')}>Create Settlement</MenuItem>
             </Menu>
 
-            {/* Locations */}
+            {/* Sights */}
             <Button
-                onClick={(e) => handleMenuOpen(e, 'locations')}
+                onClick={(e) => handleMenuOpen(e, 'sights')}
                 color="inherit"
                 endIcon={<KeyboardArrowDownIcon />}
             >
-                Locations
+                Sights
             </Button>
             <Menu
                 anchorEl={anchorEl}
-                open={Boolean(anchorEl) && menuType === 'locations'}
+                open={Boolean(anchorEl) && menuType === 'sights'}
                 onClose={handleMenuClose}
             >
-                <MenuItem onClick={() => handleNavigate('/locations/all')}>View Your Locations</MenuItem>
-                <MenuItem onClick={handleLocationDialog}>Create Location</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/sights/all')}>View Your Sights</MenuItem>
+                <MenuItem onClick={handleSightDialog}>Create Sight</MenuItem>
             </Menu>
 
             {/* NPCs */}
@@ -123,8 +123,8 @@ export default function Header() {
       </Toolbar>
     </AppBar>
 
-    {openDialog === 'locationTypeDialog' && (
-        <LocationTypeDialog open onClose={closeDialog} />
+    {openDialog === 'sightTypeDialog' && (
+        <SightTypeDialog open onClose={closeDialog} />
     )}
     </>
   );

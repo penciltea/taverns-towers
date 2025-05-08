@@ -1,4 +1,4 @@
-import { LocationFormData } from "@/schemas/locationSchema";
+import { SightFormData } from "@/schemas/sightSchema";
 import { SettlementFormData } from "@/schemas/settlementSchema";
 
 export function transformSettlementFormData(data: SettlementFormData) {
@@ -15,7 +15,7 @@ export function transformSettlementFormData(data: SettlementFormData) {
 }
 
 
-export function transformLocationFormData(data: LocationFormData) {
+export function transformSightFormData(data: SightFormData) {
   return {
     ...data,
     image:

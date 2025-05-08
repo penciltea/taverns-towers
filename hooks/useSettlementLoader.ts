@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useSettlementQuery } from '@/hooks/settlement.query';
-import { useLocationContentStore } from '@/store/locationStore';
+import { useSightContentStore } from '@/store/sightStore';
 import { useUIStore } from '@/store/uiStore';
-import { LocationType } from '@/interfaces/location.interface';
-import { usePaginatedLocations } from '@/hooks/location.query';
+import { SightType } from '@/interfaces/sight.interface';
+import { usePaginatedSights } from '@/hooks/sight.query';
 import { useSettlementContentStore } from '@/store/settlementStore';
-import { createLocation } from '@/lib/actions/location.actions';
+import { createSight } from '@/lib/actions/sight.actions';
 
 export function useSettlementLoader(settlementId: string | null) {
   const { setSelectedItem } = useSettlementContentStore();
-  const { setItems: setLocationItems } = useLocationContentStore();
+  const { setItems: setSightItems } = useSightContentStore();
   const { setSettlementId } = useUIStore();
 
   const [loading, setLoading] = useState(true);
@@ -21,9 +21,9 @@ export function useSettlementLoader(settlementId: string | null) {
   // Fetching the settlement by its ID
   const { data: settlementData, isLoading: settlementLoading, refetch: refetchSettlement } = useSettlementQuery(settlementId);
   
-  // Fetching the locations associated with the settlement
-  const { data: locationData, refetch: refetchLocations, isFetching: locationsLoading } =
-    usePaginatedLocations(settlementId as string, page, limit, [], "");
+  // Fetching the sights associated with the settlement
+  const { data: sightData, refetch: refetchSights, isFetching: sightsLoading } =
+    usePaginatedSights(settlementId as string, page, limit, [], "");
 
   useEffect(() => {
     if (settlementData) {
@@ -31,50 +31,50 @@ export function useSettlementLoader(settlementId: string | null) {
       setSettlementId(settlementData._id); // Set the settlementId
     }
 
-    if (locationData) {
-      setLocationItems(locationData.locations); // Set locations in the store
+    if (sightData) {
+      setSightItems(sightData.sights); // Set sights in the store
     }
 
     setLoading(false);
-  }, [settlementData, locationData, setSelectedItem, setSettlementId, setLocationItems]);
+  }, [settlementData, sightData, setSelectedItem, setSettlementId, setSightItems]);
   
 
-  async function addLocation(newLocation: LocationType, settlementId: string) {
+  async function addSight(newSight: SightType, settlementId: string) {
     try {
-      // Save the new location to the database
-      const savedLocation = await createLocation(newLocation, settlementId);
+      // Save the new sight to the database
+      const savedSight = await createSight(newSight, settlementId);
   
-      // Once saved, update the Zustand store with the new location
-      const store = useLocationContentStore.getState();
-      const currentLocations = store.allItems;
+      // Once saved, update the Zustand store with the new sight
+      const store = useSightContentStore.getState();
+      const currentSights = store.allItems;
   
-      store.setItems([...currentLocations, savedLocation]); // Add saved location to the store
+      store.setItems([...currentSights, savedSight]); // Add saved sight to the store
   
-      await refetchLocations();  // Refresh locations after the new location is added
+      await refetchSights();  // Refresh sights after the new sight is added
     } catch (error) {
-      console.error('Error adding location:', error);
+      console.error('Error adding sight:', error);
     }
   }
 
-  function deleteLocation(id: string) {
-    const store = useLocationContentStore.getState(); // Access current Zustand store state
+  function deleteSight(id: string) {
+    const store = useSightContentStore.getState(); // Access current Zustand store state
     const currentItems = store.allItems;
     const filteredItems = currentItems.filter((loc) => loc._id !== id);
   
     store.setItems(filteredItems);  // Update store after deletion
-    refetchLocations(); // Re-fetch locations to update UI
+    refetchSights(); // Re-fetch sights to update UI
   }
 
   return {
     settlement: settlementData,
-    locations: locationData?.locations,
+    sights: sightData?.sights,
     page,
     setPage,
     limit, 
     setLimit,
-    totalPages: locationData?.totalPages ?? 1,
-    loading: loading || locationsLoading,
-    addLocation,
-    deleteLocation,
+    totalPages: sightData?.totalPages ?? 1,
+    loading: loading || sightsLoading,
+    addSight,
+    deleteSight,
   };
 }

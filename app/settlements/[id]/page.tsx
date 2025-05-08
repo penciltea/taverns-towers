@@ -8,14 +8,14 @@ import { useSettlementLoader } from '@/hooks/useSettlementLoader';
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
-import LocationList from "@/components/Settlement/View/LocationList";
+import SightList from "@/components/Settlement/View/SightList";
 import FabButton from "@/components/Common/fabButton";
-import LocationTypeDialog from "@/components/Location/Dialog/locationTypeDialog";
+import SightTypeDialog from "@/components/Sight/Dialog/SightTypeDialog";
 
 export default function ViewSettlementPage({ params }: { params: Promise<{ id: string }> }) {
   const { openDialog, closeDialog } = useUIStore();
   const { id } = use(params);
-  const { settlement, loading, deleteLocation } = useSettlementLoader(id);
+  const { settlement, loading, deleteSight } = useSettlementLoader(id);
 
   if (!loading && !settlement) {
     return <Typography>Settlement not found!</Typography>;
@@ -80,27 +80,27 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
             loading={loading}
             skeleton={
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                {/* Simulate 3 loading "location cards" */}
+                {/* Simulate 3 loading "sight cards" */}
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
               </Stack>
             }
           >
-            <LocationList
+            <SightList
               settlementId={id}
               onDelete={(id: string) => {
-                deleteLocation(id);
+                deleteSight(id);
               }}
             />
           </SkeletonLoader>
         </Grid>
       </Grid>
 
-      <FabButton label="Add Location" onClick={() => useUIStore.getState().setOpenDialog('locationTypeDialog')} />
+      <FabButton label="Add Sight" onClick={() => useUIStore.getState().setOpenDialog('sightTypeDialog')} />
 
-      {openDialog === 'locationTypeDialog' && (
-        <LocationTypeDialog open onClose={closeDialog} />
+      {openDialog === 'sightTypeDialog' && (
+        <SightTypeDialog open onClose={closeDialog} />
       )}
     </>
   );
