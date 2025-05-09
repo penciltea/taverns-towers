@@ -24,7 +24,7 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, justifyContent: 'space-between' }}>
-        <Typography variant="h3">
+        <Typography variant="h2" component="h1">
           <SkeletonLoader loading={loading} skeleton={<Skeleton width={250} />}>
             {settlement?.name}
           </SkeletonLoader>
@@ -51,7 +51,7 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
         </Grid>
 
         <Grid size={{ xs: 12, md: 8 }}>
-          <Typography variant="h5" sx={{ paddingBottom: 2, marginTop: 1 }}>
+          <Typography variant="h4" component="h3" sx={{ paddingBottom: 2, marginTop: 1 }}>
             Map
           </Typography>
           <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>

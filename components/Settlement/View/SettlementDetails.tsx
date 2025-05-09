@@ -24,7 +24,7 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
   return (
     <>
       <Box sx={{marginTop: 1}}>
-        <Typography variant="h5">Details</Typography>
+        <Typography variant="h4" component="h2">Details</Typography>
         
         <List>
           {fields.map((field) => (

@@ -20,7 +20,13 @@ export default function SettlementsPage() {
   return (
     <FilteredGridView
       title="My Settlements"
+      titleVariant="h2"
+      titleComponent="h1"
       content="settlements"
+      searchVariant="h4"
+      searchComponent="h2"
+      countVariant="subtitle1"
+      countComponent="h3"
       items={data.settlements}
       renderItem={(settlement) => (
         <GridItem

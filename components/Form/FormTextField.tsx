@@ -2,6 +2,7 @@
 
 import { TextField, TextFieldProps } from "@mui/material";
 import { FieldError, UseFormRegisterReturn, Merge, FieldErrorsImpl } from "react-hook-form";
+import { useId } from "react";
 
 interface FormTextFieldProps extends Omit<TextFieldProps, "name"> {
   name: string;
@@ -25,6 +26,7 @@ const FormTextField = ({
 }: FormTextFieldProps) => {
   // Ensure that fieldError.message is a string, or use an empty string if undefined
   const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
+  const id = useId();
 
   return (
     <TextField

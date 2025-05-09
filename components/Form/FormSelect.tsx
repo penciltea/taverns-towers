@@ -15,6 +15,7 @@ import {
   FieldErrorsImpl,
   Merge,
 } from "react-hook-form";
+import { useId } from "react";
 
 interface Option {
   value: string;
@@ -26,7 +27,7 @@ interface FormSelectProps extends Omit<SelectProps, "name"> {
   label: string;
   control?: Control<any>;
   options: Option[];
-  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>; // <-- updated here
+  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   required?: boolean;
 }
 
@@ -39,18 +40,27 @@ const FormSelect = ({
   required = false,
   ...rest
 }: FormSelectProps) => {
-  // Safely extract the error message
+  const id = useId();
+  const selectId = `${id}-${name}`;
+  const labelId = `${selectId}-label`;
+  const errorId = `${selectId}-error`;
+  const hasError = !!fieldError;
   const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
 
   return (
-    <FormControl fullWidth margin="normal" error={!!fieldError} required={required}>
-      <InputLabel>{required ? `${label} *` : label}</InputLabel>
+    <FormControl fullWidth margin="normal" error={hasError} required={required}>
+      <InputLabel id={labelId} htmlFor={selectId}>
+        {label}
+      </InputLabel>
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
           <Select
             {...field}
+            id={selectId}
+            labelId={labelId}
+            aria-describedby={hasError ? errorId : undefined}
             value={field.value ?? ""}
             label={label}
             {...rest}
@@ -66,7 +76,9 @@ const FormSelect = ({
           </Select>
         )}
       />
-      {fieldError && <FormHelperText>{errorMessage}</FormHelperText>}
+      {hasError && (
+        <FormHelperText id={errorId}>{errorMessage}</FormHelperText>
+      )}
     </FormControl>
   );
 };

@@ -2,7 +2,7 @@
 
 import { Box, Chip, FormControl, FormHelperText, InputLabel, MenuItem, OutlinedInput, Select, SelectProps, TextField } from "@mui/material";
 import { Control, Controller } from "react-hook-form";
-import { useState } from "react";
+import { useState, useId } from "react";
 
 interface Option {
   value: string;
@@ -32,12 +32,12 @@ const FormChipSelect = ({
   ...rest
 }: FormChipSelectProps) => {
   const [customInput, setCustomInput] = useState("");
-
+  const id = useId();
   const isOptionDisabled = (value: string) => disabledOptions.includes(value);
 
   return (
     <FormControl fullWidth margin="normal" error={!!fieldError} required={required}>
-      <InputLabel>{label}</InputLabel>
+      <InputLabel id={`${id}-label`}>{label}</InputLabel>
       <Controller
         name={name}
         control={control}
@@ -66,7 +66,11 @@ const FormChipSelect = ({
               <Select
                 {...field}
                 multiple
-                input={<OutlinedInput label={label} />}
+                id={`${id}-select`}
+                name={name}
+                labelId={`${id}-label`}
+                input={<OutlinedInput label={label} />
+              }
                 renderValue={(selected) => {
                     const selectedValues = selected as string[];
                     return (

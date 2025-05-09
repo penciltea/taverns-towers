@@ -51,12 +51,17 @@ export default function FormEditableTable({ name, columns }: FormEditableTablePr
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                    {columns.map((col) => (
+                        {columns.map((col) => (
                         <TableCell key={col.field}>{col.label}</TableCell>
-                    ))}
-                    <TableCell />
+                        ))}
+                        <TableCell>
+                        <Typography variant="body2" component="span">
+                            Actions
+                        </Typography>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
                     {fields.map((item, index) => (
                     <TableRow key={item.id}>

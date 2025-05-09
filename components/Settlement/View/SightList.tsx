@@ -44,7 +44,13 @@ export default function SightList({ settlementId, onDelete }: SightListProps) {
     <>
       <FilteredGridView<SightType>
         title="Sights"
+        titleVariant="h4"
+        titleComponent="h4"
         content="sights"
+        searchVariant="h5"
+        searchComponent="h5"
+        countVariant="h6"
+        countComponent="h6"
         items={sights}
         renderItem={(sight) => (
           <GridItem
