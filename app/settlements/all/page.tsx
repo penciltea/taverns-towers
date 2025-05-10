@@ -20,7 +20,7 @@ export default function SettlementsPage() {
   return (
     <FilteredGridView
       title="My Settlements"
-      titleVariant="h2"
+      titleVariant="h3"
       titleComponent="h1"
       content="settlements"
       searchVariant="h4"

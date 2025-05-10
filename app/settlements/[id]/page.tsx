@@ -24,7 +24,7 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, justifyContent: 'space-between' }}>
-        <Typography variant="h2" component="h1">
+        <Typography variant="h3" component="h1">
           <SkeletonLoader loading={loading} skeleton={<Skeleton width={250} />}>
             {settlement?.name}
           </SkeletonLoader>

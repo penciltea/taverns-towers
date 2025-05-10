@@ -60,65 +60,65 @@ export default function SettlementFormBasics(){
                     fieldError={errors.tags}
                 />
 
-                <Accordion>
-                <AccordionSummary id="extra-details" expandIcon={<ExpandMoreIcon />} sx={{mt: 2}}>
-                    <Typography variant="h6">Extra Details</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
+                <Accordion slotProps={{ heading: { component: 'h2' } }}>
+                    <AccordionSummary id="extra-details" aria-controls="panel-content" expandIcon={<ExpandMoreIcon />} sx={{mt: 2}}>
+                        <Typography variant="h6" component="h2">Extra Details</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
 
-                    <FormChipSelect
-                        name="terrain"
-                        label="Terrain Type"
-                        control={control}
-                        options={toSelectOptions(TERRAIN_TYPES)}
-                        fieldError={errors.terrain}
-                    />
+                        <FormChipSelect
+                            name="terrain"
+                            label="Terrain Type"
+                            control={control}
+                            options={toSelectOptions(TERRAIN_TYPES)}
+                            fieldError={errors.terrain}
+                        />
 
-                    <FormSelect
-                        name="climate"
-                        label="Climate"
-                        control={control}
-                        options={toSelectOptions(CLIMATE_TYPES)}
-                        fieldError={errors.climate}
-                    />
+                        <FormSelect
+                            name="climate"
+                            label="Climate"
+                            control={control}
+                            options={toSelectOptions(CLIMATE_TYPES)}
+                            fieldError={errors.climate}
+                        />
 
-                    <FormSelect
-                        name="magic"
-                        label="Magic Level / Use"
-                        control={control}
-                        options={toSelectOptions(MAGIC_LEVELS)}
-                        fieldError={errors.magic}
-                    />
+                        <FormSelect
+                            name="magic"
+                            label="Magic Level / Use"
+                            control={control}
+                            options={toSelectOptions(MAGIC_LEVELS)}
+                            fieldError={errors.magic}
+                        />
 
-                    <FormTextField
-                        name="races"
-                        label="Common Races"
-                        registration={register("races")}
-                        fieldError={errors.races}
-                    />
+                        <FormTextField
+                            name="races"
+                            label="Common Races"
+                            registration={register("races")}
+                            fieldError={errors.races}
+                        />
 
-                    <FormTextField
-                        name="publicNotes"
-                        label="Public Notes"
-                        multiline
-                        rows={4}
-                        registration={register("publicNotes")}
-                        fieldError={errors.publicNotes}
-                    />
+                        <FormTextField
+                            name="publicNotes"
+                            label="Public Notes"
+                            multiline
+                            rows={4}
+                            registration={register("publicNotes")}
+                            fieldError={errors.publicNotes}
+                        />
 
-                    <FormTextField
-                        name="gmNotes"
-                        label="GM Notes"
-                        multiline
-                        rows={4}
-                        registration={register("gmNotes")}
-                        fieldError={errors.gmNotes}
-                    />
+                        <FormTextField
+                            name="gmNotes"
+                            label="GM Notes"
+                            multiline
+                            rows={4}
+                            registration={register("gmNotes")}
+                            fieldError={errors.gmNotes}
+                        />
 
-                    </AccordionDetails>
-                </Accordion>
-            </Box>
-            <Box>
+                        </AccordionDetails>
+                    </Accordion>
+                </Box>
+            <Box sx={{paddingTop: 6}}>
                 <FormImageUpload name="map" label="Upload Settlement Map" />
             </Box>
         </Stack>
