@@ -1,5 +1,5 @@
 import { GuildSight } from '@/interfaces/sight.interface';
-import { List } from '@mui/material';
+import { Box } from '@mui/material';
 import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
@@ -8,7 +8,7 @@ import { LOCATION_CONDITION, LOCATION_SIZE } from '@/constants/sightOptions';
 export const GuildDetails = ({ sight }: { sight: GuildSight }) => {
   return (
     <>
-      <List>
+      <Box component="dl" sx={{ mt: 1, px: 3 }}>
         <InfoListItem label="Size" value={getLabelFromValue(LOCATION_SIZE, sight.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(LOCATION_CONDITION, sight.condition)} />
         <InfoListItem label="Guild Name" value={sight.guildName} />
@@ -18,7 +18,7 @@ export const GuildDetails = ({ sight }: { sight: GuildSight }) => {
         <InfoListItem label="Known Rivals" value={sight.knownRivals} />
         <InfoListItem label="Public Notes" value={sight.publicNotes} />
         <InfoListItem label="GM Notes" value={sight.gmNotes} />
-      </List>
+      </Box>
 
       <MenuList menu={sight.services || []} label="Wares" />
     </>

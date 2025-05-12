@@ -11,7 +11,7 @@ import { TempleDetails } from './TempleDetails';
 import { ShopDetails } from './ShopDetails';
 import { GuildDetails } from './GuildDetails';
 import { GovernmentDetails } from './GovernmentDetails';
-import { EntertainmentDetails } from './Entertainment';
+import { EntertainmentDetails } from './EntertainmentDetails';
 import { HiddenDetails } from './HiddenDetails';
 import { ResidenceDetails } from './ResidenceDetails';
 import { MiscellaneousDetails } from './MiscellaneousDetails';
@@ -45,21 +45,30 @@ export default function SightDetailsDialog({ open, onClose, onDelete, settlement
 
   return (
     <>
-      <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth scroll="paper">
-        <DialogTitle>
+      <Dialog 
+        open={open} 
+        onClose={onClose} 
+        maxWidth="md" 
+        fullWidth 
+        scroll="paper" 
+        aria-labelledby="sight-dialog-title" 
+        aria-describedby="sight-dialog-content" 
+      >
+        <DialogTitle id="sight-dialog-title">
           {sightData.name} ({sightLabel})
         </DialogTitle>
-        <DialogContent>
+        <DialogContent aria-live="polite" id="sight-dialog-content">
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
             justifyContent="space-between"
           >
-            <Box>
+            <Box component="section" sx={{px: 2}}>
+              <Typography variant="h6" component="h1" sx={{ textDecoration: "underline" }}>Sight Details</Typography>
               {Component ? (
                 <Component sight={sightData} />
               ) : (
-                <Typography>No details available for this sight type.</Typography>
+                <Typography variant="body2" component="p">No details available for this sight type.</Typography>
               )}
             </Box>
             <Box>

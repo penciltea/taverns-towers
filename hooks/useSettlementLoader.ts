@@ -12,11 +12,11 @@ import { createSight } from '@/lib/actions/sight.actions';
 export function useSettlementLoader(settlementId: string | null) {
   const { setSelectedItem } = useSettlementContentStore();
   const { setItems: setSightItems } = useSightContentStore();
-  const { setSettlementId } = useUIStore();
+  const { setSettlementId, showErrorDialog } = useUIStore();
 
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   // Fetching the settlement by its ID
   const { data: settlementData, isLoading: settlementLoading, refetch: refetchSettlement } = useSettlementQuery(settlementId);
@@ -53,6 +53,7 @@ export function useSettlementLoader(settlementId: string | null) {
       await refetchSights();  // Refresh sights after the new sight is added
     } catch (error) {
       console.error('Error adding sight:', error);
+      showErrorDialog("There was a problem adding the sight, please try again later!");
     }
   }
 

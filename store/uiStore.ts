@@ -16,6 +16,14 @@ interface UIState {
     isSnackbarOpen: boolean;
     snackbarSeverity: 'success' | 'error' | 'info' | 'warning';
     showSnackbar: (message: string, severity?: UIState['snackbarSeverity']) => void;
+
+    // For error dialogs
+    isErrorDialogOpen: boolean;
+    errorMessage: string;
+    showErrorDialog: (message: string) => void;
+    closeErrorDialog: () => void;
+
+
     closeSnackbar: () => void;
 
     // Data Loading & Sending
@@ -44,6 +52,11 @@ export const useUIStore = create<UIState>((set) => ({
   snackbarSeverity: 'info',
   showSnackbar: (snackbarMessage, snackbarSeverity = 'info') => set({ snackbarMessage, snackbarSeverity, isSnackbarOpen: true }),
   closeSnackbar: () => set({ isSnackbarOpen: false }),
+
+  isErrorDialogOpen: false,
+  errorMessage: '',
+  showErrorDialog: (message: string) => set({ errorMessage: message, isErrorDialogOpen: true }),
+  closeErrorDialog: () => set({ isErrorDialogOpen: false, errorMessage: '' }),
 
   isLoading: false,
   setLoading: (isLoading) => set({ isLoading }),

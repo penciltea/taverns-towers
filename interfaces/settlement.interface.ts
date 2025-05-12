@@ -54,7 +54,7 @@ export interface Settlement extends CommonInterface {
 
 export const DefaultSettlementQueryParams = {
   page: 1,
-  limit: 10,
+  limit: 12,
   search: '',
   size: '',
   climate: '',

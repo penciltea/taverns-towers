@@ -1,4 +1,4 @@
-export const pageSizeOptions = [10, 20, 50];
+export const pageSizeOptions = ["12", "24", "48", "96"];
 
 export const sortOptions = [
   { label: 'Name (A–Z)', value: 'name-asc' },

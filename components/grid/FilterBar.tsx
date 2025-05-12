@@ -4,8 +4,9 @@ import { Box, Button, TextField, Stack, MenuItem, SelectChangeEvent } from "@mui
 import TuneIcon from '@mui/icons-material/Tune';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ContentFilters } from "@/store/contentStore";
-import { useState } from "react";
 import SelectInput from "@/components/Common/SelectInput";
+import SearchInput from "./SearchInput";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 
 interface FilterBarProps<T> {
@@ -25,61 +26,35 @@ export default function FilterBar<T>({
 }: FilterBarProps<T>) {
   const isMobile = useIsMobile();
 
-  // Temporarily store the search input
-  const [searchInput, setSearchInput] = useState(filters.search || "");
-
-  // Handle search input change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value); // Update the search input value but do not trigger the API call
-  };
-
-  // Trigger search on pressing Enter key
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      const updatedFilters = { ...filters, search: searchInput };
-      setFilters(updatedFilters); // Trigger the search when "Enter" is pressed
-    }
-  };
-
-  // For mobile, use `onKeyUp` to capture "Enter" as well
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      const updatedFilters = { ...filters, search: searchInput };
-      setFilters(updatedFilters); // Trigger the search when "Enter" is pressed
-    }
+  // Handle search changes at the FilterBar level
+  const handleSearchChange = (searchValue: string) => {
+    const updatedFilters = { ...filters, search: searchValue };
+    setFilters(updatedFilters);
   };
 
   // Handle page size change
   const handlePageSizeChange = (event: SelectChangeEvent<string>) => {
-    const updatedFilters = { ...filters, limit: parseInt(event.target.value, 10), page: 1 };
+    const updatedFilters = { ...filters, limit: parseInt(event.target.value, 12), page: 1 };
     setFilters(updatedFilters);
   };
 
   // Clear search input and reset filters
   const handleClearFilters = () => {
-    setSearchInput(""); // Clear the search input field
-    clearFilters(); // Call the passed-in clearFilters function to reset other filters
+    setFilters({ ...filters, search: "" }); // Clear the search field in the filters
+    clearFilters(); // Reset other filters to their default state
   };
 
   const pageSizeOptions = [
-    { value: "10", label: "10" },
-    { value: "25", label: "25" },
-    { value: "50", label: "50" },
-    { value: "100", label: "100" },
+    { value: "12", label: "12" },
+    { value: "24", label: "24" },
+    { value: "48", label: "48" },
+    { value: "96", label: "96" },
   ];
 
 
   return isMobile ? (
     <Stack direction="column">
-      <TextField
-        label="Search by Name"
-        value={searchInput}
-        onChange={handleSearchChange} // Update value on change, but doesn't trigger search
-        onKeyUp={handleKeyUp} // Trigger search on Enter key press (works for mobile)
-        fullWidth
-        margin="normal"
-        sx={{ my: 2 }}
-      />
+      <SearchInput value={filters.search} onSearchChange={handleSearchChange} clearSearch={() => setFilters({ ...filters, search: "" })} />
 
       {children}
 
@@ -121,14 +96,7 @@ export default function FilterBar<T>({
       justifyItems="flex-start"
       alignItems="center"
     >
-      <TextField
-        label="Search by Name"
-        value={searchInput}
-        onChange={handleSearchChange} // Update value on change, but doesn't trigger search
-        onKeyDown={handleKeyDown} // Trigger search on Enter key press (works for desktop)
-        fullWidth
-        margin="normal"
-      />
+      <SearchInput value={filters.search} onSearchChange={handleSearchChange} clearSearch={() => setFilters({ ...filters, search: "" })} />
 
       {children}
 

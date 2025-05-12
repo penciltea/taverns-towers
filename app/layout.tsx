@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/lib/muiTheme";
 import Header from "@/components/Layout/Header";
 import Snackbar from '@/components/Common/Snackbar';
+import ErrorDialog from "@/components/Common/ErrorDialog";
 import QueryProviderWrapper from "@/components/Layout/QueryProviderWrapper";
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Snackbar />
+          <ErrorDialog />
           <Header />
           <QueryProviderWrapper>
             <Box sx={{ display: 'flex', paddingTop: { xs: '15vh', sm: '40px', md: '60px' } }}>

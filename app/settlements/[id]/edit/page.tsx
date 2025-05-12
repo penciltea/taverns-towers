@@ -18,7 +18,7 @@ import { Spinner } from "@/components/Common/Spinner";
 
 export default function EditSettlementFormPage() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const { showSnackbar, setLoading, isSubmitting } = useUIStore();
+  const { showSnackbar, setLoading, isSubmitting, showErrorDialog } = useUIStore();
   const { setSelectedItem, mode } = useSettlementContentStore();
 
   const { id } = useParams();
@@ -39,7 +39,7 @@ export default function EditSettlementFormPage() {
     try {
       const fetchedSettlement = await getSettlementById(id);
       if (!fetchedSettlement) {
-        showSnackbar("Settlement not found.", "error");
+        showErrorDialog("Settlement not found, please try again later!");
         return;
       }
 
@@ -54,7 +54,7 @@ export default function EditSettlementFormPage() {
       setHasLoaded(true);
     } catch (error) {
       console.error(error);
-      showSnackbar("Failed to load settlement, please try again later!", "error");
+      showErrorDialog("Failed to load settlement, please try again later!");
     } finally {
       setLoading(false);
     }

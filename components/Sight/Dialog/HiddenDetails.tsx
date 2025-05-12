@@ -1,5 +1,5 @@
 import { HiddenSight } from '@/interfaces/sight.interface';
-import { List } from '@mui/material';
+import { Box } from '@mui/material';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import InfoListItem from '@/components/Common/InfoListItem';
 import { LOCATION_CONDITION, LOCATION_SIZE, SECRECY_LEVELS } from '@/constants/sightOptions';
@@ -7,7 +7,7 @@ import { LOCATION_CONDITION, LOCATION_SIZE, SECRECY_LEVELS } from '@/constants/s
 export const HiddenDetails = ({ sight }: { sight: HiddenSight }) => {
   return (
     <>
-      <List>
+      <Box component="dl" sx={{ mt: 1, px: 3 }}>
         <InfoListItem label="Size" value={getLabelFromValue(LOCATION_SIZE, sight.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(LOCATION_CONDITION, sight.condition)} />
         <InfoListItem label="Security" value={sight.secrecy?.length ? sight.secrecy.map((value) => getLabelFromValue(SECRECY_LEVELS, value)).join(", ") : "N/A"} />
@@ -17,7 +17,7 @@ export const HiddenDetails = ({ sight }: { sight: HiddenSight }) => {
         <InfoListItem label="Purpose" value={sight.purpose} />
         <InfoListItem label="Public Notes" value={sight.publicNotes} />
         <InfoListItem label="GM Notes" value={sight.gmNotes} />
-      </List>
+      </Box>
     </>
   );
 };

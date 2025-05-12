@@ -14,7 +14,7 @@ type SaveSettlementMutationProps = {
 
 export function useSaveSettlementMutation({ id, mode }: SaveSettlementMutationProps) {
   const router = useRouter();
-  const { showSnackbar, setSubmitting } = useUIStore();
+  const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const { clearSelectedItem, clearMode } = useSettlementContentStore();
   const queryClient = useQueryClient();
 
@@ -50,7 +50,7 @@ export function useSaveSettlementMutation({ id, mode }: SaveSettlementMutationPr
       router.push(`/settlements/${savedSettlement._id}`);
     } catch (error) {
       console.error(error);
-      showSnackbar("Something went wrong, please try again later!", "error");
+      showErrorDialog("Something went wrong, please try again later!");
     } finally {
       setSubmitting(false);
     }

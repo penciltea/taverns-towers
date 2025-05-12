@@ -1,14 +1,19 @@
-import { ListItem } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 type InfoListItemProps = {
-    label: string;
-    value?: string | number;
-  };
+  label: string;
+  value?: string | number;
+};
 
-export default function InfoListItem({ label, value }: InfoListItemProps){
-    return (
-        <ListItem sx={{ display: "list-item" }}>
-            <strong>{ label }: </strong> { value || "N/A" }
-        </ListItem>
-    )
+export default function InfoListItem({ label, value }: InfoListItemProps) {
+  return (
+    <Box component="div" sx={{ display: 'flex', gap: 1, mb: 1 }}>
+      <Typography component="dt" fontWeight="bold" minWidth={200}>
+        {label}
+      </Typography>
+      <Typography component="dd" margin={0}>
+        {value || "N/A"}
+      </Typography>
+    </Box>
+  );
 }

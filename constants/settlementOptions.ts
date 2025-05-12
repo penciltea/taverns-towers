@@ -14,10 +14,13 @@ export const LOCATION_CATEGORIES = [
 export const SETTLEMENT_TABS = ["Basics", "Leadership & Wealth", "Culture & Society"];
 
 export const SIZE_TYPES = [
+    "Encampment",
+    "Thorp",
     "Hamlet",
     "Village",
     "Town",
-    "City"
+    "City",
+    "Metropolis"
 ];
 
 export const TAG_TYPES = [

@@ -14,15 +14,33 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
   const handleClick = () => {
     if (onClick) {
       onClick();
-    } else {
+    } else if (link) {
       router.push(link);
     }
   };
 
+  const ariaLabel = [
+    title,
+    subtitle ? `${subtitle}` : null,
+    filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
+    extraCount > 0 ? `and ${extraCount} more tag${extraCount > 1 ? 's' : ''}` : null,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
   return (
     <Paper
-      elevation={3}
+      role="button"
+      tabIndex={0}
+      aria-label={ariaLabel}
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+      elevation={3}
       sx={{
         width: '100%',
         height: '100%',
@@ -44,8 +62,8 @@ export default function GridItem({ title, subtitle, link, image, onClick, tags =
           />
         </Box>
       )}
-      <Typography variant="h6" mt={2}>{title}</Typography>
-      {subtitle && <Typography variant="subtitle2">{subtitle}</Typography>}
+      <Typography variant="h6" component="p" mt={2}>{title}</Typography>
+      {subtitle && <Typography variant="subtitle2" component="p">{subtitle}</Typography>}
       {tags.length > 0 && (
         <Box mt={1} display="flex" gap={1} flexWrap="wrap">
           {visibleTags.map((tag) => (

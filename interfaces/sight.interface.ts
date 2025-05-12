@@ -22,7 +22,7 @@ export interface SightFilters {
 
 export const DefaultSightFilters = {
   page: 1,
-  limit: 10,
+  limit: 12,
   settlementId: '',
   type: [],
   search: ''

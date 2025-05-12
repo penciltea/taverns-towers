@@ -15,6 +15,7 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
 import { usePaginatedSights } from "@/hooks/sight.query";
 
+
 export default function EditSightPage(){
     const params = useParams();
     const searchParams = useSearchParams();
@@ -24,10 +25,10 @@ export default function EditSightPage(){
     const typeParam = searchParams?.get("type") as SightFormData["type"];
     const router = useRouter();
 
-    const { showSnackbar } = useUIStore();
+    const { showSnackbar, showErrorDialog } = useUIStore();
     const { setSelectedItem, mode } = useSightContentStore();
     useFormMode(safeId, useSightContentStore, getSightById);
-    const { refetch } = usePaginatedSights(settlementId, 1, 10, [], "");
+    const { refetch } = usePaginatedSights(settlementId, 1, 12, [], "");
 
     const methods = useFormWithSchema(sightSchema, {
         defaultValues: {
@@ -50,7 +51,7 @@ export default function EditSightPage(){
               image: fetchedSight.image ?? undefined,
             });
           } catch (err) {
-            showSnackbar("Failed to load settlement, please try again later!", "error");
+            showErrorDialog("Failed to load settlement, please try again later!");
           }
         };
     
@@ -61,7 +62,7 @@ export default function EditSightPage(){
         const cleanImage = await handleDynamicFileUpload(data, "image");
 
         if(!safeId){
-          showSnackbar(`There was a problem saving this sight, please try again later.`, "error");
+          showErrorDialog("There was a problem saving this sight, please try again later!");
           return;
         }
 
@@ -77,7 +78,7 @@ export default function EditSightPage(){
             showSnackbar(`Sight ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
             router.push(`/settlements/${settlementId}`);
         } catch (err){
-            showSnackbar(`Something went wrong: ${err}`, "error");
+            showErrorDialog("Something went wrong, please try again later!");
         }
     }
     

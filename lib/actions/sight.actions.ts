@@ -137,7 +137,7 @@ export async function createSight(data: any, settlementId: string) {
 export async function getSightsBySettlementPaginated(
   settlementId: string,
   page: number = 1,
-  limit: number = 10,
+  limit: number = 12,
   type?: string[],
   name?: string
 ) {

@@ -20,9 +20,9 @@ export default function NewSightPage(){
     const typeParam = searchParams?.get("type") as SightFormData["type"];
     const router = useRouter();
 
-    const { showSnackbar } = useUIStore();
+    const { showSnackbar, showErrorDialog } = useUIStore();
     const { mode } = useSightContentStore();
-    const { refetch } = usePaginatedSights(settlementId, 1, 10, [], "");
+    const { refetch } = usePaginatedSights(settlementId, 1, 12, [], "");
     const { addSight } = useSettlementLoader(settlementId);
 
     const methods = useFormWithSchema(sightSchema, {
@@ -47,7 +47,7 @@ export default function NewSightPage(){
             showSnackbar("Sight created successfully!", "success");
             router.push(`/settlements/${settlementId}`);
           } catch (err) {
-            showSnackbar(`Something went wrong: ${err}`, "error");
+            showErrorDialog("Something went wrong, please try again later!");
           }
     }
     

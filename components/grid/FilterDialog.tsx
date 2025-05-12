@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { useFormContext } from "react-hook-form";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
@@ -31,6 +32,8 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
     defaultValues,
   });
 
+  const titleId = useId(); // for accessibility/screen readers
+
   const { handleSubmit, reset } = methods;
 
   const handleClose = () => {
@@ -39,8 +42,8 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-      <DialogTitle>{title}</DialogTitle>
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" aria-labelledby={titleId}>
+      <DialogTitle id={titleId}>{title}</DialogTitle>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent dividers>{children}</DialogContent>
