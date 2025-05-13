@@ -49,7 +49,7 @@ const FormSelect = ({
 
   return (
     <FormControl fullWidth margin="normal" error={hasError} required={required}>
-      <InputLabel id={labelId} htmlFor={selectId}>
+      <InputLabel id={labelId} htmlFor={selectId} shrink>
         {label}
       </InputLabel>
       <Controller

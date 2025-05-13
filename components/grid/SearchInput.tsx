@@ -33,6 +33,7 @@ export default function SearchInput({ value, onSearchChange, clearSearch }: Sear
 
   return (
     <TextField
+      slotProps={{ inputLabel: { shrink: true } }}
       label="Search by Name"
       value={searchInput}
       onChange={handleSearchChange}

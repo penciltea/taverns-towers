@@ -39,6 +39,7 @@ const FormTextField = ({
       required={required}
       multiline={multiline}
       rows={multiline ? rows : undefined}
+      slotProps={{ inputLabel: { shrink: true } }}
       {...rest}
     />
   );

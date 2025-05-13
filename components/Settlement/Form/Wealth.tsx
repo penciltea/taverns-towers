@@ -20,10 +20,11 @@ export default function SettlementFormWealth(){
                 </Button>
             </Box>
 
-            <TextField
+            <FormTextField
                 fullWidth
+                name="leader"
                 label="Leaders"
-                {...register("leader")}
+                registration={register("leader")}
                 error={!!errors.leader}
                 helperText={typeof errors.leader?.message === "string" ? errors.leader.message : ""}
                 margin="normal"
@@ -45,12 +46,13 @@ export default function SettlementFormWealth(){
                 fieldError={errors.rulingStyle}
             />
 
-            <TextField
+            <FormTextField
+                name="tradeNotes"
                 fullWidth
                 label="Trade Notes"
                 multiline
-                    rows={6}
-                {...register("tradeNotes")}
+                rows={6}
+                registration={register("tradeNotes")}
                 error={!!errors.tradeNotes}
                 helperText={typeof errors.tradeNotes?.message === "string" ? errors.tradeNotes.message : ""}
                 margin="normal"

@@ -6,12 +6,14 @@ import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } fro
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
+import { generateSettlementName } from "@/lib/actions/generator.actions";
 
 export default function SettlementFormBasics(){
     const {
         register,
         control,
         watch,
+        setValue,
         formState: { errors },
     } = useFormContext();
 
@@ -23,6 +25,11 @@ export default function SettlementFormBasics(){
         : isBrowser && mapValue instanceof FileList && mapValue[0]
         ? URL.createObjectURL(mapValue[0])
         : null;
+
+    const handleGenerateName = async () => {
+        const generatedName = await generateSettlementName();
+        setValue("name", generatedName, { shouldValidate: true });
+    };
 
     return (
         <Stack
@@ -36,13 +43,24 @@ export default function SettlementFormBasics(){
                     </Button>
                 </Box>
 
-                <FormTextField
-                    name="name"
-                    label="Settlement Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
+                
+                <Stack direction="row" spacing={1} alignItems="flex-start">
+                    <FormTextField
+                        name="name"
+                        label="Settlement Name"
+                        registration={register("name")}
+                        fieldError={errors.name}
+                        required
+                    />
+                    <Button
+                        variant="outlined"
+                        onClick={handleGenerateName}
+                        size="large"
+                        sx={{ mt: 2, py: 1.6 }} // align with text field's margin
+                    >
+                        Generate
+                    </Button>
+                </Stack>
                 
                 <FormSelect
                     name="size"
