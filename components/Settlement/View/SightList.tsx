@@ -10,7 +10,6 @@ import { usePaginatedSights } from "@/hooks/sight.query";
 import SightDetailsDialog from "@/components/Sight/Dialog/SightDetailsDialog";
 import FilteredGridView from "@/components/Grid/FilteredGridView";
 import { LOCATION_CATEGORIES } from "@/constants/sightOptions";
-import ChipFilters from "@/components/Grid/ChipFilters";
 import { SightFilters } from "@/interfaces/sight.interface";
 import GridItem from "@/components/Grid/GridItem";
 import { DefaultSightFilters } from "@/interfaces/sight.interface";
@@ -29,7 +28,7 @@ export default function SightList({ settlementId, onDelete }: SightListProps) {
     settlementId, // use the prop value, not the default ""
   });
 
-  const { data, isLoading } = usePaginatedSights(
+  const { data } = usePaginatedSights(
     filters.settlementId,
     filters.page,
     filters.limit,
@@ -73,18 +72,14 @@ export default function SightList({ settlementId, onDelete }: SightListProps) {
             clearFilters={() => {
               setFilters({ ...DefaultSightFilters, settlementId }); // reset to default + settlement
             }}
-          >
-            <Box sx={{ gridColumn: '1 / -1', gridRow: 2, width: '100%' }}>
-              <Typography variant="h6"> Filter by Category </Typography>
-              <ChipFilters
-                options={LOCATION_CATEGORIES}
-                selected={filters.type}
-                onChange={(newTypes) =>
-                  setFilters((prev) => ({ ...prev, type: newTypes, page: 1 }))
-                }
-              />
-            </Box>
-          </FilterBar>
+            chipFilters={[
+              {
+                title: "Filter by Category",
+                key: "type",
+                options: LOCATION_CATEGORIES,
+              },
+            ]}
+          > </FilterBar>
         }
         currentPage={filters.page}
         onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}

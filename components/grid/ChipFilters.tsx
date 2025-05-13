@@ -1,24 +1,30 @@
 import { Box, Button, Chip, Typography } from "@mui/material";
+import { ContentFilters } from "@/store/contentStore";
+
 
 type ChipOption = {
   label: string;
   value: string;
 };
 
+export interface ChipFilterConfig {
+  title?: string;
+  key: keyof ContentFilters;
+  options: ChipOption[];
+}
+
 type ChipFiltersProps = {
   title?: string;
   options: ChipOption[];
   selected: string[];
   onChange: (updated: string[]) => void;
-  allowClearAll?: boolean;
 };
 
-export default function ChipFilters({
+export function ChipFilters({
   title,
   options,
   selected,
   onChange,
-  allowClearAll = true,
 }: ChipFiltersProps) {
   const handleToggle = (value: string) => {
     const isSelected = selected.includes(value);
@@ -48,17 +54,6 @@ export default function ChipFilters({
           />
         ))}
       </Box>
-
-      {allowClearAll && selected.length > 0 && (
-        <Button
-          variant="text"
-          size="small"
-          onClick={() => onChange([])}
-          sx={{ mt: 1 }}
-        >
-          Clear All
-        </Button>
-      )}
     </Box>
   );
 }

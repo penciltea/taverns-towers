@@ -8,6 +8,7 @@ import SelectInput from "@/components/Common/SelectInput";
 import SearchInput from "./SearchInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { pageSizeOptions } from "@/constants/commonOptions";
+import { ChipFilterConfig, ChipFilters} from "./ChipFilters";
 
 
 interface FilterBarProps<T> {
@@ -16,6 +17,7 @@ interface FilterBarProps<T> {
     clearFilters: () => void;
     children?: React.ReactNode; // for custom filter fields like size, climate, etc.
     onOpenAdvanced?: () => void;
+    chipFilters?: ChipFilterConfig[];
 }
 
 export default function FilterBar<T>({
@@ -24,6 +26,7 @@ export default function FilterBar<T>({
   clearFilters,
   children,
   onOpenAdvanced,
+  chipFilters
 }: FilterBarProps<T>) {
   const isMobile = useIsMobile();
 
@@ -89,6 +92,29 @@ export default function FilterBar<T>({
           </Button>
         )}
 
+        {chipFilters?.map(({ title, key, options }) => (
+          <Box
+            key={key as string}
+            sx={{
+              gridColumn: '1 / -1',
+              width: '100%',
+            }}
+          >
+            <ChipFilters
+              title={title}
+              options={options}
+              selected={(filters[key] ?? []) as string[]}
+              onChange={(updated) =>
+                setFilters({
+                  ...filters,
+                  [key]: updated,
+                  page: 1,
+                })
+              }
+            />
+          </Box>
+        ))}
+
         <Button
           variant="text"
           size="small"
@@ -106,6 +132,7 @@ export default function FilterBar<T>({
         >
           Reset All
         </Button>
+        
       </Layout>
     );
   };
