@@ -7,6 +7,7 @@ import { ContentFilters } from "@/store/contentStore";
 import SelectInput from "@/components/Common/SelectInput";
 import SearchInput from "./SearchInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { pageSizeOptions } from "@/constants/commonOptions";
 
 
 interface FilterBarProps<T> {
@@ -44,94 +45,71 @@ export default function FilterBar<T>({
     clearFilters(); // Reset other filters to their default state
   };
 
-  const pageSizeOptions = [
-    { value: "12", label: "12" },
-    { value: "24", label: "24" },
-    { value: "48", label: "48" },
-    { value: "96", label: "96" },
-  ];
+  const renderFilterContent = (layout: "mobile" | "desktop") => {
+    const isMobile = layout === "mobile";
+    const Layout = isMobile ? Stack : Box;
+    const layoutProps = isMobile
+      ? { direction: "column" as const }
+      : {
+          display: "grid",
+          gridTemplateColumns: "350px 250px 150px auto",
+          gridTemplateRows: "3",
+          gap: 2,
+          justifyItems: "flex-start",
+          alignItems: "center",
+        };
 
+    return (
+      <Layout {...layoutProps}>
+        <SearchInput
+          value={filters.search}
+          onSearchChange={handleSearchChange}
+          clearSearch={() => setFilters({ ...filters, search: "" })}
+        />
 
-  return isMobile ? (
-    <Stack direction="column">
-      <SearchInput value={filters.search} onSearchChange={handleSearchChange} clearSearch={() => setFilters({ ...filters, search: "" })} />
+        {children}
 
-      {children}
+        <SelectInput
+          label="Items per page"
+          value={filters.limit.toString()}
+          onChange={handlePageSizeChange}
+          options={toSelectOptions(pageSizeOptions)}
+        />
 
-      <SelectInput
-        label="Items per page"
-        value={filters.limit.toString()}
-        onChange={handlePageSizeChange}
-        options={pageSizeOptions}
-      />
-      
-      {onOpenAdvanced && (
+        {onOpenAdvanced && (
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<TuneIcon />}
+            onClick={onOpenAdvanced}
+            color="primary"
+            sx={isMobile ? { my: 2 } : undefined}
+          >
+            {isMobile ? "Filters" : "Advanced"}
+          </Button>
+        )}
+
         <Button
-          variant="contained"
-          size="large"
-          startIcon={<TuneIcon />}
-          onClick={onOpenAdvanced}
-          color="primary"
-          sx={{ my: 2 }}
+          variant="text"
+          size="small"
+          sx={{
+            textDecoration: "underline",
+            ...(isMobile
+              ? { my: 1 }
+              : {
+                  justifySelf: "center",
+                  gridColumn: "1 / -1",
+                  gridRow: 3,
+                }),
+          }}
+          onClick={handleClearFilters}
         >
-          Filters
+          Reset All
         </Button>
-      )}
+      </Layout>
+    );
+  };
 
-      <Button
-        variant="text"
-        size="small"
-        sx={{ textDecoration: 'underline', my: 1 }}
-        onClick={clearFilters} // Reset filters logic will be handled at the parent level
-      >
-        Reset All
-      </Button>
-    </Stack>
-  ) : (
-    <Box
-      display="grid"
-      gridTemplateColumns="350px 250px 150px auto"
-      gridTemplateRows="3"
-      gap={2}
-      justifyItems="flex-start"
-      alignItems="center"
-    >
-      <SearchInput value={filters.search} onSearchChange={handleSearchChange} clearSearch={() => setFilters({ ...filters, search: "" })} />
 
-      {children}
-
-      <SelectInput
-        label="Items per page"
-        value={filters.limit != null ? filters.limit.toString() : ""}
-        onChange={handlePageSizeChange}
-        options={pageSizeOptions}
-      />
-
-      {onOpenAdvanced && (
-        <Button
-          variant="contained"
-          size="large"
-          startIcon={<TuneIcon />}
-          onClick={onOpenAdvanced}
-          color="primary"
-        >
-          Advanced
-        </Button>
-      )}
-
-      <Button
-        variant="text"
-        size="small"
-        sx={{
-          justifySelf: "center",
-          gridColumn: "1 / -1", 
-          gridRow: 3,
-          textDecoration: "underline",
-        }}
-        onClick={handleClearFilters} // Reset filters logic will be handled at the parent level
-      >
-        Reset All
-      </Button>
-    </Box>
-  );
+  return isMobile ? renderFilterContent("mobile") : renderFilterContent("desktop");
 }
