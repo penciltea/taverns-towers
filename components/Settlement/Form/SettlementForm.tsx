@@ -5,7 +5,7 @@ import SettlementFormTabs from "./Tabs";
 import SettlementFormBasics from "./Basics";
 import SettlementFormWealth from "./Wealth";
 import SettlementFormCulture from "./Culture";
-import { SettlementFormData } from "@/schemas/settlementSchema";
+import { SettlementFormData } from "@/schemas/settlement.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
@@ -44,8 +44,8 @@ export default function SettlementForm({ onSubmit, mode }: SettlementFormProps) 
   const { isSubmitting } = useUIStore();
 
   return (
-    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <Typography variant="h3" component="h1" gutterBottom>
           {mode === "edit" ? `Edit ${selectedItem?.name}` : "Create Settlement"}
         </Typography>
@@ -63,7 +63,7 @@ export default function SettlementForm({ onSubmit, mode }: SettlementFormProps) 
         </TabPanel>
 
         <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} />
-      </form>
+      </Box>
     </Paper>
   );
 }

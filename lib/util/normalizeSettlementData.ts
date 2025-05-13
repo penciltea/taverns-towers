@@ -1,4 +1,4 @@
-import { SettlementFormData } from "@/schemas/settlementSchema";
+import { SettlementFormData } from "@/schemas/settlement.schema";
 
 export const normalizeSettlementData = (settlement: Partial<SettlementFormData>) => ({
     ...settlement,

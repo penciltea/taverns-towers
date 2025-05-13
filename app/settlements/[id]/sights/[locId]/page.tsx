@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { FormProvider } from "react-hook-form";
-import { sightSchema, defaultSightValues, SightFormData } from "@/schemas/sightSchema";
+import { sightSchema, defaultSightValues, SightFormData } from "@/schemas/sight.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSightContentStore } from "@/store/sightStore";
 import { updateSight, getSightById } from "@/lib/actions/sight.actions";

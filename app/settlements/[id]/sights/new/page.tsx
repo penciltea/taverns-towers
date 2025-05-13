@@ -3,7 +3,7 @@
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { sightSchema, defaultSightValues, SightFormData } from "@/schemas/sightSchema";
+import { sightSchema, defaultSightValues, SightFormData } from "@/schemas/sight.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSightContentStore } from "@/store/sightStore";
 import SightForm from '@/components/Sight/Form/SightForm';

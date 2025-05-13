@@ -2,8 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
-import { Paper, Typography, Stack, Box } from "@mui/material";
-import { SightFormData } from "@/schemas/sightSchema";
+import { Paper, Typography, Stack, Box, Button } from "@mui/material";
+import { SightFormData } from "@/schemas/sight.schema";
 import { FormTextField, FormSelect } from "@/components/Form";
 import { LOCATION_CATEGORIES, LOCATION_SIZE, LOCATION_CONDITION } from "@/constants/sightOptions";
 import { sightFormFieldsByType } from "@/components/Sight/Form/FieldsByType";
@@ -12,6 +12,7 @@ import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSightContentStore } from "@/store/sightStore";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
+import CasinoIcon from "@mui/icons-material/Casino";
 
 type SightFormProps = {
   onSubmit: (data: SightFormData) => void;
@@ -36,15 +37,8 @@ export default function SightForm({ onSubmit, mode }: SightFormProps){
     : "Unknown";
 
     return (
-        <Paper
-            elevation={3}
-            sx={{
-            p: 3,
-            mb: 4,
-            borderRadius: 2
-            }}
-        >
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
+            <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                 <Typography variant="h4" gutterBottom>
                     {mode === 'edit' ? `Edit ${selectedItem?.name}` : `Create Sight (${typeLabel})`}
                 </Typography>
@@ -53,13 +47,28 @@ export default function SightForm({ onSubmit, mode }: SightFormProps){
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                 >
                     <Box>
-                        <FormTextField
-                            name="name"
-                            label="Sight Name"
-                            registration={register("name")}
-                            fieldError={errors.name}
-                            required
-                        />
+                        <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
+                            <Button variant="text" startIcon={<CasinoIcon />}>
+                                Generate All Fields
+                            </Button>
+                        </Box>
+
+                        <Stack direction="row" spacing={1} alignItems="flex-start">
+                            <FormTextField
+                                name="name"
+                                label="Sight Name"
+                                registration={register("name")}
+                                fieldError={errors.name}
+                                required
+                            />
+                            <Button
+                                variant="outlined"
+                                size="large"
+                                sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                            >
+                                Generate
+                            </Button>
+                        </Stack>
 
                         <FormSelect
                             name="size"
@@ -88,14 +97,14 @@ export default function SightForm({ onSubmit, mode }: SightFormProps){
                     </Box>
                     
                     {typeParam && (
-                        <Box>
+                        <Box sx={{paddingTop: 4}}>
                             <FormImageUpload name="image" label="Upload Sight Image" />
                         </Box>
                     )}
                 </Stack>
 
                 <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Sight" />
-            </form>
+            </Box>
         </Paper>
     )
 };

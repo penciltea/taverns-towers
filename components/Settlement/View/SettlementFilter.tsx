@@ -7,7 +7,7 @@ import { FormChipSelect, FormSelect } from "@/components/Form";
 import { SIZE_TYPES, TERRAIN_TYPES, TAG_TYPES, CLIMATE_TYPES, MAGIC_LEVELS, WEALTH_LEVELS } from "@/constants/settlementOptions";
 import FilterBar from "@/components/Grid/FilterBar";
 import FilterDialog from "@/components/Grid/FilterDialog";
-import { settlementFilterSchema } from "@/schemas/settlementSchema";
+import { settlementFilterSchema } from "@/schemas/settlement.schema";
 import { useUIStore } from "@/store/uiStore";
 import { ContentFilters } from "@/store/contentStore";
 import { DefaultSettlementQueryParams } from "@/interfaces/settlement.interface";

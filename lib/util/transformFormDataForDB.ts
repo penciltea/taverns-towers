@@ -1,5 +1,5 @@
-import { SightFormData } from "@/schemas/sightSchema";
-import { SettlementFormData } from "@/schemas/settlementSchema";
+import { SightFormData } from "@/schemas/sight.schema";
+import { SettlementFormData } from "@/schemas/settlement.schema";
 
 export function transformSettlementFormData(data: SettlementFormData) {
   return {

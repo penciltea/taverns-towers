@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useUIStore } from "@/store/uiStore";
 import { useSettlementContentStore } from "@/store/settlementStore";
-import { settlementSchema, SettlementFormData, defaultSettlementValues } from "@/schemas/settlementSchema";
+import { settlementSchema, SettlementFormData, defaultSettlementValues } from "@/schemas/settlement.schema";
 import { getSettlementById } from "@/lib/actions/settlement.actions";
 import { useFormMode } from "@/hooks/useFormMode";
 import { getSingleParam } from "@/lib/util/getSingleParam";

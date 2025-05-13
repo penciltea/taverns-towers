@@ -4,7 +4,7 @@ import { useSettlementContentStore } from "@/store/settlementStore";
 import { createSettlement, updateSettlement } from "@/lib/actions/settlement.actions";
 import { transformSettlementFormData } from "@/lib/util/transformFormDataForDB";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { SettlementFormData } from "@/schemas/settlementSchema";
+import { SettlementFormData } from "@/schemas/settlement.schema";
 import { useQueryClient } from "@tanstack/react-query";
 
 type SaveSettlementMutationProps = {

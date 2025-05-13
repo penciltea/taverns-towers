@@ -37,7 +37,7 @@ const FormChipSelect = ({
 
   return (
     <FormControl fullWidth margin="normal" error={!!fieldError} required={required}>
-      <InputLabel id={`${id}-label`}>{label}</InputLabel>
+      <InputLabel id={`${id}-label`} shrink>{label}</InputLabel>
       <Controller
         name={name}
         control={control}
