@@ -8,7 +8,7 @@ import {
   RULING_TYPES,
   CRIMINAL_ACTIVITY_TYPES,
 } from "@/constants/settlementOptions";
-import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize } from "./settlementRuleMaps";
+import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../util/randomValues";
 import { GenerateSettlementInput } from "@/schemas/generateSettlement.schema";
 import { GeneratedSettlementFields } from "@/interfaces/generator.interface";
@@ -54,13 +54,13 @@ function applyWealthRule(data: ReturnType<typeof normalizeInput>): GeneratedSett
   return data;
 }
 
-// Logic for setting Magic use/levels when set to "random"
-
-function applyMagicRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
-    if(data.magic === "random"){
-        data.magic = getRandom(MAGIC_LEVELS);
-    }
-    return data;
+// Logic for setting Magic use/levels based off settlement wealth
+export function applyMagicByWealthRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
+  if (data.wealth !== "random" && data.magic === "random") {
+    const options = MagicByWealth[data.wealth] || MAGIC_LEVELS;
+    data.magic = getRandom(options);
+  }
+  return data;
 }
 
 // Logic for removing incompatible terrain types based on the climate
@@ -122,11 +122,11 @@ export const generateSettlementValues = (input: GeneratedSettlementFields) => {
     applySizeRule,
     applyClimateRule, 
     applyWealthRule,
-    applyMagicRule,
     applyTerrainBlacklistRule,
     applyTagsByTerrainRule,
     applyCrimeByWealthRule,
-    applyRulingStyleBySizeRule
+    applyRulingStyleBySizeRule,
+    applyMagicByWealthRule
   ].reduce((data, fn) => fn(data), input);
 };
 

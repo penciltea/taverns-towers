@@ -105,7 +105,7 @@ export default function GenerateSettlementPage() {
         <Box component="form" onSubmit={handleSubmit(onSubmit)} p={2}>
             <Typography variant="h4" component="h1" gutterBottom> Generate a Settlement </Typography>
             <Typography variant="subtitle1" component="p" gutterBottom>Use the generator to create a starting point for your settlement. You can edit everything afterward!</Typography>
-            <Typography variant="subtitle1" component="p" gutterBottom>All fields default to "Random" - select options to customize your settlement!</Typography>
+            <Typography variant="subtitle1" component="p" gutterBottom>All fields default to "Random" &mdash; select options to customize your settlement!</Typography>
 
             <FormSelect
                 name="size"
@@ -179,16 +179,6 @@ export default function GenerateSettlementPage() {
                 required
             />
 
-            <FormControlLabel 
-                control={
-                    <Checkbox 
-                        {...register("createSights")}
-                        defaultChecked 
-                    />
-                } 
-                label="Create sights in my settlement too!" 
-            />
-
             {previewData && (
                 <Paper
                     elevation={2}
@@ -201,6 +191,17 @@ export default function GenerateSettlementPage() {
                     <GenerateSettlementPreview settlement={previewData} />
                 </Paper>
                 )}
+
+            <FormControlLabel 
+                sx={{mt: 2}}
+                control={
+                    <Checkbox 
+                        {...register("createSights")}
+                        defaultChecked 
+                    />
+                } 
+                label="Create sights in my settlement too!" 
+            />    
 
             <Box sx={{ display: "flex", flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mt: 3 }}>
                 <Button variant="text" color="primary" onClick={handleClearAll}>

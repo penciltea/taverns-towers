@@ -59,7 +59,13 @@ export const WealthBySize: Record<SizeTypes, WealthLevel[]> = {
   Metropolis: WEALTH_LEVELS,
 };
 
-
+export const MagicByWealth: Record<string, string[]> = {
+  Impoverished: ["None"],
+  Struggling: ["None", "Low"],
+  Modest: ["Low", "Moderate"],
+  Wealthy: ["Moderate", "High", "Mythic"],
+  Affluent: ["High", "Mythic"],
+};
 
 //setting mapping up for ruling style by settlement size
 // weighting currently set by repeating options
