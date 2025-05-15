@@ -14,13 +14,6 @@ export default function SettlementFormCulture(){
 
     return (
         <Box>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
-                <Button variant="text" startIcon={<CasinoIcon />}>
-                Generate All Fields
-                </Button>
-            </Box>
-
-            
             <FormChipSelect
                 name="crime"
                 label="Criminal Activity"

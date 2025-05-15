@@ -41,14 +41,7 @@ export default function SettlementFormBasics(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box>
-                <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
-                    <Button variant="text" startIcon={<CasinoIcon />}>
-                        Generate All Fields
-                    </Button>
-                </Box>
-
-                
+            <Box>                
                 <Stack direction="row" spacing={1} alignItems="flex-start">
                     <FormTextField
                         name="name"

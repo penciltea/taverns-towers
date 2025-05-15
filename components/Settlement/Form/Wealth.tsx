@@ -14,12 +14,6 @@ export default function SettlementFormWealth(){
 
     return (
         <Box>
-            <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
-                <Button variant="text" startIcon={<CasinoIcon />}>
-                Generate All Fields
-                </Button>
-            </Box>
-
             <FormTextField
                 fullWidth
                 name="leader"
