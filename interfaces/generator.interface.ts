@@ -1,4 +1,5 @@
 export type GeneratedSettlementFields = {
+  name?: string;
   size: string;
   terrain: string[];
   tags: string[];

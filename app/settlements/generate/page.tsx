@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { generateSettlementSchema, GenerateSettlementInput } from '@/schemas/generateSettlement.schema';
@@ -10,18 +11,20 @@ import { useRouter } from 'next/navigation';
 import { toSelectOptions } from '@/lib/util/formatSelectOptions';
 import { CLIMATE_TYPES, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES, WEALTH_LEVELS } from '@/constants/settlementOptions';
 import { generateSettlementWithName } from '@/lib/modules/settlementRules';
-import { createSettlement } from '@/lib/actions/settlement.actions';
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { useUIStore } from '@/store/uiStore';
+import GenerateSettlementPreview from '@/components/Settlement/generateSettlementPreview';
 
 
 export default function GenerateSettlementPage() {
   const router = useRouter();
   const { isSubmitting, showErrorDialog } = useUIStore();
+  const [previewData, setPreviewData] = useState<Settlement | null>(null); // for generator preview
 
   const {
     register,
     handleSubmit,
+    getValues,
     control,
     reset,
     formState: { errors },
@@ -54,6 +57,31 @@ export default function GenerateSettlementPage() {
     });
   };
 
+  const handleGeneratePreview = async () => {
+    try {
+        const formData = getValues();
+        const result = await generateSettlementWithName(formData);
+        setPreviewData(result);
+    } catch (error) {
+        showErrorDialog("Error generating preview. Try again.");
+        console.error(error);
+    }
+    };
+
+    const handleSaveSettlement = async () => {
+    try {
+        if (!previewData) return;
+        const result = await saveSettlement(previewData);
+        if (result?.success && result.settlement) {
+        router.push(`/settlements/${result.settlement._id}`);
+        }
+    } catch (error) {
+        showErrorDialog("There was a problem saving the settlement.");
+        console.error(error);
+    }
+    };
+
+
   const { saveSettlement } = useSaveSettlementMutation({ mode: "add" });
 
   const onSubmit = async (data: GenerateSettlementInput) => {
@@ -75,10 +103,9 @@ export default function GenerateSettlementPage() {
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} p={2}>
-        <Typography variant="h4" component="h1" gutterBottom> Generate a Settlement </Typography>
-        <Typography variant="subtitle1" component="p" gutterBottom>Use the generator to create a starting point for your settlement. You can edit everything afterward!</Typography>
-        <Typography variant="subtitle1" component="p" gutterBottom>All fields default to "Random" - select options to customize your settlement!</Typography>
-
+            <Typography variant="h4" component="h1" gutterBottom> Generate a Settlement </Typography>
+            <Typography variant="subtitle1" component="p" gutterBottom>Use the generator to create a starting point for your settlement. You can edit everything afterward!</Typography>
+            <Typography variant="subtitle1" component="p" gutterBottom>All fields default to "Random" - select options to customize your settlement!</Typography>
 
             <FormSelect
                 name="size"
@@ -117,15 +144,6 @@ export default function GenerateSettlementPage() {
             />
 
             <FormSelect
-                name="magic"
-                label="Magic Level / Use"
-                control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
-                fieldError={errors.magic}
-                required
-            />
-
-            <FormSelect
                 name="wealth"
                 label="Wealth"
                 control={control}
@@ -140,6 +158,15 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle}
+                required
+            />
+            
+            <FormSelect
+                name="magic"
+                label="Magic Level / Use"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
+                fieldError={errors.magic}
                 required
             />
 
@@ -161,10 +188,30 @@ export default function GenerateSettlementPage() {
                 } 
                 label="Create sights in my settlement too!" 
             />
-            <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-                <Button variant="text" color="primary" onClick={handleClearAll}> Clear All </Button>
 
-                <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}> {isSubmitting ? "Generating settlement..." : "Generate Settlement"} </Button>
+            {previewData && (
+                <Paper
+                    elevation={2}
+                    sx={{
+                    mt: 4,
+                    p: 2,
+                    borderRadius: 2,
+                    }}
+                >
+                    <GenerateSettlementPreview settlement={previewData} />
+                </Paper>
+                )}
+
+            <Box sx={{ display: "flex", flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mt: 3 }}>
+                <Button variant="text" color="primary" onClick={handleClearAll}>
+                    Clear All
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={handleGeneratePreview}>
+                    Generate Preview
+                </Button>
+                {previewData && (
+                    <Button variant="contained" color="primary" onClick={handleSaveSettlement}> {isSubmitting ? "Saving..." : "Save Settlement"} </Button>
+                )}
             </Box>
         </Box>
     </Paper>
