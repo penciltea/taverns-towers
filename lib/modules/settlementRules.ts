@@ -11,8 +11,8 @@ import {
 import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../util/randomValues";
 import { GenerateSettlementInput } from "@/schemas/generateSettlement.schema";
-import { GeneratedSettlementFields } from "@/interfaces/generator.interface";
-import { generateSettlementName } from "../actions/generator.actions";
+import { GeneratedSettlementFields } from "@/interfaces/settlementGenerator.interface";
+import { generateSettlementName } from "../actions/settlementGenerator.actions";
 
 function normalizeInput(data: GenerateSettlementInput): GeneratedSettlementFields {
   return {

@@ -1,20 +1,25 @@
-import { FormTextField } from "@/components/Form";
+import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
 import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
+import { SHOP_TYPES } from "@/constants/sightOptions";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function ShopFields(){
     const {
         register,
+        control,
         formState: { errors },
     } = useFormContext();
     
     return (
         <>
-            <FormTextField
+            <FormSelect
                 name="shopType"
                 label="Shop Type"
-                registration={register("shopType")}
+                required
+                control={control}
+                options={toSelectOptions(SHOP_TYPES)}
                 fieldError={errors.shopType}
             />
 

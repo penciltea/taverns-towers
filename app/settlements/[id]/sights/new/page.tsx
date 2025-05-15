@@ -23,7 +23,7 @@ export default function NewSightPage(){
     const { showSnackbar, showErrorDialog } = useUIStore();
     const { mode } = useSightContentStore();
     const { refetch } = usePaginatedSights(settlementId, 1, 12, [], "");
-    const { addSight } = useSettlementLoader(settlementId);
+    const { settlement, addSight } = useSettlementLoader(settlementId);
 
     const methods = useFormWithSchema(sightSchema, {
         defaultValues: {
@@ -50,10 +50,22 @@ export default function NewSightPage(){
             showErrorDialog("Something went wrong, please try again later!");
           }
     }
+
+    const settlementContext = settlement
+    ? {
+        terrain: settlement.terrain,
+        climate: settlement.climate,
+        tags: settlement.tags,
+        }
+    : {
+        terrain: [],
+        climate: '',
+        tags: [],
+    };
     
     return (
         <FormProvider {...methods}>
-            <SightForm onSubmit={onSubmit} mode={mode} />
+            <SightForm onSubmit={onSubmit} mode={mode} settlementContext={settlementContext} />
         </FormProvider>
     )
 }

@@ -51,9 +51,25 @@ export const SECRECY_LEVELS = [
   { value: "mythical", label: "Mythical (Believed to be legend)" }
 ];
 
+export const SHOP_TYPES = [
+  "General Store",
+  "Blacksmith",
+  "Apothecary",
+  "Bakery",
+  "Tailor",
+  "Bookstore",
+  "Jeweler",
+  "Magic Shop",
+  "Armory",
+  "Alchemist",
+  "Carpenter",
+  "Other",
+];
+
 
 export type SightCategory = typeof LOCATION_CATEGORIES[number]["value"];
 export type SightSize = typeof LOCATION_SIZE[number]["value"];
 export type SightCondition = typeof LOCATION_CONDITION[number]["value"];
 export type SightSecurityLevel = typeof SECURITY_LEVELS[number]["value"];
 export type SightSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
+export type SightShopType = typeof SHOP_TYPES[number];

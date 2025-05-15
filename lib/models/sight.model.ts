@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { LOCATION_SIZE, LOCATION_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/sightOptions";
+import { LOCATION_SIZE, LOCATION_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES } from "@/constants/sightOptions";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = LOCATION_SIZE.map(option => option.value);
@@ -69,7 +69,7 @@ const Tavern =
   Sight.discriminator(
     "shop",
     new Schema({
-      shopType: { type: String, required: false },
+      shopType: { type: String, enum: SHOP_TYPES, required: true },
       owner: { type: String, required: false },
       wares: [MenuItemSchema],
     })

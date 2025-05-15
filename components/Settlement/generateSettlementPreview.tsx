@@ -1,5 +1,5 @@
 import { Box, Typography, Chip } from '@mui/material';
-import { GeneratedSettlementFields } from '@/interfaces/generator.interface';
+import { GeneratedSettlementFields } from '@/interfaces/settlementGenerator.interface';
 
 type settlementProps = {
     settlement: GeneratedSettlementFields

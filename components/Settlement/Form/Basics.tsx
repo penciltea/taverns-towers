@@ -6,7 +6,7 @@ import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } fro
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
-import { generateSettlementName } from "@/lib/actions/generator.actions";
+import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 
 export default function SettlementFormBasics(){
     const {

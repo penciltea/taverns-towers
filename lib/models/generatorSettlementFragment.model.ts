@@ -1,6 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-export interface GeneratorFragmentPlain {
+export interface GeneratorSettlementFragmentPlain {
   type: "prefix" | "suffix";
   value: string;
   terrain?: string[];
@@ -9,7 +9,7 @@ export interface GeneratorFragmentPlain {
   tags?: string[];
 }
 
-const GeneratorFragmentSchema = new Schema<GeneratorFragmentPlain>({
+const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
   type: { type: String, enum: ["prefix", "suffix"], required: true },
   value: { type: String, required: true },
   terrain: [String],
@@ -19,4 +19,4 @@ const GeneratorFragmentSchema = new Schema<GeneratorFragmentPlain>({
 });
 
 export default mongoose.models.GeneratorFragment ||
-  mongoose.model<GeneratorFragmentPlain>("GeneratorFragment", GeneratorFragmentSchema, 'generator_settlement_names');
+  mongoose.model<GeneratorSettlementFragmentPlain>("GeneratorFragment", GeneratorFragmentSchema, 'generator_settlement_names');

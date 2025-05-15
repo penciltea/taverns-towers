@@ -1,0 +1,212 @@
+[
+  {
+    "type": "prefix",
+    "value": "Silver",
+    "categories": ["tavern", "shop", "jeweler"],
+    "sightTypes": ["tavern", "shop"],
+    "terrains": ["mountains", "plains"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Trade Hub", "Capital"],
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Golden",
+    "categories": ["tavern", "temple"],
+    "sightTypes": ["tavern", "temple"],
+    "terrains": ["desert", "plains"],
+    "climates": ["dry", "temperate"],
+    "tags": ["Sacred Site", "Ancient Ruins"],
+    "weight": 1
+  },
+  {
+    "type": "prefix",
+    "value": "Whispering",
+    "categories": ["hidden", "temple"],
+    "sightTypes": ["hidden", "temple"],
+    "terrains": ["forest", "swamp"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Hidden", "Druidic"],
+    "weight": 1
+  },
+  {
+    "type": "prefix",
+    "value": "Crescent",
+    "categories": ["residence", "temple"],
+    "sightTypes": ["residence", "temple"],
+    "terrains": ["coast", "river"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Sacred Site", "Fishing"],
+    "weight": 1
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "categories": ["guild", "blacksmith", "armory"],
+    "sightTypes": ["guild", "shop"],
+    "terrains": ["mountains", "plains"],
+    "climates": ["continental", "temperate"],
+    "tags": ["Mining Camp", "Fortress"],
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Mystic",
+    "categories": ["magic shop", "temple"],
+    "sightTypes": ["shop", "temple"],
+    "terrains": ["forest", "mountains"],
+    "climates": ["temperate", "tundra"],
+    "tags": ["Arcane Nexus", "Sacred Site"],
+    "weight": 3
+  },
+  {
+    "type": "prefix",
+    "value": "Twilight",
+    "categories": ["hidden", "entertainment"],
+    "sightTypes": ["hidden", "entertainment"],
+    "terrains": ["forest", "plains"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Hidden", "Nomadic"],
+    "weight": 1
+  },
+  {
+    "type": "prefix",
+    "value": "Oak",
+    "categories": ["residence", "miscellaneous"],
+    "sightTypes": ["residence", "miscellaneous"],
+    "terrains": ["forest", "plains"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Overgrown", "Ancient Ruins"],
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Ember",
+    "categories": ["apothecary", "alchemist"],
+    "sightTypes": ["shop"],
+    "terrains": ["desert", "mountains"],
+    "climates": ["dry", "continental"],
+    "tags": ["Infested", "Arcane Nexus"],
+    "weight": 1
+  },
+  {
+    "type": "prefix",
+    "value": "Storm",
+    "categories": ["guild", "government"],
+    "sightTypes": ["guild", "government"],
+    "terrains": ["coast", "plains"],
+    "climates": ["temperate", "polar"],
+    "tags": ["Capital", "Garrison"],
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Silent",
+    "categories": ["hidden", "residence"],
+    "sightTypes": ["hidden", "residence"],
+    "terrains": ["forest", "mountains"],
+    "climates": ["tundra", "temperate"],
+    "tags": ["Hidden", "Isolated"],
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Flagon",
+    "categories": ["tavern"],
+    "sightTypes": ["tavern"],
+    "terrains": ["plains", "forest"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Trade Hub"],
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Sanctum",
+    "categories": ["temple", "hidden"],
+    "sightTypes": ["temple", "hidden"],
+    "terrains": ["swamp", "forest"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Hidden", "Sacred Site"],
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Hall",
+    "categories": ["guild", "government"],
+    "sightTypes": ["guild", "government"],
+    "terrains": ["plains", "mountains"],
+    "climates": ["continental", "temperate"],
+    "tags": ["Capital", "Fortress"],
+    "weight": 3
+  },
+  {
+    "type": "suffix",
+    "value": "Nook",
+    "categories": ["residence", "bookstore", "hidden"],
+    "sightTypes": ["residence", "shop", "hidden"],
+    "terrains": ["forest", "coast"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Hidden", "Isolated"],
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Emporium",
+    "categories": ["shop"],
+    "sightTypes": ["shop"],
+    "terrains": ["plains", "coast"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Trade Hub"],
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Manor",
+    "categories": ["residence"],
+    "sightTypes": ["residence"],
+    "terrains": ["plains", "forest"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Capital", "Sacred Site"],
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Loom",
+    "categories": ["tailor", "weaver"],
+    "sightTypes": ["shop"],
+    "terrains": ["plains", "forest"],
+    "climates": ["temperate", "continental"],
+    "tags": ["Trade Hub"],
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Anvil",
+    "categories": ["blacksmith", "armory"],
+    "sightTypes": ["shop"],
+    "terrains": ["mountains", "plains"],
+    "climates": ["continental", "temperate"],
+    "tags": ["Mining Camp", "Fortress"],
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Coven",
+    "categories": ["magic shop", "alchemist"],
+    "sightTypes": ["shop"],
+    "terrains": ["forest", "swamp"],
+    "climates": ["temperate", "tropical"],
+    "tags": ["Arcane Nexus"],
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Keep",
+    "categories": ["government", "guild"],
+    "sightTypes": ["government", "guild"],
+    "terrains": ["mountains", "plains"],
+    "climates": ["continental", "temperate"],
+    "tags": ["Fortress", "Garrison"],
+    "weight": 2
+  }
+]

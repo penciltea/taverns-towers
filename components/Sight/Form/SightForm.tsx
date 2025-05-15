@@ -1,5 +1,3 @@
-'use client'
-
 import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Paper, Typography, Stack, Box, Button } from "@mui/material";
@@ -12,19 +10,25 @@ import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSightContentStore } from "@/store/sightStore";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
-import CasinoIcon from "@mui/icons-material/Casino";
+import { generateSightName } from "@/lib/actions/sightGenerator.actions";
 
 type SightFormProps = {
   onSubmit: (data: SightFormData) => void;
   mode: "add" | "edit" | null;
+  settlementContext: {
+    terrain: string[];
+    climate: string;
+    tags: string[];
+  };
 };
 
-export default function SightForm({ onSubmit, mode }: SightFormProps){
+export default function SightForm({ onSubmit, mode, settlementContext }: SightFormProps){
     const searchParams = useSearchParams();
     const methods = useFormContext<SightFormData>();
     const { handleSubmit, register, control, formState: { errors } } = methods;
     const { selectedItem } = useSightContentStore();
     const { isSubmitting } = useUIStore();
+    const { setValue } = useFormContext<SightFormData>();
 
     const typeParam = mode === 'edit'
     ? selectedItem?.type
@@ -35,6 +39,19 @@ export default function SightForm({ onSubmit, mode }: SightFormProps){
     const typeLabel = typeParam
     ? getLabelFromValue(LOCATION_CATEGORIES, typeParam, "Unknown")
     : "Unknown";
+
+    
+     async function handleGenerateName() {
+        if (!typeParam) return;
+            const name = await generateSightName({
+            sightType: typeParam,
+            terrain: settlementContext.terrain,
+            climate: settlementContext.climate,
+            tags: settlementContext.tags,
+        });
+
+        setValue("name", name); // Set name into RHF
+    }
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
@@ -55,8 +72,9 @@ export default function SightForm({ onSubmit, mode }: SightFormProps){
                                 fieldError={errors.name}
                                 required
                             />
-                            <Button
+                             <Button
                                 variant="outlined"
+                                onClick={handleGenerateName}
                                 size="large"
                                 sx={{ mt: 2, py: 1.65 }} // align with text field's margin
                             >

@@ -50,7 +50,7 @@ export const templeSchema = baseSightSchema.extend({
 
 export const shopSchema = baseSightSchema.extend({
   type: z.literal("shop"),
-  shopType: z.string().optional(),
+  shopType: z.string(),
   owner: z.string().optional(),
   wares: z.array(z.object({
     name: z.string(),
