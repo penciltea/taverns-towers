@@ -1,8 +1,6 @@
 'use client';
 
-import { useState } from 'react';
 import { Box, Typography, TypographyProps, Paper, Grid } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import GridContainer from './GridContainer';
 import PaginationControls from '@/components/Common/Pagination';
 import FabButton from '@/components/Common/fabButton';
@@ -27,6 +25,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
   emptyText?: string;
   fabLabel?: string;
   fabLink?: string;
+  fabOnClick?: () => void;
 };
 
 export default function FilteredGridView<T extends CommonInterface>({
@@ -48,6 +47,7 @@ export default function FilteredGridView<T extends CommonInterface>({
   emptyText = 'No items found.',
   fabLabel,
   fabLink,
+  fabOnClick
 }: FilteredGridViewProps<T>) {
   const totalPages = Math.ceil(totalCount / pageSize);
 
@@ -86,7 +86,9 @@ export default function FilteredGridView<T extends CommonInterface>({
         </Typography>
       )}
 
-      {fabLabel && fabLink && <FabButton label={fabLabel} link={fabLink} />}
+      {fabLabel && (fabLink || fabOnClick) && (
+        <FabButton label={fabLabel} link={fabLink} onClick={fabOnClick} />
+      )}
     </Paper>
   );
 }

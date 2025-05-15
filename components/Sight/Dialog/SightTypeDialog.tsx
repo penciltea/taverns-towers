@@ -21,7 +21,7 @@ export default function SightTypeDialog({ open, onClose }: DialogProps) {
       return;
     }
     setError(false);
-    router.push(`/settlements/${settlementId}/sights/new/?type=${type}`); // or whatever route you use
+    router.push(`/settlements/${settlementId}/sights/new/?type=${type}`);
     closeDialog();
   };
 

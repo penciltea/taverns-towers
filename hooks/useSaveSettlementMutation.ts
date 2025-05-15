@@ -47,7 +47,9 @@ export function useSaveSettlementMutation({ id, mode }: SaveSettlementMutationPr
       clearSelectedItem();
       clearMode();
       queryClient.invalidateQueries({ queryKey: ['settlements'] });
-      router.push(`/settlements/${savedSettlement._id}`);
+
+      return { success: true, settlement: savedSettlement }; // sends back settlement data for other components to use
+
     } catch (error) {
       console.error(error);
       showErrorDialog("Something went wrong, please try again later!");

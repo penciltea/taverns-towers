@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { useUIStore } from "@/store/uiStore";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { settlementSchema, SettlementFormData, defaultSettlementValues } from "@/schemas/settlement.schema";
 import { getSettlementById } from "@/lib/actions/settlement.actions";
@@ -17,7 +16,6 @@ import { Spinner } from "@/components/Common/Spinner";
 
 export default function NewSettlementPage() {
   const router = useRouter();
-  const { showSnackbar } = useUIStore();
   const { mode } = useSettlementContentStore();
 
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -40,7 +38,10 @@ export default function NewSettlementPage() {
   }, []);
 
   const onSubmit = async (data: SettlementFormData) => {
-    await saveSettlement(data);
+    const result = await saveSettlement(data);
+    if (result && result.success && result.settlement) {
+      router.push(`/settlements/${result.settlement._id}`);
+    }
   };
 
   return (

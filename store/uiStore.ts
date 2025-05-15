@@ -7,7 +7,7 @@ interface UIState {
     toggleDrawer: () => void;
 
     // Dialog state
-    openDialog: null | 'addSettlementDialog' | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'sightTypeDialog' | 'filterDialog' | 'SightDetailsDialog' | 'deleteSightDialog';
+    openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'sightTypeDialog' | 'settlementTypeDialog' | 'filterDialog' | 'SightDetailsDialog' | 'deleteSightDialog';
     setOpenDialog: (dialog: UIState['openDialog']) => void;
     closeDialog: () => void;
 

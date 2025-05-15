@@ -8,6 +8,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
 import SightTypeDialog from '@/components/Sight/Dialog/SightTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SettlementTypeDialog from '../Settlement/SettlementTypeDialog';
 
 export default function Header() {
     const router = useRouter();
@@ -34,6 +35,11 @@ export default function Header() {
 
   const handleSightDialog = () => {
     useUIStore.getState().setOpenDialog('sightTypeDialog')
+    handleMenuClose();
+  };
+
+  const handleSettlementDialog = () => {
+    useUIStore.getState().setOpenDialog('settlementTypeDialog')
     handleMenuClose();
   };
 
@@ -71,7 +77,7 @@ export default function Header() {
                 onClose={handleMenuClose}
             >
                 <MenuItem onClick={() => handleNavigate('/settlements/all')}>View All Settlements</MenuItem>
-                <MenuItem onClick={() => handleNavigate('/settlements/new')}>Create Settlement</MenuItem>
+                <MenuItem onClick={handleSettlementDialog}>Create Settlement</MenuItem>
             </Menu>
 
             {/* Sights */}
@@ -125,6 +131,10 @@ export default function Header() {
 
     {openDialog === 'sightTypeDialog' && (
         <SightTypeDialog open onClose={closeDialog} />
+    )}
+
+    {openDialog === 'settlementTypeDialog' && (
+        <SettlementTypeDialog open onClose={closeDialog} />
     )}
     </>
   );

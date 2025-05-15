@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useUIStore } from "@/store/uiStore";
@@ -17,8 +17,9 @@ import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 
 export default function EditSettlementFormPage() {
+  const router = useRouter();
   const [hasLoaded, setHasLoaded] = useState(false);
-  const { showSnackbar, setLoading, isSubmitting, showErrorDialog } = useUIStore();
+  const { setLoading, showErrorDialog } = useUIStore();
   const { setSelectedItem, mode } = useSettlementContentStore();
 
   const { id } = useParams();
@@ -66,7 +67,10 @@ export default function EditSettlementFormPage() {
   }, [safeId, mode]);
 
   const onSubmit = async (data: SettlementFormData) => {
-    await saveSettlement(data);
+    const result = await saveSettlement(data);
+    if (result && result.success && result.settlement) {
+      router.push(`/settlements/${result.settlement._id}`);
+    }
   };
 
   return (

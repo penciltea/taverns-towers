@@ -12,30 +12,47 @@ import { CLIMATE_TYPES, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, SIZ
 import { generateSettlementWithName } from '@/lib/modules/settlementRules';
 import { createSettlement } from '@/lib/actions/settlement.actions';
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
+import { useUIStore } from '@/store/uiStore';
 
 
 export default function GenerateSettlementPage() {
   const router = useRouter();
+  const { isSubmitting, showErrorDialog } = useUIStore();
 
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<GenerateSettlementInput>({
     resolver: zodResolver(generateSettlementSchema),
     defaultValues: {
-      size: '',
-      terrain: [],
-      tags: [],
-      climate: '',
-      magic: '',
-      rulingStyle: '',
-      wealth: '',
-      crime: [],
+      size: "random",
+      terrain: ["random"],
+      tags: ["random"],
+      climate: "random",
+      magic: "random",
+      rulingStyle: "random",
+      wealth: "random",
+      crime: ["random"],
       createSights: true
     },
   });
+
+  const handleClearAll = () => {
+    reset({
+      size: "",
+      terrain: [],
+      tags: [],
+      climate: "",
+      magic: "",
+      rulingStyle: "",
+      wealth: "",
+      crime: [],
+      createSights: true,
+    });
+  };
 
   const { saveSettlement } = useSaveSettlementMutation({ mode: "add" });
 
@@ -45,11 +62,13 @@ export default function GenerateSettlementPage() {
        const generatedSettlement = await generateSettlementWithName(data);
 
         // Create the settlement in the DB
-        await saveSettlement(generatedSettlement);
+        const result = await saveSettlement(generatedSettlement);
+        if (result && result.success && result.settlement) {
+            router.push(`/settlements/${result.settlement._id}`);
+        }
     } catch (error) {
         console.error("Error generating or saving settlement:", error);
         showErrorDialog("There was a problem generating the settlement. Please try again later!");
-        // You can also display an error snackbar here if desired
     }
   };
 
@@ -58,6 +77,7 @@ export default function GenerateSettlementPage() {
         <Box component="form" onSubmit={handleSubmit(onSubmit)} p={2}>
         <Typography variant="h4" component="h1" gutterBottom> Generate a Settlement </Typography>
         <Typography variant="subtitle1" component="p" gutterBottom>Use the generator to create a starting point for your settlement. You can edit everything afterward!</Typography>
+        <Typography variant="subtitle1" component="p" gutterBottom>All fields default to "Random" - select options to customize your settlement!</Typography>
 
 
             <FormSelect
@@ -141,13 +161,12 @@ export default function GenerateSettlementPage() {
                 } 
                 label="Create sights in my settlement too!" 
             />
+            <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
+                <Button variant="text" color="primary" onClick={handleClearAll}> Clear All </Button>
 
-            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}> Generate Settlement </Button>
+                <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}> {isSubmitting ? "Generating settlement..." : "Generate Settlement"} </Button>
+            </Box>
         </Box>
     </Paper>
   );
 }
-function showErrorDialog(arg0: string) {
-    throw new Error('Function not implemented.');
-}
-
