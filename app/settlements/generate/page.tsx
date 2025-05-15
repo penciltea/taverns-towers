@@ -9,7 +9,9 @@ import FormChipSelect from '@/components/Form/FormChipSelect';
 import { useRouter } from 'next/navigation';
 import { toSelectOptions } from '@/lib/util/formatSelectOptions';
 import { CLIMATE_TYPES, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES, WEALTH_LEVELS } from '@/constants/settlementOptions';
-import { generateSettlementValues } from '@/lib/modules/settlementRules';
+import { generateSettlementWithName } from '@/lib/modules/settlementRules';
+import { createSettlement } from '@/lib/actions/settlement.actions';
+import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 
 
 export default function GenerateSettlementPage() {
@@ -35,24 +37,20 @@ export default function GenerateSettlementPage() {
     },
   });
 
-  const onSubmit = async (data: GenerateSettlementInput) => {
-    console.log(data);
-    const processed = generateSettlementValues(data);
-    console.log("Processed: ", processed);
-    /*
-    try {
-      // Call server action to generate the settlement here
-      const response = await fetch('/api/settlements/generate', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+  const { saveSettlement } = useSaveSettlementMutation({ mode: "add" });
 
-      const result = await response.json();
-      router.push(`/settlements/${result._id}`); // or redirect to edit
+  const onSubmit = async (data: GenerateSettlementInput) => {
+    try {
+        // Generate full settlement object
+       const generatedSettlement = await generateSettlementWithName(data);
+
+        // Create the settlement in the DB
+        await saveSettlement(generatedSettlement);
     } catch (error) {
-      console.error('Error generating settlement:', error);
+        console.error("Error generating or saving settlement:", error);
+        showErrorDialog("There was a problem generating the settlement. Please try again later!");
+        // You can also display an error snackbar here if desired
     }
-    */
   };
 
   return (
@@ -86,6 +84,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
                 fieldError={errors.tags}
+                required
             />
 
             <FormSelect
@@ -94,6 +93,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
                 fieldError={errors.climate}
+                required
             />
 
             <FormSelect
@@ -102,6 +102,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
                 fieldError={errors.magic}
+                required
             />
 
             <FormSelect
@@ -110,6 +111,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
                 fieldError={errors.wealth}
+                required
             />
             
             <FormSelect
@@ -118,6 +120,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle}
+                required
             />
 
             <FormChipSelect
@@ -126,6 +129,7 @@ export default function GenerateSettlementPage() {
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(CRIMINAL_ACTIVITY_TYPES)]}
                 fieldError={errors.crime}
+                required
             />
 
             <FormControlLabel 
@@ -143,3 +147,7 @@ export default function GenerateSettlementPage() {
     </Paper>
   );
 }
+function showErrorDialog(arg0: string) {
+    throw new Error('Function not implemented.');
+}
+

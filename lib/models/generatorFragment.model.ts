@@ -6,6 +6,7 @@ export interface GeneratorFragmentPlain {
   terrain?: string[];
   climate?: string[];
   weight?: number;
+  tags?: string[];
 }
 
 const GeneratorFragmentSchema = new Schema<GeneratorFragmentPlain>({
@@ -14,6 +15,7 @@ const GeneratorFragmentSchema = new Schema<GeneratorFragmentPlain>({
   terrain: [String],
   climate: [String],
   weight: { type: Number, default: 1 },
+  tags: [String]
 });
 
 export default mongoose.models.GeneratorFragment ||

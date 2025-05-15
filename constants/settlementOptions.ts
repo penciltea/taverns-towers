@@ -24,15 +24,24 @@ export const SIZE_TYPES = [
 ];
 
 export const TAG_TYPES = [
+    "Ancient Ruins",
     "Arcane Nexus",
     "Border Post",
     "Capital",
     "Criminal Hideout",
+    "Druidic",
+    "Fishing",
     "Fortress",
     "Garrison",
+    "Hidden",
+    "Infested",
+    "Isolated",
     "Mining Camp",
+    "Nomadic",
+    "Overgrown",
     "Port",
     "Prison Settlement",
+    "Remote",
     "Sacred Site",
     "Trade Hub",
 ];
@@ -41,21 +50,20 @@ export const TERRAIN_TYPES = [
     "Coast",
     "Desert",
     "Forest",
+    "Jungle",
     "Mountains",
     "Plains",
     "River",
     "Swamp",
+    "Tundra"
 ]
 
 export const WEALTH_LEVELS = [
     "Impoverished",
     "Struggling",
     "Modest",
-    "Comfortable",
     "Wealthy",
     "Affluent",
-    "Opulent",
-    "Lavish",
 ];
   
 export const MAGIC_LEVELS = [
@@ -67,11 +75,10 @@ export const MAGIC_LEVELS = [
 ];
   
 export const CLIMATE_TYPES = [
-    "Arctic",
+    "Polar",
     "Temperate",
     "Tropical",
-    "Arid",
-    "Mediterranean",
+    "Dry",
     "Continental",
 ];
   
@@ -86,7 +93,7 @@ export const RULING_TYPES = [
     "Monarchy",
     "Oligarchy",
     "Theocracy",
-    "Tyranny"
+    "Tyranny", 
 ];
 
 export const CRIMINAL_ACTIVITY_TYPES = [
@@ -101,7 +108,6 @@ export const CRIMINAL_ACTIVITY_TYPES = [
     "Assassins' Guild",
     "Slavery & Trafficking",
     "Cult Activity",
-    "Necromantic Practices",
     "Widespread Lawlessness",
   ];
 

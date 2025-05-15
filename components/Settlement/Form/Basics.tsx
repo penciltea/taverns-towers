@@ -27,7 +27,12 @@ export default function SettlementFormBasics(){
         : null;
 
     const handleGenerateName = async () => {
-        const generatedName = await generateSettlementName();
+        const terrain = watch("terrain");
+        const tags = watch("tags");
+        const generatedName = await generateSettlementName({
+            terrain: Array.isArray(terrain) ? terrain : [terrain],
+            tags: Array.isArray(tags) ? tags : [tags],
+        });
         setValue("name", generatedName, { shouldValidate: true });
     };
 
