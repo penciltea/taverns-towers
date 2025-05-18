@@ -1,212 +1,536 @@
 [
   {
     "type": "prefix",
-    "value": "Silver",
-    "categories": ["tavern", "shop", "jeweler"],
-    "sightTypes": ["tavern", "shop"],
-    "terrains": ["mountains", "plains"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Trade Hub", "Capital"],
-    "weight": 2
-  },
-  {
-    "type": "prefix",
-    "value": "Golden",
-    "categories": ["tavern", "temple"],
-    "sightTypes": ["tavern", "temple"],
-    "terrains": ["desert", "plains"],
-    "climates": ["dry", "temperate"],
-    "tags": ["Sacred Site", "Ancient Ruins"],
-    "weight": 1
-  },
-  {
-    "type": "prefix",
-    "value": "Whispering",
-    "categories": ["hidden", "temple"],
-    "sightTypes": ["hidden", "temple"],
-    "terrains": ["forest", "swamp"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Hidden", "Druidic"],
-    "weight": 1
-  },
-  {
-    "type": "prefix",
-    "value": "Crescent",
-    "categories": ["residence", "temple"],
-    "sightTypes": ["residence", "temple"],
-    "terrains": ["coast", "river"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Sacred Site", "Fishing"],
+    "value": "Stone",
     "weight": 1
   },
   {
     "type": "prefix",
     "value": "Iron",
-    "categories": ["guild", "blacksmith", "armory"],
-    "sightTypes": ["guild", "shop"],
-    "terrains": ["mountains", "plains"],
-    "climates": ["continental", "temperate"],
-    "tags": ["Mining Camp", "Fortress"],
     "weight": 2
   },
   {
     "type": "prefix",
-    "value": "Mystic",
-    "categories": ["magic shop", "temple"],
-    "sightTypes": ["shop", "temple"],
-    "terrains": ["forest", "mountains"],
-    "climates": ["temperate", "tundra"],
-    "tags": ["Arcane Nexus", "Sacred Site"],
-    "weight": 3
-  },
-  {
-    "type": "prefix",
-    "value": "Twilight",
-    "categories": ["hidden", "entertainment"],
-    "sightTypes": ["hidden", "entertainment"],
-    "terrains": ["forest", "plains"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Hidden", "Nomadic"],
+    "value": "Silver",
     "weight": 1
   },
   {
     "type": "prefix",
-    "value": "Oak",
-    "categories": ["residence", "miscellaneous"],
-    "sightTypes": ["residence", "miscellaneous"],
-    "terrains": ["forest", "plains"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Overgrown", "Ancient Ruins"],
+    "value": "Golden",
     "weight": 2
   },
   {
     "type": "prefix",
-    "value": "Ember",
-    "categories": ["apothecary", "alchemist"],
-    "sightTypes": ["shop"],
-    "terrains": ["desert", "mountains"],
-    "climates": ["dry", "continental"],
-    "tags": ["Infested", "Arcane Nexus"],
-    "weight": 1
-  },
-  {
-    "type": "prefix",
-    "value": "Storm",
-    "categories": ["guild", "government"],
-    "sightTypes": ["guild", "government"],
-    "terrains": ["coast", "plains"],
-    "climates": ["temperate", "polar"],
-    "tags": ["Capital", "Garrison"],
+    "value": "Old",
     "weight": 2
   },
   {
     "type": "prefix",
-    "value": "Silent",
-    "categories": ["hidden", "residence"],
-    "sightTypes": ["hidden", "residence"],
-    "terrains": ["forest", "mountains"],
-    "climates": ["tundra", "temperate"],
-    "tags": ["Hidden", "Isolated"],
+    "value": "Creaking",
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Squeaking",
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Jeweled",
+    "weight": 2
+  },
+  {
+    "type": "prefix",
+    "value": "Whispering",
     "weight": 1
   },
   {
     "type": "suffix",
-    "value": "Flagon",
-    "categories": ["tavern"],
-    "sightTypes": ["tavern"],
-    "terrains": ["plains", "forest"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Trade Hub"],
+    "value": "Rest",
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Den",
     "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Roost",
+    "weight": 2
+  },
+  {
+    "type": "suffix",
+    "value": "Lodge",
+    "weight": 1
+  },
+  {
+    "type": "suffix",
+    "value": "Brew",
+    "weight": 1
   },
   {
     "type": "suffix",
     "value": "Sanctum",
-    "categories": ["temple", "hidden"],
-    "sightTypes": ["temple", "hidden"],
-    "terrains": ["swamp", "forest"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Hidden", "Sacred Site"],
+    "weight": 1
+  },
+  {
+    "type": "noun",
+    "value": "Candle",
+    "weight": 1
+  },
+  {
+    "type": "noun",
+    "value": "Flagon",
+    "weight": 1
+  },
+  {
+    "type": "noun",
+    "value": "Crown",
+    "weight": 1
+  },
+  {
+    "type": "noun",
+    "value": "Hearth",
     "weight": 2
   },
   {
-    "type": "suffix",
-    "value": "Hall",
-    "categories": ["guild", "government"],
-    "sightTypes": ["guild", "government"],
-    "terrains": ["plains", "mountains"],
-    "climates": ["continental", "temperate"],
-    "tags": ["Capital", "Fortress"],
-    "weight": 3
-  },
-  {
-    "type": "suffix",
-    "value": "Nook",
-    "categories": ["residence", "bookstore", "hidden"],
-    "sightTypes": ["residence", "shop", "hidden"],
-    "terrains": ["forest", "coast"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Hidden", "Isolated"],
-    "weight": 1
-  },
-  {
-    "type": "suffix",
-    "value": "Emporium",
-    "categories": ["shop"],
-    "sightTypes": ["shop"],
-    "terrains": ["plains", "coast"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Trade Hub"],
+    "type": "noun",
+    "value": "Stag",
     "weight": 2
   },
   {
-    "type": "suffix",
-    "value": "Manor",
-    "categories": ["residence"],
-    "sightTypes": ["residence"],
-    "terrains": ["plains", "forest"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Capital", "Sacred Site"],
+    "type": "noun",
+    "value": "Sword",
     "weight": 1
   },
   {
-    "type": "suffix",
-    "value": "Loom",
-    "categories": ["tailor", "weaver"],
+    "type": "noun",
+    "value": "Bell",
+    "weight": 2
+  },
+  {
+    "type": "noun",
+    "value": "Lantern",
+    "weight": 1
+  },
+  {
+    "type": "noun",
+    "value": "Scroll",
+    "weight": 2
+  },
+  {
+    "type": "person",
+    "value": "Elira",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Thorn",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Bran",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Myla",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Teren",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Jorra",
+    "weight": 1
+  },
+  {
+    "type": "person",
+    "value": "Kaelen",
+    "weight": 1
+  },
+  {
+    "value": "Bakery",
+    "weight": 1,
     "sightTypes": ["shop"],
-    "terrains": ["plains", "forest"],
-    "climates": ["temperate", "continental"],
-    "tags": ["Trade Hub"],
-    "weight": 1
+    "shopType": "Bakery"
+  },
+  {
+    "value": "Blacksmith",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": "Blacksmith"
+  },
+  {
+    "value": "Apothecary",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": "Apothecary"
+  },
+  {
+    "value": "Bookstore",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": "Bookstore"
+  },
+  {
+    "value": "Jeweler",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": "Jeweler"
+  },
+  {
+    "value": "Tailor",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": "Tailor"
+  },
+  {
+    "type": "prefix",
+    "value": "Sacred",
+    "weight": 2,
+    "sightTypes": ["temple"]
   },
   {
     "type": "suffix",
+    "value": "Divine",
+    "weight": 1,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "noun",
+    "value": "Light",
+    "weight": 2,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "noun",
+    "value": "Vow",
+    "weight": 1,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "prefix",
+    "value": "Crimson",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "suffix",
+    "value": "Order",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "noun",
+    "value": "Hammer",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "noun",
+    "value": "Oath",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "prefix",
+    "value": "Rusty",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Blacksmith", "Armory"]
+  },
+  {
+    "type": "noun",
+    "value": "Crate",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Alchemist", "Carpenter", "Other"]
+  },
+  {
+    "type": "suffix",
+    "value": "Wagon",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Carpenter", "Other"]
+  },
+  {
+    "type": "noun",
     "value": "Anvil",
-    "categories": ["blacksmith", "armory"],
+    "weight": 2,
     "sightTypes": ["shop"],
-    "terrains": ["mountains", "plains"],
-    "climates": ["continental", "temperate"],
-    "tags": ["Mining Camp", "Fortress"],
-    "weight": 2
+    "shopType": ["Blacksmith", "Armory"]
   },
   {
     "type": "suffix",
-    "value": "Coven",
-    "categories": ["magic shop", "alchemist"],
+    "value": "Forge",
+    "weight": 2,
     "sightTypes": ["shop"],
-    "terrains": ["forest", "swamp"],
-    "climates": ["temperate", "tropical"],
-    "tags": ["Arcane Nexus"],
-    "weight": 2
+    "shopType": ["Blacksmith", "Magic", "Armory"]
+  },
+  {
+    "type": "noun",
+    "value": "Needle",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": ["Tailor", "Magic", "Other"]
+  },
+  {
+    "type": "noun",
+    "value": "Thread",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Tailor", "Magic", "Other"]
   },
   {
     "type": "suffix",
-    "value": "Keep",
-    "categories": ["government", "guild"],
-    "sightTypes": ["government", "guild"],
-    "terrains": ["mountains", "plains"],
-    "climates": ["continental", "temperate"],
-    "tags": ["Fortress", "Garrison"],
-    "weight": 2
+    "value": "Stitch",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Tailor", "Magic", "Other"]
+  },
+  {
+    "type": "noun",
+    "value": "Quill",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Magic", "Bookstore", "Other"]
+  },
+  {
+    "type": "suffix",
+    "value": "Tome",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": ["Magic", "Alchemist", "Apothecary", "Other"]
+  },
+  {
+    "type": "noun",
+    "value": "Shield",
+    "weight": 2,
+    "sightTypes": ["shop"],
+    "shopType": ["Blacksmith", "Armory", "Carpenter", "Other"]
+  },
+  {
+    "type": "suffix",
+    "value": "Bulwark",
+    "weight": 1,
+    "sightTypes": ["shop"],
+    "shopType": ["General", "Blacksmith", "Armory", "Carpenter", "Other"]
+  },
+  {
+    "type": "prefix",
+    "value": "Laughing",
+    "weight": 2,
+    "sightTypes": ["entertainment"]
+  },
+  {
+    "type": "suffix",
+    "value": "Stage",
+    "weight": 1,
+    "sightTypes": ["entertainment"]
+  },
+  { "type": "prefix", "value": "Herbal", "weight": 2, "sightTypes": ["shop"], "shopType": ["Apothecary"] },
+  { "type": "noun", "value": "Salve", "weight": 1, "sightTypes": ["shop"], "shopType": ["Apothecary"] },
+  { "type": "noun", "value": "Remedy", "weight": 2, "sightTypes": ["shop"], "shopType": ["Apothecary"] },
+  { "type": "suffix", "value": "Cure", "weight": 1, "sightTypes": ["shop"], "shopType": ["Apothecary"] },
+  { "type": "prefix", "value": "Golden", "weight": 1, "sightTypes": ["shop"], "shopType": ["Alchemist"] },
+  { "type": "noun", "value": "Elixir", "weight": 2, "sightTypes": ["shop"], "shopType": ["Alchemist"] },
+  { "type": "noun", "value": "Crucible", "weight": 1, "sightTypes": ["shop"], "shopType": ["Alchemist"] },
+  { "type": "suffix", "value": "Distillery", "weight": 1, "sightTypes": ["shop"], "shopType": ["Alchemist"] },
+  { "type": "prefix", "value": "Gilded", "weight": 2, "sightTypes": ["shop"], "shopType": ["Jeweler"] },
+  { "type": "noun", "value": "Gem", "weight": 2, "sightTypes": ["shop"], "shopType": ["Jeweler"] },
+  { "type": "noun", "value": "Trinket", "weight": 1, "sightTypes": ["shop"], "shopType": ["Jeweler"] },
+  { "type": "suffix", "value": "Treasure", "weight": 1, "sightTypes": ["shop"], "shopType": ["Jeweler"] },
+  { "type": "prefix", "value": "Sweet", "weight": 2, "sightTypes": ["shop"], "shopType": ["Bakery"] },
+  { "type": "noun", "value": "Crust", "weight": 2, "sightTypes": ["shop"], "shopType": ["Bakery"] },
+  { "type": "noun", "value": "Loaf", "weight": 1, "sightTypes": ["shop"], "shopType": ["Bakery"] },
+  { "type": "suffix", "value": "Oven", "weight": 1, "sightTypes": ["shop"], "shopType": ["Bakery"] },
+  { "type": "prefix", "value": "Mystic", "weight": 2, "sightTypes": ["shop"], "shopType": ["Magic"] },
+  { "type": "noun", "value": "Wand", "weight": 2, "sightTypes": ["shop"], "shopType": ["Magic"] },
+  { "type": "noun", "value": "Sigil", "weight": 1, "sightTypes": ["shop"], "shopType": ["Magic"] },
+  { "type": "suffix", "value": "Arcana", "weight": 1, "sightTypes": ["shop"], "shopType": ["Magic"] },
+  { "type": "prefix", "value": "Bound", "weight": 2, "sightTypes": ["shop"], "shopType": ["Bookstore"] },
+  { "type": "noun", "value": "Tome", "weight": 2, "sightTypes": ["shop"], "shopType": ["Bookstore"] },
+  { "type": "noun", "value": "Scroll", "weight": 1, "sightTypes": ["shop"], "shopType": ["Bookstore"] },
+  { "type": "suffix", "value": "Ink", "weight": 1, "sightTypes": ["shop"], "shopType": ["Bookstore"] },
+  { "type": "prefix", "value": "Curious", "weight": 2, "sightTypes": ["shop"], "shopType": ["Other"] },
+  { "type": "noun", "value": "Oddity", "weight": 2, "sightTypes": ["shop"], "shopType": ["Other"] },
+  { "type": "noun", "value": "Find", "weight": 1, "sightTypes": ["shop"], "shopType": ["Other"] },
+  { "type": "suffix", "value": "Bazaar", "weight": 1, "sightTypes": ["shop"], "shopType": ["Other"] },
+  { "type": "prefix", "value": "Iron", "weight": 2, "sightTypes": ["government"], "buildingType": "castle" },
+  { "type": "prefix", "value": "High", "weight": 2, "sightTypes": ["government"], "buildingType": "castle" },
+  { "type": "noun", "value": "Keep", "weight": 2, "sightTypes": ["government"], "buildingType": "castle" },
+  { "type": "noun", "value": "Citadel", "weight": 1, "sightTypes": ["government"], "buildingType": "castle" },
+  { "type": "suffix", "value": "Hold", "weight": 1, "sightTypes": ["government"], "buildingType": "castle" },
+  { "type": "prefix", "value": "Steel", "weight": 2, "sightTypes": ["government"], "buildingType": "guard" },
+  { "type": "prefix", "value": "Watch", "weight": 1, "sightTypes": ["government"], "buildingType": "guard" },
+  { "type": "noun", "value": "Garrison", "weight": 2, "sightTypes": ["government"], "buildingType": "guard" },
+  { "type": "noun", "value": "Post", "weight": 1, "sightTypes": ["government"], "buildingType": "guard" },
+  { "type": "suffix", "value": "Wall", "weight": 1, "sightTypes": ["government"], "buildingType": "guard" },
+  { "type": "prefix", "value": "Civic", "weight": 1, "sightTypes": ["government"], "buildingType": "office" },
+  { "type": "prefix", "value": "Granite", "weight": 1, "sightTypes": ["government"], "buildingType": "office" },
+  { "type": "noun", "value": "Hall", "weight": 2, "sightTypes": ["government"], "buildingType": "office" },
+  { "type": "noun", "value": "Council", "weight": 1, "sightTypes": ["government"], "buildingType": "office" },
+  { "type": "suffix", "value": "Chambers", "weight": 1, "sightTypes": ["government"], "buildingType": "office" },
+  { "type": "prefix", "value": "Lawkeeper's", "weight": 1, "sightTypes": ["government"], "buildingType": "court" },
+  { "type": "prefix", "value": "Silver", "weight": 1, "sightTypes": ["government"], "buildingType": "court" },
+  { "type": "noun", "value": "Tribunal", "weight": 2, "sightTypes": ["government"], "buildingType": "court" },
+  { "type": "noun", "value": "Embassy", "weight": 1, "sightTypes": ["government"], "buildingType": "court" },
+  { "type": "suffix", "value": "Seat", "weight": 1, "sightTypes": ["government"], "buildingType": "court" },
+
+
+
+
+
+
+
+  {
+    "type": "format",
+    "value": "{{noun}} & {{noun}}",
+    "weight": 2,
+    "sightTypes": [
+      "shop",
+      "tavern",
+      "temple"
+    ]
+  },
+  {
+    "type": "format",
+    "value": "The {{prefix}} {{ suffix | noun }}",
+    "weight": 1,
+    "sightTypes": [
+      "shop",
+      "tavern",
+      "temple"
+    ]
+  },
+  {
+    "type": "format",
+    "value": "{{person}}'s {{storeType}}",
+    "weight": 2,
+    "sightTypes": [
+      "shop",
+      "tavern"
+    ]
+  },
+  {
+    "type": "format",
+    "value": "The {{storeType}} of {{prefix}}",
+    "weight": 2,
+    "sightTypes": [
+      "shop",
+      "tavern",
+      "temple"
+    ]
+  },
+  {
+    "type": "format",
+    "value": "The {{noun}} and the {{noun}}",
+    "weight": 2,
+    "sightTypes": [
+      "shop",
+      "tavern"
+    ]
+  },
+  {
+    "type": "format",
+    "value": "Hall of the {{noun}}",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "The {{prefix}} Guild",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "Guild of the {{noun}}",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "{{person}}'s Circle",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "Hall of the {{noun}}",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "The {{prefix}} Guild",
+    "weight": 2,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "Guild of the {{noun}}",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "{{person}}'s Circle",
+    "weight": 1,
+    "sightTypes": ["guild"]
+  },
+  {
+    "type": "format",
+    "value": "The Hall of {{noun}}",
+    "weight": 2,
+    "sightTypes": ["government"]
+  },
+  {
+    "type": "format",
+    "value": "The {{prefix}} Council",
+    "weight": 1,
+    "sightTypes": ["government"]
+  },
+  {
+    "type": "format",
+    "value": "{{prefix}} Keep",
+    "weight": 1,
+    "sightTypes": ["government"]
+  },
+  {
+    "type": "format",
+    "value": "The Office of the {{noun}}",
+    "weight": 1,
+    "sightTypes": ["government"]
+  },
+  {
+    "type": "format",
+    "value": "Temple of the {{noun}}",
+    "weight": 2,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "format",
+    "value": "Shrine of {{person}}",
+    "weight": 1,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "format",
+    "value": "The {{prefix}} Sanctum",
+    "weight": 1,
+    "sightTypes": ["temple"]
+  },
+  {
+    "type": "format",
+    "value": "Sanctuary of the {{noun}}",
+    "weight": 1,
+    "sightTypes": ["temple"]
   }
 ]

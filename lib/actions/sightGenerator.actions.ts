@@ -26,5 +26,11 @@ export async function generateSightName({
       typeof f.type === "string" && typeof f.value === "string"
   );
 
-  return generateSightNameFromFragments(fragments, { category, tags });
+  return generateSightNameFromFragments(fragments, {
+    category,
+    sightType,
+    terrain,
+    climate,
+    tags,
+  });
 }
