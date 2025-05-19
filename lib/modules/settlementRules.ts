@@ -11,10 +11,22 @@ import {
 import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../util/randomValues";
 import { GenerateSettlementInput } from "@/schemas/generateSettlement.schema";
-import { GeneratedSettlementFields } from "@/interfaces/settlementGenerator.interface";
+import { Settlement } from "@/interfaces/settlement.interface";
 import { generateSettlementName } from "../actions/settlementGenerator.actions";
+import { CommonInterface } from "@/interfaces/common.interface";
 
-function normalizeInput(data: GenerateSettlementInput): GeneratedSettlementFields {
+type NormalizedSettlementInput = Omit<Settlement, keyof CommonInterface | 'isPublic'> & {
+  size: string;
+  terrain: string[];
+  tags: string[];
+  climate: string;
+  magic: string;
+  rulingStyle: string;
+  wealth: string;
+  crime: string[];
+};
+
+function normalizeInput(data: GenerateSettlementInput): NormalizedSettlementInput {
   return {
     ...data,
     size: data.size || "random",
@@ -28,8 +40,9 @@ function normalizeInput(data: GenerateSettlementInput): GeneratedSettlementField
   };
 }
 
+
 // Logic for setting Size if set to "random"
-function applySizeRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
+function applySizeRule(data: ReturnType<typeof normalizeInput>): NormalizedSettlementInput {
   if (data.size === "random") {
     data.size = getRandom(SIZE_TYPES);
   }
@@ -37,7 +50,7 @@ function applySizeRule(data: ReturnType<typeof normalizeInput>): GeneratedSettle
 }
 
 // Logic for setting Climate if set to "random"
-function applyClimateRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
+function applyClimateRule(data: ReturnType<typeof normalizeInput>): NormalizedSettlementInput {
     if(data.climate === "random"){
         data.climate = getRandom(CLIMATE_TYPES);
     }
@@ -46,8 +59,8 @@ function applyClimateRule(data: ReturnType<typeof normalizeInput>): GeneratedSet
 
 // Logic for setting wealth levels by population size
 
-function applyWealthRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
-  if (data.size !== "random" && data.wealth === "random") {
+function applyWealthRule(data: ReturnType<typeof normalizeInput>): NormalizedSettlementInput {
+  if (data.size && data.size !== "random" && data.wealth === "random") {
     const options = WealthBySize[data.size] ?? WEALTH_LEVELS;
     data.wealth = getRandom(options);
   }
@@ -55,8 +68,8 @@ function applyWealthRule(data: ReturnType<typeof normalizeInput>): GeneratedSett
 }
 
 // Logic for setting Magic use/levels based off settlement wealth
-export function applyMagicByWealthRule(data: ReturnType<typeof normalizeInput>): GeneratedSettlementFields {
-  if (data.wealth !== "random" && data.magic === "random") {
+export function applyMagicByWealthRule(data: ReturnType<typeof normalizeInput>): NormalizedSettlementInput {
+  if (data.wealth && data.wealth !== "random" && data.magic === "random") {
     const options = MagicByWealth[data.wealth] || MAGIC_LEVELS;
     data.magic = getRandom(options);
   }
@@ -65,8 +78,8 @@ export function applyMagicByWealthRule(data: ReturnType<typeof normalizeInput>):
 
 // Logic for removing incompatible terrain types based on the climate
 
-function applyTerrainBlacklistRule(data: GeneratedSettlementFields): GeneratedSettlementFields {
-  if (data.climate !== "random" && data.terrain.includes("random")) {
+function applyTerrainBlacklistRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (data.climate && data.terrain && data.climate !== "random" && data.terrain.includes("random")) {
     const blacklist = TerrainBlacklistByClimate[data.climate] || [];
     const validTerrains = TERRAIN_TYPES.filter((terrain) => !blacklist.includes(terrain));
     data.terrain = [getRandom(validTerrains)];
@@ -76,8 +89,8 @@ function applyTerrainBlacklistRule(data: GeneratedSettlementFields): GeneratedSe
 
 // Logic for adding tags based on terrain type
 
-function applyTagsByTerrainRule(data: GeneratedSettlementFields): GeneratedSettlementFields {
-  if (data.tags.includes("random")) {
+function applyTagsByTerrainRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (data.tags && data.terrain && data.tags.includes("random")) {
     const derivedTags: string[] = [];
 
     for (const terrain of data.terrain) {
@@ -96,8 +109,8 @@ function applyTagsByTerrainRule(data: GeneratedSettlementFields): GeneratedSettl
 
 // Logic for applying criminal activies by wealth
 
-function applyCrimeByWealthRule(data: GeneratedSettlementFields): GeneratedSettlementFields {
-  if (data.crime.includes("random") && typeof data.wealth === "string") {
+function applyCrimeByWealthRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (data.crime && data.crime.includes("random") && typeof data.wealth === "string") {
     const possibleCrimes = CrimesByWealth[data.wealth] ?? CRIMINAL_ACTIVITY_TYPES;
     const subset = getRandomSubset(possibleCrimes, getRandom([1, 2, 3]));
     data.crime = Array.from(new Set(subset));
@@ -107,8 +120,8 @@ function applyCrimeByWealthRule(data: GeneratedSettlementFields): GeneratedSettl
 
 // Logic for applying ruling style by settlement size
 
-function applyRulingStyleBySizeRule(data: GeneratedSettlementFields): GeneratedSettlementFields {
-  if (data.size !== "random" && data.rulingStyle === "random") {
+function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (data.size && data.size !== "random" && data.rulingStyle === "random") {
     const options = RulingBySize[data.size] || RULING_TYPES;
     data.rulingStyle = getRandom(options);
   }
@@ -116,7 +129,7 @@ function applyRulingStyleBySizeRule(data: GeneratedSettlementFields): GeneratedS
 }
 
 // set fields based off logic above for any fields with "random" as their value
-export const generateSettlementValues = (input: GeneratedSettlementFields) => {
+export const generateSettlementValues = (input: NormalizedSettlementInput) => {
   return [
     normalizeInput,
     applySizeRule,
@@ -130,7 +143,7 @@ export const generateSettlementValues = (input: GeneratedSettlementFields) => {
   ].reduce((data, fn) => fn(data), input);
 };
 
-export const generateSettlementWithName = async (input: GeneratedSettlementFields) => {
+export const generateSettlementWithName = async (input: NormalizedSettlementInput) => {
   const coreData = generateSettlementValues(input);
 
   const name = await generateSettlementName({

@@ -14,13 +14,13 @@ import { generateSettlementWithName } from '@/lib/modules/settlementRules';
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { useUIStore } from '@/store/uiStore';
 import GenerateSettlementPreview from '@/components/Settlement/generateSettlementPreview';
-import { GeneratedSettlementFields } from '@/interfaces/settlementGenerator.interface';
+import { Settlement } from '@/interfaces/settlement.interface';
 
 
 export default function GenerateSettlementPage() {
   const router = useRouter();
   const { isSubmitting, showErrorDialog } = useUIStore();
-  const [previewData, setPreviewData] = useState<GeneratedSettlementFields | null>(null); // for generator preview
+  const [previewData, setPreviewData] = useState<Settlement | null>(null); // for generator preview
 
   const {
     register,

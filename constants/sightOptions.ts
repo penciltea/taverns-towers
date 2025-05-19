@@ -59,7 +59,7 @@ export const SHOP_TYPES = [
   "Tailor",
   "Bookstore",
   "Jeweler",
-  "Magic Shop",
+  "Magic",
   "Armory",
   "Alchemist",
   "Carpenter",
