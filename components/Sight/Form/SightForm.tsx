@@ -16,9 +16,9 @@ type SightFormProps = {
   onSubmit: (data: SightFormData) => void;
   mode: "add" | "edit" | null;
   settlementContext: {
-    terrain: string[];
-    climate: string;
-    tags: string[];
+    terrain: string[] | undefined;
+    climate: string | undefined;
+    tags: string[] | undefined;
   };
 };
 

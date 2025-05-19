@@ -36,7 +36,12 @@ function filterByAttributes(
         return false;
       }
 
-      // For all other formats, ignore f.sightTypes to allow use anywhere
+      // For all other formats:
+      // - If sightTypes is defined, enforce a match
+      // - If not, allow for any sightType
+      if (f.sightTypes && sightType && !f.sightTypes.includes(sightType)) {
+        return false;
+      }
     }
 
     // Generic matching for all other types
@@ -158,7 +163,7 @@ export function generateSightNameFromFragments(
     //suffixOrNoun: suffixOrNounFragments,
     //person: grouped.person,
     //storeType: grouped.storeType,
-    //format: grouped.format,
+    format: grouped.format,
     //noun: grouped.noun,
   });
 
