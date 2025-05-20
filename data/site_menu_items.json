@@ -1,0 +1,1304 @@
+{
+  "general_store": [
+    {
+      "name": "Traveler's Rations (1 week)",
+      "description": "A bundle of dried meats, nuts, and hardtack suitable for a week's travel.",
+      "category": "Wares",
+      "price": "5sp",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Border Post"
+      ]
+    },
+    {
+      "name": "Simple Bedroll",
+      "description": "A coarse wool bedroll, suitable for roadside camps and barn floors.",
+      "category": "Wares",
+      "price": "3sp",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Forest"
+      ],
+      "tags": [
+        "Nomadic",
+        "Remote"
+      ]
+    },
+    {
+      "name": "Lantern Oil Flask",
+      "description": "A small ceramic bottle of thick lantern oil with a cork stopper.",
+      "category": "Wares",
+      "price": "1sp",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Desert",
+        "Swamp"
+      ],
+      "tags": [
+        "Garrison",
+        "Mining Camp"
+      ]
+    },
+    {
+      "name": "Twine and Hooks Set",
+      "description": "Basic kit for fishing or light repairs. Contains hemp twine and two iron hooks.",
+      "category": "Wares",
+      "price": "2sp",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "name": "Sooty Flint and Steel",
+      "description": "Worn but functional tools for fire starting, stained from long use.",
+      "category": "Wares",
+      "price": "1sp",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Weathered"
+      ]
+    },
+    {
+        "name": "Traveler's Rations (1 day)",
+        "description": "A bundle of dried meat, hardtack, and dried fruit. Keeps well.",
+        "category": "Wares",
+        "price": "5sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Common Lantern",
+        "description": "A simple oil lantern with a protective glass casing.",
+        "category": "Wares",
+        "price": "2gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Ink & Quill Set",
+        "description": "Basic black ink and a goose-feather quill for writing letters and records.",
+        "category": "Wares",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "blacksmith": [
+    {
+      "name": "Reinforced Horseshoes",
+      "description": "Heavy-duty shoes suited for travel across rocky or icy terrain.",
+      "category": "Wares",
+      "price": "4sp",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Tundra"
+      ],
+      "tags": [
+        "Fortress",
+        "Trade Hub"
+      ]
+    },
+    {
+      "name": "Blade Sharpening Service",
+      "description": "Quick honing of blades while you wait. Doesn't repair major damage.",
+      "category": "Service",
+      "price": "2sp",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": [
+        "Garrison",
+        "Rundown"
+      ]
+    },
+    {
+      "name": "Iron Nails (10 count)",
+      "description": "Useful for construction, carpentry, and quick repairs.",
+      "category": "Wares",
+      "price": "1sp",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Renovated",
+        "Capital"
+      ]
+    },
+    {
+      "name": "Custom Blade Forging",
+      "description": "Commission a personalized weapon, balanced and etched with unique markings.",
+      "category": "Service",
+      "price": "15gp",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Desert",
+        "Forest"
+      ],
+      "tags": [
+        "Well-kept",
+        "Opulent"
+      ]
+    },
+    {
+      "name": "Rusty Short Sword",
+      "description": "A functional but aged blade\u2014cheap and best suited for emergencies.",
+      "category": "Wares",
+      "price": "1gp",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains"
+      ],
+      "tags": [
+        "Rundown",
+        "Criminal Hideout"
+      ]
+    },
+    {
+        "name": "Iron Nails (10 count)",
+        "description": "Standard nails used for repairs or construction.",
+        "category": "Wares",
+        "price": "1sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Tool Sharpening",
+        "description": "Sharpen weapons, farming tools, or kitchen blades.",
+        "category": "Service",
+        "price": "2sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Horseshoe Fitting",
+        "description": "Proper fitting and nailing of horseshoes for one mount.",
+        "category": "Service",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "apothecary": [
+    {
+      "name": "Poultice of Mending",
+      "description": "A herbal compress that accelerates the healing of cuts and bruises.",
+      "category": "Wares",
+      "price": "5sp",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Forest",
+        "Swamp"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
+    },
+    {
+      "name": "Soothing Vapors",
+      "description": "A clay jar filled with a balm that can be burned to relieve headaches and nausea.",
+      "category": "Wares",
+      "price": "8sp",
+      "climate": [
+        "Dry",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Desert"
+      ],
+      "tags": [
+        "Remote",
+        "Isolated"
+      ]
+    },
+    {
+      "name": "Poison Antidote (Basic)",
+      "description": "A quick-acting remedy for common natural toxins.",
+      "category": "Wares",
+      "price": "1gp",
+      "climate": [
+        "Tropical",
+        "Continental"
+      ],
+      "terrain": [
+        "Jungle",
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Border Post"
+      ]
+    },
+    {
+      "name": "Custom Herbal Mix",
+      "description": "Prepared on request to treat personalized symptoms and ailments.",
+      "category": "Service",
+      "price": "2gp",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Forest",
+        "River"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Modest"
+      ]
+    },
+    {
+      "name": "Wolfsbane Tincture",
+      "description": "A dangerous concoction used carefully under expert supervision.",
+      "category": "Wares",
+      "price": "3gp",
+      "climate": [
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra",
+        "Mountains"
+      ],
+      "tags": [
+        "Hidden",
+        "Arcane Nexus"
+      ]
+    },
+    {
+        "name": "Herbal Poultice",
+        "description": "Reduces swelling and helps close minor wounds. Not magical.",
+        "category": "Wares",
+        "price": "5sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Tonic for Indigestion",
+        "description": "Bitter herbal brew to soothe the stomach after travel or rich food.",
+        "category": "Wares",
+        "price": "3sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Custom Remedy Consultation",
+        "description": "Speak with an herbalist about a custom treatment mix.",
+        "category": "Service",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "bakery": [
+    {
+      "name": "Stoneground Barley Loaf",
+      "description": "A dense and filling bread, popular in highland villages.",
+      "category": "Food",
+      "price": "2cp",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Rundown",
+        "Modest"
+      ]
+    },
+    {
+      "name": "Spiced Honey Cake",
+      "description": "A sweet treat made with rare jungle spices and local honey.",
+      "category": "Food",
+      "price": "5sp",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "Swamp"
+      ],
+      "tags": [
+        "Overgrown",
+        "Trade Hub"
+      ]
+    },
+    {
+      "name": "River Berry Tart",
+      "description": "A flaky tart filled with vibrant local berries and glazed with syrup.",
+      "category": "Food",
+      "price": "3sp",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Capital"
+      ]
+    },
+    {
+      "name": "Traveler\u2019s Biscuits (Pack of 6)",
+      "description": "Hard biscuits that keep for weeks\u2014ideal for long journeys.",
+      "category": "Food",
+      "price": "1sp",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Nomadic",
+        "Border Post"
+      ]
+    },
+    {
+      "name": "Enchanted Flour Sifting (Service)",
+      "description": "Bakery enchantment removes impurities from large flour sacks for fine baking.",
+      "category": "Service",
+      "price": "1gp",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Coast"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Well-kept"
+      ]
+    },
+    {
+        "name": "Fresh Loaf of Bread",
+        "description": "Simple, warm, crusty bread baked fresh daily.",
+        "category": "Food",
+        "price": "2cp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Sweet Pastry",
+        "description": "A delicate treat filled with jam or honey.",
+        "category": "Food",
+        "price": "6cp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Bakery Sampler Basket",
+        "description": "A mixed bundle of breads, rolls, and sweets. Great for groups.",
+        "category": "Food",
+        "price": "1sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "tavern": [
+    {
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Beverage",
+      "price": "1gp",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Beverage",
+      "price": "8sp",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
+    },
+    {
+        "name": "Smoked Salted Fish",
+        "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+        "category": "Food",
+        "price": "4sp",
+        "climate": ["Temperate", "Continental", "Polar"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Fishing", "Port", "Trade Hub"]
+    },
+    {
+        "name": "Honey-Glazed Roast Venison",
+        "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+        "category": "Food",
+        "price": "1gp 5sp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Mountains"],
+        "tags": ["Hunting", "Well-kept", "Capital"]
+    },
+    {
+        "name": "Spiced Jungle Fruit Stew",
+        "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
+        "category": "Food",
+        "price": "6sp",
+        "climate": ["Tropical"],
+        "terrain": ["Jungle"],
+        "tags": ["Nomadic", "Rundown"]
+    },
+    {
+        "name": "Mountain Goat Cheese Platter",
+        "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+        "category": "Food",
+        "price": "8sp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains"],
+        "tags": ["Trade Hub", "Garrison"]
+    },
+    {
+        "name": "Barley Ale",
+        "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+        "category": "Beverage",
+        "price": "3sp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "River"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "name": "Spiced Citrus Mead",
+        "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+        "category": "Beverage",
+        "price": "1gp",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast"],
+        "tags": ["Port", "Well-kept"]
+    },
+    {
+        "name": "Herbal Tea Blend",
+        "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+        "category": "Beverage",
+        "price": "2sp",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Desert"],
+        "tags": ["Druidic", "Sacred Site"]
+    },
+    {
+        "name": "Honey Ale",
+        "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+        "category": "Beverage",
+        "price": "4sp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Plains"],
+        "tags": ["Modest", "Trade Hub"]
+    },
+    {
+        "name": "Rustic Vegetable Pie",
+        "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+        "category": "Food",
+        "price": "5sp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "Forest"],
+        "tags": ["Rundown", "Modest"]
+    },
+    {
+        "name": "Spiced Goat Milk Cheese",
+        "description": "Fresh goat cheese with a hint of exotic spices, common in mountain inns.",
+        "category": "Food",
+        "price": "7sp",
+        "climate": ["Temperate"],
+        "terrain": ["Mountains"],
+        "tags": ["Modest", "Garrison"]
+    }
+  ],
+  "temple": [
+    {
+      "name": "Cleansing Ritual",
+      "description": "A purification rite performed by acolytes to cleanse minor curses and afflictions.",
+      "category": "Service",
+      "price": "5gp",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Druidic"
+      ]
+    },
+    {
+      "name": "Funerary Blessing",
+      "description": "A solemn rite to ensure the departed safely reach the afterlife.",
+      "category": "Service",
+      "price": "2gp",
+      "climate": [
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Mountains",
+        "Tundra"
+      ],
+      "tags": [
+        "Capital",
+        "Remote"
+      ]
+    },
+    {
+      "name": "Minor Healing",
+      "description": "Basic divine healing for minor injuries and common ailments.",
+      "category": "Service",
+      "price": "1gp",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
+    },
+    {
+      "name": "Blessing of Safe Travel",
+      "description": "A priest calls upon their deity to protect travelers from danger.",
+      "category": "Service",
+      "price": "3gp",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Desert",
+        "Coast"
+      ],
+      "tags": [
+        "Nomadic",
+        "Port"
+      ]
+    },
+    {
+      "name": "Remove Disease",
+      "description": "A holy rite that cures mundane illnesses or plagues, if caught early.",
+      "category": "Service",
+      "price": "10gp",
+      "climate": [
+        "Tropical",
+        "Continental"
+      ],
+      "terrain": [
+        "Swamp",
+        "Jungle"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Overgrown"
+      ]
+    }
+  ],
+  "tailor": [
+    {
+      "name": "Stitched Travel Cloak",
+      "description": "A weather-resistant cloak with a deep hood, perfect for long journeys.",
+      "category": "Wares",
+      "price": "8sp",
+      "climate": ["Temperate", "Dry"],
+      "terrain": ["Plains", "Desert"],
+      "tags": ["Nomadic", "Border Post"]
+    },
+    {
+      "name": "Silk Gown with Embroidery",
+      "description": "Elegant evening wear adorned with regional patterns and trim.",
+      "category": "Wares",
+      "price": "15gp",
+      "climate": ["Temperate"],
+      "terrain": ["Coast", "Plains"],
+      "tags": ["Capital", "Opulent"]
+    },
+    {
+      "name": "Woolen Undergarments",
+      "description": "Warm, coarse underlayers favored in colder regions.",
+      "category": "Wares",
+      "price": "6sp",
+      "climate": ["Polar", "Continental"],
+      "terrain": ["Mountains", "Tundra"],
+      "tags": ["Rundown", "Mining Camp"]
+    },
+    {
+      "name": "Custom Fitting Service",
+      "description": "Tailor-made fitting and adjustments to existing garments.",
+      "category": "Service",
+      "price": "2gp",
+      "climate": ["Temperate", "Dry"],
+      "terrain": ["Plains", "Forest"],
+      "tags": ["Well-kept", "Trade Hub"]
+    },
+    {
+      "name": "Festive Mask (Cloth)",
+      "description": "A simple painted mask worn during regional festivals.",
+      "category": "Wares",
+      "price": "1sp",
+      "climate": ["Tropical", "Temperate"],
+      "terrain": ["River", "Forest"],
+      "tags": ["Sacred Site", "Hidden"]
+    },
+    {
+        "name": "Common Tunic",
+        "description": "A well-made but plain tunic in neutral colors.",
+        "category": "Wares",
+        "price": "5sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Simple Cloak",
+        "description": "A basic cloak, good for travel and protection from the elements.",
+        "category": "Wares",
+        "price": "8sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Clothing Repair",
+        "description": "Mending or patching of worn garments.",
+        "category": "Service",
+        "price": "2sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "bookstore": [
+    {
+      "name": "Local Bestiary (Volume I)",
+      "description": "Descriptions and sketches of common wildlife and magical beasts.",
+      "category": "Wares",
+      "price": "2gp",
+      "climate": ["Tropical", "Temperate"],
+      "terrain": ["Jungle", "Forest"],
+      "tags": ["Druidic", "Infested"]
+    },
+    {
+      "name": "History of the Silver Marches",
+      "description": "A thick tome chronicling the rise and fall of a noble elven realm.",
+      "category": "Wares",
+      "price": "3gp",
+      "climate": ["Continental", "Temperate"],
+      "terrain": ["Mountains", "Plains"],
+      "tags": ["Ancient Ruins", "Capital"]
+    },
+    {
+      "name": "Scroll Copying (Service)",
+      "description": "Accurate transcription of arcane or divine scrolls by trained scribes.",
+      "category": "Service",
+      "price": "1gp per scroll",
+      "climate": ["Dry", "Temperate"],
+      "terrain": ["Plains", "River"],
+      "tags": ["Arcane Nexus", "Well-kept"]
+    },
+    {
+      "name": "Pilgrim’s Prayerbook",
+      "description": "A portable booklet of hymns and protective verses for travelers.",
+      "category": "Wares",
+      "price": "7sp",
+      "climate": ["Polar", "Temperate"],
+      "terrain": ["Tundra", "Coast"],
+      "tags": ["Sacred Site", "Remote"]
+    },
+    {
+      "name": "Children’s Fables of the Fey",
+      "description": "Illustrated stories based on ancient forest spirits and tricksters.",
+      "category": "Wares",
+      "price": "5sp",
+      "climate": ["Temperate", "Tropical"],
+      "terrain": ["Forest", "Swamp"],
+      "tags": ["Overgrown", "Hidden"]
+    },
+    {
+        "name": "Blank Journal",
+        "description": "A leather-bound journal for sketches or notes.",
+        "category": "Wares",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Common Tales & Legends",
+        "description": "A small book of folklore and stories known throughout the realm.",
+        "category": "Wares",
+        "price": "8sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Copying Services",
+        "description": "Hire a scribe to copy a document or book.",
+        "category": "Service",
+        "price": "2gp per page",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "jeweler": [
+    {
+      "name": "Silver Filigree Ring",
+      "description": "A delicate silver ring with intricate scrollwork, popular among travelers and lovers.",
+      "category": "Wares",
+      "price": "10gp",
+      "climate": ["Temperate", "Dry"],
+      "terrain": ["Plains", "Coast"],
+      "tags": ["Trade Hub", "Capital"]
+    },
+    {
+      "name": "Gem Appraisal (Service)",
+      "description": "A certified valuation of precious stones and gems.",
+      "category": "Service",
+      "price": "2gp",
+      "climate": ["Continental", "Dry"],
+      "terrain": ["Mountains", "Desert"],
+      "tags": ["Fortress", "Well-kept"]
+    },
+    {
+      "name": "Runestone Pendant",
+      "description": "A polished gem carved with a minor magical rune of protection.",
+      "category": "Wares",
+      "price": "25gp",
+      "climate": ["Temperate"],
+      "terrain": ["Forest", "Plains"],
+      "tags": ["Arcane Nexus", "Sacred Site"]
+    },
+    {
+      "name": "Engraving Service",
+      "description": "Custom inscription for rings, pendants, and brooches.",
+      "category": "Service",
+      "price": "1gp",
+      "climate": ["Temperate", "Dry"],
+      "terrain": ["Plains", "River"],
+      "tags": ["Capital", "Well-kept"]
+    },
+    {
+      "name": "Ornamental Hairpin (Copper)",
+      "description": "An affordable, decorative piece made from twisted copper and colored glass.",
+      "category": "Wares",
+      "price": "5sp",
+      "climate": ["Tropical", "Dry"],
+      "terrain": ["Coast", "Desert"],
+      "tags": ["Nomadic", "Rundown"]
+    },
+    {
+        "name": "Copper Ring",
+        "description": "A simple ring crafted from polished copper.",
+        "category": "Wares",
+        "price": "5sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Jewelry Cleaning",
+        "description": "Restore old jewelry to its original shine.",
+        "category": "Service",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Earring Set (Brass)",
+        "description": "Small earrings suitable for common folk or adventurers.",
+        "category": "Wares",
+        "price": "7sp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "magic": [
+    {
+      "name": "Minor Enchanting Service",
+      "description": "Add a temporary magical effect (e.g., glowing or warming) to mundane items.",
+      "category": "Service",
+      "price": "15gp",
+      "climate": ["Temperate", "Continental"],
+      "terrain": ["Mountains", "Forest"],
+      "tags": ["Arcane Nexus", "Well-kept"]
+    },
+    {
+      "name": "Scroll of Mage Hand",
+      "description": "A basic arcane scroll containing the cantrip Mage Hand.",
+      "category": "Wares",
+      "price": "2gp",
+      "climate": ["Temperate", "Dry"],
+      "terrain": ["Plains", "River"],
+      "tags": ["Capital", "Trade Hub"]
+    },
+    {
+      "name": "Warding Charm",
+      "description": "A small talisman said to protect against minor curses and hexes.",
+      "category": "Wares",
+      "price": "8gp",
+      "climate": ["Tropical", "Temperate"],
+      "terrain": ["Jungle", "Swamp"],
+      "tags": ["Hidden", "Sacred Site"]
+    },
+    {
+      "name": "Identify (Service)",
+      "description": "A wizard will cast Identify on a magical item or artifact.",
+      "category": "Service",
+      "price": "10gp",
+      "climate": ["Dry", "Temperate"],
+      "terrain": ["Plains", "River"],
+      "tags": ["Arcane Nexus", "Capital"]
+    },
+    {
+      "name": "Magelight Crystal",
+      "description": "A small crystal that emits a faint glow when held or affixed to a surface.",
+      "category": "Wares",
+      "price": "12gp",
+      "climate": ["Polar", "Temperate"],
+      "terrain": ["Mountains", "Tundra"],
+      "tags": ["Remote", "Fortress"]
+    },
+    {
+        "name": "Minor Enchantment Service",
+        "description": "Infuse a mundane item with faint magical essence (1 day duration).",
+        "category": "Service",
+        "price": "25gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Scroll of Light",
+        "description": "A single-use scroll that casts *light* when read.",
+        "category": "Wares",
+        "price": "10gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Mystic Chalk",
+        "description": "Draw temporary runes or ritual circles that last until dawn.",
+        "category": "Wares",
+        "price": "5gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+  ],
+  "armory": [
+    {
+        "name": "Rusty Chainmail",
+        "description": "A well-worn suit of chainmail with a few patched links, serviceable but not glamorous.",
+        "category": "Wares",
+        "price": "30gp",
+        "climate": ["Continental", "Temperate"],
+        "terrain": ["Mountains", "Plains"],
+        "tags": ["Garrison", "Rundown"]
+    },
+    {
+        "name": "Shield Emblem Engraving",
+        "description": "Custom engraving of house sigils or symbols on shields.",
+        "category": "Service",
+        "price": "3gp",
+        "climate": ["Temperate"],
+        "terrain": ["River", "Plains"],
+        "tags": ["Fortress", "Trade Hub"]
+    },
+    {
+        "name": "Lightwood Buckler",
+        "description": "A small wooden shield, favored by scouts in forested or swampy terrain.",
+        "category": "Wares",
+        "price": "8gp",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Druidic", "Hidden"]
+    },
+    {
+        "name": "Weapon Polishing and Sharpening",
+        "description": "Professionally clean, sharpen, and oil a weapon for peak performance.",
+        "category": "Service",
+        "price": "1gp",
+        "climate": ["Temperate"],
+        "terrain": ["Plains", "Mountains"],
+        "tags": ["Garrison", "Well-kept"]
+    },
+    {
+        "name": "Steel Longsword",
+        "description": "A standard steel longsword, clean and reliable.",
+        "category": "Wares",
+        "price": "15gp",
+        "climate": ["Continental", "Temperate"],
+        "terrain": ["Mountains", "Plains"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "name": "Padded Armor",
+        "description": "Basic armor offering minimal protection, often used by scouts.",
+        "category": "Wares",
+        "price": "5gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Shield Polishing",
+        "description": "Clean and reinforce a metal or wooden shield.",
+        "category": "Service",
+        "price": "1gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Weapon Balancing",
+        "description": "Improve the balance of a melee weapon for better handling.",
+        "category": "Service",
+        "price": "3gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+],
+    "alchemist": [
+    {
+        "name": "Healing Draught",
+        "description": "A mild red potion that accelerates natural healing slightly over several hours.",
+        "category": "Wares",
+        "price": "25gp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Plains"],
+        "tags": ["Sacred Site", "Trade Hub"]
+    },
+    {
+        "name": "Antitoxin Application",
+        "description": "Professional diagnosis and application of antitoxin for common venoms.",
+        "category": "Service",
+        "price": "10gp",
+        "climate": ["Tropical", "Temperate"],
+        "terrain": ["Swamp", "Jungle"],
+        "tags": ["Infested", "Hidden"]
+    },
+    {
+        "name": "Explosive Powder Satchel",
+        "description": "A small pouch of volatile alchemical powder used for demolition or traps.",
+        "category": "Wares",
+        "price": "40gp",
+        "climate": ["Dry", "Temperate"],
+        "terrain": ["Mountains", "Desert"],
+        "tags": ["Mining Camp", "Fortress"]
+    },
+    {
+        "name": "Scented Smoke Capsule",
+        "description": "Used to mask one's scent or as a distraction; comes in floral or sulfurous variants.",
+        "category": "Wares",
+        "price": "5gp",
+        "climate": ["Tropical", "Dry"],
+        "terrain": ["Jungle", "Plains"],
+        "tags": ["Criminal Hideout", "Nomadic"]
+    },
+    {
+        "name": "Potion Identification",
+        "description": "Determine the contents and effects of an unknown potion.",
+        "category": "Service",
+        "price": "8gp",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "River"],
+        "tags": ["Arcane Nexus", "Capital"]
+    },
+    {
+        "name": "Minor Explosive Flask",
+        "description": "Non-magical alchemical flask that bursts on impact. Short range.",
+        "category": "Wares",
+        "price": "15gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Antitoxin",
+        "description": "Ingestible remedy to lessen the effects of non-magical poison.",
+        "category": "Wares",
+        "price": "10gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    },
+    {
+        "name": "Basic Potion Brewing (Custom)",
+        "description": "Create a weak healing, stamina, or resistance tonic to order.",
+        "category": "Service",
+        "price": "20gp",
+        "climate": [],
+        "terrain": [],
+        "tags": []
+    }
+],
+"carpenter": [
+  {
+    "name": "Basic Wooden Chair",
+    "description": "A sturdy chair made from local timber, suitable for modest homes or inns.",
+    "category": "Wares",
+    "price": "3gp",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Forest", "Plains"],
+    "tags": ["Modest", "Trade Hub"]
+  },
+  {
+    "name": "Custom Furniture Carving",
+    "description": "Add personalized designs or symbols to wooden furniture or fittings.",
+    "category": "Service",
+    "price": "10gp",
+    "climate": ["Temperate"],
+    "terrain": ["Forest", "Coast"],
+    "tags": ["Well-kept", "Capital"]
+  },
+  {
+    "name": "Reinforced Door Installation",
+    "description": "Install a reinforced wooden door with iron fittings for extra security.",
+    "category": "Service",
+    "price": "25gp",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Mountains", "Forest"],
+    "tags": ["Fortress", "Garrison"]
+  },
+  {
+    "name": "Oak Barrel",
+    "description": "A medium-sized barrel for storing liquids or goods, crafted from oak.",
+    "category": "Wares",
+    "price": "7gp",
+    "climate": ["Temperate", "Dry"],
+    "terrain": ["Plains", "Coast"],
+    "tags": ["Port", "Trade Hub"]
+  },
+  {
+    "name": "Ship Repair",
+    "description": "Basic carpentry service to repair damaged ship hulls and decks.",
+    "category": "Service",
+    "price": "50gp",
+    "climate": ["Temperate", "Tropical"],
+    "terrain": ["Coast", "River"],
+    "tags": ["Port", "Sprawling"]
+  },
+  {
+    "name": "Wooden Crate",
+    "description": "A solid wooden crate for transporting goods.",
+    "category": "Wares",
+    "price": "1gp",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Basic Furniture Assembly",
+    "description": "Assembly of a table, bed frame, or shelf from kit or parts.",
+    "category": "Service",
+    "price": "2gp",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Wall Repair (Wood)",
+    "description": "Patch or replace a damaged wooden wall section.",
+    "category": "Service",
+    "price": "5gp",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  }
+],
+"other": [
+  {
+    "name": "Courier Service",
+    "description": "Fast delivery of letters or small packages within the settlement.",
+    "category": "Service",
+    "price": "1gp",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Plains", "River"],
+    "tags": ["Trade Hub", "Capital"]
+  },
+  {
+    "name": "Horse Rental",
+    "description": "Rent a horse for short or long-distance travel.",
+    "category": "Service",
+    "price": "5gp per day",
+    "climate": ["Temperate", "Dry"],
+    "terrain": ["Plains", "Desert"],
+    "tags": ["Trade Hub", "Nomadic"]
+  },
+  {
+    "name": "Tattoo Parlor",
+    "description": "Custom tattoos using traditional inks, popular among adventurers and locals.",
+    "category": "Service",
+    "price": "20gp",
+    "climate": ["Tropical", "Temperate"],
+    "terrain": ["Jungle", "Coast"],
+    "tags": ["Criminal Hideout", "Nomadic"]
+  },
+  {
+    "name": "Locksmith",
+    "description": "Key cutting, lock repair, and safe opening services.",
+    "category": "Service",
+    "price": "8gp",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Plains", "City"],
+    "tags": ["Capital", "Trade Hub"]
+  },
+  {
+    "name": "Lantern Oil",
+    "description": "Refined oil for lamps and lanterns, burns clean and bright.",
+    "category": "Wares",
+    "price": "2gp",
+    "climate": ["Temperate", "Polar"],
+    "terrain": ["Mountains", "Tundra"],
+    "tags": ["Remote", "Fortress"]
+  }
+]
+}

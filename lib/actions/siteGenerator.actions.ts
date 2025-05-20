@@ -2,7 +2,7 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generatorSiteFragment.model";
-import { generateSiteNameFromFragments } from "@/lib/util/siteNameGenerator";
+import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
 
 export async function generateSiteName({
   category,

@@ -2,7 +2,7 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSettlementFragment, { GeneratorSettlementFragmentPlain } from "@/lib/models/generatorSettlementFragment.model";
-import { generateSettlementNameFromFragments } from "@/lib/util/settlementNameGenerator";
+import { generateSettlementNameFromFragments } from "@/lib/util/generator/settlementNameGenerator";
 
 export async function generateSettlementName({
   terrain,
