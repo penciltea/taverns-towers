@@ -155,19 +155,25 @@
     "weight": 1
   },
   {
-    "value": "bakery",
+    "value": "General Goods",
+    "weight": 1, 
+    "siteTypes": ["shop"],
+    "shopType": "general"
+  },
+  {
+    "value": "Bakery",
     "weight": 1,
     "siteTypes": ["shop"],
     "shopType": "bakery"
   },
   {
-    "value": "blacksmith",
+    "value": "Blacksmith",
     "weight": 2,
     "siteTypes": ["shop"],
     "shopType": "blacksmith"
   },
   {
-    "value": "apothecary",
+    "value": "Apothecary",
     "weight": 1,
     "siteTypes": ["shop"],
     "shopType": "apothecary"
@@ -179,13 +185,13 @@
     "shopType": "bookstore"
   },
   {
-    "value": "jeweler",
+    "value": "Jeweler",
     "weight": 2,
     "siteTypes": ["shop"],
     "shopType": "jeweler"
   },
   {
-    "value": "tailor",
+    "value": "Tailor",
     "weight": 1,
     "siteTypes": ["shop"],
     "shopType": "tailor"

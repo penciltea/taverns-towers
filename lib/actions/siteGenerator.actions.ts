@@ -63,7 +63,7 @@ export async function generateMenuItems({
   };
 
   // Add shopType filter only if siteType is shop
-  if (siteType === "shop" && shopType) {
+  if (siteType.includes("shop") && shopType) {
     query.shopType = shopType;
   }
 

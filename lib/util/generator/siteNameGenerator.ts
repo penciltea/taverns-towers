@@ -16,6 +16,18 @@ function weightedRandom<T extends { value: string; weight?: number }>(items: T[]
     : "";
 }
 
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function toTitleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 function filterByAttributes(
   fragments: GeneratorSiteFragmentPlain[],
   filters: GenerateSiteNameOptions
@@ -35,7 +47,7 @@ function filterByAttributes(
       const hasPersonshopType = f.value.includes("{{person}}'s {{shopType}}");
 
       // Only allow these formats for shops
-      if ((hasshopType || hasPersonshopType) && !siteType.includes("shop")) {
+      if ((hasshopType || hasPersonshopType) && (!siteType.includes("shop") || !shopType)) {
         return false;
       }
 
@@ -144,19 +156,14 @@ export function generateSiteNameFromFragments(
         break;
 
       case "shopType":
-          if (filters.shopType) {
-            // filters.shopType is a string now
-            const matchingFragment = grouped.shopType.find(f => f.shopType === filters.shopType);
-            if (matchingFragment) {
-              return matchingFragment.value;
-            }
-            return filters.shopType;
+        if (filters.shopType) {
+          const matchingFragment = grouped.shopType.find(f => f.shopType === filters.shopType);
+          if (matchingFragment) {
+            return toTitleCase(matchingFragment.value);
           }
-
-          if (grouped.shopType.length > 0) {
-            return weightedRandom(grouped.shopType);
-          }
-          break;
+          return toTitleCase(filters.shopType);
+        }
+        break;
 
       default:
         break;
