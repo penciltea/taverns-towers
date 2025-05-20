@@ -18,7 +18,7 @@ export default function SettlementFormCulture(){
                 name="crime"
                 label="Criminal Activity"
                 control={control}
-                options={toSelectOptions(CRIMINAL_ACTIVITY_TYPES)}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(CRIMINAL_ACTIVITY_TYPES)]}
                 fieldError={errors.crime}
             />
 

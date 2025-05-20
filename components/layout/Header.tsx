@@ -77,7 +77,7 @@ export default function Header() {
                 onClose={handleMenuClose}
             >
                 <MenuItem onClick={() => handleNavigate('/settlements/all')}>View All Settlements</MenuItem>
-                <MenuItem onClick={handleSettlementDialog}>Create Settlement</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/settlements/new')}>Create Settlement</MenuItem>
             </Menu>
 
             {/* Sites */}

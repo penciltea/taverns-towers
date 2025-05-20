@@ -57,7 +57,7 @@ export default function SettlementsPage() {
         totalCount={data.total}
         pageSize={params.limit}
         fabLabel="Add Settlement"
-        fabOnClick={() => useUIStore.getState().setOpenDialog('settlementTypeDialog')}
+        fabLink="/settlements/new"
       />
 
       {openDialog === 'siteTypeDialog' && (

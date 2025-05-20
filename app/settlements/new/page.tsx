@@ -13,6 +13,7 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
+import { generateSettlementValues, generateSettlementWithName, normalizeInput } from "@/lib/modules/settlementRules";
 
 export default function NewSettlementPage() {
   const router = useRouter();
@@ -37,6 +38,26 @@ export default function NewSettlementPage() {
     setHasLoaded(true);
   }, []);
 
+  async function handleGenerate() {
+    const { watch, setValue } = methods;
+    const currentValues = watch();
+    const normalizedInput = normalizeInput(currentValues);
+    const generatedValues = await generateSettlementWithName(normalizedInput);
+
+    Object.entries(generatedValues).forEach(([key, value]) => {
+      setValue(key as keyof SettlementFormData, value);
+    });
+  }
+
+  async function handleReroll(){
+    methods.reset();
+
+    //Let RHF settle the reset (wait one tick)
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    await handleGenerate();
+  }
+
   const onSubmit = async (data: SettlementFormData) => {
     const result = await saveSettlement(data);
     if (result && result.success && result.settlement) {
@@ -47,7 +68,7 @@ export default function NewSettlementPage() {
   return (
     <SkeletonLoader loading={!hasLoaded} skeleton={<Spinner />}>
       <FormProvider {...methods}>
-        <SettlementForm onSubmit={onSubmit} mode={mode} />
+        <SettlementForm onSubmit={onSubmit} mode={mode} onGenerate={handleGenerate} onReroll={handleReroll} />
       </FormProvider>
     </SkeletonLoader>
   );

@@ -15,12 +15,15 @@ import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
+import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlementRules";
+
 
 export default function EditSettlementFormPage() {
   const router = useRouter();
   const [hasLoaded, setHasLoaded] = useState(false);
   const { setLoading, showErrorDialog } = useUIStore();
   const { setSelectedItem, mode } = useSettlementContentStore();
+  const [loadedSettlementValues, setLoadedSettlementValues] = useState<SettlementFormData | null>(null);
 
   const { id } = useParams();
   const safeId = getSingleParam(id);
@@ -52,6 +55,7 @@ export default function EditSettlementFormPage() {
       });
 
       methods.reset(mergedSettlement);
+      setLoadedSettlementValues(mergedSettlement);
       setHasLoaded(true);
     } catch (error) {
       console.error(error);
@@ -66,6 +70,30 @@ export default function EditSettlementFormPage() {
     loadSettlement(safeId);
   }, [safeId, mode]);
 
+  async function handleGenerate() {
+    const { watch, setValue } = methods;
+    const currentValues = watch();
+    const normalizedInput = normalizeInput(currentValues);
+    const generatedValues = await generateSettlementWithName(normalizedInput);
+
+    Object.entries(generatedValues).forEach(([key, value]) => {
+      setValue(key as keyof SettlementFormData, value);
+    });
+  }
+  
+  async function handleReroll() {
+    if (loadedSettlementValues) {
+      methods.reset(loadedSettlementValues);
+    } else {
+      methods.reset(defaultSettlementValues);
+    }
+
+    // Let RHF settle the reset (wait one tick)
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    await handleGenerate();
+  }
+
   const onSubmit = async (data: SettlementFormData) => {
     const result = await saveSettlement(data);
     if (result && result.success && result.settlement) {
@@ -76,7 +104,7 @@ export default function EditSettlementFormPage() {
   return (
     <SkeletonLoader loading={!hasLoaded} skeleton={<Spinner />}>
       <FormProvider {...methods}>
-        <SettlementForm onSubmit={onSubmit} mode={mode} />
+        <SettlementForm onSubmit={onSubmit} mode={mode} onGenerate={handleGenerate} onReroll={handleReroll} />
       </FormProvider>
     </SkeletonLoader>
   );

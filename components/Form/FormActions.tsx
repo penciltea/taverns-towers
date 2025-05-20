@@ -10,7 +10,19 @@ type FormActionProps = {
 
 export default function FormActions({ mode, entityName, isSubmitting, onCancel }: FormActionProps) {
   return (
-    <Box sx={{ my: 2 }}>
+    <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+      
+      <Button
+        type="button"
+        variant="outlined"
+        sx={{ mt: 3, ml: 3 }}
+        size="small"
+        
+        onClick={onCancel || (() => history.back())}
+      >
+        cancel
+      </Button>
+
       <Button 
         type="submit" 
         variant="contained" 
@@ -26,16 +38,6 @@ export default function FormActions({ mode, entityName, isSubmitting, onCancel }
         ) : (
           `${mode === "edit" ? "Update" : "Create"} ${entityName}`
         )}
-      </Button>
-      <Button
-        type="button"
-        variant="outlined"
-        sx={{ mt: 3, ml: 3 }}
-        size="small"
-        
-        onClick={onCancel || (() => history.back())}
-      >
-        cancel
       </Button>
     </Box>
   );

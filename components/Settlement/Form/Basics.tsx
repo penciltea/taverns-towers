@@ -64,7 +64,7 @@ export default function SettlementFormBasics(){
                     name="size"
                     label="Size Category"
                     control={control}
-                    options={toSelectOptions(SIZE_TYPES)}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(SIZE_TYPES)]}
                     fieldError={errors.size}
                 />
 
@@ -72,7 +72,7 @@ export default function SettlementFormBasics(){
                     name="tags"
                     label="Tags"
                     control={control}
-                    options={toSelectOptions(TAG_TYPES)}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
                     fieldError={errors.tags}
                 />
 
@@ -86,7 +86,7 @@ export default function SettlementFormBasics(){
                         name="terrain"
                         label="Terrain Type"
                         control={control}
-                        options={toSelectOptions(TERRAIN_TYPES)}
+                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
                         fieldError={errors.terrain}
                     />
 
@@ -94,7 +94,7 @@ export default function SettlementFormBasics(){
                         name="climate"
                         label="Climate"
                         control={control}
-                        options={toSelectOptions(CLIMATE_TYPES)}
+                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
                         fieldError={errors.climate}
                     />
 
@@ -102,7 +102,7 @@ export default function SettlementFormBasics(){
                         name="magic"
                         label="Magic Level / Use"
                         control={control}
-                        options={toSelectOptions(MAGIC_LEVELS)}
+                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
                         fieldError={errors.magic}
                     />
 

@@ -28,7 +28,7 @@ export default function SettlementFormWealth(){
                 name="wealth"
                 label="Wealth"
                 control={control}
-                options={toSelectOptions(WEALTH_LEVELS)}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
                 fieldError={errors.wealth}
             />
             
@@ -36,7 +36,7 @@ export default function SettlementFormWealth(){
                 name="rulingStyle"
                 label="Ruling Style"
                 control={control}
-                options={toSelectOptions(RULING_TYPES)}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle}
             />
 

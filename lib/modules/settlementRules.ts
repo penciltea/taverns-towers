@@ -26,19 +26,21 @@ type NormalizedSettlementInput = Omit<Settlement, keyof CommonInterface | 'isPub
   crime: string[];
 };
 
-function normalizeInput(data: GenerateSettlementInput): NormalizedSettlementInput {
+export function normalizeInput(data: Partial<GenerateSettlementInput>): NormalizedSettlementInput {
   return {
     ...data,
-    size: data.size || "random",
+    size: !data.size || data.size.trim() === "" ? "random" : data.size,
     terrain: !data.terrain || data.terrain.length === 0 ? ["random"] : data.terrain,
     tags: !data.tags || data.tags.length === 0 ? ["random"] : data.tags,
-    climate: data.climate || "random",
-    magic: data.magic || "random",
-    rulingStyle: data.rulingStyle || "random",
-    wealth: data.wealth || "random",
+    climate: !data.climate || data.climate.trim() === "" ? "random" : data.climate,
+    magic: !data.magic || data.magic.trim() === "" ? "random" : data.magic,
+    rulingStyle: !data.rulingStyle || data.rulingStyle.trim() === "" ? "random" : data.rulingStyle,
+    wealth: !data.wealth || data.wealth.trim() === "" ? "random" : data.wealth,
     crime: !data.crime || data.crime.length === 0 ? ["random"] : data.crime,
   };
 }
+
+
 
 
 // Logic for setting Size if set to "random"
@@ -131,7 +133,6 @@ function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): Normalized
 // set fields based off logic above for any fields with "random" as their value
 export const generateSettlementValues = (input: NormalizedSettlementInput) => {
   return [
-    normalizeInput,
     applySizeRule,
     applyClimateRule, 
     applyWealthRule,
