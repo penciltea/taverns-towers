@@ -15,7 +15,7 @@ import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlementRules";
+import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlements/settlementRules";
 
 
 export default function EditSettlementFormPage() {

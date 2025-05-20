@@ -67,7 +67,7 @@ export default function GuildFields(){
             <Box sx={{mt: 4}}>
                 <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
                 <FormEditableTable
-                    name="services"
+                    name="menu"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },

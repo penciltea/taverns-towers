@@ -1,11 +1,15 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { SHOP_TYPES } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
-export default function ShopFields(){
+type SiteFormProps = {
+    handleGenerateMenu: () => void;
+}
+
+export default function ShopFields({handleGenerateMenu}: SiteFormProps){
     const {
         register,
         control,
@@ -49,9 +53,20 @@ export default function ShopFields(){
             />
 
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Wares</Typography>
+                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <Typography variant="h6" sx={{mb: 2}}>Wares</Typography>
+                    <Button
+                        type="button"
+                        variant="outlined"
+                        onClick={handleGenerateMenu}
+                        size="large"
+                        sx={{ mt: 2, py: 1.65 }}
+                    >
+                        Conjure menu items
+                    </Button>
+                </Box>
                 <FormEditableTable
-                    name="wares"
+                    name="menu"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },

@@ -1,9 +1,13 @@
 import { FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function TavernFields(){
+type SiteFormProps = {
+    handleGenerateMenu: () => void;
+}
+
+export default function TavernFields({handleGenerateMenu}: SiteFormProps){
     const {
         register,
         formState: { errors },
@@ -57,8 +61,21 @@ export default function TavernFields(){
                 fieldError={errors.gmNotes}
             />
 
+            
+
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
+                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <Typography variant="h6" sx={{mb: 2}}>Tavern Menu</Typography>
+                    <Button
+                        type="button"
+                        variant="outlined"
+                        onClick={handleGenerateMenu}
+                        size="large"
+                        sx={{ mt: 2, py: 1.65 }}
+                    >
+                        Conjure menu items
+                    </Button>
+                </Box>
                 <FormEditableTable
                     name="menu"
                     columns={[

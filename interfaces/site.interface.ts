@@ -63,14 +63,14 @@ export interface TempleSite extends BaseSite {
   deity?: string;
   leader?: string;
   relics?: string;
-  services?: { name: string; description: string; price: string }[];
+  menu?: { name: string; description: string; price: string }[];
 }
 
 export interface ShopSite extends BaseSite {
   type: "shop";
   shopType?: string;
   owner?: string;
-  wares?: { name: string; description?: string; price: string }[];
+  menu?: { name: string; description?: string; price: string }[];
 }
 
 export interface GuildSite extends BaseSite {
@@ -80,7 +80,7 @@ export interface GuildSite extends BaseSite {
   leader?: string;
   membershipRequirements?: string;
   knownRivals?: string;
-  services?: { name: string; description?: string; price: string }[];
+  menu?: { name: string; description?: string; price: string }[];
 }
 
 export interface GovernmentSite extends BaseSite {
@@ -118,6 +118,16 @@ export interface MiscellaneousSite extends BaseSite {
   type: "miscellaneous";
   features?: string;
   use?: string;
+}
+
+export interface generatorMenuItem{
+  name: string;
+  description: string;
+  category: string;
+  price: string;
+  climate?: string[];
+  terrain?: string[];
+  tags?: string[];
 }
 
 export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscSite | BaseSite;

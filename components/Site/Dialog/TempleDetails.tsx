@@ -18,7 +18,7 @@ export const TempleDetails = ({ site }: { site: TempleSite }) => {
         <InfoListItem label="GM Notes" value={site.gmNotes} />
       </Box>
 
-      <MenuList menu={site.services || []} label="Services Offered" />
+      <MenuList menu={site.menu || []} label="Services Offered" />
     </>
   );
 };

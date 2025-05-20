@@ -6,12 +6,14 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { siteSchema, defaultSiteValues, SiteFormData } from "@/schemas/site.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
-import SiteForm from '@/components/Site/Form/SiteForm';
+import SiteForm from "@/components/Site/Form/SiteForm";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
 import { usePaginatedSites } from "@/hooks/site.query";
-import { SiteType } from "@/interfaces/site.interface";
+import { generatorMenuItem, SiteType } from "@/interfaces/site.interface";
+import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
+import { generateMenuItems } from "@/lib/actions/siteGenerator.actions";
 
 export default function NewSitePage(){
     const params = useParams();
@@ -21,7 +23,7 @@ export default function NewSitePage(){
     const router = useRouter();
 
     const { showSnackbar, showErrorDialog } = useUIStore();
-    const { mode } = useSiteContentStore();
+    const { mode, selectedItem } = useSiteContentStore();
     const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
     const { settlement, addSite } = useSettlementLoader(settlementId);
 
@@ -30,6 +32,57 @@ export default function NewSitePage(){
             ...defaultSiteValues[typeParam],
         }
     });
+
+    async function handleGenerateName() {
+        const { setValue } = methods;
+
+        const shopType = methods.watch("shopType")?.toLowerCase() ?? selectedItem?.shopType;
+
+        if (!typeParam) return;
+            const name = await generateSiteName({
+            siteType: typeParam,
+            shopType,
+            terrain: settlementContext.terrain,
+            climate: settlementContext.climate,
+            tags: settlementContext.tags,
+        });
+
+        setValue("name", name); // Set name into RHF
+    }
+
+    async function handleGenerateMenu(){
+        if (!typeParam) return;
+
+        const shopType = methods.watch("shopType").toLowerCase() ?? selectedItem?.shopType;
+        
+        const menuItems = await generateMenuItems({
+            siteType: typeParam,
+            shopType,
+            settlementTerrain: settlementContext.terrain ?? [],
+            settlementClimate: settlementContext.climate,
+            settlementTags: settlementContext.tags ?? [],
+        });
+
+        console.log("menuItems: ", menuItems);
+
+        function cleanMenuItems(items: any[]): generatorMenuItem[] {
+            return items.map(item => ({
+                name: item.name || "",
+                price: String(item.price || ""),
+                category: item.category || undefined,
+                description: item.description || undefined,
+            }));
+        }
+        methods.setValue("menu", cleanMenuItems(menuItems)); //makes sure items match what the menu table expects
+    }
+
+    function handleGenerateAll(){
+        console.log("clicked");
+    }
+
+    function handleReroll(){
+        console.log("clicked");
+    }
 
     const onSubmit = async (data: SiteFormData) => {
         try {
@@ -65,7 +118,7 @@ export default function NewSitePage(){
     
     return (
         <FormProvider {...methods}>
-            <SiteForm onSubmit={onSubmit} mode={mode} settlementContext={settlementContext} />
+            <SiteForm onSubmit={onSubmit} mode={mode} settlementContext={settlementContext} onGenerateName={handleGenerateName} onGenerateMenu={handleGenerateMenu} onGenerateAll={handleGenerateAll} onReroll={handleReroll} />
         </FormProvider>
     )
 }

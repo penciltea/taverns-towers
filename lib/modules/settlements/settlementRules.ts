@@ -9,10 +9,10 @@ import {
   CRIMINAL_ACTIVITY_TYPES,
 } from "@/constants/settlementOptions";
 import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
-import { getRandom, getRandomSubset } from "../util/randomValues";
+import { getRandom, getRandomSubset } from "../../util/randomValues";
 import { GenerateSettlementInput } from "@/schemas/generateSettlement.schema";
 import { Settlement } from "@/interfaces/settlement.interface";
-import { generateSettlementName } from "../actions/settlementGenerator.actions";
+import { generateSettlementName } from "../../actions/settlementGenerator.actions";
 import { CommonInterface } from "@/interfaces/common.interface";
 
 type NormalizedSettlementInput = Omit<Settlement, keyof CommonInterface | 'isPublic'> & {

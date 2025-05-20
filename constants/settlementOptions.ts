@@ -44,6 +44,7 @@ export const TAG_TYPES = [
     "Remote",
     "Sacred Site",
     "Trade Hub",
+    "Military Outpost",
 ];
 
 export const TERRAIN_TYPES = [
@@ -51,12 +52,15 @@ export const TERRAIN_TYPES = [
     "Desert",
     "Forest",
     "Jungle",
+    "Hills",
     "Mountains",
     "Plains",
     "River",
     "Swamp",
-    "Tundra"
-]
+    "Tundra",
+    "Underground",
+    "Urban"
+];
 
 export const WEALTH_LEVELS = [
     "Impoverished",

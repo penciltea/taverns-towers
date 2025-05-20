@@ -61,7 +61,7 @@ const Tavern =
       deity: { type: String, required: false },
       leader: { type: String, required: false },
       relics: { type: String, required: false },
-      services: [MenuItemSchema],
+      menu: [MenuItemSchema],
     })
   );
 
@@ -72,7 +72,7 @@ const Tavern =
     new Schema({
       shopType: { type: String, enum: SHOP_TYPES, required: true },
       owner: { type: String, required: false },
-      wares: [MenuItemSchema],
+      menu: [MenuItemSchema],
     })
   );
 
@@ -86,7 +86,7 @@ const Tavern =
       leader: { type: String, required: false },
       membershipRequirements: { type: String, required: false },
       knownRivals: { type: String, required: false },
-      services: [MenuItemSchema],
+      menu: [MenuItemSchema],
     })
   );
 

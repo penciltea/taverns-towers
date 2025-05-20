@@ -155,40 +155,40 @@
     "weight": 1
   },
   {
-    "value": "Bakery",
+    "value": "bakery",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": "Bakery"
+    "shopType": "bakery"
   },
   {
-    "value": "Blacksmith",
+    "value": "blacksmith",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": "Blacksmith"
+    "shopType": "blacksmith"
   },
   {
-    "value": "Apothecary",
+    "value": "apothecary",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": "Apothecary"
+    "shopType": "apothecary"
   },
   {
     "value": "Bookstore",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": "Bookstore"
+    "shopType": "bookstore"
   },
   {
-    "value": "Jeweler",
+    "value": "jeweler",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": "Jeweler"
+    "shopType": "jeweler"
   },
   {
-    "value": "Tailor",
+    "value": "tailor",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": "Tailor"
+    "shopType": "tailor"
   },
   {
     "type": "prefix",
@@ -243,84 +243,84 @@
     "value": "Rusty",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Blacksmith", "Armory"]
+    "shopType": ["general", "blacksmith", "armory"]
   },
   {
     "type": "noun",
     "value": "Crate",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Alchemist", "Carpenter", "Other"]
+    "shopType": ["general", "alchemist", "carpenter", "other"]
   },
   {
     "type": "suffix",
     "value": "Wagon",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Carpenter", "Other"]
+    "shopType": ["general", "carpenter", "other"]
   },
   {
     "type": "noun",
     "value": "Anvil",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["Blacksmith", "Armory"]
+    "shopType": ["blacksmith", "armory"]
   },
   {
     "type": "suffix",
     "value": "Forge",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["Blacksmith", "Magic", "Armory"]
+    "shopType": ["blacksmith", "magic", "armory"]
   },
   {
     "type": "noun",
     "value": "Needle",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["Tailor", "Magic", "Other"]
+    "shopType": ["tailor", "magic", "other"]
   },
   {
     "type": "noun",
     "value": "Thread",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Tailor", "Magic", "Other"]
+    "shopType": ["general", "tailor", "magic", "other"]
   },
   {
     "type": "suffix",
     "value": "Stitch",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Tailor", "Magic", "Other"]
+    "shopType": ["general", "tailor", "magic", "other"]
   },
   {
     "type": "noun",
     "value": "Quill",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Magic", "Bookstore", "Other"]
+    "shopType": ["general", "magic", "Bookstore", "other"]
   },
   {
     "type": "suffix",
     "value": "Tome",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["Magic", "Alchemist", "Apothecary", "Other"]
+    "shopType": ["magic", "alchemist", "apothecary", "other"]
   },
   {
     "type": "noun",
     "value": "Shield",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["Blacksmith", "Armory", "Carpenter", "Other"]
+    "shopType": ["blacksmith", "armory", "carpenter", "other"]
   },
   {
     "type": "suffix",
     "value": "Bulwark",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["General", "Blacksmith", "Armory", "Carpenter", "Other"]
+    "shopType": ["general", "blacksmith", "armory", "carpenter", "other"]
   },
   {
     "type": "prefix",
@@ -334,34 +334,34 @@
     "weight": 1,
     "siteTypes": ["entertainment"]
   },
-  { "type": "prefix", "value": "Herbal", "weight": 2, "siteTypes": ["shop"], "shopType": ["Apothecary"] },
-  { "type": "noun", "value": "Salve", "weight": 1, "siteTypes": ["shop"], "shopType": ["Apothecary"] },
-  { "type": "noun", "value": "Remedy", "weight": 2, "siteTypes": ["shop"], "shopType": ["Apothecary"] },
-  { "type": "suffix", "value": "Cure", "weight": 1, "siteTypes": ["shop"], "shopType": ["Apothecary"] },
-  { "type": "prefix", "value": "Golden", "weight": 1, "siteTypes": ["shop"], "shopType": ["Alchemist"] },
-  { "type": "noun", "value": "Elixir", "weight": 2, "siteTypes": ["shop"], "shopType": ["Alchemist"] },
-  { "type": "noun", "value": "Crucible", "weight": 1, "siteTypes": ["shop"], "shopType": ["Alchemist"] },
-  { "type": "suffix", "value": "Distillery", "weight": 1, "siteTypes": ["shop"], "shopType": ["Alchemist"] },
-  { "type": "prefix", "value": "Gilded", "weight": 2, "siteTypes": ["shop"], "shopType": ["Jeweler"] },
-  { "type": "noun", "value": "Gem", "weight": 2, "siteTypes": ["shop"], "shopType": ["Jeweler"] },
-  { "type": "noun", "value": "Trinket", "weight": 1, "siteTypes": ["shop"], "shopType": ["Jeweler"] },
-  { "type": "suffix", "value": "Treasure", "weight": 1, "siteTypes": ["shop"], "shopType": ["Jeweler"] },
-  { "type": "prefix", "value": "Sweet", "weight": 2, "siteTypes": ["shop"], "shopType": ["Bakery"] },
-  { "type": "noun", "value": "Crust", "weight": 2, "siteTypes": ["shop"], "shopType": ["Bakery"] },
-  { "type": "noun", "value": "Loaf", "weight": 1, "siteTypes": ["shop"], "shopType": ["Bakery"] },
-  { "type": "suffix", "value": "Oven", "weight": 1, "siteTypes": ["shop"], "shopType": ["Bakery"] },
-  { "type": "prefix", "value": "Mystic", "weight": 2, "siteTypes": ["shop"], "shopType": ["Magic"] },
-  { "type": "noun", "value": "Wand", "weight": 2, "siteTypes": ["shop"], "shopType": ["Magic"] },
-  { "type": "noun", "value": "Sigil", "weight": 1, "siteTypes": ["shop"], "shopType": ["Magic"] },
-  { "type": "suffix", "value": "Arcana", "weight": 1, "siteTypes": ["shop"], "shopType": ["Magic"] },
+  { "type": "prefix", "value": "Herbal", "weight": 2, "siteTypes": ["shop"], "shopType": ["apothecary"] },
+  { "type": "noun", "value": "Salve", "weight": 1, "siteTypes": ["shop"], "shopType": ["apothecary"] },
+  { "type": "noun", "value": "Remedy", "weight": 2, "siteTypes": ["shop"], "shopType": ["apothecary"] },
+  { "type": "suffix", "value": "Cure", "weight": 1, "siteTypes": ["shop"], "shopType": ["apothecary"] },
+  { "type": "prefix", "value": "Golden", "weight": 1, "siteTypes": ["shop"], "shopType": ["alchemist"] },
+  { "type": "noun", "value": "Elixir", "weight": 2, "siteTypes": ["shop"], "shopType": ["alchemist"] },
+  { "type": "noun", "value": "Crucible", "weight": 1, "siteTypes": ["shop"], "shopType": ["alchemist"] },
+  { "type": "suffix", "value": "Distillery", "weight": 1, "siteTypes": ["shop"], "shopType": ["alchemist"] },
+  { "type": "prefix", "value": "Gilded", "weight": 2, "siteTypes": ["shop"], "shopType": ["jeweler"] },
+  { "type": "noun", "value": "Gem", "weight": 2, "siteTypes": ["shop"], "shopType": ["jeweler"] },
+  { "type": "noun", "value": "Trinket", "weight": 1, "siteTypes": ["shop"], "shopType": ["jeweler"] },
+  { "type": "suffix", "value": "Treasure", "weight": 1, "siteTypes": ["shop"], "shopType": ["jeweler"] },
+  { "type": "prefix", "value": "Sweet", "weight": 2, "siteTypes": ["shop"], "shopType": ["bakery"] },
+  { "type": "noun", "value": "Crust", "weight": 2, "siteTypes": ["shop"], "shopType": ["bakery"] },
+  { "type": "noun", "value": "Loaf", "weight": 1, "siteTypes": ["shop"], "shopType": ["bakery"] },
+  { "type": "suffix", "value": "Oven", "weight": 1, "siteTypes": ["shop"], "shopType": ["bakery"] },
+  { "type": "prefix", "value": "Mystic", "weight": 2, "siteTypes": ["shop"], "shopType": ["magic"] },
+  { "type": "noun", "value": "Wand", "weight": 2, "siteTypes": ["shop"], "shopType": ["magic"] },
+  { "type": "noun", "value": "Sigil", "weight": 1, "siteTypes": ["shop"], "shopType": ["magic"] },
+  { "type": "suffix", "value": "Arcana", "weight": 1, "siteTypes": ["shop"], "shopType": ["magic"] },
   { "type": "prefix", "value": "Bound", "weight": 2, "siteTypes": ["shop"], "shopType": ["Bookstore"] },
   { "type": "noun", "value": "Tome", "weight": 2, "siteTypes": ["shop"], "shopType": ["Bookstore"] },
   { "type": "noun", "value": "Scroll", "weight": 1, "siteTypes": ["shop"], "shopType": ["Bookstore"] },
   { "type": "suffix", "value": "Ink", "weight": 1, "siteTypes": ["shop"], "shopType": ["Bookstore"] },
-  { "type": "prefix", "value": "Curious", "weight": 2, "siteTypes": ["shop"], "shopType": ["Other"] },
-  { "type": "noun", "value": "Oddity", "weight": 2, "siteTypes": ["shop"], "shopType": ["Other"] },
-  { "type": "noun", "value": "Find", "weight": 1, "siteTypes": ["shop"], "shopType": ["Other"] },
-  { "type": "suffix", "value": "Bazaar", "weight": 1, "siteTypes": ["shop"], "shopType": ["Other"] },
+  { "type": "prefix", "value": "Curious", "weight": 2, "siteTypes": ["shop"], "shopType": ["other"] },
+  { "type": "noun", "value": "Oddity", "weight": 2, "siteTypes": ["shop"], "shopType": ["other"] },
+  { "type": "noun", "value": "Find", "weight": 1, "siteTypes": ["shop"], "shopType": ["other"] },
+  { "type": "suffix", "value": "Bazaar", "weight": 1, "siteTypes": ["shop"], "shopType": ["other"] },
   { "type": "prefix", "value": "Iron", "weight": 2, "siteTypes": ["government"], "buildingType": "castle" },
   { "type": "prefix", "value": "High", "weight": 2, "siteTypes": ["government"], "buildingType": "castle" },
   { "type": "noun", "value": "Keep", "weight": 2, "siteTypes": ["government"], "buildingType": "castle" },
@@ -411,7 +411,7 @@
   },
   {
     "type": "format",
-    "value": "{{person}}'s {{storeType}}",
+    "value": "{{person}}'s {{shopType}}",
     "weight": 2,
     "siteTypes": [
       "shop",
@@ -420,7 +420,7 @@
   },
   {
     "type": "format",
-    "value": "The {{storeType}} of {{prefix}}",
+    "value": "The {{shopType}} of {{prefix}}",
     "weight": 2,
     "siteTypes": [
       "shop",

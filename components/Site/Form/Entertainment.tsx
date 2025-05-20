@@ -1,19 +1,23 @@
-import { FormTextField } from "@/components/Form";
+import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
+import { ENTERTAINMENT_VENUE_TYPES } from "@/constants/siteOptions";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function EntertainmentFields(){
     const {
         register,
+        control,
         formState: { errors },
     } = useFormContext();
     
     return (
         <>
-            <FormTextField
+            <FormSelect
                 name="venueType"
                 label="Venue Type"
-                registration={register("venueType")}
-                fieldError={errors.venueType}
+                control={control}
+                options={toSelectOptions(ENTERTAINMENT_VENUE_TYPES)}
+                fieldError={errors.shopType}
             />
             
             <FormTextField

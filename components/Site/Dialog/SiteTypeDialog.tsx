@@ -15,7 +15,7 @@ export default function SiteTypeDialog({ open, onClose }: DialogProps) {
   const settlementId = params.id as string;
   const { closeDialog } = useUIStore();
 
-  const handleManualCreation = () => {
+  const handleCreateSite = () => {
     if (!type) {
       setError(true);
       return;
@@ -25,23 +25,11 @@ export default function SiteTypeDialog({ open, onClose }: DialogProps) {
     closeDialog();
   }
 
-  const handleGeneration = () => {
-    if (!type) {
-      setError(true);
-      return;
-    }
-    setError(false);
-    router.push(`/settlements/${settlementId}/sites/generate/?type=${type}`);
-    closeDialog();
-  };
-
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Create a Site</DialogTitle>
+      <DialogTitle>Forge a Site</DialogTitle>
       <DialogContent>
-        <Typography variant="body2" color="textSecondary" gutterBottom>
-          First, choose the type of site you'd like to create. Then, decide if you'd like full control or get a little help from arcane forces.
-        </Typography>
+        <Typography variant="body2" color="textSecondary" gutterBottom> Decide what kind of site you would like to forge before getting started! </Typography>
 
         <FormControl fullWidth error={error} sx={{ mt: 1 }}>
           
@@ -62,8 +50,8 @@ export default function SiteTypeDialog({ open, onClose }: DialogProps) {
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleManualCreation}> create manually </Button>
-        <Button color="primary" variant="contained" onClick={handleGeneration}> Generate with magic </Button>
+         <Button onClick={onClose}> Cancel </Button>
+        <Button color="primary" variant="contained" onClick={handleCreateSite}> Begin Site Forging </Button>
       </DialogActions>
     </Dialog>
   );

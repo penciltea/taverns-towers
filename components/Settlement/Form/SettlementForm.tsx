@@ -52,11 +52,18 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           {mode === "edit" ? `Edit ${selectedItem?.name}` : "Forge a Settlement"}
         </Typography>
         
-        <Typography variant="subtitle1" component="p" gutterBottom>Whether you're a cartographer of great renown or simply in need of inspiration, you may <strong>manually</strong> craft each detail of your settlement below — or let the fates decide with the <strong>generate</strong> button.</Typography>
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          Whether you prefer to craft every detail or need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
+        </Typography>
 
-        <Typography variant="subtitle1" component="p" gutterBottom>The generator will conjure up a complete set of details — from terrain and climate to crime levels and ruling styles. If you leave a dropdown set to "random", the generator will work its magic and select an appropriate option based on your other choices when you save your work.</Typography>
-          
-        <Typography variant="subtitle1" component="p" gutterBottom>Feel free to tweak the results to your liking!</Typography>
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          The generator fills in all settlement details—like terrain, climate, crime, and ruling style. Fields set to "random" will be chosen based on your other selections.
+        </Typography>
+
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          Use the buttons to either fill missing/random fields or to fully reroll all fields. You can always adjust results afterward!
+        </Typography>
+
 
         <Box 
           sx={{

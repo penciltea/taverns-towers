@@ -18,7 +18,7 @@ export const SITE_SIZE = [
     { value: "large", label: "Large (e.g., a two-story inn or hall)" },
     { value: "grand", label: "Grand (e.g., large manor, cathedral, or guild hall)" },
     { value: "sprawling", label: "Sprawling (e.g., compound, campus, or market square)" },
-]
+];
 
 export const SITE_CONDITION = [
     { value: "dilapidated", label: "Dilapidated (falling apart, crumbling)"},
@@ -29,7 +29,7 @@ export const SITE_CONDITION = [
     { value: "pristine", label: "Pristine (immaculately clean and orderly)"},
     { value: "renovated", label: "Newly Renovated (recently refurbished)"},
     { value: "opulent", label: "Opulent (lavishly maintained, luxurious)"}
-]
+];
 
 /* For Government site type form */
 export const SECURITY_LEVELS = [
@@ -51,6 +51,7 @@ export const SECRECY_LEVELS = [
   { value: "mythical", label: "Mythical (Believed to be legend)" }
 ];
 
+/* for Shop types */
 export const SHOP_TYPES = [
   "General Store",
   "Blacksmith",
@@ -65,6 +66,27 @@ export const SHOP_TYPES = [
   "Carpenter",
   "Other",
 ];
+
+/* for Entertainment types */
+export const ENTERTAINMENT_VENUE_TYPES = [
+  "Theater",
+  "Music Hall",
+  "Arena / Coliseum",
+  "Gambling Den",
+  "Bardic College",
+  "Bathhouse",
+  "Brothel",
+  "Festival Grounds",
+  "Street Performance Zone",
+  "Duelling Ring",
+  "Circus Tent",
+  "Magical Spectacle Venue",
+  "Racing Track",
+  "Underground Fight Pit",
+  "Other"
+];
+
+
 
 
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];

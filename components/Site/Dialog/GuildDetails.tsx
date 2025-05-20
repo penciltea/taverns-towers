@@ -20,7 +20,7 @@ export const GuildDetails = ({ site }: { site: GuildSite }) => {
         <InfoListItem label="GM Notes" value={site.gmNotes} />
       </Box>
 
-      <MenuList menu={site.services || []} label="Wares" />
+      <MenuList menu={site.menu || []} label="Wares" />
     </>
   );
 };

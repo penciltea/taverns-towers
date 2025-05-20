@@ -14,6 +14,10 @@ import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
 import { usePaginatedSites } from "@/hooks/site.query";
+import { useSettlementLoader } from "@/hooks/useSettlementLoader";
+import { generatorMenuItem, SiteType } from "@/interfaces/site.interface";
+import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
+import { generateMenuItems } from "@/lib/actions/siteGenerator.actions";
 
 
 export default function EditSitePage(){
@@ -25,10 +29,11 @@ export default function EditSitePage(){
     const typeParam = searchParams?.get("type") as SiteFormData["type"];
     const router = useRouter();
 
-    const { showSnackbar, showErrorDialog } = useUIStore();
-    const { setSelectedItem, mode } = useSiteContentStore();
+    const { showSnackbar, showErrorDialog, } = useUIStore();
+    const { setSelectedItem, selectedItem, mode } = useSiteContentStore();
     useFormMode(safeId, useSiteContentStore, getSiteById);
     const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
+    const { settlement } = useSettlementLoader(settlementId);
 
     const methods = useFormWithSchema(siteSchema, {
         defaultValues: {
@@ -58,6 +63,54 @@ export default function EditSitePage(){
         loadSite();
       }, [safeId, reset, setSelectedItem, showSnackbar]);
 
+      async function handleGenerateName() {
+              const { setValue } = methods;
+      
+              if (!typeParam) return;
+                  const name = await generateSiteName({
+                  siteType: typeParam,
+                  terrain: settlementContext.terrain,
+                  climate: settlementContext.climate,
+                  tags: settlementContext.tags,
+              });
+      
+              setValue("name", name); // Set name into RHF
+          }
+      
+          async function handleGenerateMenu(){
+              if (!typeParam) return;
+      
+              const shopType = methods.watch("shopType").toLowerCase() ?? selectedItem?.shopType;
+              
+              const menuItems = await generateMenuItems({
+                  siteType: typeParam,
+                  shopType,
+                  settlementTerrain: settlementContext.terrain ?? [],
+                  settlementClimate: settlementContext.climate,
+                  settlementTags: settlementContext.tags ?? [],
+              });
+      
+              console.log("menuItems: ", menuItems);
+      
+              function cleanMenuItems(items: any[]): generatorMenuItem[] {
+                  return items.map(item => ({
+                      name: item.name || "",
+                      price: String(item.price || ""),
+                      category: item.category || undefined,
+                      description: item.description || undefined,
+                  }));
+              }
+              methods.setValue("menu", cleanMenuItems(menuItems)); //makes sure items match what the menu table expects
+          }
+      
+          function handleGenerateAll(){
+              console.log("clicked");
+          }
+      
+          function handleReroll(){
+              console.log("clicked");
+          }
+
     const onSubmit = async (data: SiteFormData) => {
         const cleanImage = await handleDynamicFileUpload(data, "image");
 
@@ -81,10 +134,22 @@ export default function EditSitePage(){
             showErrorDialog("Something went wrong, please try again later!");
         }
     }
+
+    const settlementContext = settlement
+    ? {
+        terrain: settlement.terrain,
+        climate: settlement.climate,
+        tags: settlement.tags,
+        }
+    : {
+        terrain: [],
+        climate: '',
+        tags: [],
+    };
     
     return (
         <FormProvider {...methods}>
-            <SiteForm onSubmit={onSubmit} mode={mode} />
+            <SiteForm onSubmit={onSubmit} mode={mode} settlementContext={settlementContext} onGenerateName={handleGenerateName} onGenerateMenu={handleGenerateMenu} onGenerateAll={handleGenerateAll} onReroll={handleReroll} />
         </FormProvider>
     )
 } 
