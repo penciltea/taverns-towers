@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useSettlementQuery } from '@/hooks/settlement.query';
-import { useSightContentStore } from '@/store/sightStore';
+import { useSiteContentStore } from '@/store/siteStore';
 import { useUIStore } from '@/store/uiStore';
-import { SightType } from '@/interfaces/sight.interface';
-import { usePaginatedSights } from '@/hooks/sight.query';
+import { SiteType } from '@/interfaces/site.interface';
+import { usePaginatedSites } from './site.query';
 import { useSettlementContentStore } from '@/store/settlementStore';
-import { createSight } from '@/lib/actions/sight.actions';
+import { createSite } from '@/lib/actions/site.actions';
 
 export function useSettlementLoader(settlementId: string | null) {
   const { setSelectedItem } = useSettlementContentStore();
-  const { setItems: setSightItems } = useSightContentStore();
+  const { setItems: setSiteItems } = useSiteContentStore();
   const { setSettlementId, showErrorDialog } = useUIStore();
 
   const [loading, setLoading] = useState(true);
@@ -21,9 +21,9 @@ export function useSettlementLoader(settlementId: string | null) {
   // Fetching the settlement by its ID
   const { data: settlementData, isLoading: settlementLoading, refetch: refetchSettlement } = useSettlementQuery(settlementId);
   
-  // Fetching the sights associated with the settlement
-  const { data: sightData, refetch: refetchSights, isFetching: sightsLoading } =
-    usePaginatedSights(settlementId as string, page, limit, [], "");
+  // Fetching the sites associated with the settlement
+  const { data: siteData, refetch: refetchSites, isFetching: sitesLoading } =
+    usePaginatedSites(settlementId as string, page, limit, [], "");
 
   useEffect(() => {
     if (settlementData) {
@@ -31,51 +31,51 @@ export function useSettlementLoader(settlementId: string | null) {
       setSettlementId(settlementData._id); // Set the settlementId
     }
 
-    if (sightData) {
-      setSightItems(sightData.sights); // Set sights in the store
+    if (siteData) {
+      setSiteItems(siteData.sites); // Set sites in the store
     }
 
     setLoading(false);
-  }, [settlementData, sightData, setSelectedItem, setSettlementId, setSightItems]);
+  }, [settlementData, siteData, setSelectedItem, setSettlementId, setSiteItems]);
   
 
-  async function addSight(newSight: SightType, settlementId: string) {
+  async function addSite(newSite: SiteType, settlementId: string) {
     try {
-      // Save the new sight to the database
-      const savedSight = await createSight(newSight, settlementId);
+      // Save the new site to the database
+      const savedSite = await createSite(newSite, settlementId);
   
-      // Once saved, update the Zustand store with the new sight
-      const store = useSightContentStore.getState();
-      const currentSights = store.allItems;
+      // Once saved, update the Zustand store with the new site
+      const store = useSiteContentStore.getState();
+      const currentSites = store.allItems;
   
-      store.setItems([...currentSights, savedSight]); // Add saved sight to the store
+      store.setItems([...currentSites, savedSite]); // Add saved site to the store
   
-      await refetchSights();  // Refresh sights after the new sight is added
+      await refetchSites();  // Refresh sites after the new site is added
     } catch (error) {
-      console.error('Error adding sight:', error);
-      showErrorDialog("There was a problem adding the sight, please try again later!");
+      console.error('Error adding site:', error);
+      showErrorDialog("There was a problem adding the site, please try again later!");
     }
   }
 
-  function deleteSight(id: string) {
-    const store = useSightContentStore.getState(); // Access current Zustand store state
+  function deleteSite(id: string) {
+    const store = useSiteContentStore.getState(); // Access current Zustand store state
     const currentItems = store.allItems;
     const filteredItems = currentItems.filter((loc) => loc._id !== id);
   
     store.setItems(filteredItems);  // Update store after deletion
-    refetchSights(); // Re-fetch sights to update UI
+    refetchSites(); // Re-fetch sites to update UI
   }
 
   return {
     settlement: settlementData,
-    sights: sightData?.sights,
+    sites: siteData?.sites,
     page,
     setPage,
     limit, 
     setLimit,
-    totalPages: sightData?.totalPages ?? 1,
-    loading: loading || sightsLoading,
-    addSight,
-    deleteSight,
+    totalPages: siteData?.totalPages ?? 1,
+    loading: loading || sitesLoading,
+    addSite,
+    deleteSite,
   };
 }

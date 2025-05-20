@@ -9,7 +9,7 @@ export const generateSettlementSchema = z.object({
   rulingStyle: z.string().min(1, "Ruling Style is required"),
   wealth: z.string().min(1, "Wealth is required"),
   crime: z.array(z.string()).min(1, "One Crime selection is required"),
-  createSights: z.boolean().optional()
+  createSites: z.boolean().optional()
 });
 
 export type GenerateSettlementInput = z.infer<typeof generateSettlementSchema>;

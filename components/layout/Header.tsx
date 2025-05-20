@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
-import SightTypeDialog from '@/components/Sight/Dialog/SightTypeDialog';
+import SiteTypeDialog from '../Site/Dialog/SiteTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SettlementTypeDialog from '../Settlement/SettlementTypeDialog';
 
@@ -16,7 +16,7 @@ export default function Header() {
     const {openDialog, closeDialog} = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [menuType, setMenuType] = useState<'settlements' | 'sights' | 'npcs' | null>(null);
+    const [menuType, setMenuType] = useState<'settlements' | 'sites' | 'npcs' | null>(null);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>, type: typeof menuType) => {
         setAnchorEl(event.currentTarget);
@@ -33,8 +33,8 @@ export default function Header() {
     handleMenuClose();
   };
 
-  const handleSightDialog = () => {
-    useUIStore.getState().setOpenDialog('sightTypeDialog')
+  const handleSiteDialog = () => {
+    useUIStore.getState().setOpenDialog('siteTypeDialog')
     handleMenuClose();
   };
 
@@ -80,21 +80,21 @@ export default function Header() {
                 <MenuItem onClick={handleSettlementDialog}>Create Settlement</MenuItem>
             </Menu>
 
-            {/* Sights */}
+            {/* Sites */}
             <Button
-                onClick={(e) => handleMenuOpen(e, 'sights')}
+                onClick={(e) => handleMenuOpen(e, 'sites')}
                 color="inherit"
                 endIcon={<KeyboardArrowDownIcon />}
             >
-                Sights
+                Sites
             </Button>
             <Menu
                 anchorEl={anchorEl}
-                open={Boolean(anchorEl) && menuType === 'sights'}
+                open={Boolean(anchorEl) && menuType === 'sites'}
                 onClose={handleMenuClose}
             >
-                <MenuItem onClick={() => handleNavigate('/sights/all')}>View Your Sights</MenuItem>
-                <MenuItem onClick={handleSightDialog}>Create Sight</MenuItem>
+                <MenuItem onClick={() => handleNavigate('/sites/all')}>View Your Sites</MenuItem>
+                <MenuItem onClick={handleSiteDialog}>Create Site</MenuItem>
             </Menu>
 
             {/* NPCs */}
@@ -129,8 +129,8 @@ export default function Header() {
       </Toolbar>
     </AppBar>
 
-    {openDialog === 'sightTypeDialog' && (
-        <SightTypeDialog open onClose={closeDialog} />
+    {openDialog === 'siteTypeDialog' && (
+        <SiteTypeDialog open onClose={closeDialog} />
     )}
 
     {openDialog === 'settlementTypeDialog' && (

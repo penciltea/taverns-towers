@@ -1,7 +1,7 @@
-export const sightListKey = (
+export const siteListKey = (
     settlementId: string,
     page: number,
     limit: number,
     type?: string[],
     name?: string
-  ) => ['sights', settlementId, page, limit, type, name];
+  ) => ['sites', settlementId, page, limit, type, name];

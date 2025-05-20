@@ -1,4 +1,4 @@
-export const LOCATION_CATEGORIES = [ 
+export const SITE_CATEGORIES = [ 
     "Taverns & Inns", 
     "Temples & Shrines", 
     "Shopping", 

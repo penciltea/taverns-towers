@@ -8,14 +8,14 @@ import { useSettlementLoader } from '@/hooks/useSettlementLoader';
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
-import SightList from "@/components/Settlement/View/SightList";
+import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
-import SightTypeDialog from "@/components/Sight/Dialog/SightTypeDialog";
+import SiteTypeDialog from "@/components/Site/Dialog/SiteTypeDialog";
 
 export default function ViewSettlementPage({ params }: { params: Promise<{ id: string }> }) {
   const { openDialog, closeDialog } = useUIStore();
   const { id } = use(params);
-  const { settlement, loading, deleteSight } = useSettlementLoader(id);
+  const { settlement, loading, deleteSite } = useSettlementLoader(id);
 
   if (!loading && !settlement) {
     return <Typography>Settlement not found!</Typography>;
@@ -80,27 +80,27 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
             loading={loading}
             skeleton={
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                {/* Simulate 3 loading "sight cards" */}
+                {/* Simulate 3 loading "site cards" */}
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
                 <Skeleton variant="rectangular" height={100} width={'30%'} />
               </Stack>
             }
           >
-            <SightList
+            <SiteList
               settlementId={id}
               onDelete={(id: string) => {
-                deleteSight(id);
+                deleteSite(id);
               }}
             />
           </SkeletonLoader>
         </Grid>
       </Grid>
 
-      <FabButton label="Add Sight" onClick={() => useUIStore.getState().setOpenDialog('sightTypeDialog')} />
+      <FabButton label="Add Site" onClick={() => useUIStore.getState().setOpenDialog('siteTypeDialog')} />
 
-      {openDialog === 'sightTypeDialog' && (
-        <SightTypeDialog open onClose={closeDialog} />
+      {openDialog === 'siteTypeDialog' && (
+        <SiteTypeDialog open onClose={closeDialog} />
       )}
     </>
   );

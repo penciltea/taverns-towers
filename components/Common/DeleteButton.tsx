@@ -23,7 +23,7 @@ export default function DeleteButton({ id, entity, deleteAction, onSuccess }: De
         try {
             await deleteAction(id);
             setConfirmOpen(false);
-            closeParentDialog(); // Close SightDetailsDialog after successful delete
+            closeParentDialog(); // Close SiteDetailsDialog after successful delete
             onSuccess?.();
         } catch (error) {
             console.error(`Failed to delete ${entity}:`, error);

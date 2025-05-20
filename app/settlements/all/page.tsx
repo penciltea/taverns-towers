@@ -60,7 +60,7 @@ export default function SettlementsPage() {
         fabOnClick={() => useUIStore.getState().setOpenDialog('settlementTypeDialog')}
       />
 
-      {openDialog === 'sightTypeDialog' && (
+      {openDialog === 'siteTypeDialog' && (
         <SettlementTypeDialog open onClose={closeDialog} />
       )}
     </>

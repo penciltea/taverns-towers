@@ -40,7 +40,7 @@ export default function GenerateSettlementPage() {
       rulingStyle: "random",
       wealth: "random",
       crime: ["random"],
-      createSights: true
+      createSites: true
     },
   });
 
@@ -54,7 +54,7 @@ export default function GenerateSettlementPage() {
       rulingStyle: "",
       wealth: "",
       crime: [],
-      createSights: true,
+      createSites: true,
     });
   };
 
@@ -197,11 +197,11 @@ export default function GenerateSettlementPage() {
                 sx={{mt: 2}}
                 control={
                     <Checkbox 
-                        {...register("createSights")}
+                        {...register("createSites")}
                         defaultChecked 
                     />
                 } 
-                label="Create sights in my settlement too!" 
+                label="Create sites in my settlement too!" 
             />    
 
             <Box sx={{ display: "flex", flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mt: 3 }}>
