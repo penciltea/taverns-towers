@@ -28,7 +28,7 @@ export const baseSiteSchema = z.object({
 export const menuItemSchema = z.object({
   name: z.string().min(1, "Name is required"),
   category: z.string().optional(),
-  description: z.string().optional(), // or .min(1) if required
+  description: z.string().optional(),
   price: z.string().or(z.number()).transform((val) => val.toString()),
 });
 
@@ -52,13 +52,14 @@ export const templeSchema = baseSiteSchema.extend({
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
   shopType: z.string(),
+  owner: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
 export const guildSchema = baseSiteSchema.extend({
   type: z.literal("guild"),
   guildName: z.string().optional(),
-  guildType: z.string().optional(),
+  guildType: z.string(),
   leader: z.string().optional(),
   membershipRequirements: z.string().optional(),
   knownRivals: z.string().optional(),
@@ -86,7 +87,8 @@ export const hiddenSchema = baseSiteSchema.extend({
   secrecy: z
   .array(z.enum(secrecyEnumValues as [string, ...string[]]))
   .optional()
-  .default([]),leader: z.string().optional(),
+  .default([]),
+  leader: z.string().optional(),
   knownTo: z.string().optional(),
   defenses: z.string().optional(),
   purpose: z.string().optional(),
@@ -99,7 +101,7 @@ export const residenceSchema = baseSiteSchema.extend({
   notableFeatures: z.string().optional(),
 });
 
-export const miscSchema = baseSiteSchema.extend({
+export const miscellaneousSchema = baseSiteSchema.extend({
   type: z.literal("miscellaneous"),
   description: z.string().optional(),
   features: z.string().optional(),
@@ -115,7 +117,7 @@ export const siteSchema = z.discriminatedUnion("type", [
   entertainmentSchema,
   hiddenSchema,
   residenceSchema, 
-  miscSchema
+  miscellaneousSchema
 ]);
 
 export type SiteFormData = z.infer<typeof siteSchema>;
@@ -139,24 +141,24 @@ export const defaultSiteValues: Record<
     deity: "",
     leader: "",
     relics: "",
-    services: []
+    menu: []
   },
   shop: {
     name: "",
     type: "shop",
     shopType: "",
     owner: "",
-    wares: []
+    menu: []
   },
   guild: {
     name: "",
     type: "guild",
+    guildType: "",
     guildName: "",
-    focus: "",
     leader: "",
     membershipRequirements: "",
     knownRivals: "",
-    services: []
+    menu: []
   },
   government: {
     name: "",

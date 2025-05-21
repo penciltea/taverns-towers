@@ -76,7 +76,7 @@ export interface ShopSite extends BaseSite {
 export interface GuildSite extends BaseSite {
   type: "guild";
   guildName?: string;
-  guildType?: string;
+  guildType: string;
   leader?: string;
   membershipRequirements?: string;
   knownRivals?: string;
@@ -129,6 +129,14 @@ export interface generatorMenuItem{
   terrain?: string[];
   tags?: string[];
 }
+
+export type SiteFormFieldProps = {
+  generator?: {
+    name?: () => void;
+    menu?: () => void;
+    
+  };
+};
 
 export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscSite | BaseSite;
 

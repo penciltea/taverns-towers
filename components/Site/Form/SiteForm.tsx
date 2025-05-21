@@ -19,20 +19,14 @@ type SiteFormProps = {
   onGenerateMenu: () => void;
   onGenerateAll: () => void;
   onReroll: () => void;
-  settlementContext: {
-    terrain: string[] | undefined;
-    climate: string | undefined;
-    tags: string[] | undefined;
-  };
 };
 
-export default function SiteForm({ onSubmit, mode, onGenerateMenu, onGenerateName, onGenerateAll, onReroll, settlementContext }: SiteFormProps){
+export default function SiteForm({ onSubmit, mode, onGenerateMenu, onGenerateName, onGenerateAll, onReroll }: SiteFormProps){
     const searchParams = useSearchParams();
     const methods = useFormContext<SiteFormData>();
-    const { handleSubmit, register, control, formState: { errors } } = methods;
+    const { handleSubmit, formState: { errors } } = methods;
     const { selectedItem } = useSiteContentStore();
     const { isSubmitting } = useUIStore();
-    const { setValue } = useFormContext<SiteFormData>();
 
     const typeParam = mode === 'edit'
     ? selectedItem?.type
@@ -99,7 +93,12 @@ export default function SiteForm({ onSubmit, mode, onGenerateMenu, onGenerateNam
                 >
                     <Box>
                         {SpecificFieldsComponent ? (
-                            <SpecificFieldsComponent handleGenerateName={onGenerateName} handleGenerateMenu={onGenerateMenu} />
+                            <SpecificFieldsComponent 
+                                generator={{
+                                    name: onGenerateName,
+                                    menu: onGenerateMenu,
+                                }}
+                            />
                         ) : (
                             <Typography variant="body2">
                                 {typeParam ? `Unknown site type: ${typeParam}` : "No site type selected."}

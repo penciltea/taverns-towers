@@ -1,14 +1,10 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
 import { SECURITY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
-import { Stack, Button } from "@mui/material";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
-type GovernmentFormProps = {
-    handleGenerateName: () => void;
-    handleGenerateMenu: () => void;
-}
-
-export default function GovernmentFields({handleGenerateName}: GovernmentFormProps){
+export default function GovernmentFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -17,29 +13,20 @@ export default function GovernmentFields({handleGenerateName}: GovernmentFormPro
     
     return (
         <>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
+            />
             
             <FormSelect
                 name="size"
                 label="Size Category"
                 control={control}
-                options={SITE_SIZE}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size}
             />
 
@@ -47,7 +34,7 @@ export default function GovernmentFields({handleGenerateName}: GovernmentFormPro
                 name="condition"
                 label="Condition"
                 control={control}
-                options={SITE_CONDITION}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
             <FormTextField
@@ -75,7 +62,7 @@ export default function GovernmentFields({handleGenerateName}: GovernmentFormPro
                 name="security"
                 label="Security Level"
                 control={control}
-                options={SECURITY_LEVELS}
+                options={[{ label: "Random", value: "random" }, ...SECURITY_LEVELS]}
                 fieldError={errors.security}
             />
 

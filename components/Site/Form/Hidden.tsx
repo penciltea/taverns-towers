@@ -1,16 +1,11 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
 import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
-import { Stack, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
-type HiddenFormProps = {
-    handleGenerateName: () => void;
-    handleGenerateMenu: () => void;
-}
-
-
-export default function HiddenFields({handleGenerateName}: HiddenFormProps){
+export default function HiddenFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -19,29 +14,20 @@ export default function HiddenFields({handleGenerateName}: HiddenFormProps){
     
     return (
         <>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
+            />
             
             <FormSelect
                 name="size"
                 label="Size Category"
                 control={control}
-                options={SITE_SIZE}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size}
             />
 
@@ -49,14 +35,14 @@ export default function HiddenFields({handleGenerateName}: HiddenFormProps){
                 name="condition"
                 label="Condition"
                 control={control}
-                options={SITE_CONDITION}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
             <FormChipSelect
                 name="secrecy"
                 label="Secrecy Level"
                 control={control}
-                options={SECRECY_LEVELS}
+                options={[{ label: "Random", value: "random" }, ...SECRECY_LEVELS]}
                 fieldError={errors.secrecy}
             />
 

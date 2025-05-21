@@ -2,19 +2,10 @@ import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
-import { Stack, Button } from "@mui/material";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
-type EntertainmentFormProps = {
-  handleGenerateName: () => void;
-  handleGenerateMenu: () => void;
-  settlementContext: {
-    terrain: string[] | undefined;
-    climate: string | undefined;
-    tags: string[] | undefined;
-  };
-};
-
-export default function EntertainmentFields({handleGenerateName}: EntertainmentFormProps){
+export default function EntertainmentFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -23,29 +14,20 @@ export default function EntertainmentFields({handleGenerateName}: EntertainmentF
     
     return (
         <>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
+            />
 
             <FormSelect
                 name="size"
                 label="Size Category"
                 control={control}
-                options={SITE_SIZE}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size}
             />
 
@@ -53,14 +35,14 @@ export default function EntertainmentFields({handleGenerateName}: EntertainmentF
                 name="condition"
                 label="Condition"
                 control={control}
-                options={SITE_CONDITION}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
             <FormSelect
                 name="venueType"
                 label="Venue Type"
                 control={control}
-                options={toSelectOptions(ENTERTAINMENT_VENUE_TYPES)}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(ENTERTAINMENT_VENUE_TYPES)]}
                 fieldError={errors.shopType}
             />
             

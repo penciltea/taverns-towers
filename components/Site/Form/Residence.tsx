@@ -1,15 +1,11 @@
 import { FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
-import { Stack, Button } from "@mui/material";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { useFormContext } from "react-hook-form";
 
-type ResidenceFormProps = {
-    handleGenerateName: () => void;
-    handleGenerateMenu: () => void;
-}
-
-export default function ResidenceFields({handleGenerateName}: ResidenceFormProps){
+export default function ResidenceFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -18,29 +14,20 @@ export default function ResidenceFields({handleGenerateName}: ResidenceFormProps
     
     return (
         <>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
+            />
             
             <FormSelect
                 name="size"
                 label="Size Category"
                 control={control}
-                options={SITE_SIZE}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size}
             />
 
@@ -48,7 +35,7 @@ export default function ResidenceFields({handleGenerateName}: ResidenceFormProps
                 name="condition"
                 label="Condition"
                 control={control}
-                options={SITE_CONDITION}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
 

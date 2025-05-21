@@ -7,10 +7,11 @@ import EntertainmentFields from "./Entertainment";
 import HiddenFields from "./Hidden";
 import ResidenceFields from "./Residence";
 import MiscellaneousFields from "./Miscellaneous";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
 
 export const siteFormFieldsByType: Record<
   string,
-  React.ComponentType
+  React.ComponentType<SiteFormFieldProps>
 > = {
   tavern: TavernFields,
   temple: TempleFields,

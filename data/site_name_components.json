@@ -158,7 +158,7 @@
     "value": "General Goods",
     "weight": 1, 
     "siteTypes": ["shop"],
-    "shopType": "general"
+    "shopType": "general store"
   },
   {
     "value": "Bakery",
@@ -249,21 +249,21 @@
     "value": "Rusty",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["general", "blacksmith", "armory"]
+    "shopType": ["general store", "blacksmith", "armory"]
   },
   {
     "type": "noun",
     "value": "Crate",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["general", "alchemist", "carpenter", "other"]
+    "shopType": ["general store", "alchemist", "carpenter", "other"]
   },
   {
     "type": "suffix",
     "value": "Wagon",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["general", "carpenter", "other"]
+    "shopType": ["general store", "carpenter", "other"]
   },
   {
     "type": "noun",
@@ -291,21 +291,21 @@
     "value": "Thread",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["general", "tailor", "magic", "other"]
+    "shopType": ["general store", "tailor", "magic", "other"]
   },
   {
     "type": "suffix",
     "value": "Stitch",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["general", "tailor", "magic", "other"]
+    "shopType": ["general store", "tailor", "magic", "other"]
   },
   {
     "type": "noun",
     "value": "Quill",
     "weight": 2,
     "siteTypes": ["shop"],
-    "shopType": ["general", "magic", "Bookstore", "other"]
+    "shopType": ["general store", "magic", "Bookstore", "other"]
   },
   {
     "type": "suffix",
@@ -326,7 +326,7 @@
     "value": "Bulwark",
     "weight": 1,
     "siteTypes": ["shop"],
-    "shopType": ["general", "blacksmith", "armory", "carpenter", "other"]
+    "shopType": ["general store", "blacksmith", "armory", "carpenter", "other"]
   },
   {
     "type": "prefix",

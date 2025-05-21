@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES } from "@/constants/siteOptions";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
@@ -82,7 +82,7 @@ const Tavern =
     "guild",
     new Schema({
       guildName: { type: String, required: false },
-      guildType: { type: String, required: false },
+      guildType: { type: String, enum: GUILD_TYPES, required: true },
       leader: { type: String, required: false },
       membershipRequirements: { type: String, required: false },
       knownRivals: { type: String, required: false },
@@ -107,7 +107,7 @@ const Tavern =
   Site.discriminator(
     "entertainment",
     new Schema({
-      venueType: { type: String, required: false },
+      venueType: { type: String, enum: ENTERTAINMENT_VENUE_TYPES, required: false },
       performances: { type: String, required: false },
       owner: { type: String, required: false },
       cost: { type: String, required: false },

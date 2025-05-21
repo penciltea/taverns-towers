@@ -7,6 +7,7 @@ import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
 export default function SettlementFormBasics(){
     const {
@@ -41,24 +42,15 @@ export default function SettlementFormBasics(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box>                
-                <Stack direction="row" spacing={1} alignItems="flex-start">
-                    <FormTextField
-                        name="name"
-                        label="Settlement Name"
-                        registration={register("name")}
-                        fieldError={errors.name}
-                        required
-                    />
-                    <Button
-                        variant="outlined"
-                        onClick={handleGenerateName}
-                        size="large"
-                        sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                    >
-                        Generate
-                    </Button>
-                </Stack>
+            <Box>         
+                <FormFieldWithGenerate
+                    name="name"
+                    label="Settlement Name"
+                    required
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    onGenerate={handleGenerateName}
+                />       
                 
                 <FormSelect
                     name="size"

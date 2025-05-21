@@ -1,15 +1,12 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-type TempleFormProps = {
-    handleGenerateMenu: () => void;
-    handleGenerateName: () => void;
-}
-
-export default function TempleFields({handleGenerateName, handleGenerateMenu}: TempleFormProps){
+export default function TempleFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -18,29 +15,20 @@ export default function TempleFields({handleGenerateName, handleGenerateMenu}: T
     
     return (
         <>
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
+            />
 
             <FormSelect
                 name="size"
                 label="Size Category"
                 control={control}
-                options={SITE_SIZE}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size}
             />
 
@@ -48,7 +36,7 @@ export default function TempleFields({handleGenerateName, handleGenerateMenu}: T
                 name="condition"
                 label="Condition"
                 control={control}
-                options={SITE_CONDITION}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
 
@@ -92,20 +80,11 @@ export default function TempleFields({handleGenerateName, handleGenerateMenu}: T
             />
 
             <Box sx={{mt: 4}}>
-                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
-                    <Button
-                        type="button"
-                        variant="outlined"
-                        onClick={handleGenerateMenu}
-                        size="large"
-                        sx={{ mt: 2, py: 1.65 }}
-                    >
-                        Conjure services
-                    </Button>
-                </Box>
                 <FormEditableTable
                     name="menu"
+                    header="Services Offered"
+                    onGenerate={generator?.menu}
+                    buttonLabel="Conjure services"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },

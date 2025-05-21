@@ -51,6 +51,35 @@ export const SECRECY_LEVELS = [
   { value: "mythical", label: "Mythical (Believed to be legend)" }
 ];
 
+/* For Guild site type form */
+export const GUILD_TYPES = [
+  "Adventurers' Guild",
+  "Alchemists' Guild",
+  "Artisans' Guild",
+  "Assassins' Guild",
+  "Bards' Guild",
+  "Beast Tamers' Lodge",
+  "Blacksmiths' Guild",
+  "Cartographers' Guild",
+  "Couriers' Guild",
+  "Dockworkers' Guild",
+  "Engineers' Guild",
+  "Explorers' Guild",
+  "Glassblowers' Guild",
+  "Healers' Guild",
+  "Hunters' Guild",
+  "Laborers' Union",
+  "Mages' Guild",
+  "Merchants' Syndicate",
+  "Miners' Guild",
+  "Scribes' Guild",
+  "Seafarers' Brotherhood",
+  "Spy Network (Front Guild)",
+  "Tailors' Guild",
+  "Thieves' Guild",
+  "Other"
+];
+
 /* for Shop types */
 export const SHOP_TYPES = [
   "General Store",
@@ -95,3 +124,5 @@ export type SiteCondition = typeof SITE_CONDITION[number]["value"];
 export type SiteSecurityLevel = typeof SECURITY_LEVELS[number]["value"];
 export type SiteSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
 export type SiteShopType = typeof SHOP_TYPES[number];
+export type SiteGuildType = typeof GUILD_TYPES[number];
+export type SiteEntertainmentType = typeof ENTERTAINMENT_VENUE_TYPES[number];

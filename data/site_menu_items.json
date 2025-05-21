@@ -5,7 +5,7 @@
     "category": "Wares",
     "price": "5sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [
       "Temperate",
       "Dry"
@@ -25,7 +25,7 @@
     "category": "Wares",
     "price": "3sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [
       "Continental"
     ],
@@ -44,7 +44,7 @@
     "category": "Wares",
     "price": "1sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [
       "Dry",
       "Temperate"
@@ -64,7 +64,7 @@
     "category": "Wares",
     "price": "2sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [
       "Temperate",
       "Tropical"
@@ -84,7 +84,7 @@
     "category": "Wares",
     "price": "1sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [
       "Polar",
       "Continental"
@@ -104,7 +104,7 @@
     "category": "Wares",
     "price": "5sp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [],
     "terrain": [],
     "tags": []
@@ -115,7 +115,7 @@
     "category": "Wares",
     "price": "2gp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [],
     "terrain": [],
     "tags": []
@@ -126,7 +126,7 @@
     "category": "Wares",
     "price": "1gp",
     "siteType": "shop",
-    "shopType": "general_store",
+    "shopType": "general store",
     "climate": [],
     "terrain": [],
     "tags": []

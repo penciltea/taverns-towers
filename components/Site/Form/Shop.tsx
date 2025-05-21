@@ -1,16 +1,13 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { SHOP_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
-type ShopFormProps = {
-    handleGenerateMenu: () => void;
-    handleGenerateName: () => void;
-}
-
-export default function ShopFields({handleGenerateMenu, handleGenerateName}: ShopFormProps){
+export default function ShopFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
@@ -24,43 +21,17 @@ export default function ShopFields({handleGenerateMenu, handleGenerateName}: Sho
                 label="Shop Type"
                 required
                 control={control}
-                options={toSelectOptions(SHOP_TYPES)}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(SHOP_TYPES)]}
                 fieldError={errors.shopType}
             />
 
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <FormTextField
-                    name="name"
-                    label="Site Name"
-                    registration={register("name")}
-                    fieldError={errors.name}
-                    required
-                />
-                    <Button
-                    variant="outlined"
-                    onClick={handleGenerateName}
-                    size="large"
-                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                >
-                    Generate
-                </Button>
-            </Stack>
-            
-
-            <FormSelect
-                name="size"
-                label="Size Category"
-                control={control}
-                options={SITE_SIZE}
-                fieldError={errors.size}
-            />
-
-            <FormSelect
-                name="condition"
-                label="Condition"
-                control={control}
-                options={SITE_CONDITION}
-                fieldError={errors.condition}
+            <FormFieldWithGenerate
+                name="name"
+                label="Site Name"
+                required
+                registration={register("name")}
+                fieldError={errors.name}
+                onGenerate={generator?.name}
             />
 
             <FormTextField
@@ -68,6 +39,22 @@ export default function ShopFields({handleGenerateMenu, handleGenerateName}: Sho
                 label="Owner"
                 registration={register("owner")}
                 fieldError={errors.owner}
+            />            
+
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
+                fieldError={errors.condition}
             />
 
             <FormTextField
@@ -89,20 +76,11 @@ export default function ShopFields({handleGenerateMenu, handleGenerateName}: Sho
             />
 
             <Box sx={{mt: 4}}>
-                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <Typography variant="h6" sx={{mb: 2}}>Wares</Typography>
-                    <Button
-                        type="button"
-                        variant="outlined"
-                        onClick={handleGenerateMenu}
-                        size="large"
-                        sx={{ mt: 2, py: 1.65 }}
-                    >
-                        Conjure menu items
-                    </Button>
-                </Box>
                 <FormEditableTable
                     name="menu"
+                    header="Available Wares & Services"
+                    onGenerate={generator?.menu}
+                    buttonLabel="Conjure wares & services"
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },
