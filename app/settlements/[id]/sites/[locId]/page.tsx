@@ -63,53 +63,69 @@ export default function EditSitePage(){
         loadSite();
       }, [safeId, reset, setSelectedItem, showSnackbar]);
 
-      async function handleGenerateName() {
-              const { setValue } = methods;
-      
-              if (!typeParam) return;
-                  const name = await generateSiteName({
-                  siteType: typeParam,
-                  terrain: settlementContext.terrain,
-                  climate: settlementContext.climate,
-                  tags: settlementContext.tags,
-              });
-      
-              setValue("name", name); // Set name into RHF
-          }
-      
-          async function handleGenerateMenu(){
-              if (!typeParam) return;
-      
-              const shopType = methods.watch("shopType").toLowerCase() ?? selectedItem?.shopType;
-              
-              const menuItems = await generateMenuItems({
-                  siteType: typeParam,
-                  shopType,
-                  settlementTerrain: settlementContext.terrain ?? [],
-                  settlementClimate: settlementContext.climate,
-                  settlementTags: settlementContext.tags ?? [],
-              });
-      
-              console.log("menuItems: ", menuItems);
-      
-              function cleanMenuItems(items: any[]): generatorMenuItem[] {
-                  return items.map(item => ({
-                      name: item.name || "",
-                      price: String(item.price || ""),
-                      category: item.category || undefined,
-                      description: item.description || undefined,
-                  }));
-              }
-              methods.setValue("menu", cleanMenuItems(menuItems)); //makes sure items match what the menu table expects
-          }
-      
-          function handleGenerateAll(){
-              console.log("clicked");
-          }
-      
-          function handleReroll(){
-              console.log("clicked");
-          }
+    async function handleGenerateName() {
+        const { setValue, getValues } = methods;
+
+        const type = getValues("type");
+        const shopType =
+            type === "shop"
+                ? getValues("shopType")?.toLowerCase()
+                : type === "entertainment"
+                ? getValues("venueType")?.toLowerCase()
+                : undefined;
+
+        if (!type) return;
+
+        const name = await generateSiteName({
+            siteType: [type],
+            shopType,
+            terrain: settlementContext.terrain,
+            climate: settlementContext.climate,
+            tags: settlementContext.tags,
+        });
+
+        setValue("name", name, { shouldDirty: true }); // ensures field is marked dirty and updated
+    }
+    
+    async function handleGenerateMenu() {
+        const { setValue, getValues } = methods;
+
+        const type = getValues("type");
+        const shopType =
+            type === "shop"
+                ? getValues("shopType")?.toLowerCase()
+                : type === "entertainment"
+                ? getValues("venueType")?.toLowerCase()
+                : undefined;
+
+        if (!type) return;
+
+        const menuItems = await generateMenuItems({
+            siteType: [type],
+            shopType,
+            settlementTerrain: settlementContext.terrain ?? [],
+            settlementClimate: settlementContext.climate,
+            settlementTags: settlementContext.tags ?? [],
+        });
+
+        const cleanMenuItems: generatorMenuItem[] = menuItems.map(item => ({
+            name: item.name || "",
+            price: String(item.price || ""),
+            category: item.category || undefined,
+            description: item.description || undefined,
+        }));
+
+        setValue("menu", cleanMenuItems, { shouldDirty: true }); // force update
+    }
+
+
+    function handleGenerateAll(){
+        console.log("clicked");
+    }
+
+    function handleReroll(){
+        console.log("clicked");
+    }
 
     const onSubmit = async (data: SiteFormData) => {
         const cleanImage = await handleDynamicFileUpload(data, "image");
