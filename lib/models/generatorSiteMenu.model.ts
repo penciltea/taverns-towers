@@ -6,7 +6,7 @@ export interface GeneratorSiteMenuPlain extends Document {
   description?: string;
   category?: string;
   price: string;
-  siteType: string;
+  siteType: string[];
   shopType?: string;
   climate?: ClimateTypes[];
   terrain?: TerrainTypes[];

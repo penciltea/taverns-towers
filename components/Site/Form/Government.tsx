@@ -1,10 +1,14 @@
 import { FormSelect, FormTextField } from "@/components/Form";
-import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { SECURITY_LEVELS } from "@/constants/siteOptions";
+import { SECURITY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { Stack, Button } from "@mui/material";
 
-export default function GovernmentFields(){
+type GovernmentFormProps = {
+    handleGenerateName: () => void;
+    handleGenerateMenu: () => void;
+}
+
+export default function GovernmentFields({handleGenerateName}: GovernmentFormProps){
     const {
         register,
         control,
@@ -13,6 +17,39 @@ export default function GovernmentFields(){
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+            
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
             <FormTextField
                 name="function"
                 label="Function"

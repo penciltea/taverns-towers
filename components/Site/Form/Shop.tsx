@@ -1,15 +1,16 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { SHOP_TYPES } from "@/constants/siteOptions";
+import { SHOP_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
-type SiteFormProps = {
+type ShopFormProps = {
     handleGenerateMenu: () => void;
+    handleGenerateName: () => void;
 }
 
-export default function ShopFields({handleGenerateMenu}: SiteFormProps){
+export default function ShopFields({handleGenerateMenu, handleGenerateName}: ShopFormProps){
     const {
         register,
         control,
@@ -25,6 +26,41 @@ export default function ShopFields({handleGenerateMenu}: SiteFormProps){
                 control={control}
                 options={toSelectOptions(SHOP_TYPES)}
                 fieldError={errors.shopType}
+            />
+
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+            
+
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
             />
 
             <FormTextField

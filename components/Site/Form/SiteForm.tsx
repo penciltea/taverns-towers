@@ -2,8 +2,8 @@ import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Paper, Typography, Stack, Box, Button } from "@mui/material";
 import { SiteFormData } from "@/schemas/site.schema";
-import { FormTextField, FormSelect } from "@/components/Form";
-import { SITE_CATEGORIES, SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
+import { FormTextField } from "@/components/Form";
+import { SITE_CATEGORIES } from "@/constants/siteOptions";
 import { siteFormFieldsByType } from "@/components/Site/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
@@ -43,9 +43,6 @@ export default function SiteForm({ onSubmit, mode, onGenerateMenu, onGenerateNam
     const typeLabel = typeParam
     ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
     : "Unknown";
-
-    
-     
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
@@ -101,42 +98,8 @@ export default function SiteForm({ onSubmit, mode, onGenerateMenu, onGenerateNam
                     spacing={{ xs: 1, sm: 2, md: 4 }}
                 >
                     <Box>
-                        <Stack direction="row" spacing={1} alignItems="flex-start">
-                            <FormTextField
-                                name="name"
-                                label="Site Name"
-                                registration={register("name")}
-                                fieldError={errors.name}
-                                required
-                            />
-                             <Button
-                                variant="outlined"
-                                onClick={onGenerateName}
-                                size="large"
-                                sx={{ mt: 2, py: 1.65 }} // align with text field's margin
-                            >
-                                Generate
-                            </Button>
-                        </Stack>
-
-                        <FormSelect
-                            name="size"
-                            label="Size Category"
-                            control={control}
-                            options={SITE_SIZE}
-                            fieldError={errors.size}
-                        />
-
-                        <FormSelect
-                            name="condition"
-                            label="Condition"
-                            control={control}
-                            options={SITE_CONDITION}
-                            fieldError={errors.condition}
-                        />
-
                         {SpecificFieldsComponent ? (
-                            <SpecificFieldsComponent handleGenerateMenu={onGenerateMenu} />
+                            <SpecificFieldsComponent handleGenerateName={onGenerateName} handleGenerateMenu={onGenerateMenu} />
                         ) : (
                             <Typography variant="body2">
                                 {typeParam ? `Unknown site type: ${typeParam}` : "No site type selected."}

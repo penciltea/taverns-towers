@@ -35,12 +35,21 @@ export default function NewSitePage(){
 
     async function handleGenerateName() {
         const { setValue } = methods;
+        console.log("clicked");
 
-        const shopType = methods.watch("shopType")?.toLowerCase() ?? selectedItem?.shopType;
+        let shopType: string | undefined;
+
+        if (typeParam === 'shop') {
+            shopType = methods.watch("shopType")?.toLowerCase();
+        } else if (typeParam === 'entertainment') {
+            shopType = methods.watch("venueType")?.toLowerCase();
+        } else {
+            shopType = selectedItem?.shopType?.toLowerCase();
+        }
 
         if (!typeParam) return;
-            const name = await generateSiteName({
-            siteType: typeParam,
+        const name = await generateSiteName({
+            siteType: [typeParam],
             shopType,
             terrain: settlementContext.terrain,
             climate: settlementContext.climate,
@@ -53,10 +62,18 @@ export default function NewSitePage(){
     async function handleGenerateMenu(){
         if (!typeParam) return;
 
-        const shopType = methods.watch("shopType").toLowerCase() ?? selectedItem?.shopType;
+        let shopType: string | undefined;
+
+        if (typeParam === 'shop') {
+            shopType = methods.watch("shopType")?.toLowerCase();
+        } else if (typeParam === 'entertainment') {
+            shopType = methods.watch("venueType")?.toLowerCase();
+        } else {
+            shopType = selectedItem?.shopType?.toLowerCase();
+        }
         
         const menuItems = await generateMenuItems({
-            siteType: typeParam,
+            siteType: [typeParam],
             shopType,
             settlementTerrain: settlementContext.terrain ?? [],
             settlementClimate: settlementContext.climate,

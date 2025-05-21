@@ -1,9 +1,20 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
-import { ENTERTAINMENT_VENUE_TYPES } from "@/constants/siteOptions";
+import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { Stack, Button } from "@mui/material";
 
-export default function EntertainmentFields(){
+type EntertainmentFormProps = {
+  handleGenerateName: () => void;
+  handleGenerateMenu: () => void;
+  settlementContext: {
+    terrain: string[] | undefined;
+    climate: string | undefined;
+    tags: string[] | undefined;
+  };
+};
+
+export default function EntertainmentFields({handleGenerateName}: EntertainmentFormProps){
     const {
         register,
         control,
@@ -12,6 +23,39 @@ export default function EntertainmentFields(){
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
             <FormSelect
                 name="venueType"
                 label="Venue Type"

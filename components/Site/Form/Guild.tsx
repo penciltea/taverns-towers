@@ -1,16 +1,56 @@
-import { FormTextField } from "@/components/Form";
+import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography } from "@mui/material";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function GuildFields(){
+type GuildFormProps = {
+    handleGenerateName: () => void;
+    handleGenerateMenu: () => void;
+}
+
+export default function GuildFields({handleGenerateName, handleGenerateMenu}: GuildFormProps){
     const {
         register,
+        control,
         formState: { errors },
     } = useFormContext();
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
             <FormTextField
                 name="guildName"
                 label="Guild Name"
@@ -65,7 +105,18 @@ export default function GuildFields(){
             />
 
             <Box sx={{mt: 4}}>
-                <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
+                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <Typography variant="h6" sx={{mb: 2}}>Services Offered</Typography>
+                    <Button
+                        type="button"
+                        variant="outlined"
+                        onClick={handleGenerateMenu}
+                        size="large"
+                        sx={{ mt: 2, py: 1.65 }}
+                    >
+                        Conjure services
+                    </Button>
+                </Box>
                 <FormEditableTable
                     name="menu"
                     columns={[

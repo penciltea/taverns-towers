@@ -24,7 +24,7 @@ export async function generateSiteName({
 }: {
   category?: string;
   shopType?: string;
-  siteType?: string;
+  siteType?: string[];
   terrain?: string[];
   climate?: string;
   tags?: string[];

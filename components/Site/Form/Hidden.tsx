@@ -1,9 +1,16 @@
-import { FormTextField } from "@/components/Form";
+import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
-import { SECRECY_LEVELS } from "@/constants/siteOptions";
+import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { Stack, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function HiddenFields(){
+type HiddenFormProps = {
+    handleGenerateName: () => void;
+    handleGenerateMenu: () => void;
+}
+
+
+export default function HiddenFields({handleGenerateName}: HiddenFormProps){
     const {
         register,
         control,
@@ -12,6 +19,39 @@ export default function HiddenFields(){
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+            
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
             <FormChipSelect
                 name="secrecy"
                 label="Secrecy Level"

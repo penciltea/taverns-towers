@@ -1,20 +1,57 @@
-import { FormTextField } from "@/components/Form";
+import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { Box, Typography, Button } from "@mui/material";
+import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
+import { Box, Typography, Button, Stack } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-type SiteFormProps = {
+type TavernFormProps = {
+    handleGenerateName: () => void;
     handleGenerateMenu: () => void;
 }
 
-export default function TavernFields({handleGenerateMenu}: SiteFormProps){
+export default function TavernFields({handleGenerateName, handleGenerateMenu}: TavernFormProps){
     const {
         register,
+        control,
         formState: { errors },
     } = useFormContext();
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
+
             <FormTextField
                 name="owner"
                 label="Owner"

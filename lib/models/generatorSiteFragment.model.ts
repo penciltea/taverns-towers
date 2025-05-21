@@ -10,7 +10,7 @@ export interface GeneratorSiteFragmentPlain {
   tags?: string[];          // e.g. ["hidden", "trade hub"]
   terrains?: string[];      // e.g. ["forest"]
   climates?: string[];
-  shopType?: string[];
+  shopType?: string;
   [key: string]: any;
 }
 

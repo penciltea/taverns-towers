@@ -1,10 +1,15 @@
 import { FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
-import { WEALTH_LEVELS } from "@/constants/siteOptions";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { Stack, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-export default function ResidenceFields(){
+type ResidenceFormProps = {
+    handleGenerateName: () => void;
+    handleGenerateMenu: () => void;
+}
+
+export default function ResidenceFields({handleGenerateName}: ResidenceFormProps){
     const {
         register,
         control,
@@ -13,6 +18,40 @@ export default function ResidenceFields(){
     
     return (
         <>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <FormTextField
+                    name="name"
+                    label="Site Name"
+                    registration={register("name")}
+                    fieldError={errors.name}
+                    required
+                />
+                    <Button
+                    variant="outlined"
+                    onClick={handleGenerateName}
+                    size="large"
+                    sx={{ mt: 2, py: 1.65 }} // align with text field's margin
+                >
+                    Generate
+                </Button>
+            </Stack>
+            
+            <FormSelect
+                name="size"
+                label="Size Category"
+                control={control}
+                options={SITE_SIZE}
+                fieldError={errors.size}
+            />
+
+            <FormSelect
+                name="condition"
+                label="Condition"
+                control={control}
+                options={SITE_CONDITION}
+                fieldError={errors.condition}
+            />
+
             <FormTextField
                 name="occupant"
                 label="Occupant(s)"
