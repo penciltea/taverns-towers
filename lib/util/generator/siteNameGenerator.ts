@@ -16,10 +16,6 @@ function weightedRandom<T extends { value: string; weight?: number }>(items: T[]
     : "";
 }
 
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 function toTitleCase(str: string): string {
   return str
     .toLowerCase()
@@ -34,70 +30,65 @@ function filterByAttributes(
 ): GeneratorSiteFragmentPlain[] {
   const { category, tags = [], terrain = [], climate, siteType = [], shopType } = filters;
 
-  console.log("shopType: " , shopType);
-
   return fragments.filter(f => {
-    // If this fragment is a shopType but siteType does NOT include "shop", exclude it
+    // Exclude shopType fragments if siteType doesn't include "shop"
     if (f.type === "shopType" && !siteType.includes("shop")) {
       return false;
     }
 
+    // Format fragments have special rules
     if (f.type === "format") {
-      const hasshopType = f.value.includes("{{shopType}}");
-      const hasPersonshopType = f.value.includes("{{person}}'s {{shopType}}");
+      const hasShopTypePlaceholder = f.value.includes("{{shopType}}");
+      const hasPersonShopTypePlaceholder = f.value.includes("{{person}}'s {{shopType}}");
 
-      // Only allow these formats for shops
-      if ((hasshopType || hasPersonshopType) && (!siteType.includes("shop") || !shopType)) {
+      // Only allow these formats if siteType includes "shop" and shopType is defined
+      if ((hasShopTypePlaceholder || hasPersonShopTypePlaceholder) && (!siteType.includes("shop") || !shopType)) {
         return false;
       }
 
-      // For other formats: enforce that fragment.siteTypes overlaps with filters.siteType if defined
+      // Enforce siteType overlap if siteTypes defined on fragment
       if (f.siteTypes && siteType.length > 0 && !f.siteTypes.some(st => siteType.includes(st))) {
         return false;
       }
     }
 
-    // Generic matching for all other types
-    const siteTypeMatch =
-      f.type === "format"
-        ? true // skip siteType filtering for generic formats
-        : siteType.length > 0
-        ? !f.siteTypes || f.siteTypes.some(st => siteType.includes(st))
-        : true;
+    // Generic matching rules:
 
-    const categoryMatch = category
-      ? f.categories?.includes(category)
+    // Match siteType if fragment specifies siteTypes; otherwise, allow
+    const siteTypeMatch = f.siteTypes && f.siteTypes.length > 0
+      ? f.siteTypes.some(st => siteType.includes(st))
       : true;
 
-    const tagMatch = tags.length > 0
-      ? !f.tags || f.tags.some(tag => tags.includes(tag))
+    // Match category if fragment specifies categories; otherwise, allow
+    const categoryMatch = f.categories && f.categories.length > 0
+      ? f.categories.includes(category!)
       : true;
 
-    const terrainMatch = terrain.length > 0
-      ? !f.terrains || f.terrains.some(t => terrain.includes(t))
+    // Match tags if fragment specifies tags; otherwise, allow
+    const tagMatch = f.tags && f.tags.length > 0
+      ? f.tags.some(tag => tags.includes(tag))
       : true;
 
-    const climateMatch = climate
-      ? !f.climates || f.climates.includes(climate)
+    // Match terrain if fragment specifies terrains; otherwise, allow
+    const terrainMatch = f.terrains && f.terrains.length > 0
+      ? f.terrains.some(t => terrain.includes(t))
       : true;
 
-    // shopType is a string, so just check inclusion if siteType includes "shop"
-    const shopTypeMatch =
-      siteType.includes("shop") && shopType
-        ? !f.shopTypes || f.shopTypes.includes(shopType)
-        : true;
+    // Match climate if fragment specifies climates; otherwise, allow
+    const climateMatch = f.climates && f.climates.length > 0
+      ? f.climates.includes(climate!)
+      : true;
 
-    return (
-      siteTypeMatch &&
-      categoryMatch &&
-      tagMatch &&
-      terrainMatch &&
-      climateMatch &&
-      shopTypeMatch
-    );
+    // Match shopType if siteType includes "shop" and shopType is defined
+    const shopTypeMatch = siteType.includes("shop") && shopType
+      ? f.shopTypes && f.shopTypes.length > 0
+        ? f.shopTypes.includes(shopType)
+        : true
+      : true;
+
+    return siteTypeMatch && categoryMatch && tagMatch && terrainMatch && climateMatch && shopTypeMatch;
   });
 }
-
 
 
 function groupFragmentsByType(fragments: GeneratorSiteFragmentPlain[]) {
@@ -129,51 +120,50 @@ export function generateSiteNameFromFragments(
   };
 
   const getReplacement = (key: string, filters: GenerateSiteNameOptions): string => {
-  const options = key.split("|").map(k => k.trim());
+    const options = key.split("|").map(k => k.trim());
 
-  for (const opt of options) {
-    switch (opt) {
-      case "noun":
-      case "suffix": {
-        const pool = suffixOrNounFragments;
-        if (pool.length === 0) break;
+    for (const opt of options) {
+      switch (opt) {
+        case "noun":
+        case "suffix": {
+          const pool = suffixOrNounFragments;
+          if (pool.length === 0) break;
 
-        const used = randomCache[opt] ?? (randomCache[opt] = []);
-        const remaining = pool.filter(f => !used.includes(f.value));
-        const selectionPool = remaining.length > 0 ? remaining : pool;
+          const used = randomCache[opt] ?? (randomCache[opt] = []);
+          const remaining = pool.filter(f => !used.includes(f.value));
+          const selectionPool = remaining.length > 0 ? remaining : pool;
 
-        const selected = weightedRandom(selectionPool);
-        used.push(selected);
-        return selected;
-      }
-
-      case "prefix":
-        if (grouped.prefix.length > 0) return weightedRandom(grouped.prefix);
-        break;
-
-      case "person":
-        if (grouped.person.length > 0) return weightedRandom(grouped.person);
-        break;
-
-      case "shopType":
-        if (filters.shopType) {
-          const matchingFragment = grouped.shopType.find(f => f.shopType === filters.shopType);
-          if (matchingFragment) {
-            return toTitleCase(matchingFragment.value);
-          }
-          return toTitleCase(filters.shopType);
+          const selected = weightedRandom(selectionPool);
+          used.push(selected);
+          return selected;
         }
-        break;
 
-      default:
-        break;
+        case "prefix":
+          if (grouped.prefix.length > 0) return weightedRandom(grouped.prefix);
+          break;
+
+        case "person":
+          if (grouped.person.length > 0) return weightedRandom(grouped.person);
+          break;
+
+        case "shopType":
+          if (filters.shopType) {
+            const matchingFragment = grouped.shopType.find(f => f.shopType === filters.shopType);
+            if (matchingFragment) {
+              return toTitleCase(matchingFragment.value);
+            }
+            return toTitleCase(filters.shopType);
+          }
+          break;
+
+        default:
+          break;
+      }
     }
-  }
 
-  // Fallback if no replacement found
-  return options[0] || "";
-};
-
+    // Fallback if no replacement found
+    return options[0] || "";
+  };
 
   const name = formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_, key) => getReplacement(key, filters));
 
@@ -185,6 +175,5 @@ export function generateSiteNameFromFragments(
     //format: grouped.format,
     //noun: grouped.noun,
   //});
-
   return name;
 }

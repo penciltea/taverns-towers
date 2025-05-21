@@ -551,9 +551,9 @@
   },
   {
     "type": "format",
-    "value": "Guild of the {{noun}}",
+    "value": "{{noun}} Hall",
     "weight": 1,
-    "siteTypes": ["guild"]
+    "siteTypes": ["guild", "residence"]
   },
   {
     "type": "format",

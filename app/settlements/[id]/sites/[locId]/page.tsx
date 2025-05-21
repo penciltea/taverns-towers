@@ -15,9 +15,9 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
 import { usePaginatedSites } from "@/hooks/site.query";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
-import { generatorMenuItem, SiteType } from "@/interfaces/site.interface";
 import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
 import { generateMenuItems } from "@/lib/actions/siteGenerator.actions";
+import { generateSiteValues } from "@/lib/modules/sites/siteRules";
 
 
 export default function EditSitePage(){
@@ -61,71 +61,104 @@ export default function EditSitePage(){
         };
     
         loadSite();
-      }, [safeId, reset, setSelectedItem, showSnackbar]);
+    }, [safeId, reset, setSelectedItem, showSnackbar]);
 
-    async function handleGenerateName() {
-        const { setValue, getValues } = methods;
+    const settlementContext = settlement
+    ? {
+        terrain: settlement.terrain,
+        climate: settlement.climate,
+        tags: settlement.tags,
+        }
+    : {
+        terrain: [],
+        climate: '',
+        tags: [],
+    };
 
-        const type = getValues("type");
-        const shopType =
-            type === "shop"
-                ? getValues("shopType")?.toLowerCase()
-                : type === "entertainment"
-                ? getValues("venueType")?.toLowerCase()
-                : undefined;
+    const siteType = mode === "edit"
+    ? selectedItem?.type
+    : (searchParams?.get("type") as SiteFormData["type"] | undefined);
 
-        if (!type) return;
-
-        const name = await generateSiteName({
-            siteType: [type],
-            shopType,
-            terrain: settlementContext.terrain,
-            climate: settlementContext.climate,
-            tags: settlementContext.tags,
-        });
-
-        setValue("name", name, { shouldDirty: true }); // ensures field is marked dirty and updated
-    }
-    
-    async function handleGenerateMenu() {
-        const { setValue, getValues } = methods;
-
-        const type = getValues("type");
-        const shopType =
-            type === "shop"
-                ? getValues("shopType")?.toLowerCase()
-                : type === "entertainment"
-                ? getValues("venueType")?.toLowerCase()
-                : undefined;
-
-        if (!type) return;
-
-        const menuItems = await generateMenuItems({
-            siteType: [type],
-            shopType,
-            settlementTerrain: settlementContext.terrain ?? [],
-            settlementClimate: settlementContext.climate,
-            settlementTags: settlementContext.tags ?? [],
-        });
-
-        const cleanMenuItems: generatorMenuItem[] = menuItems.map(item => ({
-            name: item.name || "",
-            price: String(item.price || ""),
-            category: item.category || undefined,
-            description: item.description || undefined,
-        }));
-
-        setValue("menu", cleanMenuItems, { shouldDirty: true }); // force update
+    const getShopType = () => {
+        if (typeParam === 'shop') return methods.watch("shopType")?.toLowerCase();
+        if (typeParam === 'entertainment') return methods.watch("venueType")?.toLowerCase();
+        return selectedItem?.shopType?.toLowerCase();
     }
 
+    const generator = {
+        name: async () => {
+            if (!siteType) return;
 
-    function handleGenerateAll(){
-        console.log("clicked");
-    }
+            const name = await generateSiteName({
+                siteType: [siteType],
+                shopType: getShopType(),
+                terrain: settlementContext.terrain,
+                climate: settlementContext.climate,
+                tags: settlementContext.tags,
+            });
 
-    function handleReroll(){
-        console.log("clicked");
-    }
+            methods.setValue("name", name);
+        },
+
+        menu: async () => {
+            if (!siteType) return;
+
+            const menuItems = await generateMenuItems({
+                siteType: [siteType],
+                shopType: getShopType(),
+                settlementTerrain: settlementContext.terrain,
+                settlementClimate: settlementContext.climate,
+                settlementTags: settlementContext.tags,
+            });
+
+            const cleanedItems = menuItems.map((item) => ({
+                name: item.name || "",
+                price: String(item.price || ""),
+                category: item.category || undefined,
+                description: item.description || undefined,
+            }));
+
+            methods.setValue("menu", cleanedItems);
+        },
+
+        all: async () => {
+            if (!siteType) return;
+
+            const generatedValues = await generateSiteValues(siteType, {
+                shopType: getShopType(),
+                terrain: settlementContext.terrain,
+                climate: settlementContext.climate,
+                tags: settlementContext.tags,
+                name: methods.getValues("name"),
+                size: methods.getValues("size"),
+                condition: methods.getValues("condition"),
+            });
+
+            Object.entries(generatedValues).forEach(([key, value]) => {
+                methods.setValue(key as keyof SiteFormData, value);
+            });
+
+            await generator.menu();
+        },
+
+        reroll: async () => {
+            if (!siteType) return;
+
+            const generatedValues = await generateSiteValues(siteType, {
+                shopType: getShopType(),
+                terrain: settlementContext.terrain,
+                climate: settlementContext.climate,
+                tags: settlementContext.tags,
+            });
+
+            Object.entries(generatedValues).forEach(([key, value]) => {
+                methods.setValue(key as keyof SiteFormData, value);
+            });
+
+            await generator.menu();
+        },
+    };
+
 
     const onSubmit = async (data: SiteFormData) => {
         const cleanImage = await handleDynamicFileUpload(data, "image");
@@ -150,22 +183,10 @@ export default function EditSitePage(){
             showErrorDialog("Something went wrong, please try again later!");
         }
     }
-
-    const settlementContext = settlement
-    ? {
-        terrain: settlement.terrain,
-        climate: settlement.climate,
-        tags: settlement.tags,
-        }
-    : {
-        terrain: [],
-        climate: '',
-        tags: [],
-    };
     
     return (
         <FormProvider {...methods}>
-            <SiteForm onSubmit={onSubmit} mode={mode} settlementContext={settlementContext} onGenerateName={handleGenerateName} onGenerateMenu={handleGenerateMenu} onGenerateAll={handleGenerateAll} onReroll={handleReroll} />
+            <SiteForm onSubmit={onSubmit} mode={mode} generator={generator} />
         </FormProvider>
     )
 } 

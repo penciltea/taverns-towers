@@ -10,7 +10,6 @@ import {
 } from "@/constants/settlementOptions";
 import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../../util/randomValues";
-import { GenerateSettlementInput } from "@/schemas/generateSettlement.schema";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { generateSettlementName } from "../../actions/settlementGenerator.actions";
 import { CommonInterface } from "@/interfaces/common.interface";
@@ -26,7 +25,7 @@ type NormalizedSettlementInput = Omit<Settlement, keyof CommonInterface | 'isPub
   crime: string[];
 };
 
-export function normalizeInput(data: Partial<GenerateSettlementInput>): NormalizedSettlementInput {
+export function normalizeInput(data: Partial<Settlement>): NormalizedSettlementInput {
   return {
     ...data,
     size: !data.size || data.size.trim() === "" ? "random" : data.size,
