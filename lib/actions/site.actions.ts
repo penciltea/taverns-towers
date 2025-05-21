@@ -46,7 +46,7 @@ function serializeSite(site: any): SiteType {
         deity: plain.deity,
         leader: plain.leader,
         relics: plain.relics,
-        services: plain.services?.map((item: any) => ({
+        menu: plain.menu?.map((item: any) => ({
           name: item.name,
           category: item.category,
           description: item.description,
@@ -59,7 +59,7 @@ function serializeSite(site: any): SiteType {
         type: "shop",
         shopType: plain.shopType,
         owner: plain.owner,
-        wares: plain.wares?.map((item: any) => ({
+        menu: plain.menu?.map((item: any) => ({
           name: item.name,
           category: item.category,
           description: item.description,
@@ -75,7 +75,7 @@ function serializeSite(site: any): SiteType {
         leader: plain.leader,
         membershipRequirements: plain.membershipRequirements,
         knownRivals: plain.knownRivals,
-        services: plain.services?.map((item: any) => ({
+        menu: plain.menu?.map((item: any) => ({
           name: item.name,
           category: item.category,
           description: item.description,

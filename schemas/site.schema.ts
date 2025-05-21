@@ -52,12 +52,7 @@ export const templeSchema = baseSiteSchema.extend({
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
   shopType: z.string(),
-  owner: z.string().optional(),
-  menu: z.array(z.object({
-    name: z.string(),
-    description: z.string().optional(),
-    price: z.string(),
-  })).optional(),
+  menu: z.array(menuItemSchema).optional(),
 });
 
 export const guildSchema = baseSiteSchema.extend({
@@ -67,11 +62,7 @@ export const guildSchema = baseSiteSchema.extend({
   leader: z.string().optional(),
   membershipRequirements: z.string().optional(),
   knownRivals: z.string().optional(),
-  menu: z.array(z.object({
-    name: z.string(),
-    description: z.string().optional(),
-    price: z.string(),
-  })).optional(),
+  menu: z.array(menuItemSchema).optional(),
 });
 
 export const governmentSchema = baseSiteSchema.extend({
