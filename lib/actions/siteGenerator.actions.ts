@@ -67,8 +67,6 @@ export async function generateMenuItems({
     query.shopType = shopType;
   }
 
-  console.log("query: " , query);
-
   // We'll fetch candidates matching siteType (+shopType) first
   // Then do filtering on climate/terrain/tags in code to handle empty arrays meaning universal
 

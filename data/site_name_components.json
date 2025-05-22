@@ -446,18 +446,17 @@
   { "type": "suffix", "value": "loft", "weight": 1, "siteTypes": ["residence"] },
   { "type": "suffix", "value": "ridge", "weight": 1, "siteTypes": ["residence"] },
   { "type": "suffix", "value": "grove", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "hall", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "manor", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "cottage", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "keep", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "hearth", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "lodge", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "suffix", "value": "estate", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "adjective", "value": "Sable", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "adjective", "value": "Silver", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "adjective", "value": "Gilded", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "adjective", "value": "Weathered", "weight": 1, "siteTypes": ["residence"] },
-  { "type": "adjective", "value": "Twilit", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Hall", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Manor", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Cottage", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Keep", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Lodge", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "suffix", "value": "Estate", "weight": 1, "siteTypes": ["residence"] },
+  { "type": "adjective", "value": "Sable", "weight": 1, "siteTypes": ["residence", "guild"] },
+  { "type": "adjective", "value": "Silver", "weight": 1, "siteTypes": ["residence", "guild"] },
+  { "type": "adjective", "value": "Gilded", "weight": 1, "siteTypes": ["residence", "guild"] },
+  { "type": "adjective", "value": "Weathered", "weight": 1, "siteTypes": ["residence", "guild"] },
+  { "type": "adjective", "value": "Twilit", "weight": 1, "siteTypes": ["residence", "guild"] },
 
 
 
@@ -551,10 +550,17 @@
   },
   {
     "type": "format",
-    "value": "{{noun}} Hall",
+    "value": "{{adjective}} {{noun}} Hall",
     "weight": 1,
     "siteTypes": ["guild", "residence"]
   },
+  {
+    "type": "format",
+    "value": "{{prefix}} {{suffix}}",
+    "weight": 1,
+    "siteTypes": ["residence"]
+  },
+
   {
     "type": "format",
     "value": "{{person}}'s Circle",
