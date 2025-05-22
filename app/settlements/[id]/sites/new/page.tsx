@@ -35,13 +35,13 @@ export default function NewSitePage(){
     });
 
     useEffect(() => {
-    if (settlement) {
-        useSettlementContentStore.getState().setContext?.({
-        terrain: settlement.terrain,
-        climate: settlement.climate,
-        tags: settlement.tags,
-        });
-    }
+        if (settlement) {
+            useSettlementContentStore.getState().setContext?.({
+            terrain: settlement.terrain,
+            climate: settlement.climate,
+            tags: settlement.tags,
+            });
+        }
     }, [settlement]);
 
 

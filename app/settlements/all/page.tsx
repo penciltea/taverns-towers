@@ -8,7 +8,7 @@ import { Typography } from '@mui/material';
 import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
 import GridItem from '@/components/Grid/GridItem';
 import { useUIStore } from '@/store/uiStore';
-import SettlementTypeDialog from '@/components/Settlement/SettlementTypeDialog';
+import SiteTypeDialog from '@/components/Site/Dialog/SiteTypeDialog';
 
 export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
@@ -61,7 +61,7 @@ export default function SettlementsPage() {
       />
 
       {openDialog === 'siteTypeDialog' && (
-        <SettlementTypeDialog open onClose={closeDialog} />
+        <SiteTypeDialog open onClose={closeDialog} />
       )}
     </>
   );

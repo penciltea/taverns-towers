@@ -138,8 +138,8 @@ export async function createSite(data: any, settlementId: string) {
   return serializeSite(newSite);
 }
 
-export async function getSitesBySettlementPaginated(
-  settlementId: string,
+export async function getSitesPaginated(
+  settlementId: string | null,
   page: number = 1,
   limit: number = 12,
   type?: string[],
@@ -147,7 +147,8 @@ export async function getSitesBySettlementPaginated(
 ) {
   await connectToDatabase();
 
-  const query: Record<string, any> = { settlementId };
+  const query: Record<string, any> = {};
+  if (settlementId) query.settlementId = settlementId;
   if (type && type.length > 0) {
     query.type = { $in: type };
   }
@@ -169,6 +170,7 @@ export async function getSitesBySettlementPaginated(
     currentPage: page,
   };
 }
+
 
 export async function getSiteById(id: string) {
   await connectToDatabase();
