@@ -26,6 +26,10 @@ type ContentStore<T> = {
   clearSelectedItem: () => void;
   setMode: (mode: FormMode) => void;
   clearMode: () => void;
+
+  context?: Record<string, any>; // or something more structured if desired
+  setContext?: (context: Record<string, any>) => void;
+  clearContext?: () => void;
 };
 
 export function createContentStore<T>() {
@@ -65,5 +69,9 @@ export function createContentStore<T>() {
 
     setMode: (mode: FormMode) => set({ mode }),
     clearMode: () => set({ mode: null }),
+
+    context: {},
+    setContext: (context) => set({ context }),
+    clearContext: () => set({ context: {} }),
   }));
 }

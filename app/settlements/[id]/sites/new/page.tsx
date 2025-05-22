@@ -12,9 +12,9 @@ import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
 import { usePaginatedSites } from "@/hooks/site.query";
 import { SiteType } from "@/interfaces/site.interface";
-import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
-import { generateMenuItems } from "@/lib/actions/siteGenerator.actions";
-import { generateSiteValues } from "@/lib/modules/sites/siteRules";
+import { useSiteGenerator } from "@/hooks/useSiteGenerator";
+import { useSettlementContentStore } from "@/store/settlementStore";
+import { useEffect } from "react";
 
 export default function NewSitePage(){
     const params = useParams();
@@ -34,102 +34,39 @@ export default function NewSitePage(){
         }
     });
 
-    const settlementContext = settlement
-    ? {
+    useEffect(() => {
+    if (settlement) {
+        useSettlementContentStore.getState().setContext?.({
         terrain: settlement.terrain,
         climate: settlement.climate,
         tags: settlement.tags,
-        }
-    : {
-        terrain: [],
-        climate: '',
-        tags: [],
-    };
-
-    const getShopType = () => {
-        if (typeParam === 'shop') return methods.watch("shopType")?.toLowerCase();
-        if (typeParam === 'entertainment') return methods.watch("venueType")?.toLowerCase();
-        return selectedItem?.shopType?.toLowerCase();
+        });
     }
+    }, [settlement]);
 
-    const generator = {
-        name: async () => {
-            const name = await generateSiteName({
-                siteType: [typeParam],
-                shopType: getShopType(),
-                terrain: settlementContext.terrain,
-                climate: settlementContext.climate,
-                tags: settlementContext.tags,
-            });
 
-            methods.setValue("name", name);
-        },
-        menu: async () => {
-            const menuItems = await generateMenuItems({
-                siteType: [typeParam],
-                shopType: getShopType(),
-                settlementTerrain: settlementContext.terrain,
-                settlementClimate: settlementContext.climate,
-                settlementTags: settlementContext.tags,
-            });
-
-            const cleanedItems = menuItems.map((item) => ({
-                name: item.name || "",
-                price: String(item.price || ""),
-                category: item.category || undefined,
-                description: item.description || undefined,
-            }));
-
-            methods.setValue("menu", cleanedItems);
-        },
-        all: async () => {
-            const generatedValues = await generateSiteValues(typeParam.toString(), {
-                shopType: getShopType(),
-                terrain: settlementContext.terrain,
-                climate: settlementContext.climate,
-                tags: settlementContext.tags,
-                name: methods.getValues("name"),
-                size: methods.getValues("size"),
-                condition: methods.getValues("condition"),
-            });
-
-            Object.entries(generatedValues).forEach(([key, value]) => {
-                methods.setValue(key as keyof SiteFormData, value);
-            });
-
-            await generator.menu();
-        },
-        reroll: async () => {
-            const generatedValues = await generateSiteValues(typeParam.toString(), {
-                shopType: getShopType(),
-                terrain: settlementContext.terrain,
-                climate: settlementContext.climate,
-                tags: settlementContext.tags
-            });
-
-            Object.entries(generatedValues).forEach(([key, value]) => {
-                methods.setValue(key as keyof SiteFormData, value);
-            });
-
-            await generator.menu();
-        },
-    };
+    const generator = useSiteGenerator(methods, {
+        siteType: typeParam,
+        terrain: settlement?.terrain ?? [],
+        climate: settlement?.climate ?? "",
+        tags: settlement?.tags ?? [],
+    });
 
     const onSubmit = async (data: SiteFormData) => {
         try {
-        const cleanImage = await handleDynamicFileUpload(data, "image");
+            const cleanImage = await handleDynamicFileUpload(data, "image");
 
-        const siteData = {
-            ...transformSiteFormData(data),
-            image: cleanImage,
-        } as SiteType;
+            const siteData = {
+                ...transformSiteFormData(data),
+                image: cleanImage,
+            } as SiteType;
 
-        await addSite(siteData, settlementId);
-        await refetch();
-        showSnackbar("Site created successfully!", "success");
-        router.push(`/settlements/${settlementId}`);
+            await addSite(siteData, settlementId);
+            await refetch();
+            showSnackbar("Site created successfully!", "success");
+            router.push(`/settlements/${settlementId}`);
         } catch (err) {
-        showErrorDialog("Something went wrong, please try again later!");
+            showErrorDialog("Something went wrong, please try again later!");
         }
     };
     
