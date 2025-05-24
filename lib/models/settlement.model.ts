@@ -20,7 +20,7 @@ export interface ISettlement extends Document {
   wealth: WealthLevel;
   tradeNotes: string;
   guilds: string;
-  religion: string;
+  domains: string[];
   holidays: string;
   folklore: string;
   crime: CriminalActivityTypes[];
@@ -46,7 +46,7 @@ const SettlementSchema = new Schema<ISettlement>(
     wealth: { type: String, required: false},
     tradeNotes: { type: String, required: false},
     guilds: { type: String, required: false},
-    religion: { type: String, required: false},
+    domains: [{ type: String, required: false}],
     holidays: { type: String, required: false},
     folklore: { type: String, required: false},
     crime: [String],

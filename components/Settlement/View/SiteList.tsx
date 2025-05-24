@@ -25,7 +25,7 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
 
   const [filters, setFilters] = useState<SiteFilters>({
     ...DefaultSiteFilters,
-    settlementId, // use the prop value, not the default ""
+    settlementId,
   });
 
   const { data } = usePaginatedSites(

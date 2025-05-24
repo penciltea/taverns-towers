@@ -45,7 +45,7 @@ export interface Settlement extends CommonInterface {
   wealth?: string;
   tradeNotes?: string;
   guilds?: string;
-  religion?: string;
+  domains?: string[];
   holidays?: string;
   folklore?: string;
   crime?: string[];

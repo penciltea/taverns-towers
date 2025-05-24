@@ -1,6 +1,5 @@
 import { useFormContext, Controller } from "react-hook-form";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import CasinoIcon from "@mui/icons-material/Casino";
+import { Box } from "@mui/material";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlementOptions";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
@@ -17,7 +16,7 @@ export default function SettlementFormWealth(){
             <FormTextField
                 fullWidth
                 name="leader"
-                label="Leaders"
+                label="Leader(s)"
                 registration={register("leader")}
                 error={!!errors.leader}
                 helperText={typeof errors.leader?.message === "string" ? errors.leader.message : ""}

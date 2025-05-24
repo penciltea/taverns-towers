@@ -8,7 +8,7 @@ import {
   RULING_TYPES,
   CRIMINAL_ACTIVITY_TYPES,
 } from "@/constants/settlementOptions";
-import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth } from "./settlementRuleMaps";
+import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth, CommonRacesByTerrain, TradeNotesByTag } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../../util/randomValues";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { generateSettlementName } from "../../actions/settlementGenerator.actions";
@@ -129,6 +129,51 @@ function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): Normalized
   return data;
 }
 
+// Logic for applying common races by terrain
+
+function applyRacesByTerrain(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (
+    (!data.races || data.races.trim() === "") &&
+    Array.isArray(data.terrain) &&
+    !data.terrain.includes("random") &&
+    data.terrain.length > 0
+  ) {
+    const allRaces = data.terrain.flatMap((t) => CommonRacesByTerrain[t] || []);
+    const uniqueRaces = Array.from(new Set(allRaces));
+    const selectedRaces = getRandomSubset(uniqueRaces, 1, 3);
+    data.races = selectedRaces.join(", ");
+  }
+
+  return data;
+}
+
+// Logic for applying trade notes by tags
+function applyTradeNotesByTags(data: NormalizedSettlementInput): NormalizedSettlementInput{
+  if (
+    (!data.tradeNotes || data.tradeNotes.trim() === "") &&
+    Array.isArray(data.tags) &&
+    !data.tags.includes("random") &&
+    data.tags.length > 0
+  ) {
+    const allTradeNotes = data.tags.flatMap((t) => TradeNotesByTag[t] || []);
+    const uniqueNotes = Array.from(new Set(allTradeNotes));
+    const selectedNotes = getRandomSubset(uniqueNotes, 1, 3);
+    data.tradeNotes = selectedNotes.join("; ");
+
+    if (selectedNotes.length > 0) {
+      const formattedNotes = selectedNotes.map((note, i) => {
+        if (i === 0) return note; // keep first as-is (assuming it's capitalized already)
+        return note.charAt(0).toLowerCase() + note.slice(1);
+      });
+
+      data.tradeNotes = formattedNotes.join("; ");
+    }
+  }
+  
+  return data;
+}
+
+
 // set fields based off logic above for any fields with "random" as their value
 export const generateSettlementValues = (input: NormalizedSettlementInput) => {
   return [
@@ -139,7 +184,9 @@ export const generateSettlementValues = (input: NormalizedSettlementInput) => {
     applyTagsByTerrainRule,
     applyCrimeByWealthRule,
     applyRulingStyleBySizeRule,
-    applyMagicByWealthRule
+    applyMagicByWealthRule,
+    applyRacesByTerrain,
+    applyTradeNotesByTags
   ].reduce((data, fn) => fn(data), input);
 };
 

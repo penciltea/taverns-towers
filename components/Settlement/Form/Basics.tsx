@@ -1,6 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Box, Button, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
-import CasinoIcon from "@mui/icons-material/Casino";
+import { Box, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";

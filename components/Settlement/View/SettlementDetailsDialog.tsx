@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography, Chip, Stack } from '@mui/material';
 import { SettlementDialogProps } from "@/interfaces/settlement.interface";
 import SettlementAccordion from "./SettlementAccordion";
 
@@ -19,7 +19,18 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                 
                 {/* Culture & Society */}
                 <SettlementAccordion title="Culture & Society" defaultExpanded>
-                    <Typography variant="body2" component="p"><strong>Religion:</strong> {settlement.religion || "N/A"}</Typography>
+                    <Typography variant="body2" component="p">
+                        <strong>Domains:</strong>{" "}
+                        {Array.isArray(settlement.domains) && settlement.domains.length > 0 ? (
+                            <Stack direction="row" spacing={1} component="span" sx={{ flexWrap: "wrap", mt: 0.5 }}>
+                            {settlement.domains.map((domain) => (
+                                <Chip key={domain} label={domain} size="small" />
+                            ))}
+                            </Stack>
+                        ) : (
+                            "N/A"
+                        )}
+                    </Typography>
                     <Typography variant="body2" component="p"><strong>Holidays:</strong> {settlement.holidays || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Folklore:</strong> {settlement.folklore || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Criminal Activity:</strong> {settlement.crime?.length ? settlement.crime.join(", ") : "N/A"}</Typography>

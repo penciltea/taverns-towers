@@ -115,6 +115,47 @@ export const CRIMINAL_ACTIVITY_TYPES = [
     "Widespread Lawlessness",
   ];
 
+export const DOMAINS = [
+  "Arcana",
+  "Arts",
+  "Beauty",
+  "Chaos",
+  "Commerce",
+  "Community",
+  "Death",
+  "Decay",
+  "Dreams",
+  "Fate",
+  "Forge",
+  "Freedom",
+  "Grave",
+  "Harvest",
+  "Hunt",
+  "Invention",
+  "Judgment",
+  "Knowledge",
+  "Life",
+  "Light",
+  "Magic",
+  "Moon",
+  "Nature",
+  "Order",
+  "Peace",
+  "Protection",
+  "Sea",
+  "Secrets",
+  "Shadow",
+  "Storms",
+  "Sun",
+  "Tempest",
+  "Time",
+  "Travel",
+  "Trickery",
+  "Twilight",
+  "War",
+  "Other"
+];
+
 export type SizeTypes = (typeof SIZE_TYPES)[number]
 export type TagTypes = (typeof TAG_TYPES)[number]
 export type TerrainTypes = (typeof TERRAIN_TYPES)[number]
@@ -123,3 +164,4 @@ export type MagicLevel = (typeof MAGIC_LEVELS)[number]
 export type ClimateTypes = (typeof CLIMATE_TYPES)[number]
 export type RulingType = (typeof RULING_TYPES)[number]
 export type CriminalActivityTypes = (typeof CRIMINAL_ACTIVITY_TYPES)[number]
+export type DomainTypes = (typeof DOMAINS)[number]

@@ -1,8 +1,7 @@
 import { useFormContext } from "react-hook-form";
-import { Box, Button } from "@mui/material";
-import CasinoIcon from "@mui/icons-material/Casino";
-import {CRIMINAL_ACTIVITY_TYPES  } from "@/constants/settlementOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
+import { Box } from "@mui/material";
+import {CRIMINAL_ACTIVITY_TYPES, DOMAINS  } from "@/constants/settlementOptions";
+import { FormTextField, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function SettlementFormCulture(){
@@ -22,12 +21,12 @@ export default function SettlementFormCulture(){
                 fieldError={errors.crime}
             />
 
-
-            <FormTextField
-                name="religion"
-                label="Major Religion(s)"
-                registration={register("religion")}
-                fieldError={errors.religion}
+            <FormChipSelect
+                name="domains"
+                label="Commonly-Worshipped Domain(s)"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
+                fieldError={errors.domains}
             />
 
             <FormTextField
