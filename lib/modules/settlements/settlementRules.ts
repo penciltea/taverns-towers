@@ -7,8 +7,11 @@ import {
   CLIMATE_TYPES,
   RULING_TYPES,
   CRIMINAL_ACTIVITY_TYPES,
+  ClimateTypes,
+  TagTypes,
+  TerrainTypes,
 } from "@/constants/settlementOptions";
-import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth, CommonRacesByTerrain, TradeNotesByTag } from "./settlementRuleMaps";
+import { TerrainBlacklistByClimate, TagsByTerrain, CrimesByWealth, WealthBySize, RulingBySize, MagicByWealth, CommonRacesByTerrain, TradeNotesByTag, DomainsByClimate, DomainsByTag, DomainsByTerrain } from "./settlementRuleMaps";
 import { getRandom, getRandomSubset } from "../../util/randomValues";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { generateSettlementName } from "../../actions/settlementGenerator.actions";
@@ -173,6 +176,47 @@ function applyTradeNotesByTags(data: NormalizedSettlementInput): NormalizedSettl
   return data;
 }
 
+export function getDomainsByConditions({
+  climate,
+  terrain,
+  tags,
+}: {
+  climate?: ClimateTypes;
+  terrain?: TerrainTypes[];
+  tags?: TagTypes[];
+}): string[] {
+  const climateDomains = climate ? DomainsByClimate[climate] || [] : [];
+  const terrainDomains = terrain?.flatMap((t) => DomainsByTerrain[t] || []) || [];
+  const tagDomains = tags?.flatMap((t) => DomainsByTag[t] || []) || [];
+
+  const combined = [...climateDomains, ...terrainDomains, ...tagDomains];
+  const unique = Array.from(new Set(combined));
+  return getRandomSubset(unique, 1, 3);
+}
+
+
+function applyDomainsByConditions(data: NormalizedSettlementInput): NormalizedSettlementInput {
+  if (
+    (!Array.isArray(data.domains) || data.domains.length === 0) &&
+    data.climate &&
+    Array.isArray(data.terrain) &&
+    !data.terrain.includes("random") &&
+    Array.isArray(data.tags) &&
+    !data.tags.includes("random")
+  ) {
+    const suggestedDomains = getDomainsByConditions({
+      climate: data.climate,
+      terrain: data.terrain,
+      tags: data.tags,
+    });
+
+    // Remove duplicates and choose 1-3 items
+    const uniqueDomains = Array.from(new Set(suggestedDomains));
+    data.domains = getRandomSubset(uniqueDomains, 1, 3);
+  }
+
+  return data;
+}
 
 // set fields based off logic above for any fields with "random" as their value
 export const generateSettlementValues = (input: NormalizedSettlementInput) => {
@@ -186,7 +230,8 @@ export const generateSettlementValues = (input: NormalizedSettlementInput) => {
     applyRulingStyleBySizeRule,
     applyMagicByWealthRule,
     applyRacesByTerrain,
-    applyTradeNotesByTags
+    applyTradeNotesByTags,
+    applyDomainsByConditions
   ].reduce((data, fn) => fn(data), input);
 };
 
