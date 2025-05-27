@@ -12,13 +12,12 @@ import GridItem from "@/components/Grid/GridItem";
 import { DefaultSiteFilters } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
-import SiteDetailsDialog from '@/components/Site/Dialog/SiteDetailsDialog';
 import { deleteSite } from '@/lib/actions/site.actions';
 import { siteListKey } from '@/lib/util/queryKeys';
 
 export default function AllSitesPage(){
-    const { openDialog, closeDialog } = useUIStore();
-    const [selected, setSelected] = useState<SiteType | null>(null);
+    const { closeDialog } = useUIStore();
+    const [ selected, setSelected ] = useState<SiteType | null>(null);
     const queryClient = useQueryClient();
 
     const [filters, setFilters] = useState<SiteFilters>({
@@ -77,7 +76,7 @@ export default function AllSitesPage(){
                     subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
                     onClick={() => {
                         setSelected(site);
-                        useUIStore.getState().setOpenDialog('SiteDetailsDialog');
+                        useUIStore.getState().setOpenDialog('SiteDetailsDialog', { siteData: site, onDelete: () => handleDeleteSite(site._id)});
                     }}
                     />
                 )}
@@ -104,16 +103,6 @@ export default function AllSitesPage(){
                 totalCount={totalCount}
                 pageSize={filters.limit}
             />
-
-            {openDialog === 'SiteDetailsDialog' && selected && (
-                <SiteDetailsDialog
-                    open
-                    onClose={closeDialog}
-                    siteData={selected}
-                    settlementId={selected.settlementId}
-                    onDelete={() => selected && handleDeleteSite(selected._id)} 
-                />
-            )}
         </>
     );
 }

@@ -105,6 +105,15 @@ export default function SettlementFormBasics(){
                     />
 
                     <FormTextField
+                        name="description"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        registration={register("description")}
+                        fieldError={errors.description}
+                    />
+
+                    <FormTextField
                         name="publicNotes"
                         label="Public Notes"
                         multiline

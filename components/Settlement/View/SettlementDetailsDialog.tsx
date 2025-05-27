@@ -20,7 +20,9 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                 {/* Culture & Society */}
                 <SettlementAccordion title="Culture & Society" defaultExpanded>
                     <Typography variant="body2" component="p">
-                        <strong>Domains:</strong>{" "}
+                        <strong>Domains:</strong>
+                    </Typography>
+                    <Box sx={{marginBottom: 1}}>
                         {Array.isArray(settlement.domains) && settlement.domains.length > 0 ? (
                             <Stack direction="row" spacing={1} component="span" sx={{ flexWrap: "wrap", mt: 0.5 }}>
                             {settlement.domains.map((domain) => (
@@ -30,7 +32,7 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                         ) : (
                             "N/A"
                         )}
-                    </Typography>
+                    </Box>
                     <Typography variant="body2" component="p"><strong>Holidays:</strong> {settlement.holidays || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Folklore:</strong> {settlement.folklore || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Criminal Activity:</strong> {settlement.crime?.length ? settlement.crime.join(", ") : "N/A"}</Typography>

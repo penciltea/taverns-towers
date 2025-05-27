@@ -9,6 +9,7 @@ export const settlementSchema = z.object({
   climate: z.string().optional(),
   magic: z.string().optional(),
   races: z.string().optional(),
+  description: z.string().optional(),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   leader: z.string().optional(),

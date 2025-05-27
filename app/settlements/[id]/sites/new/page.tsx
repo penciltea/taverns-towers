@@ -24,9 +24,12 @@ export default function NewSitePage(){
     const router = useRouter();
 
     const { showSnackbar, showErrorDialog } = useUIStore();
-    const { mode, selectedItem } = useSiteContentStore();
+    const { mode } = useSiteContentStore();
     const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
-    const { settlement, addSite } = useSettlementLoader(settlementId);
+    const isWilderness = settlementId === "wilderness";
+    const settlementLoader = isWilderness ? null : useSettlementLoader(settlementId);
+    const settlement = settlementLoader?.settlement;
+    const addSite = settlementLoader?.addSite;
 
     const methods = useFormWithSchema(siteSchema, {
         defaultValues: {
@@ -37,9 +40,9 @@ export default function NewSitePage(){
     useEffect(() => {
         if (settlement) {
             useSettlementContentStore.getState().setContext?.({
-            terrain: settlement.terrain,
-            climate: settlement.climate,
-            tags: settlement.tags,
+                terrain: settlement.terrain,
+                climate: settlement.climate,
+                tags: settlement.tags,
             });
         }
     }, [settlement]);
@@ -61,8 +64,10 @@ export default function NewSitePage(){
                 image: cleanImage,
             } as SiteType;
 
-            await addSite(siteData, settlementId);
-            await refetch();
+            await addSite?.(siteData, settlementId);
+            if (settlementId !== 'wilderness') {
+                await refetch();
+            }
             showSnackbar("Site created successfully!", "success");
             router.push(`/settlements/${settlementId}`);
         } catch (err) {
@@ -72,7 +77,7 @@ export default function NewSitePage(){
     
     return (
         <FormProvider {...methods}>
-            <SiteForm onSubmit={onSubmit} mode={mode} generator={generator} />
+            <SiteForm onSubmit={onSubmit} mode={mode} generator={generator} isWilderness={isWilderness} />
         </FormProvider>
     )
 }

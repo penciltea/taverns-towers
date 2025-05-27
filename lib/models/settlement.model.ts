@@ -13,6 +13,7 @@ export interface ISettlement extends Document {
   climate: ClimateTypes;
   magic: MagicLevel;
   races: string;
+  description: string;
   publicNotes: string;
   gmNotes: string;
   leader: string;
@@ -39,6 +40,7 @@ const SettlementSchema = new Schema<ISettlement>(
     climate: { type: String, required: false},
     magic: { type: String, required: false},
     races: { type: String, required: false},
+    description: { type: String, required: false},
     publicNotes: { type: String, required: false},
     gmNotes: { type: String, required: false},
     leader: { type: String, required: false},

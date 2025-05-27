@@ -7,13 +7,10 @@ import { useState } from 'react';
 import { Typography } from '@mui/material';
 import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
 import GridItem from '@/components/Grid/GridItem';
-import { useUIStore } from '@/store/uiStore';
-import SiteTypeDialog from '@/components/Site/Dialog/SiteTypeDialog';
 
 export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
   const [params, setParams] = useState(DefaultSettlementQueryParams);
-  const { openDialog, closeDialog } = useUIStore();
 
   const { data, isLoading, isError } = useSettlementsQuery(params);
 
@@ -59,10 +56,6 @@ export default function SettlementsPage() {
         fabLabel="Add Settlement"
         fabLink="/settlements/new"
       />
-
-      {openDialog === 'siteTypeDialog' && (
-        <SiteTypeDialog open onClose={closeDialog} />
-      )}
     </>
   );
 }

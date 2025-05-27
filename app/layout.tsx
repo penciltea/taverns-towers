@@ -5,6 +5,7 @@ import Header from "@/components/Layout/Header";
 import Snackbar from '@/components/Common/Snackbar';
 import ErrorDialog from "@/components/Common/ErrorDialog";
 import QueryProviderWrapper from "@/components/Layout/QueryProviderWrapper";
+import DialogContainer from "@/components/Layout/DialogContainer";
 
 export const metadata = {
   title: "Taverns & Towers",
@@ -20,13 +21,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <CssBaseline />
           <Snackbar />
           <ErrorDialog />
-          <Header />
           <QueryProviderWrapper>
+            <Header />
             <Box sx={{ display: 'flex', paddingTop: { xs: '15vh', sm: '40px', md: '60px' } }}>
               <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 {children}
               </Box>
             </Box>
+            <DialogContainer />
           </QueryProviderWrapper>
         </ThemeProvider>
       </body>

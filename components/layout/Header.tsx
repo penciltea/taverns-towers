@@ -6,13 +6,12 @@ import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
-import SiteTypeDialog from '../Site/Dialog/SiteTypeDialog';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {
     const router = useRouter();
     const isMobile = useIsMobile();
-    const {openDialog, closeDialog} = useUIStore();
+    const { setOpenDialog } = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [menuType, setMenuType] = useState<'settlements' | 'sites' | 'npcs' | null>(null);
@@ -33,7 +32,7 @@ export default function Header() {
   };
 
   const handleSiteDialog = () => {
-    useUIStore.getState().setOpenDialog('siteTypeDialog')
+    setOpenDialog('siteTypeDialog', { dialogMode: 'global' })
     handleMenuClose();
   };
 
@@ -122,10 +121,6 @@ export default function Header() {
           </Box>
         </Toolbar>
       </AppBar>
-
-      {openDialog === 'siteTypeDialog' && (
-          <SiteTypeDialog open onClose={closeDialog} />
-      )}
     </>
   );
 }

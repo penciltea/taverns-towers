@@ -5,4 +5,6 @@ export interface DialogProps {
     title?: string;
     message?: string;
     deleting?: string; // optional: for context like 'settlement', 'site'
+    dialogMode?: 'direct' | 'global' // optional, for site type dialog
+    defaultSettlementId?: string | null // optional, for site type dialog
   }

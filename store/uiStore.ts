@@ -8,7 +8,8 @@ interface UIState {
 
     // Dialog state
     openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog';
-    setOpenDialog: (dialog: UIState['openDialog']) => void;
+    dialogProps: Record<string, any>;
+    setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
     closeDialog: () => void;
 
     // Snackbar
@@ -44,7 +45,8 @@ export const useUIStore = create<UIState>((set) => ({
   toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
 
   openDialog: null,
-  setOpenDialog: (dialog) => set({ openDialog: dialog }),
+  dialogProps: {},
+  setOpenDialog: (dialog, props = {}) => set({ openDialog: dialog, dialogProps: props }),
   closeDialog: () => set({ openDialog: null }),
 
   snackbarMessage: '',

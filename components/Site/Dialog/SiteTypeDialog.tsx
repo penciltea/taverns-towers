@@ -6,24 +6,42 @@ import { useParams, useRouter } from "next/navigation";
 import { SITE_CATEGORIES } from "@/constants/siteOptions";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { useUIStore } from "@/store/uiStore";
+import { useSettlementsQuery } from "@/hooks/settlement.query";
+import { DefaultSettlementQueryParams } from "@/interfaces/settlement.interface";
 
-export default function SiteTypeDialog({ open, onClose }: DialogProps) {
-  const [type, setType] = useState("");
+export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettlementId }: DialogProps) {
+  const [siteType, setSiteType] = useState("");
+  const [selectedSettlement, setSelectedSettlement] = useState(defaultSettlementId || "");
   const [error, setError] = useState(false);
   const router = useRouter();
   const params = useParams();
-  const settlementId = params.id as string;
   const { closeDialog } = useUIStore();
+  const [settlementParams] = useState(DefaultSettlementQueryParams);
+  const { data } = useSettlementsQuery(settlementParams);
+
+  console.log("mode: " , dialogMode);
 
   const handleCreateSite = () => {
-    if (!type) {
-      setError(true);
-      return;
+    if(dialogMode === 'direct'){
+      if(!siteType){
+        setError(true);
+        return;
+      }
+      setSelectedSettlement(params.id as string);
+      
     }
+
+    if (dialogMode === 'global'){
+      if(!siteType || !selectedSettlement) {
+        setError(true);
+        return;
+      }
+    }
+
     setError(false);
-    router.push(`/settlements/${settlementId}/sites/new/?type=${type}`);
+    router.push(`/settlements/${selectedSettlement}/sites/new/?type=${siteType}`);
     closeDialog();
-  }
+  };
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -31,13 +49,32 @@ export default function SiteTypeDialog({ open, onClose }: DialogProps) {
       <DialogContent>
         <Typography variant="body2" color="textSecondary" gutterBottom> Decide what kind of site you would like to forge before getting started! </Typography>
 
+        {dialogMode === 'global' && (
+          <FormControl fullWidth error={error} sx={{ mt: 1 }}>
+            <InputLabel id="settlement-location-label">Create Site In...</InputLabel>
+            <Select
+              labelId="settlement-location-label"
+              value={selectedSettlement}
+              onChange={(e) => setSelectedSettlement(e.target.value)}
+              label="Create Site In..."
+            >
+              {data && data.settlements.map((settlement, index) => (
+                <MenuItem key={index} value={settlement._id}>
+                  {settlement.name}
+                </MenuItem>
+              ))}
+              <MenuItem key={data && data.settlements.length + 1} value={'wilderness'}> Wilderness / No settlement </MenuItem>
+            </Select>
+            {error && <FormHelperText>Please select where this site is being saved to.</FormHelperText>}
+          </FormControl>
+        )}
+
         <FormControl fullWidth error={error} sx={{ mt: 1 }}>
-          
           <InputLabel id="site-type-label">Site Type</InputLabel>
           <Select
             labelId="site-type-label"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
+            value={siteType}
+            onChange={(e) => setSiteType(e.target.value)}
             label="Site Type"
           >
             {SITE_CATEGORIES.map((site, index) => (
@@ -48,6 +85,7 @@ export default function SiteTypeDialog({ open, onClose }: DialogProps) {
           </Select>
           {error && <FormHelperText>Please select a site type.</FormHelperText>}
         </FormControl>
+
       </DialogContent>
       <DialogActions>
          <Button onClick={onClose}> Cancel </Button>

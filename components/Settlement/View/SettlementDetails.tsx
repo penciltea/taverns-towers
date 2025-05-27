@@ -1,11 +1,10 @@
-import { Box, Typography, List, ListItem, Button } from "@mui/material";
+import { Box, Typography, List, Button } from "@mui/material";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { useUIStore } from "@/store/uiStore";
-import SettlementDetailsDialog from "./SettlementDetailsDialog";
 import InfoListItem from "@/components/Common/InfoListItem";
 
 export default function SettlementDetails({ settlement }: { settlement: Settlement }) {
-  const { openDialog, closeDialog } = useUIStore();
+  const { setOpenDialog, openDialog, closeDialog } = useUIStore();
 
   const fields = [
     { label: "Size", value: settlement.size },
@@ -31,12 +30,8 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
             <InfoListItem key={ field.label } label={ field.label } value={ field.value } />
           ))}
         </List>
-        <Button variant="outlined" onClick={() => useUIStore.getState().setOpenDialog('SettlementDetailsDialog')}>Additional Details</Button>
+        <Button variant="outlined" onClick={() => useUIStore.getState().setOpenDialog('SettlementDetailsDialog', { settlement: settlement })}>Additional Details</Button>
       </Box>
-
-      {openDialog === 'SettlementDetailsDialog' && (
-        <SettlementDetailsDialog open onClose={closeDialog} settlement={settlement} />
-      )}
     </>
   );
 }

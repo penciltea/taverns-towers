@@ -10,10 +10,9 @@ import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
-import SiteTypeDialog from "@/components/Site/Dialog/SiteTypeDialog";
 
 export default function ViewSettlementPage({ params }: { params: Promise<{ id: string }> }) {
-  const { openDialog, closeDialog } = useUIStore();
+  const { setOpenDialog } = useUIStore();
   const { id } = use(params);
   const { settlement, loading, deleteSite } = useSettlementLoader(id);
 
@@ -97,11 +96,7 @@ export default function ViewSettlementPage({ params }: { params: Promise<{ id: s
         </Grid>
       </Grid>
 
-      <FabButton label="Add Site" onClick={() => useUIStore.getState().setOpenDialog('siteTypeDialog')} />
-
-      {openDialog === 'siteTypeDialog' && (
-        <SiteTypeDialog open onClose={closeDialog} />
-      )}
+      <FabButton label="Add Site" onClick={() => setOpenDialog('siteTypeDialog', { dialogMode: 'direct', settlementId: id })} />
     </>
   );
 }

@@ -20,7 +20,7 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
     return <Typography color="error">Invalid settlement ID</Typography>;
   }
 
-  const { openDialog, closeDialog } = useUIStore();
+  const { setOpenDialog } = useUIStore();
   const [selected, setSelected] = useState<SiteType | null>(null);
 
   const [filters, setFilters] = useState<SiteFilters>({
@@ -40,64 +40,50 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
   const totalCount = data?.total || 0;
   
   return (
-    <>
-      <FilteredGridView<SiteType>
-        title="Sites"
-        titleVariant="h4"
-        titleComponent="h4"
-        content="sites"
-        searchVariant="h5"
-        searchComponent="h5"
-        countVariant="h6"
-        countComponent="h6"
-        items={sites}
-        renderItem={(site) => (
-          <GridItem
-            key={site._id}
-            title={site.name}
-            image={site.image}
-            subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
-            onClick={() => {
-              setSelected(site);
-              useUIStore.getState().setOpenDialog('SiteDetailsDialog');
-            }}
-          />
-        )}
-        filterComponent={
-          <FilterBar
-            filters={filters}
-            setFilters={(newFilters) =>
-              setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
-            }
-            clearFilters={() => {
-              setFilters({ ...DefaultSiteFilters, settlementId }); // reset to default + settlement
-            }}
-            chipFilters={[
-              {
-                title: "Filter by Category",
-                key: "type",
-                options: SITE_CATEGORIES,
-              },
-            ]}
-          > </FilterBar>
-        }
-        currentPage={filters.page}
-        onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}
-        totalCount={totalCount}
-        pageSize={filters.limit}
-        fabLabel="Add Site"
-        fabLink={`/settlements/${settlementId}/sites/new`}
-      />
-
-      {openDialog === 'SiteDetailsDialog' && selected && (
-        <SiteDetailsDialog
-          open
-          onClose={closeDialog}
-          siteData={selected}
-          settlementId={settlementId}
-          onDelete={onDelete}
+    <FilteredGridView<SiteType>
+      title="Sites"
+      titleVariant="h4"
+      titleComponent="h4"
+      content="sites"
+      searchVariant="h5"
+      searchComponent="h5"
+      countVariant="h6"
+      countComponent="h6"
+      items={sites}
+      renderItem={(site) => (
+        <GridItem
+          key={site._id}
+          title={site.name}
+          image={site.image}
+          subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
+          onClick={() => {
+            setSelected(site);
+            setOpenDialog('SiteDetailsDialog', {  siteData: selected, settlementId: settlementId, onDelete: onDelete })
+          }}
         />
       )}
-    </>
+      filterComponent={
+        <FilterBar
+          filters={filters}
+          setFilters={(newFilters) =>
+            setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
+          }
+          clearFilters={() => {
+            setFilters({ ...DefaultSiteFilters, settlementId }); // reset to default + settlement
+          }}
+          chipFilters={[
+            {
+              title: "Filter by Category",
+              key: "type",
+              options: SITE_CATEGORIES,
+            },
+          ]}
+        > </FilterBar>
+      }
+      currentPage={filters.page}
+      onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}
+      totalCount={totalCount}
+      pageSize={filters.limit}
+    />
   );
 }

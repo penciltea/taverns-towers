@@ -133,6 +133,8 @@ export async function createSite(data: any, settlementId: string) {
   await connectToDatabase();
   const model = Site.discriminators?.[data.type] || Site;
 
+  const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : "wilderness";
+
   const newSite = await model.create({ ...data, settlementId });
   revalidatePath(`/settlement/${settlementId}`);
   return serializeSite(newSite);
@@ -148,7 +150,11 @@ export async function getSitesPaginated(
   await connectToDatabase();
 
   const query: Record<string, any> = {};
-  if (settlementId) query.settlementId = settlementId;
+  if (settlementId && ObjectId.isValid(settlementId)) {
+    query.settlementId = new ObjectId(settlementId);
+  } else if (settlementId && settlementId !== 'wilderness') {
+    throw new Error("Invalid settlementId passed to getSitesPaginated");
+  }
   if (type && type.length > 0) {
     query.type = { $in: type };
   }

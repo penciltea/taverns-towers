@@ -2,7 +2,6 @@ import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Paper, Typography, Stack, Box, Button } from "@mui/material";
 import { SiteFormData } from "@/schemas/site.schema";
-import { FormTextField } from "@/components/Form";
 import { SITE_CATEGORIES } from "@/constants/siteOptions";
 import { siteFormFieldsByType } from "@/components/Site/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
@@ -15,6 +14,7 @@ import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
   mode: "add" | "edit" | null;
+  isWilderness: boolean;
   generator: {
     name: () => void;
     menu: () => void;
@@ -23,7 +23,7 @@ type SiteFormProps = {
   };
 };
 
-export default function SiteForm({ onSubmit, mode, generator }: SiteFormProps) {
+export default function SiteForm({ onSubmit, mode, isWilderness, generator }: SiteFormProps) {
   const searchParams = useSearchParams();
   const methods = useFormContext<SiteFormData>();
   const { handleSubmit, formState: { errors } } = methods;
@@ -88,6 +88,10 @@ export default function SiteForm({ onSubmit, mode, generator }: SiteFormProps) {
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
           <Box>
+            {isWilderness && (
+              <p>Extra content</p>
+            )}
+
             {SpecificFieldsComponent ? (
               <SpecificFieldsComponent generator={generator} />
             ) : (
