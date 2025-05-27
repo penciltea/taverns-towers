@@ -19,8 +19,6 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
   const [settlementParams] = useState(DefaultSettlementQueryParams);
   const { data } = useSettlementsQuery(settlementParams);
 
-  console.log("mode: " , dialogMode);
-
   const handleCreateSite = () => {
     if(dialogMode === 'direct'){
       if(!siteType){

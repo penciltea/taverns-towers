@@ -9,6 +9,9 @@ import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
+import { FormChipSelect, FormSelect } from "@/components/Form";
+import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 
 type SiteFormProps = {
@@ -26,7 +29,7 @@ type SiteFormProps = {
 export default function SiteForm({ onSubmit, mode, isWilderness, generator }: SiteFormProps) {
   const searchParams = useSearchParams();
   const methods = useFormContext<SiteFormData>();
-  const { handleSubmit, formState: { errors } } = methods;
+  const { control, register, setValue, handleSubmit, formState: { errors } } = methods;
   const { selectedItem } = useSiteContentStore();
   const { isSubmitting } = useUIStore();
 
@@ -89,7 +92,36 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
           <Box>
             {isWilderness && (
-              <p>Extra content</p>
+              <>
+                <Box sx={{marginBottom: 4}}>
+                  <Typography variant="h5" component="p" gutterBottom>Wilderness Details</Typography>
+                  <Typography variant="subtitle1" component="p" gutterBottom>While most sites are created in the context of a settlement, you may want to create a site that is detached from any settlements-- small wayshrines, trading caravans, and so on.</Typography>
+                  <Typography variant="subtitle1" component="p" gutterBottom>The fields below will help the arcane forces conjure appropriate site details based on their surroundings. Feel free to choose specific options or randomize them as you see fit! </Typography>
+
+                  <FormSelect
+                      name="climate"
+                      label="Climate"
+                      control={control}
+                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
+                  />
+                  <FormChipSelect
+                      name="terrain"
+                      label="Terrain Type"
+                      control={control}
+                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
+                  />
+
+                  <FormChipSelect
+                      name="tags"
+                      label="Tags"
+                      control={control}
+                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
+                  />
+                  
+                </Box>
+
+                <Typography variant="h5" component="p" gutterBottom>Site Details</Typography>
+              </>
             )}
 
             {SpecificFieldsComponent ? (

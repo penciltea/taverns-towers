@@ -131,12 +131,17 @@ function serializeSite(site: any): SiteType {
 
 export async function createSite(data: any, settlementId: string) {
   await connectToDatabase();
+  console.log("Object: ", ObjectId.isValid(settlementId));
   const model = Site.discriminators?.[data.type] || Site;
 
-  const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : "wilderness";
+  const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
-  const newSite = await model.create({ ...data, settlementId });
-  revalidatePath(`/settlement/${settlementId}`);
+  const newSite = await model.create({ ...data, settlementId: dbSettlementId });
+  if (dbSettlementId) {
+    revalidatePath(`/settlement/${dbSettlementId.toString()}`);
+  } else {
+    revalidatePath(`/wilderness`);
+  }
   return serializeSite(newSite);
 }
 
@@ -150,7 +155,9 @@ export async function getSitesPaginated(
   await connectToDatabase();
 
   const query: Record<string, any> = {};
-  if (settlementId && ObjectId.isValid(settlementId)) {
+  if (settlementId === 'wilderness') {
+    query.settlementId = null; // Query for wilderness sites
+  } else if (settlementId && ObjectId.isValid(settlementId)) {
     query.settlementId = new ObjectId(settlementId);
   } else if (settlementId && settlementId !== 'wilderness') {
     throw new Error("Invalid settlementId passed to getSitesPaginated");

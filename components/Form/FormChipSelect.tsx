@@ -66,6 +66,7 @@ const FormChipSelect = ({
               <Select
                 {...field}
                 multiple
+                value={field.value ?? []}
                 id={`${id}-select`}
                 name={name}
                 labelId={`${id}-label`}

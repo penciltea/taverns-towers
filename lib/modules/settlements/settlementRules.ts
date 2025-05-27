@@ -248,3 +248,23 @@ export const generateSettlementWithName = async (input: NormalizedSettlementInpu
     name,
   };
 };
+
+export function generateWildernessContext() {
+  // Start with random values
+  let data = normalizeInput({
+    climate: "random",
+    terrain: ["random"],
+    tags: ["random"],
+  });
+
+  // Apply generation rules in correct order
+  data = applyClimateRule(data);
+  data = applyTerrainBlacklistRule(data);
+  data = applyTagsByTerrainRule(data);
+
+  return {
+    climate: data.climate,
+    terrain: data.terrain,
+    tags: data.tags,
+  };
+}
