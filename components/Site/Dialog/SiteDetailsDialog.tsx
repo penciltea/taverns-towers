@@ -37,10 +37,13 @@ export default function SiteDetailsDialog({ open, onClose, onDelete, settlementI
   const Component = (SiteTypeComponents as any)[siteData.type];
   const siteLabel = getSiteLabel(siteData.type);
   const router = useRouter();
-  const { showSnackbar } = useUIStore();
+  const { showSnackbar, closeDialog } = useUIStore();
 
   const handleEdit = () => {
-    router.push(`/settlements/${settlementId}/sites/${siteData._id}`);
+    const id = siteData._id;
+    const slug = settlementId || 'wilderness';
+    router.push(`/settlements/${slug}/sites/${id}`);
+    closeDialog();
   };
 
   return (

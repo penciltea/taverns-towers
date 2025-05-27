@@ -15,12 +15,9 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
 import { usePaginatedSites } from "@/hooks/site.query";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
-import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
-import { generateMenuItems } from "@/lib/actions/siteGenerator.actions";
-import { generateSiteValues } from "@/lib/modules/sites/siteRules";
 import { useSiteGenerator } from "@/hooks/useSiteGenerator";
 import { useSettlementContentStore } from "@/store/settlementStore";
-
+import { generateWildernessContext } from "@/lib/modules/settlements/settlementRules";
 
 export default function EditSitePage(){
     const params = useParams();
@@ -31,11 +28,16 @@ export default function EditSitePage(){
     const typeParam = searchParams?.get("type") as SiteFormData["type"];
     const router = useRouter();
 
-    const { showSnackbar, showErrorDialog, } = useUIStore();
+    const { showSnackbar, showErrorDialog } = useUIStore();
     const { setSelectedItem, selectedItem, mode } = useSiteContentStore();
     useFormMode(safeId, useSiteContentStore, getSiteById);
     const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
-    const { settlement } = useSettlementLoader(settlementId);
+
+    // Wilderness support
+    const isWilderness = settlementId === "wilderness";
+    const wildernessContext = isWilderness ? generateWildernessContext() : null;
+    const settlementLoader = isWilderness ? null : useSettlementLoader(settlementId);
+    const settlement = settlementLoader?.settlement;
 
     const methods = useFormWithSchema(siteSchema, {
         defaultValues: {
@@ -58,32 +60,39 @@ export default function EditSitePage(){
               image: fetchedSite.image ?? undefined,
             });
           } catch (err) {
-            showErrorDialog("Failed to load settlement, please try again later!");
+            showErrorDialog("Failed to load site, please try again later!");
           }
         };
     
         loadSite();
-    }, [safeId, reset, setSelectedItem, showSnackbar]);
+    }, [safeId, reset, setSelectedItem, showErrorDialog]);
 
-    const siteType = mode === "edit"
-    ? selectedItem?.type
-    : (searchParams?.get("type") as SiteFormData["type"] | undefined);
-
+    // Set settlement or wilderness context in the store for dynamic generation
     useEffect(() => {
         if (settlement) {
             useSettlementContentStore.getState().setContext?.({
-            terrain: settlement.terrain,
-            climate: settlement.climate,
-            tags: settlement.tags,
+                terrain: settlement.terrain,
+                climate: settlement.climate,
+                tags: settlement.tags,
+            });
+        } else if (wildernessContext) {
+            useSettlementContentStore.getState().setContext?.({
+                terrain: wildernessContext.terrain,
+                climate: wildernessContext.climate,
+                tags: wildernessContext.tags,
             });
         }
-    }, [settlement]);
+    }, [settlement, wildernessContext]);
+
+    const siteType = mode === "edit"
+        ? selectedItem?.type
+        : (searchParams?.get("type") as SiteFormData["type"] | undefined);
 
     const generator = useSiteGenerator(methods, {
         siteType: siteType,
-        terrain: settlement?.terrain ?? [],
-        climate: settlement?.climate ?? "",
-        tags: settlement?.tags ?? [],
+        terrain: isWilderness ? wildernessContext?.terrain ?? [] : settlement?.terrain ?? [],
+        climate: isWilderness ? wildernessContext?.climate ?? "" : settlement?.climate ?? "",
+        tags: isWilderness ? wildernessContext?.tags ?? [] : settlement?.tags ?? [],
     });
 
     const onSubmit = async (data: SiteFormData) => {
@@ -100,9 +109,10 @@ export default function EditSitePage(){
                 image: cleanImage,
             };
 
-            let savedSite;
-            savedSite = await updateSite(siteData, safeId);
-            await refetch(); 
+            await updateSite(siteData, safeId);
+            if (settlementId !== 'wilderness') {
+                await refetch();
+            }
             showSnackbar(`Site ${mode === 'edit' ? "updated" : "created"} successfully!`, "success");
             router.push(`/settlements/${settlementId}`);
         } catch (err){
@@ -112,7 +122,7 @@ export default function EditSitePage(){
     
     return (
         <FormProvider {...methods}>
-            <SiteForm onSubmit={onSubmit} mode={mode} generator={generator} />
+            <SiteForm onSubmit={onSubmit} mode={mode} generator={generator} isWilderness={isWilderness} />
         </FormProvider>
     )
-} 
+}
