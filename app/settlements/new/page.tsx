@@ -13,7 +13,7 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlements/settlementRules";
+import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlements/rules/settlement.rules";
 
 export default function NewSettlementPage() {
   const router = useRouter();

@@ -15,7 +15,7 @@ import { SiteType } from "@/interfaces/site.interface";
 import { useSiteGenerator } from "@/hooks/useSiteGenerator";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useEffect } from "react";
-import { generateWildernessContext } from "@/lib/modules/settlements/settlementRules";
+import { generateWildernessContext } from "@/lib/modules/settlements/rules/settlement.rules";
 import { createSite } from "@/lib/actions/site.actions";
 
 export default function NewSitePage(){

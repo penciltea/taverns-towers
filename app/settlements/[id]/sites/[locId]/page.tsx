@@ -17,7 +17,7 @@ import { usePaginatedSites } from "@/hooks/site.query";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
 import { useSiteGenerator } from "@/hooks/useSiteGenerator";
 import { useSettlementContentStore } from "@/store/settlementStore";
-import { generateWildernessContext } from "@/lib/modules/settlements/settlementRules";
+import { generateWildernessContext } from "@/lib/modules/settlements/rules/settlement.rules";
 
 export default function EditSitePage(){
     const params = useParams();

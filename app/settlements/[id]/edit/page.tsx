@@ -15,7 +15,8 @@ import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlements/settlementRules";
+import { generateSettlementWithName } from "@/lib/modules/settlements/rules/settlement.rules";
+import { normalizeSettlementInput } from "@/lib/modules/settlements/rules/normalize";
 
 
 export default function EditSettlementFormPage() {
@@ -73,7 +74,7 @@ export default function EditSettlementFormPage() {
   async function handleGenerate() {
     const { watch, setValue } = methods;
     const currentValues = watch();
-    const normalizedInput = normalizeInput(currentValues);
+    const normalizedInput = normalizeSettlementInput(currentValues);
     
     const generatedValues = await generateSettlementWithName(normalizedInput);
     // If name field is empty, populate it, else preserve the existing name
@@ -87,7 +88,7 @@ export default function EditSettlementFormPage() {
   }
   
   async function handleReroll() {
-    const normalizedInput = normalizeInput(defaultSettlementValues);
+    const normalizedInput = normalizeSettlementInput(defaultSettlementValues);
     const generatedValues = await generateSettlementWithName(normalizedInput);
 
     methods.reset(generatedValues);
