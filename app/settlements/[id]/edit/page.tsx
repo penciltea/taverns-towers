@@ -52,7 +52,7 @@ export default function EditSettlementFormPage() {
       const mergedSettlement = normalizeSettlementData({
         ...defaultSettlementValues,
         ...fetchedSettlement,
-      });
+      }) as SettlementFormData;
 
       methods.reset(mergedSettlement);
       setLoadedSettlementValues(mergedSettlement);
@@ -74,7 +74,12 @@ export default function EditSettlementFormPage() {
     const { watch, setValue } = methods;
     const currentValues = watch();
     const normalizedInput = normalizeInput(currentValues);
+    
     const generatedValues = await generateSettlementWithName(normalizedInput);
+    // If name field is empty, populate it, else preserve the existing name
+    if (currentValues.name.trim()) {
+      generatedValues.name = currentValues.name;
+    }
 
     Object.entries(generatedValues).forEach(([key, value]) => {
       setValue(key as keyof SettlementFormData, value);
@@ -82,17 +87,12 @@ export default function EditSettlementFormPage() {
   }
   
   async function handleReroll() {
-    if (loadedSettlementValues) {
-      methods.reset(loadedSettlementValues);
-    } else {
-      methods.reset(defaultSettlementValues);
-    }
+    const normalizedInput = normalizeInput(defaultSettlementValues);
+    const generatedValues = await generateSettlementWithName(normalizedInput);
 
-    // Let RHF settle the reset (wait one tick)
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    await handleGenerate();
+    methods.reset(generatedValues);
   }
+
 
   const onSubmit = async (data: SettlementFormData) => {
     const result = await saveSettlement(data);

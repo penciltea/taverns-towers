@@ -42,20 +42,23 @@ export default function NewSettlementPage() {
     const { watch, setValue } = methods;
     const currentValues = watch();
     const normalizedInput = normalizeInput(currentValues);
+
     const generatedValues = await generateSettlementWithName(normalizedInput);
+    // If name field is empty, populate it, else preserve the existing name
+    if (currentValues.name.trim()) {
+      generatedValues.name = currentValues.name;
+    }
 
     Object.entries(generatedValues).forEach(([key, value]) => {
       setValue(key as keyof SettlementFormData, value);
     });
   }
 
-  async function handleReroll(){
-    methods.reset();
+  async function handleReroll() {
+    const normalizedInput = normalizeInput(defaultSettlementValues);
+    const generatedValues = await generateSettlementWithName(normalizedInput);
 
-    //Let RHF settle the reset (wait one tick)
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    await handleGenerate();
+    methods.reset(generatedValues);
   }
 
   const onSubmit = async (data: SettlementFormData) => {

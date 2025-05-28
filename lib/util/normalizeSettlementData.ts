@@ -1,8 +1,11 @@
 import { SettlementFormData } from "@/schemas/settlement.schema";
 
+const normalizeArray = (arr?: string[]) => Array.isArray(arr) ? arr.filter(val => val.trim() !== "") : [];
+
 export const normalizeSettlementData = (settlement: Partial<SettlementFormData>) => ({
-    ...settlement,
-    tags: Array.isArray(settlement.tags) ? settlement.tags.filter(tag => tag.trim() !== "") : [],
-    terrain: Array.isArray(settlement.terrain) ? settlement.terrain.filter(t => t.trim() !== "") : [],
-    crime: Array.isArray(settlement.crime) ? settlement.crime.filter(c => c.trim() !== "") : [],
-  });
+  ...settlement,
+  tags: normalizeArray(settlement.tags),
+  terrain: normalizeArray(settlement.terrain),
+  crime: normalizeArray(settlement.crime),
+  domains: normalizeArray(settlement.domains),
+});

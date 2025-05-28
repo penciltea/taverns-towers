@@ -138,7 +138,7 @@ export type SiteFormFieldProps = {
   };
 };
 
-export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscSite | BaseSite;
+export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite | BaseSite;
 
 export type SiteSize = (typeof SITE_SIZE)[number]['value'];
 export type SiteCondition = (typeof SITE_CONDITION)[number]['value'];

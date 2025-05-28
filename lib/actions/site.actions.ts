@@ -129,7 +129,7 @@ function serializeSite(site: any): SiteType {
   }
 }
 
-export async function createSite(data: any, settlementId: string) {
+export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
   console.log("Object: ", ObjectId.isValid(settlementId));
   const model = Site.discriminators?.[data.type] || Site;
@@ -149,8 +149,8 @@ export async function getSitesPaginated(
   settlementId: string | null,
   page: number = 1,
   limit: number = 12,
-  type?: string[],
-  name?: string
+  name: string,
+  types?: string[]  
 ) {
   await connectToDatabase();
 
@@ -162,8 +162,8 @@ export async function getSitesPaginated(
   } else if (settlementId && settlementId !== 'wilderness') {
     throw new Error("Invalid settlementId passed to getSitesPaginated");
   }
-  if (type && type.length > 0) {
-    query.type = { $in: type };
+  if (types && types.length > 0) {
+    query.type = { $in: types };
   }
   if (name) query.name = new RegExp(name, "i");
 
@@ -194,7 +194,7 @@ export async function getSiteById(id: string) {
   return serializeSite(site);
 }
 
-export async function updateSite(data: any, id: string,) {
+export async function updateSite(data: SiteType, id: string,) {
   await connectToDatabase();
 
   const existing = await Site.findById(id);
