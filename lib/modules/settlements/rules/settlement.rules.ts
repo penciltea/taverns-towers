@@ -9,6 +9,7 @@ import { applyRacesByTerrain } from "./race.rules";
 import { applySizeRule } from "./size.rules";
 import { applyTradeNotesByTags } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
+import { applyFolkloreByConditions } from "./folklore.rules";
 
 // set fields based off logic above for any fields with "random" as their value
 export const generateSettlementValues = (input: NormalizedSettlementInput) => {
@@ -24,7 +25,8 @@ export const generateSettlementValues = (input: NormalizedSettlementInput) => {
     applyRacesByTerrain,
     applyTradeNotesByTags,
     applyDomainsByConditions,
-    applyHolidaysByConditions
+    applyHolidaysByConditions,
+    applyFolkloreByConditions
   ].reduce((data, fn) => fn(data), input);
 };
 

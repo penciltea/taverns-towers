@@ -24,12 +24,9 @@ export function getDomainsByConditions({
 
 export function applyDomainsByConditions(data: NormalizedSettlementInput): NormalizedSettlementInput {
   if (
-    (!Array.isArray(data.domains) || data.domains.length === 0) &&
-    data.climate &&
-    Array.isArray(data.terrain) &&
-    !data.terrain.includes("random") &&
-    Array.isArray(data.tags) &&
-    !data.tags.includes("random")
+    !Array.isArray(data.domains) ||
+    data.domains.length === 0 ||
+    (data.domains.length === 1 && data.domains[0] === "random")
   ) {
     const suggestedDomains = getDomainsByConditions({
       climate: data.climate,
