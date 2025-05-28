@@ -10,7 +10,7 @@ export type NormalizedSettlementInput = Omit<Settlement, keyof CommonInterface |
   rulingStyle: string;
   wealth: string;
   crime: string[];
-  domains: string[],
+  domains: string[];
 };
 
 export function normalizeSettlementInput(data: Partial<Settlement>): NormalizedSettlementInput {
