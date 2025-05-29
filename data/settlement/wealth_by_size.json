@@ -1,0 +1,9 @@
+{
+  "Encampment": ["Impoverished", "Struggling", "Modest"],
+  "Thorp": ["Impoverished", "Struggling", "Modest"],
+  "Hamlet": ["Struggling", "Modest", "Wealthy", "Affluent"],
+  "Village": ["Struggling", "Modest", "Wealthy", "Affluent"],
+  "Town": ["Modest", "Wealthy", "Affluent"],
+  "City": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"],
+  "Metropolis": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"]
+}

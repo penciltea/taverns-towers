@@ -6,7 +6,7 @@ import { generateSettlementNameFromFragments } from "@/lib/util/generator/settle
 import { normalizeSettlementInput, NormalizedSettlementInput } from "../modules/settlements/rules/normalize";
 import { Settlement } from "@/interfaces/settlement.interface";
 
-import { applyClimateRule, applyTerrainBlacklistRule } from "../modules/settlements/rules/environment.rules";
+import { applyClimateRule, applyTagsByTerrainRule, applyTerrainBlacklistRule } from "../modules/settlements/rules/environment.rules";
 import { applyDomainsByConditions } from "../modules/settlements/rules/domain.rules";
 import { applyWealthRule, applyCrimeByWealthRule, applyRulingStyleBySizeRule } from "../modules/settlements/rules/law.rules";
 import { applyMagicByWealthRule } from "../modules/settlements/rules/magic.rules";
@@ -14,6 +14,7 @@ import { applySizeRule } from "../modules/settlements/rules/size.rules";
 import { applyTradeNotesByTags } from "../modules/settlements/rules/trade.rules";
 import { applyHolidaysByConditions } from "../modules/settlements/rules/holiday.rules";
 import { applyFolkloreByConditions } from "../modules/settlements/rules/folklore.rules";
+import { applyRacesByTerrain } from "../modules/settlements/rules/race.rules";
 
 
 const ruleFns = [
@@ -21,6 +22,8 @@ const ruleFns = [
   applyClimateRule,
   applyWealthRule,
   applyTerrainBlacklistRule,
+  applyTagsByTerrainRule,
+  applyRacesByTerrain,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
@@ -47,25 +50,28 @@ export async function generateSettlementName({
   return generateSettlementNameFromFragments(fragments, { terrain, tags });
 }
 
-/**
- * Run full rule pipeline + generate name
- */
 export async function generateSettlementData(
-  input: Settlement
+  input: Partial<Settlement>,
+  rerollAll = false
 ): Promise<NormalizedSettlementInput & { name: string }> {
   await connectToDatabase();
 
-  let data: NormalizedSettlementInput = normalizeSettlementInput({
-    climate: input.climate ?? "random",
-    terrain: input.terrain ?? ["random"],
-    tags: input.tags ?? ["random"],
-    // Add other fallbacks/defaults if needed
-  });
+  const baseInput = rerollAll
+    ? {
+        climate: "random",
+        terrain: ["random"],
+        tags: ["random"],
+        // ...other defaults
+      }
+    : input;
+
+  let data: NormalizedSettlementInput = normalizeSettlementInput(baseInput);
 
   for (const fn of ruleFns) {
     data = await fn(data);
   }
 
+  // Generate name by calling the other server action
   const name = await generateSettlementName({
     terrain: data.terrain,
     tags: data.tags,

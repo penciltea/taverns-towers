@@ -1,7 +1,7 @@
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import { NormalizedSettlementInput, normalizeSettlementInput } from "./normalize";
 
-import { applyClimateRule, applyTerrainBlacklistRule,   } from "./environment.rules";
+import { applyClimateRule, applyTagsByTerrainRule, applyTerrainBlacklistRule } from "./environment.rules";
 import { applyDomainsByConditions } from "./domain.rules";
 import { applyWealthRule, applyCrimeByWealthRule, applyRulingStyleBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
@@ -16,7 +16,7 @@ const ruleFns = [
   applyClimateRule,
   applyWealthRule,
   applyTerrainBlacklistRule,
-  //applyTagsByTerrainRule,
+  applyTagsByTerrainRule,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
@@ -59,12 +59,12 @@ export async function generateWildernessContext() {
   });
 
   data = applyClimateRule(data); // still sync
-  //data = await applyTerrainBlacklistRule(data); // now async
-  //data = await applyTagsByTerrainRule(data); // now async
+  data = await applyTerrainBlacklistRule(data); // now async
+  data = await applyTagsByTerrainRule(data); // now async
 
   return {
     climate: data.climate,
     terrain: data.terrain,
-    //tags: data.tags,
+    tags: data.tags,
   };
 }

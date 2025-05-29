@@ -2,8 +2,8 @@ import { CLIMATE_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
 import { normalizeSettlementInput, NormalizedSettlementInput } from "./normalize";
 import { TerrainBlacklist, TerrainBlacklistByClimate } from "@/lib/models/generatorTerrainBlacklists.model";
+import { TagsByTerrainMapping, TerrainBlacklistMapping } from "../mappings/environment.mappings";
 import { TagsByTerrain } from "@/lib/models/generatorTagsByTerrain.model";
-import { TerrainBlacklistMapping } from "../mappings/environment.mappings";
 
 // Logic for setting Climate if set to "random"
 export function applyClimateRule(data: ReturnType<typeof normalizeSettlementInput>): NormalizedSettlementInput {
@@ -61,20 +61,34 @@ export async function applyTerrainBlacklistRule(
 }
 
 // Logic for adding tags based on terrain type
-
-export function applyTagsByTerrainRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
-  if (data.tags && data.terrain && data.tags.includes("random")) {
+export async function applyTagsByTerrainRule(
+  data: NormalizedSettlementInput
+): Promise<NormalizedSettlementInput> {
+  if (
+    data.tags &&
+    data.terrain &&
+    data.tags.includes("random")
+  ) {
     const derivedTags: string[] = [];
 
     for (const terrain of data.terrain) {
-      const possibleTags = TagsByTerrain[terrain];
-      if (possibleTags) {
-        const subset = getRandomSubset(possibleTags, 1); // you could choose more than 1
+      let possibleTags: string[] | undefined;
+
+      try {
+        const entry = await TagsByTerrain.findOne({ terrain }).lean();
+        possibleTags = entry?.tags ?? TagsByTerrainMapping[terrain];
+      } catch (err) {
+        console.warn(`Failed to load tags for terrain "${terrain}" from DB, using fallback`, err);
+        possibleTags = TagsByTerrainMapping[terrain];
+      }
+
+      if (possibleTags && possibleTags.length > 0) {
+        const subset = getRandomSubset(possibleTags, getRandom([1, 2, 3]));
         derivedTags.push(...subset);
       }
     }
 
-    data.tags = Array.from(new Set(derivedTags)); // remove duplicates
+    data.tags = Array.from(new Set(derivedTags)); // de-duplicate
   }
 
   return data;

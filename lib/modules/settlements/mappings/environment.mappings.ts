@@ -8,7 +8,7 @@ import { TerrainTypes, ClimateTypes, TagTypes } from "@/constants/settlementOpti
   Continental: [],
 };
 
-export const TagsByTerrain: Record<TerrainTypes, TagTypes[]> = {
+export const TagsByTerrainMapping: Record<TerrainTypes, TagTypes[]> = {
   Coast: ["Port", "Fishing"],
   Desert: ["Nomadic", "Ancient Ruins"],
   Forest: ["Druidic", "Overgrown", "Hidden"],
