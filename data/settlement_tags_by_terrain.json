@@ -1,0 +1,34 @@
+[
+  {
+    "terrain": "Coast",
+    "tags": ["Port", "Fishing"]
+  },
+  {
+    "terrain": "Desert",
+    "tags": ["Nomadic", "Ancient Ruins"]
+  },
+  {
+    "terrain": "Forest",
+    "tags": ["Druidic", "Overgrown", "Hidden"]
+  },
+  {
+    "terrain": "Jungle",
+    "tags": ["Overgrown", "Infested"]
+  },
+  {
+    "terrain": "Mountains",
+    "tags": ["Mining Camp", "Remote"]
+  },
+  {
+    "terrain": "Plains",
+    "tags": ["Agricultural", "Trade Hub"]
+  },
+  {
+    "terrain": "Swamp",
+    "tags": ["Overgrown"]
+  },
+  {
+    "terrain": "Tundra",
+    "tags": ["Isolated"]
+  }
+]

@@ -6,7 +6,7 @@ export const FolkloreByTag: Record<TagTypes, string[]> = {
     "A curse lingers—visitors report strange dreams and sudden illness.",
   ],
   "Arcane Nexus": [
-    "It’s said magic warps time itself here—don’t stare at your reflection.",
+    "It's said magic warps time itself here—don't stare at your reflection.",
     "Children born during arcane surges have glowing eyes and odd talents.",
   ],
   "Border Post": [
@@ -18,7 +18,7 @@ export const FolkloreByTag: Record<TagTypes, string[]> = {
     "The royal bloodline cannot be cut—literally; blades shatter on contact.",
   ],
   "Criminal Hideout": [
-    "Saying a thief's name three times ensures they’ll steal from you.",
+    "Saying a thief's name three times ensures they'll steal from you.",
     "There's always one rat listening—never speak plans aloud.",
   ],
   "Druidic": [
@@ -39,7 +39,7 @@ export const FolkloreByTag: Record<TagTypes, string[]> = {
   ],
   "Hidden": [
     "Finding the town twice is a blessing—or a curse, depending on whom you ask.",
-    "The stars above look different here, like they don’t belong.",
+    "The stars above look different here, like they don't belong.",
   ],
   "Infested": [
     "Burning local herbs keeps 'them' away at night.",
@@ -50,7 +50,7 @@ export const FolkloreByTag: Record<TagTypes, string[]> = {
     "Children are told not to speak their names aloud after sundown.",
   ],
   "Mining Camp": [
-    "Strange music is heard deep in the tunnels—don’t follow it.",
+    "Strange music is heard deep in the tunnels—don't follow it.",
     "A silver coin left on the earth keeps the deep things sleeping.",
   ],
   "Nomadic": [
@@ -70,7 +70,7 @@ export const FolkloreByTag: Record<TagTypes, string[]> = {
     "Whistling in the cells is said to wake the forgotten inmates.",
   ],
   "Remote": [
-    "The stars are wrong out here, but we don’t talk about that.",
+    "The stars are wrong out here, but we don't talk about that.",
     "They say the hills walk at night—no one should wander alone.",
   ],
   "Sacred Site": [
@@ -94,22 +94,22 @@ export const FolkloreByTerrain: Record<TerrainTypes, string[]> = {
   ],
   "Desert": [
     "Mirages sometimes speak—answering is dangerous.",
-    "A faceless figure walks behind lone travelers. Don’t turn around.",
+    "A faceless figure walks behind lone travelers. Don't turn around.",
   ],
   "Forest": [
     "The forest keeps its dead—and adds to them.",
     "Never follow a white stag; it leads you into another world.",
   ],
   "Jungle": [
-    "The jungle has a voice. If it speaks to you, listen—but don’t obey.",
+    "The jungle has a voice. If it speaks to you, listen—but don't obey.",
     "Some vines here are older than memory, and hungrier too.",
   ],
   "Hills": [
     "Dancing lights on the hills mean the fey are watching.",
-    "The hills hum at dusk—locals say it’s the earth breathing.",
+    "The hills hum at dusk—locals say it's the earth breathing.",
   ],
   "Mountains": [
-    "Screams echo even when no one’s around to scream.",
+    "Screams echo even when no one's around to scream.",
     "Lightning strikes the same peak every storm—for a reason.",
   ],
   "Plains": [
@@ -117,8 +117,8 @@ export const FolkloreByTerrain: Record<TerrainTypes, string[]> = {
     "Horses will not ride past certain standing stones. No one knows why.",
   ],
   "River": [
-    "The river takes what it’s owed—fishers always leave a coin.",
-    "A ghost boat drifts upstream once a year. Don’t touch it.",
+    "The river takes what it's owed—fishers always leave a coin.",
+    "A ghost boat drifts upstream once a year. Don't touch it.",
   ],
   "Swamp": [
     "The lights lure you off the path—they feed the bog.",
@@ -130,10 +130,10 @@ export const FolkloreByTerrain: Record<TerrainTypes, string[]> = {
   ],
   "Underground": [
     "The stone remembers. Echoes of the past can possess the present.",
-    "You’ll hear footsteps when you're alone—they're never yours.",
+    "You'll hear footsteps when you're alone—they're never yours.",
   ],
   "Urban": [
-    "There are streets that don’t exist by daylight. Locals avoid them.",
+    "There are streets that don't exist by daylight. Locals avoid them.",
     "A man with no eyes is sometimes seen standing perfectly still at crossroads.",
   ],
 };
@@ -144,7 +144,7 @@ export const FolkloreByClimate: Record<ClimateTypes, string[]> = {
     "The ice sings at night, and not all songs are kind.",
   ],
   "Temperate": [
-    "Every 13th rain washes away someone’s memory—just a little.",
+    "Every 13th rain washes away someone's memory—just a little.",
     "Owls staring directly at your house mean someone is marked.",
   ],
   "Tropical": [

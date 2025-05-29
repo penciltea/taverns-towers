@@ -1,6 +1,6 @@
 import { TerrainTypes, ClimateTypes, TagTypes } from "@/constants/settlementOptions";
 
- export const TerrainBlacklistByClimate: Record<ClimateTypes, TerrainTypes[]> = {
+ export const TerrainBlacklistMapping: Record<ClimateTypes, TerrainTypes[]> = {
   Polar: ["Jungle", "Desert"],
   Temperate: [],
   Tropical: ["Tundra"],

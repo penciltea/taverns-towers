@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const API_URL = process.env.MONGODB_URL;
+const API_URL = process.env.API_URL;
 
 if (!API_URL) {
   throw new Error(

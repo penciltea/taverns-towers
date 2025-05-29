@@ -1,0 +1,14 @@
+[
+  { "terrain": "Coast", "races": ["Humans", "Half-Elves", "Halflings", "Sea Elves", "Tritons"] },
+  { "terrain": "Desert", "races": ["Humans", "Genasi", "Dragonborn"] },
+  { "terrain": "Forest", "races": ["Elves", "Firbolgs", "Gnomes"] },
+  { "terrain": "Jungle", "races": ["Tabaxi", "Yuan-ti", "Lizardfolk"] },
+  { "terrain": "Hills", "races": ["Halflings", "Dwarves", "Humans"] },
+  { "terrain": "Mountains", "races": ["Dwarves", "Goliaths", "Dragonborn"] },
+  { "terrain": "Plains", "races": ["Humans", "Halflings", "Half-Orcs"] },
+  { "terrain": "River", "races": ["Humans", "Half-Elves", "Elves", "Tritons"] },
+  { "terrain": "Swamp", "races": ["Humans", "Lizardfolk", "Half-Orcs", "Goblins"] },
+  { "terrain": "Tundra", "races": ["Goliaths", "Snow Elves", "Humans", "Half-Elves"] },
+  { "terrain": "Underground", "races": ["Drow", "Duergar", "Deep Gnomes"] },
+  { "terrain": "Urban", "races": ["Humans", "Half-Elves", "Tieflings", "All Races"] }
+]

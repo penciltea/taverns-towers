@@ -13,7 +13,8 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { generateSettlementWithName, normalizeInput } from "@/lib/modules/settlements/rules/settlement.rules";
+import { normalizeSettlementInput } from "@/lib/modules/settlements/rules/normalize";
+import { generateSettlementData } from "@/lib/actions/settlementGenerator.actions";
 
 export default function NewSettlementPage() {
   const router = useRouter();
@@ -41,22 +42,29 @@ export default function NewSettlementPage() {
   async function handleGenerate() {
     const { watch, setValue } = methods;
     const currentValues = watch();
-    const normalizedInput = normalizeInput(currentValues);
 
-    const generatedValues = await generateSettlementWithName(normalizedInput);
-    // If name field is empty, populate it, else preserve the existing name
-    if (currentValues.name.trim()) {
-      generatedValues.name = currentValues.name;
-    }
+    // Normalize current input to handle "random" etc.
+    const normalizedInput = normalizeSettlementInput(currentValues);
 
+    // Generate full data from normalized input (rerollAll = false)
+    const generatedValues = await generateSettlementData(normalizedInput, false);
+
+    // Only fill in missing or empty fields, preserve existing values (including name)
     Object.entries(generatedValues).forEach(([key, value]) => {
-      setValue(key as keyof SettlementFormData, value);
+      const currentVal = currentValues[key as keyof SettlementFormData];
+      if (
+        currentVal === undefined ||
+        currentVal === null ||
+        (typeof currentVal === "string" && currentVal.trim() === "") ||
+        (Array.isArray(currentVal) && currentVal.length === 0)
+      ) {
+        setValue(key as keyof SettlementFormData, value);
+      }
     });
   }
 
   async function handleReroll() {
-    const normalizedInput = normalizeInput(defaultSettlementValues);
-    const generatedValues = await generateSettlementWithName(normalizedInput);
+    const generatedValues = await generateSettlementData(defaultSettlementValues, true);
 
     methods.reset(generatedValues);
   }

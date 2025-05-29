@@ -1,0 +1,22 @@
+[
+  {
+    "climate": "Polar",
+    "blacklistedTerrains": ["Jungle", "Desert"]
+  },
+  {
+    "climate": "Temperate",
+    "blacklistedTerrains": []
+  },
+  {
+    "climate": "Tropical",
+    "blacklistedTerrains": ["Tundra"]
+  },
+  {
+    "climate": "Dry",
+    "blacklistedTerrains": ["Swamp", "Tundra", "Jungle"]
+  },
+  {
+    "climate": "Continental",
+    "blacklistedTerrains": []
+  }
+]

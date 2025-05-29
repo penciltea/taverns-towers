@@ -1,7 +1,9 @@
 import { CLIMATE_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
-import { TerrainBlacklistByClimate, TagsByTerrain } from "../mappings/environment.mappings";
 import { normalizeSettlementInput, NormalizedSettlementInput } from "./normalize";
+import { TerrainBlacklist, TerrainBlacklistByClimate } from "@/lib/models/generatorTerrainBlacklists.model";
+import { TagsByTerrain } from "@/lib/models/generatorTagsByTerrain.model";
+import { TerrainBlacklistMapping } from "../mappings/environment.mappings";
 
 // Logic for setting Climate if set to "random"
 export function applyClimateRule(data: ReturnType<typeof normalizeSettlementInput>): NormalizedSettlementInput {
@@ -12,13 +14,49 @@ export function applyClimateRule(data: ReturnType<typeof normalizeSettlementInpu
 }
 
 // Logic for removing incompatible terrain types based on the climate
+export async function applyTerrainBlacklistRule(
+  data: NormalizedSettlementInput
+): Promise<NormalizedSettlementInput> {
+  try {
+    if (
+      data.climate &&
+      data.terrain &&
+      data.climate !== "random" &&
+      data.terrain.includes("random")
+    ) {
+      // Try DB lookup
+      const entry = await TerrainBlacklist
+        .findOne({ climate: data.climate })
+        .lean<TerrainBlacklistByClimate>();
 
-export function applyTerrainBlacklistRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
-  if (data.climate && data.terrain && data.climate !== "random" && data.terrain.includes("random")) {
-    const blacklist = TerrainBlacklistByClimate[data.climate] || [];
-    const validTerrains = TERRAIN_TYPES.filter((terrain) => !blacklist.includes(terrain));
-    data.terrain = [getRandom(validTerrains)];
+      // If DB fails or is empty, use fallback mapping
+      const blacklist = entry?.blacklistedTerrains 
+        ?? TerrainBlacklistMapping[data.climate] 
+        ?? [];
+
+      const validTerrains = TERRAIN_TYPES.filter(
+        (terrain) => !blacklist.includes(terrain)
+      );
+
+      data.terrain = data.terrain.flatMap((t) =>
+        t === "random" ? [getRandom(validTerrains)] : [t]
+      );
+    }
+  } catch (err) {
+    console.warn("applyTerrainBlacklistRule failed, using local fallback:", err);
+
+    // Use mapping fallback even on DB error
+    const fallbackBlacklist = TerrainBlacklistMapping[data.climate] ?? [];
+
+    const validTerrains = TERRAIN_TYPES.filter(
+      (terrain) => !fallbackBlacklist.includes(terrain)
+    );
+
+    data.terrain = data.terrain.map((t) =>
+      t === "random" ? getRandom(validTerrains) : t
+    );
   }
+
   return data;
 }
 
