@@ -1,9 +1,30 @@
-{
-  "Encampment": ["Impoverished", "Struggling", "Modest"],
-  "Thorp": ["Impoverished", "Struggling", "Modest"],
-  "Hamlet": ["Struggling", "Modest", "Wealthy", "Affluent"],
-  "Village": ["Struggling", "Modest", "Wealthy", "Affluent"],
-  "Town": ["Modest", "Wealthy", "Affluent"],
-  "City": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"],
-  "Metropolis": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"]
-}
+[
+  {
+    "size": "Encampment",
+    "wealth": ["Impoverished", "Struggling", "Modest"]
+  },
+  {
+    "size": "Thorp",
+    "wealth": ["Impoverished", "Struggling", "Modest"]
+  },
+  {
+    "size": "Hamlet",
+    "wealth": ["Struggling", "Modest", "Wealthy", "Affluent"]
+  },
+  {
+    "size": "Village",
+    "wealth": ["Struggling", "Modest", "Wealthy", "Affluent"]
+  },
+  {
+    "size": "Town",
+    "wealth": ["Modest", "Wealthy", "Affluent"]
+  },
+  {
+    "size": "City",
+    "wealth": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"]
+  },
+  {
+    "size": "Metropolis",
+    "wealth": ["Impoverished", "Struggling", "Modest", "Wealthy", "Affluent"]
+  }
+]

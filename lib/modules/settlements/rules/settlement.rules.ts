@@ -3,9 +3,9 @@ import { NormalizedSettlementInput, normalizeSettlementInput } from "./normalize
 
 import { applyClimateRule, applyTagsByTerrainRule, applyTerrainBlacklistRule } from "./environment.rules";
 import { applyDomainsByConditions } from "./domain.rules";
-import { applyWealthRule, applyCrimeByWealthRule, applyRulingStyleBySizeRule } from "./law.rules";
+import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
-//import { applyRacesByTerrain } from "./race.rules";
+import { applyRacesByTerrain } from "./race.rules";
 import { applySizeRule } from "./size.rules";
 import { applyTradeNotesByTags } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
@@ -14,13 +14,13 @@ import { applyFolkloreByConditions } from "./folklore.rules";
 const ruleFns = [
   applySizeRule,
   applyClimateRule,
-  applyWealthRule,
+  applyWealthBySizeRule,
   applyTerrainBlacklistRule,
   applyTagsByTerrainRule,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
-  //applyRacesByTerrain, // now async
+  applyRacesByTerrain,
   applyTradeNotesByTags,
   applyDomainsByConditions,
   applyHolidaysByConditions,
@@ -58,9 +58,9 @@ export async function generateWildernessContext() {
     tags: ["random"],
   });
 
-  data = applyClimateRule(data); // still sync
-  data = await applyTerrainBlacklistRule(data); // now async
-  data = await applyTagsByTerrainRule(data); // now async
+  data = applyClimateRule(data);
+  data = await applyTerrainBlacklistRule(data);
+  data = await applyTagsByTerrainRule(data);
 
   return {
     climate: data.climate,

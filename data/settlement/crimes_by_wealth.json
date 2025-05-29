@@ -1,7 +1,17 @@
-{
-  "Impoverished": ["Petty Theft", "Pickpocketing Rings", "Widespread Lawlessness"],
-  "Struggling": ["Pickpocketing Rings", "Smuggling", "Illegal Gambling", "Corruption", "Slavery & Trafficking"],
-  "Modest": ["Petty Theft", "Pickpocketing Rings", "Smuggling", "Black Market"],
-  "Wealthy": ["Black Market", "Corruption", "Organized Crime", "Assassins' Guild", "Slavery & Trafficking"],
-  "Affluent": ["Illegal Gambling", "Black Market", "Corruption", "Organized Crime", "Assassins' Guild"]
-}
+[
+  {
+    "Impoverished": ["Petty Theft", "Pickpocketing Rings", "Widespread Lawlessness"]
+  },
+  {
+    "Struggling": ["Pickpocketing Rings", "Smuggling", "Illegal Gambling", "Corruption", "Slavery & Trafficking"]
+  },
+  {
+    "Modest": ["Petty Theft", "Pickpocketing Rings", "Smuggling", "Black Market"]
+  },
+  {
+    "Wealthy": ["Black Market", "Corruption", "Organized Crime", "Assassins' Guild", "Slavery & Trafficking"]
+  },
+  {
+    "Affluent": ["Illegal Gambling", "Black Market", "Corruption", "Organized Crime", "Assassins' Guild"]
+  }
+]

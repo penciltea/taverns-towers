@@ -8,7 +8,7 @@ import { Settlement } from "@/interfaces/settlement.interface";
 
 import { applyClimateRule, applyTagsByTerrainRule, applyTerrainBlacklistRule } from "../modules/settlements/rules/environment.rules";
 import { applyDomainsByConditions } from "../modules/settlements/rules/domain.rules";
-import { applyWealthRule, applyCrimeByWealthRule, applyRulingStyleBySizeRule } from "../modules/settlements/rules/law.rules";
+import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "../modules/settlements/rules/law.rules";
 import { applyMagicByWealthRule } from "../modules/settlements/rules/magic.rules";
 import { applySizeRule } from "../modules/settlements/rules/size.rules";
 import { applyTradeNotesByTags } from "../modules/settlements/rules/trade.rules";
@@ -20,7 +20,7 @@ import { applyRacesByTerrain } from "../modules/settlements/rules/race.rules";
 const ruleFns = [
   applySizeRule,
   applyClimateRule,
-  applyWealthRule,
+  applyWealthBySizeRule,
   applyTerrainBlacklistRule,
   applyTagsByTerrainRule,
   applyRacesByTerrain,

@@ -1,36 +1,91 @@
 
-// Logic for setting wealth levels by population size
-
-import { WEALTH_LEVELS, CRIMINAL_ACTIVITY_TYPES, RULING_TYPES } from "@/constants/settlementOptions";
+import { WEALTH_LEVELS, CRIMINAL_ACTIVITY_TYPES, RULING_TYPES, SIZE_TYPES } from "@/constants/settlementOptions";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
-import { WealthBySize, CrimesByWealth, RulingBySize } from "../mappings/law.mappings";
-import { normalizeSettlementInput, NormalizedSettlementInput } from "./normalize";
+import { WealthBySizeMapping, CrimesByWealthMapping, RulingBySizeMapping } from "../mappings/law.mappings";
+import { NormalizedSettlementInput } from "./normalize";
+import { RulingStyleBySize, RulingStyleBySizeModel } from "@/lib/models/generatorRulingStyleBySize.model";
+import { WealthBySize, WealthBySizeModel } from "@/lib/models/generatorWealthByRule.model";
+import { CrimesByWealth, CrimesByWealthModel } from "@/lib/models/generatorCrimesByWealth.model";
 
-export function applyWealthRule(data: ReturnType<typeof normalizeSettlementInput>): NormalizedSettlementInput {
-  if (data.size && data.size !== "random" && data.wealth === "random") {
-    const options = WealthBySize[data.size] ?? WEALTH_LEVELS;
-    data.wealth = getRandom(options);
+export async function applyWealthBySizeRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput>{
+   try {
+    if (
+      data.size &&
+      data.size !== "random" &&
+      data.wealth === "random"
+    ) {
+      const entry = await WealthBySize
+        .findOne({ size: data.size })
+        .lean<WealthBySizeModel>();
+
+      const validWealth =
+        entry?.wealth ?? WealthBySizeMapping[data.size] ?? [];
+
+      data.wealth = getRandom(validWealth);
+    }
+  } catch (err) {
+    console.warn("applyWealthBySizeRule failed, using local fallback:", err);
+
+    const fallback = WealthBySizeMapping[data.size] ?? [];
+    data.wealth = getRandom(fallback);
   }
   return data;
 }
 
-// Logic for applying criminal activies by wealth
+export async function applyCrimeByWealthRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+  try {
+    if( 
+      data.crime &&
+      data.crime.includes("random") &&
+      typeof data.wealth === "string"
+    ) {
+      const entry = await CrimesByWealth
+        .findOne({ wealth: data.wealth })
+        .lean<CrimesByWealthModel>();
 
-export function applyCrimeByWealthRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
-  if (data.crime && data.crime.includes("random") && typeof data.wealth === "string") {
-    const possibleCrimes = CrimesByWealth[data.wealth] ?? CRIMINAL_ACTIVITY_TYPES;
-    const subset = getRandomSubset(possibleCrimes, getRandom([1, 2, 3]));
-    data.crime = Array.from(new Set(subset));
+      const crimesList = entry?.crime
+        ?? CrimesByWealthMapping[data.wealth]
+        ?? [];
+
+      // Use crimesList directly
+      data.crime = data.crime.flatMap((c) => 
+        c === "random" ? [getRandom(crimesList)] : [c]
+      );
+    }
+  } catch (err) {
+    console.warn("applyCrimeByWealthRule failed, using local fallback:", err);
+    
+    const fallbackCrimeList = CrimesByWealthMapping[data.wealth] ?? [];
+
+    data.crime = data.crime.map((c) =>
+      c === "random" ? getRandom(fallbackCrimeList) : c
+    );
   }
+
   return data;
 }
 
 // Logic for applying ruling style by settlement size
+export async function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+  try{
+    if(
+      data.size && 
+      data.size !== "random" &&
+      data.rulingStyle === "random"
+    ) {
+      const entry = await RulingStyleBySize.findOne({ size: data.size }).lean<RulingStyleBySizeModel>();
 
-export function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): NormalizedSettlementInput {
-  if (data.size && data.size !== "random" && data.rulingStyle === "random") {
-    const options = RulingBySize[data.size] || RULING_TYPES;
-    data.rulingStyle = getRandom(options);
+      const validRulingStyle = 
+        entry?.rulingStyle ?? RulingBySizeMapping[data.size] ?? [];
+
+      data.rulingStyle = getRandom(validRulingStyle);
+    }
+  } catch (err) {
+    console.warn("applyRulingStyleBySizeRule failed, using local fallback:", err);
+
+    const fallback = RulingBySizeMapping[data.size] ?? [];
+    data.rulingStyle = getRandom(fallback);
   }
+
   return data;
 }
