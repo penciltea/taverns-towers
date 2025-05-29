@@ -24,7 +24,7 @@ export const RulingBySizeMapping: Record<SizeTypes, string[]> = {
 };
 
 
- export const CrimesByWealthMapping: Record<WealthLevel, CriminalActivityTypes[]> = {
+ export const CrimeByWealthMapping: Record<WealthLevel, CriminalActivityTypes[]> = {
    Impoverished: ["Petty Theft", "Pickpocketing Rings", "Widespread Lawlessness"],
    Struggling: ["Pickpocketing Rings", "Smuggling", "Illegal Gambling", "Corruption", "Slavery & Trafficking"],
    Modest: ["Petty Theft", "Pickpocketing Rings", "Smuggling", "Black Market"],

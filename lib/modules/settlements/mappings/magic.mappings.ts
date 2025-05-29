@@ -10,7 +10,7 @@ export const MagicBySize: Record<SizeTypes, MagicLevel[]> = {
   Metropolis: MAGIC_LEVELS.slice(3, 5),     // "High", "Mythic"
 };
 
-export const MagicByWealth: Record<string, string[]> = {
+export const MagicByWealthMapping: Record<string, string[]> = {
   Impoverished: ["None"],
   Struggling: ["None", "Low"],
   Modest: ["Low", "Moderate"],

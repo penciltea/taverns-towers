@@ -21,10 +21,10 @@ const ruleFns = [
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
   applyRacesByTerrain,
-  applyTradeNotesByTags,
-  applyDomainsByConditions,
-  applyHolidaysByConditions,
-  applyFolkloreByConditions,
+  applyTradeNotesByTags, // ToDo: Update
+  applyDomainsByConditions, // ToDo: Update
+  applyHolidaysByConditions, // ToDo: Update
+  applyFolkloreByConditions, // ToDo: Update
 ];
 
 export const generateSettlementValues = async (input: NormalizedSettlementInput) => {

@@ -1,11 +1,10 @@
-
-import { WEALTH_LEVELS, CRIMINAL_ACTIVITY_TYPES, RULING_TYPES, SIZE_TYPES } from "@/constants/settlementOptions";
-import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
-import { WealthBySizeMapping, CrimesByWealthMapping, RulingBySizeMapping } from "../mappings/law.mappings";
+import { getRandom } from "@/lib/util/randomValues";
+import { WealthBySizeMapping, CrimeByWealthMapping, RulingBySizeMapping } from "../mappings/law.mappings";
 import { NormalizedSettlementInput } from "./normalize";
 import { RulingStyleBySize, RulingStyleBySizeModel } from "@/lib/models/generatorRulingStyleBySize.model";
 import { WealthBySize, WealthBySizeModel } from "@/lib/models/generatorWealthByRule.model";
-import { CrimesByWealth, CrimesByWealthModel } from "@/lib/models/generatorCrimesByWealth.model";
+import { CrimeByWealth, CrimeByWealthModel } from "@/lib/models/generatorCrimeByWealth.model";
+
 
 export async function applyWealthBySizeRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput>{
    try {
@@ -39,12 +38,12 @@ export async function applyCrimeByWealthRule(data: NormalizedSettlementInput): P
       data.crime.includes("random") &&
       typeof data.wealth === "string"
     ) {
-      const entry = await CrimesByWealth
+      const entry = await CrimeByWealth
         .findOne({ wealth: data.wealth })
-        .lean<CrimesByWealthModel>();
+        .lean<CrimeByWealthModel>();
 
       const crimesList = entry?.crime
-        ?? CrimesByWealthMapping[data.wealth]
+        ?? CrimeByWealthMapping[data.wealth]
         ?? [];
 
       // Use crimesList directly
@@ -55,7 +54,7 @@ export async function applyCrimeByWealthRule(data: NormalizedSettlementInput): P
   } catch (err) {
     console.warn("applyCrimeByWealthRule failed, using local fallback:", err);
     
-    const fallbackCrimeList = CrimesByWealthMapping[data.wealth] ?? [];
+    const fallbackCrimeList = CrimeByWealthMapping[data.wealth] ?? [];
 
     data.crime = data.crime.map((c) =>
       c === "random" ? getRandom(fallbackCrimeList) : c

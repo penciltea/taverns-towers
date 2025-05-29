@@ -1,0 +1,22 @@
+[
+  {
+    "wealth": "Impoverished",
+    "magic": ["None"]
+  },
+  {
+    "wealth": "Struggling",
+    "magic": ["None", "Low"]
+  },
+  {
+    "wealth": "Modest",
+    "magic": ["Low", "Moderate"]
+  },
+  {
+    "wealth": "Wealthy",
+    "magic": ["Moderate", "High", "Mythic"]
+  },
+  {
+    "wealth": "Affluent",
+    "magic": ["High", "Mythic"]
+  }
+]
