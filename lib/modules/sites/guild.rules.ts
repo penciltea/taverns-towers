@@ -28,7 +28,7 @@ function normalizeInput(data: SiteGenerationInput): NormalizedGuildInput {
   };
 }
 
-function applySizeRule(data: NormalizedGuildInput) {
+async function applySizeRule(data: NormalizedGuildInput) {
   if (data.size === "random" || !data.size) {
     const randomOption = getRandom(SITE_SIZE);
     data.size = randomOption.value;
@@ -36,7 +36,7 @@ function applySizeRule(data: NormalizedGuildInput) {
   return data;
 }
 
-function applyConditionRule(data: NormalizedGuildInput) {
+async function applyConditionRule(data: NormalizedGuildInput) {
   if (data.condition === "random" || !data.condition) {
     const randomOption = getRandom(SITE_CONDITION);
     data.condition = randomOption.value;
@@ -44,12 +44,16 @@ function applyConditionRule(data: NormalizedGuildInput) {
   return data;
 }
 
-export function generateGuildValues(input: SiteGenerationInput): SiteFormData {
+export async function generateGuildValues(input: SiteGenerationInput): Promnise<SiteFormData> {
     let data = normalizeInput(input);
     const rules = [
         applySizeRule,
         applyConditionRule,
     ];
-    data = rules.reduce((acc, rule) => rule(acc), data);
+    
+    for ( const rule of rules ){
+      data = await rule(data);
+    }
+
     return data;
 }

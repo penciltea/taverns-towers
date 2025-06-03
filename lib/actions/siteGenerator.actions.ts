@@ -4,6 +4,9 @@ import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generatorSiteFragment.model";
 import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
 import GeneratorSiteMenu from "@/lib/models/generatorSiteMenu.model";
+import { SiteGenerationInput } from "../modules/sites/types";
+import { SiteFormData } from "@/schemas/site.schema";
+import { SiteGenerator } from "../modules/sites/site.rules";
 
 interface GenerateMenuParams {
   siteType: string[];
@@ -94,4 +97,39 @@ export async function generateMenuItems({
   });
 
   return filtered.map(({ _id, __v, ...rest }) => rest);
+}
+
+export async function generateSiteData(
+  type: string,
+  input: SiteGenerationInput,
+  rerollAll = false
+): Promise<SiteFormData> {
+  await connectToDatabase();
+
+  const generator = SiteGenerator[type];
+  if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
+
+  const baseInput: SiteGenerationInput = {
+    climate: rerollAll ? input.climate ?? "random" : input.climate,
+    terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
+    tags: rerollAll ? input.tags ?? ["random"] : input.tags,
+    size: rerollAll ? input.size ?? "random" : input.size,
+    condition: rerollAll ? input.condition ?? "random" : input.condition,
+    ...input
+  };
+
+  const coreData = await generator(baseInput);
+
+  const name = await generateSiteName({
+    category: type,
+    siteType: [type],
+    terrain: baseInput.terrain,
+    climate: baseInput.climate,
+    tags: baseInput.tags,
+  });
+
+  return {
+    ...coreData,
+    name: coreData.name && coreData.name !== "" ? coreData.name : name,
+  };
 }

@@ -18,7 +18,7 @@ type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
   mode: "add" | "edit" | null;
   isWilderness: boolean;
-  generator: {
+  generator?: {
     name: () => void;
     menu: () => void;
     all: () => void;
@@ -72,7 +72,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           <Button
             type="button"
             variant="contained"
-            onClick={generator.all}
+            onClick={generator?.all}
             size="large"
             sx={{ mt: 2, py: 1.65 }}
           >
@@ -81,7 +81,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           <Button
             type="button"
             variant="outlined"
-            onClick={generator.reroll}
+            onClick={generator?.reroll}
             size="large"
             sx={{ mt: 2, py: 1.65 }}
           >

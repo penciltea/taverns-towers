@@ -1,5 +1,5 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
-import { TradeNotesByTag } from "../mappings/trade.mappings";
+import { TradeNotesByTagMapping } from "../mappings/trade.mappings";
 import { NormalizedSettlementInput } from "./normalize";
 
 // Logic for applying trade notes by tags
@@ -11,7 +11,7 @@ export function applyTradeNotesByTags(data: NormalizedSettlementInput): Normaliz
     !data.tags.includes("random") &&
     data.tags.length > 0
   ) {
-    const allTradeNotes = data.tags.flatMap((t) => TradeNotesByTag[t] || []);
+    const allTradeNotes = data.tags.flatMap((t) => TradeNotesByTagMapping[t] || []);
     const uniqueNotes = Array.from(new Set(allTradeNotes));
     const selectedNotes = getRandomSubset(uniqueNotes, 1, 3);
     data.tradeNotes = selectedNotes.join("; ");

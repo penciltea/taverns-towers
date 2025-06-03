@@ -3,17 +3,17 @@ import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import type { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationInput } from "./types";
 
-type NormalizedTempleInput = SiteFormData & {
+type NormalizedTavernInput = SiteFormData & {
   size: string;
   terrain: string[];
   tags: string[];
   climate: string;
 };
 
-function normalizeInput(data: SiteGenerationInput): NormalizedTempleInput {
+function normalizeInput(data: SiteGenerationInput): NormalizedTavernInput {
   return {
     ...(data as SiteFormData),
-    type: "temple",
+    type: "tavern",
     size: data.size && data.size !== "" ? data.size : "random",
     terrain: data.terrain && data.terrain.length > 0 ? data.terrain : ["random"],
     tags: data.tags && data.tags.length > 0 ? data.tags : ["random"],
@@ -22,7 +22,7 @@ function normalizeInput(data: SiteGenerationInput): NormalizedTempleInput {
   };
 }
 
-function applySizeRule(data: NormalizedTempleInput) {
+async function applySizeRule(data: NormalizedTavernInput) {
   if (data.size === "random" || !data.size) {
     const randomOption = getRandom(SITE_SIZE);
     data.size = randomOption.value;
@@ -30,7 +30,7 @@ function applySizeRule(data: NormalizedTempleInput) {
   return data;
 }
 
-function applyConditionRule(data: NormalizedTempleInput) {
+async function applyConditionRule(data: NormalizedTavernInput) {
   if (data.condition === "random" || !data.condition) {
     const randomOption = getRandom(SITE_CONDITION);
     data.condition = randomOption.value;
@@ -38,12 +38,15 @@ function applyConditionRule(data: NormalizedTempleInput) {
   return data;
 }
 
-export function generateTempleValues(input: SiteGenerationInput): SiteFormData {
-    let data = normalizeInput(input);
-    const rules = [
-        applySizeRule,
-        applyConditionRule,
-    ];
-    data = rules.reduce((acc, rule) => rule(acc), data);
-    return data;
+export async function generateTavernValues(
+  input: SiteGenerationInput
+): Promise<SiteFormData> {
+  let data = normalizeInput(input);
+  const rules = [applySizeRule, applyConditionRule];
+
+  for (const rule of rules) {
+    data = await rule(data);
+  }
+
+  return data;
 }

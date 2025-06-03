@@ -3,32 +3,26 @@ import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import type { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationInput } from "./types";
 
-type NormalizedHiddenInput = SiteFormData & {
+type NormalizedResidenceInput = SiteFormData & {
   size: string;
   terrain: string[];
   tags: string[];
   climate: string;
 };
 
-function normalizeInput(data: SiteGenerationInput): NormalizedHiddenInput {
-  const isHidden = data.type === "hidden";
-
+function normalizeInput(data: SiteGenerationInput): NormalizedResidenceInput {
   return {
     ...(data as SiteFormData),
-    type: "hidden",
+    type: "residence",
     size: data.size && data.size !== "" ? data.size : "random",
     terrain: data.terrain && data.terrain.length > 0 ? data.terrain : ["random"],
     tags: data.tags && data.tags.length > 0 ? data.tags : ["random"],
     climate: data.climate && data.climate !== "" ? data.climate : "random",
     condition: data.condition && data.condition !== "" ? data.condition : "random",
-    secrecy:
-      isHidden && Array.isArray(data.secrecy) && data.secrecy.length > 0
-        ? data.secrecy
-        : ["random"],
   };
 }
 
-function applySizeRule(data: NormalizedHiddenInput) {
+async function applySizeRule(data: NormalizedResidenceInput) {
   if (data.size === "random" || !data.size) {
     const randomOption = getRandom(SITE_SIZE);
     data.size = randomOption.value;
@@ -36,7 +30,7 @@ function applySizeRule(data: NormalizedHiddenInput) {
   return data;
 }
 
-function applyConditionRule(data: NormalizedHiddenInput) {
+async function applyConditionRule(data: NormalizedResidenceInput) {
   if (data.condition === "random" || !data.condition) {
     const randomOption = getRandom(SITE_CONDITION);
     data.condition = randomOption.value;
@@ -44,12 +38,15 @@ function applyConditionRule(data: NormalizedHiddenInput) {
   return data;
 }
 
-export function generateHiddenValues(input: SiteGenerationInput): SiteFormData {
+export async function generateResidenceValues(input: SiteGenerationInput): Promise<SiteFormData> {
     let data = normalizeInput(input);
     const rules = [
         applySizeRule,
         applyConditionRule,
     ];
-    data = rules.reduce((acc, rule) => rule(acc), data);
+    for ( const rule of rules ){
+      data = await rule(data);
+    }
+
     return data;
 }

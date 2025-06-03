@@ -115,9 +115,6 @@ export const ENTERTAINMENT_VENUE_TYPES = [
   "Other"
 ];
 
-
-
-
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];
 export type SiteCondition = typeof SITE_CONDITION[number]["value"];

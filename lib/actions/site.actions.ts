@@ -194,7 +194,9 @@ export async function getSiteById(id: string) {
   return serializeSite(site);
 }
 
-export async function updateSite(data: SiteType, id: string,) {
+type SiteUpdateData = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>>;
+
+export async function updateSite(data: SiteUpdateData, id: string) {
   await connectToDatabase();
 
   const existing = await Site.findById(id);

@@ -1,6 +1,6 @@
 import { TagTypes } from "@/constants/settlementOptions";
 
-export const TradeNotesByTag: Partial<Record<TagTypes, string[]>> = {
+export const TradeNotesByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Ancient Ruins": [
     "Relics scavenged and sold to collectors",
     "Tourism brings in treasure hunters and scholars",

@@ -2,15 +2,15 @@ import { governmentSchema, type SiteFormData } from "@/schemas/site.schema";
 import type { Settlement } from "@/interfaces/settlement.interface";
 import type { SiteGenerationInput } from "./types";
 import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
-import { generateTavernValues } from "./tavernRules";
-import { generateEntertainmentValues } from "./entertainmentRules";
-import { generateHiddenValues } from "./hiddenRules";
-import { generateGovernmentValues } from "./governmentRules";
-import { generateMiscellaneousValues } from "./miscellaneousRules";
-import { generateResidenceValues } from "./residenceRules";
-import { generateGuildValues } from "./guildRules";
-import { generateTempleValues } from "./temple";
-import { generateShopValues } from "./shopRules";
+import { generateTavernValues } from "./tavern.rules";
+import { generateEntertainmentValues } from "./entertainment.rules";
+import { generateHiddenValues } from "./hidden.rules";
+import { generateGovernmentValues } from "./government.rules";
+import { generateMiscellaneousValues } from "./miscellaneous.rules";
+import { generateResidenceValues } from "./residence.rules";
+import { generateGuildValues } from "./guild.rules";
+import { generateTempleValues } from "./temple.rules";
+import { generateShopValues } from "./shop.rules";
 
 // ─── Rules for Tavern ──────────────────────────────────────
 

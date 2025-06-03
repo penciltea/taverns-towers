@@ -1,7 +1,6 @@
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import { NormalizedSettlementInput, normalizeSettlementInput } from "./normalize";
 
-import { applyClimateRule, applyTagsByTerrainRule, applyTerrainBlacklistRule } from "./environment.rules";
 import { applyDomainsByConditions } from "./domain.rules";
 import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
@@ -10,21 +9,19 @@ import { applySizeRule } from "./size.rules";
 import { applyTradeNotesByTags } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
 import { applyFolkloreByConditions } from "./folklore.rules";
+import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 
 const ruleFns = [
   applySizeRule,
-  applyClimateRule,
   applyWealthBySizeRule,
-  applyTerrainBlacklistRule,
-  applyTagsByTerrainRule,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
-  applyRacesByTerrain,
-  applyTradeNotesByTags, // ToDo: Update
-  applyDomainsByConditions, // ToDo: Update
-  applyHolidaysByConditions, // ToDo: Update
-  applyFolkloreByConditions, // ToDo: Update
+  //applyRacesByTerrain, // ToDo: Fix
+  //applyTradeNotesByTags, // ToDo: Update
+  //applyDomainsByConditions, // ToDo: Update
+  //applyHolidaysByConditions, // ToDo: Update
+  //applyFolkloreByConditions, // ToDo: Update
 ];
 
 export const generateSettlementValues = async (input: NormalizedSettlementInput) => {
@@ -52,19 +49,15 @@ export const generateSettlementWithName = async (input: NormalizedSettlementInpu
 };
 
 export async function generateWildernessContext() {
-  let data = normalizeSettlementInput({
+  const environment = await generateEnvironment({
     climate: "random",
     terrain: ["random"],
     tags: ["random"],
   });
 
-  data = applyClimateRule(data);
-  data = await applyTerrainBlacklistRule(data);
-  data = await applyTagsByTerrainRule(data);
-
   return {
-    climate: data.climate,
-    terrain: data.terrain,
-    tags: data.tags,
+    climate: environment.climate,
+    terrain: environment.terrain,
+    tags: environment.tags,
   };
 }

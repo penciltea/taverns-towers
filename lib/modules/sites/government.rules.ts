@@ -22,7 +22,7 @@ function normalizeInput(data: SiteGenerationInput): NormalizedGovernmentInput {
   };
 }
 
-function applySizeRule(data: NormalizedGovernmentInput) {
+async function applySizeRule(data: NormalizedGovernmentInput) {
   if (data.size === "random" || !data.size) {
     const randomOption = getRandom(SITE_SIZE);
     data.size = randomOption.value;
@@ -30,7 +30,7 @@ function applySizeRule(data: NormalizedGovernmentInput) {
   return data;
 }
 
-function applyConditionRule(data: NormalizedGovernmentInput) {
+async function applyConditionRule(data: NormalizedGovernmentInput) {
   if (data.condition === "random" || !data.condition) {
     const randomOption = getRandom(SITE_CONDITION);
     data.condition = randomOption.value;
@@ -38,12 +38,16 @@ function applyConditionRule(data: NormalizedGovernmentInput) {
   return data;
 }
 
-export function generateGovernmentValues(input: SiteGenerationInput): SiteFormData {
+export async function generateGovernmentValues(input: SiteGenerationInput): Promise<SiteFormData> {
     let data = normalizeInput(input);
     const rules = [
         applySizeRule,
         applyConditionRule,
     ];
-    data = rules.reduce((acc, rule) => rule(acc), data);
+    
+    for ( const rule of rules ){
+      data = await rule(data);
+    }
+    
     return data;
 }
