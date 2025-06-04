@@ -42,7 +42,10 @@ export async function generateTavernValues(
   input: SiteGenerationInput
 ): Promise<SiteFormData> {
   let data = normalizeInput(input);
-  const rules = [applySizeRule, applyConditionRule];
+  const rules = [
+    applySizeRule, 
+    applyConditionRule
+  ];
 
   for (const rule of rules) {
     data = await rule(data);

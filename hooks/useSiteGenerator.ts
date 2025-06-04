@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteName, generateMenuItems } from "@/lib/actions/siteGenerator.actions";
-import { generateSiteValues } from "@/lib/modules/sites/siteRules";
+import { generateSiteValues } from "@/lib/modules/sites/site.rules";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
 
@@ -37,7 +37,7 @@ export function useSiteGenerator(
   } | null>(null);
 
   const getShopType = useCallback(() => {
-    return methods.getValues("shopType");
+    return getValues("shopType");
   }, [methods]);
 
   const regenerateEnvironment = useCallback(
@@ -64,11 +64,10 @@ export function useSiteGenerator(
 
       // Only update form fields if force=true or current values are empty/random
       if (force || isEmptyOrRandom) {
-        methods.setValue("climate", newEnv.climate);
-        methods.setValue("terrain", newEnv.terrain);
-        methods.setValue("tags", newEnv.tags);
+        setValue("climate", newEnv.climate);
+        setValue("terrain", newEnv.terrain);
+        setValue("tags", newEnv.tags);
         setCachedEnv(newEnv);
-        console.trace("Regenerating environment", { force });
       }
 
       return newEnv;
