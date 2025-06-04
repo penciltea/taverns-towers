@@ -30,6 +30,8 @@ type ContentStore<T> = {
   context?: Record<string, any>; // or something more structured if desired
   setContext?: (context: Record<string, any>) => void;
   clearContext?: () => void;
+
+  reset: () => void;
 };
 
 export function createContentStore<T>() {
@@ -73,5 +75,15 @@ export function createContentStore<T>() {
     context: {},
     setContext: (context) => set({ context }),
     clearContext: () => set({ context: {} }),
+
+    reset: () => set({
+      allItems: [],
+      filteredItems: [],
+      selectedItem: null,
+      filters: {},
+      mode: null,
+      currentPage: 1,
+      context: {},
+    }),
   }));
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from "react";
+import { useParams } from "next/navigation";
 import { Box, Grid, Stack, Typography, Skeleton, Divider } from "@mui/material";
 import Image from "next/image";
 import { useUIStore } from '@/store/uiStore';
@@ -11,9 +11,11 @@ import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
 
-export default function ViewSettlementPage({ params }: { params: Promise<{ id: string }> }) {
+
+export default function ViewSettlementPage() {
   const { setOpenDialog } = useUIStore();
-  const { id } = use(params);
+  const params = useParams();
+  const id = params.id as string;
   const { settlement, loading, deleteSite } = useSettlementLoader(id);
 
   if (!loading && !settlement) {

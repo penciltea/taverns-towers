@@ -142,6 +142,8 @@ export async function createSite(data: SiteType, settlementId: string) {
   } else {
     revalidatePath(`/wilderness`);
   }
+
+  console.log("new Site: ", newSite);
   return serializeSite(newSite);
 }
 

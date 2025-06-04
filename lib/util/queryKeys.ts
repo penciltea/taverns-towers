@@ -2,6 +2,6 @@ export const siteListKey = (
   settlementId: string,
   page: number,
   limit: number,
+  name: string,  
   types: string[],
-  name: string
-) => ['sites', settlementId, page, limit, types, name];
+) => ['sites', settlementId, page, limit, name, types];

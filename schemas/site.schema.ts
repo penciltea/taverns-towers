@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/siteOptions";
+import { environmentSchema } from "./environment.schema";
 
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value);
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
@@ -23,7 +24,7 @@ export const baseSiteSchema = z.object({
       }
     )
     .optional(),
-});
+}).merge(environmentSchema).partial();
 
 export const menuItemSchema = z.object({
   name: z.string().min(1, "Name is required"),

@@ -28,12 +28,12 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
     settlementId,
   });
 
-  const { data } = usePaginatedSites(
+  const { data, isFetching, isPlaceholderData, isPending, isError } = usePaginatedSites(
     filters.settlementId,
     filters.page,
     filters.limit,
+    filters.search,
     filters.type,
-    filters.search
   );
   
   const sites = data?.sites || [];
@@ -58,7 +58,7 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
           subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
           onClick={() => {
             setSelected(site);
-            setOpenDialog('SiteDetailsDialog', {  siteData: selected, settlementId: settlementId, onDelete: onDelete })
+            setOpenDialog('SiteDetailsDialog', {  siteData: site, settlementId: settlementId, onDelete: onDelete })
           }}
         />
       )}

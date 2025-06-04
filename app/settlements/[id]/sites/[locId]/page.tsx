@@ -13,11 +13,10 @@ import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
-import { usePaginatedSites } from "@/hooks/site.query";
 import { useSiteGenerator } from "@/hooks/useSiteGenerator";
 import { useSiteGenerationContext } from "@/hooks/useSiteGenerationContext";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";
-import { SiteCategory } from "@/constants/siteOptions";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function EditSitePage() {
   const params = useParams();
@@ -27,39 +26,49 @@ export default function EditSitePage() {
   const router = useRouter();
 
   const { showSnackbar, showErrorDialog } = useUIStore();
-  const { setSelectedItem, selectedItem, mode } = useSiteContentStore();
+  const { selectedItem, mode } = useSiteContentStore();
 
-  // Use existing form mode hook (sets mode to "edit" and loads site)
+  // Load the site and set mode to "edit"
   useFormMode(safeId, useSiteContentStore, getSiteById);
 
-  const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
+  const queryClient = useQueryClient();
 
   const methods = useFormWithSchema<typeof siteSchema>(siteSchema);
   const { reset } = methods;
 
-  // Load site data when safeId changes, and reset form
+  // Load site data and reset form when selectedItem updates
   useEffect(() => {
     if (!selectedItem) return;
 
     reset({
-        ...(selectedItem as SiteFormData),
-        image: selectedItem.image ?? undefined,
+      ...(selectedItem as SiteFormData),
+      image: selectedItem.image ?? undefined,
     });
   }, [selectedItem, reset]);
 
-  // Get generation context (may load async wilderness context inside this hook)
+  // Load site generation context
   const { context, isWilderness } = useSiteGenerationContext(settlementId);
 
-  // Extract and validate siteType from selectedItem
+  // Extract and validate siteType from loaded site
   const rawSiteType = selectedItem?.type ?? null;
-  const siteType = isValidSiteCategory(rawSiteType) ? (rawSiteType as SiteCategory) : undefined;
+  const siteType = isValidSiteCategory(rawSiteType)
+        ? (rawSiteType as SiteFormData["type"])
+        : undefined;
 
-  const generator = useSiteGenerator(methods, {
-    siteType,
+  // Provide safe defaults for generator inputs
+  const safeContext = {
     terrain: context?.terrain ?? [],
     climate: context?.climate ?? "",
     tags: context?.tags ?? [],
-  });
+  };
+
+  // Initialize generator hook with safe values
+  const generator = useSiteGenerator(methods, {
+    siteType: siteType ?? "miscellaneous",
+    terrain: safeContext.terrain,
+    climate: safeContext.climate,
+    tags: safeContext.tags,
+  }, isWilderness);
 
   const onSubmit = async (data: SiteFormData) => {
     const cleanImage = await handleDynamicFileUpload(data, "image");
@@ -78,7 +87,9 @@ export default function EditSitePage() {
       await updateSite(siteData, safeId);
 
       if (settlementId !== "wilderness") {
-        await refetch();
+        queryClient.invalidateQueries({
+          queryKey: ['sites', settlementId],
+        });
       }
 
       showSnackbar("Site updated successfully!", "success");
@@ -87,11 +98,6 @@ export default function EditSitePage() {
       showErrorDialog("Something went wrong, please try again later!");
     }
   };
-
-  // Show loading state until selectedItem is ready
-  if (!selectedItem) {
-    return <div>Loading site...</div>;
-  }
 
   return (
     <FormProvider {...methods}>

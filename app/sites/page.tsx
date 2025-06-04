@@ -28,8 +28,8 @@ export default function AllSitesPage(){
         filters.settlementId,
         filters.page,
         filters.limit,
+        filters.search,        
         filters.type,
-        filters.search
     );
     
     const sites = data?.sites || [];
@@ -45,8 +45,8 @@ export default function AllSitesPage(){
             filters.settlementId ?? 'all',
             filters.page,
             filters.limit,
-            filters.type,
-            filters.search
+            filters.search,
+            filters.type
         ),
         });
 

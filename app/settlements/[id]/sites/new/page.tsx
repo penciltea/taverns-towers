@@ -34,7 +34,7 @@ export default function NewSitePage() {
     const router = useRouter();
     const { showSnackbar, showErrorDialog } = useUIStore();
     const { mode } = useSiteContentStore();
-    const { refetch } = usePaginatedSites(settlementId, 1, 12, [], "");
+    const { refetch } = usePaginatedSites(settlementId, 1, 12, "", []);
 
     // Load the generation context
     const { context, isWilderness } = useSiteGenerationContext(settlementId);
@@ -52,18 +52,7 @@ export default function NewSitePage() {
         terrain: safeContext.terrain,
         climate: safeContext.climate,
         tags: safeContext.tags,
-    });
-
-    // Render loading UI while the context or type param is missing or incomplete
-    const isContextReady =
-        typeParam !== undefined &&
-        safeContext.terrain.length > 0 &&
-        safeContext.climate.length > 0 &&
-        safeContext.tags.length > 0;
-
-    if (!isContextReady) {
-        return <div>Loading site generation context...</div>;
-    }
+    }, isWilderness);
 
     // Submission handler
     const onSubmit = async (data: SiteFormData) => {
@@ -81,7 +70,8 @@ export default function NewSitePage() {
         }
 
         showSnackbar("Site created successfully!", "success");
-        // router.push(`/settlements/${settlementId}`);
+        router.push(`/settlements/${settlementId}`);
+
         } catch (err) {
         console.error(err);
         showErrorDialog("Something went wrong, please try again later!");
