@@ -1,12 +1,10 @@
 import { z } from "zod";
+import { defaultEnvironmentValues, environmentSchema } from "./environment.schema";
 const fileSizeLimit = 5 * 1024 * 1024;
 
 export const settlementSchema = z.object({
   name: z.string().min(1, "Settlement name is required"),
   size: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  terrain: z.array(z.string()).optional(),
-  climate: z.string().optional(),
   magic: z.string().optional(),
   races: z.string().optional(),
   description: z.string().optional(),
@@ -33,23 +31,19 @@ export const settlementSchema = z.object({
       }
     )
     .optional(),
-});
+})
+.merge(environmentSchema); // added for climate, terrain, and tags fields
 
 export const settlementFilterSchema = z.object({
-  climate: z.string().optional(),
   size: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  terrain: z.array(z.string()).optional(),
   magic: z.string().optional(),
   wealth: z.string().optional(),
-});
+})
+.merge(environmentSchema); // added for climate, terrain, and tag fields
 
 export const defaultSettlementValues =  {
   name: "",
   size: "",
-  tags: [],
-  terrain: [],
-  climate: "",
   magic: "",
   races: "",
   publicNotes: "",
@@ -64,6 +58,7 @@ export const defaultSettlementValues =  {
   folklore: "",
   crime: [],
   map: undefined,
+  ...defaultEnvironmentValues // added for defaults for climate, terrain, and tags
 }
 
 export type SettlementFormData = z.infer<typeof settlementSchema>;

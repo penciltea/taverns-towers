@@ -1,5 +1,7 @@
-import { defaultSiteValues, SiteFormData } from "@/schemas/site.schema";
+import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SiteCategory } from "@/constants/siteOptions";
 
-export function isValidSiteCategory(value: string): value is SiteFormData["type"] {
-  return Object.keys(defaultSiteValues).includes(value);
+export function isValidSiteCategory(value: string | null): value is SiteCategory {
+  if (typeof value !== "string") return false;
+  return SITE_CATEGORIES.some((category) => category.value === value);
 }

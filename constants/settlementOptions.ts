@@ -1,16 +1,3 @@
-export const SITE_CATEGORIES = [ 
-    "Taverns & Inns", 
-    "Temples & Shrines", 
-    "Shopping", 
-    "Crafts & Services", 
-    "Government", 
-    "Entertainment", 
-    "Medical & Alchemical", 
-    "Magical", 
-    "Criminal", 
-    "Miscellaneous" 
-];
-
 export const SETTLEMENT_TABS = ["Basics", "Leadership & Wealth", "Culture & Society"];
 
 export const SIZE_TYPES = [
