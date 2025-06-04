@@ -34,6 +34,10 @@ export async function generateSiteName({
 }): Promise<string> {
   await connectToDatabase();
 
+  console.log("climate: ", climate);
+  console.log("terrain: " , terrain);
+  console.log("tags: ", tags);
+
   const rawFragments = await GeneratorSiteFragment.find().lean();
 
   const fragments = (rawFragments as any[]).filter(

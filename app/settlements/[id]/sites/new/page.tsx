@@ -47,11 +47,16 @@ export default function NewSitePage() {
     };
     const safeType = typeParam ?? ("tavern" as SiteFormData["type"]);
 
+    const currentTerrain = methods.watch("terrain");
+    const currentClimate = methods.watch("climate");
+    const currentTags = methods.watch("tags");
+
+    
     const generator = useSiteGenerator(methods, {
         siteType: safeType,
-        terrain: safeContext.terrain,
-        climate: safeContext.climate,
-        tags: safeContext.tags,
+        terrain: currentTerrain || [],
+        climate: currentClimate || "",
+        tags: currentTags || [],
     }, isWilderness);
 
     // Submission handler

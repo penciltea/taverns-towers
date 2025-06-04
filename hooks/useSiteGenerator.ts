@@ -4,6 +4,7 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteName, generateMenuItems } from "@/lib/actions/siteGenerator.actions";
 import { generateSiteValues } from "@/lib/modules/sites/siteRules";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
+import { EnvironmentInterface } from "@/interfaces/environment.interface";
 
 type GeneratorContext = {
   siteType: SiteFormData["type"];
@@ -26,6 +27,8 @@ export function useSiteGenerator(
 ): UseSiteGeneratorReturn {
   const { siteType, climate, terrain, tags } = context;
 
+  const { getValues, setValue } = methods;
+
   // Store generated env in ref-like state to prevent duplicate calls
   const [cachedEnv, setCachedEnv] = useState<{
     terrain: string[];
@@ -40,26 +43,33 @@ export function useSiteGenerator(
   const regenerateEnvironment = useCallback(
     async (force = false) => {
       if (!isWilderness) {
+        // No regeneration for non-wilderness, just return current context
         return { terrain, climate, tags };
       }
 
+      // Check if the current environment fields are considered "empty" or "random"
       const isEmptyOrRandom =
         force ||
         !climate || climate === "random" ||
         !terrain?.length || terrain.includes("random") ||
         !tags?.length || tags.includes("random");
 
+      // If environment is valid (not empty/random) and we have cachedEnv, just return it
       if (!isEmptyOrRandom && cachedEnv) {
         return cachedEnv;
       }
 
-      const newEnv = await generateEnvironment({ climate, terrain, tags });
+      // Otherwise, generate a new environment
+      const newEnv = await generateEnvironment({ climate, terrain, tags }, force);
 
-      methods.setValue("climate", newEnv.climate);
-      methods.setValue("terrain", newEnv.terrain);
-      methods.setValue("tags", newEnv.tags);
-
-      setCachedEnv(newEnv);
+      // Only update form fields if force=true or current values are empty/random
+      if (force || isEmptyOrRandom) {
+        methods.setValue("climate", newEnv.climate);
+        methods.setValue("terrain", newEnv.terrain);
+        methods.setValue("tags", newEnv.tags);
+        setCachedEnv(newEnv);
+        console.trace("Regenerating environment", { force });
+      }
 
       return newEnv;
     },
@@ -68,8 +78,9 @@ export function useSiteGenerator(
 
   const generateName = useCallback(async () => {
     if (!siteType) return;
+    
 
-    const env = await regenerateEnvironment();
+    const env = await regenerateEnvironment(false);
     const shopType = getShopType();
 
     const name = await generateSiteName({
@@ -83,18 +94,18 @@ export function useSiteGenerator(
     methods.setValue("name", name);
 }, [siteType, methods, getShopType, regenerateEnvironment]);
 
-  const generateMenu = useCallback(async () => {
+  const generateMenu = useCallback(async (env?: EnvironmentInterface) => {
+    const effectiveEnv = env || await regenerateEnvironment();
     if (!siteType) return;
 
-    const env = await regenerateEnvironment();
     const shopType = getShopType();
 
     const menuItems = await generateMenuItems({
       siteType: [siteType],
       shopType,
-      settlementTerrain: env.terrain,
-      settlementClimate: env.climate,
-      settlementTags: env.tags,
+      settlementTerrain: effectiveEnv.terrain,
+      settlementClimate: effectiveEnv.climate,
+      settlementTags: effectiveEnv.tags,
     });
 
     const cleanedItems = menuItems.map((item) => ({
@@ -110,7 +121,7 @@ export function useSiteGenerator(
   const generateAll = useCallback(async () => {
     if (!siteType) return;
 
-    const env = await regenerateEnvironment();
+    const env = await regenerateEnvironment(false);
     const shopType = getShopType();
 
     const result = await generateSiteValues(siteType, {
@@ -127,13 +138,13 @@ export function useSiteGenerator(
       methods.setValue(key as keyof SiteFormData, value);
     });
 
-    await generateMenu();
+    await generateMenu(env);
   }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
 
   const rerollAll = useCallback(async () => {
     if (!siteType) return;
 
-    const env = await regenerateEnvironment(false);
+    const env = await regenerateEnvironment(true);
     const shopType = getShopType();
 
     const result = await generateSiteValues(siteType, {
@@ -147,7 +158,7 @@ export function useSiteGenerator(
       methods.setValue(key as keyof SiteFormData, value);
     });
 
-    await generateMenu();
+    await generateMenu(env);
   }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
 
   return {

@@ -24,72 +24,73 @@ function toTitleCase(str: string): string {
     .join(" ");
 }
 
+
 function filterByAttributes(
   fragments: GeneratorSiteFragmentPlain[],
   filters: GenerateSiteNameOptions
 ): GeneratorSiteFragmentPlain[] {
-  const { category, tags = [], terrain = [], climate, siteType = [], shopType } = filters;
+  const { category, tags = [], terrain = [], climate, shopType } = filters;
+  const normalizedSiteTypes = Array.isArray(filters.siteType)
+    ? filters.siteType.map(s => s.toLowerCase())
+    : filters.siteType
+      ? [(filters.siteType as string).toLowerCase()]
+      : [];
 
   return fragments.filter(f => {
-    // Exclude shopType fragments if siteType doesn't include "shop"
-    if (f.type === "shopType" && !siteType.includes("shop")) {
+    const isShopSite = normalizedSiteTypes.includes("shop");
+
+    // 1. Skip shopType fragments if not a shop site
+    if (f.type === "shopType" && !isShopSite) return false;
+
+    // 2. Format-specific checks for shopType placeholder
+    if (f.type === "format") {
+      const hasShopType = f.value.includes("{{shopType}}") || f.value.includes("{{person}}'s {{shopType}}");
+      if (hasShopType && (!isShopSite || !shopType)) return false;
+    }
+
+    // 3. Match siteType or listOfSiteTypes
+    const fragmentSiteTypes: string[] = [];
+
+    if (typeof f.siteType === "string") {
+      fragmentSiteTypes.push(f.siteType.toLowerCase());
+    }
+
+    if (Array.isArray(f.listOfSiteTypes)) {
+      fragmentSiteTypes.push(...f.listOfSiteTypes.map(st => st.toLowerCase()));
+    }
+
+    const matchesSiteType = fragmentSiteTypes.length > 0
+      ? fragmentSiteTypes.some(type => normalizedSiteTypes.includes(type))
+      : true;
+
+    if (!matchesSiteType) return false;
+
+    // 4. Category match
+    if (f.categories?.length && !f.categories.includes(category!)) return false;
+
+    // 5. Tag match
+    if (f.tags?.length) {
+      const normalizedTags = tags.map(t => t.toLowerCase());
+      if (!f.tags.some((tag: string) => normalizedTags.includes(tag.toLowerCase()))) return false;
+    }
+
+    // 6. Terrain match
+    if (f.terrain?.length) {
+      const normalizedTerrain = terrain.map(t => t.toLowerCase());
+      if (!f.terrain.some((t: string) => normalizedTerrain.includes(t.toLowerCase()))) return false;
+    }
+
+    // 7. Climate match
+    if (f.climate?.length && climate && !f.climate.includes(climate)) return false;
+
+    // 8. Shop type match
+    if (isShopSite && shopType && f.shopTypes?.length && !f.shopTypes.includes(shopType)) {
       return false;
     }
 
-    // Format fragments have special rules
-    if (f.type === "format") {
-      const hasShopTypePlaceholder = f.value.includes("{{shopType}}");
-      const hasPersonShopTypePlaceholder = f.value.includes("{{person}}'s {{shopType}}");
-
-      // Only allow these formats if siteType includes "shop" and shopType is defined
-      if ((hasShopTypePlaceholder || hasPersonShopTypePlaceholder) && (!siteType.includes("shop") || !shopType)) {
-        return false;
-      }
-
-      // Enforce siteType overlap if siteTypes defined on fragment
-      if (f.siteTypes && siteType.length > 0 && !f.siteTypes.some(st => siteType.includes(st))) {
-        return false;
-      }
-    }
-
-    // Generic matching rules:
-
-    // Match siteType if fragment specifies siteTypes; otherwise, allow
-    const siteTypeMatch = f.siteTypes && f.siteTypes.length > 0
-      ? f.siteTypes.some(st => siteType.includes(st))
-      : true;
-
-    // Match category if fragment specifies categories; otherwise, allow
-    const categoryMatch = f.categories && f.categories.length > 0
-      ? f.categories.includes(category!)
-      : true;
-
-    // Match tags if fragment specifies tags; otherwise, allow
-    const tagMatch = f.tags && f.tags.length > 0
-      ? f.tags.some(tag => tags.includes(tag))
-      : true;
-
-    // Match terrain if fragment specifies terrains; otherwise, allow
-    const terrainMatch = f.terrains && f.terrains.length > 0
-      ? f.terrains.some(t => terrain.includes(t))
-      : true;
-
-    // Match climate if fragment specifies climates; otherwise, allow
-    const climateMatch = f.climates && f.climates.length > 0
-      ? f.climates.includes(climate!)
-      : true;
-
-    // Match shopType if siteType includes "shop" and shopType is defined
-    const shopTypeMatch = siteType.includes("shop") && shopType
-      ? f.shopTypes && f.shopTypes.length > 0
-        ? f.shopTypes.includes(shopType)
-        : true
-      : true;
-
-    return siteTypeMatch && categoryMatch && tagMatch && terrainMatch && climateMatch && shopTypeMatch;
+    return true;
   });
 }
-
 
 function groupFragmentsByType(fragments: GeneratorSiteFragmentPlain[]) {
   return {
@@ -106,12 +107,9 @@ export function generateSiteNameFromFragments(
   fragments: GeneratorSiteFragmentPlain[],
   filters: GenerateSiteNameOptions
 ): string {
-  // Filter first, then group
   const filtered = filterByAttributes(fragments, filters);
   const grouped = groupFragmentsByType(filtered);
-
   const suffixOrNounFragments = [...grouped.suffix, ...grouped.noun];
-
   const formatTemplate = weightedRandom(grouped.format) || "{{prefix}} {{suffix}}";
 
   const randomCache: Record<string, string[]> = {
@@ -134,6 +132,7 @@ export function generateSiteNameFromFragments(
           const selectionPool = remaining.length > 0 ? remaining : pool;
 
           const selected = weightedRandom(selectionPool);
+          if (!selected) return "";
           used.push(selected);
           return selected;
         }
@@ -148,11 +147,8 @@ export function generateSiteNameFromFragments(
 
         case "shopType":
           if (filters.shopType) {
-            const matchingFragment = grouped.shopType.find(f => f.shopType === filters.shopType);
-            if (matchingFragment) {
-              return toTitleCase(matchingFragment.value);
-            }
-            return toTitleCase(filters.shopType);
+            const matching = grouped.shopType.find(f => f.shopType === filters.shopType);
+            return toTitleCase(matching?.value ?? filters.shopType);
           }
           break;
 
@@ -161,19 +157,19 @@ export function generateSiteNameFromFragments(
       }
     }
 
-    // Fallback if no replacement found
     return options[0] || "";
   };
 
-  const name = formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_, key) => getReplacement(key, filters));
+  const name = formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_, key) =>
+    getReplacement(key, filters)
+  );
 
-  //console.log("Fragments grouped:", {
-    //prefix: grouped.prefix,
-    //suffixOrNoun: suffixOrNounFragments,
-    //person: grouped.person,
-    //shopType: grouped.shopType,
-    //format: grouped.format,
-    //noun: grouped.noun,
-  //});
+  // console.log("Fragments grouped:", { 
+    
+    // format: grouped.format,
+    // prefix: grouped.prefix
+  // 
+  // });
+
   return name;
 }
