@@ -1,30 +1,87 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
-import { TradeNotesByTagMapping } from "../mappings/trade.mappings";
+import { TradeByTags } from "@/lib/models/generatorTradeByTags.model";
+import { TradeByTerrain } from "@/lib/models/generatorTradeByTerrain.model";
+import { TradeByClimate } from "@/lib/models/generatorTradeByClimate.model";
+import { TradeNotesByTagMapping, TradeNotesByTerrainMapping, TradeNotesByClimateMapping } from "../mappings/trade.mappings";
 import { NormalizedSettlementInput } from "./normalize";
 
-// Logic for applying trade notes by tags
+export async function applyTradeNotesRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+  try {
+    if (
+      !data.tradeNotes &&
+      data.tags &&
+      !data.tags.includes("random") &&
+      data.terrain &&
+      !data.terrain.includes("random") &&
+      data.climate &&
+      data.climate !== "random"
+    ) {
+      const [tagEntry, terrainEntries, climateEntry] = await Promise.all([
+        TradeByTags.find({ tags: { $in: data.tags } }).lean(),
+        TradeByTerrain.find({ terrain: { $in: data.terrain } }).lean(),
+        TradeByClimate.findOne({ climate: data.climate }).lean(),
+      ]);
 
-export function applyTradeNotesByTags(data: NormalizedSettlementInput): NormalizedSettlementInput{
-  if (
-    (!data.tradeNotes || data.tradeNotes.trim() === "") &&
-    Array.isArray(data.tags) &&
-    !data.tags.includes("random") &&
-    data.tags.length > 0
-  ) {
-    const allTradeNotes = data.tags.flatMap((t) => TradeNotesByTagMapping[t] || []);
-    const uniqueNotes = Array.from(new Set(allTradeNotes));
-    const selectedNotes = getRandomSubset(uniqueNotes, 1, 3);
-    data.tradeNotes = selectedNotes.join("; ");
+      const tagNotes = tagEntry?.flatMap(entry => entry.trade) ?? [];
+      const terrainNotes = terrainEntries?.flatMap(entry => entry.trade) ?? [];
+      const climateNotes = climateEntry?.trade ?? [];
 
-    if (selectedNotes.length > 0) {
-      const formattedNotes = selectedNotes.map((note, i) => {
-        if (i === 0) return note; // keep first as-is (assuming it's capitalized already)
-        return note.charAt(0).toLowerCase() + note.slice(1);
+      const fallbackTagNotes = data.tags.flatMap(tag => TradeNotesByTagMapping[tag] ?? []);
+      const fallbackTerrainNotes = data.terrain.flatMap(t => TradeNotesByTerrainMapping[t] ?? []);
+      const fallbackClimateNotes = TradeNotesByClimateMapping[data.climate] ?? [];
+
+      const allNotes = [
+        ...tagNotes,
+        ...terrainNotes,
+        ...climateNotes,
+        ...fallbackTagNotes,
+        ...fallbackTerrainNotes,
+        ...fallbackClimateNotes,
+      ];
+
+      const uniqueNotes = Array.from(new Set(allNotes));
+      const selected = getRandomSubset(uniqueNotes, 1, 3);
+
+      const formatted = selected.map((note, index) => {
+        const lower = note.toLowerCase();
+        let result = lower.charAt(0).toUpperCase() + lower.slice(1);
+
+        // Add a period to the last note if it doesn't already have punctuation
+        if (index === selected.length - 1 && !/[.!?]$/.test(result)) {
+          result += ".";
+        }
+
+        return result;
       });
 
-      data.tradeNotes = formattedNotes.join("; ");
+      data.tradeNotes = formatted.join(". ");;
     }
+  } catch (err) {
+    console.warn("applyTradeNotesRule failed, using local fallback:", err);
+
+    const fallbackNotes = [
+      ...(data.tags?.flatMap(tag => TradeNotesByTagMapping[tag] ?? []) ?? []),
+      ...(data.terrain?.flatMap(t => TradeNotesByTerrainMapping[t] ?? []) ?? []),
+      ...(data.climate ? TradeNotesByClimateMapping[data.climate] ?? [] : []),
+    ];
+
+    const uniqueNotes = Array.from(new Set(fallbackNotes));
+    const selected = getRandomSubset(uniqueNotes, 1, 3);
+
+    const formatted = selected.map((note, index) => {
+      const lower = note.toLowerCase();
+      let result = lower.charAt(0).toUpperCase() + lower.slice(1);
+
+      // Add a period to the last note if it doesn't already have punctuation
+      if (index === selected.length - 1 && !/[.!?]$/.test(result)) {
+        result += ".";
+      }
+
+      return result;
+    });
+
+    data.tradeNotes = formatted.join(". ");
   }
-  
+
   return data;
 }

@@ -1,7 +1,7 @@
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlementOptions";
-import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
+import { FormTextField, FormSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function SettlementFormWealth(){

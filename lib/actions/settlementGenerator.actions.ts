@@ -10,9 +10,11 @@ import { generateSettlementValues } from "../modules/settlements/rules/settlemen
 
 
 export async function generateSettlementName({
+  climate,
   terrain,
   tags,
 }: {
+  climate: string;
   terrain: string[];
   tags: string[];
 }): Promise<string> {
@@ -23,7 +25,7 @@ export async function generateSettlementName({
     (f): f is GeneratorSettlementFragmentPlain =>
       typeof f.type === "string" && typeof f.value === "string"
   );
-  return generateSettlementNameFromFragments(fragments, { terrain, tags });
+  return generateSettlementNameFromFragments(fragments, {climate, terrain, tags });
 }
 
 export async function generateSettlementData(
@@ -50,6 +52,7 @@ export async function generateSettlementData(
   const data = await generateSettlementValues(normalized);
 
   const name = await generateSettlementName({
+    climate: data.climate,
     terrain: data.terrain,
     tags: data.tags,
   });

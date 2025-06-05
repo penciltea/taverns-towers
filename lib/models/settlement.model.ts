@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
-import { SizeTypes, TagTypes, TerrainTypes, WealthLevel, MagicLevel, ClimateTypes, RulingType, CriminalActivityTypes} from '@/constants/settlementOptions';
+import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes} from '@/constants/settlementOptions';
+import { ClimateTypes, TerrainTypes, TagTypes } from '@/constants/environmentOptions';
 const { Schema } = mongoose;
 
 export interface ISettlement extends Document {

@@ -1,14 +1,21 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+const { Schema, model, models } = mongoose;
 
-export interface RacesByTerrain {
-  terrain: string;
+export interface RacesByTerrainModel {
+  terrain: TerrainTypes;
   races: string[];
 }
 
-const RacesByTerrainSchema = new Schema<RacesByTerrain>({
-  terrain: { type: String, required: true, unique: true },
+const RacesByTerrainSchema = new Schema<RacesByTerrainModel>({
+  terrain: { type: String, enum: TERRAIN_TYPES, required: true, unique: true },
   races: { type: [String], required: true },
 })
 
-export default mongoose.models.RacesByTerrain ||
-  mongoose.model<RacesByTerrain>("RacesByTerrain", RacesByTerrainSchema, 'generator_npc_races');
+export const RacesByTerrain = 
+  (mongoose.models?.RacesByTerrain as mongoose.Model<RacesByTerrainModel>) ||
+  mongoose.model<RacesByTerrainModel>(
+    "RacesByTerrain", 
+    RacesByTerrainSchema,
+    "generator_races_by_terrain"
+  );

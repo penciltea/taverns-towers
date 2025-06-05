@@ -10,7 +10,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { FormChipSelect, FormSelect } from "@/components/Form";
-import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
+import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 

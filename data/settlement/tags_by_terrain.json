@@ -12,6 +12,10 @@
     "tags": ["Druidic", "Overgrown", "Hidden"]
   },
   {
+    "terrain": "Hills",
+    "tags": ["Remote", "Border Post", "Ancient Ruins"]
+  },
+  {
     "terrain": "Jungle",
     "tags": ["Overgrown", "Infested"]
   },
@@ -24,11 +28,23 @@
     "tags": ["Agricultural", "Trade Hub"]
   },
   {
+    "terrain": "River",
+    "tags": ["Port", "Druidic", "Fishing", "Trade Hub", "Capital"]
+  },
+  {
     "terrain": "Swamp",
-    "tags": ["Overgrown"]
+    "tags": ["Overgrown", "Isolated", "Infested", "Hidden"]
+  },
+  {
+    "terrain": "Underground",
+    "tags": ["Mining Camp", "Prison Settlement", "Ancient Ruins", "Hidden"]
   },
   {
     "terrain": "Tundra",
     "tags": ["Isolated"]
+  },
+  {
+    "terrain": "Urban",
+    "tags": ["Capital", "Criminal Hideout", "Border Post", "Trade Hub", "Military Outpost"]
   }
 ]

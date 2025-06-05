@@ -6,7 +6,7 @@ import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRu
 import { applyMagicByWealthRule } from "./magic.rules";
 import { applyRacesByTerrain } from "./race.rules";
 import { applySizeRule } from "./size.rules";
-import { applyTradeNotesByTags } from "./trade.rules";
+import { applyTradeNotesRule } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
 import { applyFolkloreByConditions } from "./folklore.rules";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
@@ -17,7 +17,8 @@ const ruleFns = [
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
-  //applyRacesByTerrain, // ToDo: Fix
+  applyRacesByTerrain,
+  applyTradeNotesRule
   //applyTradeNotesByTags, // ToDo: Update
   //applyDomainsByConditions, // ToDo: Update
   //applyHolidaysByConditions, // ToDo: Update

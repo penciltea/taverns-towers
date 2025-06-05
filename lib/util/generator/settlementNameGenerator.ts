@@ -24,7 +24,7 @@ function filterByMatch(fragments: SettlementFragment[], keys: string[], field: '
 
 export function generateSettlementNameFromFragments(
   fragments: GeneratorSettlementFragmentPlain[],
-  options: { terrain: string[]; tags: string[] }
+  options: { climate: string; terrain: string[]; tags: string[] }
 ): string {
   const prefixes = fragments.filter(f => f.type === "prefix");
   const suffixes = fragments.filter(f => f.type === "suffix");

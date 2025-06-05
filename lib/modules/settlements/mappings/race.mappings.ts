@@ -1,4 +1,4 @@
-import { TerrainTypes } from "@/constants/settlementOptions";
+import { TerrainTypes } from "@/constants/environmentOptions";
 
 export const CommonRacesByTerrain: Record<TerrainTypes, string[]> = {
   Coast: ["Humans", "Half-Elves", "Halflings", "Sea Elves", "Tritons"],

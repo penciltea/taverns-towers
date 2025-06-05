@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CLIMATE_TYPES, ClimateTypes, TERRAIN_TYPES, TerrainTypes } from "@/constants/settlementOptions";
+import { CLIMATE_TYPES, ClimateTypes, TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
 
 export interface TerrainBlacklistByClimate {
   climate: ClimateTypes;

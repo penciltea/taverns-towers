@@ -1,7 +1,8 @@
 import { useFormContext } from "react-hook-form";
 import { Box, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { CLIMATE_TYPES, MAGIC_LEVELS, SIZE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/settlementOptions";
+import { MAGIC_LEVELS, SIZE_TYPES } from "@/constants/settlementOptions";
+import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environmentOptions";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";

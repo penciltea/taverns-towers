@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/settlementOptions";
+import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
 
 export interface GeneratorSiteMenuPlain extends Document {
   name: string;

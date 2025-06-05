@@ -1,6 +1,6 @@
 import { NormalizedSettlementInput } from "./normalize";
 import { DomainsByClimate, DomainsByTerrain, DomainsByTag } from "../mappings/domain.mappings";
-import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/settlementOptions";
+import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
 import { getRandomSubset } from "@/lib/util/randomValues";
 
 export function getDomainsByConditions({

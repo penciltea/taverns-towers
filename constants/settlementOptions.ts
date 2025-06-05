@@ -10,45 +10,6 @@ export const SIZE_TYPES = [
     "Metropolis"
 ];
 
-export const TAG_TYPES = [
-    "Ancient Ruins",
-    "Arcane Nexus",
-    "Border Post",
-    "Capital",
-    "Criminal Hideout",
-    "Druidic",
-    "Fishing",
-    "Fortress",
-    "Garrison",
-    "Hidden",
-    "Infested",
-    "Isolated",
-    "Mining Camp",
-    "Nomadic",
-    "Overgrown",
-    "Port",
-    "Prison Settlement",
-    "Remote",
-    "Sacred Site",
-    "Trade Hub",
-    "Military Outpost",
-];
-
-export const TERRAIN_TYPES = [
-    "Coast",
-    "Desert",
-    "Forest",
-    "Jungle",
-    "Hills",
-    "Mountains",
-    "Plains",
-    "River",
-    "Swamp",
-    "Tundra",
-    "Underground",
-    "Urban"
-];
-
 export const WEALTH_LEVELS = [
     "Impoverished",
     "Struggling",
@@ -65,14 +26,7 @@ export const MAGIC_LEVELS = [
     "Mythic",
 ];
   
-export const CLIMATE_TYPES = [
-    "Polar",
-    "Temperate",
-    "Tropical",
-    "Dry",
-    "Continental",
-];
-  
+ 
 export const RULING_TYPES = [
     "Autocracy",
     "Clan-based",
@@ -144,11 +98,8 @@ export const DOMAINS = [
 ];
 
 export type SizeTypes = (typeof SIZE_TYPES)[number]
-export type TagTypes = (typeof TAG_TYPES)[number]
-export type TerrainTypes = (typeof TERRAIN_TYPES)[number]
 export type WealthLevel = (typeof WEALTH_LEVELS)[number]
 export type MagicLevel = (typeof MAGIC_LEVELS)[number]
-export type ClimateTypes = (typeof CLIMATE_TYPES)[number]
 export type RulingType = (typeof RULING_TYPES)[number]
 export type CriminalActivityTypes = (typeof CRIMINAL_ACTIVITY_TYPES)[number]
 export type DomainTypes = (typeof DOMAINS)[number]
