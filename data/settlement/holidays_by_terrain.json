@@ -1,0 +1,123 @@
+[
+    {
+    "terrain": "Coast",
+    "holidays": [
+      "Saltcall Day: Held during the first high tide of summer, villagers chant from the docks and ring bells to 'call' blessings from the sea. Celebrated for safe sailing and good fishing.",
+      "Driftfeast: After storms, families gather at dawn to collect driftwood and sea gifts, which are displayed or burned in evening bonfires. Celebrated to give thanks for the sea’s offerings.",
+      "Harborlight Vigil: On the longest night of the year, lanterns are set afloat in the harbor to honor those lost to the ocean. Celebrated to remember sailors and seek their guidance.",
+      "Shellbright: Children compete to polish shells to a mirror shine, believed to attract helpful sea spirits. Celebrated in late spring."
+    ]
+  },
+  {
+    "terrain": "Desert",
+    "holidays": [
+      "Scorchrise: Celebrated on the first day when temperatures pass a certain heat threshold. People wear reflective garb and share chilled teas. Honors endurance and adaptability.",
+      "Siltveil: During seasonal sandstorms, homes are draped in white cloth. Families recite ancient protection chants. Celebrated to protect against the desert’s wrath.",
+      "Cactus Bloom Day: Marked by the blooming of desert flora, bright garlands are exchanged and medicinal herbs are prepared. Celebrated to mark beauty in harshness."
+    ]
+  },
+  {
+    "terrain": "Forest",
+    "holidays": [
+      "Whispersong Festival: Held when the forest is thickest in mid-summer. People wander in silence to hear 'the song of the trees.' Celebrated to commune with the wild.",
+      "Barkbound Day: Families carve symbols into bark and press hands to trees. Celebrated to mark kinship between people and woodland spirits.",
+      "Foxlight Night: On the first frost, lanterns are hidden in the woods and a playful hunt begins. Celebrated to honor cleverness and the change of seasons."
+    ]
+  },
+  {
+    "terrain": "Jungle",
+    "holidays": [
+      "Mistveil Vigil: A one-night celebration where people wear flowered masks and leave glowing fruits at the edges of dense jungle paths. Celebrated to appease unseen jungle spirits and ask for safe passage.",
+      "Canopy Day: Held during the highest sun of midsummer. Children climb trees while adults hang streamers from the canopy. Celebrated to honor the protective roof of the jungle.",
+      "Rootsong Week: A week-long series of gatherings with drum circles around massive jungle roots. Celebrated to awaken the sleeping spirits in the earth and share communal strength.",
+      "Lumenbloom: Celebrated on the night bioluminescent flowers are expected to bloom. Locals walk silently through the underbrush, lighting no fires. Celebrated in awe of natural magic.",
+      "Vinefire Festival: A two-day event where dried vines are twisted into braids and burned to release old grudges. Celebrated to cleanse emotional burdens before the rainy season.",
+      "Canopy Bloom: Held during peak flowering season. Colored powders are thrown into the air from tree platforms. Celebrated for renewal and joy.",
+      "Vineguard Night: In the wettest month, villagers burn coiled vines in safe circles to ward off disease and danger. Celebrated to protect the village.",
+      "Echofruit Day: A mid-autumn celebration where fruit is left in offering baskets and songs are echoed through valleys. Celebrated to thank spirits and wildlife."
+    ]
+  },
+  {
+    "terrain": "Hills",
+    "holidays": [
+      "Hearthhill Day: A mid-autumn holiday where families climb a favorite hilltop and share a meal beside a bonfire. Celebrated to reconnect with ancestors and home.",
+      "Rolling Feast: A two-day event where food carts race down gentle slopes, with spilled offerings left for hill spirits. Celebrated to thank the land for a bountiful season.",
+      "Echowatch: A twilight ritual held on the equinox. Songs are sung into the valleys and repeated from hilltops. Celebrated to maintain harmony across distances.",
+      "Stonepile Day: A spring tradition where villagers stack cairns on high places, leaving tokens for loved ones. Celebrated to guide souls or travelers across uncertain paths.",
+      "Highsun Festival: Celebrated on the longest day of the year. Dancers mimic the sun's arc across hill crests. Celebrated for clarity and sight into the future.",
+       "Stonewalk Day: Families hike the old hill paths, placing painted stones at cairns. Celebrated to honor ancestors and travelers.",
+      "Windflute Festival: Held during the windiest week of the year, handmade flutes are played from hilltops. Celebrated to send songs to the sky spirits.",
+      "Meadowlaugh: A spring event where people gather in hill meadows and share jokes or riddles in the open air. Celebrated to usher in good cheer."
+    ]
+  },
+  {
+    "terrain": "Mountains",
+    "holidays": [
+      "Skyreach Day: Held on the summer solstice, climbers ascend as high as they safely can to release colored flags into the wind. Celebrated to carry wishes to the heavens.",
+      "Stonechant: A week-long holiday where communities gather in echoing chambers to chant ancestral names and mountain myths. Celebrated to bond with the spirits of stone.",
+      "Cliffkind Day: A day of community feasting on ledges or balconies. Celebrated to reaffirm solidarity and courage in harsh conditions.",
+      "Avalanch: A solemn event during early winter where silence is observed near cliff faces. Celebrated to show respect to the unpredictable force of the mountain.",
+      "Frostforge Festival: Celebrated when the first snow seals the highest peaks. Smiths and artisans showcase goods said to be 'mountain-born' Celebrated to honor craft and endurance.",
+       "Peakfire: On the solstice, mountaintop bonfires are lit and mirrored with torchlight down the slopes. Celebrated to awaken the old gods said to sleep in the peaks.",
+      "Climber’s Oath: On the first frost, mountaineers tie braided cords and make silent promises before ascents. Celebrated to honor respect for the mountain.",
+      "Echo Day: Horns are sounded at dawn from the heights, each blast met with cheers below. Celebrated as a sign of unity and tradition."
+    ]
+  },
+  {
+    "terrain": "Plains",
+    "holidays": [
+      "Windrace Day: A festival of kite-flying and horse racing held during a windy midspring afternoon. Celebrated to praise the openness and freedom of the plains.",
+      "Grasswake: A one-day observance after the first full thaw, where people sleep outside and listen to the grass 'breathe.' Celebrated for renewal and quiet blessings.",
+      "Driftseed Week: Over several days in late summer, children collect seeds and release them on the wind. Celebrated to spread hope and future harvests.",
+      "Horizonlight Festival: Held during sunrise and sunset of the equinox. People face opposite horizons and share stories. Celebrated for connection across distances.",
+      "Threshsong Day: A harvest ritual where threshing is accompanied by rhythmic songs and dancing. Celebrated to align human effort with the land's rhythm.",
+      "Stampede Dance: A rhythmic circle dance meant to mimic herds, performed to honor migratory beasts. Celebrated in mid-autumn.",
+      "Fieldshade Day: Families erect small tents in wide fields and tell stories from sunup to sundown. Celebrated to share histories and rest together."
+    ]
+  },
+  {
+    "terrain": "River",
+    "holidays": [
+      "Riverbless Day: A springtime festival where boats are decorated with flowers and floated downstream with wishes. Celebrated to ask the river's favor for the year.",
+      "Currentfast: A one-day fast during a strong current season. People sit by the river in silence. Celebrated to honor the river's moods and respect its danger.",
+      "Bridgeday: Celebrated midsummer. Locals gather on bridges to exchange gifts or confessions. Celebrated to symbolize connection and passage.",
+      "Mistcall Festival: Held at dawn on a mist-heavy day. Musicians play flutes from boats to 'wake the water.' Celebrated to renew bonds with river spirits.",
+      "Eddy's Eve: A playful evening of water games and mischief. Celebrated before seasonal flooding to acknowledge chaos and change.",
+       "Riverblessing: At the spring thaw, people release flower-wrapped messages downstream. Celebrated to connect distant communities and spirits.",
+      "Bridgebright: Every bridge is washed and decorated with light. Travelers toss coins in thanks as they cross. Celebrated at midsummer.",
+      "Eddy Day: Children build small whirlpools or water wheels. Celebrated to teach river lore and honor the playful current spirits."
+    ]
+  },
+  {
+    "terrain": "Swamp",
+    "holidays": [
+      "Bogwhisper Night: Held on the darkest moon, people gather to listen for the whispers of ancestors. Celebrated for remembrance and insight.",
+      "Marshfire: Glow-moss is collected and hung in nets around the village. Celebrated to light the way and guard against the unseen.",
+      "Lilywake Day: When lilies first bloom, shallow boats are covered in petals and floated gently. Celebrated for rebirth and peace."
+    ]
+  },
+  {
+    "terrain": "Tundra",
+    "holidays": [
+      "Brightstep: Held when the snow first crusts underfoot. People dance in boots laced with bells. Celebrated for agility and the turning of seasons.",
+      "Frostvein Day: Ice patterns are traced and recorded in books or paintings. Celebrated to mark the passage of invisible beauty.",
+      "Aurora Chant: Villagers sing in harmonic tones under the aurora. Celebrated to stir warmth into the sky and summon blessing."
+    ]
+  },
+  {
+    "terrain": "Underground",
+    "holidays": [
+      "Glimmerwake: On the darkest night, phosphorescent fungi are illuminated and danced among. Celebrated to ward off fear and bring hope.",
+      "Stonewhisper Day: People place their ear to cave walls to hear 'messages' from the deep. Celebrated for communion with the deep earth.",
+      "Depthbond: Miners and dwellers share saltbread and vow aid. Celebrated to affirm mutual reliance underground."
+    ]
+  },
+  {
+    "terrain": "Urban",
+    "holidays": [
+      "Bricklay Day: Citizens each place a ceremonial brick in a central plaza. Celebrated to renew unity and build community.",
+      "Lanternwatch: On the longest night, windows are filled with handmade lanterns. Celebrated to honor protection and neighborliness.",
+      "Streetshout Festival: A noisy, lively event where performers roam and shout poems or songs from alley to alley. Celebrated to celebrate expression and free spirit."
+    ]
+  }
+]
