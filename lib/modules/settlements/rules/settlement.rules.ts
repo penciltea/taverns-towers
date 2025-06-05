@@ -18,9 +18,8 @@ const ruleFns = [
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
   applyRacesByTerrain,
-  applyTradeNotesRule
-  //applyTradeNotesByTags, // ToDo: Update
-  //applyDomainsByConditions, // ToDo: Update
+  applyTradeNotesRule,
+  applyDomainsByConditions, // ToDo: Update
   //applyHolidaysByConditions, // ToDo: Update
   //applyFolkloreByConditions, // ToDo: Update
 ];
@@ -39,6 +38,7 @@ export const generateSettlementWithName = async (input: NormalizedSettlementInpu
   const coreData = await generateSettlementValues(input);
 
   const name = await generateSettlementName({
+    climate: coreData.climate,
     terrain: coreData.terrain,
     tags: coreData.tags,
   });

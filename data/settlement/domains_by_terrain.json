@@ -1,0 +1,50 @@
+[
+    {
+        "terrain": "Coast",
+        "domains": ["Tempest", "Storms", "Travel", "Water", "Luck"]
+    },
+    {
+        "terrain": "Desert",
+        "domains": ["Sun", "Law", "Forge", "Survival", "Travel"]
+    },
+    {
+        "terrain": "Forest",
+        "domains": ["Nature", "Dreams", "Moon", "Life", "Twilight"]
+    },
+    {
+        "terrain": "Jungle",
+        "domains": ["Nature", "Fertility", "Chaos", "Death", "Trickery"]
+    },
+    {
+        "terrain": "Hills",
+        "domains": ["Harvest", "Glory", "Protection", "War"]
+    },
+    {
+        "terrain": "Mountains",
+        "domains": ["Forge", "War", "Glory", "Elements", "Arcana"]
+    },
+    {
+        "terrain": "Plains",
+        "domains": ["Community", "Harvest", "Travel", "Fertility", "Life", "Sun"]
+    },
+    {
+        "terrain": "River",
+        "domains": ["Water", "Travel", "Life", "Harvest", "Luck"]
+    },
+    {
+        "terrain": "Swamp",
+        "domains": ["Death", "Shadow", "Trickery", "Nature"]
+    },
+    {
+        "terrain": "Tundra",
+        "domains": ["Winter", "Survival", "Moon", "Protection", "Glory"]
+    },
+    {
+        "terrain": "Underground",
+        "domains": ["Shadow", "Arcana", "Death", "Law"]
+    },
+    {
+        "terrain": "Urban",
+        "domains": ["Arts", "Law", "Knowledge", "Trickery", "Luck", "Arcana"]
+    }
+]

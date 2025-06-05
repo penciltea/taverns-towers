@@ -1,6 +1,6 @@
 import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
 
-export const DomainsByClimate: Partial<Record<ClimateTypes, string[]>> = {
+export const DomainsByClimateMapping: Partial<Record<ClimateTypes, string[]>> = {
   Polar: ["Winter", "Survival", "Nature", "Moon", "Protection"],
   Temperate: ["Life", "Harvest", "Nature", "Glory"],
   Tropical: ["Fertility", "Storms", "Travel", "Dreams", "Water"],
@@ -8,7 +8,7 @@ export const DomainsByClimate: Partial<Record<ClimateTypes, string[]>> = {
   Continental: ["Knowledge", "Law", "Death", "Arcana", "Life"],
 };
 
-export const DomainsByTerrain: Partial<Record<TerrainTypes, string[]>> = {
+export const DomainsByTerrainMapping: Partial<Record<TerrainTypes, string[]>> = {
   Coast: ["Tempest", "Storms", "Travel", "Water", "Luck"],
   Desert: ["Sun", "Law", "Forge", "Survival", "Travel"],
   Forest: ["Nature", "Dreams", "Moon", "Life", "Twilight"],
@@ -23,7 +23,7 @@ export const DomainsByTerrain: Partial<Record<TerrainTypes, string[]>> = {
   Urban: ["Arts", "Law", "Knowledge", "Trickery", "Luck", "Arcana"],
 };
 
-export const DomainsByTag: Partial<Record<TagTypes, string[]>> = {
+export const DomainsByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Ancient Ruins": ["Death", "Shadow", "Arcana", "Time", "Knowledge"],
   "Arcane Nexus": ["Arcana", "Time", "Elements", "Dreams"],
   "Border Post": ["War", "Protection", "Law", "Travel", "Glory"],
