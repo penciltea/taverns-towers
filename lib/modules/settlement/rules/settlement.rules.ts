@@ -21,7 +21,7 @@ const ruleFns = [
   applyTradeNotesRule,
   applyDomainsByConditions,
   applyHolidaysByConditions,
-  //applyFolkloreByConditions, // ToDo: Update
+  applyFolkloreByConditions,
 ];
 
 export const generateSettlementValues = async (input: NormalizedSettlementInput) => {

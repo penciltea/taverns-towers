@@ -1,7 +1,7 @@
 [
     {
         "terrain": "Coast",
-        "domains": ["Tempest", "Storms", "Travel", "Water", "Luck"]
+        "domains": ["Storms", "Storms", "Travel", "Water", "Luck"]
     },
     {
         "terrain": "Desert",

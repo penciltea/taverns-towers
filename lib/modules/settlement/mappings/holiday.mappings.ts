@@ -608,7 +608,13 @@ export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
     "Gale Dance (Early fall): Children fly streamers in strong winds. Celebrated for joy and surrender to chaos.",
     "Tempestwatch (Mid-autumn): Rooftops are blessed and fortified. Celebrated for survival and foresight.",
     "Skybrand Day (Summer solstice): Lightning-scarred trees are honored. Celebrated for endurance and awe.",
-    "Stormveil (Late winter): Cloaks soaked in stormwater are hung over thresholds. Celebrated to ward off stagnation."
+    "Stormveil (Late winter): Cloaks soaked in stormwater are hung over thresholds. Celebrated to ward off stagnation.",
+    "Rage of the Sky (First thunderstorm of the year): Drumming and wild dances mimic thunder. Celebrated for wild vitality.",
+    "Lightning Reap (Late summer): Crops struck by lightning are revered as blessed. Celebrated to find grace in ruin.",
+    "Tempestrun (Mid-spring): Runners race barefoot through mud. Celebrated for endurance and passion.",
+    "Cloudbreak Vigil (End of storm season): Sky-gazers watch the clearing clouds. Celebrated for catharsis and change.",
+    "Stormchord Day (Summer): Musicians try to mimic storms. Celebrated to give storm a voice.",
+    "Gustborn (Autumn equinox): Kites with wind prayers are flown. Celebrated to harness chaos with hope."
   ],
   "Sun": [
     "Solstice Flare (Summer solstice): Bright banners and feasts under the sun. Celebrated for illumination and life.",
@@ -617,14 +623,6 @@ export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
     "Heliarch Day (High noon festival): People stand in silence under the brightest sun. Celebrated for divine focus.",
     "Suncrown (Late spring): Wreaths of yellow flowers are worn. Celebrated to channel warmth and clarity.",
     "Blazebreak (End of summer): Cool water rituals and shaded songs celebrate balance. Celebrated to soothe overexposure."
-  ],
-  "Tempest": [
-    "Rage of the Sky (First thunderstorm of the year): Drumming and wild dances mimic thunder. Celebrated for wild vitality.",
-    "Lightning Reap (Late summer): Crops struck by lightning are revered as blessed. Celebrated to find grace in ruin.",
-    "Tempestrun (Mid-spring): Runners race barefoot through mud. Celebrated for endurance and passion.",
-    "Cloudbreak Vigil (End of storm season): Sky-gazers watch the clearing clouds. Celebrated for catharsis and change.",
-    "Stormchord Day (Summer): Musicians try to mimic storms. Celebrated to give storm a voice.",
-    "Gustborn (Autumn equinox): Kites with wind prayers are flown. Celebrated to harness chaos with hope."
   ],
   "Time": [
     "Chronofall (Autumn equinox): Leaves are gathered in hourglass shapes. Celebrated for cycles and memory.",

@@ -1,0 +1,52 @@
+[
+    {
+        "magic": "None",
+        "folklore": [
+            "Never whistle indoors — it's said to attract unwanted attention from the unseen.",
+            "Bread baked with a hollow center is a bad omen. It means something's missing at home.",
+            "The oldest house in town must never be repainted, or the village’s luck will fade.",
+            "Tools left out overnight will rust faster — some say it’s the air punishing laziness.",
+            "Don’t sleep with your feet pointing toward the door. That’s how spirits find you."
+        ]
+    },
+    {
+        "magic": "Low",
+        "folklore": [
+            "A sprig of rosemary under the pillow keeps your dreams clean.",
+            "When a candle flickers without wind, a spell has passed nearby.",
+            "It’s unlucky to walk in someone else’s shadow during sunrise.",
+            "The seventh sneeze in a row means a witch is watching you.",
+            "Spilled wine on the hearth? Toss salt over your shoulder and hum a lullaby."
+        ]
+    },
+    {
+        "magic": "Moderate",
+        "folklore": [
+            "Leave milk on your windowsill during a thunderstorm to keep spiteful elementals away.",
+            "Never thank someone for a healing spell — it binds the wound to return.",
+            "If your cat sleeps facing the door, expect a visitor with news.",
+            "A cracked mirror must be buried under moonlight, or it will reflect your future.",
+            "New boots must be dusted with powdered chalk to avoid hexing your path."
+        ]
+    },
+    {
+        "magic": "High",
+        "folklore": [
+            "Always knock twice on a closed book — some spells sleep between the pages.",
+            "Coins found under a tree root are offerings from earthbound spirits. Leave them be.",
+            "Dreams of flying mean a spell’s energy is leaking into your thoughts.",
+            "When walking past a wizard’s tower, you must hold your breath or risk inhaling a stray charm.",
+            "It’s custom to offer thanks to fire after cooking, in case the flame is sentient."
+        ]
+    },
+    {
+        "magic": "Mythic",
+        "folklore": [
+            "Never count the stars aloud — they’ll hear you and rearrange themselves.",
+            "The sky has moods. If the clouds swirl clockwise, don’t speak anyone’s name until morning.",
+            "People born during eclipses must never look into mirrors at twilight.",
+            "If a raven lands on your shoulder, don’t move. It’s choosing your fate.",
+            "At the center of every labyrinth, a forgotten spell sleeps. Walk one in your dreams, and it may awaken."
+        ]
+    }
+]

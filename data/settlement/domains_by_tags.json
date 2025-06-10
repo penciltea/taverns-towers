@@ -25,7 +25,7 @@
     },
     {
         "tag": "Fishing",
-        "domains": ["Water", "Luck", "Tempest", "Harvest", "Travel"]
+        "domains": ["Water", "Luck", "Storms", "Harvest", "Travel"]
     },
     {
         "tag": "Fortress",
@@ -61,7 +61,7 @@
     },
     {
         "tag": "Port",
-        "domains": ["Travel", "Water", "Tempest", "Luck", "Trade"]
+        "domains": ["Travel", "Water", "Storms", "Luck", "Trade"]
     },
     {
         "tag": "Prison Settlement",

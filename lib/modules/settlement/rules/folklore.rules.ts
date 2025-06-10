@@ -1,56 +1,73 @@
-import { NormalizedSettlementInput } from "./normalize";
-import { FolkloreByTag, FolkloreByTerrain, FolkloreByClimate, FolkloreByMagicLevel } from "../mappings/folklore.mappings";
-import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
-import { MagicLevel } from "@/constants/settlementOptions";
 import { getRandomSubset } from "@/lib/util/randomValues";
+import { FolkloreByClimateMapping, FolkloreByDomainMapping, FolkloreByMagicLevelMapping, FolkloreByTagMapping, FolkloreByTerrainMapping } from "../mappings/folklore.mappings";
+import { FolkloreByClimate } from "@/lib/models/generator/settlement/folkloreByClimate.model";
+import { FolkloreByDomain } from "@/lib/models/generator/settlement/folkloreByDomain.model";
+import { FolkloreByMagic } from "@/lib/models/generator/settlement/folkloreByMagic.model";
+import { FolkloreByTag } from "@/lib/models/generator/settlement/folkloreByTags.model";
+import { FolkloreByTerrain } from "@/lib/models/generator/settlement/folkloreByTerrain.model";
+import { NormalizedSettlementInput } from "./normalize";
 
-export function getFolkloreByConditions({
-  climate,
-  terrain,
-  tags,
-  magicLevel,
-}: {
-  climate?: ClimateTypes;
-  terrain?: TerrainTypes[];
-  tags?: TagTypes[];
-  magicLevel?: MagicLevel;
-}): string[] {
-  const climateFolklore = climate ? FolkloreByClimate[climate] || [] : [];
-  const terrainFolklore = terrain?.flatMap((t) => FolkloreByTerrain[t] || []) || [];
-  const tagFolklore = tags?.flatMap((t) => FolkloreByTag[t] || []) || [];
-  const magicFolklore = magicLevel ? FolkloreByMagicLevel[magicLevel] || [] : [];
+export async function applyFolkloreByConditions(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+  try {
+    if(data.folklore !== "" &&
+      data.climate && data.climate !== "randoom" && 
+      data.tags && !data.tags.includes("random") &&
+      data.terrain && !data.terrain.includes("random") && 
+      data.domains && !data.domains.includes("random") && 
+      data.magic && data.magic !== "random"
+    ) {
+      const [ climateEntry, magicEntry, tagEntries, terrainEntries, domainEntries ] = await Promise.all([
+        FolkloreByClimate.findOne({ climate: data.climate }).lean(),
+        FolkloreByMagic.findOne({ magic: data.magic }).lean(),
+        FolkloreByTag.find({ tags: { $in: data.tags }}).lean(),
+        FolkloreByTerrain.find({ terrain: { $in: data.terrain }}).lean(),
+        FolkloreByDomain.find({ domains: { $in: data.domains }}).lean()
+      ]);
 
-  const combined = [
-    ...climateFolklore,
-    ...terrainFolklore,
-    ...tagFolklore,
-    ...magicFolklore,
-  ];
-  const unique = Array.from(new Set(combined));
-  return getRandomSubset(unique, 1, 3);
-}
+      const climateFolklore = climateEntry?.folklore ?? [];
+      const magicFolklore = magicEntry?.folklore ?? [];
+      const domainFolklore = domainEntries?.flatMap(entry => entry.folklore) ?? [];
+      const tagFolklore = tagEntries?.flatMap(entry => entry.folklore) ?? [];
+      const terrainFolklore = terrainEntries?.flatMap(entry => entry.folklore) ?? [];
 
-export function applyFolkloreByConditions(
-  data: NormalizedSettlementInput
-): NormalizedSettlementInput {
-  if (
-    !Array.isArray(data.folklore) ||
-    data.folklore.length === 0 ||
-    (data.folklore.length === 1 && data.folklore[0] === "random")
-  ) {
-    const suggested = getFolkloreByConditions({
-      climate: data.climate,
-      terrain: data.terrain,
-      tags: data.tags,
-      magicLevel: data.magic,
-    });
+      const allFolklore = [
+        ...climateFolklore,
+        ...magicFolklore,
+        ...domainFolklore,
+        ...tagFolklore,
+        ...terrainFolklore
+      ];
 
-    const uniqueFolklore = Array.from(new Set(suggested));
-    const selected = getRandomSubset(uniqueFolklore, 1, 3);
+      const unique = Array.from(new Set(allFolklore));
+      const selected = getRandomSubset(unique, 1, 3);
 
-    if (selected.length > 0) {
-      data.folklore = selected.join("\n");
+      if (selected.length > 0) {
+        data.folklore = selected.join("\n");
+      }
     }
+  } catch (err) {
+    console.warn("applyFolkloreByConditions failed, using local fallback:", err);
+
+      const fallbackClimateFolklore = FolkloreByClimateMapping[data.climate] ?? [];
+      const fallbackMagicFolklore = FolkloreByMagicLevelMapping[data.magic] ?? [];
+      const fallbackDomainFolklore = data.domains.flatMap(domain => FolkloreByDomainMapping[domain]) ?? [];
+      const fallbackTagFolklore = data.tags.flatMap(tag => FolkloreByTagMapping[tag]) ?? [];
+      const fallbackTerrainFolklore = data.terrain.flatMap(terrain => FolkloreByTerrainMapping[terrain]) ?? [];
+
+      const fallbackFolklore = [
+        ...fallbackClimateFolklore,
+        ...fallbackMagicFolklore,
+        ...fallbackDomainFolklore,
+        ...fallbackTagFolklore,
+        ...fallbackTerrainFolklore
+      ];
+
+      const unique = Array.from(new Set(fallbackFolklore));
+      const selected = getRandomSubset(unique, 1, 3);
+
+      if (selected.length > 0) {
+        data.folklore = selected.join("\n");
+      }
   }
 
   return data;

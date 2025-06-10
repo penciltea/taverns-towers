@@ -88,7 +88,6 @@ export const DOMAINS = [
   "Shadow",
   "Storms",
   "Sun",
-  "Tempest",
   "Time",
   "Travel",
   "Trickery",

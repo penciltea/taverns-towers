@@ -18,5 +18,5 @@ export const DomainsByTag =
     model<DomainsByTagModel>(
         "DomainsByTag",
         DomainsByTagSchema,
-        "generator_domain_by_tag"
+        "generator_domains_by_tag"
     );

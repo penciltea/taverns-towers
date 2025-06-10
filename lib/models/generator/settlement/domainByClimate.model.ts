@@ -18,5 +18,5 @@ export const DomainsByClimate =
     model<DomainsByClimateModel>(
         "DomainsByClimate",
         DomainsByClimateSchema,
-        "generator_domain_by_climate"
+        "generator_domains_by_climate"
     );

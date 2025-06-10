@@ -1,0 +1,327 @@
+[
+    {
+        "domain": "Arcana",
+        "folklore": [
+            "It’s said that runes glow faintly under the light of a full moon.",
+            "Spilling ink while casting a spell invites unexpected magic.",
+            "Whispering ancient words near arcane circles keeps spirits at bay.",
+            "Crystals left on altars hum softly when magic is near."
+        ]
+    },
+    {
+        "domain": "Arts",
+        "folklore": [
+            "Musicians believe their songs carry the voice of the stars.",
+            "An artist’s brush dipped in moonlight paints visions of the future.",
+            "Sculptors leave a token in their work to grant it life’s spark.",
+            "Performers say that a single dropped coin brings great fortune."
+        ]
+    },
+    {
+        "domain": "Beauty",
+        "folklore": [
+            "Wearing a garland of wildflowers attracts blessings of charm.",
+            "Mirrors catching the dawn’s first light reveal true beauty.",
+            "A soft breeze after combing hair is a sign of favor from spirits.",
+            "Applying rosewater at dawn is believed to enhance one’s allure."
+        ]
+    },
+    {
+        "domain": "Chaos",
+        "folklore": [
+            "Leaving a door unlocked invites the dance of wild spirits.",
+            "Breaking a perfectly symmetrical object calls chaos upon the household.",
+            "Spontaneous laughter wards off lurking mischief.",
+            "Spilling salt thrice dispels bad luck from chaotic forces."
+        ]
+    },
+    {
+        "domain": "Commerce",
+        "folklore": [
+            "A coin placed in the foundation of a shop blesses its prosperity.",
+            "Shaking hands before a deal seals more than just a contract.",
+            "It’s lucky to wear a merchant’s ring when closing a sale.",
+            "Empty purses left open invite wealth to fill them."
+        ]
+    },
+    {
+        "domain": "Community",
+        "folklore": [
+            "Sharing bread at sunset binds the hearts of neighbors.",
+            "Lighting a communal fire invites protection from the unseen.",
+            "A smile exchanged between strangers fosters lasting friendship.",
+            "Gathering under the old oak tree ensures good fortune for all."
+        ]
+    },
+    {
+        "domain": "Death",
+        "folklore": [
+            "Whistling in a graveyard invites restless spirits to follow.",
+            "Placing a coin on the eyes of the dead guides their passage.",
+            "The scent of lilies signals a soul’s peaceful journey.",
+            "Passing a shadowy crossroads at midnight is a test of courage."
+        ]
+    },
+    {
+        "domain": "Decay",
+        "folklore": [
+            "Moss growing on a doorstep is said to protect from rot’s spread.",
+            "Leaving a piece of bread on old ruins appeases lingering spirits.",
+            "A sudden chill warns of impending decay.",
+            "Broken tools left in the earth hasten the cycle of life and death."
+        ]
+    },
+    {
+        "domain": "Dreams",
+        "folklore": [
+            "Leaving a dreamcatcher by the window traps troubled visions.",
+            "Writing dreams in ink of midnight blue ensures their memory.",
+            "Whispering wishes before sleep invites their coming true.",
+            "Sleepwalkers are believed to travel the spirit realm at night."
+        ]
+    },
+    {
+        "domain": "Fate",
+        "folklore": [
+            "Tying a red thread around the wrist guides destiny’s hand.",
+            "Crossing paths with a black cat signals a change is near.",
+            "Fortune-tellers’ cards shift subtly with the flow of fate.",
+            "Dropping a pebble in a river sends wishes to the gods."
+        ]
+    },
+    {
+        "domain": "Forge",
+        "folklore": [
+            "Striking the anvil thrice brings strength to the day’s work.",
+            "Leaving coal at the forge keeps fires burning bright.",
+            "The first hammer blow of the morning sets the tone for the craftsman.",
+            "Sparks flying towards the sky call blessings from the smith gods."
+        ]
+    },
+    {
+        "domain": "Freedom",
+        "folklore": [
+            "Releasing a bird at dawn symbolizes a new beginning.",
+            "Breaking chains in a dream foretells liberation from burdens.",
+            "Wearing untied shoes invites freedom of spirit.",
+            "Open windows at sunrise welcome boundless energy."
+        ]
+    },
+    {
+        "domain": "Grave",
+        "folklore": [
+            "Leaving a white feather near a grave signals peaceful rest.",
+            "Placing stones in a circle honors the fallen.",
+            "The quiet rustle of leaves warns of nearby spirits.",
+            "Speaking a name aloud at dusk calls remembrance."
+        ]
+    },
+    {
+        "domain": "Harvest",
+        "folklore": [
+            "Singing to the crops during harvest invites a generous bounty.",
+            "A sheaf of wheat tied to the door keeps hunger at bay.",
+            "Leaving the last bundle unharvested honors the earth’s spirit.",
+            "Dancing around the fire during harvest festivals ensures good fortune."
+        ]
+    },
+    {
+        "domain": "Hunt",
+        "folklore": [
+            "Hunters wear talismans made from the first kill’s bone.",
+            "Whistling softly calms the forest creatures.",
+            "Avoiding the path of the fox brings success to the hunt.",
+            "Offering thanks to the forest spirits ensures safe passage."
+        ]
+    },
+    {
+        "domain": "Invention",
+        "folklore": [
+            "Leaving a spark of fire near new tools invites creativity.",
+            "Inventors sleep with a blueprint under their pillow for inspiration.",
+            "A discarded gear in the workshop wards off failure.",
+            "The first light touching new machines breathes life into them."
+        ]
+    },
+    {
+        "domain": "Judgment",
+        "folklore": [
+            "Scales balanced at dawn bring fairness to decisions.",
+            "A quiet moment before speaking ensures just words.",
+            "Leaving a white stone on the bench signifies truth.",
+            "Echoes in the hallways reveal hidden judgments."
+        ]
+    },
+    {
+        "domain": "Knowledge",
+        "folklore": [
+            "Books left open under moonlight reveal hidden wisdom.",
+            "Quills dipped in midnight ink record truths untold.",
+            "Whispering the names of scholars invites their guidance.",
+            "A well-worn tome is believed to hold a soul’s secrets."
+        ]
+    },
+    {
+        "domain": "Life",
+        "folklore": [
+            "Planting a seed with whispered hopes invites growth.",
+            "Water carried from a sacred spring heals both body and soul.",
+            "Butterflies seen at dawn are signs of new beginnings.",
+            "Tying ribbons on trees honors the spirits of life."
+        ]
+    },
+    {
+        "domain": "Light",
+        "folklore": [
+            "Lighting a candle before dark wards off shadows.",
+            "Sunbeams caught in a crystal bring clarity and joy.",
+            "Reflecting light through a prism invites happiness.",
+            "Morning dew is said to carry the blessing of the sun."
+        ]
+    },
+    {
+        "domain": "Magic",
+        "folklore": [
+            "Spellcasters leave crystals at crossroads to focus their power.",
+            "A circle drawn in salt repels wandering spirits.",
+            "Chanting old words strengthens enchantments.",
+            "The glow of a candle flame predicts the success of a spell."
+        ]
+    },
+    {
+        "domain": "Moon",
+        "folklore": [
+            "Wolves are said to sing only under the full moon’s watch.",
+            "Silver jewelry worn on moonlit nights brings dreams to life.",
+            "Tides whispered to at midnight bring good fortune.",
+            "Moonflowers bloom only in the presence of true magic."
+        ]
+    },
+    {
+        "domain": "Nature",
+        "folklore": [
+            "Offering berries to forest spirits keeps the woods kind.",
+            "Listening to the wind reveals secrets of the earth.",
+            "Animals crossing your path bring messages from the wild.",
+            "A circle of stones marks places where nature’s magic is strongest."
+        ]
+    },
+    {
+        "domain": "Order",
+        "folklore": [
+            "Aligning tools at dawn invites harmony and discipline.",
+            "Strict routines are said to keep chaos at bay.",
+            "Wearing matching colors ensures a balanced day.",
+            "A perfectly arranged workspace brings peace of mind."
+        ]
+    },
+    {
+        "domain": "Peace",
+        "folklore": [
+            "Sharing a meal in silence strengthens bonds of trust.",
+            "White doves released at festivals symbolize lasting peace.",
+            "Planting olive branches near homes invites calm.",
+            "Soft songs sung at twilight ease troubled hearts."
+        ]
+    },
+    {
+        "domain": "Protection",
+        "folklore": [
+            "Horseshoes nailed above doorways keep evil away.",
+            "Sprinkling salt around a home creates a protective barrier.",
+            "Carrying a carved talisman wards off harm.",
+            "The first guard’s watch at night ensures safety for all."
+        ]
+    },
+    {
+        "domain": "Sea",
+        "folklore": [
+            "Sailors leave coins for the sea gods before voyages.",
+            "A knot tied in the anchor’s rope brings safe return.",
+            "Seagulls seen circling signal good weather ahead.",
+            "Whistling aboard a ship calms the restless waters."
+        ]
+    },
+    {
+        "domain": "Secrets",
+        "folklore": [
+            "Whispering secrets into hollow trees keeps them safe.",
+            "Locking a letter with a silver clasp guards its contents.",
+            "Eyes drawn on doors ward off unwanted visitors.",
+            "Finding a hidden key invites discovery and wonder."
+        ]
+    },
+    {
+        "domain": "Shadow",
+        "folklore": [
+            "Shadows stretching long at dusk carry hidden messages.",
+            "Moving silently invites the favor of shadow spirits.",
+            "A candle blown out suddenly warns of unseen dangers.",
+            "Dark cloaks worn during festivals invite mystery."
+        ]
+    },
+    {
+        "domain": "Storms",
+        "folklore": [
+            "Thunderclaps are said to be the gods’ battle cries.",
+            "Leaving iron tools outside calms the wrath of storms.",
+            "Watching lightning strike predicts coming change.",
+            "A whistle before a storm is said to challenge the skies."
+        ]
+    },
+    {
+        "domain": "Sun",
+        "folklore": [
+            "Sunlight caught on a pendant brings warmth to the heart.",
+            "Singing at dawn honors the sun’s journey.",
+            "Casting shadows in the morning is a game with spirits.",
+            "Golden flowers bloom only where the sun smiles."
+        ]
+    },
+    {
+        "domain": "Time",
+        "folklore": [
+            "Watches wound at midnight keep time steady through the day.",
+            "Old clocks are believed to hold memories of their makers.",
+            "Passing a sundial at noon invites good fortune.",
+            "Dropping sand from an hourglass signals a fresh start."
+        ]
+    },
+    {
+        "domain": "Travel",
+        "folklore": [
+            "Tying a ribbon to a walking staff ensures safe journeys.",
+            "Crossing a river barefoot invites blessings from water spirits.",
+            "A coin tossed into a well before departure grants luck.",
+            "Waving to the horizon welcomes the road ahead."
+        ]
+    },
+    {
+        "domain": "Trickery",
+        "folklore": [
+            "Leaving a trick coin on the doorstep fools unwanted guests.",
+            "Masks worn during festivals invite playful mischief.",
+            "Telling a tall tale wards off troublemakers.",
+            "Spilling salt and tossing a pinch over the shoulder reverses bad luck."
+        ]
+    },
+    {
+        "domain": "Twilight",
+        "folklore": [
+            "Watching the sunset with loved ones invites lasting memories.",
+            "Twilight is when spirits walk freely between worlds.",
+            "Leaving lanterns lit through the dusk wards off dark spirits.",
+            "Whispering wishes to the fading light ensures their coming true."
+        ]
+    },
+    
+    {
+        "domain": "War",
+        "folklore": [
+            "Carrying a piece of fallen armor honors the brave.",
+            "Battle drums heard at dawn rally the hearts of warriors.",
+            "Drawing a sword in silence calls the spirits of war.",
+            "Leaving a token on the battlefield brings protection to the fallen."
+        ]
+    }
+]

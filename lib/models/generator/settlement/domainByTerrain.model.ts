@@ -18,5 +18,5 @@ export const DomainsByTerrain =
     model<DomainsByTerrainModel>(
         "DomainsByTerrain",
         DomainsByTerrainSchema,
-        "generator_domain_by_terrain"
+        "generator_domains_by_terrain"
     );
