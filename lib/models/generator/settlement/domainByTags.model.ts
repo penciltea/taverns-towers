@@ -14,8 +14,8 @@ const DomainsByTagSchema = new Schema<DomainsByTagModel>({
 })
 
 export const DomainsByTag = 
-    (mongoose.models?.DomainsByTag as mongoose.Model<DomainsByTagModel>) ||
-    mongoose.model<DomainsByTagModel>(
+    (models?.DomainsByTag as mongoose.Model<DomainsByTagModel>) ||
+    model<DomainsByTagModel>(
         "DomainsByTag",
         DomainsByTagSchema,
         "generator_domain_by_tag"

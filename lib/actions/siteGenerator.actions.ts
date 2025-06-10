@@ -1,12 +1,12 @@
 'use server';
 
 import connectToDatabase from "@/lib/db/connect";
-import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generatorSiteFragment.model";
+import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
-import GeneratorSiteMenu from "@/lib/models/generatorSiteMenu.model";
-import { SiteGenerationInput } from "../modules/sites/types";
+import GeneratorSiteMenu from "@/lib/models/generator/site/menu.model";
+import { SiteGenerationInput } from "../modules/site/types";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SiteGenerator } from "../modules/sites/site.rules";
+import { SiteGenerator } from "../modules/site/site.rules";
 
 interface GenerateMenuParams {
   siteType: string[];

@@ -6,7 +6,7 @@ import { SiteType } from '@/interfaces/site.interface';
 import { usePaginatedSites } from './site.query';
 import { useSettlementContentStore } from '@/store/settlementStore';
 import { createSite } from '@/lib/actions/site.actions';
-import { generateWildernessContext } from '@/lib/modules/settlements/rules/settlement.rules';
+import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.rules';
 
 export function useSettlementLoader(settlementId: string | null) {
   const { setSelectedItem } = useSettlementContentStore();

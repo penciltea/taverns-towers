@@ -1,0 +1,233 @@
+[
+  {
+    "domain": "Ancient Ruins", 
+    "holidays": [
+      "Remembrance of Stone: locals trace ancient glyphs in ash and sing songs in forgotten tongues.",
+      "Echo Day: people whisper messages into the ruins, hoping ancestors will answer.",
+      "Shardlight: broken artifacts are lit with colored oils in reverent nighttime processions.",
+      "Moonfall Eve: Celebrated during the first full moon of spring. Locals gather among ruins at dusk to read fragments of forgotten texts and offer silent reflection.",
+      "Crumblewatch: Observed in late autumn as stone begins to frost. People sweep ruins clean and lay down wildflowers to honor lost civilizations.",
+      "Echoveil: Held during the winter solstice. A quiet walk is taken through ruined halls wearing veils, symbolizing the thin line between past and present."
+    ]
+  },
+  {
+    "domain": "Arcane Nexus", 
+    "holidays": [
+      "The Arcanum Revel: locals celebrate a day of magical experimentation with fireworks and enchantments.",
+      "Etherveil: a moonless night when veils between planes are said to thin—sorcerers hold open rituals.",
+      "Mana Surge: spontaneous spellcasting is encouraged in the streets as mages test chaotic flows.",
+      "Glimmerstrand: Celebrated on the shortest day of winter. Wisps of light (mundane or magical) are strung between towers to represent strands of mana.",
+      "Leymoot: A mid-autumn gathering where arcane scholars debate near nexus points. Celebrated with glowstone readings and friendly spell duels.",
+      "Sigil’s Dawn: Held the morning after the spring equinox. A ritual where townsfolk draw protective runes on doorways to honor magical harmony."
+    ]
+  },
+  {
+    "domain": "Border Post", 
+    "holidays": [
+      "Watcher's Oath: a solemn recitation on the first dawn after a new moon, reaffirming duty to guard the frontier.",
+      "Crossing Feast: travelers and locals share meals as a gesture of peace between lands.",
+      "Signal Fire Night: beacons are lit along the border in memory of a long-past siege.",
+      "Linebound Oath: Celebrated in early spring, when border paths thaw. Watchmen reaffirm their vows and repaint boundary markers.",
+      "Fencefire Festival: Held during midsummer. Bonfires are lit every half-mile along the border to honor watchfulness and unity.",
+      "Hinge Day: On the first frost, all gates are oiled and opened wide at noon. Celebrated to promote openness while acknowledging division."
+    ]
+  },
+  {
+    "domain": "Capital", 
+    "holidays": [
+      "Throne Day: the anniversary of the city’s founding or coronation of its ruler, celebrated with speeches and feasts.",
+      "Grand Convocation: public forums, games, and dramatic retellings of the capital's rise to power.",
+      "Bannerfall: commemorating past wars and peace treaties with ceremonial banner raisings.",
+      "Founders' Light: Held on the longest day of the year. Magical lanterns shaped like past rulers are flown across the sky.",
+      "Seal Ceremony: Once per year, the city’s great seal is recast in silver and displayed in the plaza to inspire civic pride.",
+      "Coinfall: In late autumn, the royal treasury flings copper coins from balconies to bless the common folk and stir trade."
+    ]
+  },
+  {
+    "domain": "Criminal Hideout", 
+    "holidays": [
+      "Shadownight: an informal night of silence where no crimes are committed, to honor a legendary thief who vanished.",
+      "Split Purse Day: pickpockets compete to lift tokens from one another in good sport.",
+      "The Fade: cloaked figures light black candles in hidden shrines to mourn fallen allies.",
+      "Black Mask Moot: Celebrated during the new moon. Leaders of various gangs meet under truce to negotiate territory.",
+      "Cloak & Coin: Held in early autumn. Locals wear false identities and play games of deception and trade.",
+      "Silencer's Eve: On the darkest night of the year, stories of past betrayals are whispered in code over black wine."
+    ]
+  },
+  {
+    "domain": "Druidic", 
+    "holidays": [
+      "Verdant Day: offerings of berries, leaves, and song are made to the forest spirits.",
+      "Circlekindle: druids light rings of fire and chant to awaken the land from slumber.",
+      "Rootcall: children are taught the names of trees and plants in a ritual of inheritance.",
+      "Stonebloom: On the spring equinox, stones are adorned with wildflowers to celebrate balance between life and stillness.",
+      "Canopy Fast: During midsummer, communities eat only gathered forest foods and sleep under the trees.",
+      "Barkblood Rite: Each elder offers a drop of blood to an ancient tree and tells a story of the year's trials."
+    ]
+  },
+  {
+    "domain": "Fishing", 
+    "holidays": [
+      "Netblessing: nets are dipped in blessed oils and prayers for bounty are sung.",
+      "First Catch Festival: the season’s first fish is paraded through the town with music.",
+      "Deepwatch: lights are floated on the water to appease sea spirits or honor lost sailors.",
+      "Saltmoon: Celebrated during the first high tide of summer. Saltwater is sprinkled on thresholds to invite prosperity.",
+      "Clamlight Fair: On the night of the lowest tide, families gather to hunt for glowing tidepool creatures.",
+      "Line's End: At season’s close, elders cast their oldest fishing lines into the water as tribute to the sea."
+    ]
+  },
+  {
+    "domain": "Fortress", 
+    "holidays": [
+      "Iron Vigil: guards stand in ceremonial silence for a full day atop the walls.",
+      "Wallfeast: food is carried to the battlements in honor of fallen defenders.",
+      "The Hammer Rite: weapons are ritually repaired or reforged at the forge.",
+      "Mortar Day: Held each spring. Citizens bring stones to patch the walls together, fostering unity and resilience.",
+      "Gatecrack Eve: Commemorates a siege narrowly repelled. Children bang pots to mimic the sounds of battle.",
+      "Chainring Ceremony: The captain of the guard dons a ceremonial chain forged from every soldier’s broken blade."
+    ]
+  },
+  {
+    "domain": "Garrison", 
+    "holidays": [
+      "Marcher's Respite: soldiers rest and tell stories to civilians on a shared field.",
+      "Sword Oath Day: new recruits pledge service before dawn, cheered by the town.",
+      "Bannerburn: a ritual destruction of old or enemy colors to mark new allegiances.",
+      "Drillfaire: Held during midsummer. Public mock battles are staged as entertainment and training.",
+      "Halberd’s Honor: Celebrates retired veterans. Their weapons are polished and carried in procession.",
+      "Standard’s Rise: At sunrise during equinox, every barracks raises its standard in unison to honor peace and order."
+    ]
+  },
+  {
+    "domain": "Hidden", 
+    "holidays": [
+      "Veilwake: a secret gathering where masked figures dance in torchlight.",
+      "Whispersong: messages are hidden in song lyrics, passed through markets and taverns.",
+      "Mirrorless Night: no reflections are permitted; windows and mirrors are covered in black cloth.",
+      "Candle in the Hollow: Celebrated in late winter. A single light is left in a hidden place to guide the lost.",
+      "Silent Toll: Bells are rung only once, at midnight, to remind all of secrets buried beneath.",
+      "Unname Day: One day a year, no names are spoken aloud—only gestures and written signs are used."
+    ]
+  },
+  {
+    "domain": "Infested", 
+    "holidays": [
+      "Purge Moon: villagers light bonfires and burn effigies to ward off creeping threats.",
+      "Chitinfast: a day of fasting in memory of those consumed or turned by infestation.",
+      "Carapace Eve: children paint masks resembling insects or monsters and dance to frighten spirits away.",
+      "Smokeveil: During early spring, herbs and oils are burned across thresholds to drive out unseen infestations.",
+      "Skitterwatch: A night spent in silence, watching for signs of movement in the underdark or brush.",
+      "Hivewake: One day a year, no one kills a pest—instead, symbolic nests are constructed and ritually destroyed at sundown."
+    ]
+  },
+  {
+    "domain": "Isolated", 
+    "holidays": [
+      "Echo Feast: a quiet meal shared by all residents, often in a single hall, to remind them they are not alone.",
+      "Lantern Descent: lights are floated downhill or downriver to signal the wider world.",
+      "The Ringing: a bell or horn is sounded once, at high noon, to say 'we are still here'.",
+      "Cord Day: Everyone weaves a piece of cord and ties them into a communal braid hung in the town square.",
+      "Cliffchant: On the longest night of the year, villagers sing into the wind to call out to distant kin.",
+      "Stillroot: A day of rest where no tools are used and no fires are lit—symbolizing endurance through stillness."
+    ]
+  },
+  {
+    "domain": "Mining Camp", 
+    "holidays": [
+      "Deepfire Festival: glowing fungi and lanterns light the mine tunnels in celebration of discovery.",
+      "Pick's Rest: all tools are laid down and blessed in thanks for safe labor.",
+      "Dustwake: a parade of miners past and present, faces painted with soot and chalk.",
+      "Vein's Gift: Celebrated when a new ore vein is found. Offerings are left at the mine mouth before the first stone is struck.",
+      "Collapse Remembrance: Held yearly to honor those lost in cave-ins, marked by silence at shift change.",
+      "Orebright: Children craft jewelry or charms from polished stone to wear during a town-wide feast."
+    ]
+  },
+  {
+    "domain": "Nomadic", 
+    "holidays": [
+      "Trailmark Day: families leave painted stones or carved symbols along the road.",
+      "Campfire Concord: rival bands share a fire in peace under a full moon.",
+      "Wheelturn: symbolic wheels or shoes are oiled and offered to ancestral spirits for safe travel.",
+      "Starfare: On a cloudless night, stories of great migrations are told under the stars.",
+      "Polebinding: During early summer, tents are raised together without speaking to affirm unity and practice tradition.",
+      "Shoe-Sing: Worn footwear is hung in trees at the end of a journey as tribute to the miles passed."
+    ]
+  },
+  {
+    "domain": "Overgrown", 
+    "holidays": [
+      "Thornwake: locals dress in flowers and vines and parade through the streets.",
+      "Green Silence: for one hour, all noise ceases in honor of the forest reclaiming all things.",
+      "Bloomcrawl: children search for hidden blossoms in abandoned buildings.",
+      "Vinefast: Celebrated during the growing season's peak. People wear garlands made of the fastest-growing weeds.",
+      "Mossveil: In autumn, green-dyed cloths are draped over stone or metal as thanks for what nature reclaims.",
+      "Rootmurmur: Families gather around ancient tree roots to speak wishes and offer composted food as tribute."
+    ]
+  },
+  {
+    "domain": "Port", 
+    "holidays": [
+      "Harbor's Grace: ships are blessed with salt and flowers before setting sail.",
+      "Lantern Launch: floating lights are sent across the bay to guide returning sailors.",
+      "Stormring: ropes are braided and hung in homes to ward off tempests.",
+      "Captain’s Call: Celebrated midsummer. The oldest sea captain tells tales of survival as fish stews are shared.",
+      "Gullwatch: Children climb rooftops to mimic gulls and toss bread bits to the wind, honoring sea omens.",
+      "Dockpaint: On the first thaw, docks are painted in vivid colors to welcome trade and ward off sea spirits."
+    ]
+  },
+  {
+    "domain": "Prison Settlement", 
+    "holidays": [
+      "Keyfall: locks are opened symbolically, and prisoners share stories in the yard.",
+      "Ironveil: guards and inmates alike wear grey sashes in a temporary truce.",
+      "Penance Day: prisoners offer services or crafts to the freefolk as part of restitution.",
+      "Shackle Eve: Old restraints are collected and melted into communal tools, marking a new beginning.",
+      "Grate Vigil: On midwinter night, a single candle is lit behind every barred window.",
+      "Chainfruit: A strange local fruit is only eaten on one day of the year, believed to grow from buried cuffs."
+    ]
+  },
+  {
+    "domain": "Remote", 
+    "holidays": [
+      "Skywatch: stargazing and sky-mapping from mountaintops or plains.",
+      "Pathless Day: locals hike without roads, embracing uncertainty.",
+      "The Long Echo: yells are cast into canyons or woods, waiting for their return.",
+      "Driftfast: During high summer, boats or sleds are released to drift toward the horizon, carrying hopes.",
+      "Stonecircle: A ring of stones is made each year in a new spot, then abandoned as a silent marker.",
+      "Mistmoot: If fog rolls in, people walk it silently, pretending they’re ghosts visiting the town of the living."
+    ]
+  },
+  {
+    "domain": "Sacred Site", 
+    "holidays": [
+      "Pilgrimage Day: a holy trek is made to the center of the site, barefoot.",
+      "Sanctumfire: a sacred fire is lit and maintained for 24 hours, symbolizing divine presence.",
+      "Revelation Eve: a festival of prophecy, where diviners speak freely and oracles perform public readings.",
+      "Halo Bloom: Held during spring’s first full moon. Rings of white petals are laid around holy ground.",
+      "Stonechant: On solstices, sacred stones are drummed or sung to until they 'speak' in echoes or vibrations.",
+      "Relicwalk: Locals parade with sacred relics hidden in shrouds, believed to bless those who glimpse them by chance."
+    ]
+  },
+  {
+    "domain": "Trade Hub", 
+    "holidays": [
+      "Coinspire: market stalls decorate with shimmering cloth and rival haggling contests are held.",
+      "Bargainlight: lit lanterns of every color hang above stalls in celebration of fair trade.",
+      "Ledgerfest: mock ledgers are read aloud with dramatic flair, reenacting past booms and busts.",
+      "Tallcart Parade: Oversized merchant carts are festooned and wheeled through town by teams of costumed beasts.",
+      "Weighing Day: Scales are placed in public and anyone may bring goods to be weighed for fun and fortune.",
+      "Spicecall: At dawn, each stall burns their rarest herb or spice to scent the morning air—drawing buyers by smell."
+    ]
+  },
+  {
+    "domain": "Military Outpost", 
+    "holidays": [
+      "Shieldbinding: shields are painted anew with local sigils, then locked together in a ring.",
+      "Marchfast: footraces and drills performed as a spectacle of readiness.",
+      "The Gauntlet: obstacle courses for youth, symbolizing the passage to adulthood and readiness.",
+      "Oathsteel: Recruits reforge old weapons into oath-blades engraved with their own names.",
+      "Tactician’s Fire: Mock battle strategies are acted out on giant sandtables with lit flares.",
+      "Hornrise: On equinox, horns are blown in four directions to declare the outpost’s vigilance."
+    ]
+  }
+]

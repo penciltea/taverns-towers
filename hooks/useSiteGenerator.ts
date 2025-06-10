@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteName, generateMenuItems } from "@/lib/actions/siteGenerator.actions";
-import { generateSiteValues } from "@/lib/modules/sites/site.rules";
+import { generateSiteValues } from "@/lib/modules/site/site.rules";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
 

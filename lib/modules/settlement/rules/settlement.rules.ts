@@ -19,8 +19,8 @@ const ruleFns = [
   applyMagicByWealthRule,
   applyRacesByTerrain,
   applyTradeNotesRule,
-  applyDomainsByConditions, // ToDo: Update
-  //applyHolidaysByConditions, // ToDo: Update
+  applyDomainsByConditions,
+  applyHolidaysByConditions,
   //applyFolkloreByConditions, // ToDo: Update
 ];
 

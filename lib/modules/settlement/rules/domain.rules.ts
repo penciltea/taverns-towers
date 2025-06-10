@@ -1,8 +1,8 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { DomainsByClimateMapping, DomainsByTerrainMapping, DomainsByTagMapping } from "../mappings/domain.mappings";
-import { DomainsByTag } from "@/lib/models/generatorDomainByTags.model";
-import { DomainsByTerrain } from "@/lib/models/generatorDomainByTerrain.model";
-import { DomainsByClimate } from "@/lib/models/generatorDomainByClimate.model";
+import { DomainsByTag } from "@/lib/models/generator/settlement/domainByTags.model";
+import { DomainsByTerrain } from "@/lib/models/generator/settlement/domainByTerrain.model";
+import { DomainsByClimate } from "@/lib/models/generator/settlement/domainByClimate.model";
 import { NormalizedSettlementInput } from "./normalize";
 
 export async function applyDomainsByConditions(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
@@ -31,17 +31,10 @@ export async function applyDomainsByConditions(data: NormalizedSettlementInput):
       const terrainDomains = terrainEntries?.flatMap(entry => entry.domains) ?? [];
       const climateDomains = climateEntry?.domains ?? [];
 
-      const fallbackTagDomains = data.tags.flatMap(tag => DomainsByTagMapping[tag] ?? []);
-      const fallbackTerrainDomains = data.terrain.flatMap(t => DomainsByTerrainMapping[t] ?? []);
-      const fallbackClimateDomains = DomainsByClimateMapping[data.climate] ?? [];
-
       const allDomains = [
         ...tagDomains,
         ...terrainDomains,
         ...climateDomains,
-        ...fallbackTagDomains,
-        ...fallbackTerrainDomains,
-        ...fallbackClimateDomains,
       ];
 
       const unique = Array.from(new Set(allDomains));

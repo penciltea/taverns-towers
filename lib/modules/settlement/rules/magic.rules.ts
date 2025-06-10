@@ -1,7 +1,7 @@
 import { getRandom } from "@/lib/util/randomValues";
 import { MagicByWealthMapping } from "../mappings/magic.mappings";
 import { NormalizedSettlementInput } from "./normalize";
-import { MagicByWealth, MagicByWealthModel } from "@/lib/models/generatorMagicByWealth.model";
+import { MagicByWealth, MagicByWealthModel } from "@/lib/models/generator/settlement/magicByWealth.model";
 
 // Logic for setting Magic use/levels based off settlement wealth
 export async function applyMagicByWealthRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput>{

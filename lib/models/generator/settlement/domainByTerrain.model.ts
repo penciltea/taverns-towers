@@ -14,8 +14,8 @@ const DomainsByTerrainSchema = new Schema<DomainsByTerrainModel>({
 })
 
 export const DomainsByTerrain = 
-    (mongoose.models?.DomainsByTerrain as mongoose.Model<DomainsByTerrainModel>) ||
-    mongoose.model<DomainsByTerrainModel>(
+    (models?.DomainsByTerrain as mongoose.Model<DomainsByTerrainModel>) ||
+    model<DomainsByTerrainModel>(
         "DomainsByTerrain",
         DomainsByTerrainSchema,
         "generator_domain_by_terrain"

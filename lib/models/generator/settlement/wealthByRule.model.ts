@@ -13,8 +13,8 @@ const WealthBySizeSchema = new Schema<WealthBySizeModel>({
 })
 
 export const WealthBySize = 
-    (mongoose.models?.WealthBySize as mongoose.Model<WealthBySizeModel>) ||
-    mongoose.model<WealthBySizeModel>(
+    (models?.WealthBySize as mongoose.Model<WealthBySizeModel>) ||
+    model<WealthBySizeModel>(
         "WealthBySize",
         WealthBySizeSchema,
         "generator_wealth_by_sizes"

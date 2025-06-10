@@ -15,7 +15,7 @@ import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { normalizeSettlementInput } from "@/lib/modules/settlements/rules/normalize";
+import { normalizeSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { generateSettlementData } from "@/lib/actions/settlementGenerator.actions";
 
 

@@ -13,8 +13,8 @@ const TagsByTerrainSchema = new Schema<TagsByTerrainModel>({
 });
 
 export const TagsByTerrain =
-  (mongoose.models?.TagsByTerrain as mongoose.Model<TagsByTerrainModel>) ||
-  mongoose.model<TagsByTerrainModel>(
+  (models?.TagsByTerrain as mongoose.Model<TagsByTerrainModel>) ||
+  model<TagsByTerrainModel>(
     "TagsByTerrain",
     TagsByTerrainSchema,
     "generator_tags_by_terrain"

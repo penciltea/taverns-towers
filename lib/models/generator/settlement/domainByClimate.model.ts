@@ -14,8 +14,8 @@ const DomainsByClimateSchema = new Schema<DomainsByClimateModel>({
 })
 
 export const DomainsByClimate = 
-    (mongoose.models?.DomainsByClimate as mongoose.Model<DomainsByClimateModel>) ||
-    mongoose.model<DomainsByClimateModel>(
+    (models?.DomainsByClimate as mongoose.Model<DomainsByClimateModel>) ||
+    model<DomainsByClimateModel>(
         "DomainsByClimate",
         DomainsByClimateSchema,
         "generator_domain_by_climate"

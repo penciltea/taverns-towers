@@ -13,8 +13,8 @@ const RacesByTerrainSchema = new Schema<RacesByTerrainModel>({
 })
 
 export const RacesByTerrain = 
-  (mongoose.models?.RacesByTerrain as mongoose.Model<RacesByTerrainModel>) ||
-  mongoose.model<RacesByTerrainModel>(
+  (models?.RacesByTerrain as mongoose.Model<RacesByTerrainModel>) ||
+  model<RacesByTerrainModel>(
     "RacesByTerrain", 
     RacesByTerrainSchema,
     "generator_races_by_terrain"

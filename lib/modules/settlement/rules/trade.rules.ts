@@ -1,7 +1,7 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
-import { TradeByTags } from "@/lib/models/generatorTradeByTags.model";
-import { TradeByTerrain } from "@/lib/models/generatorTradeByTerrain.model";
-import { TradeByClimate } from "@/lib/models/generatorTradeByClimate.model";
+import { TradeByTags } from "@/lib/models/generator/settlement/tradeByTags.model";
+import { TradeByTerrain } from "@/lib/models/generator/settlement/tradeByTerrain.model";
+import { TradeByClimate } from "@/lib/models/generator/settlement/tradeByClimate.model";
 import { TradeNotesByTagMapping, TradeNotesByTerrainMapping, TradeNotesByClimateMapping } from "../mappings/trade.mappings";
 import { NormalizedSettlementInput } from "./normalize";
 

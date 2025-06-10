@@ -13,8 +13,8 @@ const MagicByWealthSchema = new Schema<MagicByWealthModel>({
 });
 
 export const MagicByWealth = 
-    (mongoose.models?.MagicByWealth as mongoose.Model<MagicByWealthModel>) ||
-    mongoose.model<MagicByWealthModel>(
+    (models?.MagicByWealth as mongoose.Model<MagicByWealthModel>) ||
+    model<MagicByWealthModel>(
         "MagicByWealth",
         MagicByWealthSchema,
         "generator_magic_by_wealth"

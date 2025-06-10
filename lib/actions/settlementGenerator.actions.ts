@@ -1,12 +1,12 @@
 'use server';
 
 import connectToDatabase from "@/lib/db/connect";
-import GeneratorSettlementFragment, { GeneratorSettlementFragmentPlain } from "@/lib/models/generatorSettlementFragment.model";
+import GeneratorSettlementFragment, { GeneratorSettlementFragmentPlain } from "@/lib/models/generator/settlement/settlementNameFragment.model";
 import { generateSettlementNameFromFragments } from "@/lib/util/generator/settlementNameGenerator";
-import { normalizeSettlementInput, NormalizedSettlementInput } from "../modules/settlements/rules/normalize";
+import { normalizeSettlementInput, NormalizedSettlementInput } from "../modules/settlement/rules/normalize";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { generateEnvironment } from "./environmentGenerator.actions";
-import { generateSettlementValues } from "../modules/settlements/rules/settlement.rules";
+import { generateSettlementValues } from "../modules/settlement/rules/settlement.rules";
 
 
 export async function generateSettlementName({

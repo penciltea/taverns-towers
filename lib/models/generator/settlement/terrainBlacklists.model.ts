@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { CLIMATE_TYPES, ClimateTypes, TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+const { Schema, model, models } = mongoose;
 
 export interface TerrainBlacklistByClimate {
   climate: ClimateTypes;
@@ -7,7 +8,7 @@ export interface TerrainBlacklistByClimate {
 }
 
 
-const TerrainBlacklistSchema = new mongoose.Schema<TerrainBlacklistByClimate>({
+const TerrainBlacklistSchema = new Schema<TerrainBlacklistByClimate>({
   climate: {
     type: String,
     required: true,
@@ -23,8 +24,8 @@ const TerrainBlacklistSchema = new mongoose.Schema<TerrainBlacklistByClimate>({
 
 
 export const TerrainBlacklist =
-  (mongoose.models?.TerrainBlacklist as mongoose.Model<TerrainBlacklistByClimate>) ||
-  mongoose.model<TerrainBlacklistByClimate>(
+  (models?.TerrainBlacklist as mongoose.Model<TerrainBlacklistByClimate>) ||
+  model<TerrainBlacklistByClimate>(
     "TerrainBlacklist",
     TerrainBlacklistSchema,
     "generator_terrain_blacklists"

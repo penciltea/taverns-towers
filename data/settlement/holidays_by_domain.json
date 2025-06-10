@@ -1,0 +1,408 @@
+[
+  {
+    "domain":  "Arcana", 
+    "holidays": [
+      "Cipherday (First New Moon of Spring): Mages and scholars exchange riddles, puzzles, and cryptic scrolls in celebration of hidden knowledge.",
+      "Sigilkind (Autumn Equinox): Towns draw ancient sigils in chalk on doors and stones to attract or repel magical forces.",
+      "Runebloom (Mid-Spring): Magic users plant enchanted seeds that briefly bloom into glowing symbols, honoring the living nature of magic.",
+      "Silence of the Sphere (Every Eclipse): A day of magical fasting and quiet reflection to honor the source of arcane power.",
+      "Vaultlight (First Snowfall): Spellbooks are aired in moonlight and rare tomes are read aloud in public squares.",
+      "Leythrum (Summer Solstice): Communities gather at leyline crossings to sing harmonic spells and offer crystals to the deep weave."
+    ]
+  },
+  {
+    "domain":  "Arts", 
+    "holidays": [
+      "Paintwake (Spring Equinox): Walls and sidewalks are painted freely with vibrant murals; no design is off-limits.",
+      "Lyreday (First Day of Summer): Music fills every corner as bards, singers, and dancers perform across the settlement.",
+      "Chiselbless (Late Autumn): Sculptors and artisans unveil creations dedicated to the beauty in labor.",
+      "Masqueveil (First Frost): Locals don handmade masks and act out improvised tales in the streets.",
+      "Scriptkindle (Midwinter): Poets and scribes read work by candlelight; paper lanterns bearing verses are released.",
+      "Colorfall (Late Summer Rain): Dyes and powdered pigments are flung in celebration of spontaneous beauty and joy."
+    ]
+  },
+  {
+    "domain":  "Beauty", 
+    "holidays": [
+      "Reflections Day (Spring Bloom): People adorn themselves with blossoms and gather by lakes or mirrors for shared praise.",
+      "Gracewalk (Summer Solstice): A gentle parade where participants wear their finest and move in unison to soft music.",
+      "Petalveil (First Morning Fog): Flowers are scattered in public baths and fountains; said to cleanse body and soul alike.",
+      "Glorylight (Twilight of Longest Day): Golden threads are braided into hair or clothing and lit in the sunset.",
+      "Dewkiss Festival (Early Spring Rain): Participants let morning dew fall on their faces in a silent ritual of natural beauty.",
+      "Finelight (Late Autumn Dusk): Torches dipped in scented oils are lit and placed in windows as a call to beauty in darkness."
+    ]
+  },
+  {
+    "domain":  "Chaos", 
+    "holidays": [
+      "Festival of Fools (First Thunderstorm of Spring): Public pranks, backwards clothes, and rule-breaking games dominate the day.",
+      "Wreckmarch (Late Winter): Furniture and pottery are symbolically broken and repaired to welcome disorder into order.",
+      "Stormglide (During Sudden Downpour): Participants race barefoot through rain-slick streets, invoking chaos-born joy.",
+      "Coinflip Day (Undated): Every town decision is made by flipping coins or drawing lots for one day each year."
+    ]
+  },
+  {
+    "domain":  "Commerce", 
+    "holidays": [
+      "Coinkindle (Start of Trade Season): New coinage is polished and shared to bless financial prosperity.",
+      "Marketday of Weighing (Autumn Equinox): Merchants bring their largest goods for display and ritual weighing.",
+      "Silverbell Eve (Winter Solstice): Tiny bells are traded among friends to honor deals made and broken.",
+      "Inkmark Day (Late Spring): Contracts, ledgers, and deals are ritually reviewed and renewed.",
+      "Guildfire Festival (First Full Moon of Autumn): Guilds host contests and feasts to recruit and boast their services.",
+      "Barterbless (Midsummer): All sales pause and only bartering is permitted, reinforcing personal trade values."
+    ]
+  },
+  {
+    "domain":  "Community", 
+    "holidays": [
+      "Hearthhold (Winter Solstice): Families and neighbors share fire and food in communal halls.",
+      "Kindreach Day (Mid-Spring): Youth and elders exchange stories and gifts across generations.",
+      "Bricklink Day (First Day of Construction Season): A communal structure is built or repaired together, stone by stone.",
+      "Circlefeast (Every Full Moon): Households eat outdoors in shared circles, offering plates to all passersby.",
+      "Welcomelight (Late Autumn): Lanterns are hung at every doorway to signal hospitality to travelers.",
+      "Handspan Day (Late Summer): People clasp hands in long chains across bridges, walls, and roads to show unity."
+    ]
+  },
+  {
+    "domain":  "Death", 
+    "holidays": [
+      "Veilfall (Late Autumn): Veils are worn and names of the dead whispered into flowing water to guide them onward.",
+      "Emberwake (Winter Solstice): Ashes from hearths are collected and placed on ancestor stones.",
+      "Quietrest (Midwinter): A full day of silence in honor of all those who can no longer speak.",
+      "Last Gift (Day Before Spring Begins): Graves are visited and offerings of food or keepsakes are left behind.",
+      "Bell of the Gone (First Misty Morning): A single large bell is rung once per name of the dead that year.",
+      "Shadekind (Twilight After Storm): Black ribbons are tied to trees and poles; stories of lost ones are shared aloud."
+    ]
+  },
+  {
+    "domain":  "Decay", 
+    "holidays": [
+      "Rotsong (Late Summer): Melodies are played on rusted or cracked instruments to celebrate the beauty of decline.",
+      "Spoilwake (Start of Autumn): Fruits are left to ferment and offerings given to the spirits of entropy.",
+      "Wormgift Day (Mid-Spring): Compost and soil are blessed and spread, honoring decay as nourishment.",
+      "Crackfall (First Freeze): Broken pottery is ritually scattered near tree roots to mark inevitable breaking.",
+      "Ashrain (Last Day of Harvest): Ashes from the year’s fire are cast into gardens to blend destruction and growth.",
+      "Moldveil Festival (During Humid Week): Mosaics are made from moss and discarded items, celebrating cycles."
+    ]
+  },
+  {
+    "domain":  "Dreams", 
+    "holidays": [
+      "Sleeper’s Lantern (Mid-Autumn): Dreams are recorded or shared over warm drinks under starlight.",
+      "Mistdream Day (Early Morning Fog): Silent walks and whispered wishes mark a day of deep introspection.",
+      "Starweave (Spring Equinox): Threads are tied between trees or buildings to represent dreams in the wind.",
+      "Wanderrest (Every Blue Moon): Citizens nap in public gardens and decorate blankets with symbolic runes.",
+      "Nightfeast (Longest Night): People stay awake through the night sharing their most vivid or recurring dreams.",
+      "Oneirotide (New Moon of Summer): Dreamers are asked to sleep with certain herbs to induce prophetic visions."
+    ]
+  },
+  {
+    "domain":  "Fate", 
+    "holidays": [
+      "Threadbind (Autumn Equinox): Colored threads are braided into hair or clothing to represent life paths.",
+      "Crossroads Day (Late Spring): People leave tokens at literal crossroads to ask for divine direction.",
+      "Starfall Night (Meteor Shower): Wishes are made as stars pass; it's said they choose whom to favor.",
+      "Loomchant (Winter Solstice): Elders chant stories believed to anchor or twist fate for the coming year.",
+      "Turningstep (First Snow Melt): A symbolic 'step forward' is taken across bridges or thresholds.",
+      "Unseen Hand Day (Day Before Major Decisions): Dice, cards, and fate tools are drawn ceremonially for guidance."
+    ]
+  },
+  {
+    "domain":  "Forge", 
+    "holidays": [
+      "Sparkmark Day (First Hammerstrike of Spring): Tools are blessed in fire and stamped with maker’s marks.",
+      "Anvilwake (Summer Solstice): Public smiths work throughout the day, celebrating the craft openly.",
+      "Coalfire Eve (Winter's Peak): Bonfires burn low and blacksmiths share tales by the forge.",
+      "Moldcrack (Late Autumn): Molds are shattered after use in a ritual of impermanence and rebirth.",
+      "Rivetday (First Rain of Spring): Iron nails are driven into new beams or trees as protective wards.",
+      "Glowtide (Longest Day): Metal glows are showcased and steelworks left exposed for divine blessing."
+    ]
+  },
+  {
+    "domain":  "Freedom", 
+    "holidays": [
+      "Chainbreak (Spring Equinox): Old symbols of bondage are shattered in public ceremonies.",
+      "Windstep Day (First Windy Day): Kites, cloaks, and flags are flown to celebrate movement and choice.",
+      "Gatewide Festival (Summer Solstice): City gates remain open and guarded less, welcoming all travelers.",
+      "Voicewake (Day After New Moon): Every voice, including the most marginalized, is given a chance to be heard.",
+      "Unbound Fire (Mid-Autumn): Fire pits are lit without walls or holders, representing raw potential.",
+      "Flightwatch (Bird Migration Week): People carve wings onto wood or cloth and float them from high places."
+    ]
+  },
+  {
+    "domain":  "Grave", 
+    "holidays": [
+      "Stoneveil (First Snow): Grave markers are brushed clean and wrapped in soft cloth.",
+      "Gravenight (Every Third Moon): Watchers sit vigil through the night beside burial grounds.",
+      "Dustmarch (First Wind of Spring): Ash from past fires is scattered across the cemetery paths.",
+      "Final Light Festival (Autumn Dusk): Lamps are placed in graveyard trees to help lost souls find peace.",
+      "Rootwake Day (Late Autumn): Trees growing from old graves are honored with offerings and blessings.",
+      "Bonechant (Deepest Winter Night): Soft chimes made from bone or shell are hung in the wind, calling rest."
+    ]
+  },
+  {
+    "domain":  "Harvest", 
+    "holidays": [
+      "Bountywake (Autumn Equinox): A day of gratitude and open tables, where all are invited to share the harvest.",
+      "Threshgold Day (First Full Moon of Harvest): Wheat and coins are braided into garlands and worn in celebration.",
+      "Fieldbless (Spring Planting): Seeds are cast with words of thanks and hope to the land spirits.",
+      "Scarecrow Night (Late Autumn): Effigies are built and burned to ward off hunger and loss.",
+      "Sicklelight Festival (During Grain Moon): Crescent shapes and tools are honored as symbols of survival.",
+      "Ciderfeast (End of Apple Season): Drinks are shared, and games celebrate the sweetness of a year’s work."
+    ]
+  },
+  {
+    "domain":  "Hunt", 
+    "holidays": [
+      "Trackfire Day (First Snowfall): Campfires are lit where tracks first appear, to mark the start of the hunt.",
+      "Hornwake (Spring Dawn): Horns are sounded from high places to signal a day of wild pursuit and joy.",
+      "Feast of the First (First Catch of Season): The first hunted animal is shared among all.",
+      "Stalker's Moon (Full Moon of Summer): Hunters walk in silence through woods or streets to honor patience.",
+      "Beastmark Day (Mid-Autumn): Hunters mark themselves in paint or blood to emulate the wild.",
+      "Arrowbind (Late Spring): Arrows are fletched and tied with colored thread to seek divine aim."
+    ]
+  },
+  {
+    "domain":  "Invention", 
+    "holidays": [
+      "Sparkmaker's Day (First new moon of spring): Inventors unveil new creations to the community. Celebrated to inspire innovation and problem-solving.",
+      "Blueprint Vigil (Last week of winter): Designs are drafted and burned as offerings to gain divine inspiration. Celebrated to clear mental clutter for new ideas.",
+      "Cogdance Festival (Summer solstice): People wear mechanical costumes and mimic gears in dance. Celebrated to honor synergy between people and machines.",
+      "Tinker’s Flame (Mid-autumn): Workshops stay open all night, with forge-fires lit in homage to creators. Celebrated to spark perseverance.",
+      "Golem Parade (First frost): Animated constructs lead a festive march through the streets. Celebrated for ingenuity and collaboration.",
+      "Nullbreaker Day (Every four years, during a rare planetary alignment): Old devices are ceremonially dismantled. Celebrated for the value of release and creative destruction."
+    ]
+  },
+  {
+    "domain":  "Judgment", 
+    "holidays": [
+      "Scales of Morrow (Spring equinox): Communities gather to review disputes and resolve longstanding tensions. Celebrated to balance wrongs.",
+      "Echo of Verdicts (Early summer): Ancient rulings are recited in open forum. Celebrated for historical reflection and guidance.",
+      "Gavelday (Mid-autumn): Judges wear ceremonial robes and re-enact legendary trials. Celebrated to uphold justice.",
+      "Light and Ledger (Last harvest moon): Ledgers of transgressions and good deeds are ritually burned. Celebrated to forgive and move forward.",
+      "Truthwarden Night (Winter solstice): Truth is tested with riddles and confessions around bonfires. Celebrated to expose falsehood and embrace honesty.",
+      "Balancewake (Late spring): Symbols of law and chaos are weighed in ceremony. Celebrated to contemplate moral complexity."
+    ]
+  },
+  {
+    "domain":  "Knowledge", 
+    "holidays": [
+      "Scrollfire Festival (Mid-winter): Outdated knowledge is respectfully burned to make way for new study. Celebrated to honor learning cycles.",
+      "Inkwell Moon (First full moon of summer): Scribes and scholars host public lectures by moonlight. Celebrated to spread wisdom.",
+      "Archivist’s Dawn (Spring equinox): Libraries open before dawn for silent reading. Celebrated in gratitude to record-keepers and teachers.",
+      "Quillmark (First frost): Calligraphy contests and riddle duels are held in plazas. Celebrated for cleverness and intellectual beauty.",
+      "Loretide (Late summer): Traveling sages visit towns and swap stories. Celebrated to preserve oral histories.",
+      "Day of Dissonance (Every three years, during a rare eclipse): Contradictions in sacred texts are debated publicly. Celebrated for the pursuit of deeper truth."
+    ]
+  },
+  {
+    "domain":  "Life", 
+    "holidays": [
+      "First Breath (Spring’s first rain): Midwives and healers are honored; newborns are blessed. Celebrated to cherish beginnings.",
+      "Greenspring (Vernal equinox): Gardens are planted en masse. Celebrated to nurture growth and community.",
+      "Heartbeat Vigil (Midsummer night): Drums are played softly for hours, mimicking the heart’s rhythm. Celebrated to attune to life's pulse.",
+      "Quickening Feast (Late summer): Feasts of fruits and fresh harvests are shared. Celebrated for abundance and health.",
+      "Lanternbirth (Winter solstice): Lanterns are lit to represent unborn souls. Celebrated with quiet gratitude for potential.",
+      "Pulsewake (Full moon of late spring): Runners carry sacred water between towns. Celebrated to spread vitality and connection."
+    ]
+  },
+  {
+    "domain":  "Light", 
+    "holidays": [
+      "Dawnrise (First day of the year): Everyone watches the sunrise in silence. Celebrated to embrace clarity and renewal.",
+      "Lumina (Summer solstice): Communities adorn homes with mirrors and prisms. Celebrated to reflect truth and beauty.",
+      "Glownight (Midsummer full moon): People wear glowing paint and tell stories in darkness. Celebrated to carry light within.",
+      "Kindlefast (Late autumn): No fires are lit until sundown, then one flame is shared house to house. Celebrated to unify communities.",
+      "Radiant Path (Late spring): Walkways are lit with golden lanterns. Celebrated for guidance and hopeful direction.",
+      "Brightwake (First thaw): Children release paper birds with reflective wings. Celebrated to welcome joy after darkness."
+    ]
+  },
+  {
+    "domain":  "Magic", 
+    "holidays": [
+      "Mana Surge (Spring equinox): Spells are cast into the sky in brilliant displays. Celebrated to revel in arcane power.",
+      "Arcanum Eve (Winter solstice): Mages gather for silent meditation under the stars. Celebrated for introspection and cosmic awareness.",
+      "Leyline Bloom (Midsummer): Crystals are buried to 'nurture' magical earth currents. Celebrated to heal magical imbalance.",
+      "Rite of Mirrors (Full moon of spring): Illusions and glamours are displayed in artistic competition. Celebrated for illusion and truth.",
+      "Spellkindle (First snowfall): Cantrips are exchanged like gifts. Celebrated to foster camaraderie among practitioners.",
+      "Nullwake (Rare lunar eclipse): No magic is used for a full day. Celebrated to respect boundaries and magical restraint."
+    ]
+  },
+  {
+    "domain":  "Moon", 
+    "holidays": [
+      "Silverwatch (Full moon of autumn): Night vigils are held under the open sky. Celebrated to honor mystery and reflection.",
+      "Moonveil (New moon of spring): People wear shimmering cloaks and speak only in whispers. Celebrated to embrace secrets and silence.",
+      "Lunarch's Blessing (First full moon after planting season): Fields and water are blessed under moonlight. Celebrated to promote fertility and balance.",
+      "Tidecall (Full moon closest to midsummer): Ocean tides are celebrated with moon-dances and salt offerings. Celebrated to honor the moon's pull.",
+      "Phasewalk (Quarter moon in midwinter): Participants meditate on transition and personal change. Celebrated for emotional clarity.",
+      "Nightgleam (Blue moon): Rare celestial events are marked with stargazing and storytelling. Celebrated to revere cosmic wonder."
+    ]
+  },
+  {
+    "domain":  "Nature", 
+    "holidays": [
+      "Verdant Bloom (First week of spring): People plant communal gardens and release insects. Celebrated to welcome life's return.",
+      "Rootreach (Mid-autumn): Ceremonies are held around great trees. Celebrated to deepen one's bond with the land.",
+      "Stone & Petal Day (Late spring): Flowers are braided into stone sculptures. Celebrated to balance resilience and fragility.",
+      "Wildheart Day (Midsummer): Townspeople roam barefoot and feast outdoors. Celebrated to rekindle wild instincts.",
+      "Rainchant (First storm of spring): Songs are sung in the rain barefoot. Celebrated to show trust in natural forces.",
+      "Equileaf (Autumn equinox): Leaves are collected and pressed into books. Celebrated to preserve fleeting beauty."
+    ]
+  },
+  {
+    "domain":  "Order", 
+    "holidays": [
+      "Edict Day (First day of each season): Citizens recite key laws in public spaces. Celebrated to reaffirm civic duty.",
+      "Harmonyfast (Full moon of midsummer): Disagreements are set aside for 24 hours. Celebrated to enforce peace and civility.",
+      "Pillarwake (Late winter): Each community’s 'pillars' (leaders, elders, artisans) are honored. Celebrated to ground society.",
+      "Sigilmark (Spring equinox): Orderly patterns are drawn on thresholds. Celebrated to invite structure and protection.",
+      "Steady Sun (High noon of the longest day): Work halts for coordinated acts of maintenance. Celebrated for unity in labor.",
+      "Gridlight Festival (Autumn): Streets are lit in geometric paths. Celebrated to map intentions and direction."
+    ]
+  },
+  {
+    "domain": "Peace", 
+    "holidays": [
+      "Stillwater Day (First thaw): Ceremonies held by calm lakes or rivers. Celebrated for serenity and internal quiet.",
+      "Gentlehand (Early summer): Elders bless young people with oil or herbs. Celebrated to pass on healing wisdom.",
+      "Trucebloom (Late spring): Flowers exchanged with neighbors and rivals. Celebrated to sow kindness and amends.",
+      "Quietwatch (New moon in autumn): Towns observe a shared hour of silence. Celebrated to foster collective calm.",
+      "Soothing Fire (Midwinter): Small, warm fires are kindled and shared with strangers. Celebrated to ease loneliness.",
+      "Restwake (Day after the harvest): Work is forbidden and peace is encouraged. Celebrated to reinforce contentment."
+    ]
+  },
+  {
+    "domain": "Protection", 
+    "holidays": [
+      "Shieldlight (Spring equinox): Reflective shields are polished and displayed. Celebrated to ward off harm.",
+      "Wallkeeper’s Day (Mid-autumn): Guards and sentinels are honored with food and songs. Celebrated for their vigilance.",
+      "Circlefast (First snow): People draw protective circles around their homes. Celebrated to banish fear and invite safety.",
+      "Vowstone Ceremony (Summer solstice): Oaths to protect are spoken before engraved stones. Celebrated to commit to others’ safety.",
+      "Ironroot Day (Late spring): Trees and homes are symbolically “fortified” with charms. Celebrated to invoke resilience.",
+      "Wardrise (New moon in late winter): Invisible wards are painted with chalk and recited over. Celebrated for unseen safeguards."
+    ]
+  },
+  {
+    "domain": "Sea", 
+    "holidays": [
+      "Tidewake (Spring’s first high tide): Offerings are cast into the sea for safe travels. Celebrated to honor maritime balance.",
+      "Saltgift (Midsummer): Seafarers gift salt-preserved goods to landfolk. Celebrated for interdependence.",
+      "Stormwatch (Autumn): Communities gather to tell stories of great storms survived. Celebrated for reverence and preparation.",
+      "Pearlmoon (Full moon over calm seas): Diving contests and bioluminescent lanterns honor deep-sea mysteries. Celebrated for beauty and depth.",
+      "Currentfall (Late spring): Children float paper boats with messages of hope. Celebrated to release burdens.",
+      "Driftfast (Late summer): For one day, only fish caught without nets may be eaten. Celebrated to respect the sea’s generosity."
+    ]
+  },
+  {
+    "domain": "Secrets", 
+    "holidays": [
+      "Whisperwake (New moon of autumn): Citizens share anonymous confessions via notes on lanterns. Celebrated to unburden quietly.",
+      "Veil Day (Early winter): Masks are worn and identities hidden in games. Celebrated for mischief and privacy.",
+      "Silken Thread Festival (Late summer): Invisible ink and hidden messages are exchanged. Celebrated for clever concealment.",
+      "Shroudfire (Spring dusk): Fires lit in clay pots release colored smoke—each color meaning a different vow. Celebrated to bind secrets in silence.",
+      "Labyrinth Walk (Midnight of midsummer): People navigate hedge mazes blindfolded. Celebrated to honor the hidden path.",
+      "Shadowtongue (Rare eclipse): Words are spoken backward in secret gatherings. Celebrated for cryptic wisdom."
+    ]
+  },
+  {
+    "domain": "Shadow", 
+    "holidays": [
+      "Ebonwake (Winter solstice): Candles are placed in windows to call shadows home. Celebrated to respect the unseen.",
+      "Silhouettemask (Midspring): People paint their shadows and perform silent plays. Celebrated to explore duality.",
+      "Duskmarch (Late autumn): A procession winds through unlit streets. Celebrated to embody shadows and ancestral memory.",
+      "Umbrafest (New moon of summer): Dances are performed with cloaks and veils. Celebrated for elegance and concealment.",
+      "Hollowlight (First fog of autumn): Myths of shapeshifters are reenacted in foggy fields. Celebrated to embrace ambiguity.",
+      "Blackveil Night (Early winter): Meals are eaten in total darkness. Celebrated to deepen senses and remove judgment."
+    ]
+  },
+  {
+    "domain": "Storms", 
+    "holidays": [
+      "Thunderwake (First spring storm): People shout greetings to the thunder. Celebrated to welcome powerful change.",
+      "Boltfeast (Midsummer): Charred meats and spicy dishes dominate feasts. Celebrated for storm's primal energy.",
+      "Gale Dance (Early fall): Children fly streamers in strong winds. Celebrated for joy and surrender to chaos.",
+      "Tempestwatch (Mid-autumn): Rooftops are blessed and fortified. Celebrated for survival and foresight.",
+      "Skybrand Day (Summer solstice): Lightning-scarred trees are honored. Celebrated for endurance and awe.",
+      "Stormveil (Late winter): Cloaks soaked in stormwater are hung over thresholds. Celebrated to ward off stagnation."
+    ]
+  },
+  {
+    "domain": "Sun", 
+    "holidays": [
+      "Solstice Flare (Summer solstice): Bright banners and feasts under the sun. Celebrated for illumination and life.",
+      "Sungift (First warm day of spring): Gold-colored tokens are exchanged. Celebrated for gratitude and new beginnings.",
+      "Goldenwake (Mid-autumn): Markets open at sunrise and close at noon. Celebrated to honor the fleeting sun.",
+      "Heliarch Day (High noon festival): People stand in silence under the brightest sun. Celebrated for divine focus.",
+      "Suncrown (Late spring): Wreaths of yellow flowers are worn. Celebrated to channel warmth and clarity.",
+      "Blazebreak (End of summer): Cool water rituals and shaded songs celebrate balance. Celebrated to soothe overexposure."
+    ]
+  },
+  {
+    "domain": "Tempest", 
+    "holidays": [
+      "Rage of the Sky (First thunderstorm of the year): Drumming and wild dances mimic thunder. Celebrated for wild vitality.",
+      "Lightning Reap (Late summer): Crops struck by lightning are revered as blessed. Celebrated to find grace in ruin.",
+      "Tempestrun (Mid-spring): Runners race barefoot through mud. Celebrated for endurance and passion.",
+      "Cloudbreak Vigil (End of storm season): Sky-gazers watch the clearing clouds. Celebrated for catharsis and change.",
+      "Stormchord Day (Summer): Musicians try to mimic storms. Celebrated to give storm a voice.",
+      "Gustborn (Autumn equinox): Kites with wind prayers are flown. Celebrated to harness chaos with hope."
+    ]
+  },
+  {
+    "domain": "Time", 
+    "holidays": [
+      "Chronofall (Autumn equinox): Leaves are gathered in hourglass shapes. Celebrated for cycles and memory.",
+      "Hour's Edge (Winter solstice): Every hour is marked with a chime or bell. Celebrated to feel time’s weight.",
+      "Pendulum Dance (Spring equinox): Couples sway in timed movements. Celebrated to feel harmony in motion.",
+      "Secondwake (Leap day): Forgotten promises are fulfilled. Celebrated for redemption and rhythm.",
+      "Timestitch (Late winter): Mending and repairs are done in silence. Celebrated to symbolically fix the past.",
+      "Echolight (Full moon closest to new year): Ancestral stories are told precisely as remembered. Celebrated for history’s heartbeat."
+    ]
+  },
+  {
+    "domain": "Travel", 
+    "holidays": [
+      "Crossroads Day (Spring): Food is shared at road junctions. Celebrated for fellowship among wanderers.",
+      "Mapweaver Festival (Autumn): Locals draw maps and exchange them with travelers. Celebrated to honor guidance.",
+      "Wayfare Eve (Midsummer): Friends say temporary goodbyes and exchange tokens. Celebrated for sacred partings.",
+      "Footstep Song (First snowfall): Songs are sung of paths once walked. Celebrated to remember journeys.",
+      "Pilgrimwake (Mid-spring): Processions visit regional shrines. Celebrated for spiritual movement.",
+      "Dustcloak Day (Late summer): Scarves are dyed with travel dust. Celebrated for protection and luck."
+    ]
+  },
+  {
+    "domain": "Trickery", 
+    "holidays": [
+      "Fooltide (Spring equinox): Trickster tales and light pranks abound. Celebrated to unsettle arrogance.",
+      "Masked Truth (Autumn): Players switch roles for a day. Celebrated for empathy and humor.",
+      "Jester’s Star (New moon of summer): Fireworks and illusions celebrate cleverness. Celebrated for joyful mischief.",
+      "Slipday (Uncounted day in rare calendars): Nothing is recorded; all acts are deniable. Celebrated for chaos.",
+      "Winkfast (Midwinter): Winking is the only permitted greeting. Celebrated for silent bonding.",
+      "Cointurn (Late summer): Coin flips decide all minor decisions. Celebrated to embrace uncertainty."
+    ]
+  },
+  {
+    "domain": "Twilight", 
+    "holidays": [
+      "Gloaming Vigil (Spring): People sit on hillsides to watch the changing light. Celebrated for liminality.",
+      "Duskmeld (Late autumn): Day and night festivals blend. Celebrated for coexistence and balance.",
+      "Shadowgleam (Full moon of midsummer): Reflective clothing and soft lights honor evening beauty. Celebrated to blend seen and unseen.",
+      "Mistchant (Early morning in autumn): Choral songs echo through fog. Celebrated to awaken softly.",
+      "Twilight Truce (Winter): A single night of shared silence between rivals. Celebrated for stillness.",
+      "Evenfall Market (Equinox): Markets open only at sunset. Celebrated to meet between worlds."
+    ]
+  },
+  {
+    "domain": "War", 
+    "holidays": [
+      "Ironwake (Spring): Weapons are cleaned and displayed, but not drawn. Celebrated to honor power with restraint.",
+      "Fieldblood Day (Summer): Reenactments of historic battles are staged. Celebrated for memory and sacrifice.",
+      "Shieldbond (Late spring): Soldiers exchange armor pieces. Celebrated for unity and brotherhood.",
+      "Drumfire Eve (Night before autumn harvest): War drums echo through hills. Celebrated to stir strength.",
+      "Trucebrand Day (Midwinter): Symbols of peace are burned, only to be reforged. Celebrated to remind of war's cost.",
+      "Victoryfast (After first snow): Combat is forbidden for one day. Celebrated to reflect after triumph."
+    ]
+  }
+]
+

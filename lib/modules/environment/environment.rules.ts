@@ -1,8 +1,8 @@
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
 import { CLIMATE_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
-import { TerrainBlacklist, TerrainBlacklistByClimate } from "@/lib/models/generatorTerrainBlacklists.model";
-import { TagsByTerrain } from "@/lib/models/generatorTagsByTerrain.model";
+import { TerrainBlacklist, TerrainBlacklistByClimate } from "@/lib/models/generator/settlement/terrainBlacklists.model";
+import { TagsByTerrain } from "@/lib/models/generator/settlement/tagsByTerrain.model";
 import { TagsByTerrainMapping, TerrainBlacklistMapping } from "@/lib/modules/environment/environment.mappings";
 
 // Normalize input to allow "random" as a placeholder

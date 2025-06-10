@@ -13,8 +13,8 @@ const TradeByClimateSchema = new Schema<TradeByClimateModel>({
 })
 
 export const TradeByClimate = 
-    (mongoose.models?.TradeByClimate as mongoose.Model<TradeByClimateModel>) ||
-    mongoose.model<TradeByClimateModel>(
+    (models?.TradeByClimate as mongoose.Model<TradeByClimateModel>) ||
+    model<TradeByClimateModel>(
         "TradeByClimate",
         TradeByClimateSchema,
         "generator_trade_by_climate"

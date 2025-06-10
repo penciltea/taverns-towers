@@ -13,8 +13,8 @@ const RulingStyleBySizeSchema = new Schema<RulingStyleBySizeModel>({
 });
 
 export const RulingStyleBySize = 
-    (mongoose.models?.RulingStyleBySize as mongoose.Model<RulingStyleBySizeModel>) ||
-    mongoose.model<RulingStyleBySizeModel>(
+    (models?.RulingStyleBySize as mongoose.Model<RulingStyleBySizeModel>) ||
+    model<RulingStyleBySizeModel>(
         "RulingStyleBySize",
         RulingStyleBySizeSchema,
         "generator_ruling_style_by_size"

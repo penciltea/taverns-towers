@@ -1,4 +1,4 @@
-import { GeneratorSettlementFragmentPlain } from "@/lib/models/generatorSettlementFragment.model";
+import { GeneratorSettlementFragmentPlain } from "@/lib/models/generator/settlement/settlementNameFragment.model";
 
 export interface SettlementFragment {
   type: 'prefix' | 'suffix';

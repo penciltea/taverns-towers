@@ -13,8 +13,8 @@ const CrimeByWealthSchema = new Schema<CrimeByWealthModel>({
 });
 
 export const CrimeByWealth = 
-    (mongoose.models?.CrimeByWealth as mongoose.Model<CrimeByWealthModel>) ||
-    mongoose.model<CrimeByWealthModel>(
+    (models?.CrimeByWealth as mongoose.Model<CrimeByWealthModel>) ||
+    model<CrimeByWealthModel>(
         "CrimeByWealth",
         CrimeByWealthSchema,
         "generator_crimes_by_wealth"

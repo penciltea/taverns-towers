@@ -1,4 +1,4 @@
-import { GeneratorSiteFragmentPlain } from "@/lib/models/generatorSiteFragment.model";
+import { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 
 interface GenerateSiteNameOptions {
   category?: string;

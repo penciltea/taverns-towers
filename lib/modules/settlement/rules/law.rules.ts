@@ -1,9 +1,9 @@
 import { getRandom } from "@/lib/util/randomValues";
 import { WealthBySizeMapping, CrimeByWealthMapping, RulingBySizeMapping } from "../mappings/law.mappings";
 import { NormalizedSettlementInput } from "./normalize";
-import { RulingStyleBySize, RulingStyleBySizeModel } from "@/lib/models/generatorRulingStyleBySize.model";
-import { WealthBySize, WealthBySizeModel } from "@/lib/models/generatorWealthByRule.model";
-import { CrimeByWealth, CrimeByWealthModel } from "@/lib/models/generatorCrimeByWealth.model";
+import { RulingStyleBySize, RulingStyleBySizeModel } from "@/lib/models/generator/settlement/rulingStyleBySize.model";
+import { WealthBySize, WealthBySizeModel } from "@/lib/models/generator/settlement/wealthByRule.model";
+import { CrimeByWealth, CrimeByWealthModel } from "@/lib/models/generator/settlement/crimeByWealth.model";
 
 
 export async function applyWealthBySizeRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput>{

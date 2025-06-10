@@ -6,7 +6,7 @@ export interface GeneratorSiteFragmentPlain {
   weight?: number;
   value: string;
   categories?: string[];    // e.g. ["tavern"]
-  siteTypes?: string[];    // e.g. ["tavern"]
+  siteTypes?: string[];     // e.g. ["tavern"]
   tags?: string[];          // e.g. ["hidden", "trade hub"]
   terrains?: string[];      // e.g. ["forest"]
   climates?: string[];

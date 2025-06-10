@@ -13,8 +13,8 @@ const TradeByTagsSchema = new Schema<TradeByTagsModel>({
 })
 
 export const TradeByTags = 
-    (mongoose.models?.TradeByTags as mongoose.Model<TradeByTagsModel>) ||
-    mongoose.model<TradeByTagsModel>(
+    (models?.TradeByTags as mongoose.Model<TradeByTagsModel>) ||
+    model<TradeByTagsModel>(
         "TradeByTags",
         TradeByTagsSchema,
         "generator_trade_by_tags"

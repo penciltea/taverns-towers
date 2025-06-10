@@ -1,6 +1,7 @@
 import { NormalizedSettlementInput } from "./normalize";
 import { FolkloreByTag, FolkloreByTerrain, FolkloreByClimate, FolkloreByMagicLevel } from "../mappings/folklore.mappings";
-import { ClimateTypes, TerrainTypes, TagTypes, MagicLevel } from "@/constants/settlementOptions";
+import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
+import { MagicLevel } from "@/constants/settlementOptions";
 import { getRandomSubset } from "@/lib/util/randomValues";
 
 export function getFolkloreByConditions({

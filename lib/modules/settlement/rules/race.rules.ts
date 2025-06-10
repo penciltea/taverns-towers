@@ -1,4 +1,4 @@
-import { RacesByTerrain } from "@/lib/models/generatorRacesByTerrain.model";
+import { RacesByTerrain } from "@/lib/models/generator/settlement/racesByTerrain.model";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { NormalizedSettlementInput } from "./normalize";
 import { CommonRacesByTerrain } from "../mappings/race.mappings";

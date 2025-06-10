@@ -13,8 +13,8 @@ const TradeByTerrainSchema = new Schema<TradeByTerrainModel>({
 })
 
 export const TradeByTerrain = 
-    (mongoose.models?.TradeByTerrain as mongoose.Model<TradeByTerrainModel>) ||
-    mongoose.model<TradeByTerrainModel>(
+    (models?.TradeByTerrain as mongoose.Model<TradeByTerrainModel>) ||
+    model<TradeByTerrainModel>(
         "TradeByTerrain",
         TradeByTerrainSchema,
         "generator_trade_by_terrain"
