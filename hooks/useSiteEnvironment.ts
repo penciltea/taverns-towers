@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSettlementLoader } from "@/hooks/useSettlementLoader";
-import { generateWildernessContext } from "@/lib/modules/settlements/rules/settlement.rules";
+import { generateWildernessContext } from "@/lib/modules/settlement/rules/settlement.rules";
 import { useSettlementContentStore } from "@/store/settlementStore";
 
-export function useSiteGenerationContext(settlementId: string) {
+export function useSiteEnvironment(settlementId: string) {
   const isWilderness = settlementId === "wilderness";
   const settlementLoader = useSettlementLoader(isWilderness ? null : settlementId);
   const settlement = settlementLoader?.settlement;
@@ -14,7 +14,7 @@ export function useSiteGenerationContext(settlementId: string) {
     tags: string[];
   }>(null);
 
-  // Load wilderness context asynchronously if neededconst settlementLoader = useSettlementLoader(isWilderness ? null : settlementId);
+  // Load wilderness context asynchronously if needed
   useEffect(() => {
     if (isWilderness) {
       generateWildernessContext().then(setWildernessContext);

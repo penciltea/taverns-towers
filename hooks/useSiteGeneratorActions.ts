@@ -13,18 +13,18 @@ type GeneratorContext = {
   tags: string[];
 };
 
-type UseSiteGeneratorReturn = {
+type UseSiteGeneratorActionsReturn = {
   name: () => void;
   menu: () => void;
   all: () => void;
   reroll: () => void;
 };
 
-export function useSiteGenerator(
+export function useSiteGeneratorActions(
   methods: UseFormReturn<SiteFormData>,
   context: GeneratorContext,
   isWilderness: boolean
-): UseSiteGeneratorReturn {
+): UseSiteGeneratorActionsReturn {
   const { siteType, climate, terrain, tags } = context;
 
   const { getValues, setValue } = methods;

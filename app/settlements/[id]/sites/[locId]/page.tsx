@@ -7,76 +7,66 @@ import { FormProvider } from "react-hook-form";
 import { siteSchema, SiteFormData } from "@/schemas/site.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
-import { updateSite, getSiteById } from "@/lib/actions/site.actions";
+import { updateSite } from "@/lib/actions/site.actions";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
-import { useSiteGenerator } from "@/hooks/useSiteGenerator";
-import { useSiteGenerationContext } from "@/hooks/useSiteGenerationContext";
-import { isValidSiteCategory } from "@/lib/util/siteHelpers";
 import { useQueryClient } from "@tanstack/react-query";
+import { useSiteFormSetup } from "@/hooks/useSiteFormSetup";
+import { useSiteQuery } from "@/hooks/site.query";
+import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
+import { Spinner } from "@/components/Common/Spinner";
 
 export default function EditSitePage() {
-  const params = useParams();
-  const settlementId = params.id as string;
-  const { locId } = useParams();
+  const { id, locId } = useParams();
+  const settlementId = id as string;
   const safeId = getSingleParam(locId);
-  const router = useRouter();
 
-  const { showSnackbar, showErrorDialog } = useUIStore();
-  const { selectedItem, mode } = useSiteContentStore();
-
-  // Load the site and set mode to "edit"
-  useFormMode(safeId, useSiteContentStore, getSiteById);
+  if (!safeId) {
+    return <div className="error-message">Invalid site ID.</div>;
+  }
 
   const queryClient = useQueryClient();
+  const { data: siteData, isLoading, error } = useSiteQuery(safeId);
+
+  const { showSnackbar, showErrorDialog } = useUIStore();
+  const { selectedItem, setSelectedItem, clearSelectedItem, mode } = useSiteContentStore();
+
+  const router = useRouter();
+  useFormMode(safeId, useSiteContentStore);
 
   const methods = useFormWithSchema<typeof siteSchema>(siteSchema);
   const { reset } = methods;
 
-  // Load site data and reset form when selectedItem updates
   useEffect(() => {
-    if (!selectedItem) return;
+    if (isLoading) return;
 
-    reset({
-      ...(selectedItem as SiteFormData),
-      image: selectedItem.image ?? undefined,
-    });
-  }, [selectedItem, reset]);
+    if (siteData) {
+      // Only set selectedItem if different from current to avoid infinite loops
+      if (selectedItem?._id !== siteData._id) {
+        setSelectedItem(siteData);
+        reset({
+          ...(siteData as SiteFormData),
+          image: siteData.image ?? undefined,
+        });
+      }
+    } else {
+      showErrorDialog("Site could not be found, please try again later!");
+      clearSelectedItem();
+    }
+  }, [siteData, isLoading, setSelectedItem, clearSelectedItem, reset, showErrorDialog, selectedItem]);
 
-  // Load site generation context
-  const { context, isWilderness } = useSiteGenerationContext(settlementId);
 
-  // Extract and validate siteType from loaded site
-  const rawSiteType = selectedItem?.type ?? null;
-  const siteType = isValidSiteCategory(rawSiteType)
-        ? (rawSiteType as SiteFormData["type"])
-        : undefined;
-
-  // Provide safe defaults for generator inputs
-  const safeContext = {
-    terrain: context?.terrain ?? [],
-    climate: context?.climate ?? "",
-    tags: context?.tags ?? [],
-  };
-
-  // Initialize generator hook with safe values
-  const generator = useSiteGenerator(methods, {
-    siteType: siteType ?? "miscellaneous",
-    terrain: safeContext.terrain,
-    climate: safeContext.climate,
-    tags: safeContext.tags,
-  }, isWilderness);
+  const { generator, isWilderness } = useSiteFormSetup({
+    methods,
+    settlementId,
+    rawSiteType: selectedItem?.type,
+  });
 
   const onSubmit = async (data: SiteFormData) => {
     const cleanImage = await handleDynamicFileUpload(data, "image");
-
-    if (!safeId) {
-      showErrorDialog("There was a problem saving this site, please try again later!");
-      return;
-    }
 
     try {
       const siteData = {
@@ -85,28 +75,33 @@ export default function EditSitePage() {
       };
 
       await updateSite(siteData, safeId);
+      
+      // Update React Query queries (both for getting all sites and getting site by ID)
+      queryClient.invalidateQueries({ queryKey: ['site', safeId] });
 
       if (settlementId !== "wilderness") {
-        queryClient.invalidateQueries({
-          queryKey: ['sites', settlementId],
-        });
-      }
+        queryClient.invalidateQueries({ queryKey: ['sites', settlementId] });
+      }      
 
+      clearSelectedItem();
       showSnackbar("Site updated successfully!", "success");
       router.push(`/settlements/${settlementId}`);
-    } catch {
+    } catch (error){
+      console.error("Failed to update site: ", error);
       showErrorDialog("Something went wrong, please try again later!");
     }
   };
 
   return (
-    <FormProvider {...methods}>
-      <SiteForm
-        onSubmit={onSubmit}
-        mode="edit"
-        generator={generator}
-        isWilderness={isWilderness}
-      />
-    </FormProvider>
+    <SkeletonLoader loading={isLoading} skeleton={<Spinner />}>
+      <FormProvider {...methods}>
+        <SiteForm
+          onSubmit={onSubmit}
+          mode={mode}
+          generator={generator}
+          isWilderness={isWilderness}
+        />
+      </FormProvider>
+    </SkeletonLoader>
   );
 }

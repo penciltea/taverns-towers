@@ -11,22 +11,21 @@ import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { usePaginatedSites } from "@/hooks/site.query";
 import { SiteType } from "@/interfaces/site.interface";
-import { useSiteGenerator } from "@/hooks/useSiteGenerator";
 import { createSite } from "@/lib/actions/site.actions";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";
-import { useSiteGenerationContext } from "@/hooks/useSiteGenerationContext";
+import { useSiteFormSetup } from "@/hooks/useSiteFormSetup";
 
 export default function NewSitePage() {
     const params = useParams();
     const searchParams = useSearchParams();
     const settlementId = params.id as string;
     const rawTypeParam = searchParams?.get("type");
-    const typeParam = isValidSiteCategory(rawTypeParam)
-        ? (rawTypeParam as SiteFormData["type"])
-        : undefined;
 
     // Set default form values only if typeParam is valid
-    const defaultValues = typeParam ? defaultSiteValues[typeParam] : undefined;
+    const defaultValues = isValidSiteCategory(rawTypeParam)
+        ? defaultSiteValues[rawTypeParam as SiteFormData["type"]]
+        : undefined;
+
     const methods = useFormWithSchema(siteSchema, {
         defaultValues,
     });
@@ -36,28 +35,11 @@ export default function NewSitePage() {
     const { mode } = useSiteContentStore();
     const { refetch } = usePaginatedSites(settlementId, 1, 12, "", []);
 
-    // Load the generation context
-    const { context, isWilderness } = useSiteGenerationContext(settlementId);
-
-    // Provide safe fallback values for generator hook input
-    const safeContext = {
-        terrain: context?.terrain ?? [],
-        climate: context?.climate ?? "",
-        tags: context?.tags ?? [],
-    };
-    const safeType = typeParam ?? ("tavern" as SiteFormData["type"]);
-
-    const currentTerrain = methods.watch("terrain");
-    const currentClimate = methods.watch("climate");
-    const currentTags = methods.watch("tags");
-
-    
-    const generator = useSiteGenerator(methods, {
-        siteType: safeType,
-        terrain: currentTerrain || [],
-        climate: currentClimate || "",
-        tags: currentTags || [],
-    }, isWilderness);
+    const { generator, isWilderness } = useSiteFormSetup({
+        methods,
+        settlementId,
+        rawSiteType: rawTypeParam,
+    });
 
     // Submission handler
     const onSubmit = async (data: SiteFormData) => {
