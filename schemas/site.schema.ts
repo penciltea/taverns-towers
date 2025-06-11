@@ -29,6 +29,8 @@ export const baseSiteSchema = z.object({
 export const menuItemSchema = z.object({
   name: z.string().min(1, "Name is required"),
   category: z.string().optional(),
+  rarity: z.string().optional(),
+  quantity: z.string().optional(),
   description: z.string().optional(),
   price: z.string().or(z.number()).transform((val) => val.toString()),
 });

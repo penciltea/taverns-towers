@@ -84,6 +84,8 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },
+                        { label: "Quality", field: "quality"}, 
+                        { label: "Quantity", field: "quantity"},
                         { label: "Description", field: "description" },
                         { label: "Price", field: "price" },
                     ]}

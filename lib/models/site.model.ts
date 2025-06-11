@@ -32,6 +32,8 @@ const BaseSiteSchema = new Schema(
 const MenuItemSchema = new Schema({
   name: { type: String, required: true },
   category: { type: String, required: false }, 
+  quality: { type: String, required: false },
+  quantity: { type: String, required: false },
   description: { type: String, required: false },
   price: { type: String, required: false }, //set to string to allow users to enter custom currency
 });

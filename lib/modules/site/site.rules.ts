@@ -1,7 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
-import { generateTavernValues } from "./tavern.rules";
+import { generateTavernData } from "./tavern/rules";
 import { SiteGenerationInput } from "./types";
 import { generateGovernmentValues } from "./government.rules";
 import { generateGuildValues } from "./guild.rules";
@@ -20,7 +20,7 @@ export const SiteGenerator: Record<string, (input: SiteGenerationInput) => Promi
     miscellaneous: generateMiscellaneousValues,
     residence: generateResidenceValues,
     shop: generateShopValues,
-    tavern: generateTavernValues,
+    tavern: generateTavernData,
     temple: generateTempleValues
 };
 

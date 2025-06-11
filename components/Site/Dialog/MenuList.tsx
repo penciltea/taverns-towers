@@ -3,6 +3,8 @@ import { Box, Typography } from "@mui/material";
 interface MenuItem {
   name: string;
   category?: string;
+  quality?: string;
+  quantity?: string;
   price?: string;
   description?: string;
 }

@@ -70,7 +70,7 @@ export interface ShopSite extends BaseSite {
   type: "shop";
   shopType?: string;
   owner?: string;
-  menu?: { name: string; description?: string; price: string }[];
+  menu?: { name: string; description?: string; quality?: string; quantity?: string; price: string }[];
 }
 
 export interface GuildSite extends BaseSite {
