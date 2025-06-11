@@ -14,12 +14,9 @@ export async function applyDomainsByConditions(data: NormalizedSettlementInput):
 
     if (
       shouldGenerate &&
-      data.tags &&
-      !data.tags.includes("random") &&
-      data.terrain &&
-      !data.terrain.includes("random") &&
-      data.climate &&
-      data.climate !== "random"
+      data.tags && !data.tags.includes("random") &&
+      data.terrain && !data.terrain.includes("random") &&
+      data.climate && data.climate !== "random"
     ) {
       const [tagEntries, terrainEntries, climateEntry] = await Promise.all([
         DomainsByTag.find({ tag: { $in: data.tags } }).lean(),
@@ -39,7 +36,7 @@ export async function applyDomainsByConditions(data: NormalizedSettlementInput):
 
       const unique = Array.from(new Set(allDomains));
       data.domains = getRandomSubset(unique, 1, 3);
-      
+
     }
   } catch (err) {
     console.warn("applyDomainsByConditions failed, using local fallback:", err);

@@ -17,59 +17,58 @@ import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { normalizeSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { generateSettlementData } from "@/lib/actions/settlementGenerator.actions";
+import { useSettlementQuery } from "@/hooks/settlement.query";
 
 
 export default function EditSettlementFormPage() {
   const router = useRouter();
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [ hasLoaded, setHasLoaded ] = useState(false);
   const { setLoading, showErrorDialog } = useUIStore();
-  const { setSelectedItem, mode } = useSettlementContentStore();
-  const [loadedSettlementValues, setLoadedSettlementValues] = useState<SettlementFormData | null>(null);
+  const { setSelectedItem, clearSelectedItem, mode } = useSettlementContentStore();
+  const [ loadedSettlementValues, setLoadedSettlementValues ] = useState<SettlementFormData | null>(null);
 
   const { id } = useParams();
   const safeId = getSingleParam(id);
-
-  if (safeId) {
-    useFormMode(safeId, useSettlementContentStore, getSettlementById);
-  }
-
-  const { saveSettlement } = useSaveSettlementMutation({ id: safeId, mode: mode ?? "edit" });
-
+  
   const methods = useFormWithSchema(settlementSchema, {
     defaultValues: defaultSettlementValues
   });
 
-  const loadSettlement = async (id: string) => {
-    setLoading(true);
-    try {
-      const fetchedSettlement = await getSettlementById(id);
-      if (!fetchedSettlement) {
-        showErrorDialog("Settlement not found, please try again later!");
-        return;
-      }
+  useFormMode(safeId, useSettlementContentStore);
 
-      setSelectedItem(fetchedSettlement);
+  const { data: settlement, isLoading, error } = useSettlementQuery(safeId ?? null);
+
+  // Update Zustand and reset form when data arrives
+  useEffect(() => {
+    if(settlement){
+      setSelectedItem(settlement);
 
       const mergedSettlement = normalizeSettlementData({
         ...defaultSettlementValues,
-        ...fetchedSettlement,
+        ...settlement
       }) as SettlementFormData;
 
       methods.reset(mergedSettlement);
-      setLoadedSettlementValues(mergedSettlement);
       setHasLoaded(true);
-    } catch (error) {
-      console.error(error);
-      showErrorDialog("Failed to load settlement, please try again later!");
-    } finally {
-      setLoading(false);
-    }
-  };
+    } else if(safeId && !isLoading){
+      // If no settlement, clear selection
 
-  useEffect(() => {
-    if (!safeId || mode !== "edit") return;
-    loadSettlement(safeId);
-  }, [safeId, mode]);
+      clearSelectedItem();
+      showErrorDialog("Settlement not found, please try again later!")
+
+    }
+  }, [settlement, isLoading, safeId, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
+
+  if (error) {
+    return (
+      <div className="error-message">
+        Error loading settlement: {error.message}
+      </div>
+    );
+  }
+
+
+  const { saveSettlement } = useSaveSettlementMutation({ id: safeId, mode: mode ?? "edit" });
 
   async function handleGenerate() {
     const { watch, setValue } = methods;
