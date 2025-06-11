@@ -62,7 +62,7 @@ export default function EditSettlementFormPage() {
   }
 
   return (
-    <SkeletonLoader loading={!isLoading} skeleton={<Spinner />}>
+    <SkeletonLoader loading={isLoading} skeleton={<Spinner />}>
       <FormProvider {...methods}>
         <SettlementForm onSubmit={onSubmit} mode={mode} onGenerate={handleGenerate} onReroll={handleReroll} />
       </FormProvider>
