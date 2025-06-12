@@ -44,7 +44,6 @@ export interface Settlement extends CommonInterface {
   rulingStyle?: string;
   wealth?: string;
   tradeNotes?: string;
-  guilds?: string;
   domains?: string[];
   holidays?: string;
   folklore?: string;

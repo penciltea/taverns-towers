@@ -30,12 +30,13 @@ export function useSiteFormSetup({
     const generator = useSiteGeneratorActions(
         methods,
         {
-        siteType,
-        terrain,
-        climate,
-        tags
+            siteType,
+            terrain,
+            climate,
+            tags
         },
-        isWilderness
+        isWilderness,
+        settlementId
     );
 
     return { generator, isWilderness };

@@ -6,7 +6,8 @@ import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGene
 import GeneratorSiteMenu from "@/lib/models/generator/site/menu.model";
 import { SiteGenerationInput } from "../modules/site/types";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SiteGenerator } from "../modules/site/site.rules";
+import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
+import { getSettlementById } from "./settlement.actions";
 
 interface GenerateMenuParams {
   siteType: string[];
@@ -70,8 +71,8 @@ export async function generateMenuItems({
     query.shopType = shopType;
   }
 
-  // We'll fetch candidates matching siteType (+shopType) first
-  // Then do filtering on climate/terrain/tags in code to handle empty arrays meaning universal
+  // fetch candidates matching siteType (+shopType) first
+  // Then do filtering on climate/terrain/tags in code to handle empty arrays
 
   const candidates = await GeneratorSiteMenu.find(query).lean();
 
@@ -106,30 +107,37 @@ export async function generateSiteData(
 ): Promise<SiteFormData> {
   await connectToDatabase();
 
+  // console.log("generator input (fallback path):", {
+  //  climate: input.climate,
+  //  terrain: input.terrain,
+  //  tags: input.tags,
+  //  ...input.overrides,
+  // });
+
+  if (input.settlementId) {
+    // Fetch the full settlement first
+    const settlement = await getSettlementById(input.settlementId);
+
+    // Use your helper to generate site data from settlement + overrides
+    return generateSiteValuesFromSettlement(type, settlement, input.overrides ?? {});
+  }
+
+  // Fallback if no settlement context: just call the generator directly
   const generator = SiteGenerator[type];
   if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
 
   const baseInput: SiteGenerationInput = {
+    ...input.overrides,
     climate: rerollAll ? input.climate ?? "random" : input.climate,
     terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
-    tags: rerollAll ? input.tags ?? ["random"] : input.tags,
-    size: rerollAll ? input.size ?? "random" : input.size,
-    condition: rerollAll ? input.condition ?? "random" : input.condition,
-    ...input
+    tags: rerollAll ? input.tags ?? ["random"] : input.tags
   };
 
-  const coreData = await generator(baseInput);
-
-  const name = await generateSiteName({
-    category: type,
-    siteType: [type],
-    terrain: baseInput.terrain,
-    climate: baseInput.climate,
-    tags: baseInput.tags,
+  return await generateSiteValues(type, {
+    overrides: input.overrides ?? {},
+    climate: rerollAll ? input.climate ?? "random" : input.climate,
+    terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
+    tags: rerollAll ? input.tags ?? ["random"] : input.tags
+    // include any other context fields you want to pass along
   });
-
-  return {
-    ...coreData,
-    name: coreData.name && coreData.name !== "" ? coreData.name : name,
-  };
 }

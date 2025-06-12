@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteName, generateMenuItems } from "@/lib/actions/siteGenerator.actions";
-import { generateSiteValues } from "@/lib/modules/site/site.rules";
+import { generateSiteName, generateMenuItems, generateSiteData } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
 
@@ -23,7 +22,8 @@ type UseSiteGeneratorActionsReturn = {
 export function useSiteGeneratorActions(
   methods: UseFormReturn<SiteFormData>,
   context: GeneratorContext,
-  isWilderness: boolean
+  isWilderness: boolean,
+  settlementId?: string
 ): UseSiteGeneratorActionsReturn {
   const { siteType, climate, terrain, tags } = context;
 
@@ -36,9 +36,11 @@ export function useSiteGeneratorActions(
     tags: string[];
   } | null>(null);
 
+
   const getShopType = useCallback(() => {
     return getValues("shopType");
   }, [methods]);
+
 
   const regenerateEnvironment = useCallback(
     async (force = false) => {
@@ -75,6 +77,7 @@ export function useSiteGeneratorActions(
     [climate, terrain, tags, isWilderness, cachedEnv, methods]
   );
 
+
   const generateName = useCallback(async () => {
     if (!siteType) return;
     
@@ -92,6 +95,7 @@ export function useSiteGeneratorActions(
 
     methods.setValue("name", name);
 }, [siteType, methods, getShopType, regenerateEnvironment]);
+
 
   const generateMenu = useCallback(async (env?: EnvironmentInterface) => {
     const effectiveEnv = env || await regenerateEnvironment();
@@ -117,28 +121,46 @@ export function useSiteGeneratorActions(
     methods.setValue("menu", cleanedItems);
   }, [siteType, methods, getShopType, regenerateEnvironment]);
 
+
   const generateAll = useCallback(async () => {
     if (!siteType) return;
 
     const env = await regenerateEnvironment(false);
-    const shopType = getShopType();
+    const currentValues = methods.getValues();
+    const overrides = { ...currentValues };
 
-    const result = await generateSiteValues(siteType, {
-      terrain: env.terrain,
-      climate: env.climate,
-      tags: env.tags,
-      name: methods.getValues("name"),
-      size: methods.getValues("size"),
-      condition: methods.getValues("condition"),
-      shopType,
-    });
+
+    const result = await generateSiteData(
+      siteType,
+      isWilderness
+        ? {
+            terrain: env.terrain,
+            climate: env.climate,
+            tags: env.tags,
+            overrides,
+          }
+        : {
+            settlementId,
+            overrides,
+          },
+      false
+    );
 
     Object.entries(result).forEach(([key, value]) => {
-      methods.setValue(key as keyof SiteFormData, value);
+      const currentValue = methods.getValues(key as keyof SiteFormData);
+
+      const isEmpty = currentValue === undefined || currentValue === null || currentValue === "" ||
+        (Array.isArray(currentValue) && currentValue.length === 0);
+
+      if (isEmpty && value !== undefined && value !== null && value !== "") {
+        methods.setValue(key as keyof SiteFormData, value);
+      }
     });
 
     await generateMenu(env);
-  }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
+  }, [siteType, methods, generateMenu, regenerateEnvironment]);
+
+
 
   const rerollAll = useCallback(async () => {
     if (!siteType) return;
@@ -146,12 +168,23 @@ export function useSiteGeneratorActions(
     const env = await regenerateEnvironment(true);
     const shopType = getShopType();
 
-    const result = await generateSiteValues(siteType, {
-      terrain: env.terrain,
-      climate: env.climate,
-      tags: env.tags,
-      shopType,
-    });
+    const emptyOverrides: Partial<SiteFormData> = {};
+
+    const result = await generateSiteData(
+      siteType,
+      isWilderness
+        ? {
+            terrain: env.terrain,
+            climate: env.climate,
+            tags: env.tags,
+            overrides: emptyOverrides
+          }
+        : {
+            settlementId,
+            overrides: emptyOverrides
+          },
+      true // rerollAll
+    );
 
     Object.entries(result).forEach(([key, value]) => {
       methods.setValue(key as keyof SiteFormData, value);
@@ -159,6 +192,7 @@ export function useSiteGeneratorActions(
 
     await generateMenu(env);
   }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
+
 
   return {
     name: generateName,

@@ -1,0 +1,86 @@
+[
+    {
+        "size": "Ancient Ruins",
+        "clientele": ["treasure hunters", "historians", "archaeologists"]
+    }, 
+    {
+        "size": "Arcane Nexus",
+        "clientele": ["mages", "arcane scholars", "magical experimenters"]
+    }, 
+    {
+        "size": "Border Post",
+        "clientele": ["border patrols", "messengers", "foreign travelers"]
+    }, 
+    {
+        "size": "Capital",
+        "clientele": ["politicians", "wealthy elites", "ambassadors"]
+    }, 
+    {
+        "size": "Criminal Hideout",
+        "clientele": ["thieves", "spies", "black market dealers"]
+    }, 
+    {
+        "size": "Druidic",
+        "clientele": ["druids", "herbalists", "forest folk"]
+    }, 
+    {
+        "size": "Fishing",
+        "clientele": ["fisherfolk", "dockhands", "fishmongers"]
+    }, 
+    {
+        "size": "Fortress",
+        "clientele": ["soldiers", "military officers", "weapon merchants"]
+    }, 
+    {
+        "size": "Garrison",
+        "clientele": ["guards", "soldiers", "off-duty officers"]
+    }, 
+    {
+        "size": "Hidden",
+        "clientele": ["outcasts", "fugitives", "secretive locals"]
+    }, 
+    {
+        "size": "Infested",
+        "clientele": ["monster hunters", "survivors", "paranoid travelers"]
+    }, 
+    {
+        "size": "Isolated",
+        "clientele": ["loners", "hermits", "self-reliant settlers"]
+    }, 
+    {
+        "size": "Mining Camp",
+        "clientele": ["miners", "stonecutters", "ore traders"]
+    }, 
+    {
+        "size": "Nomadic",
+        "clientele": ["travelers", "bards", "wandering craftspeople"]
+    }, 
+    {
+        "size": "Overgrown",
+        "clientele": ["scavengers", "rangers", "botanists"]
+    }, 
+    {
+        "size": "Port",
+        "clientele": ["sailors", "merchants", "smugglers"]
+    }, 
+    {
+        "size": "Prison Settlement",
+        "clientele": ["guards", "parolees", "ex-convicts"]
+    }, 
+    {
+        "size": "Remote",
+        "clientele": ["curious adventurers", "explorers", "lone traders"]
+    }, 
+    {
+        "size": "Sacred Site",
+        "clientele": ["pilgrims", "clerics", "divine scholars"]
+    }, 
+    {
+        "size": "Trade Hub",
+        "clientele": ["merchants", "caravan leaders", "bargain hunters"]
+    }, 
+    {
+        "size": "Military Outpost",
+        "clientele": ["recruits", "veterans", "commanders"]
+    }
+]

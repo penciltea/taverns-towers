@@ -21,14 +21,12 @@ export const SITE_SIZE = [
 ];
 
 export const SITE_CONDITION = [
-    { value: "dilapidated", label: "Dilapidated (falling apart, crumbling)"},
-    { value: "rundown", label: "Rundown (neglected but still functional)"},
-    { value: "weathered", label: "Weathered (aged, exposed to elements)"},
-    { value: "modest", label: "Modest (clean but plain)"},
-    { value: "well-kept", label: "Well-kept (maintained with care)"},
-    { value: "pristine", label: "Pristine (immaculately clean and orderly)"},
-    { value: "renovated", label: "Newly Renovated (recently refurbished)"},
-    { value: "opulent", label: "Opulent (lavishly maintained, luxurious)"}
+    { value: "squalid", label: "Squalid (neglected but still functional)"},
+    { value: "poor", label: "Poor (simple, without much comfort)"},
+    { value: "average", label: "Average (clean but plain)"},
+    { value: "comfortable", label: "Comfortable (maintained with care)"},
+    { value: "wealthy", label: "Wealthy (Luxurious, maintained extremely well)"},
+    { value: "aristocratic", label: "Aristocratic (Highest quality, lavish and luxurious standards)"}
 ];
 
 /* For Government site type form */

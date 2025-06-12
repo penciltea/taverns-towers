@@ -7,15 +7,17 @@ import { useState } from 'react';
 import { Typography } from '@mui/material';
 import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
 import GridItem from '@/components/Grid/GridItem';
+import { Spinner } from '@/components/Common/Spinner';
 
 export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
   const [params, setParams] = useState(DefaultSettlementQueryParams);
 
-  const { data, isLoading, isError } = useSettlementsQuery(params);
+  const { data, isLoading, error } = useSettlementsQuery(params);
 
-  if (isLoading) return <Typography>Loading settlements...</Typography>;
-  if (isError || !data?.success) return <Typography>Failed to load settlements.</Typography>;
+  if (isLoading) return <Spinner />
+
+  if (error || !data?.success) return <Typography>Failed to load settlements.</Typography>;
 
   return (
     <>

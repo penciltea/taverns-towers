@@ -131,7 +131,6 @@ function serializeSite(site: any): SiteType {
 
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
-  console.log("Object: ", ObjectId.isValid(settlementId));
   const model = Site.discriminators?.[data.type] || Site;
 
   const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
@@ -142,8 +141,7 @@ export async function createSite(data: SiteType, settlementId: string) {
   } else {
     revalidatePath(`/wilderness`);
   }
-
-  console.log("new Site: ", newSite);
+  
   return serializeSite(newSite);
 }
 

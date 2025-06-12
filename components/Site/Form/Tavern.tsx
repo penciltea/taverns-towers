@@ -97,7 +97,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                     columns={[
                         { label: "Name", field: "name" },
                         { label: "Category", field: "category" },
-                        { label: "Quality", field: "quality"},
+                        { label: "Quality / Rarity", field: "quality"},
                         { label: "Description", field: "description" },
                         { label: "Price", field: "price" },
                     ]}
