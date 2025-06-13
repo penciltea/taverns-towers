@@ -17,5 +17,5 @@ export const ClienteleByTag =
     model<ClienteleByTagModel>(
         "ClienteleByTag",
         ClienteleByTagSchema,
-        "generator_tavern_clientele_by_size"
+        "generator_tavern_clientele_by_tag"
     );

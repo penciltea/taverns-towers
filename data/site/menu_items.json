@@ -207,7 +207,7 @@
       ],
       "tags": [
         "Well-kept",
-        "Opulent"
+        "Affluent"
       ]
     },
     {
@@ -879,7 +879,7 @@
     "shopType": "tailor",
       "climate": ["Temperate"],
       "terrain": ["Coast", "Plains"],
-      "tags": ["Capital", "Opulent"]
+      "tags": ["Capital"]
     },
     {
       "name": "Woolen Undergarments",

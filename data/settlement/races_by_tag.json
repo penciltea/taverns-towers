@@ -1,0 +1,86 @@
+[
+    {
+        "tag": "Ancient Ruins", 
+        "races": ["Elves", "Gnomes", "Tieflings", "Yuan-ti"]
+    }, 
+    {
+        "tag": "Arcane Nexus", 
+        "races": ["High Elves", "Tieflings", "Gnomes", "Dragonborn"]
+    }, 
+    {
+        "tag": "Border Post", 
+        "races": ["Humans", "Half-Orcs", "Dwarves"]
+    }, 
+    {
+        "tag": "Capital", 
+        "races": ["Humans", "Elves", "Dwarves", "All Races"]
+    }, 
+    {
+        "tag": "Criminal Hideout", 
+        "races": ["Half-Orcs", "Tieflings", "Goblins"]
+    }, 
+    {
+        "tag": "Druidic", 
+        "races": ["Firbolgs", "Elves", "Halflings"]
+    }, 
+    {
+        "tag": "Fishing", 
+        "races": ["Halflings", "Tritons", "Sea Elves"]
+    }, 
+    {
+        "tag": "Fortress", 
+        "races": ["Dwarves", "Humans", "Goliaths"]
+    }, 
+    {
+        "tag": "Garrison", 
+        "races": ["Humans", "Half-Orcs", "Dwarves"]
+    }, 
+    {
+        "tag": "Hidden", 
+        "races": ["Drow", "Deep Gnomes", "Tieflings"]
+    }, 
+    {
+        "tag": "Infested", 
+        "races": ["Goblins", "Kobolds", "Duergar"]
+    }, 
+    {
+        "tag": "Isolated", 
+        "races": ["Firbolgs", "Elves", "Goliaths"]
+    }, 
+    {
+        "tag": "Mining Camp", 
+        "races": ["Dwarves", "Gnomes", "Duergar"]
+    }, 
+    {
+        "tag": "Nomadic", 
+        "races": ["Tabaxi", "Halflings", "Half-Orcs"]
+    }, 
+    {
+        "tag": "Overgrown", 
+        "races": ["Firbolgs", "Elves", "Lizardfolk"]
+    }, 
+    {
+        "tag": "Port", 
+        "races": ["Humans", "Tritons", "Half-Elves"]
+    }, 
+    {
+        "tag": "Prison Settlement", 
+        "races": ["Half-Orcs", "Tieflings", "Humans"]
+    }, 
+    {
+        "tag": "Remote", 
+        "races": ["Goliaths", "Firbolgs", "Dwarves"]
+    }, 
+    {
+        "tag": "Sacred Site", 
+        "races": ["Aasimar", "Elves", "Gnomes"]
+    }, 
+    {
+        "tag": "Trade Hub", 
+        "races": ["Humans", "Half-Elves", "Dwarves", "All Races"]
+    }, 
+    {
+        "tag": "Military Outpost", 
+        "races": ["Humans", "Half-Orcs", "Goliaths"]
+    }
+]

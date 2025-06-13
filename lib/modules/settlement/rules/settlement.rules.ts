@@ -4,7 +4,7 @@ import { NormalizedSettlementInput, normalizeSettlementInput } from "./normalize
 import { applyDomainsByConditions } from "./domain.rules";
 import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
-import { applyRacesByTerrain } from "./race.rules";
+import { applyRacesByConditions } from "./race.rules";
 import { applySizeRule } from "./size.rules";
 import { applyTradeNotesRule } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
@@ -17,7 +17,7 @@ const ruleFns = [
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
   applyMagicByWealthRule,
-  applyRacesByTerrain,
+  applyRacesByConditions,
   applyTradeNotesRule,
   applyDomainsByConditions,
   applyHolidaysByConditions,

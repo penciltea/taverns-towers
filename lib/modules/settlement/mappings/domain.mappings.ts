@@ -1,4 +1,5 @@
 import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
+import { SizeTypes } from "@/constants/settlementOptions";
 
 export const DomainsByClimateMapping: Partial<Record<ClimateTypes, string[]>> = {
   Polar: ["Winter", "Survival", "Nature", "Moon", "Protection"],
@@ -45,4 +46,14 @@ export const DomainsByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Sacred Site": ["Life", "Light", "Glory", "Twilight", "Dreams"],
   "Trade Hub": ["Luck", "Travel", "Forge", "Glory", "Knowledge"],
   "Military Outpost": ["War", "Protection", "Law", "Glory", "Forge"],
+};
+
+export const domainCountBySize: Record<SizeTypes, [number, number]> = {
+  Encampment: [1, 1],
+  Thorp: [1, 1],
+  Hamlet: [1, 2],
+  Village: [2, 3],
+  Town: [3, 4],
+  City: [4, 6],
+  Metropolitan: [5, 7],
 };

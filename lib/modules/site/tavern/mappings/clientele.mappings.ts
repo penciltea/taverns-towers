@@ -1,5 +1,5 @@
 import { TagTypes } from "@/constants/environmentOptions";
-import { SizeTypes } from "@/constants/settlementOptions";
+import { MagicLevel, SizeTypes } from "@/constants/settlementOptions";
 
 export const BaseClienteleBySettlementSize: Record<SizeTypes, string[]> = {
   Encampment: [
@@ -82,3 +82,11 @@ export const ClienteleByTag: Record<TagTypes, string[]> =
   "Military Outpost": ["recruits", "veterans", "commanders"]
 };
 
+export const ClienteleByMagic: Record<MagicLevel, string[]> = 
+{
+  "None": ["superstitious locals", "magic-averse folk", "old-fashioned traders"],
+  "Low": ["hedge witches", "folk healers", "skeptical townsfolk"],
+  "Moderate": ["wandering mages", "apprentices", "alchemists"],
+  "High": ["wizards", "magical researchers", "enchanted item traders"],
+  "Mythic": ["planar travelers", "arcane constructs", "reality-warped patrons"]
+}
