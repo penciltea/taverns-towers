@@ -1,7 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
-import { generateTavernData } from "./tavern/rules";
+import { generateTavernData } from "./tavern/tavern.rules";
 import { SiteGenerationInput } from "./types";
 import { generateGovernmentValues } from "./government.rules";
 import { generateGuildValues } from "./guild.rules";

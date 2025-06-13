@@ -1,0 +1,52 @@
+[
+    {
+        "wealth": "Impoverished",
+        "clientele": [
+            "beggars",
+            "day laborers",
+            "thieves looking for easy marks",
+            "drunken locals",
+            "out-of-work artisans"
+        ]
+    },
+    {
+        "wealth": "Struggling",
+        "clientele": [
+            "frugal tradespeople",
+            "down-on-their-luck adventurers",
+            "skeptical locals",
+            "off-duty guards",
+            "wary merchants"
+        ]
+    },
+    {
+        "wealth": "Modest",
+        "clientele": [
+            "hardworking commoners",
+            "traveling merchants",
+            "village elders",
+            "wandering entertainers",
+            "temple acolytes"
+        ]
+    },
+    {
+        "wealth": "Wealthy",
+        "clientele": [
+            "minor nobles",
+            "well-dressed merchants",
+            "off-duty officials",
+            "scholars with coin to spend",
+            "retired adventurers"
+        ]
+    },
+    {
+        "wealth": "Affluent",
+        "clientele": [
+            "nobles and dignitaries",
+            "magical patrons",
+            "guild masters",
+            "wealthy thrill-seekers",
+            "exotic travelers"
+        ]
+    }
+]

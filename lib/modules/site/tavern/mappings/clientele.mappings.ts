@@ -1,7 +1,7 @@
 import { TagTypes } from "@/constants/environmentOptions";
-import { MagicLevel, SizeTypes } from "@/constants/settlementOptions";
+import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
 
-export const BaseClienteleBySettlementSize: Record<SizeTypes, string[]> = {
+export const BaseClienteleBySettlementSizeMapping: Record<SizeTypes, string[]> = {
   Encampment: [
     "nomads",
     "hunters",
@@ -57,7 +57,7 @@ export const BaseClienteleBySettlementSize: Record<SizeTypes, string[]> = {
   ]
 };
 
-export const ClienteleByTag: Record<TagTypes, string[]> = 
+export const ClienteleByTagMapping: Record<TagTypes, string[]> = 
 {
   "Ancient Ruins": ["treasure hunters", "historians", "archaeologists"],
   "Arcane Nexus": ["mages", "arcane scholars", "magical experimenters"],
@@ -82,7 +82,7 @@ export const ClienteleByTag: Record<TagTypes, string[]> =
   "Military Outpost": ["recruits", "veterans", "commanders"]
 };
 
-export const ClienteleByMagic: Record<MagicLevel, string[]> = 
+export const ClienteleByMagicMapping: Record<MagicLevel, string[]> = 
 {
   "None": ["superstitious locals", "magic-averse folk", "old-fashioned traders"],
   "Low": ["hedge witches", "folk healers", "skeptical townsfolk"],
@@ -90,3 +90,37 @@ export const ClienteleByMagic: Record<MagicLevel, string[]> =
   "High": ["wizards", "magical researchers", "enchanted item traders"],
   "Mythic": ["planar travelers", "arcane constructs", "reality-warped patrons"]
 }
+
+export const ClienteleByWealthMapping: Record<WealthLevel, string[]> = {
+  Poor: [
+    "laborers",
+    "travelers seeking cheap lodging",
+    "street vendors",
+    "miners",
+    "farmhands"
+  ],
+  Moderate: [
+    "artisans",
+    "merchants",
+    "small business owners",
+    "local farmers",
+    "guild members",
+    "tradesmen"
+  ],
+  Wealthy: [
+    "nobles",
+    "wealthy merchants",
+    "landowners",
+    "merchants' representatives",
+    "retired adventurers",
+    "patrons of the arts"
+  ],
+  Aristocratic: [
+    "high nobility",
+    "politicians",
+    "foreign dignitaries",
+    "wealthy investors",
+    "renowned scholars",
+    "elite mercenaries"
+  ]
+};
