@@ -14,6 +14,7 @@ export interface SiteGenerationContext {
   origin?: "settlement" | "wilderness";
   settlementId?: string;
   settlementName?: string;
+  reroll?: boolean;
 }
 
 export interface SiteGenerationInput extends SiteGenerationContext {

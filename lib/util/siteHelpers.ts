@@ -13,7 +13,10 @@ export function isValidSiteCategory(value: string | null): value is SiteCategory
 // Creates a site generator function for a specific site type and its rules
 export function createSiteGenerator<T extends SiteFormData["type"]>(
   type: T,
-  rules: ((data: Extract<SiteFormData, { type: T }>, context: SiteGenerationContext) => Promise<Partial<Extract<SiteFormData, { type: T }>>>)[]
+  rules: ((
+    data: Extract<SiteFormData, { type: T }>, 
+    context: SiteGenerationContext
+  ) => Promise<Partial<Extract<SiteFormData, { type: T }>>>)[]
 ): (input: SiteGenerationInput) => Promise<Extract<SiteFormData, { type: T }>> {
   return async (input) => {
     const { overrides = {}, ...context } = input;

@@ -1,86 +1,86 @@
 [
     {
-        "size": "Ancient Ruins",
+        "tag": "Ancient Ruins",
         "clientele": ["treasure hunters", "historians", "archaeologists"]
     }, 
     {
-        "size": "Arcane Nexus",
+        "tag": "Arcane Nexus",
         "clientele": ["mages", "arcane scholars", "magical experimenters"]
     }, 
     {
-        "size": "Border Post",
+        "tag": "Border Post",
         "clientele": ["border patrols", "messengers", "foreign travelers"]
     }, 
     {
-        "size": "Capital",
+        "tag": "Capital",
         "clientele": ["politicians", "wealthy elites", "ambassadors"]
     }, 
     {
-        "size": "Criminal Hideout",
+        "tag": "Criminal Hideout",
         "clientele": ["thieves", "spies", "black market dealers"]
     }, 
     {
-        "size": "Druidic",
+        "tag": "Druidic",
         "clientele": ["druids", "herbalists", "forest folk"]
     }, 
     {
-        "size": "Fishing",
+        "tag": "Fishing",
         "clientele": ["fisherfolk", "dockhands", "fishmongers"]
     }, 
     {
-        "size": "Fortress",
+        "tag": "Fortress",
         "clientele": ["soldiers", "military officers", "weapon merchants"]
     }, 
     {
-        "size": "Garrison",
+        "tag": "Garrison",
         "clientele": ["guards", "soldiers", "off-duty officers"]
     }, 
     {
-        "size": "Hidden",
+        "tag": "Hidden",
         "clientele": ["outcasts", "fugitives", "secretive locals"]
     }, 
     {
-        "size": "Infested",
+        "tag": "Infested",
         "clientele": ["monster hunters", "survivors", "paranoid travelers"]
     }, 
     {
-        "size": "Isolated",
+        "tag": "Isolated",
         "clientele": ["loners", "hermits", "self-reliant settlers"]
     }, 
     {
-        "size": "Mining Camp",
+        "tag": "Mining Camp",
         "clientele": ["miners", "stonecutters", "ore traders"]
     }, 
     {
-        "size": "Nomadic",
+        "tag": "Nomadic",
         "clientele": ["travelers", "bards", "wandering craftspeople"]
     }, 
     {
-        "size": "Overgrown",
+        "tag": "Overgrown",
         "clientele": ["scavengers", "rangers", "botanists"]
     }, 
     {
-        "size": "Port",
+        "tag": "Port",
         "clientele": ["sailors", "merchants", "smugglers"]
     }, 
     {
-        "size": "Prison Settlement",
+        "tag": "Prison Settlement",
         "clientele": ["guards", "parolees", "ex-convicts"]
     }, 
     {
-        "size": "Remote",
+        "tag": "Remote",
         "clientele": ["curious adventurers", "explorers", "lone traders"]
     }, 
     {
-        "size": "Sacred Site",
+        "tag": "Sacred Site",
         "clientele": ["pilgrims", "clerics", "divine scholars"]
     }, 
     {
-        "size": "Trade Hub",
+        "tag": "Trade Hub",
         "clientele": ["merchants", "caravan leaders", "bargain hunters"]
     }, 
     {
-        "size": "Military Outpost",
+        "tag": "Military Outpost",
         "clientele": ["recruits", "veterans", "commanders"]
     }
 ]

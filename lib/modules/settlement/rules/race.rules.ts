@@ -12,8 +12,9 @@ export async function applyRacesByConditions(data: NormalizedSettlementInput): P
   try {
     const shouldGenerate = !data.races || data.races.trim() === "" || data.races === "random";
 
-    if (!shouldGenerate) return data;
+    if (!shouldGenerate) return data; // If race field is already filled in, just return data
 
+    // fields that are used as factors for race generation
     const terrain = data.terrain ?? [];
     const tags = data.tags ?? [];
     const magic = data.magic;
