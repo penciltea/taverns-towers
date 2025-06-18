@@ -1,0 +1,62 @@
+[
+    {
+        "tag": "Capital",
+        "entertainment": [
+            "Live Theater Skits", 
+            "Professional Dance Shows", 
+            "Arcane Light Shows"
+        ]
+    },
+    {
+        "tag": "Criminal Hideout",
+        "entertainment": [
+            "Underground Betting Rings", 
+            "Pit Fighting / Brawling Matches"
+        ]
+    },
+    {
+        "tag": "Druidic",
+        "entertainment": [
+            "Animal Acts / Trained Pet Shows", 
+            "Cultural Dance Exhibitions"
+        ]
+    },
+    {
+        "tag": "Arcane Nexus",
+        "entertainment": [
+            "Arcane Puppet Theater", 
+            "Enchanted Instrument Performances"
+        ]
+    },
+    {
+        "tag": "Fishing",
+        "entertainment": [
+            "Drunken Darts / Knife Throwing", 
+            "Singing Contests"
+        ]
+    },
+    {
+        "tag": "Trade Hub",
+        "entertainment": [
+            "Gambling Tables (House-Run)", 
+            "Comedic Acts / Stand-up"
+        ]
+    },
+    {
+        "tag": "Sacred Site",
+        "entertainment": [
+            "Poetry Readings", 
+            "Rune-Casting / Divination Games", 
+            "Fortune Telling",
+            "Seance / Ghost Story Night"
+        ]
+    },
+    {
+        "tag": "Hidden",
+        "entertainment": [
+            "Underground Betting Rings", 
+            "Card Games",
+            "Dice Games"
+        ]
+    }
+]

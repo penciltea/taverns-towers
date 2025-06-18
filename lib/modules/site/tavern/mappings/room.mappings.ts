@@ -5,7 +5,6 @@ export const roomBaseCost: Record<SiteCondition, number> = {
   squalid: 7,         // 7 cp
   poor: 10,           // 1 sp
   average: 50,         // 5 sp
-  comfortable: 80,    // 8 sp
   wealthy: 200,       // 2 gp
   aristocratic: 400,  // 4 gp
 };
@@ -26,7 +25,6 @@ export const roomConditionModifier: Record<SiteCondition, number> = {
   squalid: -0.25,
   poor: -0.10,
   average: 0,
-  comfortable: 0.10,
   wealthy: 0.25,
   aristocratic: 0.50,
 };

@@ -1,0 +1,42 @@
+[
+    {
+        "condition": "squalid",
+        "entertainment": [
+            "Pit Fighting / Brawling Matches", 
+            "Drunken Darts / Knife Throwing"
+        ]
+    },
+    {
+        "condition": "poor",
+        "entertainment": [
+            "Card Games", 
+            "Arm Wrestling Contests", 
+            "Dice Games"
+        ]
+    },
+    {
+        "condition": "average",
+        "entertainment": [
+            "Storytelling Circles", 
+            "Singing Contests", 
+            "Tavern Quizzes / Trivia Nights", 
+            "Tavern Quizzes / Trivia Nights"
+        ]
+    },
+    {
+        "condition": "wealthy",
+        "entertainment": [
+            "Magicians / Illusionists", 
+            "Enchanted Instrument Performances", 
+            "Cultural Dance Exhibitions"
+        ]
+    },
+    {
+        "condition": "aristocratic",
+        "entertainment": [
+            "Arcane Light Shows", 
+            "Charmed Object Shows", 
+            "Seance / Ghost Story Night"
+        ]
+    }
+]

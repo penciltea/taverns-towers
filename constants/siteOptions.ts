@@ -14,7 +14,6 @@ export const SITE_SIZE = [
     { value: "tiny", label: "Tiny (e.g., a single-room stall or shack)" },
     { value: "small", label: "Small (e.g., a modest cottage or kiosk)" },
     { value: "modest", label: "Modest (e.g., average-sized home or shop)" },
-    { value: "spacious", label: "Spacious (e.g., multiple rooms or areas)" },
     { value: "large", label: "Large (e.g., a two-story inn or hall)" },
     { value: "grand", label: "Grand (e.g., large manor, cathedral, or guild hall)" },
     { value: "sprawling", label: "Sprawling (e.g., compound, campus, or market square)" },
@@ -24,7 +23,6 @@ export const SITE_CONDITION = [
     { value: "squalid", label: "Squalid (neglected but still functional)"},
     { value: "poor", label: "Poor (simple, without much comfort)"},
     { value: "average", label: "Average (clean but plain)"},
-    { value: "comfortable", label: "Comfortable (maintained with care)"},
     { value: "wealthy", label: "Wealthy (Luxurious, maintained extremely well)"},
     { value: "aristocratic", label: "Aristocratic (Highest quality, lavish and luxurious standards)"}
 ];
@@ -112,6 +110,42 @@ export const ENTERTAINMENT_VENUE_TYPES = [
   "Underground Fight Pit",
   "Other"
 ];
+
+/* For Tavern types */
+export const TAVERN_ENTERTAINMENT_OFFERINGS = [
+  "Animal Acts / Trained Pet Shows",
+  "Arcane Light Shows",
+  "Arcane Puppet Theater",
+  "Arm Wrestling Contests",
+  "Bardic Performances",
+  "Card Games",
+  "Charmed Object Shows (Talking Skulls, Singing Spoons)",
+  "Comedic Acts / Stand-up",
+  "Cultural Dance Exhibitions",
+  "Dancing (Patron Participation)",
+  "Dice Games",
+  "Drinking Contests",
+  "Drunken Darts / Knife Throwing",
+  "Enchanted Instrument Performances",
+  "Fire Breathers / Jugglers",
+  "Fortune Telling",
+  "Gambling Tables (House-Run)",
+  "Interactive Mysteries / Riddles",
+  "Live Theater Skits",
+  "Local Talent Nights",
+  "Magicians / Illusionists",
+  "Pit Fighting / Brawling Matches",
+  "Poetry Readings",
+  "Professional Dance Shows",
+  "Puppet Shows",
+  "Rune-Casting / Divination Games",
+  "Seance / Ghost Story Night",
+  "Singing Contests",
+  "Storytelling Circles",
+  "Tavern Quizzes / Trivia Nights",
+  "Underground Betting Rings",
+];
+
 
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];

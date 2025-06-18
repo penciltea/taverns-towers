@@ -423,11 +423,6 @@ export const ClienteleByConditionMapping: Record<SiteCondition, string[]> = {
     "travelers seeking decent fare",
     "low-ranking guild members"
   ],
-  comfortable: [
-    "merchants with coin",
-    "well-kept adventurers",
-    "off-duty officials"
-  ],
   wealthy: [
     "nobles in disguise",
     "important visitors",

@@ -1,10 +1,11 @@
-import { FormSelect, FormTextField } from "@/components/Form";
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormEditableTable from "@/components/Form/FormEditableTable";
-import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 export default function TavernFields({generator}: SiteFormFieldProps){
     const {
@@ -54,10 +55,11 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 fieldError={errors.clientele}
             />
 
-            <FormTextField
+            <FormChipSelect
                 name="entertainment"
                 label="Entertainment Offerings"
-                registration={register("entertainment")}
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAVERN_ENTERTAINMENT_OFFERINGS)]}
                 fieldError={errors.entertainment}
             />
 

@@ -17,6 +17,16 @@ import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
 import { SiteCondition, SiteSize } from "@/constants/siteOptions";
 import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
+import { EntertainmentBySize, EntertainmentBySizeModel } from "@/lib/models/generator/site/tavern/entertainmentBySize.model";
+import { EntertainmentByCondition, EntertainmentByConditionModel } from "@/lib/models/generator/site/tavern/entertainmentByCondition.model";
+import { EntertainmentByMagic, EntertainmentByMagicModel } from "@/lib/models/generator/site/tavern/entertainmentByMagic.model";
+import { EntertainmentByTag, EntertainmentByTagModel } from "@/lib/models/generator/site/tavern/entertainmentByTag.model";
+import { ENTERTAINMENT_COUNT_BY_SITE_CONDITION, EntertainmentByMagicLevelMapping, EntertainmentBySiteConditionMapping, EntertainmentBySiteSizeMapping, EntertainmentByTagMapping } from "./mappings/entertainment.mappings";
+import { TavernSite } from "@/interfaces/site.interface";
+
+function isTavernSite(data: Partial<SiteFormData>): data is Partial<TavernSite> {
+  return data.type === "tavern";
+}
 
 function normalizeClientele(clientele: string[]): string[] {
   const seen = new Set<string>();
@@ -38,7 +48,7 @@ async function applyTavernClienteleByConditions(
   context: SiteGenerationContext
 ): Promise<Partial<SiteFormData>> {
 
-  if(data.type !== "tavern") return data; // If type is somehow not "tavern" return early
+  if (!isTavernSite(data)) return data; // If type is somehow not "tavern" return early
 
   const {
     size: settlementSize,
@@ -125,10 +135,68 @@ async function applyTavernClienteleByConditions(
   return data;
 }
 
-
-async function applyTavernRoomCostRule(
+async function applyEntertainmentByConditions(
   data: Partial<SiteFormData>,
   context: SiteGenerationContext
+): Promise<Partial<SiteFormData>> {
+  if (!isTavernSite(data)) return data;
+
+  // setting fields for generator factors
+  const size = data.size;
+  const condition = data.condition;
+  const settlementMagic = context.magic;
+  const settlementTags = context.tags ?? [];
+
+  // DB calls for populating arrays
+  const results = await Promise.allSettled([
+    size ? EntertainmentBySize.findOne({ size }).lean<EntertainmentBySizeModel | null>() : Promise.resolve(null),
+    condition ? EntertainmentByCondition.findOne({ condition }).lean<EntertainmentByConditionModel | null>() : Promise.resolve(null),
+    settlementMagic ? EntertainmentByMagic.findOne({ magic: settlementMagic }).lean<EntertainmentByMagicModel | null>() : Promise.resolve(null),
+    EntertainmentByTag.find({ tag: { $in: settlementTags } }).lean<EntertainmentByTagModel[]>()
+  ]);
+
+  const sizeEntertainment = extractArrayFromResult(
+    results[0],
+    (val) => val.entertainment,
+    size ? EntertainmentBySiteSizeMapping[size] ?? [] : []
+  );
+
+  const conditionEntertainment = extractArrayFromResult(
+    results[1],
+    (val) => val.entertainment,
+    condition ? EntertainmentBySiteConditionMapping[condition] ?? [] : []
+  );
+
+  const magicEntertainment = extractArrayFromResult(
+    results[2],
+    (val) => val.entertainment,
+    settlementMagic ? EntertainmentByMagicLevelMapping[settlementMagic] ?? [] : []
+  );
+
+  const tagEntertainment = extractArrayFromResult(
+    results[3],
+    (val) => val.entertainment,
+    settlementTags.flatMap((tag) => EntertainmentByTagMapping[tag] ?? [])
+  );
+  
+  const combined = [
+    ...sizeEntertainment,
+    ...conditionEntertainment,
+    ...magicEntertainment,
+    ...tagEntertainment
+  ];
+
+  const unique = Array.from(new Set(combined));
+
+  const [min, max] = ENTERTAINMENT_COUNT_BY_SITE_CONDITION[data.size ?? "average"] ?? [3, 4];
+  data.entertainment = getRandomSubset(unique, min, max);
+
+  return data;
+}
+
+
+async function applyTavernRoomCostRule(
+  data: Partial<SiteFormData>
 ): Promise<Partial<SiteFormData>> {
   if (
     data.type !== "tavern" ||
@@ -154,6 +222,7 @@ async function applyTavernRoomCostRule(
 const tavernRules = [
   ...commonRules,
   applyTavernClienteleByConditions,
+  applyEntertainmentByConditions,
   applyTavernRoomCostRule,
 ];
 

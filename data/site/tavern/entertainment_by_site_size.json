@@ -1,0 +1,63 @@
+[
+    {
+        "size": "tiny",
+        "entertainment": [
+            "Card Games",
+            "Dice Games",
+            "Drinking Contests"
+        ]
+    },
+    {
+        "size": "small",
+        "entertainment": [
+            "Card Games",
+            "Dice Games",
+            "Drinking Contests",
+            "Local Talent Nights",
+            "Arm Wrestling Contests"
+        ]
+    },
+    {
+        "size": "modest",
+        "entertainment": [
+            "Bardic Performances",
+            "Singing Contests",
+            "Comedic Acts / Stand-up",
+            "Storytelling Circles",
+            "Poetry Readings" 
+        ]
+    },
+    {
+        "size": "large",
+        "entertainment": [
+            "Dancing (Patron Participation)",
+            "Fire Breathers / Jugglers",
+            "Fortune Telling",
+            "Live Theater Skits",
+            "Bardic Performances"
+        ]
+    },
+    {
+        "size": "grand",
+        "entertainment": [
+            "Professional Dance Shows",
+            "Magicians / Illusionists",
+            "Gambling Tables (House-Run)",
+            "Animal Acts / Trained Pet Shows",
+            "Comedic Acts / Stand-up",
+            "Tavern Quizzes / Trivia Nights"
+        ]
+    },
+    {
+        "size": "sprawling",
+        "entertainment": [
+            "Professional Dance Shows",
+            "Gambing Tables (House-Run)",
+            "Animal Acts / Trained Pet Shows",
+            "Interactive Mysteries / Riddles",
+            "Fortune Telling",
+            "Tavern Quizzes / Trivia Nights",
+            "Underground Betting Rings"
+        ]
+    }
+]

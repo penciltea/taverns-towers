@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
@@ -50,7 +50,7 @@ const Tavern =
       owner: { type: String, required: false },
       clientele: { type: String, required: false },
       cost: { type: String, required: false },
-      entertainment: { type: String, required: false },
+      entertainment: { type: [String], enum: TAVERN_ENTERTAINMENT_OFFERINGS, required: false },
       menu: [MenuItemSchema]
     })
   );

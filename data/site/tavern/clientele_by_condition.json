@@ -24,14 +24,6 @@
         ]
     },
     {
-        "condition": "comfortable",
-        "clientele": [
-            "merchants with coin",
-            "well-kept adventurers",
-            "off-duty officials"
-        ]
-    },
-    {
         "condition": "wealthy",
         "clientele": [
             "nobles in disguise",

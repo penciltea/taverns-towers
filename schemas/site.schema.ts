@@ -40,7 +40,7 @@ export const tavernSchema = baseSiteSchema.extend({
   owner: z.string().optional(),
   clientele: z.string().optional(),
   cost: z.string().optional(),
-  entertainment: z.string().optional(),
+  entertainment: z.array(z.string()),
   menu: z.array(menuItemSchema).optional(),
 });
 
@@ -134,7 +134,7 @@ export const defaultSiteValues: Record<
     type: "tavern",
     clientele: "",
     owner: "",
-    entertainment: "",
+    entertainment: [],
     cost: "",
     menu: []
   },

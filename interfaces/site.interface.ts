@@ -53,7 +53,7 @@ export interface TavernSite extends BaseSite {
   type: "tavern";
   owner?: string;
   clientele?: string;
-  entertainment?: string;
+  entertainment?: string[];
   cost?: string;
   menu?: { name: string; description: string; price: string }[];
 }
