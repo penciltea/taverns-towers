@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
 const { Schema, model, models } = mongoose;
 
-interface FolkloreByTerrainModel {
+export interface FolkloreByTerrainModel {
     terrain: TerrainTypes,
     folklore: string[];
 }

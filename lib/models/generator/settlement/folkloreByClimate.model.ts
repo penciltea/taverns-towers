@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
 const { Schema, model, models } = mongoose;
 
-interface FolkloreByClimateModel {
+export interface FolkloreByClimateModel {
     climate: ClimateTypes,
-    folklore: String[];
+    folklore: string[];
 }
 
 const FolkloreByClimateSchema = new Schema<FolkloreByClimateModel>({
     climate: { type: String, enum: CLIMATE_TYPES, required: true, unique: true },
-    folklore: { type: [String], required: false }
+    folklore: { type: [String], required: true }
 });
 
 export const FolkloreByClimate = 

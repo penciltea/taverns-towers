@@ -1,6 +1,7 @@
 [
   {
-    "None": [
+    "magic": "None",
+    "holidays": [
       "Lantern Hands (Winter Solstice): A practical holiday where community lanterns are relit and tools blessed for another hard year.",
       "Maker’s March (Early Spring): Honoring inventors, farmers, and builders with public fairs and problem-solving games.",
       "Binding Oath Day (First Week of Summer): Contracts and deals are ceremonially renewed in front of elders and peers.",
@@ -10,7 +11,8 @@
     ]
   },
   {
-    "Low": [
+    "magic": "Low",
+    "holidays": [
       "Wispwatch (First Fog of Autumn): Small lights are carried through town to honor ancestors who may visit in the mist.",
       "Charmkind Day (Spring Equinox): Artisans gift simple good luck charms made with thread, bone, or clay.",
       "Candlebind (New Moon in Winter): Families light handmade candles believed to ward off misfortune.",
@@ -20,7 +22,8 @@
     ]
   },
   {
-    "Moderate": [
+    "magic": "Moderate",
+    "holidays": [
       "Glintswell (Spring Bloom): Magic wells and fountains are polished, and offerings are tossed in to keep magic flowing cleanly.",
       "Runefrost Eve (First Frost): Old runes are retraced on doors and hearths for winter protection.",
       "Lightleap Day (Summer Solstice): Mages display minor spells in synchronized dances of light and air.",
@@ -30,7 +33,8 @@
     ]
   },
   {
-    "High": [
+    "magic": "High",
+    "holidays": [
       "Arcflare Festival (Late Summer): Grand lightshows and illusions fill the sky in a celebration of magical artistry.",
       "Leydrift (Spring Equinox): Communities gather at leyline nexuses for group meditation and magical attunement.",
       "Wandbearers’ Day (First Full Moon of Summer): Mages pass down their first wand or focus to an apprentice.",
@@ -40,7 +44,8 @@
     ]
   },
   {
-    "Mythic": [
+    "magic": "Mythic",
+    "holidays": [
       "Veil’s Shatter (Twilight of the Longest Night): Celebrates the ancient moment when magic flooded the world. Massive rituals reenact the event.",
       "Eclipsewake (Every Solar Eclipse): Mythic-level wards are recast as celestial bodies align, said to keep reality intact.",
       "Myrrhchant (Midwinter): Rare spell ingredients are traded in silent reverence; thought to please primal arcane entities.",

@@ -1,52 +1,50 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { DomainsByClimateMapping, DomainsByTerrainMapping, DomainsByTagMapping, domainCountBySize } from "../mappings/domain.mappings";
-import { DomainsByTag } from "@/lib/models/generator/settlement/domainByTags.model";
-import { DomainsByTerrain } from "@/lib/models/generator/settlement/domainByTerrain.model";
-import { DomainsByClimate } from "@/lib/models/generator/settlement/domainByClimate.model";
+import { DomainsByTag, DomainsByTagModel } from "@/lib/models/generator/settlement/domainByTags.model";
+import { DomainsByTerrain, DomainsByTerrainModel } from "@/lib/models/generator/settlement/domainByTerrain.model";
+import { DomainsByClimate, DomainsByClimateModel } from "@/lib/models/generator/settlement/domainByClimate.model";
 import { NormalizedSettlementInput } from "./normalize";
+import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 
 export async function applyDomainsByConditions(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
-  try {
-    const shouldGenerate = !data.domains || data.domains.includes("random")
+  const shouldGenerate = !data.domains || data.domains.includes("random")
+  if (!shouldGenerate) return data; 
+  
+  const tags = data.tags ?? [];
+  const terrain = data.terrain ?? [];
+  const climate = data.climate;
 
-    if (!shouldGenerate) return data;
+  // DB calls for populating arrays
+  const results = await Promise.allSettled([
+    DomainsByTag.find({ tag: { $in: tags } }).lean<DomainsByTagModel[]>(),
+    DomainsByTerrain.find({ terrain: { $in: terrain } }).lean<DomainsByTerrainModel[]>(),
+    climate ? DomainsByClimate.findOne({ climate }).lean<DomainsByClimateModel | null>() : Promise.resolve(null),
+  ]);
 
-    const tags = data.tags ?? [];
-    const terrain = data.terrain ?? [];
-    const climate = data.climate;
+  const tagDomains = extractArrayFromResult(
+    results[0],
+    (val) => val.domains,
+    tags.flatMap((tag) => DomainsByTagMapping[tag] ?? [])
+  );
 
-    const [tagResult, terrainResult, climateResult] = await Promise.allSettled([
-      DomainsByTag.find({ tag: { $in: tags } }).lean(),
-      DomainsByTerrain.find({ terrain: { $in: terrain } }).lean(),
-      climate ? DomainsByClimate.findOne({ climate }).lean() : Promise.resolve(null),
-    ]);
+  const terrainDomains = extractArrayFromResult(
+    results[1],
+    (val) => val.domains,
+    terrain.flatMap((terrain) => DomainsByTerrainMapping[terrain] ?? [])
+  );
 
-    const tagDomains = tagResult.status === "fulfilled" ? tagResult.value.flatMap(r => r.domains ?? []) : [];
-    const terrainDomains = terrainResult.status === "fulfilled" ? terrainResult.value.flatMap(r => r.domains ?? []) : [];
-    const climateDomains = climateResult.status === "fulfilled" && climateResult.value ? climateResult.value.domains ?? [] : [];
+  const climateDomains = extractArrayFromResult(
+    results[2],
+    (val) => val.domains,
+    climate ? DomainsByClimateMapping[climate] ?? [] : []
+  );
 
-    const combined = [...tagDomains, ...terrainDomains, ...climateDomains];
-    const unique = Array.from(new Set(combined));
+  const combined = [...tagDomains, ...terrainDomains, ...climateDomains];
+  const unique = Array.from(new Set(combined));
 
-    const [min, max] = domainCountBySize[data.size ?? "Town"] ?? [3, 4];
-    data.domains = getRandomSubset(unique, min, max);
-  } catch (err) {
-    console.warn("applyDomainsByConditions failed, using fallback mappings:", err);
+  const [min, max] = domainCountBySize[data.size ?? "Town"] ?? [3, 4]; // set a number of domains as determined by the settlement's size, defaulting to "town" if unavailalble
+  data.domains = getRandomSubset(unique, min, max);  // get a random assortment of domains based off the settlement number of domains
 
-    const tags = data.tags ?? [];
-    const terrain = data.terrain ?? [];
-    const climate = data.climate;
-
-    const fallbackTags = tags.flatMap(tag => DomainsByTagMapping[tag] ?? []);
-    const fallbackTerrain = terrain.flatMap(t => DomainsByTerrainMapping[t] ?? []);
-    const fallbackClimate = climate ? DomainsByClimateMapping[climate] ?? [] : [];
-
-    const combinedFallback = [...fallbackTags, ...fallbackTerrain, ...fallbackClimate];
-    const uniqueFallback = Array.from(new Set(combinedFallback));
-
-    const [min, max] = domainCountBySize[data.size ?? "Town"] ?? [3, 4];
-    data.domains = getRandomSubset(uniqueFallback, min, max);
-  }
 
   return data;
 }

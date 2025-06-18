@@ -4,18 +4,19 @@ import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { roomBaseCost, roomConditionModifier, roomSizeModifier } from "./mappings/room.mappings";
 import { formatCurrencyFromCp } from "@/lib/util/convertCurrency";
 import { SiteGenerationContext, SiteGenerationInput } from "../types";
-import { ClienteleBySettlementSize } from "@/lib/models/generator/site/tavern/clienteleBySettlementSize.model";
-import { ClienteleByWealth } from "@/lib/models/generator/site/tavern/clienteleByWealth.model";
-import { ClienteleByTag } from "@/lib/models/generator/site/tavern/clienteleByTag.model";
-import { ClienteleByCrime } from "@/lib/models/generator/site/tavern/clienteleByCrime.model";
-import { ClienteleByMagic } from "@/lib/models/generator/site/tavern/clienteleByMagic.model";
-import { ClienteleBySize } from "@/lib/models/generator/site/tavern/clienteleBySize.model";
-import { ClienteleByCondition } from "@/lib/models/generator/site/tavern/clienteleByCondition.model";
+import { ClienteleBySettlementSize, ClienteleBySettlementSizeModel } from "@/lib/models/generator/site/tavern/clienteleBySettlementSize.model";
+import { ClienteleByWealth, ClienteleByWealthModel } from "@/lib/models/generator/site/tavern/clienteleByWealth.model";
+import { ClienteleByTag, ClienteleByTagModel } from "@/lib/models/generator/site/tavern/clienteleByTag.model";
+import { ClienteleByCrime, ClienteleByCrimeModel } from "@/lib/models/generator/site/tavern/clienteleByCrime.model";
+import { ClienteleByMagic, ClienteleByMagicModel } from "@/lib/models/generator/site/tavern/clienteleByMagic.model";
+import { ClienteleBySize, ClienteleBySizeModel } from "@/lib/models/generator/site/tavern/clienteleBySize.model";
+import { ClienteleByCondition, ClienteleByConditionModel } from "@/lib/models/generator/site/tavern/clienteleByCondition.model";
 import { BaseClienteleBySettlementSizeMapping, CLIENTELE_ALIASES, CLIENTELE_COUNT_BY_SETTLEMENT_SIZE, ClienteleByConditionMapping, ClienteleByCrimeMapping, ClienteleByMagicMapping, ClienteleBySiteSizeMapping, ClienteleByTagMapping, ClienteleByWealthMapping } from "./mappings/clientele.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
 import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 
 function normalizeClientele(clientele: string[]): string[] {
   const seen = new Set<string>();
@@ -49,37 +50,41 @@ async function applyTavernClienteleByConditions(
 
   const { size: siteSize, condition: siteCondition } = data;
 
-  // Kick off all async DB calls concurrently
+  // Make async DB calls for populating arrays
   const results = await Promise.allSettled([
-    ClienteleBySettlementSize.findOne({size: settlementSize}).lean(),
-    ClienteleByWealth.findOne({wealth: settlementWealth}).lean(),
-    ClienteleByTag.find({tag: settlementTags}).lean(),
-    ClienteleByCrime.find({crime: settlementCrime}).lean(),
-    ClienteleByMagic.findOne({magic: settlementMagic}).lean(),
-    ClienteleBySize.findOne({size: data.size}).lean(),
-    ClienteleByCondition.findOne({condition: data.condition}).lean(),
+    settlementSize ? ClienteleBySettlementSize.findOne({size: settlementSize}).lean<ClienteleBySettlementSizeModel | null>() : Promise.resolve(null),
+    settlementWealth ? ClienteleByWealth.findOne({wealth: settlementWealth}).lean<ClienteleByWealthModel | null>() : Promise.resolve(null),
+    ClienteleByTag.find({tag: settlementTags}).lean<ClienteleByTagModel[]>(),
+    ClienteleByCrime.find({crime: settlementCrime}).lean<ClienteleByCrimeModel[]>(),
+    settlementMagic ? ClienteleByMagic.findOne({magic: settlementMagic}).lean<ClienteleByMagicModel | null>() : Promise.resolve(null),
+    siteSize ? ClienteleBySize.findOne({size: siteSize}).lean<ClienteleBySizeModel | null>() : Promise.resolve(null),
+    siteCondition ? ClienteleByCondition.findOne({condition: siteCondition}).lean<ClienteleByConditionModel | null>() : Promise.resolve(null)
   ]);
 
-  // Unpack results with fallback to constants
-  const settlementSizeClientele =
-    results[0].status === "fulfilled" && results[0].value !== null && results[0].value.clientele.length > 0
-      ? results[0].value.clientele
-      : BaseClienteleBySettlementSizeMapping[settlementSize as SizeTypes] ?? [];
+  // Get results from above DB calls, extract them in order of the calls above, use fallback from mappings if it fails
+  const settlementSizeClientele = extractArrayFromResult(
+    results[0],
+    (val) => val.clientele,
+    BaseClienteleBySettlementSizeMapping[settlementSize as SizeTypes] ?? []
+  );
 
-  const settlementWealthClientele =
-    results[1].status === "fulfilled" && results[1].value !== null && results[1].value.clientele.length > 0
-      ? results[1].value.clientele
-      : ClienteleByWealthMapping[settlementWealth as WealthLevel] ?? [];
+  const settlementWealthClientele = extractArrayFromResult(
+    results[1],
+    (val) => val.clientele,
+    ClienteleByWealthMapping[settlementWealth as WealthLevel] ?? []
+  );
+  
+  const settlementTagsClientele = extractArrayFromResult(
+    results[2],
+    (doc) => doc.clientele,
+    settlementTags.flatMap((tag) => ClienteleByTagMapping[tag] ?? [])
+  );
 
-  const settlementTagsClientele =
-    results[2].status === "fulfilled" && results[2].value.length > 0
-      ? results[2].value.flatMap(doc => doc.clientele)
-      : settlementTags.flatMap(tag => ClienteleByTagMapping[tag] ?? []);
-
-  const settlementCrimeClientele =
-    results[3].status === "fulfilled" && results[3].value.length > 0
-      ? results[3].value.flatMap(doc => doc.clientele)
-      : settlementCrime.flatMap(crime => ClienteleByCrimeMapping[crime] ?? []);
+  const settlementCrimeClientele = extractArrayFromResult(
+        results[3],
+        (doc) => doc.clientele,
+        settlementCrime.flatMap(crime => ClienteleByCrimeMapping[crime] ?? [])
+    );
 
   const settlementMagicClientele =
     results[4].status === "fulfilled" && results[4].value !== null && results[4].value.clientele.length > 0

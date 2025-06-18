@@ -2,7 +2,7 @@ import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
-interface TradeByTagsModel {
+export interface TradeByTagsModel {
     trade: string[];
     tags: TagTypes;
 }

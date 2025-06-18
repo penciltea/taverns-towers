@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
 const { Schema, model, models } = mongoose;
 
-interface HolidaysByClimateModel {
+export interface HolidaysByClimateModel {
     climate: ClimateTypes,
-    holidays: String[];
+    holidays: string[];
 }
 
 const HolidaysByClimateSchema = new Schema<HolidaysByClimateModel>({

@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
 const { Schema, model, models } = mongoose;
 
-interface HolidaysByDomainModel {
+export interface HolidaysByDomainModel {
     domain: DomainTypes,
-    holidays: String[];
+    holidays: string[];
 }
 
 const HolidaysByDomainSchema = new Schema<HolidaysByDomainModel>({

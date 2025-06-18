@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
 const { Schema, model, models } = mongoose;
 
-interface HolidaysByMagicModel {
+export interface HolidaysByMagicModel {
     magic: MagicLevel,
-    holidays: String[];
+    holidays: string[];
 }
 
 const HolidaysByMagicSchema = new Schema<HolidaysByMagicModel>({

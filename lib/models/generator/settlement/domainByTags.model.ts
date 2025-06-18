@@ -3,7 +3,7 @@ import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
-interface DomainsByTagModel {
+export interface DomainsByTagModel {
     domains: DomainTypes[];
     tag: TagTypes;
 }

@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
 const { Schema, model, models } = mongoose;
 
-interface FolkloreByTagModel {
+export interface FolkloreByTagModel {
     tag: TagTypes,
-    folklore: String[];
+    folklore: string[];
 }
 
 const FolkloreByTagSchema = new Schema<FolkloreByTagModel>({
     tag: { type: String, enum: TAG_TYPES, required: true, unique: true },
-    folklore: { type: [String], required: false }
+    folklore: { type: [String], required: true }
 });
 
 export const FolkloreByTag = 

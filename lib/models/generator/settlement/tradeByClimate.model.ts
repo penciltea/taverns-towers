@@ -2,7 +2,7 @@ import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
-interface TradeByClimateModel {
+export interface TradeByClimateModel {
     trade: string[];
     climate: ClimateTypes;
 }

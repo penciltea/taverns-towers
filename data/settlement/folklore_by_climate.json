@@ -1,6 +1,6 @@
 [
     {
-        "magic": "Polar",
+        "climate": "Polar",
         "folklore": [
             "When the northern lights dance fiercely, it’s a sign the spirits are celebrating.",
             "Snow falling on a silent night means the ancestors are watching over the village.",
@@ -10,7 +10,7 @@
         ]
     },
     {
-        "magic": "Temperate",
+        "climate": "Temperate",
         "folklore": [
             "A robin singing at dawn means the forest is blessing the day.",
             "If a fox crosses your path three times, a secret is about to be revealed.",
@@ -20,7 +20,7 @@
         ]
     },
     {
-        "magic": "Tropical",
+        "climate": "Tropical",
         "folklore": [
             "The rustling of palm leaves at night is said to be the whispering of guardian spirits.",
             "If a sudden downpour begins during a celebration, it’s the gods’ way of joining in.",
@@ -30,7 +30,7 @@
         ]
     },
     {
-        "magic": "Dry",
+        "climate": "Dry",
         "folklore": [
             "Mirages are illusions created by desert spirits to protect their sacred places.",
             "Finding a feather in the sand means a wanderer’s blessing will follow you.",
@@ -40,7 +40,7 @@
         ]
     },
     {
-        "magic": "Continental",
+        "climate": "Continental",
         "folklore": [
             "Thunder rolling from the mountains means the giant gods are angry or pleased.",
             "If the first snow falls before the leaves have turned, expect a harsh winter.",

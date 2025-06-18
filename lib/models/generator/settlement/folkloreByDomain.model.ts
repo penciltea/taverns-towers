@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
 const { Schema, model, models } = mongoose;
 
-interface FolkloreByDomainModel {
+export interface FolkloreByDomainModel {
     domain: DomainTypes,
-    folklore: String[];
+    folklore: string[];
 }
 
 const FolkloreByDomainSchema = new Schema<FolkloreByDomainModel>({

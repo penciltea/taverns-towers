@@ -2,7 +2,7 @@ import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
-interface TradeByTerrainModel {
+export interface TradeByTerrainModel {
     trade: string[];
     terrain: TerrainTypes;
 }

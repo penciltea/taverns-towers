@@ -1,87 +1,67 @@
 import { getRandomSubset } from "@/lib/util/randomValues";
-import { TradeByTags } from "@/lib/models/generator/settlement/tradeByTags.model";
-import { TradeByTerrain } from "@/lib/models/generator/settlement/tradeByTerrain.model";
-import { TradeByClimate } from "@/lib/models/generator/settlement/tradeByClimate.model";
+import { TradeByTags, TradeByTagsModel } from "@/lib/models/generator/settlement/tradeByTags.model";
+import { TradeByTerrain, TradeByTerrainModel } from "@/lib/models/generator/settlement/tradeByTerrain.model";
+import { TradeByClimate, TradeByClimateModel } from "@/lib/models/generator/settlement/tradeByClimate.model";
 import { TradeNotesByTagMapping, TradeNotesByTerrainMapping, TradeNotesByClimateMapping } from "../mappings/trade.mappings";
 import { NormalizedSettlementInput } from "./normalize";
+import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 
 export async function applyTradeNotesRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
-  try {
-    if (
-      !data.tradeNotes &&
-      data.tags &&
-      !data.tags.includes("random") &&
-      data.terrain &&
-      !data.terrain.includes("random") &&
-      data.climate &&
-      data.climate !== "random"
-    ) {
-      const [tagEntry, terrainEntries, climateEntry] = await Promise.all([
-        TradeByTags.find({ tags: { $in: data.tags } }).lean(),
-        TradeByTerrain.find({ terrain: { $in: data.terrain } }).lean(),
-        TradeByClimate.findOne({ climate: data.climate }).lean(),
-      ]);
+  const shouldGenerate = (!data.tradeNotes || data.tradeNotes === "");
+  if(!shouldGenerate) return data;
 
-      const tagNotes = tagEntry?.flatMap(entry => entry.trade) ?? [];
-      const terrainNotes = terrainEntries?.flatMap(entry => entry.trade) ?? [];
-      const climateNotes = climateEntry?.trade ?? [];
+  // Fields used as factors for rules
+  const tags = data.tags ?? [];
+  const terrain = data.terrain ?? [];
+  const climate = data.climate;
 
-      const fallbackTagNotes = data.tags.flatMap(tag => TradeNotesByTagMapping[tag] ?? []);
-      const fallbackTerrainNotes = data.terrain.flatMap(t => TradeNotesByTerrainMapping[t] ?? []);
-      const fallbackClimateNotes = TradeNotesByClimateMapping[data.climate] ?? [];
+  // DB calls for populating arrays
+  const results = await Promise.allSettled([
+    TradeByTags.find({ tags: { $in: data.tags } }).lean<TradeByTagsModel[]>(),
+    TradeByTerrain.find({ terrain: { $in: data.terrain } }).lean<TradeByTerrainModel[]>(),
+    climate ? TradeByClimate.findOne({ climate: data.climate }).lean<TradeByClimateModel | null>() : Promise.resolve(null),
+  ]);
 
-      const allNotes = [
-        ...tagNotes,
-        ...terrainNotes,
-        ...climateNotes,
-        ...fallbackTagNotes,
-        ...fallbackTerrainNotes,
-        ...fallbackClimateNotes,
-      ];
+  const terrainTradeNotes = extractArrayFromResult(
+    results[0],
+    (val) => val.trade,
+    terrain.flatMap((terrain) => TradeNotesByTerrainMapping[terrain] ?? [])
+  );
 
-      const uniqueNotes = Array.from(new Set(allNotes));
-      const selected = getRandomSubset(uniqueNotes, 1, 3);
+  const tagTradeNotes = extractArrayFromResult(
+    results[1],
+    (val) => val.trade,
+    tags.flatMap((tag) => TradeNotesByTagMapping[tag] ?? [])
+  );
 
-      const formatted = selected.map((note, index) => {
-        const lower = note.toLowerCase();
-        let result = lower.charAt(0).toUpperCase() + lower.slice(1);
+  const climateTradeNotes = extractArrayFromResult(
+    results[2],
+    (val) => val.trade,
+    climate ? TradeNotesByClimateMapping[climate] ?? [] : []
+  );
 
-        // Add a period to the last note if it doesn't already have punctuation
-        if (index === selected.length - 1 && !/[.!?]$/.test(result)) {
-          result += ".";
-        }
+  const combined = [
+    ...terrainTradeNotes,
+    ...tagTradeNotes,
+    ...climateTradeNotes
+  ];
 
-        return result;
-      });
+  const uniqueNotes = Array.from(new Set(combined));
+  const selected = getRandomSubset(uniqueNotes, 1, 3);
 
-      data.tradeNotes = formatted.join(". ");;
+  const formatted = selected.map((note, index) => {
+    const lower = note.toLowerCase();
+    let result = lower.charAt(0).toUpperCase() + lower.slice(1);
+
+    // Add a period to the last note if it doesn't already have punctuation
+    if (index === selected.length - 1 && !/[.!?]$/.test(result)) {
+      result += ".";
     }
-  } catch (err) {
-    console.warn("applyTradeNotesRule failed, using local fallback:", err);
 
-    const fallbackNotes = [
-      ...(data.tags?.flatMap(tag => TradeNotesByTagMapping[tag] ?? []) ?? []),
-      ...(data.terrain?.flatMap(t => TradeNotesByTerrainMapping[t] ?? []) ?? []),
-      ...(data.climate ? TradeNotesByClimateMapping[data.climate] ?? [] : []),
-    ];
+    return result;
+  });
 
-    const uniqueNotes = Array.from(new Set(fallbackNotes));
-    const selected = getRandomSubset(uniqueNotes, 1, 3);
-
-    const formatted = selected.map((note, index) => {
-      const lower = note.toLowerCase();
-      let result = lower.charAt(0).toUpperCase() + lower.slice(1);
-
-      // Add a period to the last note if it doesn't already have punctuation
-      if (index === selected.length - 1 && !/[.!?]$/.test(result)) {
-        result += ".";
-      }
-
-      return result;
-    });
-
-    data.tradeNotes = formatted.join(". ");
-  }
+  data.tradeNotes = formatted.join(". ");
 
   return data;
 }

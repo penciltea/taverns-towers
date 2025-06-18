@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
 const { Schema, model, models } = mongoose;
 
-interface HolidaysByTagModel {
+export interface HolidaysByTagModel {
     tag: TagTypes,
-    holidays: String[];
+    holidays: string[];
 }
 
 const HolidaysByTagSchema = new Schema<HolidaysByTagModel>({

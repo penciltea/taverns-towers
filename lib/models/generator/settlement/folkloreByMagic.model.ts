@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
 const { Schema, model, models } = mongoose;
 
-interface FolkloreByMagicModel {
+export interface FolkloreByMagicModel {
     magic: MagicLevel,
-    folklore: String[];
+    folklore: string[];
 }
 
 const FolkloreByMagicSchema = new Schema<FolkloreByMagicModel>({

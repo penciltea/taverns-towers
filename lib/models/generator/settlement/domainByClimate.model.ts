@@ -3,7 +3,7 @@ import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
-interface DomainsByClimateModel {
+export interface DomainsByClimateModel {
     domains: DomainTypes[];
     climate: ClimateTypes;
 }
