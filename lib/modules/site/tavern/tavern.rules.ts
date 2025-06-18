@@ -188,7 +188,10 @@ async function applyEntertainmentByConditions(
 
   const unique = Array.from(new Set(combined));
 
-  const [min, max] = ENTERTAINMENT_COUNT_BY_SITE_CONDITION[data.size ?? "average"] ?? [3, 4];
+  const [min, max] = ENTERTAINMENT_COUNT_BY_SITE_CONDITION[data.condition ?? "average"] ?? [3, 4];
+
+  console.log("min max", min , max);
+  console.log("condition: " , data.condition);
   data.entertainment = getRandomSubset(unique, min, max);
 
   return data;
