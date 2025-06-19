@@ -1,11 +1,11 @@
 import { FormSelect, FormTextField } from "@/components/Form";
-import FormEditableTable from "@/components/Form/FormEditableTable";
 import { SITE_CONDITION, SITE_SIZE, GUILD_TYPES } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+import FormEditableCard from "@/components/Form/FormEditableCard";
 
 
 export default function GuildFields({generator}: SiteFormFieldProps){
@@ -98,17 +98,12 @@ export default function GuildFields({generator}: SiteFormFieldProps){
             />
 
             <Box sx={{mt: 4}}>
-                <FormEditableTable
+                <FormEditableCard
                     name="menu"
                     header="Services Offered"
+                    siteType="guild"
                     onGenerate={generator?.menu}
                     buttonLabel="Conjure services"
-                    columns={[
-                        { label: "Name", field: "name" },
-                        { label: "Category", field: "category" },
-                        { label: "Description", field: "description" },
-                        { label: "Price", field: "price" },
-                    ]}
                 />
             </Box>
         </>

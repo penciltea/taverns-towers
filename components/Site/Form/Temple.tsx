@@ -1,5 +1,5 @@
 import { FormSelect, FormTextField } from "@/components/Form";
-import FormEditableTable from "@/components/Form/FormEditableTable";
+import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
@@ -80,17 +80,12 @@ export default function TempleFields({generator}: SiteFormFieldProps){
             />
 
             <Box sx={{mt: 4}}>
-                <FormEditableTable
+                <FormEditableCard
                     name="menu"
                     header="Services Offered"
+                    siteType="temple"
                     onGenerate={generator?.menu}
                     buttonLabel="Conjure services"
-                    columns={[
-                        { label: "Name", field: "name" },
-                        { label: "Category", field: "category" },
-                        { label: "Description", field: "description" },
-                        { label: "Price", field: "price" },
-                    ]}
                 />
             </Box>
         </>

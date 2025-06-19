@@ -1,11 +1,11 @@
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import FormEditableTable from "@/components/Form/FormEditableTable";
 import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import FormEditableCard from "@/components/Form/FormEditableCard";
 
 export default function TavernFields({generator}: SiteFormFieldProps){
     const {
@@ -91,18 +91,12 @@ export default function TavernFields({generator}: SiteFormFieldProps){
             
 
             <Box sx={{mt: 4}}>
-                <FormEditableTable
+                <FormEditableCard
                     name="menu"
                     header="Tavern Menu"
+                    siteType="tavern"
                     onGenerate={generator?.menu}
                     buttonLabel="Conjure menu items"
-                    columns={[
-                        { label: "Name", field: "name" },
-                        { label: "Category", field: "category" },
-                        { label: "Quality / Rarity", field: "quality"},
-                        { label: "Description", field: "description" },
-                        { label: "Price", field: "price" },
-                    ]}
                 />
             </Box>
         </>

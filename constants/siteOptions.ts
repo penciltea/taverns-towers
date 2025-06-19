@@ -146,6 +146,24 @@ export const TAVERN_ENTERTAINMENT_OFFERINGS = [
   "Underground Betting Rings",
 ];
 
+/* For Menu building */
+export const QUALITY_OPTIONS = ["Poor", "Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
+
+export const MENU_FIELDS_BY_SITE_TYPE: Record<string, string[]> = {
+  tavern: ["name", "category", "quality", "price", "description",],
+  shop: ["name", "category", "quality", "price", "description"],
+  temple: ["name", "category", "price", "description"],
+  guild: ["name", "category", "price", "description"],
+};
+
+export const MENU_FIELD_LABELS: Record<string, string> = {
+  name: "Name",
+  category: "Category",
+  quality: "Quality",
+  description: "Description",
+  price: "Price",
+};
+
 
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];

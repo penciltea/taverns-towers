@@ -1,0 +1,217 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { Box, Card, Typography, TextField, Button, IconButton, Collapse } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS } from "@/constants/siteOptions";
+import FormSelect from "./FormSelect";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
+
+interface FormEditableCardProps {
+  name: string;
+  siteType: string;
+  header?: string;
+  onGenerate?: () => void;
+  buttonLabel?: string;
+}
+
+function getItemDisplayName(item: Record<string, any>, index: number): string {
+  const priorityFields = ["name", "label", "description", "quality"];
+
+  for (const field of priorityFields) {
+    if (item[field]) {
+      // Optional: return field name as prefix if it's not 'name'
+      return field === "name" ? item[field] : `${capitalizeFirstLetter(field)}: ${item[field]}`;
+    }
+  }
+
+  return `Item ${index + 1}`;
+}
+
+export default function FormEditableCard({
+  name,
+  siteType,
+  header,
+  onGenerate,
+  buttonLabel = "Generate",
+}: FormEditableCardProps) {
+  const { control, register, formState: { errors } } = useFormContext();
+  const { fields, append, remove } = useFieldArray({ control, name });
+
+  // track expansion per card
+  const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
+  const [liveMessage, setLiveMessage] = useState("");
+
+  const fieldList = MENU_FIELDS_BY_SITE_TYPE[siteType] ?? [];
+  const columns = fieldList.map((field) => ({
+    field,
+    label: MENU_FIELD_LABELS[field] || field,
+  }));
+
+  const handleAdd = () => append(Object.fromEntries(fieldList.map((field) => [field, ""])));
+
+  useEffect(() => {
+    setExpandedMap((prev) => {
+      const updated = { ...prev };
+      fields.forEach((field) => {
+        if (updated[field.id] === undefined) {
+          updated[field.id] = true;
+        }
+      });
+      return updated;
+    });
+  }, [fields]);
+
+  const toggleCard = (id: string, index: number, item: Record<string, any>) => {
+    const next = !(expandedMap[id] ?? true);
+
+    setExpandedMap((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+
+    const label = getItemDisplayName(item, index);
+    setLiveMessage(`${label} ${next ? "expanded" : "collapsed"}`);
+  };
+
+  return (
+    <>
+      {(header || onGenerate) && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            mb: 2,
+          }}
+        >
+          {header && <Typography variant="h6">{header}</Typography>}
+          {onGenerate && (
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={onGenerate}
+              size="large"
+              sx={{ py: 1.65 }}
+            >
+              {buttonLabel}
+            </Button>
+          )}
+        </Box>
+      )}
+
+      {fields.map((item, index) => {
+        const isExpanded = expandedMap[item.id] ?? true;
+        const collapseId = `card-collapse-${item.id}`;
+        const headerId = `card-header-${item.id}`;
+
+        return (
+          <Card key={item.id} variant="outlined" sx={{ mb: 2, p: 2 }}>
+            <Box
+              onClick={() => toggleCard(item.id, index, item)}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                mb: isExpanded ? 2 : 0,
+                cursor: "pointer",
+                userSelect: "none",
+              }}
+              aria-expanded={isExpanded}
+              aria-controls={collapseId}
+              aria-label={`${isExpanded ? "Collapse" : "Expand"} details for ${getItemDisplayName(item, index)}`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleCard(item.id, index, item);
+                }
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="h2"
+                id={headerId}
+                sx={{ flexGrow: 1 }}
+              >
+                {getItemDisplayName(item, index)}
+              </Typography>
+
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent toggle
+                  remove(index);
+                }}
+                size="small"
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Box>
+
+            <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+              <Box role="region" aria-labelledby={headerId} id={collapseId}>
+                {columns.map((col) => {
+                  const fieldName = `${name}.${index}.${col.field}`;
+                  const fieldError = (errors?.[name] as any)?.[index]?.[col.field];
+
+                  return (
+                    <Box key={col.field} mb={1}>
+                      {/* Skip extra label if it's already handled by FormSelect */}
+                      {col.field !== "quality" && (
+                        <Typography variant="subtitle2">{col.label}</Typography>
+                      )}
+                      {col.field === "quality" ? (
+                        <FormSelect
+                          name={fieldName}
+                          label={col.label}
+                          control={control}
+                          options={toSelectOptions(QUALITY_OPTIONS)}
+                          fieldError={fieldError}
+                        />
+                      ) : (
+                        <TextField
+                          {...register(fieldName)}
+                          fullWidth
+                          size="small"
+                          multiline={col.field === "description"}
+                          rows={col.field === "description" ? 3 : 1}
+                          error={!!fieldError}
+                          helperText={
+                            typeof fieldError?.message === "string"
+                              ? fieldError.message
+                              : ""
+                          }
+                        />
+                      )}
+                    </Box>
+                  );
+                })}
+              </Box>
+            </Collapse>
+          </Card>
+        );
+      })}
+
+      <Box>
+        <Button variant="outlined" onClick={handleAdd}>
+          Add Item
+        </Button>
+      </Box>
+
+      {/* Added for accessibility */}
+      <Box
+        aria-live="polite"
+        sx={{ position: "absolute", left: -9999, top: "auto", width: 1, height: 1, overflow: "hidden" }}
+      >
+        {liveMessage}
+      </Box>
+    </>
+    
+  );
+}

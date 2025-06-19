@@ -55,7 +55,7 @@ export interface TavernSite extends BaseSite {
   clientele?: string;
   entertainment?: string[];
   cost?: string;
-  menu?: { name: string; description: string; price: string }[];
+  menu?: { name: string; category?: string; description: string; price: string }[];
 }
 
 export interface TempleSite extends BaseSite {
@@ -70,7 +70,7 @@ export interface ShopSite extends BaseSite {
   type: "shop";
   shopType?: string;
   owner?: string;
-  menu?: { name: string; description?: string; quality?: string; quantity?: string; price: string }[];
+  menu?: { name: string; description?: string; category?: string; quality?: string; quantity?: string; price: string }[];
 }
 
 export interface GuildSite extends BaseSite {
