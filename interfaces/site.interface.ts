@@ -55,7 +55,7 @@ export interface TavernSite extends BaseSite {
   clientele?: string;
   entertainment?: string[];
   cost?: string;
-  menu?: { name: string; category?: string; description: string; price: string }[];
+  menu?: { name: string; category?: string; description: string; price: string; rarity?: string; }[];
 }
 
 export interface TempleSite extends BaseSite {
@@ -63,14 +63,14 @@ export interface TempleSite extends BaseSite {
   deity?: string;
   leader?: string;
   relics?: string;
-  menu?: { name: string; description: string; price: string }[];
+  menu?: { name: string; description: string; price: string; category?: string; rarity?: string; }[];
 }
 
 export interface ShopSite extends BaseSite {
   type: "shop";
   shopType?: string;
   owner?: string;
-  menu?: { name: string; description?: string; category?: string; quality?: string; quantity?: string; price: string }[];
+  menu?: { name: string; description?: string; category?: string; quality?: string; quantity?: string; price: string; rarity?: string; }[];
 }
 
 export interface GuildSite extends BaseSite {
@@ -80,7 +80,7 @@ export interface GuildSite extends BaseSite {
   leader?: string;
   membershipRequirements?: string;
   knownRivals?: string;
-  menu?: { name: string; description?: string; price: string }[];
+  menu?: { name: string; description?: string; price: string; category?: string; rarity?: string; }[];
 }
 
 export interface GovernmentSite extends BaseSite {

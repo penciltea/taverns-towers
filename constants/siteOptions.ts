@@ -147,21 +147,24 @@ export const TAVERN_ENTERTAINMENT_OFFERINGS = [
 ];
 
 /* For Menu building */
-export const QUALITY_OPTIONS = ["Poor", "Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
+export const QUALITY_OPTIONS = ["Poor", "Standard", "Fine", "Masterwork", "Exquisite"];
+export const RARITY_OPTIONS = ["Common", "Uncommon", "Rare", "Very Rare", "Legendary"];
 
 export const MENU_FIELDS_BY_SITE_TYPE: Record<string, string[]> = {
-  tavern: ["name", "category", "quality", "price", "description",],
-  shop: ["name", "category", "quality", "price", "description"],
-  temple: ["name", "category", "price", "description"],
-  guild: ["name", "category", "price", "description"],
+  tavern: ["name", "price", "category", "quality", "rarity", "description",],
+  shop: ["name", "price", "quantity", "category", "quality", "rarity", "description"],
+  temple: ["name", "price", "category", "rarity", "description"],
+  guild: ["name", "price", "category", "rarity", "description"],
 };
 
 export const MENU_FIELD_LABELS: Record<string, string> = {
   name: "Name",
+  price: "Price",
+  quantity: "Quantity",
   category: "Category",
   quality: "Quality",
+  rarity: "Rarity",
   description: "Description",
-  price: "Price",
 };
 
 
@@ -173,3 +176,5 @@ export type SiteSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
 export type SiteShopType = typeof SHOP_TYPES[number];
 export type SiteGuildType = typeof GUILD_TYPES[number];
 export type SiteEntertainmentType = typeof ENTERTAINMENT_VENUE_TYPES[number];
+export type QualityType = typeof QUALITY_OPTIONS[number];
+export type RarityType = typeof RARITY_OPTIONS[number];

@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { Box, Card, Typography, TextField, Button, IconButton, Collapse } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS } from "@/constants/siteOptions";
+import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS, RARITY_OPTIONS } from "@/constants/siteOptions";
 import FormSelect from "./FormSelect";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
@@ -21,7 +19,7 @@ interface FormEditableCardProps {
 }
 
 function getItemDisplayName(item: Record<string, any>, index: number): string {
-  const priorityFields = ["name", "label", "description", "quality"];
+  const priorityFields = ["name", "label", "quality", "rarity"];
 
   for (const field of priorityFields) {
     if (item[field]) {
@@ -163,15 +161,19 @@ export default function FormEditableCard({
                   return (
                     <Box key={col.field} mb={1}>
                       {/* Skip extra label if it's already handled by FormSelect */}
-                      {col.field !== "quality" && (
+                      {(col.field !== "quality" && col.field !== "rarity") && (
                         <Typography variant="subtitle2">{col.label}</Typography>
                       )}
-                      {col.field === "quality" ? (
+                      {col.field === "quality" || col.field === "rarity" ? (
                         <FormSelect
                           name={fieldName}
                           label={col.label}
                           control={control}
-                          options={toSelectOptions(QUALITY_OPTIONS)}
+                          options={
+                            col.field === "quality"
+                              ? toSelectOptions(QUALITY_OPTIONS)
+                              : toSelectOptions(RARITY_OPTIONS)
+                          }
                           fieldError={fieldError}
                         />
                       ) : (
