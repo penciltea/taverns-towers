@@ -129,7 +129,6 @@ export function useSiteGeneratorActions(
   */
 
   const generateMenu = useCallback(async (env?: EnvironmentInterface) => {
-    const effectiveEnv = env || await regenerateEnvironment();
     if (!siteType) return;
 
     const shopType = getShopType();
@@ -137,9 +136,9 @@ export function useSiteGeneratorActions(
     const menuItems = await generateMenuData({
       siteType,
       shopType,
-      climate: effectiveEnv.climate,
-      terrain: effectiveEnv.terrain,
-      tags: effectiveEnv.tags,
+      climate: context.climate,
+      terrain: context.terrain,
+      tags: context.tags,
       magic,
       wealth
     }, 6);
