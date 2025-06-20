@@ -1,8 +1,23 @@
+/**
+ * Site rules dispatcher and helpers
+ *
+ * This module maps each site category/type to its corresponding generation rules.
+ * It exposes functions to generate site data either from a raw input context or
+ * directly using settlement data as context, automatically handling naming.
+ *
+ * The main components:
+ * - `SiteGenerator`: a mapping of site types to async generator functions.
+ * - `generateSiteValues`: given a site type and input context, runs the correct
+ *    generator and applies site naming logic.
+ * - `generateSiteValuesFromSettlement`: convenience helper that extracts relevant
+ *    settlement data and calls `generateSiteValues`.
+*/
+
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
 import { generateTavernData } from "./tavern/tavern.rules";
-import { SiteGenerationInput } from "./types";
+import { SiteGenerationInput } from "@/interfaces/site.interface";
 import { generateGovernmentValues } from "./government.rules";
 import { generateGuildValues } from "./guild.rules";
 import { generateMiscellaneousValues } from "./miscellaneous.rules";
@@ -13,7 +28,7 @@ import { Settlement } from "@/interfaces/settlement.interface";
 import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
 
 
-
+// Maps site type strings to their respective async generation functions
 export const SiteGenerator: Record<
   string,
   (input: SiteGenerationInput) => Promise<SiteFormData>
@@ -29,6 +44,16 @@ export const SiteGenerator: Record<
     temple: generateTempleValues
 };
 
+
+/**
+ * Generates site data for a given site type using supplied input context.
+ * Calls the specific site generator, then generates a site name if one
+ * was not already provided by the generator.
+ * 
+ * @param type - The site category/type, e.g. 'tavern', 'shop'
+ * @param input - Context and overrides used by the generator
+ * @returns Generated site data including name
+ */
 export async function generateSiteValues(
   type: string,
   input: SiteGenerationInput
@@ -36,9 +61,10 @@ export async function generateSiteValues(
   const generator = SiteGenerator[type];
   if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
 
-  // Call with full input (context + overrides)
+  // Generate base site data from the rules for the given type
   const baseData = await generator(input);
 
+  // Generate a site name if one wasn't provided
   const name = await generateSiteName({
     category: type,
     siteType: [type],
@@ -53,6 +79,16 @@ export async function generateSiteValues(
   };
 }
 
+/**
+ * Convenience function to generate site data from settlement context.
+ * Extracts relevant settlement properties and passes them as context to
+ * `generateSiteValues`. Also allows passing overrides for site fields.
+ * 
+ * @param type - The site category/type to generate
+ * @param settlement - Partial settlement data providing environmental context
+ * @param overrides - Partial site data to override generated values
+ * @returns Generated site data including name
+ */
 
 export async function generateSiteValuesFromSettlement(
   type: string,

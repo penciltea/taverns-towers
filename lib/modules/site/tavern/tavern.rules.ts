@@ -3,7 +3,6 @@ import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { roomBaseCost, roomConditionModifier, roomSizeModifier } from "./mappings/room.mappings";
 import { formatCurrencyFromCp } from "@/lib/util/convertCurrency";
-import { SiteGenerationContext, SiteGenerationInput } from "../types";
 import { ClienteleBySettlementSize, ClienteleBySettlementSizeModel } from "@/lib/models/generator/site/tavern/clienteleBySettlementSize.model";
 import { ClienteleByWealth, ClienteleByWealthModel } from "@/lib/models/generator/site/tavern/clienteleByWealth.model";
 import { ClienteleByTag, ClienteleByTagModel } from "@/lib/models/generator/site/tavern/clienteleByTag.model";
@@ -22,7 +21,7 @@ import { EntertainmentByCondition, EntertainmentByConditionModel } from "@/lib/m
 import { EntertainmentByMagic, EntertainmentByMagicModel } from "@/lib/models/generator/site/tavern/entertainmentByMagic.model";
 import { EntertainmentByTag, EntertainmentByTagModel } from "@/lib/models/generator/site/tavern/entertainmentByTag.model";
 import { ENTERTAINMENT_COUNT_BY_SITE_CONDITION, EntertainmentByMagicLevelMapping, EntertainmentBySiteConditionMapping, EntertainmentBySiteSizeMapping, EntertainmentByTagMapping } from "./mappings/entertainment.mappings";
-import { TavernSite } from "@/interfaces/site.interface";
+import { TavernSite, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 
 function isTavernSite(data: Partial<SiteFormData>): data is Partial<TavernSite> {
   return data.type === "tavern";

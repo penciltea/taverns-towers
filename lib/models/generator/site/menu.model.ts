@@ -1,8 +1,9 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
 import { QUALITY_OPTIONS, QualityType, RARITY_OPTIONS, RarityType } from "@/constants/siteOptions";
+import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
 
-export interface GeneratorSiteMenuPlain extends Document {
+export interface GeneratorSiteMenuPlain {
   name: string;
   description?: string;
   category?: string;
@@ -10,6 +11,7 @@ export interface GeneratorSiteMenuPlain extends Document {
   quality?: QualityType;
   quantity?: string;
   rarity?: RarityType;
+  magic?: MagicLevel;
   siteType: string[];
   shopType?: string;
   climate?: ClimateTypes[];
@@ -25,6 +27,7 @@ const GeneratorSiteMenuSchema: Schema = new mongoose.Schema({
   quality: { type: String, enum: QUALITY_OPTIONS, required: false },
   quantity: { type: String, required: false },
   rarity: { type: String, enum: RARITY_OPTIONS, required: false },
+  magic: { type: String, enum: MAGIC_LEVELS, required: false },
   siteType: { type: String, required: true },
   shopType: { type: String, required: false },
   climate: { type: [String], required: false },
@@ -32,5 +35,5 @@ const GeneratorSiteMenuSchema: Schema = new mongoose.Schema({
   tags: { type: [String], required: false }
 });
 
-export default mongoose.models.GeneratorSiteMenu ||
+export const GeneratorSiteMenu = mongoose.models.GeneratorSiteMenu ||
   mongoose.model<GeneratorSiteMenuPlain>("GeneratorSiteMenu", GeneratorSiteMenuSchema, "generator_site_menus");

@@ -1,3 +1,12 @@
+/**
+ * Hook: useSettlementFormHandlers
+ *
+ * Provides handler functions for:
+ * - Generating or re-rolling settlement data
+ * - Submitting the form to create or update a settlement
+ * - Preserving existing form values during partial generation
+ */
+
 import { useRouter } from "next/navigation";
 import { UseFormReturn } from "react-hook-form";
 import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
@@ -13,10 +22,11 @@ export function useSettlementFormHandlers(
   const router = useRouter();
   const { saveSettlement } = useSaveSettlementMutation({ id: id ?? undefined, mode });
 
+  // Handles generating new values (only fills in blank fields)
   const handleGenerate = async () => {
-    const currentValues = methods.watch();
+    const currentValues = methods.watch(); // get current form state
 
-    // Normalize current input to handle "random" etc.
+    // Normalize current input to handle "random" values, etc.
     const normalizedInput = normalizeSettlementInput(currentValues);
 
     // Generate full data from normalized input (rerollAll = false)
@@ -36,6 +46,7 @@ export function useSettlementFormHandlers(
     });
   };
 
+  // Handler function to re-roll all fields (clears all fields and replaces with generated data)
   const handleReroll = async () => {
     // re-roll flag set to "true" to force rerolling all fields
     const generatedValues = await generateSettlementData(defaultSettlementValues, true);

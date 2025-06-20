@@ -1,20 +1,29 @@
-import { useEffect, useMemo, useState } from "react";
-import { useSettlementLoader } from "@/hooks/useSettlementLoader";
+// Hook used to give the app access to environmental context (climate, tags, terrain) for either:
+// - A settlement loaded in from the DB
+// - A site created outside of a settlement/in "wilderness" and with those fields generated procedurally
+
+import type { Settlement } from "@/interfaces/settlement.interface";
 import { generateWildernessContext } from "@/lib/modules/settlement/rules/settlement.rules";
 import { useSettlementContentStore } from "@/store/settlementStore";
+import { useState, useEffect, useMemo } from "react";
+import { useSettlementLoader } from "./useSettlementLoader";
+
+
 
 export function useSiteEnvironment(settlementId: string) {
+
+  // Determine if the site is in "wilderness" or in context of a settlement
   const isWilderness = settlementId === "wilderness";
   const settlementLoader = useSettlementLoader(isWilderness ? null : settlementId);
   const settlement = settlementLoader?.settlement;
 
-  const [wildernessContext, setWildernessContext] = useState<null | {
-    terrain: string[];
-    climate: string;
-    tags: string[];
-  }>(null);
+  // If "wilderness", generate and hold data
+  const [wildernessContext, setWildernessContext] = useState<{
+    terrain?: string[];
+    climate?: string;
+    tags?: string[];
+  } | null>(null);
 
-  // Load wilderness context asynchronously if needed
   useEffect(() => {
     if (isWilderness) {
       generateWildernessContext().then(setWildernessContext);
@@ -23,21 +32,21 @@ export function useSiteEnvironment(settlementId: string) {
     }
   }, [isWilderness]);
 
-  const context = useMemo(() => {
+
+  // Actual context creation
+  const context: Partial<Settlement> = useMemo(() => {
     if (isWilderness) {
-      // Return the asynchronously loaded context or null while loading
-      return wildernessContext;
-    }
-    if (settlement) {
       return {
-        terrain: settlement.terrain,
-        climate: settlement.climate,
-        tags: settlement.tags,
+        terrain: wildernessContext?.terrain,
+        climate: wildernessContext?.climate,
+        tags: wildernessContext?.tags,
       };
     }
-    return null;
+
+    return settlement || {};
   }, [isWilderness, settlement, wildernessContext]);
 
+  // Push to Settlement Zustand store
   useEffect(() => {
     if (context) {
       useSettlementContentStore.getState().setContext?.(context);

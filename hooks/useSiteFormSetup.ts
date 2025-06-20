@@ -23,9 +23,12 @@ export function useSiteFormSetup({
             ? (rawSiteType as SiteFormData["type"])
             : "miscellaneous";
 
+    // Factors that will get passed on through to generators
     const terrain = methods.watch("terrain") || context?.terrain || [];
     const climate = methods.watch("climate") || context?.climate || "";
     const tags = methods.watch("tags") || context?.tags || [];
+    const magic = context?.magic || "";
+    const wealth = context?.wealth || "";
 
     const generator = useSiteGeneratorActions(
         methods,
@@ -33,7 +36,9 @@ export function useSiteFormSetup({
             siteType,
             terrain,
             climate,
-            tags
+            tags,
+            magic,
+            wealth
         },
         isWilderness,
         settlementId

@@ -1,3 +1,5 @@
+// A small hook for setting up wether the form is in "add" or "edit" mode
+
 import { useEffect } from "react";
 
 export function useFormMode<T>(

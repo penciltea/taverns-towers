@@ -1,3 +1,12 @@
+/**
+ * Hook: useSettlementLoader
+ *
+ * Loads settlement data and associated sites (locations) with pagination.
+ * Supports special "wilderness" mode, which generates a random environment context.
+ * Provides functions to add or delete sites, updating the store and refetching as needed.
+ * Manages loading state and pagination controls.
+ */
+
 import { useEffect, useState } from 'react';
 import { useSettlementQuery } from '@/hooks/settlement.query';
 import { useSiteContentStore } from '@/store/siteStore';
@@ -9,23 +18,27 @@ import { createSite } from '@/lib/actions/site.actions';
 import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.rules';
 
 export function useSettlementLoader(settlementId: string | null) {
+  // Store setters for updating settlement and site data globally
   const { setSelectedItem } = useSettlementContentStore();
   const { setItems: setSiteItems } = useSiteContentStore();
   const { setSettlementId, showErrorDialog } = useUIStore();
 
+  // Local state to manage pagination and loading status
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
 
+  // Detect if the special "wilderness" settlementId is in use
   const isWilderness = settlementId === 'wilderness';
 
-  // Call these hooks unconditionally but pass undefined/null when wilderness
+  // Fetch settlement data (null when wilderness)
   const { data: settlementData, isLoading: settlementLoading, refetch: refetchSettlement } = useSettlementQuery(isWilderness ? null : settlementId);
-  const { data: siteData, refetch: refetchSites, isFetching: sitesLoading } = usePaginatedSites(isWilderness ? null : (settlementId as string), page, limit, [], "");
+  const { data: siteData, refetch: refetchSites, isFetching: sitesLoading } = usePaginatedSites(isWilderness ? null : (settlementId as string), page, limit, "", []);
 
-  // For wilderness, generate context once
+  // Generate wilderness environment context once on mount if in wilderness mode
   const [wildernessContext] = useState(() => (isWilderness ? generateWildernessContext() : null));
 
+  // When in wilderness mode, set the generated context and mark loading as done
   useEffect(() => {
     if (isWilderness && wildernessContext) {
       useSettlementContentStore.getState().setContext?.(wildernessContext);
@@ -33,6 +46,7 @@ export function useSettlementLoader(settlementId: string | null) {
     }
   }, [isWilderness, wildernessContext]);
 
+  // When not wilderness, update stores with fetched data and set loading false
   useEffect(() => {
     if (!isWilderness) {
       if (settlementData) {
@@ -48,14 +62,19 @@ export function useSettlementLoader(settlementId: string | null) {
     }
   }, [isWilderness, settlementData, siteData]);
 
+
+  // Handler function for adding new site for the current settlement or wilderness
   async function addSite(newSite: SiteType, id: string) {
     try {
       const savedSite = await createSite(newSite, isWilderness ? 'wilderness' : id);
+
+      // Add newly created site to site content store
       const store = useSiteContentStore.getState();
       const currentSites = store.allItems;
 
       store.setItems([...currentSites, savedSite]);
 
+      // Refetch sites from API if not wilderness
       if (!isWilderness) {
         await refetchSites();
       }
@@ -65,6 +84,7 @@ export function useSettlementLoader(settlementId: string | null) {
     }
   }
 
+  // Handler function for deleting a site by ID from the local store and refetching if needed
   function deleteSite(id: string) {
     const store = useSiteContentStore.getState();
     const currentItems = store.allItems;
@@ -76,6 +96,7 @@ export function useSettlementLoader(settlementId: string | null) {
     }
   }
 
+  // Return current settlement, sites, pagination, loading, and CRUD functions
   return {
     settlement: isWilderness ? null : settlementData,
     sites: isWilderness ? [] : siteData?.sites ?? [],

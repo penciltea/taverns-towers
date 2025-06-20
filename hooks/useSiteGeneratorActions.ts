@@ -1,7 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+/**
+ * Hook: useSiteGeneratorActions
+ *
+ * Provides reusable async generator actions for site form data:
+ * - generateName: generates site name based on environment & type
+ * - generateMenu: generates menu items considering environment and site context
+ * - generateAll: generates all site data with partial preservation of existing fields
+ * - rerollAll: forces complete regeneration of site data and menu
+ *
+ * Supports wilderness mode with dynamic environment regeneration.
+ */
+
+
+import { useCallback, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteName, generateMenuItems, generateSiteData } from "@/lib/actions/siteGenerator.actions";
+import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
 
@@ -10,6 +23,8 @@ type GeneratorContext = {
   terrain: string[];
   climate: string;
   tags: string[];
+  magic: string;
+  wealth: string;
 };
 
 type UseSiteGeneratorActionsReturn = {
@@ -25,22 +40,28 @@ export function useSiteGeneratorActions(
   isWilderness: boolean,
   settlementId?: string
 ): UseSiteGeneratorActionsReturn {
-  const { siteType, climate, terrain, tags } = context;
+  const { siteType, climate, terrain, tags, magic, wealth } = context;
 
   const { getValues, setValue } = methods;
 
-  // Store generated env in ref-like state to prevent duplicate calls
+  // Cached environment stored locally to avoid duplicate generation calls
   const [cachedEnv, setCachedEnv] = useState<{
     terrain: string[];
     climate: string;
     tags: string[];
   } | null>(null);
 
-
+  // Helper to get the current shopType field value from the form
   const getShopType = useCallback(() => {
     return getValues("shopType");
   }, [methods]);
 
+
+  /**
+   * Regenerate environment context if wilderness or forced.
+   * @return current context if non-wilderness.
+   * Caches generated environment to avoid repeated calls.
+   */
 
   const regenerateEnvironment = useCallback(
     async (force = false) => {
@@ -77,6 +98,10 @@ export function useSiteGeneratorActions(
     [climate, terrain, tags, isWilderness, cachedEnv, methods]
   );
 
+  /**
+   * Generates a site name based on siteType, shopType, and environment.
+   * Sets the 'name' field in the form.
+   */
 
   const generateName = useCallback(async () => {
     if (!siteType) return;
@@ -94,8 +119,14 @@ export function useSiteGeneratorActions(
     });
 
     methods.setValue("name", name);
-}, [siteType, methods, getShopType, regenerateEnvironment]);
+  }, [siteType, methods, getShopType, regenerateEnvironment]);
 
+
+  /**
+   * Generates menu items for the site.
+   * Uses passed-in factors to influence menu generation.
+   * Cleans the menu items and sets them in the form under 'menu'.
+  */
 
   const generateMenu = useCallback(async (env?: EnvironmentInterface) => {
     const effectiveEnv = env || await regenerateEnvironment();
@@ -103,24 +134,35 @@ export function useSiteGeneratorActions(
 
     const shopType = getShopType();
 
-    const menuItems = await generateMenuItems({
-      siteType: [siteType],
+    const menuItems = await generateMenuData({
+      siteType,
       shopType,
-      settlementTerrain: effectiveEnv.terrain,
-      settlementClimate: effectiveEnv.climate,
-      settlementTags: effectiveEnv.tags,
-    });
+      climate: effectiveEnv.climate,
+      terrain: effectiveEnv.terrain,
+      tags: effectiveEnv.tags,
+      magic,
+      wealth
+    }, 6);
 
+    // Clean menu items to ensure form compatibility (strings & optional fields)
     const cleanedItems = menuItems.map((item) => ({
       name: item.name || "",
       price: String(item.price || ""),
       category: item.category || undefined,
       description: item.description || undefined,
+      quality: item.quality || undefined,
+      rarity: item.rarity || undefined,
     }));
 
     methods.setValue("menu", cleanedItems);
   }, [siteType, methods, getShopType, regenerateEnvironment]);
 
+
+  /**
+   * Generates all site data except for fields already set.
+   * Preserves existing form values where present.
+   * After generation, also generates the menu.
+  */
 
   const generateAll = useCallback(async () => {
     if (!siteType) return;
@@ -129,7 +171,7 @@ export function useSiteGeneratorActions(
     const currentValues = methods.getValues();
     const overrides = { ...currentValues };
 
-
+    // Generate site data based on whether wilderness or settlement context
     const result = await generateSiteData(
       siteType,
       isWilderness
@@ -146,6 +188,7 @@ export function useSiteGeneratorActions(
       false
     );
 
+    // Only update fields that are empty or missing in the current form
     Object.entries(result).forEach(([key, value]) => {
       const currentValue = methods.getValues(key as keyof SiteFormData);
 
@@ -157,10 +200,16 @@ export function useSiteGeneratorActions(
       }
     });
 
+    // Generate the menu based on updated environment
     await generateMenu(env);
   }, [siteType, methods, generateMenu, regenerateEnvironment]);
 
 
+  /**
+   * Force rerolls all site data, ignoring current form values.
+   * Also regenerates the environment forcibly.
+   * Updates all form fields and regenerates the menu.
+  */
 
   const rerollAll = useCallback(async () => {
     if (!siteType) return;
@@ -186,14 +235,17 @@ export function useSiteGeneratorActions(
       true // rerollAll
     );
 
+    // Set all generated fields directly, replacing current values
     Object.entries(result).forEach(([key, value]) => {
       methods.setValue(key as keyof SiteFormData, value);
     });
 
+    // Regenerate the menu with the new environment
     await generateMenu(env);
   }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
 
 
+  // Return the four main generation actions
   return {
     name: generateName,
     menu: generateMenu,

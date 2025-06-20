@@ -1,5 +1,7 @@
-import { SITE_SIZE, SITE_CONDITION } from '@/constants/siteOptions';
+import { SITE_SIZE, SITE_CONDITION, QualityType, RarityType } from '@/constants/siteOptions';
 import { DialogProps } from "./dialogProps.interface";
+import { MagicLevel } from '@/constants/settlementOptions';
+import { SiteFormData } from '@/schemas/site.schema';
  
 export interface SiteDialogProps extends DialogProps {
   settlementId: string;
@@ -125,6 +127,10 @@ export interface generatorMenuItem{
   description: string;
   category: string;
   price: string;
+  quality?: QualityType;
+  quantity?: string;
+  rarity?: RarityType;
+  magic?: MagicLevel;
   climate?: string[];
   terrain?: string[];
   tags?: string[];
@@ -137,6 +143,30 @@ export type SiteFormFieldProps = {
     
   };
 };
+
+export interface SiteGenerationContext {
+  climate?: string;
+  terrain?: string[];
+  tags?: string[];
+  size?: string;
+  races?: string;
+  wealth?: string;
+  crime?: string[];
+  magic?: string;
+  domains?: string[];
+  rulingStyle?: string;
+  origin?: "settlement" | "wilderness";
+  settlementId?: string;
+  settlementName?: string;
+  reroll?: boolean;
+  siteType?: string;
+  shopType?: string;
+}
+
+export interface SiteGenerationInput extends SiteGenerationContext {
+  overrides?: Partial<SiteFormData>;
+}
+
 
 export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite | BaseSite;
 

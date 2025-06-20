@@ -3,11 +3,12 @@
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
-import GeneratorSiteMenu from "@/lib/models/generator/site/menu.model";
-import { SiteGenerationInput } from "../modules/site/types";
+import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
+import { GeneratorSiteMenuLean, generateMenuItems } from "../modules/site/common/menu.dispatcher";
+import { menuRulesBySiteType } from "../modules/site/common/menu.rules";
 
 interface GenerateMenuParams {
   siteType: string[];
@@ -15,6 +16,7 @@ interface GenerateMenuParams {
   settlementTerrain?: string[];
   settlementClimate?: string;
   settlementTags?: string[];
+  settlementMagic?: string;
 }
 
 
@@ -52,53 +54,27 @@ export async function generateSiteName({
   });
 }
 
-export async function generateMenuItems({
-  siteType,
-  shopType,
-  settlementTerrain = [],
-  settlementClimate,
-  settlementTags = []
-}: GenerateMenuParams) {
+export async function generateMenuData(
+  context: SiteGenerationContext,
+  itemLimit = 6
+): Promise<GeneratorSiteMenuLean[]> {
   await connectToDatabase();
 
-  // Base query filters
-  const query: any = {
-    siteType,
-  };
-
-  // Add shopType filter only if siteType is shop
-  if (siteType.includes("shop") && shopType) {
-    query.shopType = shopType;
+  if (!context.siteType) {
+    throw new Error("Missing site type in menu generation context");
   }
+  
+  const rules = menuRulesBySiteType[context.siteType] || [];
 
-  // fetch candidates matching siteType (+shopType) first
-  // Then do filtering on climate/terrain/tags in code to handle empty arrays
-
-  const candidates = await GeneratorSiteMenu.find(query).lean();
-
-  // Filter by settlement context
-  const filtered = candidates.filter((item) => {
-    // Helper to check if item's array is empty OR intersects with settlement array
-    const matchesArrayField = (itemField?: string[], settlementField?: string[] | string) => {
-      if (!itemField || itemField.length === 0) return true; // universal
-      if (!settlementField) return false; // no settlement context, can't match
-      if (Array.isArray(settlementField)) {
-        return itemField.some(v => settlementField.includes(v));
-      } else {
-        // settlementField is string (like climate)
-        return itemField.includes(settlementField);
-      }
-    };
-
-    const matchesTerrain = matchesArrayField(item.terrain, settlementTerrain);
-    const matchesClimate = matchesArrayField(item.climate, settlementClimate);
-    const matchesTags = matchesArrayField(item.tags, settlementTags);
-
-    return matchesTerrain && matchesClimate && matchesTags;
+  const items = await generateMenuItems({
+    context,
+    rules,
+    itemLimit,
   });
 
-  return filtered.map(({ _id, __v, ...rest }) => rest);
+  return items;
 }
+
 
 export async function generateSiteData(
   type: string,

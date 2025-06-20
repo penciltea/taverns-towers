@@ -32,6 +32,7 @@ export const menuItemSchema = z.object({
   rarity: z.string().optional(),
   quality: z.string().optional(),
   quantity: z.string().optional(),
+  magic: z.string().optional(),
   description: z.string().optional(),
   price: z.string().or(z.number()).transform((val) => val.toString()),
 });
