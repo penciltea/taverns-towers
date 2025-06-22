@@ -161,6 +161,7 @@ export interface SiteGenerationContext {
   reroll?: boolean;
   siteType?: string;
   shopType?: string;
+  menuItems?: generatorMenuItem[];
 }
 
 export interface SiteGenerationInput extends SiteGenerationContext {

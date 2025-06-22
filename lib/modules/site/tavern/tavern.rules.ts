@@ -188,9 +188,6 @@ async function applyEntertainmentByConditions(
   const unique = Array.from(new Set(combined));
 
   const [min, max] = ENTERTAINMENT_COUNT_BY_SITE_CONDITION[data.condition ?? "average"] ?? [3, 4];
-
-  console.log("min max", min , max);
-  console.log("condition: " , data.condition);
   data.entertainment = getRandomSubset(unique, min, max);
 
   return data;
@@ -229,6 +226,6 @@ const tavernRules = [
 ];
 
 export async function generateTavernData(input: SiteGenerationInput): Promise<SiteFormData> {
-  // Just call your createSiteGenerator with the input object
+  // Call the createSiteGenerator with the input object
   return await createSiteGenerator("tavern", tavernRules)(input);
 }

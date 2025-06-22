@@ -29,7 +29,7 @@ export async function generateMenuItems({
   // Apply all rules in order
   let filteredItems = rawItems;
   for (const rule of rules) {
-    filteredItems = rule(filteredItems, context);
+    filteredItems = await rule(filteredItems, context);
   }
 
   const finalItems = getRandomSubset(filteredItems, itemLimit).map(item => ({

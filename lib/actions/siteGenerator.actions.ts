@@ -60,8 +60,6 @@ export async function generateMenuData(
 ): Promise<GeneratorSiteMenuLean[]> {
   await connectToDatabase();
 
-  console.log("action context: " , context);
-
   if (!context.siteType) {
     throw new Error("Missing site type in menu generation context");
   }
