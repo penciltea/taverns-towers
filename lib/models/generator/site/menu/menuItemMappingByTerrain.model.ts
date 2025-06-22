@@ -1,20 +1,20 @@
-import { CLIMATE_TYPES } from "@/constants/environmentOptions";
+import { TERRAIN_TYPES } from "@/constants/environmentOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
 
-export interface MenuItemMappingByClimateModel {
-  climate: string;
+export interface MenuItemMappingByTerrainModel {
+  terrain: string;
   siteType: string;
   shopType?: string;
   items: Types.ObjectId[];
 }
 
 // Reuse your existing menu item type
-const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>({
-  climate: {
+const MenuItemMappingByTerrainSchema = new Schema<MenuItemMappingByTerrainModel>({
+  terrain: {
     type: String,
     required: true,
-    enum: CLIMATE_TYPES,
+    enum: TERRAIN_TYPES,
   },
   siteType: {
     type: String,
@@ -33,6 +33,6 @@ const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>
   ],
 });
 
-export const MenuItemMappingByClimate =
-  models.MenuItemMappingByClimate ||
-  model("MenuItemMappingByClimate", MenuItemMappingByClimateSchema, "generator_tavern_menu_mapping_by_climate");
+export const MenuItemMappingByTerrain =
+  models.MenuItemMappingByTerrain ||
+  model("MenuItemMappingByTerrain", MenuItemMappingByTerrainSchema, "generator_tavern_menu_mapping_by_terrain");

@@ -2,6 +2,8 @@ import { SiteGenerationContext } from "@/interfaces/site.interface";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { tavernMenuRules } from "../tavern/menu.rules";
 import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
+import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
+import { Types } from "mongoose";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
@@ -16,15 +18,22 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         return []; // skip entirely
     }
 
-    const mappingQuery: Record<string, any> = { climate };
-    if (siteType) mappingQuery.siteType = siteType;
-    if (siteType === "shop" && shopType) mappingQuery.shopType = shopType;
+    const climateQuery: Record<string, any> = { climate };
+    if (siteType) climateQuery.siteType = siteType;
+    if (siteType === "shop" && shopType) climateQuery.shopType = shopType;
 
-    console.log("mapping: " , mappingQuery);
+    const terrainQuery: Record<string, any> = {};
+    if (siteType) terrainQuery.siteType = siteType;
+    if (siteType === "shop" && shopType) terrainQuery.shopType = shopType;
+    if (terrain?.length) terrainQuery.terrain = { $in: terrain };
 
     const results = await Promise.allSettled([
         climate
-            ? await MenuItemMappingByClimate.findOne(mappingQuery).lean<MenuItemMappingByClimateModel>()
+            ? await MenuItemMappingByClimate.findOne(climateQuery).lean<MenuItemMappingByClimateModel>()
+            : null,
+
+        terrain
+            ? await MenuItemMappingByTerrain.find(terrainQuery).lean<MenuItemMappingByTerrainModel[]>()
             : null
         // ToDo: Add more DB calls for filtering by Terrain, Tags, etc.
     ]);
@@ -38,44 +47,36 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
 
     console.log("climateIds: ", climateIds);
 
+    const terrainResult = results[1];
+ 
+    const terrainMappings =
+    terrainResult.status === "fulfilled" && Array.isArray(terrainResult.value)
+        ? terrainResult.value as MenuItemMappingByTerrainModel[]
+        : [];
+
+    const terrainIds = terrainMappings.flatMap(mapping => mapping.items ?? []);
+
     const combined = [
-        ...climateIds
+        ...climateIds,
+        ...terrainIds
     ]; // ToDo: Update with more DB calls/filtering
-    const uniqueIds = Array.from(new Set(combined));
+    const uniqueIds: (string | Types.ObjectId)[] = Array.from(new Set(combined));
+
+    const parsedIds = uniqueIds.map(id =>
+    typeof id === "string" && id.startsWith("ObjectId(")
+        ? new Types.ObjectId(id.replace(/ObjectId\(['"]?|['"]?\)/g, ""))
+        : id
+    );
 
     const menuItems = await GeneratorSiteMenu.find({
-        _id: { $in: uniqueIds },
+        _id: { $in: parsedIds },
     }).lean<GeneratorSiteMenuPlain[]>();
+
+    console.log("menu items: " , menuItems);
     
     return menuItems;
 };
 
-
-
-export const filterByClimate: MenuRuleFn = (items, context) => {
-    //console.log("Context: ", context);
-    //console.log("Items: " , items);
-  if (!context.climate) return items;
-  return items.filter(
-    item => !item.climate?.length || item.climate.includes(context.climate!)
-  );
-};
-
-export const filterByTerrain: MenuRuleFn = (items, context) => {
-  if (!context.terrain?.length) return items;
-  return items.filter(
-    item =>
-      !item.terrain?.length ||
-      item.terrain.some(t => context.terrain!.includes(t))
-  );
-};
-
-export const filterByMagicLevel: MenuRuleFn = (items, context) => {
-  if (!context.magic) return items;
-  return items.filter(
-    item => !item.magic || item.magic <= context.magic!
-  );
-};
 
 const commonMenuRules: MenuRuleFn[] = [
   applyMenuItemsByConditions
