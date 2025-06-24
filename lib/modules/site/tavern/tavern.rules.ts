@@ -23,7 +23,7 @@ import { EntertainmentByTag, EntertainmentByTagModel } from "@/lib/models/genera
 import { ENTERTAINMENT_COUNT_BY_SITE_CONDITION, EntertainmentByMagicLevelMapping, EntertainmentBySiteConditionMapping, EntertainmentBySiteSizeMapping, EntertainmentByTagMapping } from "./mappings/entertainment.mappings";
 import { TavernSite, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 
-function isTavernSite(data: Partial<SiteFormData>): data is Partial<TavernSite> {
+export function isTavernSite(data: Partial<SiteFormData>): data is Partial<TavernSite> {
   return data.type === "tavern";
 }
 
@@ -128,7 +128,7 @@ async function applyTavernClienteleByConditions(
       ? CLIENTELE_COUNT_BY_SETTLEMENT_SIZE[settlementSize]
       : 4; // Default fallback
 
-  const selected = getRandomSubset(unique, maxClientele);
+  const selected = getRandomSubset(unique, { count: maxClientele });
   data.clientele = capitalizeFirstLetter(selected.join(", "));
 
   return data;
@@ -188,7 +188,7 @@ async function applyEntertainmentByConditions(
   const unique = Array.from(new Set(combined));
 
   const [min, max] = ENTERTAINMENT_COUNT_BY_SITE_CONDITION[data.condition ?? "average"] ?? [3, 4];
-  data.entertainment = getRandomSubset(unique, min, max);
+  data.entertainment = getRandomSubset(unique, { min, max });
 
   return data;
 }

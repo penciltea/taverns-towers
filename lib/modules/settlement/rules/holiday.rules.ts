@@ -65,7 +65,7 @@ export async function applyHolidaysByConditions(data: NormalizedSettlementInput)
     ...domainHoliday
   ]
 
-  const selected = getRandomSubset(combined, 1, 3);
+  const selected = getRandomSubset(combined, { min: 1, max: 3 });
   // adding check to see if adding line breaks is necessary
   if (selected.length > 0) {
     data.holidays = selected.join("\n");

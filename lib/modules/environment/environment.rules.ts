@@ -89,7 +89,7 @@ export async function applyTagsByTerrainRule(input: EnvironmentInterface): Promi
     }
 
     if (possibleTags && possibleTags.length > 0) {
-      const subset = getRandomSubset(possibleTags, getRandom([1, 2, 3]));
+      const subset = getRandomSubset(possibleTags, { min: 1, max: 3 });
       subset.forEach(tag => derivedTags.add(tag));
     }
   }

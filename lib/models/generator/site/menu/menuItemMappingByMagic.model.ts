@@ -1,4 +1,4 @@
-import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
+import { MagicLevel, MAGIC_LEVELS } from "@/constants/settlementOptions";
 import { SHOP_TYPES, SITE_CATEGORIES } from "@/constants/siteOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
@@ -6,17 +6,17 @@ import { MenuItemMappingEntry } from "./menu.type";
 
 const siteValues = SITE_CATEGORIES.map(option => option.value);
 
-export interface MenuItemMappingByClimateModel {
-  climate: ClimateTypes;
+export interface MenuItemMappingByMagicModel {
+  magic: MagicLevel;
   items: MenuItemMappingEntry[];
 }
 
 // Reuse your existing menu item type
-const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>({
-  climate: {
+const MenuItemMappingByMagicSchema = new Schema<MenuItemMappingByMagicModel>({
+  magic: {
     type: String,
     required: true,
-    enum: CLIMATE_TYPES,
+    enum: MAGIC_LEVELS,
   },
   items: [
     {
@@ -39,6 +39,6 @@ const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>
   ]
 });
 
-export const MenuItemMappingByClimate =
-  models.MenuItemMappingByClimate ||
-  model("MenuItemMappingByClimate", MenuItemMappingByClimateSchema, "generator_site_menu_mapping_by_climate");
+export const MenuItemMappingByMagic =
+  models.MenuItemMappingByMagic ||
+  model("MenuItemMappingByMagic", MenuItemMappingByMagicSchema, "generator_site_menu_mapping_by_magic");

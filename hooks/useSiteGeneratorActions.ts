@@ -16,7 +16,6 @@ import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
-import { EnvironmentInterface } from "@/interfaces/environment.interface";
 
 type GeneratorContext = {
   siteType: SiteFormData["type"];
@@ -128,20 +127,24 @@ export function useSiteGeneratorActions(
    * Cleans the menu items and sets them in the form under 'menu'.
   */
 
-  const generateMenu = useCallback(async (env?: EnvironmentInterface) => {
+  const generateMenu = useCallback(async () => {
     if (!siteType) return;
 
     const shopType = getShopType();
+    const formData = methods.getValues();
 
-    const menuItems = await generateMenuData({
-      siteType,
-      shopType,
-      climate: context.climate,
-      terrain: context.terrain,
-      tags: context.tags,
-      magic,
-      wealth
-    }, 6);
+    const menuItems = await generateMenuData(
+      {
+        siteType,
+        shopType,
+        climate: context.climate,
+        terrain: context.terrain,
+        tags: context.tags,
+        magic,
+        wealth
+      }, 
+      formData
+    );
 
     // Clean menu items to ensure form compatibility (strings & optional fields)
     const cleanedItems = menuItems.map((item) => ({
@@ -200,7 +203,7 @@ export function useSiteGeneratorActions(
     });
 
     // Generate the menu based on updated environment
-    await generateMenu(env);
+    await generateMenu();
   }, [siteType, methods, generateMenu, regenerateEnvironment]);
 
 
@@ -240,7 +243,7 @@ export function useSiteGeneratorActions(
     });
 
     // Regenerate the menu with the new environment
-    await generateMenu(env);
+    await generateMenu();
   }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
 
 

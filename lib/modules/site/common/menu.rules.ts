@@ -6,6 +6,7 @@ import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/m
 import { Types } from "mongoose";
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
 import { MenuItemMappingEntry } from "@/lib/models/generator/site/menu/menu.type";
+import { MenuItemMappingByMagic, MenuItemMappingByMagicModel } from "@/lib/models/generator/site/menu/menuItemMappingByMagic.model";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
@@ -21,10 +22,8 @@ interface MappingDocumentWithItems {
   items?: MenuItemMappingEntry[];
 }
 
-export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) => {
-    const { climate, terrain, tags, magic, wealth, siteType, shopType } = context;
-
-    console.log("context: " , context);
+export const fetchMenuItemsByEnvironment: MenuRuleFn = async (_items, context) => {
+    const { climate, terrain, tags, magic, siteType, shopType } = context;
 
     const menuSupportedSiteTypes = ["tavern", "shop", "temple", "guild"]; // current list of site types that have a menu (menu/wares/services/etc.)
     if (!context.siteType || !menuSupportedSiteTypes.includes(context.siteType)) {
@@ -44,6 +43,10 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         tag?: string | { $in: string[] };
     };
 
+    type MagicMappingQuery = BaseMappingQuery & {
+        magic?: string;
+    }
+
     const climateQuery: ClimateMappingQuery = {};
     if (climate) climateQuery.climate = climate;
 
@@ -52,6 +55,9 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
 
     const tagQuery: TagMappingQuery = {};
     if (tags?.length) tagQuery.tag = { $in: tags };
+
+    const magicQuery: MagicMappingQuery = {};
+    if (magic) magicQuery.magic = magic;
 
     // Fetch all mapping documents in parallel
     const results = await Promise.allSettled([
@@ -64,53 +70,105 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         tags?.length
             ? MenuItemMappingByTag.find(tagQuery).lean<MenuItemMappingByTagModel[]>()
             : [],
+        magic
+            ? MenuItemMappingByMagic.findOne(magicQuery).lean<MenuItemMappingByMagicModel>()
+            : null,
     ]);
 
     // Helper: extract valid ObjectIds
-    function extractItemIdsFromSingle(
-        result: PromiseSettledResult<MappingDocumentWithItems | null | undefined>
+    function extractItemIdsFromSingle<T extends MappingDocumentWithItems>(
+        result: PromiseSettledResult<T | null | undefined>,
+        options: {
+            siteType?: string;
+            shopType?: string;
+            matchField?: keyof T;      // e.g., "tag" or "terrain"
+            matchValues?: string[];    // e.g., ["Fishing", "Port"]
+        } = {}
     ): Types.ObjectId[] {
+        const { siteType, shopType, matchField, matchValues } = options;
+
         if (result.status !== "fulfilled" || !result.value) return [];
 
+        // Wrap single result into array for consistent processing
         const mappings = Array.isArray(result.value) ? result.value : [result.value];
-        return mappings.flatMap(m =>
-            m.items?.filter(
-                (item: MenuItemMappingEntry) => item.siteType === siteType && (!shopType || item.shopType === shopType)
-            ).map((item: MenuItemMappingEntry) => item.itemId) ?? []
-        );
+
+        return mappings
+            .filter(mapping => {
+                if (!matchField || !matchValues) return true;
+                const fieldValue = mapping[matchField];
+                return typeof fieldValue === "string" && matchValues.includes(fieldValue);
+            })
+            .flatMap(mapping =>
+                mapping.items
+                    ?.filter((item: MenuItemMappingEntry) => item.siteType === siteType && (!shopType || item.shopType === shopType))
+                    .map((item: MenuItemMappingEntry) => item.itemId) ?? []
+            );
     }
 
-    function extractItemIdsFromMany(
-        result: PromiseSettledResult<MappingDocumentWithItems[] | null | undefined>
+    function extractItemIdsFromMany<T extends MappingDocumentWithItems>(
+        result: PromiseSettledResult<T[] | null | undefined>,
+        options: {
+            siteType?: string;
+            shopType?: string;
+            matchField?: keyof T;          // e.g., "tag" or "terrain"
+            matchValues?: string[];        // e.g., ["Fishing", "Port"]
+        } = {}
     ): Types.ObjectId[] {
+        const { siteType, shopType, matchField, matchValues } = options;
+
         if (result.status !== "fulfilled" || !result.value) return [];
 
-        return result.value.flatMap(mapping =>
+        return result.value.filter(mapping => {
+            if (!matchField || !matchValues) return true;
+            const fieldValue = mapping[matchField];
+            return typeof fieldValue === "string" && matchValues.includes(fieldValue);
+        })
+        .flatMap(mapping =>
             mapping.items
-            ?.filter(item => item.siteType === siteType && (!shopType || item.shopType === shopType))
-            .map(item => item.itemId) ?? []
+                ?.filter(item =>
+                item.siteType === siteType && (!shopType || item.shopType === shopType)
+                )
+                .map(item => item.itemId) ?? []
         );
     }
+        
 
     // Extract IDs
-    const climateIds = extractItemIdsFromSingle(results[0]);
-    const terrainIds = extractItemIdsFromMany(results[1]);
-    const tagIds = extractItemIdsFromMany(results[2]);
+    const climateIds = extractItemIdsFromSingle(results[0], {
+        siteType,
+        shopType,
+    });
 
+    const terrainIds = extractItemIdsFromMany<MenuItemMappingByTerrainModel>(results[1], {
+        matchField: "terrain",
+        matchValues: terrain,
+        siteType,
+        shopType
+    });
+    const tagIds = extractItemIdsFromMany<MenuItemMappingByTagModel>(results[2], {
+        matchField: "tag",
+        matchValues: tags,
+        siteType,
+        shopType
+    });
+
+    const magicIds = extractItemIdsFromSingle(results[3], {
+        siteType,
+        shopType,
+    });
 
     const combined = [
         ...climateIds,
         ...terrainIds,
         ...tagIds,
+        ...magicIds,
 
     ]; // ToDo: Update with more DB calls/filtering
     const uniqueIds: (string | Types.ObjectId)[] = Array.from(new Set(combined));
 
-    const parsedIds = uniqueIds.map(id =>
-    typeof id === "string" && id.startsWith("ObjectId(")
-        ? new Types.ObjectId(id.replace(/ObjectId\(['"]?|['"]?\)/g, ""))
-        : id
-    );
+    const parsedIds = uniqueIds
+        .filter(id => Types.ObjectId.isValid(id))  // filters both string/ObjectId
+        .map(id => typeof id === "string" ? new Types.ObjectId(id) : id);
 
     const menuItems = await GeneratorSiteMenu.find({
         _id: { $in: parsedIds },
@@ -127,19 +185,68 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
     const finalItems = [...menuItems, ...universalItems];
 
     // Debug block
+    // console.log("context: " , context);
     // console.log("climateIds: ", climateIds);
     // console.log("terrainIds: ", terrainIds);
     // console.log("tagIds: ", tagIds);
+    // console.log("magicIds: ", magicIds);
     // console.log("menu items: " , menuItems);
     // console.log("finalItems: ", finalItems);
 
-    
+    // console.log("parsedIds:", parsedIds);
+    // const rawMenuDocs = await GeneratorSiteMenu.find({}).lean();
+    // const matched = rawMenuDocs.filter(doc => parsedIds.some(id => id.toString() === doc._id.toString()));
+    // console.log("Matched docs:", matched);
+
     return finalItems;
 };
 
 
+export const filterByWealthLevel: MenuRuleFn = async (items, context) => {
+  const { wealth } = context;
+  if (!wealth) return items;
+
+  console.log("wealth: " , wealth);
+
+  return items.filter(item => {
+    const quality = item.quality ?? "Standard";
+
+    switch (wealth) {
+      case "Impoverished":
+        if (["Exquisite", "Masterwork"].includes(quality)) return false;
+        if (quality === "Fine") return Math.random() < 0.1;
+        return true;
+
+      case "Struggling":
+        if (["Exquisite", "Masterwork"].includes(quality)) return false;
+        if (quality === "Fine") return Math.random() < 0.25;
+        return true;
+
+      case "Modest":
+        if (["Exquisite", "Masterwork"].includes(quality)) return Math.random() < 0.33;
+        return true;
+
+      case "Wealthy":
+        if (quality === "Poor") return false;
+        if (["Exquisite", "Masterwork"].includes(quality)) return Math.random() < 0.8;
+        return true;
+
+      case "Affluent":
+        if (quality === "Poor") return false;
+        return true;
+
+      default:
+        return true;
+    }
+  });
+};
+
+
+
+
 const commonMenuRules: MenuRuleFn[] = [
-  applyMenuItemsByConditions
+  fetchMenuItemsByEnvironment,
+  filterByWealthLevel,
   // Add more tavern-specific rules here
 ];
 

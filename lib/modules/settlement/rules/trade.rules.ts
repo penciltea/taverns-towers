@@ -47,7 +47,7 @@ export async function applyTradeNotesRule(data: NormalizedSettlementInput): Prom
   ];
 
   const uniqueNotes = Array.from(new Set(combined));
-  const selected = getRandomSubset(uniqueNotes, 1, 3);
+  const selected = getRandomSubset(uniqueNotes, { min: 1, max: 3 });
 
   const formatted = selected.map((note, index) => {
     const lower = note.toLowerCase();

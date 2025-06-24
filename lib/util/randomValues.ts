@@ -2,11 +2,28 @@ export const getRandomFromArray = <T,>(arr: T[]): T => {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-export const getRandomSubset = <T,>(arr: T[], min = 1, max = 3): T[] => {
-  const count = Math.floor(Math.random() * (max - min + 1)) + min;
+
+type SubsetOptions =
+  | { count: number }
+  | { min: number; max: number };
+
+export function getRandomSubset<T>(arr: T[], options: SubsetOptions): T[] {
+  if (!arr.length) return [];
+
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
+
+  if ("count" in options) {
+    const count = Math.max(0, Math.min(options.count, arr.length));
+    return shuffled.slice(0, count);
+  }
+
+  const { min, max } = options;
+  const boundedMin = Math.max(0, min);
+  const boundedMax = Math.min(max, arr.length);
+  const randomCount = Math.floor(Math.random() * (boundedMax - boundedMin + 1)) + boundedMin;
+
+  return shuffled.slice(0, randomCount);
+}
 
 /**
  * Utility to randomly pick a single item from an array.

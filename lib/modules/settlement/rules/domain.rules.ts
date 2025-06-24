@@ -43,7 +43,7 @@ export async function applyDomainsByConditions(data: NormalizedSettlementInput):
   const unique = Array.from(new Set(combined));
 
   const [min, max] = domainCountBySize[data.size ?? "Town"] ?? [3, 4]; // set a number of domains as determined by the settlement's size, defaulting to "town" if unavailalble
-  data.domains = getRandomSubset(unique, min, max);  // get a random assortment of domains based off the settlement number of domains
+  data.domains = getRandomSubset(unique, {min, max});  // get a random assortment of domains based off the settlement number of domains
 
 
   return data;

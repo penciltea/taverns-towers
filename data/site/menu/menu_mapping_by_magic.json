@@ -1,0 +1,155 @@
+[
+    {
+        "magic": "None",
+        "items": [
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ccb')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ccd')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cce')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ccf')"
+            }
+        ]
+    },
+    {
+        "magic": "Low",
+        "items": [
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cd8')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cd9')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cde')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce2')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce4')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce5')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce6')"
+            }
+        ]
+    },
+    {
+        "magic": "Moderate",
+        "items": [
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cdb')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce7')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce8')"
+            }
+        ]
+    },
+    {
+        "magic": "High",
+        "items": [
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cda')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cdc')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ce9')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cea')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ced')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cee')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cef')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf3')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf4')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf5')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf7')"
+            }
+        ]
+    },
+    {
+        "magic": "Mythic",
+        "items": [
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf6')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf8')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf2')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf1')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cf0')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0cec')"
+            },
+            {
+                "siteType": "tavern",
+                "itemId": "ObjectId('685ab8e0cbf7d23bf8eb0ceb')"
+            }
+        ]
+    }
+]

@@ -67,7 +67,7 @@ export async function applyFolkloreByConditions(data: NormalizedSettlementInput)
     ...domainFolklore
   ]
 
-  const selected = getRandomSubset(combined, 1, 3);
+  const selected = getRandomSubset(combined, { min: 1, max: 3 });
   // adding check to see if adding line breaks is necessary
   if (selected.length > 0) {
     data.folklore = selected.join("\n");

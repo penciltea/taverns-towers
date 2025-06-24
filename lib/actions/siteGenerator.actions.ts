@@ -56,21 +56,15 @@ export async function generateSiteName({
 
 export async function generateMenuData(
   context: SiteGenerationContext,
-  itemLimit = 6
+  partialFormData: Partial<SiteFormData>
 ): Promise<GeneratorSiteMenuLean[]> {
   await connectToDatabase();
 
   if (!context.siteType) {
     throw new Error("Missing site type in menu generation context");
   }
-  
-  const rules = menuRulesBySiteType[context.siteType] || [];
 
-  const items = await generateMenuItems({
-    context,
-    rules,
-    itemLimit,
-  });
+  const items = await generateMenuItems(context, partialFormData);
 
   return items;
 }

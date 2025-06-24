@@ -76,7 +76,7 @@ export async function applyRacesByConditions(data: NormalizedSettlementInput): P
   }
 
   const [min, max] = raceCountBySize[data.size ?? "Town"] ?? [2, 4];  // Choosing number of races to present based on settlement size, with "town" as the fallback
-  data.races = getRandomSubset(unique, min, max).join(", ");
+  data.races = getRandomSubset(unique, { min, max }).join(", ");
 
   return data;
 }
