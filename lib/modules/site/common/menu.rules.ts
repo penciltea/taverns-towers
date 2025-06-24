@@ -5,93 +5,98 @@ import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/m
 import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
 import { Types } from "mongoose";
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
+import { MenuItemMappingEntry } from "@/lib/models/generator/site/menu/menu.type";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
   context: SiteGenerationContext
 ) => Promise<GeneratorSiteMenuPlain[]>;
 
+type BaseMappingQuery = {
+  siteType?: string;
+  shopType?: string;
+};
+
+interface MappingDocumentWithItems {
+  items?: MenuItemMappingEntry[];
+}
+
 export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) => {
     const { climate, terrain, tags, magic, wealth, siteType, shopType } = context;
+
+    console.log("context: " , context);
 
     const menuSupportedSiteTypes = ["tavern", "shop", "temple", "guild"]; // current list of site types that have a menu (menu/wares/services/etc.)
     if (!context.siteType || !menuSupportedSiteTypes.includes(context.siteType)) {
         return []; // skip entirely
     }
 
-    // Query for climate
-    // climate is a single string value
-    const climateQuery: Partial<Pick<MenuItemMappingByClimateModel, "climate" | "siteType" | "shopType">> = { climate };
-    if (siteType) climateQuery.siteType = siteType;
-    if (siteType === "shop" && shopType) climateQuery.shopType = shopType;
+    // Query conditions
+    type ClimateMappingQuery = BaseMappingQuery & {
+        climate?: string;
+    };
 
-    // Query for terrain
-    // terrain is an array of strings
-    type TerrainMappingQuery = Partial<Omit<MenuItemMappingByTerrainModel, "terrain">> & {
+    type TerrainMappingQuery = BaseMappingQuery & {
         terrain?: string | { $in: string[] };
     };
 
-    const terrainQuery: TerrainMappingQuery = {};
-
-    if (siteType) terrainQuery.siteType = siteType;
-    if (siteType === "shop" && shopType) terrainQuery.shopType = shopType;
-    if (terrain?.length) terrainQuery.terrain = { $in: terrain };
-
-
-    // Query for tag
-    // tag is an array of strings
-    type TagMappingQuery = Partial<Omit<MenuItemMappingByTagModel, "tag">> & {
+    type TagMappingQuery = BaseMappingQuery & {
         tag?: string | { $in: string[] };
     };
 
-    const tagQuery: TagMappingQuery = {};
+    const climateQuery: ClimateMappingQuery = {};
+    if (climate) climateQuery.climate = climate;
 
-    if (siteType) tagQuery.siteType = siteType;
-    if (siteType === "shop" && shopType) tagQuery.shopType = shopType;
+    const terrainQuery: TerrainMappingQuery = {};
+    if (terrain?.length) terrainQuery.terrain = { $in: terrain };
+
+    const tagQuery: TagMappingQuery = {};
     if (tags?.length) tagQuery.tag = { $in: tags };
 
-
-
+    // Fetch all mapping documents in parallel
     const results = await Promise.allSettled([
         climate
-            ? await MenuItemMappingByClimate.findOne(climateQuery).lean<MenuItemMappingByClimateModel>()
+            ? MenuItemMappingByClimate.findOne(climateQuery).lean<MenuItemMappingByClimateModel>()
             : null,
-
-        terrain
-            ? await MenuItemMappingByTerrain.find(terrainQuery).lean<MenuItemMappingByTerrainModel[]>()
-            : null,
-        
-        tags
-            ? await MenuItemMappingByTag.find(tagQuery).lean<MenuItemMappingByTagModel[]>()
-            : null,
-        // ToDo: Add more DB calls for filtering by Terrain, Tags, etc.
+        terrain?.length
+            ? MenuItemMappingByTerrain.find(terrainQuery).lean<MenuItemMappingByTerrainModel[]>()
+            : [],
+        tags?.length
+            ? MenuItemMappingByTag.find(tagQuery).lean<MenuItemMappingByTagModel[]>()
+            : [],
     ]);
 
-    const climateResult = results[0];
+    // Helper: extract valid ObjectIds
+    function extractItemIdsFromSingle(
+        result: PromiseSettledResult<MappingDocumentWithItems | null | undefined>
+    ): Types.ObjectId[] {
+        if (result.status !== "fulfilled" || !result.value) return [];
 
-    const climateIds =
-    climateResult.status === "fulfilled" && climateResult.value
-        ? (climateResult.value as MenuItemMappingByClimateModel).items ?? []
-        : [];
+        const mappings = Array.isArray(result.value) ? result.value : [result.value];
+        return mappings.flatMap(m =>
+            m.items?.filter(
+                (item: MenuItemMappingEntry) => item.siteType === siteType && (!shopType || item.shopType === shopType)
+            ).map((item: MenuItemMappingEntry) => item.itemId) ?? []
+        );
+    }
 
+    function extractItemIdsFromMany(
+        result: PromiseSettledResult<MappingDocumentWithItems[] | null | undefined>
+    ): Types.ObjectId[] {
+        if (result.status !== "fulfilled" || !result.value) return [];
 
-    const terrainResult = results[1];
- 
-    const terrainMappings =
-    terrainResult.status === "fulfilled" && Array.isArray(terrainResult.value)
-        ? terrainResult.value as MenuItemMappingByTerrainModel[]
-        : [];
+        return result.value.flatMap(mapping =>
+            mapping.items
+            ?.filter(item => item.siteType === siteType && (!shopType || item.shopType === shopType))
+            .map(item => item.itemId) ?? []
+        );
+    }
 
-    const terrainIds = terrainMappings.flatMap(mapping => mapping.items ?? []);
+    // Extract IDs
+    const climateIds = extractItemIdsFromSingle(results[0]);
+    const terrainIds = extractItemIdsFromMany(results[1]);
+    const tagIds = extractItemIdsFromMany(results[2]);
 
-    const tagResult = results[2];
- 
-    const tagMappings =
-    tagResult.status === "fulfilled" && Array.isArray(tagResult.value)
-        ? tagResult.value as MenuItemMappingByTagModel[]
-        : [];
-
-    const tagIds = tagMappings.flatMap(mapping => mapping.items ?? []);
 
     const combined = [
         ...climateIds,

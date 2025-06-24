@@ -1,12 +1,14 @@
 import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+import { SITE_CATEGORIES, SHOP_TYPES } from "@/constants/siteOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
+import { MenuItemMappingEntry } from "./menu.type";
+
+const siteValues = SITE_CATEGORIES.map(option => option.value);
 
 export interface MenuItemMappingByTerrainModel {
   terrain: TerrainTypes;
-  siteType: string;
-  shopType?: string;
-  items: Types.ObjectId[];
+  items: MenuItemMappingEntry[];
 }
 
 // Reuse your existing menu item type
@@ -16,20 +18,24 @@ const MenuItemMappingByTerrainSchema = new Schema<MenuItemMappingByTerrainModel>
     required: true,
     enum: TERRAIN_TYPES,
   },
-  siteType: {
-    type: String,
-    required: true,
-  },
-  shopType: {
-    type: String,
-    required: false
-  },
   items: [
     {
-      type: Types.ObjectId,
-      ref: "GeneratorSiteMenuPlain", // Reference to the menu item model
-      required: true,
-    },
+      siteType: {
+        type: String,
+        enum: siteValues,
+        required: true,
+      },
+      shopType: {
+        type: String,
+        enum: SHOP_TYPES,
+        required: false
+      },
+      itemId: {
+        type: Types.ObjectId,
+        ref: "GeneratorSiteMenuPlain", // Reference to the menu item model
+        required: true,
+      }
+    }
   ],
 });
 

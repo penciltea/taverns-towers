@@ -1,12 +1,14 @@
-import { CLIMATE_TYPES } from "@/constants/environmentOptions";
+import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
+import { SHOP_TYPES, SITE_CATEGORIES } from "@/constants/siteOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
+import { MenuItemMappingEntry } from "./menu.type";
+
+const siteValues = SITE_CATEGORIES.map(option => option.value);
 
 export interface MenuItemMappingByClimateModel {
-  climate: string;
-  siteType: string;
-  shopType?: string;
-  items: Types.ObjectId[];
+  climate: ClimateTypes;
+  items: MenuItemMappingEntry[];
 }
 
 // Reuse your existing menu item type
@@ -16,21 +18,24 @@ const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>
     required: true,
     enum: CLIMATE_TYPES,
   },
-  siteType: {
-    type: String,
-    required: true,
-  },
-  shopType: {
-    type: String,
-    required: false
-  },
   items: [
     {
-      type: Types.ObjectId,
-      ref: "GeneratorSiteMenuPlain", // Reference to the menu item model
-      required: true,
-    },
-  ],
+      siteType: {
+        type: siteValues,
+        required: true,
+      },
+      shopType: {
+        type: String,
+        enum: SHOP_TYPES,
+        required: false
+      },
+      itemId: {
+        type: Types.ObjectId,
+        ref: "GeneratorSiteMenuPlain", // Reference to the menu item model
+        required: true,
+      }
+    }
+  ]
 });
 
 export const MenuItemMappingByClimate =

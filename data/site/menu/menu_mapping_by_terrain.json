@@ -1,68 +1,60 @@
 [
   {
     "terrain": "River",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca735')",
-      "ObjectId('685440c28e920235b68ca741')",
-      "ObjectId('685440c28e920235b68ca73e')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca735')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca741')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca73e')" }
     ]
   },
   {
     "terrain": "Forest",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca735')",
-      "ObjectId('685440c28e920235b68ca742')",
-      "ObjectId('685440c28e920235b68ca74b')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca735')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca742')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca74b')" }
     ]
   },
   {
     "terrain": "Mountains",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca739')",
-      "ObjectId('685440c28e920235b68ca742')",
-      "ObjectId('685440c28e920235b68ca74a')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca739')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca742')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca74a')" }
     ]
   },
   {
     "terrain": "Jungle",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca737')",
-      "ObjectId('685440c28e920235b68ca73c')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca737')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca73c')" }
     ]
   },
   {
     "terrain": "Swamp",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca738')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca738')" }
     ]
   },
   {
     "terrain": "Plains",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca739')",
-      "ObjectId('685440c28e920235b68ca741')",
-      "ObjectId('685440c28e920235b68ca74b')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca739')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca741')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca74b')" }
     ]
   },
   {
     "terrain": "Coast",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca73e')",
-      "ObjectId('685440c28e920235b68ca744')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca73e')" },
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca744')" }
     ]
   },
   {
     "terrain": "Desert",
-    "siteType": "tavern",
     "items": [
-      "ObjectId('685440c28e920235b68ca746')"
+      { "siteType": "tavern", "itemId": "ObjectId('685440c28e920235b68ca746')" }
     ]
   }
 ]
