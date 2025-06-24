@@ -116,14 +116,25 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         _id: { $in: parsedIds },
     }).lean<GeneratorSiteMenuPlain[]>();
 
+    // Extra items that are universal
+    const universalItems = await GeneratorSiteMenu.find({
+        siteType: context.siteType,
+        climate: { $size: 0 },
+        terrain: { $size: 0 },
+        tags: { $size: 0 },
+    }).lean<GeneratorSiteMenuPlain[]>();
 
-    console.log("climateIds: ", climateIds);
-    console.log("terrainIds: ", terrainIds);
-    console.log("tagIds: ", tagIds);
+    const finalItems = [...menuItems, ...universalItems];
 
-    //console.log("menu items: " , menuItems);
+    // Debug block
+    // console.log("climateIds: ", climateIds);
+    // console.log("terrainIds: ", terrainIds);
+    // console.log("tagIds: ", tagIds);
+    // console.log("menu items: " , menuItems);
+    // console.log("finalItems: ", finalItems);
+
     
-    return menuItems;
+    return finalItems;
 };
 
 
