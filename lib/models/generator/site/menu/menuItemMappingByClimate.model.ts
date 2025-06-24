@@ -35,4 +35,4 @@ const MenuItemMappingByClimateSchema = new Schema<MenuItemMappingByClimateModel>
 
 export const MenuItemMappingByClimate =
   models.MenuItemMappingByClimate ||
-  model("MenuItemMappingByClimate", MenuItemMappingByClimateSchema, "generator_tavern_menu_mapping_by_climate");
+  model("MenuItemMappingByClimate", MenuItemMappingByClimateSchema, "generator_site_menu_mapping_by_climate");

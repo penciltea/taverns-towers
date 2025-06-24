@@ -4,6 +4,7 @@ import { tavernMenuRules } from "../tavern/menu.rules";
 import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
 import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
 import { Types } from "mongoose";
+import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
@@ -13,19 +14,43 @@ export type MenuRuleFn = (
 export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) => {
     const { climate, terrain, tags, magic, wealth, siteType, shopType } = context;
 
-    const menuSupportedSiteTypes = ["tavern", "shop", "temple", "guild"];
+    const menuSupportedSiteTypes = ["tavern", "shop", "temple", "guild"]; // current list of site types that have a menu (menu/wares/services/etc.)
     if (!context.siteType || !menuSupportedSiteTypes.includes(context.siteType)) {
         return []; // skip entirely
     }
 
-    const climateQuery: Record<string, any> = { climate };
+    // Query for climate
+    // climate is a single string value
+    const climateQuery: Partial<Pick<MenuItemMappingByClimateModel, "climate" | "siteType" | "shopType">> = { climate };
     if (siteType) climateQuery.siteType = siteType;
     if (siteType === "shop" && shopType) climateQuery.shopType = shopType;
 
-    const terrainQuery: Record<string, any> = {};
+    // Query for terrain
+    // terrain is an array of strings
+    type TerrainMappingQuery = Partial<Omit<MenuItemMappingByTerrainModel, "terrain">> & {
+        terrain?: string | { $in: string[] };
+    };
+
+    const terrainQuery: TerrainMappingQuery = {};
+
     if (siteType) terrainQuery.siteType = siteType;
     if (siteType === "shop" && shopType) terrainQuery.shopType = shopType;
     if (terrain?.length) terrainQuery.terrain = { $in: terrain };
+
+
+    // Query for tag
+    // tag is an array of strings
+    type TagMappingQuery = Partial<Omit<MenuItemMappingByTagModel, "tag">> & {
+        tag?: string | { $in: string[] };
+    };
+
+    const tagQuery: TagMappingQuery = {};
+
+    if (siteType) tagQuery.siteType = siteType;
+    if (siteType === "shop" && shopType) tagQuery.shopType = shopType;
+    if (tags?.length) tagQuery.tag = { $in: tags };
+
+
 
     const results = await Promise.allSettled([
         climate
@@ -34,7 +59,11 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
 
         terrain
             ? await MenuItemMappingByTerrain.find(terrainQuery).lean<MenuItemMappingByTerrainModel[]>()
-            : null
+            : null,
+        
+        tags
+            ? await MenuItemMappingByTag.find(tagQuery).lean<MenuItemMappingByTagModel[]>()
+            : null,
         // ToDo: Add more DB calls for filtering by Terrain, Tags, etc.
     ]);
 
@@ -45,7 +74,6 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         ? (climateResult.value as MenuItemMappingByClimateModel).items ?? []
         : [];
 
-    console.log("climateIds: ", climateIds);
 
     const terrainResult = results[1];
  
@@ -56,9 +84,20 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
 
     const terrainIds = terrainMappings.flatMap(mapping => mapping.items ?? []);
 
+    const tagResult = results[2];
+ 
+    const tagMappings =
+    tagResult.status === "fulfilled" && Array.isArray(tagResult.value)
+        ? tagResult.value as MenuItemMappingByTagModel[]
+        : [];
+
+    const tagIds = tagMappings.flatMap(mapping => mapping.items ?? []);
+
     const combined = [
         ...climateIds,
-        ...terrainIds
+        ...terrainIds,
+        ...tagIds,
+
     ]; // ToDo: Update with more DB calls/filtering
     const uniqueIds: (string | Types.ObjectId)[] = Array.from(new Set(combined));
 
@@ -72,7 +111,12 @@ export const applyMenuItemsByConditions: MenuRuleFn = async (_items, context) =>
         _id: { $in: parsedIds },
     }).lean<GeneratorSiteMenuPlain[]>();
 
-    console.log("menu items: " , menuItems);
+
+    console.log("climateIds: ", climateIds);
+    console.log("terrainIds: ", terrainIds);
+    console.log("tagIds: ", tagIds);
+
+    //console.log("menu items: " , menuItems);
     
     return menuItems;
 };

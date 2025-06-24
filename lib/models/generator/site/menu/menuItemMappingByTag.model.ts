@@ -1,20 +1,20 @@
-import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
 
-export interface MenuItemMappingByTerrainModel {
-  terrain: TerrainTypes;
+export interface MenuItemMappingByTagModel {
+  tag: TagTypes;
   siteType: string;
   shopType?: string;
   items: Types.ObjectId[];
 }
 
 // Reuse your existing menu item type
-const MenuItemMappingByTerrainSchema = new Schema<MenuItemMappingByTerrainModel>({
-  terrain: {
+const MenuItemMappingByTagSchema = new Schema<MenuItemMappingByTagModel>({
+  tag: {
     type: String,
     required: true,
-    enum: TERRAIN_TYPES,
+    enum: TAG_TYPES,
   },
   siteType: {
     type: String,
@@ -33,6 +33,6 @@ const MenuItemMappingByTerrainSchema = new Schema<MenuItemMappingByTerrainModel>
   ],
 });
 
-export const MenuItemMappingByTerrain =
-  models.MenuItemMappingByTerrain ||
-  model("MenuItemMappingByTerrain", MenuItemMappingByTerrainSchema, "generator_site_menu_mapping_by_terrain");
+export const MenuItemMappingByTag =
+  models.MenuItemMappingByTag ||
+  model("MenuItemMappingByTag", MenuItemMappingByTagSchema, "generator_site_menu_mapping_by_tag");

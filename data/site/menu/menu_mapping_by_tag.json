@@ -1,0 +1,130 @@
+[
+  {
+    "tag": "Fishing",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca735')",
+      "ObjectId('685440c28e920235b68ca741')"
+    ]
+  },
+  {
+    "tag": "Trade Hub",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca735')",
+      "ObjectId('685440c28e920235b68ca741')",
+      "ObjectId('685440c28e920235b68ca742')",
+      "ObjectId('685440c28e920235b68ca74e')"
+    ]
+  },
+  {
+    "tag": "Isolated",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca736')"
+    ]
+  },
+  {
+    "tag": "Mining Camp",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca736')"
+    ]
+  },
+  {
+    "tag": "Remote",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca738')"
+    ]
+  },
+  {
+    "tag": "Hidden",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca738')"
+    ]
+  },
+  {
+    "tag": "Fortress",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca73a')"
+    ]
+  },
+  {
+    "tag": "Garrison",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca73a')",
+      "ObjectId('685440c28e920235b68ca744')"
+    ]
+  },
+  {
+    "tag": "Capital",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca73c')",
+      "ObjectId('685440c28e920235b68ca742')",
+      "ObjectId('685440c28e920235b68ca749')"
+    ]
+  },
+  {
+    "tag": "Nomadic",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca73f')"
+    ]
+  },
+  {
+    "tag": "Druidic",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca744')",
+      "ObjectId('685440c28e920235b68ca74c')"
+    ]
+  },
+  {
+    "tag": "Sacred Site",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca744')",
+      "ObjectId('685440c28e920235b68ca74f')"
+    ]
+  },
+  {
+    "tag": "Ancient Ruins",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca74b')"
+    ]
+  },
+  {
+    "tag": "Arcane Nexus",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca74c')"
+    ]
+  },
+  {
+    "tag": "Border Post",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca74d')"
+    ]
+  },
+  {
+    "tag": "Criminal Hideout",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca74a')"
+    ]
+  },
+  {
+    "tag": "Infested",
+    "siteType": "tavern",
+    "items": [
+      "ObjectId('685440c28e920235b68ca74e')"
+    ]
+  }
+]
