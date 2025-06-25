@@ -154,5 +154,20 @@ export async function generateMenuItem(
   if (!allItems.length) return [];
 
   const randomItem = getRandom(allItems);
-  return [randomItem];
+  // Normalize single item to the same shape as full menu items
+  const normalizedItem = {
+    name: randomItem.name ?? "",
+    description: randomItem.description ?? "",
+    category: randomItem.category ?? "",
+    price: typeof randomItem.price === "string" ? randomItem.price : String(randomItem.price ?? ""),
+    quality: randomItem.quality ?? "",
+    rarity: randomItem.rarity ?? "",
+    magic: randomItem.magic ?? "",
+    siteType: randomItem.siteType ?? "",
+    climate: randomItem.climate ?? [],
+    terrain: randomItem.terrain ?? [],
+    tags: randomItem.tags ?? [],
+  };
+
+  return [normalizedItem];
 }

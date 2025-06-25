@@ -206,7 +206,7 @@ export const filterByWealthLevel: MenuRuleFn = async (items, context) => {
   const { wealth } = context;
   if (!wealth) return items;
 
-  console.log("wealth: " , wealth);
+  // console.log("wealth: " , wealth);
 
   return items.filter(item => {
     const quality = item.quality ?? "Standard";
