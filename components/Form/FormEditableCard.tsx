@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Box, Card, Typography, TextField, Button, IconButton, Collapse } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -9,6 +9,7 @@ import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS, RARITY_OP
 import FormSelect from "./FormSelect";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
+import { getCategoryOptions } from "@/lib/util/siteHelpers";
 
 interface FormEditableCardProps {
   name: string;
@@ -54,6 +55,8 @@ export default function FormEditableCard({
     field,
     label: MENU_FIELD_LABELS[field] || field,
   }));
+
+  const watchedShopType = useWatch({ control, name: "shopType" });
 
   const handleAdd = () => append(Object.fromEntries(fieldList.map((field) => [field, ""])));
 
@@ -201,12 +204,12 @@ export default function FormEditableCard({
                           }
                           fieldError={fieldError}
                         />
-                      ) : isCategoryField && categoryOptions ? (
+                      ) : isCategoryField ? (
                         <FormSelect
                           name={fieldName}
                           label={col.label}
                           control={control}
-                          options={categoryOptions}
+                          options={[...toSelectOptions(getCategoryOptions(siteType, watchedShopType)), { label: "Other", value: "other"}]}
                           fieldError={fieldError}
                         />
                       ) : (

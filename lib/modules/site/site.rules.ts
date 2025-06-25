@@ -14,18 +14,20 @@
 */
 
 import { SiteFormData } from "@/schemas/site.schema";
+import { SiteGenerationInput } from "@/interfaces/site.interface";
+import { Settlement } from "@/interfaces/settlement.interface";
+import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
+
+import { generateTavernData } from "./tavern/tavern.rules";
+import { generateShopData } from "./shop/shop.rules";
+
 import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
-import { generateTavernData } from "./tavern/tavern.rules";
-import { SiteGenerationInput } from "@/interfaces/site.interface";
 import { generateGovernmentValues } from "./government.rules";
 import { generateGuildValues } from "./guild.rules";
 import { generateMiscellaneousValues } from "./miscellaneous.rules";
 import { generateResidenceValues } from "./residence.rules";
-import { generateShopValues } from "./shop.rules";
 import { generateTempleValues } from "./temple.rules";
-import { Settlement } from "@/interfaces/settlement.interface";
-import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
 
 
 // Maps site type strings to their respective async generation functions
@@ -39,7 +41,7 @@ export const SiteGenerator: Record<
     hidden: generateHiddenValues,
     miscellaneous: generateMiscellaneousValues,
     residence: generateResidenceValues,
-    shop: generateShopValues,
+    shop: generateShopData,
     tavern: generateTavernData,
     temple: generateTempleValues
 };

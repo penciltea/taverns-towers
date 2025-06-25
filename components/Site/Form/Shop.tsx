@@ -1,8 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { SHOP_TYPE_CATEGORIES, SHOP_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
@@ -84,7 +83,8 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     header="Available Wares & Services"
                     siteType="shop"
                     onGenerate={generator?.menu}
-                    buttonLabel="Conjure wares & services"
+                    onGenerateItem={(index: number) => generator?.menuItem?.(index)}
+                    buttonLabel="Conjure full wares & services"
                 />
             </Box>
         </>

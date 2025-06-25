@@ -229,6 +229,442 @@ export const MENU_FIELD_LABELS: Record<string, string> = {
   description: "Description",
 };
 
+export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<string, string[]>> = {
+  tavern: [
+    "Food",
+    "Specialty Dishes",
+    "Non-Alcoholic Drink",
+    "Spirits & Brews",
+  ],
+
+  temple: [
+    "Blessings",
+    "Services",
+    "Holy Water",
+    "Divinations",
+  ],
+
+  guild: [
+    "Training",
+    "Contracts",
+    "Guild Equipment",
+    "Insignia & Uniforms",
+    "Crafting Services",
+  ],
+
+  government: [
+    "Permits & Licenses",
+    "Taxation",
+    "Public Records",
+    "Guards & Patrols",
+    "City Services",
+    "Bounties",
+    "Legal Services",
+  ],
+
+  entertainment: [
+    "Performances",
+    "Tickets / Entry",
+    "Concessions",
+    "Merchandise",
+    "Private Events",
+    "Drinks & Snacks",
+  ],
+
+  hidden: [
+    "Black Market",
+    "Secrets for Sale",
+    "Forged Documents",
+    "Assassinations",
+    "Stolen Goods",
+    "Smuggled Items",
+    "Spy Equipment",
+  ],
+  shop: {
+    blacksmith: [
+      "Swords",
+      "Armor",
+      "Tools",
+      "Repairs",
+      "Custom Orders"
+    ],
+
+    armory: [
+      "Armor",
+      "Shields",
+      "Helmets",
+      "Gauntlets",
+      "Battle Gear"
+    ],
+
+    carpenter: [
+      "Furniture",
+      "Woodcraft Tools",
+      "Home Fixtures",
+      "Decorative Woodwork",
+      "Repairs"
+    ],
+
+    glassblower: [
+      "Glassware",
+      "Vials & Bottles",
+      "Decorative Items",
+      "Windowpanes",
+      "Custom Orders"
+    ],
+
+    fletcher: [
+      "Arrows",
+      "Bows",
+      "Crossbows",
+      "Bowstrings",
+      "Repairs"
+    ],
+
+    tanner: [
+      "Leather Armor",
+      "Belts & Straps",
+      "Bags & Pouches",
+      "Footwear",
+      "Leatherworking Supplies"
+    ],
+
+    weaponsmith: [
+      "Blades",
+      "Polearms",
+      "Daggers",
+      "Maintenance Kits",
+      "Custom Weapons"
+    ],
+
+    accessories: [
+      "Jewelry",
+      "Hats & Headwear",
+      "Belts",
+      "Gloves",
+      "Fashion Accessories"
+    ],
+
+    cobbler: [
+      "Shoes",
+      "Boots",
+      "Shoe Repair",
+      "Leather Care",
+      "Custom Footwear"
+    ],
+
+    haberdasher: [
+      "Clothing",
+      "Hats",
+      "Buttons & Fasteners",
+      "Fabrics",
+      "Tailoring Supplies"
+    ],
+
+    milliner: [
+      "Fancy Hats",
+      "Feathers & Trims",
+      "Veils",
+      "Hat Repair",
+      "Custom Millinery"
+    ],
+
+    tailor: [
+      "Clothing",
+      "Alterations",
+      "Fabrics",
+      "Sewing Supplies",
+      "Custom Garments"
+    ],
+
+    jeweler: [
+      "Rings",
+      "Necklaces",
+      "Gemstones",
+      "Custom Jewelry",
+      "Repair Services"
+    ],
+
+    perfumer: [
+      "Fragrances",
+      "Essential Oils",
+      "Custom Scents",
+      "Cosmetics",
+      "Aromatherapy"
+    ],
+
+    bakery: [
+      "Pastry",
+      "Bread",
+      "Cakes",
+      "Pies",
+      "Specialty Baked Goods"
+    ],
+
+    brewery: [
+      "Ales",
+      "Lagers",
+      "Specialty Brews",
+      "Brewing Supplies",
+      "Tastings"
+    ],
+
+    butcher: [
+      "Fresh Meat",
+      "Cured Meats",
+      "Sausages",
+      "Custom Cuts",
+      "Offal"
+    ],
+
+    cheesemonger: [
+      "Cheeses",
+      "Dairy Products",
+      "Cheese Platters",
+      "Specialty Cheeses",
+      "Tastings"
+    ],
+
+    confectionery: [
+      "Candies",
+      "Chocolates",
+      "Sugary Treats",
+      "Gift Boxes",
+      "Seasonal Sweets"
+    ],
+
+    fishmonger: [
+      "Fresh Fish",
+      "Shellfish",
+      "Preserved Fish",
+      "Fishing Supplies",
+      "Specialty Seafood"
+    ],
+
+    meadery: [
+      "Meads",
+      "Honey Products",
+      "Tastings",
+      "Custom Mead",
+      "Brewing Supplies"
+    ],
+
+    produce: [
+      "Fresh Vegetables",
+      "Fruits",
+      "Herbs",
+      "Seasonal Produce",
+      "Organic Goods"
+    ],
+
+    spiceMerchant: [
+      "Spices",
+      "Herbs & Seasonings",
+      "Tea Blends",
+      "Exotic Ingredients",
+      "Custom Blends"
+    ],
+
+    teaHouse: [
+      "Loose Leaf Teas",
+      "Teapots & Accessories",
+      "Tea Blends",
+      "Tastings",
+      "Tea Ceremonies"
+    ],
+
+    winery: [
+      "Wines",
+      "Vintages",
+      "Tastings",
+      "Wine Accessories",
+      "Custom Orders"
+    ],
+
+    alchemist: [
+      "Potions",
+      "Herbal Remedies",
+      "Alchemy Supplies",
+      "Custom Elixirs",
+      "Magical Components"
+    ],
+
+    apothecary: [
+      "Medicinal Herbs",
+      "Salves & Ointments",
+      "Tinctures",
+      "Health Remedies",
+      "Custom Formulations"
+    ],
+
+    bookstore: [
+      "Books",
+      "Scrolls",
+      "Maps",
+      "Stationery",
+      "Rare Tomes"
+    ],
+
+    divinersTent: [
+      "Fortunes",
+      "Tarot Cards",
+      "Crystal Balls",
+      "Scrying Supplies",
+      "Mystical Services"
+    ],
+
+    enchanter: [
+      "Enchanted Items",
+      "Magical Trinkets",
+      "Custom Enchantments",
+      "Repair Services",
+      "Magical Components"
+    ],
+
+    herbalist: [
+      "Herbs",
+      "Tinctures",
+      "Teas",
+      "Natural Remedies",
+      "Gardening Supplies"
+    ],
+
+    magic: [
+      "Wands",
+      "Scrolls",
+      "Spell Components",
+      "Magical Artifacts",
+      "Custom Magic Items"
+    ],
+
+    mapmaker: [
+      "Maps",
+      "Cartography Supplies",
+      "Custom Maps",
+      "Navigation Tools",
+      "Atlases"
+    ],
+
+    scrollShop: [
+      "Scrolls",
+      "Magical Texts",
+      "Spellbooks",
+      "Enchanting Supplies",
+      "Custom Scrolls"
+    ],
+
+    curiosityShop: [
+      "Oddities",
+      "Collectibles",
+      "Artifacts",
+      "Trinkets",
+      "Mystical Items"
+    ],
+
+    clockmaker: [
+      "Clocks",
+      "Watches",
+      "Repairs",
+      "Custom Timepieces",
+      "Clock Parts"
+    ],
+
+    generalStore: [
+      "Household Goods",
+      "Tools",
+      "Food Staples",
+      "Basic Clothing",
+      "Everyday Items"
+    ],
+
+    trinketShop: [
+      "Small Gifts",
+      "Souvenirs",
+      "Jewelry",
+      "Toys",
+      "Collectibles"
+    ],
+
+    pawnShop: [
+      "Used Goods",
+      "Jewelry",
+      "Weapons",
+      "Artifacts",
+      "Rare Finds"
+    ],
+
+    petShop: [
+      "Pets",
+      "Pet Supplies",
+      "Food",
+      "Toys",
+      "Training Services"
+    ],
+
+    provisioner: [
+      "Food Supplies",
+      "Camping Gear",
+      "Clothing",
+      "Tools",
+      "General Supplies"
+    ],
+
+    salvager: [
+      "Scrap Materials",
+      "Repurposed Items",
+      "Tools",
+      "Parts",
+      "Collectibles"
+    ],
+
+    stable: [
+      "Horses",
+      "Feed",
+      "Tack & Saddlery",
+      "Training",
+      "Horse Care Products"
+    ],
+
+    sundries: [
+      "Miscellaneous Goods",
+      "Household Items",
+      "Personal Care",
+      "Cleaning Supplies",
+      "Basic Tools"
+    ],
+
+    tinker: [
+      "Small Repairs",
+      "Gadgets",
+      "Tools",
+      "Mechanical Parts",
+      "Custom Devices"
+    ],
+
+    toolsmith: [
+      "Hand Tools",
+      "Blacksmith Tools",
+      "Repair Services",
+      "Custom Tools",
+      "Sharpening Services"
+    ],
+
+    toyMaker: [
+      "Toys",
+      "Games",
+      "Puzzles",
+      "Wooden Toys",
+      "Custom Creations"
+    ],
+
+    other: [
+      "Miscellaneous",
+      "Unique Items",
+      "Special Orders"
+    ],
+  }
+};
+
 
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];

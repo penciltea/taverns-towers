@@ -163,7 +163,7 @@ export const fetchMenuItemsByEnvironment: MenuRuleFn = async (_items, context) =
         ...tagIds,
         ...magicIds,
 
-    ]; // ToDo: Update with more DB calls/filtering
+    ];
     const uniqueIds: (string | Types.ObjectId)[] = Array.from(new Set(combined));
 
     const parsedIds = uniqueIds

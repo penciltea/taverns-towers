@@ -7,7 +7,7 @@
 */
 
 
-import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { MENU_CATEGORY_OPTIONS_BY_SITE, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
 import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
@@ -74,3 +74,16 @@ export function createSiteGenerator<T extends SiteFormData["type"]>(
 export const getShopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
   group.options.map(option => option.value)
 );
+
+/**
+ * A utility function for getting menu item categories by site type (and shop type if siteType is 'shop')
+*/
+
+export function getCategoryOptions(siteType: string, shopType?: string): string[] {
+  const entry = MENU_CATEGORY_OPTIONS_BY_SITE[siteType];
+  if (Array.isArray(entry)) return entry;
+  if (shopType && typeof entry === "object") {
+    return entry[shopType.toLowerCase()] ?? [];
+  }
+  return [];
+}
