@@ -138,7 +138,6 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Curiosity Shop", value: "curiosityShop" },
       { label: "Clockmaker", value: "clockmaker" },
       { label: "General Store", value: "generalStore" },
-      { label: "Trinket Shop", value: "trinketShop" },
       { label: "Pawn Shop", value: "pawnShop" },
       { label: "Pet Shop", value: "petShop" },
       { label: "Provisioner", value: "provisioner" },
@@ -148,6 +147,7 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Tinker", value: "tinker" },
       { label: "Toolsmith", value: "toolsmith" },
       { label: "Toy Maker", value: "toyMaker" },
+      { label: "Trinket Shop", value: "trinketShop" },
       { label: "Other", value: "other" }
     ],
   }
@@ -282,7 +282,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
   ],
   shop: {
     blacksmith: [
-      "Swords",
+      "Weapons",
       "Armor",
       "Tools",
       "Repairs",
@@ -556,7 +556,6 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
     curiosityShop: [
       "Oddities",
       "Collectibles",
-      "Artifacts",
       "Trinkets",
       "Mystical Items"
     ],
@@ -566,14 +565,14 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
       "Watches",
       "Repairs",
       "Custom Timepieces",
-      "Clock Parts"
+      "Clock Parts",
+      "Constructs"
     ],
 
     generalStore: [
       "Household Goods",
       "Tools",
       "Food Staples",
-      "Basic Clothing",
       "Everyday Items"
     ],
 
