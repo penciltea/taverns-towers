@@ -1,8 +1,9 @@
 import { MagicLevel, MAGIC_LEVELS } from "@/constants/settlementOptions";
-import { SHOP_TYPES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_CATEGORIES } from "@/constants/siteOptions";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
 import { MenuItemMappingEntry } from "./menu.type";
+import { getShopTypes } from "@/lib/util/siteHelpers";
 
 const siteValues = SITE_CATEGORIES.map(option => option.value);
 
@@ -27,7 +28,7 @@ const MenuItemMappingByMagicSchema = new Schema<MenuItemMappingByMagicModel>({
       },
       shopType: {
         type: String,
-        enum: SHOP_TYPES,
+        enum: getShopTypes,
         required: false
       },
       itemId: {

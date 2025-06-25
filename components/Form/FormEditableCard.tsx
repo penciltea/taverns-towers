@@ -14,6 +14,7 @@ interface FormEditableCardProps {
   name: string;
   siteType: string;
   header?: string;
+  categoryOptions?: { value: string; label: string }[]
   onGenerate?: () => void;
   onGenerateItem?: (index: number) => void;
   buttonLabel?: string;
@@ -36,6 +37,7 @@ export default function FormEditableCard({
   name,
   siteType,
   header,
+  categoryOptions,
   onGenerate,
   onGenerateItem,
   buttonLabel = "Generate",
@@ -178,13 +180,16 @@ export default function FormEditableCard({
                   const fieldName = `${name}.${index}.${col.field}`;
                   const fieldError = (errors?.[name] as any)?.[index]?.[col.field];
 
+                  const isSelectField = col.field === "quality" || col.field === "rarity";
+                  const isCategoryField = col.field === "category";
+
                   return (
                     <Box key={col.field} mb={1}>
-                      {/* Skip extra label if it's already handled by FormSelect */}
-                      {(col.field !== "quality" && col.field !== "rarity") && (
+                      {!isSelectField && !isCategoryField && (
                         <Typography variant="subtitle2">{col.label}</Typography>
                       )}
-                      {col.field === "quality" || col.field === "rarity" ? (
+                      
+                      {isSelectField ? (
                         <FormSelect
                           name={fieldName}
                           label={col.label}
@@ -194,6 +199,14 @@ export default function FormEditableCard({
                               ? toSelectOptions(QUALITY_OPTIONS)
                               : toSelectOptions(RARITY_OPTIONS)
                           }
+                          fieldError={fieldError}
+                        />
+                      ) : isCategoryField && categoryOptions ? (
+                        <FormSelect
+                          name={fieldName}
+                          label={col.label}
+                          control={control}
+                          options={categoryOptions}
                           fieldError={fieldError}
                         />
                       ) : (

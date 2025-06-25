@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, SHOP_TYPES, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
 const conditionValues = SITE_CONDITION.map(option => option.value);
 const securityValues = SECURITY_LEVELS.map(opt => opt.value);
 const secrecyValues = SECRECY_LEVELS.map(opt => opt.value);
+const shopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
+  group.options.map(option => option.value)
+);
 
 const BaseSiteSchema = new Schema(
   {
@@ -72,7 +75,7 @@ const Tavern =
   Site.discriminator(
     "shop",
     new Schema({
-      shopType: { type: String, enum: SHOP_TYPES, required: true },
+      shopType: { type: String, enum: shopTypes, required: true },
       owner: { type: String, required: false },
       menu: [MenuItemSchema],
     })

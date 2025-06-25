@@ -7,7 +7,7 @@
 */
 
 
-import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
 import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
@@ -66,3 +66,11 @@ export function createSiteGenerator<T extends SiteFormData["type"]>(
     return result;
   };
 }
+
+
+/**
+ * Getting shop type values from the nested arrays of shop types
+*/
+export const getShopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
+  group.options.map(option => option.value)
+);

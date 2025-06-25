@@ -1,7 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { SHOP_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SHOP_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
@@ -21,7 +21,10 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 label="Shop Type"
                 required
                 control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(SHOP_TYPES)]}
+                options={[
+                    { label: "Random", value: "random" },
+                    ...SHOP_TYPE_CATEGORIES,
+                ]}
                 fieldError={errors.shopType}
             />
 
