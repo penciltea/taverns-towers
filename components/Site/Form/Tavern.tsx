@@ -88,14 +88,13 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 fieldError={errors.gmNotes}
             />
 
-            
-
             <Box sx={{mt: 4}}>
                 <FormEditableCard
                     name="menu"
                     header="Tavern Menu"
                     siteType="tavern"
                     onGenerate={generator?.menu}
+                    onGenerateItem={(index: number) => generator?.menuItem?.(index)}
                     buttonLabel="Conjure menu items"
                 />
             </Box>

@@ -7,7 +7,7 @@ import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.in
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
-import { GeneratorSiteMenuLean, generateMenuItems } from "../modules/site/common/menu.dispatcher";
+import { GeneratorSiteMenuLean, generateMenu, generateMenuItem } from "../modules/site/common/menu.dispatcher";
 import { menuRulesBySiteType } from "../modules/site/common/menu.rules";
 
 interface GenerateMenuParams {
@@ -64,9 +64,24 @@ export async function generateMenuData(
     throw new Error("Missing site type in menu generation context");
   }
 
-  const items = await generateMenuItems(context, partialFormData);
+  const items = await generateMenu(context, partialFormData);
 
   return items;
+}
+
+export async function generateMenuItem(
+  context: SiteGenerationContext,
+  partialFormData: Partial<SiteFormData>
+): Promise<GeneratorSiteMenuLean[]> {
+  await connectToDatabase();
+
+  if (!context.siteType) {
+    throw new Error("Missing site type in menu generation context");
+  }
+
+  const item = await generateMenuItem(context, partialFormData);
+
+  return item;
 }
 
 

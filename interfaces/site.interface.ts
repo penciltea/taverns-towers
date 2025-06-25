@@ -140,6 +140,7 @@ export type SiteFormFieldProps = {
   generator?: {
     name?: () => void;
     menu?: () => void;
+    menuItem?: (index: number) => void;
     
   };
 };

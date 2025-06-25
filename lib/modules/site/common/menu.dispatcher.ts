@@ -2,7 +2,7 @@ import { SiteGenerationContext } from "@/interfaces/site.interface";
 import connectToDatabase from "@/lib/db/connect";
 import { GeneratorSiteMenuPlain, GeneratorSiteMenu } from "@/lib/models/generator/site/menu.model";
 import { MenuRuleFn, menuRulesBySiteType } from "./menu.rules";
-import { getRandomSubset } from "@/lib/util/randomValues";
+import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SETTLEMENT_SIZE_MULTIPLIERS, SETTLEMENT_WEALTH_BONUSES, SITE_SIZE_BASE, SITE_CONDITION_PENALTIES } from "./mappings";
 
@@ -107,7 +107,7 @@ export async function fetchMenuItems({
   return filteredItems; // raw items with full data, including _id etc.
 }
 
-export async function generateMenuItems(
+export async function generateMenu(
   context: SiteGenerationContext,
   partialFormData: Partial<SiteFormData>
 ): Promise<GeneratorSiteMenuLean[]> {
@@ -140,4 +140,20 @@ export async function generateMenuItems(
   }
 
   return []; // fallback if somehow called for a site with no menu
+}
+
+export async function generateMenuItem(
+  context: SiteGenerationContext,
+  partialFormData: Partial<SiteFormData>
+): Promise<GeneratorSiteMenuLean[]> {
+  // Get rules by site type
+  const rules = menuRulesBySiteType[context.siteType ?? ""] || [];
+
+  // Step 1: Fetch raw items using rules
+  const allItems = await fetchMenuItems({ context, rules });
+
+  if (!allItems.length) return [];
+
+  const randomItem = getRandom(allItems);
+  return [randomItem];
 }

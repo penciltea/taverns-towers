@@ -15,6 +15,7 @@ interface FormEditableCardProps {
   siteType: string;
   header?: string;
   onGenerate?: () => void;
+  onGenerateItem?: (index: number) => void;
   buttonLabel?: string;
 }
 
@@ -36,6 +37,7 @@ export default function FormEditableCard({
   siteType,
   header,
   onGenerate,
+  onGenerateItem,
   buttonLabel = "Generate",
 }: FormEditableCardProps) {
   const { control, register, formState: { errors } } = useFormContext();
@@ -141,15 +143,33 @@ export default function FormEditableCard({
                 {getItemDisplayName(item, index)}
               </Typography>
 
-              <IconButton
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent toggle
-                  remove(index);
-                }}
-                size="small"
-              >
-                <DeleteIcon />
-              </IconButton>
+              <Box sx={{display: 'flex'}}>
+                {onGenerateItem && (
+                  <Box mt={2}>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent toggle
+                        onGenerateItem(index)}
+                      }
+                    >
+                      Conjure Item
+                    </Button>
+                  </Box>
+                )}
+
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent toggle
+                    remove(index);
+                  }}
+                  size="medium"
+                  sx={{mt: 1.25, ml: 2}}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
             </Box>
 
             <Collapse in={isExpanded} timeout="auto" unmountOnExit>
@@ -194,6 +214,7 @@ export default function FormEditableCard({
                     </Box>
                   );
                 })}
+                
               </Box>
             </Collapse>
           </Card>

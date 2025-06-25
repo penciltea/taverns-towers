@@ -29,6 +29,7 @@ type GeneratorContext = {
 type UseSiteGeneratorActionsReturn = {
   name: () => void;
   menu: () => void;
+  menuItem: (index: number) => void;
   all: () => void;
   reroll: () => void;
 };
@@ -160,6 +161,46 @@ export function useSiteGeneratorActions(
   }, [siteType, methods, getShopType, regenerateEnvironment]);
 
 
+
+  const generateMenuItem = useCallback(async (index: number) => {
+    if (!siteType) return;
+
+    const shopType = getShopType();
+    const formData = methods.getValues();
+
+    const allItems = await generateMenuData(
+      {
+        siteType,
+        shopType,
+        climate: context.climate,
+        terrain: context.terrain,
+        tags: context.tags,
+        magic,
+        wealth
+      },
+      formData
+    );
+
+    if (!Array.isArray(allItems) || allItems.length === 0) return;
+
+    // Pick a random item to inject
+    const newItem = allItems[Math.floor(Math.random() * allItems.length)];
+
+    const cleanedItem = {
+      name: newItem.name || "",
+      price: String(newItem.price || ""),
+      category: newItem.category || undefined,
+      description: newItem.description || undefined,
+      quality: newItem.quality || undefined,
+      rarity: newItem.rarity || undefined,
+    };
+
+    const currentMenu = methods.getValues("menu") || [];
+    currentMenu[index] = cleanedItem;
+    methods.setValue("menu", currentMenu);
+  }, [siteType, methods, getShopType, context]);
+
+
   /**
    * Generates all site data except for fields already set.
    * Preserves existing form values where present.
@@ -251,6 +292,7 @@ export function useSiteGeneratorActions(
   return {
     name: generateName,
     menu: generateMenu,
+    menuItem: generateMenuItem,
     all: generateAll,
     reroll: rerollAll,
   };
