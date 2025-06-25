@@ -143,8 +143,7 @@ export async function generateMenu(
 }
 
 export async function generateMenuItem(
-  context: SiteGenerationContext,
-  partialFormData: Partial<SiteFormData>
+  context: SiteGenerationContext
 ): Promise<GeneratorSiteMenuLean[]> {
   // Get rules by site type
   const rules = menuRulesBySiteType[context.siteType ?? ""] || [];

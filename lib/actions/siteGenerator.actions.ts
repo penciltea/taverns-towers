@@ -69,9 +69,8 @@ export async function generateMenuData(
   return items;
 }
 
-export async function generateMenuItem(
-  context: SiteGenerationContext,
-  partialFormData: Partial<SiteFormData>
+export async function fetchMenuItem(
+  context: SiteGenerationContext
 ): Promise<GeneratorSiteMenuLean[]> {
   await connectToDatabase();
 
@@ -79,7 +78,7 @@ export async function generateMenuItem(
     throw new Error("Missing site type in menu generation context");
   }
 
-  const item = await generateMenuItem(context, partialFormData);
+  const item = await generateMenuItem(context);
 
   return item;
 }

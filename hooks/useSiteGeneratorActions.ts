@@ -14,7 +14,7 @@
 import { useCallback, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
+import { generateSiteName, generateSiteData, generateMenuData, fetchMenuItem } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 
 type GeneratorContext = {
@@ -161,44 +161,56 @@ export function useSiteGeneratorActions(
   }, [siteType, methods, getShopType, regenerateEnvironment]);
 
 
+  /**
+   * Generates a new single menu item asynchronously and replaces the item
+   * at the specified index in the form's menu array.
+   *
+   * @param {number} index - The position in the menu array to replace with the new item.
+   */
 
-  const generateMenuItem = useCallback(async (index: number) => {
-    if (!siteType) return;
+  const generateMenuItem = useCallback(
+    async (index: number) => {
+       // If the siteType is not defined, exit early — can't generate without a site type.
+      if (!siteType) return;
 
-    const shopType = getShopType();
-    const formData = methods.getValues();
+      // Retrieve the current shopType from the form, if applicable.
+      const shopType = getShopType();
 
-    const allItems = await generateMenuData(
-      {
+      // Call the server action fetchMenuItem to get one new menu item matching the current context.
+      // Passes siteType, shopType, environment, and other relevant factors.
+      const items = await fetchMenuItem({
         siteType,
         shopType,
         climate: context.climate,
         terrain: context.terrain,
         tags: context.tags,
         magic,
-        wealth
-      },
-      formData
-    );
+        wealth,
+      });
 
-    if (!Array.isArray(allItems) || allItems.length === 0) return;
+      if (!Array.isArray(items) || items.length === 0) return;
 
-    // Pick a random item to inject
-    const newItem = allItems[Math.floor(Math.random() * allItems.length)];
+      // Take the first item from the returned array — it should contain exactly one item.
+      const newItem = items[0];
 
-    const cleanedItem = {
-      name: newItem.name || "",
-      price: String(newItem.price || ""),
-      category: newItem.category || undefined,
-      description: newItem.description || undefined,
-      quality: newItem.quality || undefined,
-      rarity: newItem.rarity || undefined,
-    };
+      // Clean up the item fields for the form:
+      // - Ensure name and price are strings
+      // - Use undefined for optional fields if they're missing
+      const cleanedItem = {
+        name: newItem.name || "",
+        price: String(newItem.price || ""),
+        category: newItem.category || undefined,
+        description: newItem.description || undefined,
+        quality: newItem.quality || undefined,
+        rarity: newItem.rarity || undefined,
+      };
 
-    const currentMenu = methods.getValues("menu") || [];
-    currentMenu[index] = cleanedItem;
-    methods.setValue("menu", currentMenu);
-  }, [siteType, methods, getShopType, context]);
+      // Get the current 'menu' array from the form & replace item at specified index
+      const currentMenu = methods.getValues("menu") || [];
+      currentMenu[index] = cleanedItem;
+      methods.setValue("menu", currentMenu);
+    }, [siteType, methods, getShopType, context]
+  );
 
 
   /**
