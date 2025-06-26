@@ -46,7 +46,7 @@
     {
         "name": "Spiced Jungle Rum",
         "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "1gp",
         "quality": "Standard",
         "rarity": "Common",
@@ -87,7 +87,7 @@
     {
         "name": "Dwarven Stout",
         "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "8sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -107,7 +107,7 @@
     {
         "name": "Smoked Salted Fish",
         "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "4sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -120,7 +120,7 @@
     {
         "name": "Honey-Glazed Roast Venison",
         "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "1gp 5sp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -133,7 +133,7 @@
     {
         "name": "Spiced Jungle Fruit Stew",
         "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "6sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -159,7 +159,7 @@
     {
         "name": "Barley Ale",
         "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "3sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -172,7 +172,7 @@
     {
         "name": "Spiced Citrus Mead",
         "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "1gp",
         "quality": "Standard",
         "rarity": "Uncommon",
@@ -185,7 +185,7 @@
     {
         "name": "Herbal Tea Blend",
         "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
-        "category": "Beverage",
+        "category": "Non-Alcoholic Drinks",
         "price": "2sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -198,7 +198,7 @@
     {
         "name": "Honey Ale",
         "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "4sp",
         "quality": "Standard",
         "rarity": "Uncommon",
@@ -276,7 +276,7 @@
     {
         "name": "Watered Ale",
         "description": "A weak, watery ale barely strong enough to lift spirits.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "2cp",
         "quality": "Poor",
         "rarity": "Common",
@@ -315,7 +315,7 @@
     {
         "name": "Braised Cabbage and Sausage",
         "description": "A hearty plate of braised cabbage and coarse-ground sausage.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "8cp",
         "quality": "Standard",
         "rarity": "Common",
@@ -341,7 +341,7 @@
     {
         "name": "Copper Mug Ale",
         "description": "A standard ale served in most taverns. No frills, but reliable.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "3sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -367,7 +367,7 @@
     {
         "name": "Mulled Wine",
         "description": "Warm red wine steeped with spices and citrus peel. A tavern staple for cold nights.",
-        "category": "Beverage",
+        "category": "Spirits & Brews",
         "price": "6sp",
         "quality": "Standard",
         "rarity": "Uncommon",
@@ -380,7 +380,7 @@
     {
         "name": "Truffled Game Pie",
         "description": "A rich meat pie filled with pheasant, wild boar, and black truffle shavings.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "2gp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -393,7 +393,7 @@
     {
         "name": "Velvet Red Reserve",
         "description": "An aged red wine with a smooth finish, imported from distant vineyards.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "1gp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -406,7 +406,7 @@
     {
         "name": "Glowberry Glazed Ham",
         "description": "Succulent ham glazed with rare glowberries, giving it a faint luminous sheen.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "3gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -419,7 +419,7 @@
     {
         "name": "Wyrmfire Brandy",
         "description": "A strong brandy with a warming magical aftertaste that lingers pleasantly.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "2gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -432,7 +432,7 @@
     {
         "name": "Chrono-Spiced Duck",
         "description": "Roasted duck marinated in time-dilated spices, intensifying its flavor exponentially.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "5gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -445,7 +445,7 @@
     {
         "name": "Elixir of Twilight",
         "description": "A sparkling cocktail that shifts color with the drinker's mood. Popular among nobles and mages.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "4gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -458,7 +458,7 @@
     {
         "name": "Astral Crème Tartlet",
         "description": "A decadent dessert that flickers like a starry sky and is said to improve clarity of thought.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "3gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -484,7 +484,7 @@
     {
         "name": "Thaumaturgic Tea",
         "description": "An herbal infusion that tingles with latent magic. Often consumed before spellcasting.",
-        "category": "Drink",
+        "category": "Non-Alcoholic Drinks",
         "price": "1gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -510,7 +510,7 @@
     {
         "name": "Regal Quail Skewers",
         "description": "Succulent skewers of seasoned quail, marinated in imported citrus and saffron.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "2gp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -523,7 +523,7 @@
     {
         "name": "Smuggler’s Brew",
         "description": "A smoky, high-proof drink served in inconspicuous mugs. Strong enough to forget your name.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "9cp",
         "quality": "Standard",
         "rarity": "Uncommon",
@@ -588,7 +588,7 @@
     {
         "name": "Luminous Lager",
         "description": "A fizzy beer that glows faintly blue and never goes flat, even when left out.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "1gp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -601,7 +601,7 @@
     {
         "name": "Echoing Mead",
         "description": "A golden mead that causes the drinker's laughter to echo a few seconds after it stops.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "2gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -614,7 +614,7 @@
     {
         "name": "Frostpetal Salad",
         "description": "A crisp, magically-chilled salad made from petals that never wilt and melt in the mouth.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "3gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -627,7 +627,7 @@
     {
         "name": "Starfire Risotto",
         "description": "Rice simmered in starlight-infused broth, shimmering with flecks of cosmic dust.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "5gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -640,7 +640,7 @@
     {
         "name": "Veilwine Elixir",
         "description": "A translucent purple wine that grants momentary night vision after a single sip.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "4gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -652,8 +652,8 @@
     },
     {
         "name": "Phoenix Feather Tart",
-        "description": "A fiery pastry that regenerates after each bite until fully consumed. Said to inspire courage.",
-        "category": "Food",
+        "description": "A fiery pastry that slowly regenerates after each bite until fully consumed. Said to inspire courage.",
+        "category": "Specialty Dishes",
         "price": "10gp",
         "quality": "Exquisite",
         "rarity": "Legendary",
@@ -666,7 +666,7 @@
     {
         "name": "Eternity Cider",
         "description": "A radiant gold cider that halts the aging process for one hour per sip. Extremely rare.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "12gp",
         "quality": "Exquisite",
         "rarity": "Legendary",
@@ -679,7 +679,7 @@
     {
         "name": "Starlit Nectar",
         "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
-        "category": "Drink",
+        "category": "Non-Alcoholic Drinks",
         "price": "6gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -705,7 +705,7 @@
     {
         "name": "Heartfire Broth",
         "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "8gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -718,7 +718,7 @@
     {
         "name": "Essence of Eclipse",
         "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "10gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -744,7 +744,7 @@
     {
         "name": "Sunforge Nectar",
         "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
-        "category": "Drink",
+        "category": "Non-Alcoholic Drinks",
         "price": "12gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -757,7 +757,7 @@
     {
         "name": "Lunar-Spun Mead",
         "description": "Mead brewed beneath a full moon using silverleaf honey. Whispers of ancient songs accompany each sip.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "6gp",
         "quality": "Fine",
         "rarity": "Rare",
@@ -796,7 +796,7 @@
     {
         "name": "Spiritblossom Elixir",
         "description": "An effervescent drink brewed from a flower that only grows near portals to the Ethereal Plane.",
-        "category": "Drink",
+        "category": "Non-Alcoholic Drinks",
         "price": "9gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -809,7 +809,7 @@
     {
         "name": "Prismatic Puff Pastry",
         "description": "A delicate pastry filled with chromatic cream that changes flavor with each color swirl.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "8gp",
         "quality": "Exquisite",
         "rarity": "Very Rare",
@@ -822,7 +822,7 @@
     {
         "name": "Divine Ember Tea",
         "description": "A searing-hot tea brewed from radiant embers of a celestial tree. Glows softly when sipped.",
-        "category": "Drink",
+        "category": "Non-Alcoholic Drinks",
         "price": "10gp",
         "quality": "Fine",
         "rarity": "Very Rare",
@@ -861,7 +861,7 @@
     {
         "name": "Gullscream Grog",
         "description": "A sharp rum-based drink with a salty tang, named for the squawking gulls overhead.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "3sp",
         "quality": "Standard",
         "rarity": "Common",
@@ -874,7 +874,7 @@
     {
         "name": "Pearl Diver's Lager",
         "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
-        "category": "Drink",
+        "category": "Spirits & Brews",
         "price": "4sp",
         "quality": "Fine",
         "rarity": "Uncommon",
@@ -900,7 +900,7 @@
     {
         "name": "Captain’s Rum Cake",
         "description": "A dense dessert soaked in dark rum and topped with candied citrus. A sailor’s favorite.",
-        "category": "Food",
+        "category": "Specialty Dishes",
         "price": "4sp",
         "quality": "Fine",
         "rarity": "Rare",

@@ -15,7 +15,6 @@ interface FormEditableCardProps {
   name: string;
   siteType: string;
   header?: string;
-  categoryOptions?: { value: string; label: string }[]
   onGenerate?: () => void;
   onGenerateItem?: (index: number) => void;
   buttonLabel?: string;
@@ -38,7 +37,6 @@ export default function FormEditableCard({
   name,
   siteType,
   header,
-  categoryOptions,
   onGenerate,
   onGenerateItem,
   buttonLabel = "Generate",
@@ -57,6 +55,8 @@ export default function FormEditableCard({
   }));
 
   const watchedShopType = useWatch({ control, name: "shopType" });
+
+  const disableGenerate = siteType === "shop" && (!watchedShopType || watchedShopType === "random");
 
   const handleAdd = () => append(Object.fromEntries(fieldList.map((field) => [field, ""])));
 
@@ -87,27 +87,37 @@ export default function FormEditableCard({
   return (
     <>
       {(header || onGenerate) && (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            mb: 2,
-          }}
-        >
-          {header && <Typography variant="h6">{header}</Typography>}
-          {onGenerate && (
-            <Button
-              type="button"
-              variant="outlined"
-              onClick={onGenerate}
-              size="large"
-              sx={{ py: 1.65 }}
-            >
-              {buttonLabel}
-            </Button>
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 2,
+              flexWrap: "wrap",
+              gap: 1,
+            }}
+          >
+            {header && <Typography variant="h6">{header}</Typography>}
+            {onGenerate && (
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={onGenerate}
+                size="large"
+                disabled={disableGenerate}
+                sx={{ py: 1.65 }}
+              >
+                {buttonLabel}
+              </Button>
+            )}
+          </Box>
+          {disableGenerate && (
+            <Typography color="error" sx={{ mt: 1, textAlign: 'right' }}>
+              Please select a shop type
+            </Typography>
           )}
-        </Box>
+        </>
       )}
 
       {fields.map((item, index) => {
@@ -154,6 +164,7 @@ export default function FormEditableCard({
                     <Button
                       variant="outlined"
                       size="small"
+                      disabled={disableGenerate}
                       onClick={(e) => {
                         e.stopPropagation(); // Prevent toggle
                         onGenerateItem(index)}
@@ -238,7 +249,7 @@ export default function FormEditableCard({
       })}
 
       <Box>
-        <Button variant="outlined" onClick={handleAdd}>
+        <Button variant="outlined" onClick={handleAdd} disabled={disableGenerate}>
           Add Item
         </Button>
       </Box>

@@ -91,7 +91,7 @@ export const SHOP_TYPE_CATEGORIES = [
     ],
   },
   {
-    label: "Clothing & Jewelry",
+    label: "Fashion & Accessories",
     options: [
       { label: "Accessories", value: "accessories" },
       { label: "Cobbler", value: "cobbler" },
@@ -114,7 +114,7 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Meadery", value: "meadery" },
       { label: "Produce", value: "Produce" },
       { label: "Spice Merchant", value: "spiceMerchant" },
-      { label: "Tea House", value: "teaHouse" },
+      { label: "Tea House & Coffee Shop", value: "teaHouse" },
       { label: "Winery", value: "winery" }
     ],
   },
@@ -124,7 +124,7 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Alchemist", value: "alchemist" },
       { label: "Apothecary", value: "apothecary" },
       { label: "Bookstore", value: "bookstore" },
-      { label: "Diviner's Tent", value: "divinersTent" },
+      { label: "Diviner's Tent", value: "divination" },
       { label: "Enchanter", value: "enchanter" },
       { label: "Herbalist", value: "herbalist" },
       { label: "Magic Shop", value: "magic" },
@@ -233,7 +233,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
   tavern: [
     "Food",
     "Specialty Dishes",
-    "Non-Alcoholic Drink",
+    "Non-Alcoholic Drinks",
     "Spirits & Brews",
   ],
 
@@ -332,7 +332,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
     weaponsmith: [
       "Blades",
       "Polearms",
-      "Daggers",
+      "Blunt Weapons",
       "Maintenance Kits",
       "Custom Weapons"
     ],
@@ -363,7 +363,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
 
     milliner: [
       "Fancy Hats",
-      "Feathers & Trims",
+      "Decorations & Accessories",
       "Veils",
       "Hat Repair",
       "Custom Millinery"
@@ -414,21 +414,19 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
       "Cured Meats",
       "Sausages",
       "Custom Cuts",
-      "Offal"
+      "Offal & Byproducts"
     ],
 
     cheesemonger: [
       "Cheeses",
       "Dairy Products",
       "Cheese Platters",
-      "Specialty Cheeses",
-      "Tastings"
+      "Specialty Cheeses"
     ],
 
     confectionery: [
       "Candies",
       "Chocolates",
-      "Sugary Treats",
       "Gift Boxes",
       "Seasonal Sweets"
     ],
@@ -443,82 +441,70 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
 
     meadery: [
       "Meads",
-      "Honey Products",
       "Tastings",
-      "Custom Mead",
       "Brewing Supplies"
     ],
 
     produce: [
-      "Fresh Vegetables",
+      "Vegetables",
       "Fruits",
-      "Herbs",
-      "Seasonal Produce",
-      "Organic Goods"
+      "Herbs"
     ],
 
     spiceMerchant: [
-      "Spices",
-      "Herbs & Seasonings",
-      "Tea Blends",
+      "Herbs & Spices",
+      "Spice Blends",
       "Exotic Ingredients",
-      "Custom Blends"
     ],
 
     teaHouse: [
-      "Loose Leaf Teas",
+      "Teas",
+      "Coffees",
       "Teapots & Accessories",
-      "Tea Blends",
-      "Tastings",
-      "Tea Ceremonies"
+      "Samplers"
     ],
 
     winery: [
       "Wines",
-      "Vintages",
-      "Tastings",
-      "Wine Accessories",
-      "Custom Orders"
+      "Samplers",
+      "Wine Accessories"
     ],
 
     alchemist: [
       "Potions",
+      "Volatile Mixtures",
       "Herbal Remedies",
       "Alchemy Supplies",
-      "Custom Elixirs",
       "Magical Components"
     ],
 
     apothecary: [
-      "Medicinal Herbs",
+      "Powders & Pastes",
       "Salves & Ointments",
-      "Tinctures",
-      "Health Remedies",
-      "Custom Formulations"
+      "Tonics & Tinctures",
+      "Poisons & Antitoxins",
+      "Household Remedies"
     ],
 
     bookstore: [
       "Books",
       "Scrolls",
       "Maps",
-      "Stationery",
-      "Rare Tomes"
+      "Stationery & Accessories",
     ],
 
-    divinersTent: [
+    divination: [
       "Fortunes",
-      "Tarot Cards",
-      "Crystal Balls",
+      "Divining Tools",
       "Scrying Supplies",
-      "Mystical Services"
+      "Divining Services",
     ],
 
     enchanter: [
-      "Enchanted Items",
-      "Magical Trinkets",
-      "Custom Enchantments",
-      "Repair Services",
-      "Magical Components"
+      "Enchanted Equipment",
+      "Enchanted Wares",
+      "Trinkets & Talismans",
+      "Enchanting Supplies"
     ],
 
     herbalist: [
@@ -530,17 +516,16 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
     ],
 
     magic: [
-      "Wands",
-      "Scrolls",
+      "Wands, Rods, & Staves",
+      "Clothing & Accessories",
+      "Scrolls & Books",
       "Spell Components",
-      "Magical Artifacts",
-      "Custom Magic Items"
+      "Other"
     ],
 
     mapmaker: [
       "Maps",
       "Cartography Supplies",
-      "Custom Maps",
       "Navigation Tools",
       "Atlases"
     ],
@@ -549,8 +534,8 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
       "Scrolls",
       "Magical Texts",
       "Spellbooks",
-      "Enchanting Supplies",
-      "Custom Scrolls"
+      "Calligraphy Supplies",
+      "Scrollcrafting Supplies"
     ],
 
     curiosityShop: [
