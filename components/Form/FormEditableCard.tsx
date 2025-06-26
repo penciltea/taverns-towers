@@ -220,7 +220,9 @@ export default function FormEditableCard({
                           name={fieldName}
                           label={col.label}
                           control={control}
-                          options={[...toSelectOptions(getCategoryOptions(siteType, watchedShopType)), { label: "Other", value: "other"}]}
+                          options={toSelectOptions(
+                            getCategoryOptions(siteType, watchedShopType, (item as any)?.[col.field])
+                          )}
                           fieldError={fieldError}
                         />
                       ) : (

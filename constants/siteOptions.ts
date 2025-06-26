@@ -112,7 +112,7 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Confectionery", value: "confectionery" },
       { label: "Fishmonger", value: "fishmonger" },
       { label: "Meadery", value: "meadery" },
-      { label: "Produce", value: "Produce" },
+      { label: "Produce", value: "produce" },
       { label: "Spice Merchant", value: "spiceMerchant" },
       { label: "Tea House & Coffee Shop", value: "teaHouse" },
       { label: "Winery", value: "winery" }
@@ -124,7 +124,7 @@ export const SHOP_TYPE_CATEGORIES = [
       { label: "Alchemist", value: "alchemist" },
       { label: "Apothecary", value: "apothecary" },
       { label: "Bookstore", value: "bookstore" },
-      { label: "Diviner's Tent", value: "divination" },
+      { label: "Divination", value: "divination" },
       { label: "Enchanter", value: "enchanter" },
       { label: "Herbalist", value: "herbalist" },
       { label: "Magic Shop", value: "magic" },
@@ -349,7 +349,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
       "Shoes",
       "Boots",
       "Shoe Repair",
-      "Leather Care",
+      "Leather Care & Supplies",
       "Custom Footwear"
     ],
 
@@ -519,8 +519,7 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
       "Wands, Rods, & Staves",
       "Clothing & Accessories",
       "Scrolls & Books",
-      "Spell Components",
-      "Other"
+      "Spell Components"
     ],
 
     mapmaker: [
@@ -533,7 +532,6 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
     scrollShop: [
       "Scrolls",
       "Magical Texts",
-      "Spellbooks",
       "Calligraphy Supplies",
       "Scrollcrafting Supplies"
     ],

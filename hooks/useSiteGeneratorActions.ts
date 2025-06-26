@@ -130,6 +130,8 @@ export function useSiteGeneratorActions(
 
   const generateMenu = useCallback(async () => {
     if (!siteType) return;
+        
+    setValue("menu", []); // clearing out menu to prevent shopType changing causing errors with categories
 
     const shopType = getShopType();
     const formData = methods.getValues();
@@ -268,9 +270,12 @@ export function useSiteGeneratorActions(
 
   const rerollAll = useCallback(async () => {
     if (!siteType) return;
+    
+    setValue("menu", []); // clearing out menu to prevent shopType changing causing errors with categories
 
     const env = await regenerateEnvironment(true);
     const shopType = getShopType();
+
 
     const emptyOverrides: Partial<SiteFormData> = {};
 

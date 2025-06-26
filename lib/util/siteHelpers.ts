@@ -79,11 +79,32 @@ export const getShopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
  * A utility function for getting menu item categories by site type (and shop type if siteType is 'shop')
 */
 
-export function getCategoryOptions(siteType: string, shopType?: string): string[] {
+export function getCategoryOptions(
+  siteType: string,
+  shopType?: string,
+  fallbackCategory?: string
+): string[] {
   const entry = MENU_CATEGORY_OPTIONS_BY_SITE[siteType];
-  if (Array.isArray(entry)) return entry;
-  if (shopType && typeof entry === "object") {
-    return entry[shopType.toLowerCase()] ?? [];
+  let categories: string[] = [];
+
+  if (Array.isArray(entry)) {
+    categories = entry;
+  } else if (shopType && typeof entry === "object") {
+    categories = entry[shopType.toLowerCase()] ?? [];
   }
-  return [];
+
+  if (
+    fallbackCategory &&
+    !categories.includes(fallbackCategory) &&
+    fallbackCategory !== "Other"
+  ) {
+    categories = [...categories, fallbackCategory];
+  }
+
+  // Always add "Other" as the final fallback option
+  if (!categories.includes("Other")) {
+    categories.push("Other");
+  }
+
+  return categories;
 }
