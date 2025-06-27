@@ -135,6 +135,8 @@ export function useSiteGeneratorActions(
 
     const shopType = getShopType();
     const formData = methods.getValues();
+    const siteSize = formData.size;
+    const siteCondition = formData.condition;
 
     const menuItems = await generateMenuData(
       {
@@ -144,7 +146,9 @@ export function useSiteGeneratorActions(
         terrain: context.terrain,
         tags: context.tags,
         magic,
-        wealth
+        wealth,
+        siteSize,
+        siteCondition
       }, 
       formData
     );
@@ -156,6 +160,7 @@ export function useSiteGeneratorActions(
       category: item.category || undefined,
       description: item.description || undefined,
       quality: item.quality || undefined,
+      quantity: item.quantity || "",
       rarity: item.rarity || undefined,
     }));
 
@@ -178,6 +183,10 @@ export function useSiteGeneratorActions(
       // Retrieve the current shopType from the form, if applicable.
       const shopType = getShopType();
 
+      const formData = methods.getValues();
+      const siteSize = formData.size;
+      const siteCondition = formData.condition;
+
       // Call the server action fetchMenuItem to get one new menu item matching the current context.
       // Passes siteType, shopType, environment, and other relevant factors.
       const items = await fetchMenuItem({
@@ -188,6 +197,8 @@ export function useSiteGeneratorActions(
         tags: context.tags,
         magic,
         wealth,
+        siteCondition,
+        siteSize
       });
 
       if (!Array.isArray(items) || items.length === 0) return;
@@ -204,6 +215,7 @@ export function useSiteGeneratorActions(
         category: newItem.category || undefined,
         description: newItem.description || undefined,
         quality: newItem.quality || undefined,
+        quantity: newItem.quantity || "",
         rarity: newItem.rarity || undefined,
       };
 

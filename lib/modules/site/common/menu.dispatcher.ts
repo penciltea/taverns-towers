@@ -1,7 +1,7 @@
 import { SiteGenerationContext } from "@/interfaces/site.interface";
 import connectToDatabase from "@/lib/db/connect";
 import { GeneratorSiteMenuPlain, GeneratorSiteMenu } from "@/lib/models/generator/site/menu.model";
-import { MenuRuleFn, menuRulesBySiteType } from "./menu.rules";
+import { applyQuantityRule, MenuRuleFn, menuRulesBySiteType } from "./menu.rules";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SETTLEMENT_SIZE_MULTIPLIERS, SETTLEMENT_WEALTH_BONUSES, SITE_SIZE_BASE, SITE_CONDITION_PENALTIES } from "./mappings";
@@ -123,13 +123,19 @@ export async function generateMenu(
     context
   );
 
-  if (hasMenuField(limitedData)) {
-    return limitedData.menu.map(item => ({
+  // Step 3: Apply quantity calculation (per-item quantities)
+  const withQuantities = hasMenuField(limitedData)
+    ? await applyQuantityRule(limitedData.menu, context)
+    : [];
+
+  if (withQuantities.length) {
+    return withQuantities.map(item => ({
       name: item.name ?? "",
       description: item.description ?? "",
       category: item.category ?? "",
       price: typeof item.price === "string" ? item.price : String(item.price ?? ""),
       quality: item.quality ?? "",
+      quantity: item.quantity ?? "1",
       rarity: item.rarity ?? "",
       magic: item.magic ?? "",
       siteType: item.siteType ?? "",
@@ -161,6 +167,7 @@ export async function generateMenuItem(
     category: randomItem.category ?? "",
     price: typeof randomItem.price === "string" ? randomItem.price : String(randomItem.price ?? ""),
     quality: randomItem.quality ?? "",
+    quantity: randomItem.quantity ?? "1",
     rarity: randomItem.rarity ?? "",
     magic: randomItem.magic ?? "",
     siteType: randomItem.siteType ?? "",

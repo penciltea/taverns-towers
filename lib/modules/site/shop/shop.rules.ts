@@ -1,7 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
-import { ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
+import { generatorMenuItem, ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
 import { getRandom } from "@/lib/util/randomValues";
 
@@ -26,7 +26,7 @@ export async function applyShopTypeRule(data: Partial<SiteFormData>): Promise<Pa
 
 const shopRules = [
   applyShopTypeRule,
-  ...commonRules
+  ...commonRules,
 ];
 
 export async function generateShopData(input: SiteGenerationInput): Promise<SiteFormData> {

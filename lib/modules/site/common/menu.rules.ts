@@ -241,13 +241,68 @@ export const filterByWealthLevel: MenuRuleFn = async (items, context) => {
   });
 };
 
+export const applyQuantityRule: MenuRuleFn = async (items, context) => {
+  const { siteSize, siteCondition } = context;
 
+  const sizeWeights: Record<string, number> = {
+    tiny: 1,
+    small: 2,
+    modest: 3,
+    large: 4,
+    grand: 5,
+    sprawling: 6,
+  };
+
+  const conditionWeights: Record<string, number> = {
+    squalid: -1,
+    poor: 0,
+    average: 1,
+    wealthy: 2,
+    aristocratic: 3,
+  };
+
+  const qualityPenalties: Record<string, number> = {
+    Poor: 1,
+    Standard: 0,
+    Fine: -1,
+    Masterwork: -2,
+    Exquisite: -3,
+  };
+
+  const rarityPenalties: Record<string, number> = {
+    Common: 1,
+    Uncommon: 0,
+    Rare: -1,
+    "Very Rare": -2,
+    Legendary: -3,
+  };
+
+  const sizeVal = siteSize ? sizeWeights[siteSize] ?? 3 : 3;
+  const conditionVal = siteCondition ? conditionWeights[siteCondition] ?? 1 : 1;
+
+  return items.map((item) => {
+    const qualityPenalty = item.quality ? qualityPenalties[item.quality] ?? 0 : 0;
+    const rarityPenalty = item.rarity ? rarityPenalties[item.rarity] ?? 0 : 0;
+
+    const baseQty = sizeVal + conditionVal + qualityPenalty + rarityPenalty;
+    const quantity = Math.max(0, Math.min(baseQty, 10)).toString();
+
+    
+    return {
+      ...item,
+      quantity,
+      description: item.description ?? "",
+      name: item.name ?? "Unnamed Item",
+      price: item.price ?? "0",
+    };
+  });
+};
 
 
 const commonMenuRules: MenuRuleFn[] = [
   fetchMenuItemsByEnvironment,
   filterByWealthLevel,
-  // Add more tavern-specific rules here
+  applyQuantityRule
 ];
 
 export function withCommonRules(rules: MenuRuleFn[]): MenuRuleFn[] {
@@ -256,6 +311,6 @@ export function withCommonRules(rules: MenuRuleFn[]): MenuRuleFn[] {
 
 export const menuRulesBySiteType: Record<string, MenuRuleFn[]> = {
   tavern: [...commonMenuRules, ...tavernMenuRules],
-  //shop: [filterByClimate, filterByMagicLevel],
+  // shop: [...commonMenuRules],
   //temple: [filterByTags],
 };
