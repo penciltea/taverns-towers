@@ -137,7 +137,7 @@
     "magic": "None",
     "climate": ["Polar"],
     "terrain": ["Tundra"],
-    "tags": ["Isolated", "Weathered"]
+    "tags": ["Isolated"]
   },
   {
     "name": "Savory Cheese Roll",
@@ -1299,7 +1299,7 @@
     "magic": "None",
     "climate": ["Temperate"],
     "terrain": ["Forest"],
-    "tags": ["Hunting"]
+    "tags": []
   },
   {
     "name": "Enchanted Venison Cut",
@@ -1872,7 +1872,7 @@
     "rarity": "Rare",
     "magic": "None",
     "climate": ["Temperate", "Continental"],
-    "terrain": ["Underground", "Caves"],
+    "terrain": ["Underground"],
     "tags": ["Infested"]
   },
   {
@@ -1927,7 +1927,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "magic": "Moderate",
-    "climate": ["Temperate", "Mountain"],
+    "climate": ["Temperate"],
     "terrain": ["Mountains"],
     "tags": ["Arcane Nexus"]
   },
@@ -3413,7 +3413,7 @@
     "magic": "Moderate",
     "climate": [],
     "terrain": [],
-    "tags": ["Entertainment", "Arcane Nexus"]
+    "tags": ["Arcane Nexus"]
   },
   {
     "name": "Golden Hive Soap",
@@ -3817,8 +3817,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "magic": "None",
-    "climate": ["Hills"],
-    "terrain": ["Mountains"],
+    "climate": [],
+    "terrain": ["Hills", "Mountains"],
     "tags": []
   },
   {
@@ -3901,8 +3901,8 @@
     "quality": "Fine",
     "rarity": "Rare",
     "magic": "Low",
-    "climate": ["Underground"],
-    "terrain": ["Swamp", "Forest"],
+    "climate": [],
+    "terrain": ["Swamp", "Forest", "Underground"],
     "tags": ["Hidden"]
   },
   {
@@ -4867,8 +4867,8 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "magic": "Moderate",
-    "climate": ["Polar", "Tundra"],
-    "terrain": ["Mountains"],
+    "climate": ["Polar"],
+    "terrain": ["Mountains", "Tundra"],
     "tags": []
   },
   {
@@ -4881,7 +4881,7 @@
     "quality": "Standard",
     "rarity": "Common",
     "magic": "None",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Plains"],
     "tags": []
   },
@@ -5007,8 +5007,8 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "magic": "Moderate",
-    "climate": ["Polar", "Tundra"],
-    "terrain": ["Mountains"],
+    "climate": ["Polar"],
+    "terrain": ["Mountains", "Tundra"],
     "tags": []
   },
   {
@@ -5035,7 +5035,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "magic": "None",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": []
   },
@@ -5078,7 +5078,7 @@
     "rarity": "Very Rare",
     "magic": "High",
     "climate": ["Temperate"],
-    "terrain": ["Gardens"],
+    "terrain": [],
     "tags": []
   },
   {
@@ -5231,7 +5231,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "magic": "Low",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Trade Hub"]
   },
@@ -5569,7 +5569,7 @@
     "magic": "None",
     "climate": [],
     "terrain": [],
-    "tags": ["Festival"]
+    "tags": []
   },
   {
     "name": "Embroidered Wine Tote",
@@ -5764,7 +5764,7 @@
     "rarity": "Legendary",
     "magic": "Mythic",
     "climate": ["Temperate"],
-    "terrain": ["Sacred Site"],
+    "terrain": [],
     "tags": ["Sacred Site", "Arcane Nexus"]
   },
   {
@@ -5848,7 +5848,7 @@
     "rarity": "Legendary",
     "magic": "Mythic",
     "climate": ["Temperate"],
-    "terrain": ["Sacred Site"],
+    "terrain": [],
     "tags": ["Sacred Site", "Arcane Nexus"]
   },
   {

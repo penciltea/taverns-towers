@@ -3,22 +3,11 @@
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
-import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
+import { generatorMenuItem, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
-import { GeneratorSiteMenuLean, generateMenu, generateMenuItem } from "../modules/site/common/menu.dispatcher";
-import { menuRulesBySiteType } from "../modules/site/common/menu.rules";
-
-interface GenerateMenuParams {
-  siteType: string[];
-  shopType?: string;
-  settlementTerrain?: string[];
-  settlementClimate?: string;
-  settlementTags?: string[];
-  settlementMagic?: string;
-}
-
+import { generateMenu, generateMenuItem } from "../modules/site/common/menu.dispatcher";
 
 export async function generateSiteName({
   category,
@@ -55,23 +44,22 @@ export async function generateSiteName({
 }
 
 export async function generateMenuData(
-  context: SiteGenerationContext,
-  partialFormData: Partial<SiteFormData>
-): Promise<GeneratorSiteMenuLean[]> {
+  context: SiteGenerationContext
+): Promise<generatorMenuItem[]> {
   await connectToDatabase();
 
   if (!context.siteType) {
     throw new Error("Missing site type in menu generation context");
   }
 
-  const items = await generateMenu(context, partialFormData);
+  const items = await generateMenu(context);
 
   return items;
 }
 
 export async function fetchMenuItem(
   context: SiteGenerationContext
-): Promise<GeneratorSiteMenuLean[]> {
+): Promise<generatorMenuItem[]> {
   await connectToDatabase();
 
   if (!context.siteType) {

@@ -100,18 +100,9 @@
         "magic": "None",
         "quality": "Standard",
         "rarity": "Common",
-        "climate": [
-            "Polar",
-            "Continental"
-        ],
-        "terrain": [
-            "Tundra",
-            "Mountains"
-        ],
-        "tags": [
-            "Isolated",
-            "Weathered"
-        ]
+        "climate": ["Polar", "Continental"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["Isolated"]
     },
     {
         "name": "Traveler's Rations (1 day)",
@@ -162,7 +153,7 @@
     "price": "25gp",
     "siteType": "shop",
     "shopType": "curiosityShop",
-    "magic": "Faint",
+    "magic": "Low",
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Tropical"],
@@ -237,7 +228,7 @@
     "rarity": "Uncommon",
     "climate": ["Dry"],
     "terrain": ["Desert"],
-    "tags": ["Border Post", "Outlander"]
+    "tags": ["Border Post"]
   },
   {
     "name": "Salvaged Gear Bundle",
@@ -249,8 +240,8 @@
     "magic": "None",
     "quality": "Poor",
     "rarity": "Common",
-    "climate": ["Tundra"],
-    "terrain": ["Underground"],
+    "climate": [],
+    "terrain": ["Underground", "Tundra"],
     "tags": ["Mining Camp", "Criminal Hideout"]
   },
   {
@@ -669,8 +660,8 @@
     "magic": "None",
     "quality": "Exquisite",
     "rarity": "Very Rare",
-    "climate": ["Tundra"],
-    "terrain": ["Mountains"],
+    "climate": [],
+    "terrain": ["Mountains", "Tundra"],
     "tags": ["Sacred Site"]
   },
   {
@@ -1426,8 +1417,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": [],
-    "terrain": [],
-    "tags": ["Urban"]
+    "terrain": ["Urban"],
+    "tags": []
   },
   {
     "name": "Miniature Wolfhound Puppy",
@@ -1441,7 +1432,7 @@
     "rarity": "Uncommon",
     "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
-    "tags": ["Hunting"]
+    "tags": []
   },
   {
     "name": "Feathered Serpent Hatchling",
@@ -1455,7 +1446,7 @@
     "rarity": "Very Rare",
     "climate": ["Tropical"],
     "terrain": ["Jungle"],
-    "tags": ["Exotic", "Magical"]
+    "tags": []
   },
   {
     "name": "Moonshadow Cat",
@@ -1469,7 +1460,7 @@
     "rarity": "Uncommon",
     "climate": ["Temperate", "Continental"],
     "terrain": ["Urban", "Forest"],
-    "tags": ["Stealth"]
+    "tags": []
   },
   {
     "name": "Healing Herb Rabbit",
@@ -1483,7 +1474,7 @@
     "rarity": "Rare",
     "climate": ["Temperate"],
     "terrain": ["Plains", "Forest"],
-    "tags": ["Healing"]
+    "tags": []
   },
   {
     "name": "Stonehide Tortoise",
@@ -1497,7 +1488,7 @@
     "rarity": "Common",
     "climate": ["Temperate", "Dry"],
     "terrain": ["Plains", "Desert"],
-    "tags": ["Defense"]
+    "tags": []
   },
   {
     "name": "Woven Straw Pet Bed",
@@ -1553,7 +1544,7 @@
     "rarity": "Rare",
     "climate": ["Temperate"],
     "terrain": ["Forest"],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Collar of Silent Steps",
@@ -1567,7 +1558,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": ["Urban", "Forest"],
-    "tags": ["Magical", "Stealth"]
+    "tags": []
   },
   {
     "name": "Mythic Phoenix Feather Toy",
@@ -1581,7 +1572,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Aquatic Glass Tank",
@@ -1595,7 +1586,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Aquatic"]
+    "tags": []
   },
   {
     "name": "Enchanted Feeding Bowl",
@@ -1609,7 +1600,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Dried Meat Jerky",
@@ -1651,7 +1642,7 @@
     "rarity": "Uncommon",
     "climate": ["Temperate"],
     "terrain": ["Forest"],
-    "tags": ["Healing"]
+    "tags": []
   },
   {
     "name": "Traveler’s Cloak",
@@ -1665,7 +1656,7 @@
     "rarity": "Uncommon",
     "climate": ["Temperate", "Continental"],
     "terrain": ["Forest", "Plains"],
-    "tags": ["Travel"]
+    "tags": []
   },
   {
     "name": "Flint and Steel Kit",
@@ -1707,7 +1698,7 @@
     "rarity": "Uncommon",
     "climate": ["Temperate"],
     "terrain": ["Forest"],
-    "tags": ["Healing"]
+    "tags": []
   },
   {
     "name": "Enchanted Rations Pack",
@@ -1721,7 +1712,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Travel"]
+    "tags": []
   },
   {
     "name": "Weatherproof Tent",
@@ -1735,7 +1726,7 @@
     "rarity": "Very Rare",
     "climate": ["Polar", "Continental", "Temperate"],
     "terrain": ["Mountains", "Plains"],
-    "tags": ["Magical", "Travel"]
+    "tags": []
   },
   {
     "name": "Everburning Lantern",
@@ -1749,7 +1740,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Mythic Survival Kit",
@@ -1763,7 +1754,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical", "Survival"]
+    "tags": []
   },
   {
     "name": "Traveler's Guidebook",
@@ -1789,9 +1780,9 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Swamp"],
+    "climate": [],
     "terrain": ["Swamp"],
-    "tags": ["Healing"]
+    "tags": []
   },
   {
     "name": "Enchanted Compass",
@@ -1805,7 +1796,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Travel"]
+    "tags": []
   },
   {
     "name": "Silk Rope (50 ft.)",
@@ -1833,7 +1824,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": ["Plains", "Hills", "Forest"],
-    "tags": ["Travel"]
+    "tags": []
   },
   {
     "name": "Draft Horse",
@@ -1846,8 +1837,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": [],
-    "terrain": ["Plains", "Farms"],
-    "tags": ["Work"]
+    "terrain": ["Plains"],
+    "tags": []
   },
   {
     "name": "Riding Pony",
@@ -1861,7 +1852,7 @@
     "rarity": "Common",
     "climate": ["Temperate"],
     "terrain": ["Hills", "Forest"],
-    "tags": ["Travel"]
+    "tags": []
   },
   {
     "name": "Warhorse",
@@ -1875,7 +1866,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": ["Plains", "Hills"],
-    "tags": ["Military"]
+    "tags": []
   },
   {
     "name": "Draft Mule",
@@ -1889,7 +1880,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": ["Mountains", "Hills"],
-    "tags": ["Work"]
+    "tags": []
   },
   {
     "name": "Saddlery Set",
@@ -1917,7 +1908,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Military"]
+    "tags": []
   },
   {
     "name": "Feed Sack (Oats)",
@@ -1931,7 +1922,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": [],
-    "tags": ["Animal Care"]
+    "tags": []
   },
   {
     "name": "Magic Grooming Brush",
@@ -1945,7 +1936,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Animal Care"]
+    "tags": []
   },
   {
     "name": "Elven War Steed",
@@ -1957,9 +1948,9 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
-    "tags": ["Magical", "Military"]
+    "tags": ["Arcane Nexus"]
   },
   {
     "name": "Fire-Resistant Saddle Blanket",
@@ -1973,7 +1964,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Spectral Steed Summoning Horn",
@@ -1987,7 +1978,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Summoning"]
+    "tags": []
   },
   {
     "name": "Enchanted Horseshoes",
@@ -2001,7 +1992,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Enhancement"]
+    "tags": []
   },
   {
     "name": "Everwater Feed Bucket",
@@ -2015,7 +2006,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Wax Candle",
@@ -2113,7 +2104,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Travel"]
+    "tags": []
   },
   {
     "name": "Enchanted Cleaning Cloth",
@@ -2127,7 +2118,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Self-Refilling Ink Pot",
@@ -2141,7 +2132,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Scholar"]
+    "tags": []
   },
   {
     "name": "Everfresh Soap",
@@ -2155,7 +2146,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Mythic Dust of Cleaning",
@@ -2169,7 +2160,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Everlight Lantern",
@@ -2183,7 +2174,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Clockwork Pocket Watch",
@@ -2211,7 +2202,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": [],
-    "tags": ["Stealth"]
+    "tags": []
   },
   {
     "name": "Mechanical Bird Automaton",
@@ -2225,7 +2216,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Toy", "Magical"]
+    "tags": []
   },
   {
     "name": "Gnomish Multi-Tool",
@@ -2253,7 +2244,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Adventuring"]
+    "tags": []
   },
   {
     "name": "Enchanted Locksmith’s Hammer",
@@ -2267,7 +2258,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Mechanical Spider Scout",
@@ -2281,7 +2272,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Spy"]
+    "tags": []
   },
   {
     "name": "Clockwork Boots",
@@ -2295,7 +2286,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Adventuring"]
+    "tags": []
   },
   {
     "name": "Mythic Gearbox",
@@ -2309,7 +2300,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Ever-Ticking Clockwork Heart",
@@ -2323,7 +2314,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Repair Kit",
@@ -2351,7 +2342,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Toy"]
+    "tags": []
   },
   {
     "name": "Mechanical Spider Venom Injector",
@@ -2365,7 +2356,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Weaponized"]
+    "tags": []
   },
   {
     "name": "Portable Clockwork Lantern",
@@ -2379,7 +2370,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Utility"]
+    "tags": []
   },
   {
     "name": "Golem Maintenance Oil",
@@ -2393,7 +2384,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Blacksmith's Hammer",
@@ -2449,7 +2440,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Whetstone of Sharpness",
@@ -2463,7 +2454,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Portable Forge Kit",
@@ -2477,7 +2468,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Adventuring"]
+    "tags": []
   },
   {
     "name": "Enchanted Hammer of Precision",
@@ -2491,7 +2482,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Mythic Blacksmith’s Bellows",
@@ -2505,7 +2496,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Hand-forged Chisel",
@@ -2533,7 +2524,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": [],
-    "tags": ["Protective Gear"]
+    "tags": []
   },
   {
     "name": "Tempered Steel File",
@@ -2561,7 +2552,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical", "Repair"]
+    "tags": []
   },
   {
     "name": "Custom Engraved Hammer",
@@ -2603,7 +2594,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Wooden Soldier Set",
@@ -2645,7 +2636,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Wooden Chess Set",
@@ -2673,7 +2664,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Puzzle Ring",
@@ -2687,7 +2678,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Handcrafted Wooden Horse",
@@ -2715,7 +2706,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Mythic Puzzle Chest",
@@ -2729,7 +2720,7 @@
     "rarity": "Legendary",
     "climate": [],
     "terrain": [],
-    "tags": ["Mythic", "Magical"]
+    "tags": []
   },
   {
     "name": "Wind-up Wooden Dragon",
@@ -2743,7 +2734,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Mechanical", "Magical"]
+    "tags": []
   },
   {
     "name": "Marionette Strings",
@@ -2757,7 +2748,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Set of Wooden Building Blocks",
@@ -2785,7 +2776,7 @@
     "rarity": "Very Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Magical"]
+    "tags": []
   },
   {
     "name": "Puzzle Cube",

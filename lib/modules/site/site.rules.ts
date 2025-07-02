@@ -20,11 +20,11 @@ import { generateSiteName } from "@/lib/actions/siteGenerator.actions";
 
 import { generateTavernData } from "./tavern/tavern.rules";
 import { generateShopData } from "./shop/shop.rules";
+import { generateGuildData } from "./guild/guild.rules";
 
 import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
 import { generateGovernmentValues } from "./government.rules";
-import { generateGuildValues } from "./guild.rules";
 import { generateMiscellaneousValues } from "./miscellaneous.rules";
 import { generateResidenceValues } from "./residence.rules";
 import { generateTempleValues } from "./temple.rules";
@@ -37,7 +37,7 @@ export const SiteGenerator: Record<
 > = {
     entertainment: generateEntertainmentValues,
     government: generateGovernmentValues,
-    guild: generateGuildValues,    
+    guild: generateGuildData,    
     hidden: generateHiddenValues,
     miscellaneous: generateMiscellaneousValues,
     residence: generateResidenceValues,

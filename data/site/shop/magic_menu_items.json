@@ -289,7 +289,7 @@
     "quality": "Exquisite",
     "rarity": "Very Rare",
     "magic": "High",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Arcane Nexus"]
   },
@@ -471,7 +471,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "magic": "Low",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": []
   },
@@ -597,8 +597,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "magic": "None",
-    "climate": ["Swamp", "Jungle"],
-    "terrain": ["Swamp"],
+    "climate": [],
+    "terrain": ["Swamp", "Jungle"],
     "tags": ["Overgrown"]
   },
   {
@@ -653,8 +653,8 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "magic": "Moderate",
-    "climate": ["Desert", "Urban"],
-    "terrain": ["Underground"],
+    "climate": [],
+    "terrain": ["Underground", "Desert"],
     "tags": ["Criminal Hideout"]
   },
   {
@@ -752,7 +752,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": [],
-    "terrain": ["Swamp", "Urban"],
+    "terrain": ["Swamp"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -1269,7 +1269,7 @@
     "magic": "High",
     "quality": "Fine",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Arcane Nexus", "Hidden"]
   },
@@ -1423,8 +1423,8 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Tundra"],
-    "terrain": ["Forest", "Mountains"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest", "Mountains", "Tundra"],
     "tags": ["Arcane Nexus", "Hidden"]
   },
   {
@@ -1885,7 +1885,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Swamp"],
     "tags": ["Druidic", "Sacred Site"]
   },
@@ -2025,7 +2025,7 @@
     "magic": "None",
     "quality": "Poor",
     "rarity": "Common",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban", "Plains"],
     "tags": []
   },
@@ -2096,8 +2096,8 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate", "Continental"],
-    "terrain": ["Urban", "Capital"],
-    "tags": ["Arcane Nexus", "Ancient Ruins"]
+    "terrain": ["Urban"],
+    "tags": ["Arcane Nexus", "Ancient Ruins", "Capital"]
   },
   {
     "name": "Scroll of Fireball",
@@ -2110,8 +2110,8 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate", "Dry"],
-    "terrain": ["Urban", "Fortress"],
-    "tags": ["Arcane Nexus", "Military Outpost"]
+    "terrain": ["Urban"],
+    "tags": ["Arcane Nexus", "Military Outpost", "Fortress"]
   },
   {
     "name": "Map of the Forgotten Isles",
@@ -2137,7 +2137,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": []
   },
@@ -2165,8 +2165,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Urban"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "climate": ["Temperate"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -2180,7 +2180,7 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate", "Dry"],
-    "terrain": ["Plains", "Trade Hub"],
+    "terrain": ["Plains"],
     "tags": ["Trade Hub"]
   },
   {
@@ -2193,7 +2193,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": []
   },
@@ -2208,7 +2208,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Arcane Nexus", "Urban"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -2250,8 +2250,8 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
-    "tags": []
+    "terrain": ["Urban"],
+    "tags": ["Capital"]
   },
   {
     "name": "Book of Local Folklore",
@@ -2278,7 +2278,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus", "Hidden"]
   },
   {
@@ -2291,7 +2291,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": []
   },
@@ -2306,7 +2306,7 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -2347,7 +2347,7 @@
     "magic": "None",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": []
   },
@@ -2418,8 +2418,8 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
-    "tags": ["Ancient Ruins"]
+    "terrain": ["Urban"],
+    "tags": ["Ancient Ruins", "Capital"]
   },
   {
     "name": "Scroll of Shield",
@@ -2599,7 +2599,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp"],
     "tags": ["Hidden"]
   },
@@ -2754,7 +2754,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Capital", "Urban"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -2796,7 +2796,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -2852,8 +2852,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Plains", "Trade Hub"],
-    "tags": []
+    "terrain": ["Plains" ],
+    "tags": ["Trade Hub"]
   },
   {
     "name": "The History of the Silverthorn Clan",
@@ -2866,7 +2866,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -2894,7 +2894,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Criminal Hideout"],
+    "terrain": ["Urban"],
     "tags": ["Criminal Hideout"]
   },
   {
@@ -2908,7 +2908,7 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Forest", "Sacred Site"],
+    "terrain": ["Forest"],
     "tags": ["Sacred Site"]
   },
   {
@@ -2922,7 +2922,7 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": [],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -2936,7 +2936,7 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Forest", "Sacred Site"],
+    "terrain": ["Forest"],
     "tags": ["Sacred Site"]
   },
   {
@@ -2978,7 +2978,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -2992,8 +2992,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Plains", "Trade Hub"],
-    "tags": []
+    "terrain": ["Plains"],
+    "tags": ["Trade Hub"]
   },
   {
     "name": "Necromantic Ethics: A Debate",
@@ -3006,7 +3006,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Dry"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3034,7 +3034,7 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden", "Arcane Nexus"]
   },
   {
@@ -3076,7 +3076,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -3090,7 +3090,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3118,7 +3118,7 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Hills", "Sacred Site"],
+    "terrain": ["Hills"],
     "tags": ["Sacred Site"]
   },
   {
@@ -3146,7 +3146,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Arcane Nexus", "Urban"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3230,8 +3230,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Plains", "Capital"],
-    "tags": ["Military Outpost"]
+    "terrain": ["Plains"],
+    "tags": ["Military Outpost", "Capital"]
   },
   {
     "name": "The Hidden Doors of Drell's Hollow",
@@ -3300,7 +3300,7 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Dry", "Tropical"],
-    "terrain": ["Arcane Nexus", "Desert"],
+    "terrain": ["Desert"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3342,8 +3342,8 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Dry"],
-    "terrain": ["Desert", "Capital"],
-    "tags": ["Ancient Ruins"]
+    "terrain": ["Desert"],
+    "tags": ["Ancient Ruins", "Capital"]
   },
   {
     "name": "A Treatise on the Edibility of Slimes",
@@ -3355,7 +3355,7 @@
     "magic": "None",
     "quality": "Poor",
     "rarity": "Common",
-    "climate": ["Swamp"],
+    "climate": [],
     "terrain": ["Swamp", "Underground"],
     "tags": ["Infested"]
   },
@@ -3426,8 +3426,8 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Tropical"],
-    "terrain": ["Forest", "Trade Hub"],
-    "tags": []
+    "terrain": ["Forest" ],
+    "tags": ["Trade Hub"]
   },
   {
     "name": "The Drowned Deck",
@@ -3454,7 +3454,7 @@
     "quality": "Exquisite",
     "rarity": "Very Rare",
     "climate": ["Dry"],
-    "terrain": ["Desert", "Arcane Nexus"],
+    "terrain": ["Desert"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3468,7 +3468,7 @@
     "quality": "Masterwork",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -3482,7 +3482,7 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Continental"],
-    "terrain": ["Forest", "Hidden"],
+    "terrain": ["Forest"],
     "tags": ["Hidden"]
   },
   {
@@ -3496,7 +3496,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Mountains", "Sacred Site"],
+    "terrain": ["Mountains"],
     "tags": ["Druidic", "Sacred Site"]
   },
   {
@@ -3510,8 +3510,8 @@
     "quality": "Poor",
     "rarity": "Uncommon",
     "climate": ["Dry"],
-    "terrain": ["Desert", "Capital"],
-    "tags": ["Ancient Ruins"]
+    "terrain": ["Desert"],
+    "tags": ["Ancient Ruins", "Capital"]
   },
   {
     "name": "Consultation: Veilpiercing",
@@ -3524,7 +3524,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Arcane Nexus", "Urban"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -3566,8 +3566,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Trade Hub"],
-    "tags": []
+    "terrain": ["Urban"],
+    "tags": ["Trade Hub"]
   },
   {
     "name": "Deck of the Weeping Widow",
@@ -3594,8 +3594,8 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Dry"],
-    "terrain": ["Desert", "Arcane Nexus"],
-    "tags": ["Hidden"]
+    "terrain": ["Desert"],
+    "tags": ["Hidden", "Arcane Nexus"]
   },
   {
     "name": "Consultation: Spirit's Intent",
@@ -3608,7 +3608,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Forest", "Sacred Site"],
+    "terrain": ["Forest"],
     "tags": ["Sacred Site", "Druidic"]
   },
   {
@@ -3650,7 +3650,7 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Plains", "Trade Hub"],
+    "terrain": ["Plains"],
     "tags": ["Trade Hub"]
   },
   {
@@ -3762,7 +3762,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Capital", "Urban"],
+    "terrain": ["Urban"],
     "tags": ["Capital"]
   },
   {
@@ -3860,7 +3860,7 @@
     "quality": "Poor",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden"]
   },
   {
@@ -3874,7 +3874,7 @@
     "quality": "Standard",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban"],
+    "terrain": [],
     "tags": []
   },
   {
@@ -3888,7 +3888,7 @@
     "quality": "Poor",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban"],
+    "terrain": [],
     "tags": []
   },
   {
@@ -3902,7 +3902,7 @@
     "quality": "Poor",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban"],
+    "terrain": [],
     "tags": []
   },
   {
@@ -3958,7 +3958,7 @@
     "quality": "Poor",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Trade Hub"],
+    "terrain": ["Urban"],
     "tags": ["Trade Hub"]
   },
   {
@@ -4056,8 +4056,8 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
-    "tags": ["Hidden", "Criminal Hideout"]
+    "terrain": ["Urban"],
+    "tags": ["Hidden", "Criminal Hideout", "Capital"]
   },
   {
     "name": "Loom of Self-Folding Linens",
@@ -4084,7 +4084,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Capital"],
+    "terrain": [],
     "tags": ["Capital"]
   },
   {
@@ -4112,7 +4112,7 @@
     "quality": "Fine",
     "rarity": "Common",
     "climate": ["Temperate"],
-    "terrain": ["Urban"],
+    "terrain": [],
     "tags": ["Capital"]
   },
   {
@@ -4139,7 +4139,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Underground"],
+    "climate": [],
     "terrain": ["Underground"],
     "tags": []
   },
@@ -5022,8 +5022,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Mountains"],
-    "tags": []
+    "terrain": ["Mountains"],
+    "tags": ["Fortress"]
   },
   {
     "name": "Helm of the Seer’s Eye",
@@ -5063,7 +5063,7 @@
     "magic": "High",
     "quality": "Exquisite",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Jungle"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Jungle"],
     "tags": ["Arcane Nexus"]
   },
@@ -5078,8 +5078,8 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate", "Continental"],
-    "terrain": ["Fortress", "Plains"],
-    "tags": []
+    "terrain": ["Plains"],
+    "tags": ["Fortress"]
   },
   {
     "name": "Chainmail of the Emberguard",
@@ -5120,8 +5120,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Hills"],
-    "tags": ["Military Outpost"]
+    "terrain": ["Hills"],
+    "tags": ["Fortress", "Military Outpost"]
   },
   {
     "name": "Gloves of the Arcane Artist",
@@ -5133,7 +5133,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": ["Arcane Nexus", "Trade Hub"]
   },
@@ -5301,7 +5301,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Hidden"]
   },
@@ -5344,8 +5344,8 @@
     "quality": "Standard",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Hills", "Fortress"],
-    "tags": ["Military Outpost"]
+    "terrain": ["Hills"],
+    "tags": ["Military Outpost", "Fortress"]
   },
   {
     "name": "Gloves of the Phantom Thread",
@@ -5428,8 +5428,8 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Hills"],
-    "tags": []
+    "terrain": ["Hills"],
+    "tags": ["Fortress"]
   },
   {
     "name": "Gloves of the Golden Thread",
@@ -5455,7 +5455,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Hidden"]
   },
@@ -5484,8 +5484,8 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Plains"],
-    "tags": []
+    "terrain": ["Plains"],
+    "tags": ["Fortress"]
   },
   {
     "name": "Boots of the Flamewalker",
@@ -5553,7 +5553,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": []
   },
@@ -5595,7 +5595,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Druidic"]
   },
@@ -5610,7 +5610,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Ancient Ruins"],
+    "terrain": ["Urban"],
     "tags": ["Ancient Ruins"]
   },
   {
@@ -5651,7 +5651,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Druidic"]
   },
@@ -5680,7 +5680,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden"]
   },
   {
@@ -5693,8 +5693,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Tundra"],
-    "terrain": ["Mountains", "Plains"],
+    "climate": ["Temperate"],
+    "terrain": ["Mountains", "Plains", "Tundra"],
     "tags": ["Sacred Site"]
   },
   {
@@ -5707,7 +5707,7 @@
     "magic": "High",
     "quality": "Exquisite",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Arcane Nexus"]
   },
@@ -5750,7 +5750,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -5833,7 +5833,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": []
   },
@@ -5875,7 +5875,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Urban"],
     "tags": ["Arcane Nexus", "Hidden"]
   },
@@ -5903,7 +5903,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Druidic"]
   },
@@ -5945,7 +5945,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Urban"],
+    "climate": ["Temperate"],
     "terrain": ["Urban"],
     "tags": []
   },
@@ -5960,7 +5960,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Arcane Nexus"],
+    "terrain": ["Urban"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -5974,7 +5974,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Trade Hub"],
+    "terrain": ["Urban"],
     "tags": ["Trade Hub"]
   },
   {
@@ -5987,7 +5987,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Tundra"],
+    "climate": ["Temperate"],
     "terrain": ["Mountains", "Plains"],
     "tags": ["Sacred Site"]
   },
@@ -6002,7 +6002,7 @@
     "quality": "Exquisite",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Forest", "Hidden"],
+    "terrain": ["Forest"],
     "tags": ["Hidden"]
   },
   {
@@ -6015,8 +6015,8 @@
     "magic": "Moderate",
     "quality": "Standard",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
-    "terrain": ["Forest", "Ancient Ruins"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest"],
     "tags": ["Ancient Ruins"]
   },
   {
@@ -6043,8 +6043,8 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Sacred Site"],
-    "terrain": ["Sacred Site", "Plains"],
+    "climate": ["Temperate"],
+    "terrain": ["Plains"],
     "tags": ["Sacred Site"]
   },
   {
@@ -6058,8 +6058,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Hills"],
-    "tags": ["Military Outpost"]
+    "terrain": ["Hills"],
+    "tags": ["Fortress", "Military Outpost"]
   },
   {
     "name": "Moonstone Ring",
@@ -6071,8 +6071,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Tundra"],
-    "terrain": ["Mountains", "Forest"],
+    "climate": ["Temperate"],
+    "terrain": ["Mountains", "Forest", "Tundra"],
     "tags": ["Sacred Site"]
   },
   {
@@ -6086,8 +6086,8 @@
     "quality": "Standard",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Military Outpost"],
-    "tags": ["Military Outpost"]
+    "terrain": [],
+    "tags": ["Fortress", "Military Outpost"]
   },
   {
     "name": "Charm of the Dancing Flame",
@@ -6114,7 +6114,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Sacred Site"],
+    "terrain": ["Urban"],
     "tags": ["Sacred Site"]
   },
   {
@@ -6127,7 +6127,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Hidden"]
   },
@@ -6141,7 +6141,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Plains"],
+    "climate": ["Temperate"],
     "terrain": ["Plains", "Forest"],
     "tags": []
   },
@@ -6156,7 +6156,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden"]
   },
   {
@@ -6170,7 +6170,7 @@
     "quality": "Fine",
     "rarity": "Uncommon",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Sacred Site"],
+    "terrain": ["Urban"],
     "tags": ["Sacred Site"]
   },
   {
@@ -6184,7 +6184,7 @@
     "quality": "Masterwork",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden"]
   },
   {
@@ -6268,7 +6268,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Hidden"],
+    "terrain": ["Urban"],
     "tags": ["Hidden"]
   },
   {
@@ -6295,7 +6295,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Druidic"]
   },
@@ -6310,8 +6310,8 @@
     "quality": "Fine",
     "rarity": "Rare",
     "climate": ["Temperate"],
-    "terrain": ["Fortress", "Military Outpost"],
-    "tags": ["Military Outpost"]
+    "terrain": [],
+    "tags": ["Fortress", "Military Outpost"]
   },
   {
     "name": "Lavender Blossoms",
@@ -6365,8 +6365,8 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Tundra"],
-    "terrain": ["Mountains", "Forest"],
+    "climate": ["Temperate"],
+    "terrain": ["Mountains", "Forest", "Tundra"],
     "tags": ["Sacred Site"]
   },
   {
@@ -6449,7 +6449,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Druidic"]
   },
@@ -6463,7 +6463,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Druidic"]
   },
@@ -6477,7 +6477,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": []
   },
@@ -6491,8 +6491,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Arcane Nexus"],
-    "terrain": ["Forest", "Arcane Nexus"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -6575,7 +6575,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Druidic"]
   },
@@ -6687,7 +6687,7 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": []
   },
@@ -6701,8 +6701,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Arcane Nexus"],
-    "terrain": ["Forest", "Arcane Nexus"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -6743,7 +6743,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Infested"]
   },
@@ -6757,7 +6757,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Tundra"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Tundra"],
     "tags": ["Hidden"]
   },
@@ -6799,7 +6799,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Sacred Site"]
   },
@@ -6855,7 +6855,7 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Hidden"]
   },
@@ -6869,7 +6869,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Swamp"],
     "tags": ["Druidic"]
   },
@@ -6883,7 +6883,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Tundra"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Tundra"],
     "tags": ["Hidden"]
   },
@@ -6911,7 +6911,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "River"],
     "tags": ["Druidic"]
   },
@@ -6953,7 +6953,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Swamp"],
     "tags": ["Druidic"]
   },
@@ -6967,7 +6967,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Infested"]
   },
@@ -6995,7 +6995,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Swamp"],
     "tags": ["Sacred Site"]
   },
@@ -7051,7 +7051,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Druidic"]
   },
@@ -7107,8 +7107,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Arcane Nexus"],
-    "terrain": ["Forest", "Arcane Nexus"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest"],
     "tags": ["Arcane Nexus"]
   },
   {
@@ -7247,7 +7247,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Swamp"],
+    "climate": ["Temperate"],
     "terrain": ["Swamp", "Forest"],
     "tags": ["Druidic"]
   },
@@ -7457,7 +7457,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Swamp"],
     "tags": ["Druidic"]
   },
@@ -7597,8 +7597,8 @@
     "magic": "Mythic",
     "quality": "Exquisite",
     "rarity": "Legendary",
-    "climate": ["Temperate", "Forest"],
-    "terrain": ["Forest", "Sacred Site"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest"],
     "tags": ["Sacred Site"]
   },
   {
@@ -7625,8 +7625,8 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Temperate", "Volcanic"],
-    "terrain": ["Mountains", "Hills"],
+    "climate": ["Temperate"],
+    "terrain": ["Mountains", "Hills", "Volcanic"],
     "tags": []
   },
   {
@@ -7654,7 +7654,7 @@
     "quality": "Masterwork",
     "rarity": "Very Rare",
     "climate": ["Temperate"],
-    "terrain": ["Urban", "Ancient Ruins"],
+    "terrain": ["Urban"],
     "tags": ["Ancient Ruins"]
   },
   {
@@ -7737,7 +7737,7 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest"],
     "tags": ["Druidic"]
   },
@@ -8479,7 +8479,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Coast", "Temperate"],
+    "climate": ["Tropical", "Continental", "Temperate"],
     "terrain": ["Coast", "Hills"],
     "tags": []
   },
@@ -8829,8 +8829,8 @@
     "magic": "Moderate",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Temperate"],
-    "terrain": ["Urban", "Dungeon"],
+    "climate": [],
+    "terrain": [],
     "tags": []
   },
   {

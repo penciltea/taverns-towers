@@ -130,10 +130,6 @@ export interface generatorMenuItem{
   quality?: QualityType;
   quantity?: string;
   rarity?: RarityType;
-  magic?: MagicLevel;
-  climate?: string[];
-  terrain?: string[];
-  tags?: string[];
 }
 
 export type SiteFormFieldProps = {

@@ -34,7 +34,8 @@ export const TERRAIN_TYPES = [
     "Swamp",
     "Tundra",
     "Underground",
-    "Urban"
+    "Urban",
+    "Volcanic"
 ];
 
 export const CLIMATE_TYPES = [

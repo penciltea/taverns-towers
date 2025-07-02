@@ -79,8 +79,8 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Desert", "Dry"],
-    "terrain": ["Hills", "Mountains"],
+    "climate": ["Dry"],
+    "terrain": ["Desert", "Hills", "Mountains"],
     "tags": []
   },
   {
@@ -289,8 +289,8 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Polar", "Tundra"],
-    "terrain": ["Mountains"],
+    "climate": ["Polar"],
+    "terrain": ["Mountains", "Tundra"],
     "tags": []
   },
   {
@@ -1633,7 +1633,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Urban"],
     "tags": []
   },
@@ -1689,8 +1689,8 @@
     "magic": "Mythic",
     "quality": "Exquisite",
     "rarity": "Legendary",
-    "climate": ["Temperate", "Tundra"],
-    "terrain": ["Forest", "Mountains"],
+    "climate": ["Temperate"],
+    "terrain": ["Forest", "Mountains", "Tundra"],
     "tags": []
   },
   {
@@ -1731,8 +1731,8 @@
     "magic": "High",
     "quality": "Fine",
     "rarity": "Rare",
-    "climate": ["Desert", "Tundra"],
-    "terrain": [],
+    "climate": ["Dry"],
+    "terrain": ["Desert", "Tundra"],
     "tags": []
   },
   {

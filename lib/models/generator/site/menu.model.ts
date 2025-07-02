@@ -12,7 +12,7 @@ export interface GeneratorSiteMenuPlain {
   quantity?: string;
   rarity?: RarityType;
   magic?: MagicLevel;
-  siteType: string[];
+  siteType: string;
   shopType?: string;
   climate?: ClimateTypes[];
   terrain?: TerrainTypes[];

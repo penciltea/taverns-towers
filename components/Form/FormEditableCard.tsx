@@ -113,8 +113,8 @@ export default function FormEditableCard({
             )}
           </Box>
           {disableGenerate && (
-            <Typography color="error" sx={{ mt: 1, textAlign: 'right' }}>
-              Please select a shop type
+            <Typography color="error" sx={{ mt: 1, textAlign: 'center' }}>
+              Please select a shop type to add to the menu
             </Typography>
           )}
         </>

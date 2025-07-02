@@ -345,8 +345,8 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Rare",
-    "climate": ["Underground"],
-    "terrain": ["Swamp"],
+    "climate": [],
+    "terrain": ["Swamp", "Underground"],
     "tags": ["Hidden"]
   },
   {
@@ -431,7 +431,7 @@
     "rarity": "Rare",
     "climate": [],
     "terrain": [],
-    "tags": ["Capital", "Government"]
+    "tags": ["Capital"]
   },
   {
     "name": "Gilded Heater Shield",
@@ -485,8 +485,8 @@
     "magic": "None",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Jungle", "Swamp"],
-    "terrain": ["Forest"],
+    "climate": [],
+    "terrain": ["Forest", "Jungle", "Swamp"],
     "tags": []
   },
   {
@@ -541,7 +541,7 @@
     "magic": "High",
     "quality": "exquisite",
     "rarity": "Very Rare",
-    "climate": ["Underground"],
+    "climate": [],
     "terrain": ["Underground"],
     "tags": ["Hidden", "Infested"]
   },
@@ -611,7 +611,7 @@
     "magic": "Low",
     "quality": "Fine",
     "rarity": "Uncommon",
-    "climate": ["Temperate", "Forest"],
+    "climate": ["Temperate"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Hidden", "Nomadic"]
   },
@@ -653,7 +653,7 @@
     "magic": "Low",
     "quality": "Standard",
     "rarity": "Uncommon",
-    "climate": ["Dry", "Desert"],
+    "climate": ["Dry"],
     "terrain": ["Desert", "Hills"],
     "tags": ["Nomadic", "Border Post"]
   },
@@ -821,7 +821,7 @@
     "magic": "High",
     "quality": "Masterwork",
     "rarity": "Very Rare",
-    "climate": ["Hills", "Mountains"],
+    "climate": [],
     "terrain": ["Mountains"],
     "tags": ["Remote"]
   },
@@ -905,8 +905,8 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Coast"],
-    "terrain": ["River", "Swamp"],
+    "climate": [],
+    "terrain": ["River", "Swamp", "Coast"],
     "tags": ["Fishing", "Port"]
   },
   {
@@ -1019,7 +1019,7 @@
     "rarity": "Uncommon",
     "climate": [],
     "terrain": [],
-    "tags": ["Noble", "Hidden"]
+    "tags": ["Hidden"]
   },
   {
     "name": "Runed Corner Braces",
@@ -1073,8 +1073,8 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Common",
-    "climate": ["Coast"],
-    "terrain": ["Urban"],
+    "climate": [],
+    "terrain": ["Coast", "Urban"],
     "tags": ["Port"]
   },
   {
@@ -1199,8 +1199,8 @@
     "magic": "Moderate",
     "quality": "Masterwork",
     "rarity": "Uncommon",
-    "climate": ["Swamp", "Tundra"],
-    "terrain": ["Mountains", "Jungle"],
+    "climate": [],
+    "terrain": ["Mountains", "Jungle", "Swamp", "Tundra"],
     "tags": ["Remote", "Overgrown"]
   },
   {
@@ -2826,8 +2826,8 @@
     "magic": "None",
     "quality": "Standard",
     "rarity": "Uncommon",
-    "climate": ["Volcanic", "Desert"],
-    "terrain": ["Mountains", "Hills"],
+    "climate": [],
+    "terrain": ["Mountains", "Hills","Volcanic", "Desert"],
     "tags": []
   },
   {
@@ -2940,7 +2940,7 @@
     "rarity": "Common",
     "climate": [],
     "terrain": ["Forest"],
-    "tags": ["Hunting"]
+    "tags": []
   },
   {
     "name": "Frayed Bowstring",

@@ -149,8 +149,7 @@ export function useSiteGeneratorActions(
         wealth,
         siteSize,
         siteCondition
-      }, 
-      formData
+      }
     );
 
     // Clean menu items to ensure form compatibility (strings & optional fields)
