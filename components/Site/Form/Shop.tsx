@@ -1,3 +1,4 @@
+import { useUIStore } from "@/store/uiStore";
 import { FormSelect, FormTextField } from "@/components/Form";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
@@ -6,13 +7,38 @@ import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 
+
 export default function ShopFields({generator}: SiteFormFieldProps){
+    const { setOpenDialog } = useUIStore();
+    const methods = useFormContext();
+    
     const {
         register,
         control,
         formState: { errors },
     } = useFormContext();
-    
+
+    const handleTypeChange = (field: "shopType" | "guildType", value: string) => {
+        // Check to see if menu has been generated before, to avoid menu category conflicts
+        const menu = methods.getValues("menu") || [];
+        const hasMenuItems = Array.isArray(menu) && menu.length > 0;
+
+        if (hasMenuItems) {
+            setOpenDialog("typeChangeDialog", {
+                open: true,
+                methods,
+                siteChange: {
+                    type: "shop",
+                    field: "shopType",
+                    value: value
+                }
+            });
+        } else {
+            // No menu data — safe to apply immediately
+            methods.setValue(field, value);
+        }
+    };
+
     return (
         <>
             <FormSelect
@@ -25,6 +51,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     ...SHOP_TYPE_CATEGORIES,
                 ]}
                 fieldError={errors.shopType}
+                onChange={(e) => handleTypeChange("shopType", e.target.value as string)}
             />
 
             <FormFieldWithGenerate
@@ -82,9 +109,9 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     name="menu"
                     header="Available Wares & Services"
                     siteType="shop"
-                    onGenerate={generator?.menu}
-                    onGenerateItem={(index: number) => generator?.menuItem?.(index)}
+                    onGenerateItems={(index?: number) => generator?.menuItems?.(index)}
                     buttonLabel="Conjure full wares & services"
+                    menuWarning="Please select a shop type to access the Wares & Services table"
                 />
             </Box>
         </>

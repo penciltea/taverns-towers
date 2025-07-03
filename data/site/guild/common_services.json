@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Post a Job or Contract",
+    "description": "Members of the public may post quests, contracts, or work requests for guild members to review and accept.",
+    "price": "Varies by scope",
+    "siteType": "guild",
+    "guildType": ["adventurer", "hunter", "explorer", "merchant", "smith", "artisan", "courier", "beastMaster", "thief", "spy"],
+    "rarity": "common",
+    "category": "Contracts",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Request Skilled Labor",
+    "description": "Hire vetted guild members for a specific task or short-term project.",
+    "price": "Negotiable",
+    "siteType": "guild",
+    "guildType": ["laborer", "artisan", "woodworker", "smith", "tinker", "tailor", "glassblower", "scribe", "cartographer"],
+    "rarity": "common",
+    "category": "Contracts",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Training & Skill Development",
+    "description": "Receive formal instruction in specialized skills or techniques offered by certified guild members.",
+    "price": "10–50 gp",
+    "siteType": "guild",
+    "guildType": ["adventurer", "hunter", "beastMaster", "mage", "healer", "artisan", "druid", "thief", "entertainer"],
+    "rarity": "common",
+    "category": "Support & Logistics",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Repair Services",
+    "description": "Get weapons, armor, tools, instruments, or gear repaired by qualified guild artisans.",
+    "price": "5–20 gp",
+    "siteType": "guild",
+    "guildType": ["smith", "tinker", "woodworker", "artisan", "fletcher", "tailor", "leatherworker"],
+    "rarity": "common",
+    "category": "Crafting & Maintenance",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Message Delivery",
+    "description": "Send sealed letters or small parcels through the guild's trusted courier system.",
+    "price": "2–10 gp",
+    "siteType": "guild",
+    "guildType": ["courier", "merchant", "spy", "scribe"],
+    "rarity": "common",
+    "category": "Support & Logistics",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Appraisal Services",
+    "description": "Have an item, artifact, or document evaluated for value, authenticity, or magical properties.",
+    "price": "Varies by item",
+    "siteType": "guild",
+    "guildType": ["merchant", "alchemist", "mage", "scholar", "auctioneer", "jeweler", "glassblower"],
+    "rarity": "common",
+    "category": "Support & Logistics",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Room & Board",
+    "description": "Secure a basic room or dormitory lodging, typically for members or approved affiliates.",
+    "price": "1–5 gp per night",
+    "siteType": "guild",
+    "guildType": ["adventurer", "explorer", "seafarer", "laborer", "hunter"],
+    "rarity": "common",
+    "category": "Support & Logistics",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Public Noticeboard Access",
+    "description": "Post or review notices, events, warnings, or job postings on the guild’s bulletin board.",
+    "price": "Free or 1 gp",
+    "siteType": "guild",
+    "guildType": ["all"],
+    "rarity": "common",
+    "category": "Administrative",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Legal Arbitration",
+    "description": "Request neutral arbitration for disputes involving guild members, contracts, or property.",
+    "price": "5–25 gp",
+    "siteType": "guild",
+    "guildType": ["merchant", "banker", "artisan", "broker", "scribe", "courtier"],
+    "rarity": "uncommon",
+    "category": "Administrative",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Guild Membership Inquiry",
+    "description": "Begin the process of applying for full or associate guild membership, or request an evaluation.",
+    "price": "Free",
+    "siteType": "guild",
+    "guildType": ["all"],
+    "rarity": "common",
+    "category": "Administrative",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  }
+]

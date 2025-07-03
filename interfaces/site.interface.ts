@@ -135,6 +135,7 @@ export interface generatorMenuItem{
 export type SiteFormFieldProps = {
   generator?: {
     name?: () => void;
+    menuItems?: (index?: number) => void;
     menu?: () => void;
     menuItem?: (index: number) => void;
     
@@ -158,6 +159,7 @@ export interface SiteGenerationContext {
   reroll?: boolean;
   siteType?: string;
   shopType?: string;
+  guildType?: string;
   siteSize?: string;
   siteCondition?: string;
   menuItems?: generatorMenuItem[];

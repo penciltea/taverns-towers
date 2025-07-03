@@ -7,7 +7,7 @@
 */
 
 
-import { MENU_CATEGORY_OPTIONS_BY_SITE, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { GUILD_TYPES, MENU_CATEGORY_OPTIONS_BY_SITE, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
 import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
@@ -75,13 +75,22 @@ export const getShopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
   group.options.map(option => option.value)
 );
 
+/** 
+ * Getting guild type values from nested arrays of guild types
+ */
+export const getGuildTypes = GUILD_TYPES.flatMap(group =>
+  group.options.map(option => option.value)
+);
+
+
 /**
- * A utility function for getting menu item categories by site type (and shop type if siteType is 'shop')
+ * A utility function for getting menu item categories by site type (and shop type if siteType is 'shop' or guild type if siteType is 'guild')
 */
 
 export function getCategoryOptions(
   siteType: string,
   shopType?: string,
+  guildType?: string,
   fallbackCategory?: string
 ): string[] {
   const entry = MENU_CATEGORY_OPTIONS_BY_SITE[siteType];
@@ -91,6 +100,8 @@ export function getCategoryOptions(
     categories = entry;
   } else if (shopType && typeof entry === "object") {
     categories = entry[shopType.toLowerCase()] ?? [];
+  } else if(guildType && typeof entry === "object"){
+    categories = entry[guildType.toLowerCase()] ?? [];
   }
 
   if (
@@ -107,4 +118,13 @@ export function getCategoryOptions(
   }
 
   return categories;
+}
+
+/** 
+ * A util function for determining if a site type has a menu or not
+ */
+
+export function siteTypeHasMenu(siteType: string | undefined): boolean {
+  const MENU_SUPPORTED_TYPES = ["shop", "tavern", "guild", "temple"]; // add more if needed
+  return !!siteType && MENU_SUPPORTED_TYPES.includes(siteType);
 }

@@ -4,6 +4,7 @@ import { useUIStore } from "@/store/uiStore";
 import SiteTypeDialog from "../Site/Dialog/SiteTypeDialog";
 import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
 import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
+import TypeChangeDialog from "../Common/typeChangeDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
@@ -48,6 +49,15 @@ export default function DialogContainer() {
           open 
           onClose={closeDialog} 
           settlement={dialogProps.settlement} 
+        />
+      )
+    case 'typeChangeDialog' :
+      return (
+        <TypeChangeDialog
+          open
+          onClose={closeDialog}
+          siteChange={dialogProps.siteChange}
+          methods={dialogProps.methods}
         />
       )
     // Add more dialogs here as needed

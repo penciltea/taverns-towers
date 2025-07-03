@@ -93,8 +93,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                     name="menu"
                     header="Tavern Menu"
                     siteType="tavern"
-                    onGenerate={generator?.menu}
-                    onGenerateItem={(index: number) => generator?.menuItem?.(index)}
+                    onGenerateItems={(index?: number) => generator?.menuItems?.(index)}
                     buttonLabel="Conjure full menu"
                 />
             </Box>

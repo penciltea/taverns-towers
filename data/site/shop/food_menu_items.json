@@ -2060,7 +2060,7 @@
   {
     "name": "Honey Drizzle Pot",
     "description": "A small ceramic pot used for drizzling honey alongside cheese platters.",
-    "category": "Condiments",
+    "category": "Accoutrements",
     "price": "3sp",
     "siteType": "shop",
     "shopType": "cheesemonger",
@@ -2074,7 +2074,7 @@
   {
     "name": "Herbal Cheese Preservative Sachet",
     "description": "A fragrant blend of herbs designed to slow cheese spoilage and enhance flavor when stored together.",
-    "category": "Preservatives",
+    "category": "Accoutrements",
     "price": "8sp",
     "siteType": "shop",
     "shopType": "cheesemonger",
@@ -2088,7 +2088,7 @@
   {
     "name": "Miniature Cheese Press",
     "description": "A small wooden press for home cheesemaking, useful for firming soft cheeses.",
-    "category": "Cheese Tools",
+    "category": "Accoutrements",
     "price": "1gp",
     "siteType": "shop",
     "shopType": "cheesemonger",
@@ -2116,7 +2116,7 @@
   {
     "name": "Spiced Wine Vinegar",
     "description": "A sharp vinegar infused with aromatic spices, often paired with cheese for dipping or dressing.",
-    "category": "Condiments",
+    "category": "Accoutrements",
     "price": "1gp",
     "siteType": "shop",
     "shopType": "cheesemonger",
@@ -2130,7 +2130,7 @@
   {
     "name": "Cheese Cloth Roll",
     "description": "Fine woven cloth used for draining curds or wrapping cheese for aging.",
-    "category": "Cheese Tools",
+    "category": "Accoutrements",
     "price": "7sp",
     "siteType": "shop",
     "shopType": "cheesemonger",

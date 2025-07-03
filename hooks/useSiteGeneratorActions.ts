@@ -14,8 +14,9 @@
 import { useCallback, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteName, generateSiteData, generateMenuData, fetchMenuItem } from "@/lib/actions/siteGenerator.actions";
+import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
+import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
 
 type GeneratorContext = {
   siteType: SiteFormData["type"];
@@ -28,8 +29,7 @@ type GeneratorContext = {
 
 type UseSiteGeneratorActionsReturn = {
   name: () => void;
-  menu: () => void;
-  menuItem: (index: number) => void;
+  menuItems: (index?: number) => void;
   all: () => void;
   reroll: () => void;
 };
@@ -54,6 +54,11 @@ export function useSiteGeneratorActions(
   // Helper to get the current shopType field value from the form
   const getShopType = useCallback(() => {
     return getValues("shopType");
+  }, [methods]);
+
+  // Helper to get the current guildType field value from the form
+  const getGuildType = useCallback(() => {
+    return getValues("guildType");
   }, [methods]);
 
 
@@ -109,39 +114,39 @@ export function useSiteGeneratorActions(
 
     const env = await regenerateEnvironment(false);
     const shopType = getShopType();
+    const guildType = getGuildType();
 
     const name = await generateSiteName({
       siteType: [siteType],
-      shopType,
+      shopType: siteType === "shop" ? shopType : undefined,
+      guildType: siteType === "guild" ? guildType : undefined,
       terrain: env.terrain,
       climate: env.climate,
       tags: env.tags,
     });
 
     methods.setValue("name", name);
-  }, [siteType, methods, getShopType, regenerateEnvironment]);
+  }, [siteType, methods, getShopType, getGuildType, regenerateEnvironment]);
 
+  /** 
+   * Generates menu items for the site
+   * @param { number } index - position in the menu array to replace a new menu item with (optional)
+   */
 
-  /**
-   * Generates menu items for the site.
-   * Uses passed-in factors to influence menu generation.
-   * Cleans the menu items and sets them in the form under 'menu'.
-  */
+  const generateMenuItems = useCallback(
+    async (index?: number) => {
+      if (!siteType) return;
 
-  const generateMenu = useCallback(async () => {
-    if (!siteType) return;
-        
-    setValue("menu", []); // clearing out menu to prevent shopType changing causing errors with categories
+      const shopType = getShopType();
+      const guildType = getGuildType();
+      const formData = methods.getValues();
+      const siteSize = formData.size;
+      const siteCondition = formData.condition;
 
-    const shopType = getShopType();
-    const formData = methods.getValues();
-    const siteSize = formData.size;
-    const siteCondition = formData.condition;
-
-    const menuItems = await generateMenuData(
-      {
+      const generationContext = {
         siteType,
-        shopType,
+        shopType: siteType === "shop" ? shopType : undefined,
+        guildType: siteType === "guild" ? guildType : undefined,
         climate: context.climate,
         terrain: context.terrain,
         tags: context.tags,
@@ -149,80 +154,41 @@ export function useSiteGeneratorActions(
         wealth,
         siteSize,
         siteCondition
+      };
+
+      // Clear the full menu before regenerating all items
+      if (typeof index !== "number") {
+        methods.resetField("menu", { defaultValue: [] });
       }
-    );
-
-    // Clean menu items to ensure form compatibility (strings & optional fields)
-    const cleanedItems = menuItems.map((item) => ({
-      name: item.name || "",
-      price: String(item.price || ""),
-      category: item.category || undefined,
-      description: item.description || undefined,
-      quality: item.quality || undefined,
-      quantity: item.quantity || "",
-      rarity: item.rarity || undefined,
-    }));
-
-    methods.setValue("menu", cleanedItems);
-  }, [siteType, methods, getShopType, regenerateEnvironment]);
-
-
-  /**
-   * Generates a new single menu item asynchronously and replaces the item
-   * at the specified index in the form's menu array.
-   *
-   * @param {number} index - The position in the menu array to replace with the new item.
-   */
-
-  const generateMenuItem = useCallback(
-    async (index: number) => {
-       // If the siteType is not defined, exit early — can't generate without a site type.
-      if (!siteType) return;
-
-      // Retrieve the current shopType from the form, if applicable.
-      const shopType = getShopType();
-
-      const formData = methods.getValues();
-      const siteSize = formData.size;
-      const siteCondition = formData.condition;
-
-      // Call the server action fetchMenuItem to get one new menu item matching the current context.
-      // Passes siteType, shopType, environment, and other relevant factors.
-      const items = await fetchMenuItem({
-        siteType,
-        shopType,
-        climate: context.climate,
-        terrain: context.terrain,
-        tags: context.tags,
-        magic,
-        wealth,
-        siteCondition,
-        siteSize
-      });
+      
+      let singleItem = false; // For fetching data
+      if(typeof index === "number"){
+        singleItem = true;
+      }
+      
+      let items = await generateMenuData({...generationContext, singleItem: singleItem});
 
       if (!Array.isArray(items) || items.length === 0) return;
 
-      // Take the first item from the returned array — it should contain exactly one item.
-      const newItem = items[0];
+      const cleanedItems = items.map((item) => ({
+        name: item.name || "",
+        price: String(item.price || ""),
+        category: item.category || undefined,
+        description: item.description || undefined,
+        quality: item.quality || undefined,
+        quantity: item.quantity || "",
+        rarity: item.rarity || undefined,
+      }));
 
-      // Clean up the item fields for the form:
-      // - Ensure name and price are strings
-      // - Use undefined for optional fields if they're missing
-      const cleanedItem = {
-        name: newItem.name || "",
-        price: String(newItem.price || ""),
-        category: newItem.category || undefined,
-        description: newItem.description || undefined,
-        quality: newItem.quality || undefined,
-        quantity: newItem.quantity || "",
-        rarity: newItem.rarity || undefined,
-      };
-
-      // Get the current 'menu' array from the form & replace item at specified index
-      const currentMenu = methods.getValues("menu") || [];
-      currentMenu[index] = cleanedItem;
-      methods.setValue("menu", currentMenu);
-    }, [siteType, methods, getShopType, context]
+      if (typeof index === "number") {
+        const currentMenu = methods.getValues("menu") || [];
+        currentMenu[index] = cleanedItems[0]; // assumes fetchMenuItem returns a single-item array
+        methods.setValue("menu", currentMenu);
+      } else {
+        methods.setValue("menu", cleanedItems);
+      }
+    },
+    [siteType, methods, getShopType, getGuildType, context, magic, wealth, setValue]
   );
 
 
@@ -268,9 +234,12 @@ export function useSiteGeneratorActions(
       }
     });
 
-    // Generate the menu based on updated environment
-    await generateMenu();
-  }, [siteType, methods, generateMenu, regenerateEnvironment]);
+    // Check if site type has menu
+    // If so, regenerate the menu with the new environment
+    if (siteTypeHasMenu(siteType)) {
+      await generateMenuItems();
+    }
+  }, [siteType, methods, generateMenuItems, regenerateEnvironment]);
 
 
   /**
@@ -282,12 +251,9 @@ export function useSiteGeneratorActions(
   const rerollAll = useCallback(async () => {
     if (!siteType) return;
     
-    setValue("menu", []); // clearing out menu to prevent shopType changing causing errors with categories
+    setValue("menu", []); // clearing out menu to prevent shopType/guildType changing causing errors with categories
 
     const env = await regenerateEnvironment(true);
-    const shopType = getShopType();
-
-
     const emptyOverrides: Partial<SiteFormData> = {};
 
     const result = await generateSiteData(
@@ -311,16 +277,18 @@ export function useSiteGeneratorActions(
       methods.setValue(key as keyof SiteFormData, value);
     });
 
-    // Regenerate the menu with the new environment
-    await generateMenu();
-  }, [siteType, methods, getShopType, generateMenu, regenerateEnvironment]);
+    // Check if site type has menu
+    // If so, regenerate the menu with the new environment
+    if (siteTypeHasMenu(siteType)) {
+      await generateMenuItems();
+    }
+  }, [siteType, methods, generateMenuItems, regenerateEnvironment]);
 
 
   // Return the four main generation actions
   return {
     name: generateName,
-    menu: generateMenu,
-    menuItem: generateMenuItem,
+    menuItems: generateMenuItems,
     all: generateAll,
     reroll: rerollAll,
   };

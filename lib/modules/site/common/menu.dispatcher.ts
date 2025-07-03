@@ -42,33 +42,21 @@ export async function applyMenuRules({
 }
 
 export async function generateMenu(
-  context: SiteGenerationContext
+  context: SiteGenerationContext & { singleItem?: boolean }
 ): Promise<generatorMenuItem[]> {
   // Get rules by site type
   const rules = menuRulesBySiteType[context.siteType ?? ""] || [];
 
-  // Step 1: Fetch raw items using rules
-  const items = await applyMenuRules({ context, rules });
-
-  return items.map(normalizeMenuItem);
-}
-
-export async function generateMenuItem(
-  context: SiteGenerationContext
-): Promise<generatorMenuItem[]> {
-  // Get rules by site type
-  const rules = menuRulesBySiteType[context.siteType ?? ""] || [];
-
-  // Fetch & Run through menu rules
   const allItems = await applyMenuRules({ context, rules });
 
   if (!allItems.length) return [];
 
-  // Randomly pick an item from the list
-  const randomItem = getRandom(allItems);
+  // If singleItem flag is set to true, randomly pull an item from the list of available ones
+  if (context.singleItem) {
+    const randomItem = getRandom(allItems);
+    return [normalizeMenuItem(randomItem)];
+  }
 
-  // Normalize single item to the same shape as full menu items
-  const normalizedItem = normalizeMenuItem(randomItem);
-
-  return [normalizedItem];
+  // Return full normalized list if singleItem is false or undefined
+  return allItems.map(normalizeMenuItem);
 }

@@ -10,6 +10,7 @@ import { MenuItemMappingByMagic, MenuItemMappingByMagicModel } from "@/lib/model
 import { FALLBACK_CLIMATE_ITEMS, FALLBACK_TERRAIN_ITEMS, FALLBACK_TAG_ITEMS, FALLBACK_MAGIC_ITEMS } from "./menu.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { SETTLEMENT_SIZE_MULTIPLIERS, SETTLEMENT_WEALTH_BONUSES, SITE_SIZE_BASE, SITE_CONDITION_PENALTIES } from "./mappings";
+import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
@@ -17,10 +18,10 @@ export type MenuRuleFn = (
 ) => Promise<GeneratorSiteMenuPlain[]>;
 
 export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => {
-  const { climate, terrain, tags, magic, siteType, shopType } = context;
+  const { climate, terrain, tags, magic, siteType, shopType, guildType } = context;
 
-  const supportedSiteTypes = ["tavern", "shop", "temple", "guild"];
-  if (!siteType || !supportedSiteTypes.includes(siteType)) return [];
+  // If site type doesn't have menu, return early
+  if (!siteType || !siteTypeHasMenu(siteType)) return [];
 
   // Build queries
   const climateQuery = climate ? { climate } : null;
@@ -42,17 +43,23 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     options: {
       siteType?: string;
       shopType?: string;
+      guildType?: string;
     } = {}
   ): (GeneratorSiteMenuPlain | Types.ObjectId)[] {
-    const { siteType, shopType } = options;
+    const { siteType, shopType, guildType } = options;
 
     if (result.status === "fulfilled" && result.value) {
       const mappings = Array.isArray(result.value) ? result.value : [result.value];
 
-      // Return ObjectIds from DB mappings
       return mappings.flatMap(m =>
         m.items
-          ?.filter(i => i.siteType === siteType && (!shopType || i.shopType === shopType))
+          ?.filter(i =>
+            i.siteType === siteType &&
+            (
+              (siteType === "shop" && (!shopType || i.shopType === shopType)) ||
+              (siteType === "guild" && (!guildType || i.guildType === guildType))
+            )
+          )
           .map(i => i.itemId)
       );
     }
@@ -62,7 +69,10 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
         (fallback[key] || []).filter(
           item =>
             item.siteType === siteType &&
-            (!shopType || item.shopType === shopType)
+            (
+              (siteType === "shop" && (!shopType || item.shopType === shopType)) ||
+              (siteType === "guild" && (!guildType || item.guildType === guildType))
+            )
         )
       );
     }
@@ -113,6 +123,8 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
 
   if (siteType === "shop" && shopType) {
     universalQuery.shopType = shopType;
+  } else if (siteType === "guild" && guildType) {
+    universalQuery.guildType = guildType;
   }
 
   const universalItems = await GeneratorSiteMenu.find(universalQuery).lean<GeneratorSiteMenuPlain[]>();
@@ -120,6 +132,7 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
   // Debug block
   // console.log("SiteType:", siteType);
   // console.log("ShopType:", shopType);
+  // console.log("GuildType: ", guildType);
   // console.log("climate items:" , climateIds);
   // console.log("terrain items: ", terrainIds);
   // console.log("tag items: ", tagIds);

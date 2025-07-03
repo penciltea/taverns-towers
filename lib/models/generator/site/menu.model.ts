@@ -14,6 +14,7 @@ export interface GeneratorSiteMenuPlain {
   magic?: MagicLevel;
   siteType: string;
   shopType?: string;
+  guildType?: string;
   climate?: ClimateTypes[];
   terrain?: TerrainTypes[];
   tags?: TagTypes[];
@@ -30,6 +31,7 @@ const GeneratorSiteMenuSchema: Schema = new mongoose.Schema({
   magic: { type: String, enum: MAGIC_LEVELS, required: false },
   siteType: { type: String, required: true },
   shopType: { type: String, required: false },
+  guildType: { type: String, required: false },
   climate: { type: [String], required: false },
   terrain: { type: [String], required: false },
   tags: { type: [String], required: false }

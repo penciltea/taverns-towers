@@ -7,18 +7,20 @@ import { generatorMenuItem, SiteGenerationContext, SiteGenerationInput } from "@
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
-import { generateMenu, generateMenuItem } from "../modules/site/common/menu.dispatcher";
+import { generateMenu } from "../modules/site/common/menu.dispatcher";
 
 export async function generateSiteName({
   category,
   siteType,
   shopType,
+  guildType,
   terrain,
   climate,
   tags,
 }: {
   category?: string;
   shopType?: string;
+  guildType?: string;
   siteType?: string[];
   terrain?: string[];
   climate?: string;
@@ -37,14 +39,16 @@ export async function generateSiteName({
     category,
     siteType,
     shopType,
+    guildType,
     terrain,
     climate,
     tags,
   });
 }
 
+
 export async function generateMenuData(
-  context: SiteGenerationContext
+  context: SiteGenerationContext & { singleItem?: boolean }
 ): Promise<generatorMenuItem[]> {
   await connectToDatabase();
 
@@ -53,22 +57,7 @@ export async function generateMenuData(
   }
 
   const items = await generateMenu(context);
-
   return items;
-}
-
-export async function fetchMenuItem(
-  context: SiteGenerationContext
-): Promise<generatorMenuItem[]> {
-  await connectToDatabase();
-
-  if (!context.siteType) {
-    throw new Error("Missing site type in menu generation context");
-  }
-
-  const item = await generateMenuItem(context);
-
-  return item;
 }
 
 

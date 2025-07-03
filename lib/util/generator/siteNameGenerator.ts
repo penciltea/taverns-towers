@@ -7,6 +7,7 @@ interface GenerateSiteNameOptions {
   climate?: string;
   siteType?: string[];
   shopType?: string;
+  guildType?: string;
 }
 
 function weightedRandom<T extends { value: string; weight?: number }>(items: T[]): string {

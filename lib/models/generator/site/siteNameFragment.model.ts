@@ -11,6 +11,7 @@ export interface GeneratorSiteFragmentPlain {
   terrains?: string[];      // e.g. ["forest"]
   climates?: string[];
   shopType?: string;
+  guildType?: string;
   [key: string]: any;
 }
 

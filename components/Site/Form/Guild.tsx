@@ -22,24 +22,24 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 label="Guild Type"
                 required
                 control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(GUILD_TYPES)]}
+                options={[{ label: "Random", value: "random" }, ...GUILD_TYPES]}
                 fieldError={errors.guildTypes}
             />
 
-            <FormTextField
+            <FormFieldWithGenerate
                 name="guildName"
                 label="Guild Name"
                 registration={register("guildName")}
                 fieldError={errors.guildName}
+                required                
+                onGenerate={generator?.name}
             />
 
-            <FormFieldWithGenerate
+            <FormTextField
                 name="name"
                 label="Site Name"
-                required
                 registration={register("name")}
                 fieldError={errors.name}
-                onGenerate={generator?.name}
             />
 
             <FormSelect
@@ -102,8 +102,9 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                     name="menu"
                     header="Services Offered"
                     siteType="guild"
-                    onGenerate={generator?.menu}
+                    onGenerateItems={(index?: number) => generator?.menuItems?.(index)}
                     buttonLabel="Conjure services"
+                    menuWarning="Please select a guild type to access the Services table"
                 />
             </Box>
         </>

@@ -9,6 +9,9 @@ const secrecyValues = SECRECY_LEVELS.map(opt => opt.value);
 const shopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
   group.options.map(option => option.value)
 );
+const guildTypes = GUILD_TYPES.flatMap(group =>
+  group.options.map(option => option.value)
+);
 
 const BaseSiteSchema = new Schema(
   {
@@ -86,8 +89,8 @@ const Tavern =
   Site.discriminator(
     "guild",
     new Schema({
-      guildName: { type: String, required: false },
-      guildType: { type: String, enum: GUILD_TYPES, required: true },
+      guildName: { type: String, required: true },
+      guildType: { type: String, enum: guildTypes, required: true },
       leader: { type: String, required: false },
       membershipRequirements: { type: String, required: false },
       knownRivals: { type: String, required: false },

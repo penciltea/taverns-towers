@@ -15,9 +15,9 @@ interface FormEditableCardProps {
   name: string;
   siteType: string;
   header?: string;
-  onGenerate?: () => void;
-  onGenerateItem?: (index: number) => void;
   buttonLabel?: string;
+  menuWarning?: string;
+  onGenerateItems?: (index?: number) => void;
 }
 
 function getItemDisplayName(item: Record<string, any>, index: number): string {
@@ -37,9 +37,9 @@ export default function FormEditableCard({
   name,
   siteType,
   header,
-  onGenerate,
-  onGenerateItem,
+  onGenerateItems,
   buttonLabel = "Generate",
+  menuWarning,
 }: FormEditableCardProps) {
   const { control, register, formState: { errors } } = useFormContext();
   const { fields, append, remove } = useFieldArray({ control, name });
@@ -55,8 +55,9 @@ export default function FormEditableCard({
   }));
 
   const watchedShopType = useWatch({ control, name: "shopType" });
+  const watchedGuildType = useWatch({ control, name: "guildType" });
 
-  const disableGenerate = siteType === "shop" && (!watchedShopType || watchedShopType === "random");
+  const disableGenerate = (siteType === "shop" && (!watchedShopType || watchedShopType === "random")) || (siteType === "guild" && (!watchedGuildType || watchedGuildType === "random"));
 
   const handleAdd = () => append(Object.fromEntries(fieldList.map((field) => [field, ""])));
 
@@ -86,7 +87,7 @@ export default function FormEditableCard({
 
   return (
     <>
-      {(header || onGenerate) && (
+      {(header || onGenerateItems) && (
         <>
           <Box
             sx={{
@@ -99,11 +100,11 @@ export default function FormEditableCard({
             }}
           >
             {header && <Typography variant="h6">{header}</Typography>}
-            {onGenerate && (
+            {onGenerateItems && (
               <Button
                 type="button"
                 variant="outlined"
-                onClick={onGenerate}
+                onClick={() => onGenerateItems?.()}
                 size="large"
                 disabled={disableGenerate}
                 sx={{ py: 1.65 }}
@@ -114,7 +115,7 @@ export default function FormEditableCard({
           </Box>
           {disableGenerate && (
             <Typography color="error" sx={{ mt: 1, textAlign: 'center' }}>
-              Please select a shop type to add to the menu
+              {menuWarning}
             </Typography>
           )}
         </>
@@ -159,7 +160,7 @@ export default function FormEditableCard({
               </Typography>
 
               <Box sx={{display: 'flex'}}>
-                {onGenerateItem && (
+                {onGenerateItems && (
                   <Box mt={2}>
                     <Button
                       variant="outlined"
@@ -167,7 +168,7 @@ export default function FormEditableCard({
                       disabled={disableGenerate}
                       onClick={(e) => {
                         e.stopPropagation(); // Prevent toggle
-                        onGenerateItem(index)}
+                        onGenerateItems(index)}
                       }
                     >
                       Conjure Item

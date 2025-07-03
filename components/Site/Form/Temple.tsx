@@ -84,7 +84,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                     name="menu"
                     header="Services Offered"
                     siteType="temple"
-                    onGenerate={generator?.menu}
+                    onGenerateItems={(index?: number) => generator?.menuItems?.(index)}
                     buttonLabel="Conjure services"
                 />
             </Box>
