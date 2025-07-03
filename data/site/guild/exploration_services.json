@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Parcel Relay Network",
+    "description": "A reliable long-distance delivery system for parcels and messages via a series of relay runners or mounted couriers.",
+    "price": "Variable by distance",
+    "category": "Contracts & Commissions",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["courier"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Cargo Offloading Team",
+    "description": "A trained crew available to rapidly and safely offload goods from ships or caravans.",
+    "price": "10 gp per hour",
+    "category": "Maintenance & Repair",
+    "rarity": "Common",
+    "siteType": "guild",
+    "guildType": ["dockworker"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Timber Harvesting License",
+    "description": "Official documentation allowing sanctioned tree cutting in designated areas.",
+    "price": "25 gp, valid for one month",
+    "category": "Licensing & Administration",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["forester"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Skilled Day Laborers",
+    "description": "A crew of guild-certified workers available for temporary hire in physical construction, lifting, or hauling.",
+    "price": "2 gp per worker per day",
+    "category": "Contracts & Commissions",
+    "rarity": "Common",
+    "siteType": "guild",
+    "guildType": ["laborer"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Mine Shaft Inspection",
+    "description": "Safety inspection of existing mine shafts and tunnels by certified guild engineers.",
+    "price": "15 gp per inspection",
+    "category": "Consultation & Evaluation",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["miner"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Navigational Charter Service",
+    "description": "Custom nautical routes drawn for specific voyages, optimized for speed or safety.",
+    "price": "20 gp per route",
+    "category": "Research & Documentation",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["seafarer"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Uncharted Region Survey",
+    "description": "An expedition team to explore and document unexplored wilderness, ruins, or magical anomalies.",
+    "price": "Negotiable",
+    "category": "Specialty Service",
+    "rarity": "Rare",
+    "siteType": "guild",
+    "guildType": ["explorer"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  }
+]

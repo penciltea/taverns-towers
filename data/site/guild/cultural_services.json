@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Gallery Space Rental",
+    "description": "Short-term exhibit space for local artists to showcase and sell their work under guild auspices.",
+    "price": "15 gp per day",
+    "category": "Licensing & Administration",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["artist"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Guild-Backed Auctions",
+    "description": "Public or private auctions conducted under strict guild oversight to ensure fairness and legality.",
+    "price": "5% of final sale price",
+    "category": "Contracts & Commissions",
+    "rarity": "Rare",
+    "siteType": "guild",
+    "guildType": ["auctioneer"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Secure Holding Accounts",
+    "description": "Clients may deposit coin or valuables for short- or long-term safekeeping, guaranteed by the guild.",
+    "price": "1 gp per 100 gp stored monthly",
+    "category": "Licensing & Administration",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["banker"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Etiquette Consultation",
+    "description": "Social coaching and training in noble etiquette, fashion, and courtly behavior.",
+    "price": "10 gp per session",
+    "category": "Training & Education",
+    "rarity": "Common",
+    "siteType": "guild",
+    "guildType": ["courtier"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Troupe Booking Service",
+    "description": "Connect with a licensed performance troupe for festivals, private functions, or public events.",
+    "price": "20–100 gp depending on size & skill",
+    "category": "Contracts & Commissions",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["entertainer"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Discreet Inquiry",
+    "description": "Hire a broker to quietly gather information about a person, group, or topic of interest.",
+    "price": "25 gp minimum, varies with risk",
+    "category": "Specialty Service",
+    "rarity": "Rare",
+    "siteType": "guild",
+    "guildType": ["broker"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Market Stall Permit",
+    "description": "Official license to operate a stall in a guild-sanctioned marketplace.",
+    "price": "5 gp weekly",
+    "category": "Licensing & Administration",
+    "rarity": "Common",
+    "siteType": "guild",
+    "guildType": ["merchant"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Foundling Archives",
+    "description": "Historical records and genealogical services available to find lost bloodlines or track ancestry.",
+    "price": "10 gp per document, 50+ gp for full research",
+    "category": "Research & Documentation",
+    "rarity": "Uncommon",
+    "siteType": "guild",
+    "guildType": ["scholar", "scribe"],
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  }
+]

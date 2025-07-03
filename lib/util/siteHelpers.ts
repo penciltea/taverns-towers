@@ -7,7 +7,8 @@
 */
 
 
-import { GUILD_TYPES, MENU_CATEGORY_OPTIONS_BY_SITE, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { GUILD_TYPES, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
@@ -90,7 +91,6 @@ export const getGuildTypes = GUILD_TYPES.flatMap(group =>
 export function getCategoryOptions(
   siteType: string,
   shopType?: string,
-  guildType?: string,
   fallbackCategory?: string
 ): string[] {
   const entry = MENU_CATEGORY_OPTIONS_BY_SITE[siteType];
@@ -100,8 +100,6 @@ export function getCategoryOptions(
     categories = entry;
   } else if (shopType && typeof entry === "object") {
     categories = entry[shopType.toLowerCase()] ?? [];
-  } else if(guildType && typeof entry === "object"){
-    categories = entry[guildType.toLowerCase()] ?? [];
   }
 
   if (

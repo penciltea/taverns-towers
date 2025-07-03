@@ -28,7 +28,7 @@ type GeneratorContext = {
 };
 
 type UseSiteGeneratorActionsReturn = {
-  name: () => void;
+  name: (target?: string ) => Promise<void> | void;
   menuItems: (index?: number) => void;
   all: () => void;
   reroll: () => void;
@@ -108,25 +108,47 @@ export function useSiteGeneratorActions(
    * Sets the 'name' field in the form.
    */
 
-  const generateName = useCallback(async () => {
-    if (!siteType) return;
-    
+  const generateName = useCallback(
+    async (target?: string) => {
+      if (!siteType) return;
 
-    const env = await regenerateEnvironment(false);
-    const shopType = getShopType();
-    const guildType = getGuildType();
+      const env = await regenerateEnvironment(false);
+      const shopType = getShopType();
+      const guildType = getGuildType();
 
-    const name = await generateSiteName({
-      siteType: [siteType],
-      shopType: siteType === "shop" ? shopType : undefined,
-      guildType: siteType === "guild" ? guildType : undefined,
-      terrain: env.terrain,
-      climate: env.climate,
-      tags: env.tags,
-    });
+      const name = await generateSiteName({
+        siteType: [siteType],
+        shopType: siteType === "shop" ? shopType : undefined,
+        guildType: siteType === "guild" ? guildType : undefined,
+        terrain: env.terrain,
+        climate: env.climate,
+        tags: env.tags,
+      });
 
-    methods.setValue("name", name);
-  }, [siteType, methods, getShopType, getGuildType, regenerateEnvironment]);
+      if (siteType !== "guild") {
+        setValue("name", name);
+        return;
+      }
+
+      const currentName = getValues("name");
+      const currentGuildName = getValues("guildName");
+
+      if (target === "name") {
+        setValue("name", name);
+      } else if (target === "guildName") {
+        setValue("guildName", name);
+      } else if (!currentName && !currentGuildName) {
+        setValue("name", name);
+        setValue("guildName", name);
+      } else {
+        setValue("name", name);
+      }
+    },
+    [siteType, getShopType, getGuildType, regenerateEnvironment, getValues, setValue]
+  );
+
+
+
 
   /** 
    * Generates menu items for the site
@@ -221,6 +243,22 @@ export function useSiteGeneratorActions(
           },
       false
     );
+    
+    // Also generate guildName if it's a guild site and not already set
+    if (siteType === "guild") {
+      const currentGuildName = methods.getValues("guildName");
+      if (!currentGuildName) {
+        const guildType = getGuildType();
+        const name = await generateSiteName({
+          siteType: [siteType],
+          guildType,
+          terrain: env.terrain,
+          climate: env.climate,
+          tags: env.tags,
+        });
+        methods.setValue("guildName", name);
+      }
+    }
 
     // Only update fields that are empty or missing in the current form
     Object.entries(result).forEach(([key, value]) => {
@@ -272,6 +310,19 @@ export function useSiteGeneratorActions(
       true // rerollAll
     );
 
+    // Also generate guildName if it's a guild site
+    if (siteType === "guild") {
+      const guildType = getGuildType();
+      const name = await generateSiteName({
+        siteType: [siteType],
+        guildType,
+        terrain: env.terrain,
+        climate: env.climate,
+        tags: env.tags,
+      });
+      methods.setValue("guildName", name);
+    }
+    
     // Set all generated fields directly, replacing current values
     Object.entries(result).forEach(([key, value]) => {
       methods.setValue(key as keyof SiteFormData, value);

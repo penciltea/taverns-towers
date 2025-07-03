@@ -32,14 +32,16 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 registration={register("guildName")}
                 fieldError={errors.guildName}
                 required                
-                onGenerate={generator?.name}
+                onGenerate={() => generator?.name?.("guildName")}
             />
 
-            <FormTextField
+            <FormFieldWithGenerate
                 name="name"
                 label="Site Name"
                 registration={register("name")}
                 fieldError={errors.name}
+                required                
+                onGenerate={() => generator?.name?.("name")}
             />
 
             <FormSelect

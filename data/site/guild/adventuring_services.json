@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Bounty Board Access",
+    "description": "View available bounties for monsters, fugitives, or targets posted by nobles, merchants, or city guards.",
+    "price": "Free for members",
+    "siteType": "guild",
+    "guildType": ["adventurer", "hunter", "monsterHunter", "thief", "spy", "assassin"],
+    "rarity": "Common",
+    "category": "Contracts & Commissions",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Tracking & Scouting Services",
+    "description": "Hire skilled trackers to scout dangerous terrain, follow a target, or map out unexplored regions.",
+    "price": "25–100 gp depending on risk",
+    "siteType": "guild",
+    "guildType": ["hunter", "monsterHunter", "beastMaster", "adventurer"],
+    "rarity": "Uncommon",
+    "category": "Contracts & Commissions",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Combat Drills & Sparring",
+    "description": "Train with experienced warriors in live combat scenarios or skill-based duels to improve martial prowess.",
+    "price": "10 gp per session",
+    "siteType": "guild",
+    "guildType": ["adventurer", "monsterHunter", "thief", "assassin", "beastMaster"],
+    "rarity": "Common",
+    "category": "Training & Education",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Beast Handling Certification",
+    "description": "Earn credentials proving you are licensed and capable of handling exotic or dangerous beasts.",
+    "price": "50 gp",
+    "siteType": "guild",
+    "guildType": ["beastMaster", "hunter", "adventurer"],
+    "rarity": "Rare",
+    "category": "Training & Education",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Monster Identification & Consultation",
+    "description": "Bring back remains or descriptions of a creature for identification, strategic advice, or bounty eligibility.",
+    "price": "15 gp",
+    "siteType": "guild",
+    "guildType": ["monsterHunter", "adventurer", "hunter", "scholar"],
+    "rarity": "Common",
+    "category": "Consultation & Evaluation",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Assassination Contract (Member Only)",
+    "description": "High-risk elimination contracts are assigned only to vetted guild operatives under strict codes of conduct.",
+    "price": "Negotiable",
+    "siteType": "guild",
+    "guildType": ["assassin"],
+    "rarity": "Rare",
+    "category": "Contracts & Commissions",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Infiltration & Surveillance Services",
+    "description": "Hire skilled agents to monitor, follow, or infiltrate a person, location, or organization.",
+    "price": "50–250 gp depending on scope",
+    "siteType": "guild",
+    "guildType": ["spy", "thief", "assassin"],
+    "rarity": "Uncommon",
+    "category": "Contracts & Commissions",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Forged Credentials & Disguises",
+    "description": "Obtain high-quality false papers, identities, or appearances for covert operations or travel.",
+    "price": "75 gp",
+    "siteType": "guild",
+    "guildType": ["spy", "thief", "assassin"],
+    "rarity": "Rare",
+    "category": "Research & Documentation",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Guild-Sponsored Expedition Slots",
+    "description": "Join an officially sanctioned expedition to unexplored or hostile regions under guild protection.",
+    "price": "Free for members; 100+ gp for non-members",
+    "siteType": "guild",
+    "guildType": ["adventurer", "monsterHunter", "explorer"],
+    "rarity": "Uncommon",
+    "category": "Specialty Service",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  },
+  {
+    "name": "Trap-Making & Countermeasures Workshop",
+    "description": "Train in constructing or dismantling traps of all varieties, from wilderness snares to arcane wards.",
+    "price": "40 gp",
+    "siteType": "guild",
+    "guildType": ["thief", "hunter", "spy", "adventurer"],
+    "rarity": "Uncommon",
+    "category": "Training & Education",
+    "climate": [],
+    "terrain": [],
+    "tags": []
+  }
+]

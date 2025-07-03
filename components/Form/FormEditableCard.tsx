@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Box, Card, Typography, TextField, Button, IconButton, Collapse } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
-import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS, RARITY_OPTIONS } from "@/constants/siteOptions";
+import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS, RARITY_OPTIONS } from "@/constants/site/menu.options"
 import FormSelect from "./FormSelect";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";

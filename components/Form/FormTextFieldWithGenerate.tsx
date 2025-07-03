@@ -6,7 +6,7 @@ type FormFieldWithGenerateProps = {
   name: string;
   label: string;
   required?: boolean;
-  onGenerate?: () => void;
+  onGenerate?: (target?: string) => Promise<void> | void;
   registration: ReturnType<any>; // typically `register('name')`
   fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   buttonLabel?: string;
@@ -22,7 +22,7 @@ export default function FormFieldWithGenerate({
   buttonLabel = "Generate",
 }: FormFieldWithGenerateProps) {
   return (
-    <Stack direction="row" spacing={1} alignItems="flex-start">
+    <Stack direction="row" spacing={1} alignItems="flex-start" sx={{ mt: 1.5 }}>
       <FormTextField
         name={name}
         label={label}
@@ -33,9 +33,9 @@ export default function FormFieldWithGenerate({
       {onGenerate && (
         <Button
           variant="outlined"
-          onClick={onGenerate}
+          onClick={() => onGenerate(name)}
           size="large"
-          sx={{ mt: 2, py: 1.65 }}
+          sx={{ py: 1.65 }}
         >
           {buttonLabel}
         </Button>

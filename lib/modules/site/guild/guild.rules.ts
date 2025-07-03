@@ -13,7 +13,12 @@ export async function applyGuildTypeRule(data: Partial<SiteFormData>): Promise<P
   if (!isGuildSite(data)) return data;
 
   if (!data.guildType || data.guildType === "random") {
-    data.guildType = getRandom(GUILD_TYPES);
+    // Flatten all options' values into one array
+    const allGuildTypes = GUILD_TYPES.flatMap(category =>
+      category.options.map(option => option.value)
+    );
+
+    data.guildType = getRandom(allGuildTypes);
   }
 
   return data;

@@ -134,7 +134,7 @@ export interface generatorMenuItem{
 
 export type SiteFormFieldProps = {
   generator?: {
-    name?: () => void;
+    name?: (target?: string ) => Promise<void> | void;
     menuItems?: (index?: number) => void;
     menu?: () => void;
     menuItem?: (index: number) => void;
