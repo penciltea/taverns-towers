@@ -1,9 +1,12 @@
 import { z } from "zod";
-import { SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/siteOptions";
+import { SECURITY_LEVELS, SECRECY_LEVELS, GUILD_TYPES } from "@/constants/siteOptions";
 import { environmentSchema } from "./environment.schema";
 
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value);
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
+const guildTypeEnumValues = GUILD_TYPES.flatMap(group =>
+  group.options.map(option => option.value)
+) as [string, ...string[]];
 
 export const baseSiteSchema = z.object({
   name: z.string().min(1),
@@ -64,7 +67,8 @@ export const shopSchema = baseSiteSchema.extend({
 export const guildSchema = baseSiteSchema.extend({
   type: z.literal("guild"),
   guildName: z.string().optional(),
-  guildType: z.string(),
+  name: z.string().optional(),
+  guildType: z.enum(guildTypeEnumValues),
   leader: z.string().optional(),
   membershipRequirements: z.string().optional(),
   knownRivals: z.string().optional(),

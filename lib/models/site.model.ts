@@ -90,6 +90,7 @@ const Tavern =
     "guild",
     new Schema({
       guildName: { type: String, required: true },
+      name: { type: String, required: true },
       guildType: { type: String, enum: guildTypes, required: true },
       leader: { type: String, required: false },
       membershipRequirements: { type: String, required: false },
