@@ -241,8 +241,8 @@
     "quality": "Poor",
     "rarity": "Common",
     "climate": [],
-    "terrain": ["Underground", "Tundra"],
-    "tags": ["Mining Camp", "Criminal Hideout"]
+    "terrain": [],
+    "tags": []
   },
   {
     "name": "Worn Stuffed Owlbear",

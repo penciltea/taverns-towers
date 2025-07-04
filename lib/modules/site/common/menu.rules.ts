@@ -7,7 +7,7 @@ import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/m
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
 import { MenuItemMappingEntry } from "@/lib/models/generator/site/menu/menu.type";
 import { MenuItemMappingByMagic, MenuItemMappingByMagicModel } from "@/lib/models/generator/site/menu/menuItemMappingByMagic.model";
-import { FALLBACK_CLIMATE_ITEMS, FALLBACK_TERRAIN_ITEMS, FALLBACK_TAG_ITEMS, FALLBACK_MAGIC_ITEMS } from "./menu.mappings";
+import { FALLBACK_CLIMATE_ITEMS, FALLBACK_TERRAIN_ITEMS, FALLBACK_TAG_ITEMS, FALLBACK_MAGIC_ITEMS, FALLBACK_UNIVERSAL_ITEMS } from "./menu.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { SETTLEMENT_SIZE_MULTIPLIERS, SETTLEMENT_WEALTH_BONUSES, SITE_SIZE_BASE, SITE_CONDITION_PENALTIES } from "./mappings";
 import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
@@ -20,10 +20,9 @@ export type MenuRuleFn = (
 export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => {
   const { climate, terrain, tags, magic, siteType, shopType, guildType } = context;
 
-  // If site type doesn't have menu, return early
   if (!siteType || !siteTypeHasMenu(siteType)) return [];
 
-  // Build queries
+  // Build queries (or null if not applicable)
   const climateQuery = climate ? { climate } : null;
   const terrainQuery = terrain?.length ? { terrain: { $in: terrain } } : null;
   const tagQuery = tags?.length ? { tag: { $in: tags } } : null;
@@ -36,84 +35,51 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     magicQuery ? MenuItemMappingByMagic.findOne(magicQuery).lean<MenuItemMappingByMagicModel>() : null,
   ]);
 
+  const matchesContext = (item: { siteType: string; shopType?: string; guildType?: string | string[] }) => {
+    if (item.siteType !== siteType) return false;
+    if (siteType === "shop") return !shopType || item.shopType === shopType;
+    if (siteType === "guild") {
+      if (!guildType) return true;
+      return Array.isArray(item.guildType) ? item.guildType.includes(guildType) : item.guildType === guildType;
+    }
+    return false;
+  };
+
   function extractFromMapping(
     result: PromiseSettledResult<{ items: MenuItemMappingEntry[] } | { items: MenuItemMappingEntry[] }[] | null>,
     fallback: Record<string, GeneratorSiteMenuPlain[]> | undefined,
-    keyList: string[] | undefined,
-    options: {
-      siteType?: string;
-      shopType?: string;
-      guildType?: string;
-    } = {}
+    keys: string[] | undefined,
   ): (GeneratorSiteMenuPlain | Types.ObjectId)[] {
-    const { siteType, shopType, guildType } = options;
-
     if (result.status === "fulfilled" && result.value) {
       const mappings = Array.isArray(result.value) ? result.value : [result.value];
-
       return mappings.flatMap(m =>
-        m.items
-          ?.filter(i =>
-            i.siteType === siteType &&
-            (
-              (siteType === "shop" && (!shopType || i.shopType === shopType)) ||
-              (siteType === "guild" && (!guildType || i.guildType === guildType))
-            )
-          )
-          .map(i => i.itemId)
+        (m.items ?? []).filter(matchesContext).map(i => i.itemId)
       );
     }
-
-    if (fallback && keyList?.length) {
-      return keyList.flatMap(key =>
-        (fallback[key] || []).filter(
-          item =>
-            item.siteType === siteType &&
-            (
-              (siteType === "shop" && (!shopType || item.shopType === shopType)) ||
-              (siteType === "guild" && (!guildType || item.guildType === guildType))
-            )
-        )
-      );
+    if (fallback && keys?.length) {
+      return keys.flatMap(key => (fallback[key] || []).filter(matchesContext));
     }
-
     return [];
   }
 
-  // Use extractors and fallbacks
-  const climateFallback = climate ? [climate] : [];
-  const terrainFallback = terrain ?? [];
-  const tagFallback = tags ?? [];
-  const magicFallback = magic ? [magic] : [];
-
-  const climateIds = extractFromMapping(climateRes, FALLBACK_CLIMATE_ITEMS, climateFallback);
-  const terrainIds = extractFromMapping(terrainRes, FALLBACK_TERRAIN_ITEMS, terrainFallback);
-  const tagIds = extractFromMapping(tagRes, FALLBACK_TAG_ITEMS, tagFallback);
-  const magicIds = extractFromMapping(magicRes, FALLBACK_MAGIC_ITEMS, magicFallback);
-
-  const allFallbackItems = [...climateIds, ...terrainIds, ...tagIds, ...magicIds];
-
-  // Separate fallback items (real items) from DB items (ObjectIds)
-  const itemIds: Types.ObjectId[] = [];
-  const fullItems: GeneratorSiteMenuPlain[] = [];
-
-  for (const item of allFallbackItems) {
-    if (
-      typeof item === "object" &&
-      "name" in item &&
-      "price" in item &&
-      "siteType" in item
-    ) {
-      fullItems.push(item as GeneratorSiteMenuPlain);
-    } else {
-      itemIds.push(typeof item === "string" ? new Types.ObjectId(item) : item);
+  // Helper to get fallback keys for universal items
+  function getUniversalKeys() {
+    if (siteType === "shop") return shopType ? [shopType] : [];
+    if (siteType === "guild") {
+      if (Array.isArray(guildType)) return guildType;
+      if (typeof guildType === "string") return [guildType];
     }
+    return [];
   }
 
-  const menuItems = itemIds.length > 0
-    ? await GeneratorSiteMenu.find({ _id: { $in: itemIds } }).lean<GeneratorSiteMenuPlain[]>()
-    : [];
+  const fallbackContext = { siteType, shopType, guildType };
 
+  const climateIds = extractFromMapping(climateRes, FALLBACK_CLIMATE_ITEMS, climate ? [climate] : []);
+  const terrainIds = extractFromMapping(terrainRes, FALLBACK_TERRAIN_ITEMS, terrain ?? []);
+  const tagIds = extractFromMapping(tagRes, FALLBACK_TAG_ITEMS, tags ?? []);
+  const magicIds = extractFromMapping(magicRes, FALLBACK_MAGIC_ITEMS, magic ? [magic] : []);
+
+  // Build universal query for DB
   const universalQuery: any = {
     siteType,
     climate: { $size: 0 },
@@ -121,28 +87,47 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     tags: { $size: 0 },
   };
 
-  if (siteType === "shop" && shopType) {
-    universalQuery.shopType = shopType;
-  } else if (siteType === "guild" && guildType) {
-    universalQuery.guildType = guildType;
+  if (siteType === "shop" && shopType) universalQuery.shopType = shopType;
+  if (siteType === "guild" && guildType) {
+    universalQuery.guildType = Array.isArray(guildType) ? { $in: guildType } : guildType;
   }
 
-  const universalItems = await GeneratorSiteMenu.find(universalQuery).lean<GeneratorSiteMenuPlain[]>();
+  // Fetch universal items from DB or fallback
+  let universalFallbackItems: GeneratorSiteMenuPlain[] = [];
 
-  // Debug block
-  // console.log("SiteType:", siteType);
-  // console.log("ShopType:", shopType);
-  // console.log("GuildType: ", guildType);
-  // console.log("climate items:" , climateIds);
-  // console.log("terrain items: ", terrainIds);
-  // console.log("tag items: ", tagIds);
-  // console.log("magic items: ", magicIds);
-  // console.log("menuItems: ", menuItems);
-  // console.log("fullItems: " , fullItems);
-  // console.log("universalItems: " , universalItems);
+  try {
+    universalFallbackItems = await GeneratorSiteMenu.find(universalQuery).lean<GeneratorSiteMenuPlain[]>();
+    if (!universalFallbackItems.length) {
+      const keys = getUniversalKeys();
+      universalFallbackItems = keys.flatMap(key => FALLBACK_UNIVERSAL_ITEMS[key] ?? []);
+    }
+  } catch {
+    const keys = getUniversalKeys();
+    universalFallbackItems = keys.flatMap(key => FALLBACK_UNIVERSAL_ITEMS[key] ?? []);
+  }
 
-  return [...menuItems, ...fullItems, ...universalItems];
+  // Combine all fallback items
+  const allFallbackItems = [...climateIds, ...terrainIds, ...tagIds, ...magicIds, ...universalFallbackItems];
+
+  // Separate IDs and full fallback items
+  const itemIds: Types.ObjectId[] = [];
+  const fullItems: GeneratorSiteMenuPlain[] = [];
+
+  for (const item of allFallbackItems) {
+    if (typeof item === "object" && "name" in item && "price" in item && "siteType" in item) {
+      fullItems.push(item);
+    } else {
+      itemIds.push(typeof item === "string" ? new Types.ObjectId(item) : item);
+    }
+  }
+
+  const dbItems = itemIds.length
+    ? await GeneratorSiteMenu.find({ _id: { $in: itemIds } }).lean<GeneratorSiteMenuPlain[]>()
+    : [];
+
+  return [...dbItems, ...fullItems];
 };
+
 
 
 export const filterByWealthLevel: MenuRuleFn = async (items, context) => {
