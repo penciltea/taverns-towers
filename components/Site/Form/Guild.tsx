@@ -1,6 +1,6 @@
-import { FormSelect, FormTextField } from "@/components/Form";
-import { SITE_CONDITION, SITE_SIZE, GUILD_TYPES } from "@/constants/siteOptions";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
@@ -14,7 +14,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
-    
+  
     return (
         <>
             <FormSelect
@@ -67,10 +67,17 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 fieldError={errors.leaders}
             />
 
-            <FormTextField
+            <FormChipSelect
                 name="membershipRequirements"
                 label="Membership Requirements"
-                registration={register("membershipRequirements")}
+                control={control}
+                options={[
+                    {
+                        label: "Random",
+                        options: [{ label: "Random", value: "random" }],
+                    },
+                    ...GUILD_MEMBERSHIP_REQUIREMENTS
+                ]}
                 fieldError={errors.membershipRequirements}
             />
 

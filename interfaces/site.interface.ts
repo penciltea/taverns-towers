@@ -1,6 +1,6 @@
-import { SITE_SIZE, SITE_CONDITION, QualityType, RarityType } from '@/constants/siteOptions';
+import { SITE_SIZE, SITE_CONDITION } from '@/constants/siteOptions';
+import { QualityType, RarityType } from '@/constants/site/menu.options';
 import { DialogProps } from "./dialogProps.interface";
-import { MagicLevel } from '@/constants/settlementOptions';
 import { SiteFormData } from '@/schemas/site.schema';
  
 export interface SiteDialogProps extends DialogProps {
@@ -80,7 +80,7 @@ export interface GuildSite extends BaseSite {
   guildName?: string;
   guildType: string;
   leader?: string;
-  membershipRequirements?: string;
+  membershipRequirements?: string[];
   knownRivals?: string;
   menu?: { name: string; description?: string; price: string; category?: string; rarity?: string; magic?: string; }[];
 }

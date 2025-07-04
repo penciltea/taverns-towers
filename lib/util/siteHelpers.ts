@@ -7,7 +7,8 @@
 */
 
 
-import { GUILD_TYPES, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
@@ -83,6 +84,10 @@ export const getGuildTypes = GUILD_TYPES.flatMap(group =>
   group.options.map(option => option.value)
 );
 
+/** 
+ * Getting guild membership requirements from nested arrays
+ */
+export const getGuildMembershipRequirements = GUILD_MEMBERSHIP_REQUIREMENTS.flatMap(group => group.options.map(opt => opt.value));
 
 /**
  * A utility function for getting menu item categories by site type (and shop type if siteType is 'shop' or guild type if siteType is 'guild')

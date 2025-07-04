@@ -73,7 +73,9 @@ function serializeSite(site: any): SiteType {
         guildName: plain.guildName,
         guildType: plain.guildType,
         leader: plain.leader,
-        membershipRequirements: plain.membershipRequirements,
+        membershipRequirements: Array.isArray(plain.membershipRequirements)
+          ? plain.membershipRequirements.map((req: any) => String(req))
+          : [],
         knownRivals: plain.knownRivals,
         menu: plain.menu?.map((item: any) => ({
           name: item.name,

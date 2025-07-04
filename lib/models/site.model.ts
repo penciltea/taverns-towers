@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, GUILD_TYPES, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, SECURITY_LEVELS, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { GUILD_TYPES } from "@/constants/site/guild.options";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
@@ -93,7 +94,7 @@ const Tavern =
       name: { type: String, required: true },
       guildType: { type: String, enum: guildTypes, required: true },
       leader: { type: String, required: false },
-      membershipRequirements: { type: String, required: false },
+      membershipRequirements: { type: [String], required: false },
       knownRivals: { type: String, required: false },
       menu: [MenuItemSchema],
     })

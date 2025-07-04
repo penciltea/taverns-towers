@@ -1,10 +1,14 @@
 import { z } from "zod";
-import { SECURITY_LEVELS, SECRECY_LEVELS, GUILD_TYPES } from "@/constants/siteOptions";
+import { SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/siteOptions";
+import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
 
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value);
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
 const guildTypeEnumValues = GUILD_TYPES.flatMap(group =>
+  group.options.map(option => option.value)
+) as [string, ...string[]];
+const guildMembershipEnumValues = GUILD_MEMBERSHIP_REQUIREMENTS.flatMap(group =>
   group.options.map(option => option.value)
 ) as [string, ...string[]];
 
@@ -70,7 +74,7 @@ export const guildSchema = baseSiteSchema.extend({
   name: z.string().optional(),
   guildType: z.enum(guildTypeEnumValues),
   leader: z.string().optional(),
-  membershipRequirements: z.string().optional(),
+  membershipRequirements: z.array(z.enum(guildMembershipEnumValues)).optional().default([]),
   knownRivals: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
 });
@@ -165,7 +169,7 @@ export const defaultSiteValues: Record<
     guildType: "",
     guildName: "",
     leader: "",
-    membershipRequirements: "",
+    membershipRequirements: [],
     knownRivals: "",
     menu: []
   },

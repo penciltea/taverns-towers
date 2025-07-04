@@ -30,7 +30,9 @@ export default function SettlementFormBasics(){
     const handleGenerateName = async () => {
         const terrain = watch("terrain");
         const tags = watch("tags");
+        const climate = watch("climate");
         const generatedName = await generateSettlementName({
+            climate: climate,
             terrain: Array.isArray(terrain) ? terrain : [terrain],
             tags: Array.isArray(tags) ? tags : [tags],
         });
