@@ -28,10 +28,12 @@ export const MENU_CATEGORY_OPTIONS_BY_SITE: Record<string, string[] | Record<str
   ],
 
   temple: [
-    "Blessings",
-    "Services",
-    "Holy Water",
-    "Divinations",
+    "Blessings & Prayers", 
+    "Healing & Restoration", 
+    "Holy Items",
+    "Rites",
+    "Rituals & Ceremonies",
+    "Spellcasting"
   ],
 
   guild: [

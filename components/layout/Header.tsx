@@ -14,7 +14,7 @@ export default function Header() {
     const { setOpenDialog } = useUIStore();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [menuType, setMenuType] = useState<'settlements' | 'sites' | 'npcs' | null>(null);
+    const [menuType, setMenuType] = useState<'settlements' | 'sites' | 'npcs' | 'guilds' | null>(null);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>, type: typeof menuType) => {
         setAnchorEl(event.currentTarget);
@@ -91,10 +91,11 @@ export default function Header() {
               </Menu>
 
               {/* NPCs */}
-              {/*
+              
               <Button
                   onClick={(e) => handleMenuOpen(e, 'npcs')}
                   color="inherit"
+                  disabled
                   endIcon={<KeyboardArrowDownIcon />}
               >
                   NPCs
@@ -107,7 +108,25 @@ export default function Header() {
                   <MenuItem onClick={() => handleNavigate('/npcs/all')}>View Your NPCs</MenuItem>
                   <MenuItem onClick={() => handleNavigate('/npcs')}>Create NPC</MenuItem>
               </Menu>
-              */}
+
+              {/* Guilds */}
+              
+              <Button
+                  onClick={(e) => handleMenuOpen(e, 'guilds')}
+                  color="inherit"
+                  disabled
+                  endIcon={<KeyboardArrowDownIcon />}
+              >
+                  Guilds
+              </Button>
+              <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl) && menuType === 'guilds'}
+                  onClose={handleMenuClose}
+              >
+                  <MenuItem onClick={() => handleNavigate('/guilds/all')}>View Your Guilds</MenuItem>
+                  <MenuItem onClick={() => handleNavigate('/guilds')}>Create Guild</MenuItem>
+              </Menu>
           </Box>
 
           {/* Auth Buttons */}

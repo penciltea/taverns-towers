@@ -85,7 +85,7 @@ export const GUILD_MEMBERSHIP_REQUIREMENTS = [
     label: "Skill or Experience",
     options: [
       { label: "Demonstrated Skill in Trade", value: "skillTest" },
-      { label: "Years of Experience", value: "experience" },
+      { label: "Amount of Experience", value: "experience" },
       { label: "Completion of Trial Task", value: "trialTask" },
       { label: "Passing a Test or Examination", value: "testPass" },
     ],

@@ -55,7 +55,6 @@ export const tavernSchema = baseSiteSchema.extend({
 
 export const templeSchema = baseSiteSchema.extend({
   type: z.literal("temple"),
-  deity: z.string().optional(),
   leader: z.string().optional(),
   relics: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
@@ -151,7 +150,6 @@ export const defaultSiteValues: Record<
   temple: {
     name: "",
     type: "temple",
-    deity: "",
     leader: "",
     relics: "",
     menu: []

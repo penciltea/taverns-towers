@@ -1,0 +1,42 @@
+[
+  {
+    "condition": "squalid",
+    "relics": [
+      "A cracked and faded holy symbol, barely recognizable.",
+      "A rusted iron chain said to once bind a local saint.",
+      "A torn cloth banner with faint sacred embroidery."
+    ]
+  },
+  {
+    "condition": "poor",
+    "relics": [
+      "A simple wooden idol worn smooth by worshippers' hands.",
+      "A clay bowl used for humble offerings and blessings.",
+      "A faded prayer scroll with partial prayers still legible."
+    ]
+  },
+  {
+    "condition": "average",
+    "relics": [
+      "A polished bronze censer used in regular rituals.",
+      "A silver pendant engraved with a protective rune.",
+      "A bound prayer book passed down through generations."
+    ]
+  },
+  {
+    "condition": "wealthy",
+    "relics": [
+      "An ornate gold reliquary containing a saint’s relic.",
+      "A finely embroidered altar cloth with sacred symbols.",
+      "A jewel-encrusted holy chalice used in grand ceremonies."
+    ]
+  },
+  {
+    "condition": "aristocratic",
+    "relics": [
+      "A flawless crystal orb said to reveal divine visions.",
+      "An ancient tome bound in dragonhide containing lost secrets.",
+      "A jeweled scepter wielded by a legendary high priest."
+    ]
+  }
+]

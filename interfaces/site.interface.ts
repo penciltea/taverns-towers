@@ -62,7 +62,6 @@ export interface TavernSite extends BaseSite {
 
 export interface TempleSite extends BaseSite {
   type: "temple";
-  deity?: string;
   leader?: string;
   relics?: string;
   menu?: { name: string; description: string; price: string; category?: string; rarity?: string; magic?: string;}[];

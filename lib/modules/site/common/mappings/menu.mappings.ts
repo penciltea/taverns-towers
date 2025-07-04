@@ -2423,6 +2423,27 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Trade Hub"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
     }
   ],
   "Arcane Nexus": [
@@ -8351,6 +8372,27 @@ export const FALLBACK_TAG_ITEMS = {
         "Criminal Hideout",
         "Garrison"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
     }
   ],
   "Criminal Hideout": [
@@ -8879,6 +8921,47 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Criminal Hideout",
         "Garrison"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d5",
+      "name": "Undermarket Pardon",
+      "description": "A secret blessing offered in hidden catacombs for those seeking redemption in lawless places.",
+      "price": "10 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Underground",
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout"
       ]
     }
   ],
@@ -10588,6 +10671,111 @@ export const FALLBACK_TAG_ITEMS = {
         "Druidic",
         "Fishing"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d0",
+      "name": "Forest Guardian's Blessing",
+      "description": "A druidic prayer performed beneath an ancient tree to honor the spirits of the forest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
     }
   ],
   "Nomadic": [
@@ -11496,6 +11684,69 @@ export const FALLBACK_TAG_ITEMS = {
       "terrain": [],
       "tags": [
         "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cf",
+      "name": "Desert Wind Chant",
+      "description": "A meditative chant performed at sunrise to ask the desert winds for mercy and guidance.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": [
+        "Nomadic",
+        "Sacred Site"
       ]
     }
   ],
@@ -14596,6 +14847,235 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811af",
+      "name": "Mountain Shrine Meditation",
+      "description": "A silent retreat and meditation at a secluded mountain temple to seek inner peace.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cf",
+      "name": "Desert Wind Chant",
+      "description": "A meditative chant performed at sunrise to ask the desert winds for mercy and guidance.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": [
+        "Nomadic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d0",
+      "name": "Forest Guardian's Blessing",
+      "description": "A druidic prayer performed beneath an ancient tree to honor the spirits of the forest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d4",
+      "name": "Riverstone Marriage Rite",
+      "description": "A humble riverside ceremony where couples exchange vows before the flowing waters of life.",
+      "price": "8 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d6",
+      "name": "Volcanic Ash Blessing",
+      "description": "A rare ceremony held near active vents, where ash is used to mark one's resolve and protection.",
+      "price": "1 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Rare",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
     }
   ],
   "Remote": [
@@ -15395,6 +15875,47 @@ export const FALLBACK_TAG_ITEMS = {
       "terrain": [
         "Tundra",
         "Mountains"
+      ],
+      "tags": [
+        "Remote"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d3",
+      "name": "Frozen Flame Rite",
+      "description": "An annual ritual where tundra dwellers light a ceremonial fire to ward off the endless winter night.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
       ],
       "tags": [
         "Remote"
@@ -16704,6 +17225,27 @@ export const FALLBACK_TAG_ITEMS = {
       "terrain": [],
       "tags": [
         "Capital"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
       ]
     }
   ],
@@ -18674,6 +19216,27 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Hidden"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
     }
   ],
   "Fishing": [
@@ -19200,6 +19763,71 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Druidic",
         "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
       ]
     }
   ],
@@ -19827,6 +20455,50 @@ export const FALLBACK_TAG_ITEMS = {
         "Coast"
       ],
       "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
         "Port"
       ]
     }
@@ -21261,6 +21933,49 @@ export const FALLBACK_TAG_ITEMS = {
         "Hidden",
         "Infested"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
     }
   ],
   "Fortress": [
@@ -22166,6 +22881,86 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Isolated"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811af",
+      "name": "Mountain Shrine Meditation",
+      "description": "A silent retreat and meditation at a secluded mountain temple to seek inner peace.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d1",
+      "name": "Stonecircle Naming Rite",
+      "description": "A coming-of-age ritual held among highland stones where a youth receives their adult name.",
+      "price": "7 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d6",
+      "name": "Volcanic Ash Blessing",
+      "description": "A rare ceremony held near active vents, where ash is used to mark one's resolve and protection.",
+      "price": "1 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Rare",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
     }
   ],
   "Military Outpost": [
@@ -22805,6 +23600,27 @@ export const FALLBACK_TAG_ITEMS = {
         "Border Post",
         "Military Outpost"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
     }
   ],
   "Overgrown": [
@@ -23273,6 +24089,27 @@ export const FALLBACK_TAG_ITEMS = {
       ],
       "tags": [
         "Isolated",
+        "Overgrown"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
         "Overgrown"
       ]
     }
@@ -24936,6 +25773,27 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Jungle"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
     }
   ],
   "Desert": [
@@ -26880,6 +27738,48 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Desert"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cf",
+      "name": "Desert Wind Chant",
+      "description": "A meditative chant performed at sunrise to ask the desert winds for mercy and guidance.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": [
+        "Nomadic",
+        "Sacred Site"
+      ]
     }
   ],
   "Hills": [
@@ -30934,6 +31834,91 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Arcane Nexus"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d1",
+      "name": "Stonecircle Naming Rite",
+      "description": "A coming-of-age ritual held among highland stones where a youth receives their adult name.",
+      "price": "7 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Isolated"
+      ]
     }
   ],
   "Mountains": [
@@ -34653,6 +35638,47 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Hills"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811af",
+      "name": "Mountain Shrine Meditation",
+      "description": "A silent retreat and meditation at a secluded mountain temple to seek inner peace.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
     }
   ],
   "Urban": [
@@ -40063,6 +41089,68 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Forest"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d5",
+      "name": "Undermarket Pardon",
+      "description": "A secret blessing offered in hidden catacombs for those seeking redemption in lawless places.",
+      "price": "10 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Underground",
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout"
+      ]
     }
   ],
   "Forest": [
@@ -47307,6 +48395,68 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Forest"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d0",
+      "name": "Forest Guardian's Blessing",
+      "description": "A druidic prayer performed beneath an ancient tree to honor the spirits of the forest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
     }
   ],
   "Tundra": [
@@ -48898,6 +50048,47 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "terrain": [
         "Tundra",
         "Mountains"
+      ],
+      "tags": [
+        "Remote"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d3",
+      "name": "Frozen Flame Rite",
+      "description": "An annual ritual where tundra dwellers light a ceremonial fire to ward off the endless winter night.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
       ],
       "tags": [
         "Remote"
@@ -50789,6 +51980,50 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Coast"
       ],
       "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
         "Port"
       ]
     }
@@ -55660,6 +56895,49 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Forest"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
     }
   ],
   "Swamp": [
@@ -57198,6 +58476,49 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Swamp"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
     }
   ],
   "River": [
@@ -58266,6 +59587,89 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Druidic",
         "Fishing"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d4",
+      "name": "Riverstone Marriage Rite",
+      "description": "A humble riverside ceremony where couples exchange vows before the flowing waters of life.",
+      "price": "8 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
     }
   ],
   "Underground": [
@@ -58799,6 +60203,26 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Mining Camp"
       ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d5",
+      "name": "Undermarket Pardon",
+      "description": "A secret blessing offered in hidden catacombs for those seeking redemption in lawless places.",
+      "price": "10 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Underground",
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout"
+      ]
     }
   ],
   "Volcanic": [
@@ -58842,6 +60266,47 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Volcanic"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d6",
+      "name": "Volcanic Ash Blessing",
+      "description": "A rare ceremony held near active vents, where ash is used to mark one's resolve and protection.",
+      "price": "1 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Rare",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
     }
   ],
   "Arcane Nexus": [
@@ -59001,6 +60466,73 @@ export const FALLBACK_TERRAIN_ITEMS = {
       ],
       "tags": [
         "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    }
+  ],
+  "Fortress": [
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
+    }
+  ],
+  "Hidden": [
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
       ]
     }
   ]
@@ -61390,6 +62922,114 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Jungle"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
     }
   ],
   "Dry": [
@@ -64429,6 +66069,110 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Forest"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cf",
+      "name": "Desert Wind Chant",
+      "description": "A meditative chant performed at sunrise to ask the desert winds for mercy and guidance.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": [
+        "Nomadic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d6",
+      "name": "Volcanic Ash Blessing",
+      "description": "A rare ceremony held near active vents, where ash is used to mark one's resolve and protection.",
+      "price": "1 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Rare",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
     }
   ],
   "Temperate": [
@@ -80918,6 +82662,278 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Forest"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d0",
+      "name": "Forest Guardian's Blessing",
+      "description": "A druidic prayer performed beneath an ancient tree to honor the spirits of the forest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d4",
+      "name": "Riverstone Marriage Rite",
+      "description": "A humble riverside ceremony where couples exchange vows before the flowing waters of life.",
+      "price": "8 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d5",
+      "name": "Undermarket Pardon",
+      "description": "A secret blessing offered in hidden catacombs for those seeking redemption in lawless places.",
+      "price": "10 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Underground",
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout"
+      ]
     }
   ],
   "Polar": [
@@ -82627,6 +84643,47 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Plains"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d3",
+      "name": "Frozen Flame Rite",
+      "description": "An annual ritual where tundra dwellers light a ceremonial fire to ward off the endless winter night.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
+      ],
+      "tags": [
+        "Remote"
+      ]
     }
   ],
   "Continental": [
@@ -86242,6 +88299,135 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Plains"
       ],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811af",
+      "name": "Mountain Shrine Meditation",
+      "description": "A silent retreat and meditation at a secluded mountain temple to seek inner peace.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d1",
+      "name": "Stonecircle Naming Rite",
+      "description": "A coming-of-age ritual held among highland stones where a youth receives their adult name.",
+      "price": "7 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Isolated"
+      ]
+    }
+  ],
+  "Humid": [
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    }
+  ],
+  "Urban": [
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
     }
   ]
 };
@@ -98789,6 +100975,210 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a2",
+      "name": "Simple Prayer Service",
+      "description": "A modest prayer session asking for good fortune and peace.",
+      "price": "25 cp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a4",
+      "name": "Offerings and Devotions",
+      "description": "A service to present offerings on behalf of worshippers seeking favor.",
+      "price": "75 cp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a8",
+      "name": "Rite of Passage",
+      "description": "A sacred ceremony marking important life events, such as coming of age or marriage.",
+      "price": "50 sp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b2",
+      "name": "Urban Sanctuary Offering",
+      "description": "A quiet place of worship within a bustling city to seek calm and divine favor.",
+      "price": "20 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "None",
+      "rarity": "Common",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c4",
+      "name": "Blessing of a Newborn",
+      "description": "A traditional blessing performed shortly after birth to welcome a child into the world with health and good fortune.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c7",
+      "name": "Naming Ceremony",
+      "description": "A formal ritual where a child is presented before the spirits or gods and given their name.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c9",
+      "name": "Community Harvest Prayer",
+      "description": "A group prayer offered at the temple to give thanks for the harvest and honor those who worked the land.",
+      "price": "1 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Blessings & Prayers",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ca",
+      "name": "Coming of Age Ritual",
+      "description": "A culturally significant ceremony recognizing a youth's transition into adulthood.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cc",
+      "name": "Seasonal Equinox Celebration",
+      "description": "A local festival ritual marking the changing of seasons with dances, food, and blessings.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cf",
+      "name": "Desert Wind Chant",
+      "description": "A meditative chant performed at sunrise to ask the desert winds for mercy and guidance.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": [
+        "Nomadic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d1",
+      "name": "Stonecircle Naming Rite",
+      "description": "A coming-of-age ritual held among highland stones where a youth receives their adult name.",
+      "price": "7 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d2",
+      "name": "Swamp Lantern Vigil",
+      "description": "A local tradition where villagers float lanterns across the bog to honor lost souls and guide spirits home.",
+      "price": "2 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d4",
+      "name": "Riverstone Marriage Rite",
+      "description": "A humble riverside ceremony where couples exchange vows before the flowing waters of life.",
+      "price": "8 sp",
+      "siteType": "temple",
+      "magic": "None",
+      "rarity": "Common",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
     }
   ],
   "Low": [
@@ -105360,6 +107750,367 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e8119d",
+      "name": "Ancestral Guidance",
+      "description": "A sacred consultation with the spirits of ancestors to provide wisdom and insight.",
+      "price": "200 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Rare",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a3",
+      "name": "Lighting of the Sacred Candles",
+      "description": "A ritual lighting of candles to honor the gods and invite blessings.",
+      "price": "50 cp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a5",
+      "name": "Blessing of Fertility",
+      "description": "A traditional blessing intended to promote fertility and growth.",
+      "price": "3 sp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a6",
+      "name": "Protection from Evil Eye",
+      "description": "A minor warding ritual to protect against curses and ill will.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ac",
+      "name": "Memorial Service",
+      "description": "A respectful ceremony honoring the deceased and aiding their passage to the afterlife.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811af",
+      "name": "Mountain Shrine Meditation",
+      "description": "A silent retreat and meditation at a secluded mountain temple to seek inner peace.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b1",
+      "name": "Desert Sun Worship Service",
+      "description": "A vibrant service dedicated to the sun deity, held at a desert shrine.",
+      "price": "40 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Dry",
+        "Tropical"
+      ],
+      "terrain": [
+        "Desert",
+        "Plains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b5",
+      "name": "Jungle Spirits Offering",
+      "description": "A ceremony to honor the spirits of the dense jungle and seek protection from hidden dangers.",
+      "price": "45 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle",
+        "River"
+      ],
+      "tags": [
+        "Druidic",
+        "Overgrown"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b7",
+      "name": "Nomad’s Star Prayer",
+      "description": "A nighttime prayer performed by nomads to seek guidance from the stars on the open plains.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Plains",
+        "Nomadic"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b9",
+      "name": "Hidden Grove Meditation",
+      "description": "A quiet meditation practice in a secluded forest grove, inviting connection with nature spirits.",
+      "price": "30 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Low",
+      "rarity": "Common",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest",
+        "Hidden"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811bf",
+      "name": "Casting – Detect Evil and Good",
+      "description": "A cleric performs the *Detect Evil and Good* spell to sense celestial, fiendish, or undead presence.",
+      "price": "15 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Common",
+      "category": "Spellcasting",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c2",
+      "name": "Blessed Incense Crafting",
+      "description": "Special incense used in divine rituals, crafted and imbued with blessings at the temple.",
+      "price": "10 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Common",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c5",
+      "name": "Hearth Blessing",
+      "description": "A humble ritual to bless the hearth of a new home, inviting warmth, safety, and prosperity.",
+      "price": "3 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Common",
+      "category": "Rituals & Ceremonies",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c6",
+      "name": "Field Consecration",
+      "description": "Before the planting season, a priest offers blessings over a family's fields to ensure a fertile harvest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c8",
+      "name": "Blessing of the Animals",
+      "description": "Held seasonally, this ceremony offers prayers for the health and productivity of livestock and working animals.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cb",
+      "name": "Household Protection Token",
+      "description": "A simple charm or token blessed by the local priest to hang above the door of a home for protection.",
+      "price": "8 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811cd",
+      "name": "Rain Petition",
+      "description": "A traditional appeal made during droughts, offered with symbolic gifts and group prayer.",
+      "price": "4 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ce",
+      "name": "Tidecaller's Offering",
+      "description": "A coastal ritual performed to appease sea spirits and ensure safe passage for sailors and fishers.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d0",
+      "name": "Forest Guardian's Blessing",
+      "description": "A druidic prayer performed beneath an ancient tree to honor the spirits of the forest.",
+      "price": "5 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d3",
+      "name": "Frozen Flame Rite",
+      "description": "An annual ritual where tundra dwellers light a ceremonial fire to ward off the endless winter night.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rituals & Ceremonies",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
+      ],
+      "tags": [
+        "Remote"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d5",
+      "name": "Undermarket Pardon",
+      "description": "A secret blessing offered in hidden catacombs for those seeking redemption in lawless places.",
+      "price": "10 sp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Uncommon",
+      "category": "Rites",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Underground",
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811d6",
+      "name": "Volcanic Ash Blessing",
+      "description": "A rare ceremony held near active vents, where ash is used to mark one's resolve and protection.",
+      "price": "1 gp",
+      "siteType": "temple",
+      "magic": "Low",
+      "rarity": "Rare",
+      "category": "Blessings & Prayers",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic"
+      ],
+      "tags": [
+        "Isolated",
+        "Sacred Site"
+      ]
     }
   ],
   "Moderate": [
@@ -113064,6 +115815,253 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e8119b",
+      "name": "Blessing of Health",
+      "description": "A ritual performed to grant renewed vitality and protect against disease.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Healing & Restoration",
+      "magic": "Moderate",
+      "rarity": "Common",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e8119e",
+      "name": "Purification Ceremony",
+      "description": "A cleansing ritual to remove curses, impurities, or spiritual afflictions.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a7",
+      "name": "Spirit Cleansing",
+      "description": "A ritual to cleanse a person or place from malevolent spirits or bad luck.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a9",
+      "name": "Divine Inspiration",
+      "description": "A meditative ritual designed to invoke divine guidance and creativity.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ad",
+      "name": "Blessing of the Harvest",
+      "description": "A seasonal blessing to ensure a bountiful crop yield and good weather.",
+      "price": "6 sp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ae",
+      "name": "Blessing of the Coastal Winds",
+      "description": "A ritual to protect fishermen and sailors by invoking the favor of sea gods.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "category": "Blessings & Prayers",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Hills"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b0",
+      "name": "Swamp Spirit Cleansing",
+      "description": "A purification ceremony to rid a person or place of swamp spirits and curses.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Humid"
+      ],
+      "terrain": [
+        "Swamp",
+        "River"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b3",
+      "name": "Frostveil Blessing",
+      "description": "A ritual to protect travelers from the biting cold and restless spirits of the tundra.",
+      "price": "60 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Polar",
+        "Continental"
+      ],
+      "terrain": [
+        "Tundra",
+        "Hills"
+      ],
+      "tags": [
+        "Remote",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b6",
+      "name": "Fortress Chapel Mass",
+      "description": "A solemn service held within the walls of a fortress to bless soldiers before battle.",
+      "price": "80 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Fortress",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b8",
+      "name": "River’s Grace Ceremony",
+      "description": "A water blessing ritual to ensure safe passage and fertile lands along the riverbanks.",
+      "price": "55 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Fishing"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ba",
+      "name": "Criminal’s Redemption Rite",
+      "description": "A rare ceremony offered in secret to those seeking to cleanse their souls from past misdeeds.",
+      "price": "100 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Moderate",
+      "rarity": "Rare",
+      "climate": [
+        "Temperate",
+        "Urban"
+      ],
+      "terrain": [
+        "Urban"
+      ],
+      "tags": [
+        "Criminal Hideout",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811bb",
+      "name": "Holy Water Creation",
+      "description": "A consecration ritual to create a flask of holy water, useful against undead and fiends.",
+      "price": "25 gp",
+      "siteType": "temple",
+      "magic": "Moderate",
+      "rarity": "Common",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811bc",
+      "name": "Divine Scroll – Cure Wounds",
+      "description": "Commission a divine scroll containing the *Cure Wounds* spell, written by a temple scribe.",
+      "price": "50 gp",
+      "siteType": "temple",
+      "magic": "Moderate",
+      "rarity": "Common",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811bd",
+      "name": "Divine Scroll – Lesser Restoration",
+      "description": "A scroll inscribed with the *Lesser Restoration* spell, used to cure disease or conditions.",
+      "price": "125 gp",
+      "siteType": "temple",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c3",
+      "name": "Sanctified Oil",
+      "description": "A vial of divinely prepared oil used in anointing, sanctifying relics, or rituals.",
+      "price": "15 gp",
+      "siteType": "temple",
+      "magic": "Moderate",
+      "rarity": "Uncommon",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
     }
   ],
   "High": [
@@ -117306,6 +120304,105 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e8119c",
+      "name": "Divine Protection Ward",
+      "description": "A protective charm infused with holy magic to shield the bearer from harm.",
+      "price": "150 gp",
+      "siteType": "temple",
+      "category": "Other",
+      "magic": "High",
+      "rarity": "Uncommon",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a0",
+      "name": "Spirit Healing",
+      "description": "A deep spiritual healing that mends both body and soul.",
+      "price": "180 gp",
+      "siteType": "temple",
+      "category": "Healing & Restoration",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811aa",
+      "name": "Exorcism Ritual",
+      "description": "A solemn ceremony to banish evil entities and purify the afflicted.",
+      "price": "250 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Very Rare",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811b4",
+      "name": "Volcanic Purification Rite",
+      "description": "A fiery cleansing ceremony invoking the power of the volcanic earth to purify impurities.",
+      "price": "120 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "High",
+      "rarity": "Rare",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Volcanic",
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Isolated"
+      ]
+    },
+    {
+      "_id": "6867e491e66e1f2376e811be",
+      "name": "Bless Weapon",
+      "description": "A short ceremony to bless a weapon, granting it temporary radiant damage against undead.",
+      "price": "75 gp",
+      "siteType": "temple",
+      "magic": "High",
+      "rarity": "Uncommon",
+      "category": "Spellcasting",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c0",
+      "name": "Casting – Remove Curse",
+      "description": "A powerful cleric performs a ritual to lift a magical curse afflicting a creature or item.",
+      "price": "150 gp",
+      "siteType": "temple",
+      "magic": "High",
+      "rarity": "Rare",
+      "category": "Spellcasting",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811c1",
+      "name": "Divine Scroll – Revivify",
+      "description": "A rare scroll scribed with the divine power to bring back a creature that has recently died.",
+      "price": "400 gp",
+      "siteType": "temple",
+      "magic": "High",
+      "rarity": "Very Rare",
+      "category": "Holy Items",
+      "climate": [],
+      "terrain": [],
+      "tags": []
     }
   ],
   "Mythic": [
@@ -118210,6 +121307,45 @@ export const FALLBACK_MAGIC_ITEMS = {
       "shopType": "toyMaker",
       "magic": "Mythic",
       "quality": "Exquisite",
+      "rarity": "Legendary",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e8119f",
+      "name": "Summons to the Divine",
+      "description": "An invocation to call upon a deity's presence or aid in a time of need.",
+      "price": "300 gp",
+      "siteType": "temple",
+      "category": "Rites",
+      "magic": "Mythic",
+      "rarity": "Legendary",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811a1",
+      "name": "Holy Relic Consecration",
+      "description": "A ceremony to bless and empower holy relics or artifacts.",
+      "price": "400 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Mythic",
+      "rarity": "Very Rare",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "6867e491e66e1f2376e811ab",
+      "name": "Celestial Communion",
+      "description": "A rare ritual to commune directly with celestial beings or gods.",
+      "price": "500 gp",
+      "siteType": "temple",
+      "category": "Rituals & Ceremonies",
+      "magic": "Mythic",
       "rarity": "Legendary",
       "climate": [],
       "terrain": [],

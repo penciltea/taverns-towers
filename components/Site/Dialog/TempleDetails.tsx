@@ -11,7 +11,6 @@ export const TempleDetails = ({ site }: { site: TempleSite }) => {
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />   
-        <InfoListItem label="Deity" value={site.deity} />
         <InfoListItem label="Leader" value={site.leader} />
         <InfoListItem label="Relics" value={site.relics} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />

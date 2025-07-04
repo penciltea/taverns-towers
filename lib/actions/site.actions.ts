@@ -43,7 +43,6 @@ function serializeSite(site: any): SiteType {
       return {
         ...baseData,
         type: "temple",
-        deity: plain.deity,
         leader: plain.leader,
         relics: plain.relics,
         menu: plain.menu?.map((item: any) => ({

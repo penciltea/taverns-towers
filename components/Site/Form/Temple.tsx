@@ -41,13 +41,6 @@ export default function TempleFields({generator}: SiteFormFieldProps){
             />
 
             <FormTextField
-                name="deity"
-                label="Deity"
-                registration={register("deity")}
-                fieldError={errors.deity}
-            />
-
-            <FormTextField
                 name="leader"
                 label="Leader(s)"
                 registration={register("leader")}

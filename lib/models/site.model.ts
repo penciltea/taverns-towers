@@ -67,7 +67,6 @@ const Tavern =
   Site.discriminator(
     "temple",
     new Schema({
-      deity: { type: String, required: false },
       leader: { type: String, required: false },
       relics: { type: String, required: false },
       menu: [MenuItemSchema],

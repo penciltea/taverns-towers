@@ -1,7 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
-import { generatorMenuItem, ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
+import { ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
 import { getRandom } from "@/lib/util/randomValues";
 
