@@ -50,6 +50,8 @@ export default function TempleFields({generator}: SiteFormFieldProps){
             <FormTextField
                 name="relics"
                 label="Relics"
+                multiline
+                rows={4}
                 registration={register("relics")}
                 fieldError={errors.relics}
             />
