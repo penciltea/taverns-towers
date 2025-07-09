@@ -1,7 +1,10 @@
-import { SITE_SIZE, SITE_CONDITION } from '@/constants/siteOptions';
+import { SITE_SIZE, SITE_CONDITION, SiteShopType } from '@/constants/siteOptions';
 import { QualityType, RarityType } from '@/constants/site/menu.options';
 import { DialogProps } from "./dialogProps.interface";
 import { SiteFormData } from '@/schemas/site.schema';
+import { SiteGovernmentFunctionType, SiteSecurityLevel } from '@/constants/site/government.options';
+import { SiteGuildMembershipType } from '@/constants/site/guild.options';
+
  
 export interface SiteDialogProps extends DialogProps {
   settlementId: string;
@@ -69,7 +72,7 @@ export interface TempleSite extends BaseSite {
 
 export interface ShopSite extends BaseSite {
   type: "shop";
-  shopType?: string;
+  shopType: SiteShopType;
   owner?: string;
   menu?: { name: string; description?: string; category?: string; quality?: string; quantity?: string; price: string; rarity?: string; magic?: string; }[];
 }
@@ -77,7 +80,7 @@ export interface ShopSite extends BaseSite {
 export interface GuildSite extends BaseSite {
   type: "guild";
   guildName?: string;
-  guildType: string;
+  guildType: SiteGuildMembershipType;
   leader?: string;
   membershipRequirements?: string[];
   knownRivals?: string;
@@ -86,10 +89,9 @@ export interface GuildSite extends BaseSite {
 
 export interface GovernmentSite extends BaseSite {
   type: "government";
-  function?: string;
+  function?: SiteGovernmentFunctionType;
   officials?: string;
-  jurisdiction?: string;
-  security?: string;
+  security?: SiteSecurityLevel;
 }
 
 export interface EntertainmentSite extends BaseSite {
@@ -157,7 +159,7 @@ export interface SiteGenerationContext {
   settlementName?: string;
   reroll?: boolean;
   siteType?: string;
-  shopType?: string;
+  shopType: string;
   guildType?: string;
   siteSize?: string;
   siteCondition?: string;

@@ -27,15 +27,6 @@ export const SITE_CONDITION = [
     { value: "aristocratic", label: "Aristocratic (Highest quality, lavish and luxurious standards)"}
 ];
 
-/* For Government site type form */
-export const SECURITY_LEVELS = [
-  { value: "none", label: "None" },
-  { value: "low", label: "Low (Basic patrols)" },
-  { value: "moderate", label: "Moderate (Watch presence, restricted access)" },
-  { value: "high", label: "High (Trained guards, checkpoints)" },
-  { value: "very_high", label: "Very High (Wards, elite protection)" },
-  { value: "top_secret", label: "Top Secret (Highest clearance only)" }
-];
 
 /* For Hidden site type form */
 export const SECRECY_LEVELS = [
@@ -129,19 +120,19 @@ export const SHOP_TYPE_CATEGORIES = [
 
 /* for Entertainment types */
 export const ENTERTAINMENT_VENUE_TYPES = [
-  "Theater",
-  "Music Hall",
   "Arena / Coliseum",
-  "Gambling Den",
   "Bardic College",
   "Bathhouse",
   "Brothel",
-  "Festival Grounds",
-  "Street Performance Zone",
-  "Duelling Ring",
   "Circus Tent",
+  "Duelling Ring",
+  "Festival Grounds",
+  "Gambling Den",
   "Magical Spectacle Venue",
+  "Music Hall",
   "Racing Track",
+  "Street Performance Zone",
+  "Theater",
   "Underground Fight Pit",
   "Other"
 ];
@@ -187,7 +178,6 @@ export const TAVERN_ENTERTAINMENT_OFFERINGS = [
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];
 export type SiteCondition = typeof SITE_CONDITION[number]["value"];
-export type SiteSecurityLevel = typeof SECURITY_LEVELS[number]["value"];
 export type SiteSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
 export type SiteEntertainmentType = typeof ENTERTAINMENT_VENUE_TYPES[number];
 

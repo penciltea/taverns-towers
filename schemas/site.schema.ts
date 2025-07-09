@@ -1,14 +1,22 @@
 import { z } from "zod";
-import { SECURITY_LEVELS, SECRECY_LEVELS } from "@/constants/siteOptions";
+import { SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
+import { GOVERNMENT_FUNCTIONS } from "@/constants/site/government.options";
 
-const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value);
+const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];;
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
 const guildTypeEnumValues = GUILD_TYPES.flatMap(group =>
   group.options.map(option => option.value)
 ) as [string, ...string[]];
 const guildMembershipEnumValues = GUILD_MEMBERSHIP_REQUIREMENTS.flatMap(group =>
+  group.options.map(option => option.value)
+) as [string, ...string[]];
+const governmentFunctionEnumValues = GOVERNMENT_FUNCTIONS.flatMap(group =>
+  group.options.map(option => option.value)
+) as [string, ...string[]];
+const shopTypeEnumValues = SHOP_TYPE_CATEGORIES.flatMap(group =>
   group.options.map(option => option.value)
 ) as [string, ...string[]];
 
@@ -62,16 +70,16 @@ export const templeSchema = baseSiteSchema.extend({
 
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
-  shopType: z.string(),
+  shopType: z.enum(shopTypeEnumValues),
   owner: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
 export const guildSchema = baseSiteSchema.extend({
   type: z.literal("guild"),
+  guildType: z.enum(guildTypeEnumValues),
   guildName: z.string().optional(),
   name: z.string().optional(),
-  guildType: z.enum(guildTypeEnumValues),
   leader: z.string().optional(),
   membershipRequirements: z.array(z.enum(guildMembershipEnumValues)).optional().default([]),
   knownRivals: z.string().optional(),
@@ -80,10 +88,9 @@ export const guildSchema = baseSiteSchema.extend({
 
 export const governmentSchema = baseSiteSchema.extend({
   type: z.literal("government"),
-  function: z.string().optional(),
+  function: z.enum(governmentFunctionEnumValues).optional(),
   officials: z.string().optional(),
-  jurisdiction: z.string().optional(),
-  security: z.enum(securityEnumValues as [string, ...string[]]).optional()
+  security: z.enum(securityEnumValues)
 });
 
 export const entertainmentSchema = baseSiteSchema.extend({
@@ -176,7 +183,6 @@ export const defaultSiteValues: Record<
     type: "government",
     function: "",
     officials: "",
-    jurisdiction: "",
     security: "",
   },
   entertainment: {

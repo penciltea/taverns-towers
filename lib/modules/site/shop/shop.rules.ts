@@ -2,7 +2,7 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
-import { SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SiteShopType } from "@/constants/siteOptions";
 import { getRandom } from "@/lib/util/randomValues";
 
 export function isShopSite(data: Partial<SiteFormData>): data is Partial<ShopSite> {
@@ -18,7 +18,7 @@ export async function applyShopTypeRule(data: Partial<SiteFormData>): Promise<Pa
       category.options.map(option => option.value)
     );
 
-    data.shopType = getRandom(allShopTypes);
+    data.shopType = getRandom(allShopTypes) as SiteShopType;
   }
 
   return data;

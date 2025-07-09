@@ -1,6 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
-import { SECURITY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { GOVERNMENT_FUNCTIONS, SECURITY_LEVELS } from "@/constants/site/government.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
@@ -37,25 +38,16 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
             />
-            <FormTextField
+
+            <FormSelect
                 name="function"
                 label="Function"
-                registration={register("function")}
+                control={control}
+                options={[
+                    { label: "Random", value: "random" },
+                    ...GOVERNMENT_FUNCTIONS,
+                ]}
                 fieldError={errors.function}
-            />
-
-            <FormTextField
-                name="officials"
-                label="Official(s)"
-                registration={register("officials")}
-                fieldError={errors.officials}
-            />
-
-            <FormTextField
-                name="jurisdiction"
-                label="Jurisdiction"
-                registration={register("jurisdiction")}
-                fieldError={errors.jurisdiction}
             />
 
             <FormSelect
@@ -65,6 +57,13 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 options={[{ label: "Random", value: "random" }, ...SECURITY_LEVELS]}
                 fieldError={errors.security}
             />
+
+            <FormTextField
+                name="officials"
+                label="Official(s)"
+                registration={register("officials")}
+                fieldError={errors.officials}
+            />            
 
             <FormTextField
                 name="publicNotes"
