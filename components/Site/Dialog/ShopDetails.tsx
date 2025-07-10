@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
-import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from '@/constants/siteOptions';
+import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 
 export function getShopTypeLabel(value: string): string {
   for (const category of SHOP_TYPE_CATEGORIES) {

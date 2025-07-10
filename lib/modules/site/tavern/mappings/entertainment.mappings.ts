@@ -1,6 +1,6 @@
 import { TagTypes } from "@/constants/environmentOptions";
 import { MagicLevel } from "@/constants/settlementOptions";
-import { SiteSize, SiteCondition } from "@/constants/siteOptions";
+import { SiteSize, SiteCondition } from "@/constants/site/site.options";
 
 export const ENTERTAINMENT_COUNT_BY_SITE_CONDITION: Record<SiteCondition, [number, number]> = {
   squalid: [1, 1],

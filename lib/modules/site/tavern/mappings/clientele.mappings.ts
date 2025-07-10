@@ -1,6 +1,6 @@
 import { TagTypes } from "@/constants/environmentOptions";
 import { CriminalActivityTypes, MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const CLIENTELE_ALIASES: Record<string, string> = {
   // Travelers

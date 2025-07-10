@@ -1,9 +1,10 @@
-import { SITE_SIZE, SITE_CONDITION, SiteShopType } from '@/constants/siteOptions';
+import { SITE_SIZE, SITE_CONDITION, SiteShopType, SiteEntertainmentType } from '@/constants/site/site.options';
 import { QualityType, RarityType } from '@/constants/site/menu.options';
 import { DialogProps } from "./dialogProps.interface";
 import { SiteFormData } from '@/schemas/site.schema';
 import { SiteGovernmentFunctionType, SiteSecurityLevel } from '@/constants/site/government.options';
 import { SiteGuildMembershipType } from '@/constants/site/guild.options';
+import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
 
  
 export interface SiteDialogProps extends DialogProps {
@@ -96,7 +97,7 @@ export interface GovernmentSite extends BaseSite {
 
 export interface EntertainmentSite extends BaseSite {
   type: "entertainment";
-  venueType?: string;
+  venueType?: SiteEntertainmentType;
   owner?: string;
   cost?: string;
 }
@@ -142,6 +143,24 @@ export type SiteFormFieldProps = {
   };
 };
 
+export interface GenerateSiteNameOptions {
+  tags?: string[];
+  terrain?: string[];
+  climate?: string;
+  siteType?: string[];
+  shopType?: string[];
+  guildType?: string[];
+  data?: Partial<SiteFormData>;
+}
+
+export interface SiteNameGenerator {
+  generateName(
+    fragments: GeneratorSiteFragmentPlain[],
+    options: GenerateSiteNameOptions
+  ): string;
+}
+
+
 export interface SiteGenerationContext {
   climate?: string;
   terrain?: string[];
@@ -158,7 +177,7 @@ export interface SiteGenerationContext {
   settlementName?: string;
   reroll?: boolean;
   siteType?: string;
-  shopType: string;
+  shopType?: string;
   guildType?: string;
   siteSize?: string;
   siteCondition?: string;

@@ -1,5 +1,5 @@
 import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
-import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";
 import { MenuItemMappingEntry } from "./menu.type";

@@ -1,6 +1,6 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
-import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
@@ -42,15 +42,8 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 name="venueType"
                 label="Venue Type"
                 control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(ENTERTAINMENT_VENUE_TYPES)]}
+                options={[{ label: "Random", value: "random" }, ...ENTERTAINMENT_VENUE_TYPES]}
                 fieldError={errors.shopType}
-            />
-            
-            <FormTextField
-                name="owner"
-                label="Owner"
-                registration={register("owner")}
-                fieldError={errors.owner}
             />
 
             <FormTextField
@@ -58,6 +51,13 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 label="Entry / Ticket Cost"
                 registration={register("cost")}
                 fieldError={errors.cost}
+            />
+            
+            <FormTextField
+                name="owner"
+                label="Owner"
+                registration={register("owner")}
+                fieldError={errors.owner}
             />
 
             <FormTextField

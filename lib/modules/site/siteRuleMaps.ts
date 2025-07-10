@@ -1,4 +1,4 @@
-import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
 
 export const CommonSiteFields = {
   sizeOptions: SITE_SIZE,

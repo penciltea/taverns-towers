@@ -1,4 +1,4 @@
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 // Base nightly cost in copper pieces
 export const roomBaseCost: Record<SiteCondition, number> = {

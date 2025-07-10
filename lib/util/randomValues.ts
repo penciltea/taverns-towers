@@ -31,3 +31,15 @@ export function getRandomSubset<T>(arr: T[], options: SubsetOptions): T[] {
 export function getRandom<T>(list: T[]): T {
   return list[Math.floor(Math.random() * list.length)];
 }
+
+
+/**
+ * A utility function to pick value(s) based on weights
+ */
+
+export function weightedRandom<T extends { value: string; weight?: number }>(items: T[]): T | undefined {
+  const weightedList = items.flatMap(item => Array(item.weight || 1).fill(item));
+  return weightedList.length > 0
+    ? weightedList[Math.floor(Math.random() * weightedList.length)]
+    : undefined;
+}

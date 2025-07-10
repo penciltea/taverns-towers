@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, InputLabel, MenuItem, Select, FormHelperText, FormControl, Typography} from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
-import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { useUIStore } from "@/store/uiStore";
 import { useSettlementsQuery } from "@/hooks/settlement.query";

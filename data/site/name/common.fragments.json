@@ -1,0 +1,392 @@
+[
+        {
+        "type": "prefix",
+        "value": "Stone",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Iron",
+        "weight": 2
+    },
+    { 
+        "type": "prefix",
+        "value": "Silver",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 2
+    },
+    {
+        "type": "prefix",
+        "value": "Goldenleaf",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Plains"],
+        "tags": ["Trade Hub", "Druidic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Old",
+        "weight": 2
+    },
+    {
+        "type": "prefix",
+        "value": "Creaking",
+        "weight": 2
+    },
+    {
+        "type": "prefix",
+        "value": "Squeaking",
+        "weight": 2
+    },
+    {
+        "type": "prefix",
+        "value": "Jeweled",
+        "weight": 2
+    },
+    {
+        "type": "prefix",
+        "value": "Whispering",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Dusky",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Jungle", "Forest"],
+        "tags": ["hidden", "Arcane Nexus"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ironclad",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Mountains", "Plains"],
+        "tags": ["Fortress", "Garrison"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brightwater",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast", "river"],
+        "tags": ["Port", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Shimmering",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast", "Jungle"],
+        "tags": ["Arcane Nexus", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Burning",
+        "climate": ["Dry"],
+        "terrain": ["Desert", "Plains"],
+        "tags": ["Military Outpost", "Fortress"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frosted",
+        "climate": ["Polar", "Tundra"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["Isolated", "Hidden"]
+    },
+    {
+        "type": "prefix",
+        "value": "Duskmire",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Swamp", "Forest"],
+        "tags": ["infested", "Hidden"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silent",
+        "climate": ["Polar", "Tundra"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["hidden", "Isolated"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sable",
+        "weight": 1,
+        "siteType": ["residence", "guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silver",
+        "weight": 1,
+        "siteType": ["residence", "guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gilded",
+        "weight": 1,
+        "siteType": ["residence", "guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Weathered",
+        "weight": 1,
+        "siteType": ["residence", "guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twilit",
+        "weight": 1,
+        "siteType": ["residence", "guild"]
+    },
+
+
+
+    {
+        "type": "suffix",
+        "value": "Rest",
+        "weight": 1
+    },
+    {
+        "type": "suffix",
+        "value": "Den",
+        "weight": 2
+    },
+    {
+        "type": "suffix",
+        "value": "Roost",
+        "weight": 2
+    },
+    {
+        "type": "suffix",
+        "value": "Lodge",
+        "weight": 1
+    },
+
+
+
+    {
+        "type": "suffix",
+        "value": "Brew",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Candle",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Flagon",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Crown",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Hearth",
+        "weight": 2
+    },
+    {
+        "type": "noun",
+        "value": "Stag",
+        "weight": 2
+    },
+    {
+        "type": "noun",
+        "value": "Sword",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Bell",
+        "weight": 2
+    },
+    {
+        "type": "noun",
+        "value": "Lantern",
+        "weight": 1
+    },
+    {
+        "type": "noun",
+        "value": "Scroll",
+        "weight": 2
+    },
+    {
+        "type": "noun",
+        "value": "Rift",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Mountains", "Desert"],
+        "tags": ["Ancient Ruins", "Overgrown"]
+    },
+    {
+        "type": "noun",
+        "value": "Harbinger",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Desert"],
+        "tags": ["Military Outpost", "Fortress"]
+    },
+    {
+        "type": "noun",
+        "value": "Den",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Criminal Hideout", "Hidden"]
+    },
+    {
+        "type": "noun",
+        "value": "Ember",
+        "climate": ["Dry", "Temperate"],
+        "terrain": ["Desert", "Plains"],
+        "tags": ["Ancient Ruins", "Overgrown"]
+    },
+    {
+        "type": "noun",
+        "value": "Glade",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Sacred Site", "Druidic"]
+    },
+    {
+        "type": "noun",
+        "value": "Crossroads",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Trade Hub", "Border Post"]
+    },
+    {
+        "type": "noun",
+        "value": "Lantern",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Urban"],
+        "tags": ["Trade Hub", "Capital"]
+    },
+    {
+        "type": "noun",
+        "value": "Meadow",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "Forest"],
+        "tags": ["Trade Hub", "Overgrown"]
+    },
+
+
+
+    {
+        "type": "person",
+        "value": "Elira",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Thorn",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Bran",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Myla",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Teren",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Jorra",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Kaelen",
+        "weight": 1
+    },
+    {
+        "type": "person",
+        "value": "Faelan",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Druidic", "Sacred Site"]
+    },
+    {
+        "type": "person",
+        "value": "Arden",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Plains"],
+        "tags": ["Sacred Site", "Druidic"]
+    },
+    {
+        "type": "person",
+        "value": "Talon",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Military Outpost", "Fortress"]
+    },
+    {
+        "type": "person",
+        "value": "Serena",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Sacred Site", "Arcane Nexus"]
+    },
+    {
+        "type": "person",
+        "value": "Marrek",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Trade Hub", "Capital"]
+    },
+    {
+        "type": "person",
+        "value": "Elara",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Arcane Nexus", "Sacred Site"]
+    },
+
+
+
+
+
+    {
+        "type": "format",
+        "value": "{{noun}} & {{noun}}",
+        "weight": 2,
+        "siteType": [ "shop", "tavern" ]
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} {{suffix}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} {{noun}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "The {{noun}} and the {{noun}}",
+        "weight": 2,
+        "siteType": [ "shop", "tavern" ]
+    },
+    {
+        "type": "format",
+        "value": "{{adjective}} {{noun}} Hall",
+        "weight": 1,
+        "siteType": ["guild", "residence"]
+    }
+]

@@ -1,4 +1,5 @@
-import { SiteCategory, SiteGuildType, SiteShopType } from "@/constants/siteOptions";
+import { SiteCategory, SiteShopType } from "@/constants/site/site.options";
+import { SiteGuildType } from "@/constants/site/guild.options";
 import { Types } from "mongoose";
 
 export interface MenuItemMappingEntry {

@@ -1,5 +1,5 @@
 import { getRandom } from "@/lib/util/randomValues";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormData } from "@/schemas/site.schema";
 
 

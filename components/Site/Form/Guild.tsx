@@ -1,5 +1,5 @@
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";

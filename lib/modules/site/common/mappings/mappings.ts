@@ -1,5 +1,5 @@
 import { SizeTypes, WealthLevel } from "@/constants/settlementOptions";
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RARITY_BOOST_BY_CONDITION: Record<SiteCondition, number> = {
   squalid: -2,

@@ -14,7 +14,7 @@ import { BaseClienteleBySettlementSizeMapping, CLIENTELE_ALIASES, CLIENTELE_COUN
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 import { EntertainmentBySize, EntertainmentBySizeModel } from "@/lib/models/generator/site/tavern/entertainmentBySize.model";
 import { EntertainmentByCondition, EntertainmentByConditionModel } from "@/lib/models/generator/site/tavern/entertainmentByCondition.model";

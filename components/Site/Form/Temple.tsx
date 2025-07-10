@@ -1,7 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { SITE_SIZE, SITE_CONDITION } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";

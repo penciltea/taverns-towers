@@ -1,5 +1,5 @@
 import { SiteGovernmentFunctionType, SiteSecurityLevel } from "@/constants/site/government.options";
-import { SiteSize, SiteCondition } from "@/constants/siteOptions";
+import { SiteSize, SiteCondition } from "@/constants/site/site.options";
 
 export const SECURITY_BASELINE_BY_FUNCTION: Record<SiteGovernmentFunctionType, SiteSecurityLevel[]> = {
   archive: ["none", "low", "moderate"],

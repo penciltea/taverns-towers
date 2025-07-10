@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
-import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 export interface EntertainmentByTagModel {

@@ -7,10 +7,9 @@
 */
 
 
-import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
-import { SiteCategory } from "@/constants/siteOptions";
 import { SiteFormData } from "@/schemas/site.schema";
 import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 

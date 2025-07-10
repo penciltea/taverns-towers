@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SiteCondition, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { SiteCondition, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 export interface EntertainmentByConditionModel {

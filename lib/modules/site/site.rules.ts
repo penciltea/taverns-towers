@@ -29,7 +29,8 @@ import { generateHiddenValues } from "./hidden.rules";
 import { generateMiscellaneousValues } from "./miscellaneous.rules";
 import { generateResidenceValues } from "./residence.rules";
 
-
+type ShopSiteData = Extract<SiteFormData, { type: "shop" }>;
+type GuildSiteData = Extract<SiteFormData, { type: "guild" }>;
 
 
 // Maps site type strings to their respective async generation functions
@@ -68,13 +69,31 @@ export async function generateSiteValues(
   // Generate base site data from the rules for the given type
   const baseData = await generator(input);
 
+  // Narrow shopType and guildType if applicable
+  let shopType: string | undefined = undefined;
+  let guildType: string | undefined = undefined;
+
+  if (type === "shop") {
+    const shopData = baseData as ShopSiteData;
+    shopType = Array.isArray(shopData.shopType)
+      ? shopData.shopType[0] // ✅ extract first string
+      : shopData.shopType;
+  } else if (type === "guild") {
+    const guildData = baseData as GuildSiteData;
+    guildType = Array.isArray(guildData.guildType)
+      ? guildData.guildType[0] // ✅ extract first string
+      : guildData.guildType;
+  }
+
   // Generate a site name if one wasn't provided
   const name = await generateSiteName({
-    category: type,
     siteType: [type],
+    shopType,
+    guildType,
     terrain: input.terrain,
     climate: input.climate,
     tags: input.tags,
+    data: baseData,
   });
 
   return {

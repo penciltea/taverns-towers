@@ -2,7 +2,7 @@ import { useUIStore } from "@/store/uiStore";
 import { FormSelect, FormTextField } from "@/components/Form";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";

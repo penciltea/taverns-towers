@@ -1,0 +1,214 @@
+[
+    {
+        "type": "prefix",
+        "value": "Iron",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "High",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Steel",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Watch",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Civic",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Granite",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Lawkeeper's",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silver",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gilded",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Urban"],
+        "tags": ["Capital", "Trade Hub"],
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Urban"],
+        "tags": ["Capital", "Trade Hub"],
+        "siteType": ["government"]
+    },
+    
+    {
+        "type": "prefix",
+        "value": "Stormwatch",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Coast", "Mountains"],
+        "tags": ["Military Outpost", "Fortress"],
+        "siteType": ["government"]
+    },
+    {
+        "type": "prefix",
+        "value": "Cragstone",
+        "climate": ["Temperate", "Polar"],
+        "terrain": ["Mountains", "Tundra"],
+        "tags": ["Fortress", "Isolated"],
+        "siteType": ["government"]
+    },
+
+
+
+
+    {
+        "type": "suffix",
+        "value": "Hold",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "suffix",
+        "value": "Wall",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "suffix",
+        "value": "Chambers",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "suffix",
+        "value": "Seat",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+
+
+
+        {
+        "type": "noun",
+        "value": "Keep",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Citadel",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Garrison",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Post",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Hall",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Council",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Tribunal",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Embassy",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Harbor",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Coast", "Port"],
+        "tags": ["Port", "Trade Hub"],
+        "siteType": ["government"]
+    }, 
+    {
+        "type": "noun",
+        "value": "Bastion",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Fortress", "Military Outpost"],
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Barracks",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Military Outpost", "Garrison"],
+        "siteType": ["government"]
+    },
+
+
+
+
+    {
+        "type": "format",
+        "value": "The Hall of {{noun}}",
+        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} Council",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} Keep",
+        "weight": 1,
+        "siteType": ["government"]
+    },
+    {
+        "type": "format",
+        "value": "The Office of the {{noun}}",
+        "weight": 1,
+        "siteType": ["government"]
+    }
+]

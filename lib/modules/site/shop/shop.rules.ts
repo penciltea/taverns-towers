@@ -2,7 +2,7 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
-import { SHOP_TYPE_CATEGORIES, SiteShopType } from "@/constants/siteOptions";
+import { SHOP_TYPE_CATEGORIES, SiteShopType } from "@/constants/site/site.options";
 import { getRandom } from "@/lib/util/randomValues";
 
 export function isShopSite(data: Partial<SiteFormData>): data is Partial<ShopSite> {

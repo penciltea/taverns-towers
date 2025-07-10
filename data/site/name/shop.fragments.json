@@ -1,0 +1,375 @@
+[
+    {
+        "type": "prefix",
+        "value": "Rusty",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "blacksmith", "armory"]
+    },
+    {
+        "type": "prefix",
+        "value": "Herbal",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["apothecary"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["alchemist"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gilded",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sweet",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mystic",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bound",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Curious",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop", "trinketShop", "magic", "alchemist", "apothecary", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Iron",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Mining Camp", "Fortress"],
+        "siteType": ["shop"],
+        "shopType": ["blacksmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sunset",
+        "climate": ["Temperate", "Dry", "Continental"],
+        "terrain": ["Plains", "Coast"],
+        "tags": ["Trade Hub", "Port"],
+        "siteType": ["shop"],
+        "shopType": ["generalStore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Amber",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Forest"],
+        "tags": ["Trade Hub", "Capital"],
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+
+
+
+
+    {
+        "type": "suffix",
+        "value": "Wagon",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "carpenter", "provisioner", "sundries"]
+    },
+    {
+        "type": "suffix",
+        "value": "Forge",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "magic", "armory"]
+    },
+    {
+        "type": "suffix",
+        "value": "Stitch",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "tailor", "magic", "accessories", "milliner", "haberdasher"]
+    },
+    {
+        "type": "suffix",
+        "value": "Tome",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "alchemist", "apothecary", "bookstore", "mapmaker", "scrollShop"]
+    },
+    {
+        "type": "suffix",
+        "value": "Bulwark",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "blacksmith", "armory", "carpenter"]
+    },
+    {
+        "type": "suffix",
+        "value": "Cure",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["apothecary"]
+    },
+    {
+        "type": "suffix",
+        "value": "Distillery",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["alchemist"]
+    },
+    {
+        "type": "suffix",
+        "value": "Treasure",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "suffix",
+        "value": "Oven",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "suffix",
+        "value": "Arcana",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "suffix",
+        "value": "Ink",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "suffix",
+        "value": "Bazaar",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "pawnShop", "salvager", "magic", "spiceMerchant", "provisioner"]
+    },
+
+
+
+
+    {
+        "type": "noun",
+        "value": "Anvil",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory"]
+    },
+    {
+        "type": "noun",
+        "value": "Needle",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "magic", "milliner", "haberdasher", "accessories"]
+    },
+    {
+        "type": "noun",
+        "value": "Thread",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "tailor", "magic", "milliner", "haberdasher", "accessories"]
+    },
+    {
+        "type": "noun",
+        "value": "Quill",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "magic", "bookstore", "mapmaker", "scrollShop"]
+    },
+    {
+        "type": "noun",
+        "value": "Shield",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory", "carpenter"]
+    },
+    {
+        "type": "noun",
+        "value": "Crate",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "alchemist", "carpenter", "provisioner", "salvager", "pawnShop"]
+    },
+    {
+        "type": "noun",
+        "value": "Salve",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["apothecary"]
+    },
+    {
+        "type": "noun",
+        "value": "Remedy",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["apothecary"]
+    },
+    {
+        "type": "noun",
+        "value": "Elixir",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["alchemist"]
+    },
+    {
+        "type": "noun",
+        "value": "Crucible",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["alchemist"]
+    },
+    {
+        "type": "noun",
+        "value": "Gem",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "noun",
+        "value": "Trinket",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "noun",
+        "value": "Crust",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "noun",
+        "value": "Loaf",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "noun",
+        "value": "Wand",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "noun",
+        "value": "Sigil",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "noun",
+        "value": "Tome",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "noun",
+        "value": "Scroll",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "noun",
+        "value": "Oddity",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop"]
+    },
+    {
+        "type": "noun",
+        "value": "Find",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "curiosityShop", "sundries", "pawnShop", "salvager"]
+    },
+    {
+        "type": "noun",
+        "value": "Haven",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Coast", "Plains"],
+        "tags": ["Port", "Trade Hub"],
+        "siteType": ["shop"],
+        "shopType": ["generalStore"]
+    },
+    
+    {
+        "type": "noun",
+        "value": "Forge",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Mining Camp", "Garrison"],
+        "siteType": ["shop"],
+        "shopType": ["blacksmith"]
+    },
+    {
+        "type": "noun",
+        "value": "Brewery",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["Trade Hub"],
+        "siteType": ["shop"],
+        "shopType": ["brewery"]
+    },
+
+
+    {
+        "type": "shopName",
+        "value": "Books",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "shopName",
+        "value": "Bookstore",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+
+
+    {
+        "type": "format",
+        "value": "The {{shopName}} of {{prefix}}",
+        "weight": 2,
+        "siteType": [ "shop" ]
+    },
+    {
+        "type": "format",
+        "value": "{{person}}'s {{shopName}}",
+        "weight": 2,
+        "siteType": [ "shop" ]
+    }
+]

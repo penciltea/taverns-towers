@@ -1,4 +1,4 @@
-import { SiteCondition, SiteEntertainmentType, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteEntertainmentType, SiteSize } from "@/constants/site/site.options";
 
 export const entryBaseCost: Record<SiteEntertainmentType, number> = {
   "Arena / Coliseum": 50,            // 5 sp - large public events, moderate pricing

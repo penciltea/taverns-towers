@@ -2,7 +2,7 @@ import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Paper, Typography, Stack, Box, Button } from "@mui/material";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { siteFormFieldsByType } from "@/components/Site/Form/FieldsByType";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
@@ -21,7 +21,7 @@ type SiteFormProps = {
   generator?: {
     name: () => void;
     menu: () => void;
-    all: () => void;
+    missing: () => void;
     reroll: () => void;
   };
 };
@@ -72,7 +72,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           <Button
             type="button"
             variant="contained"
-            onClick={generator?.all}
+            onClick={generator?.missing}
             size="large"
             sx={{ mt: 2, py: 1.65 }}
           >

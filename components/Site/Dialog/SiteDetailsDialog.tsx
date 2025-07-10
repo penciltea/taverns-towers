@@ -5,7 +5,7 @@ import { useUIStore } from "@/store/uiStore";
 import { deleteSite } from '@/lib/actions/site.actions';
 import DeleteButton from '@/components/Common/DeleteButton';
 import { SiteDialogProps } from '@/interfaces/site.interface';
-import { SITE_CATEGORIES } from '@/constants/siteOptions';
+import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { TavernDetails } from './TavernDetails';
 import { TempleDetails } from './TempleDetails';
 import { ShopDetails } from './ShopDetails';

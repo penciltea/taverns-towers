@@ -7,7 +7,7 @@ import { RelicBySize, RelicBySizeModel } from "@/lib/models/generator/site/templ
 import { RelicByCondition, RelicByConditionModel } from "@/lib/models/generator/site/temple/relicsByCondition.model";
 import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 import { RELICS_BY_CONDITION_MAPPING, RELICS_BY_DOMAIN_MAPPING, RELICS_BY_SIZE_MAPPING } from "./mappings/relics.mappings";
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { getRandomSubset } from "@/lib/util/randomValues";
 
 export function isTempleSite(data: Partial<SiteFormData>): data is Partial<TempleSite> {

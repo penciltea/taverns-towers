@@ -1,11 +1,12 @@
 import { z } from "zod";
-import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
 import { GOVERNMENT_FUNCTIONS } from "@/constants/site/government.options";
 
-const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];;
+const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];
+const entertainmentEnumValues = ENTERTAINMENT_VENUE_TYPES.map(opt => opt.value) as [string, ...string[]];
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
 const guildTypeEnumValues = GUILD_TYPES.flatMap(group =>
   group.options.map(option => option.value)
@@ -95,7 +96,7 @@ export const governmentSchema = baseSiteSchema.extend({
 
 export const entertainmentSchema = baseSiteSchema.extend({
   type: z.literal("entertainment"),
-  venueType: z.enum(ENTERTAINMENT_VENUE_TYPES as unknown as [string, ...string[]]).optional(),
+  venueType: z.enum(entertainmentEnumValues).optional(),
   performances: z.string().optional(),
   owner: z.string().optional(),
   cost: z.string().optional(),

@@ -2,7 +2,7 @@ import { MiscellaneousSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import InfoListItem from '@/components/Common/InfoListItem';
-import { SITE_CONDITION, SITE_SIZE } from '@/constants/siteOptions';
+import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 
 export const MiscellaneousDetails = ({ site }: { site: MiscellaneousSite }) => {
   return (

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SiteSize, SITE_SIZE } from "@/constants/siteOptions";
+import { SiteSize, SITE_SIZE } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);

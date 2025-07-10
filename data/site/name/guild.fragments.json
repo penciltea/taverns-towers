@@ -1,0 +1,152 @@
+[
+    {
+        "type": "prefix",
+        "value": "Crimson",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Storm",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Fortress", "Garrison"],
+        "siteType": ["guild"],
+        "guildType": ["monsterHunter", "adventurer", "beastTamer", "hunter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ironwood",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Druidic", "Ancient Ruins"],
+        "siteType": ["guild"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silverleaf",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Druidic", "Ancient Ruins"],
+        "siteType": ["guild"]
+    },
+
+
+
+
+
+    {
+        "type": "suffix",
+        "value": "Order",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+
+
+
+
+
+    {
+        "type": "noun",
+        "value": "Hammer",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Oath",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Vanguard",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Military Outpost", "Garrison"],
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Circle",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Druidic", "Sacred Site"],
+        "siteType": ["guild"],
+        "guildType": ["entertainer", "forester", "scholar", "mage", "druid", "healer"]
+    },
+    {
+        "type": "noun",
+        "value": "Den",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "siteType": ["guild"],
+        "guildType": ["druid", "forester", "thief", "spy", "assassin"]
+    },
+    {
+        "type": "noun",
+        "value": "Rookery",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Hills"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "siteType": ["guild"],
+        "guildType": ["thief", "assassin", "spy", "forester"]
+    },
+    {
+        "type": "noun",
+        "value": "Vault",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Mountains"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "siteType": ["guild"],
+        "guildType": ["thief", "assassin", "spy", "courtier"]
+    },
+    {
+        "type": "noun",
+        "value": "Forge",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Hills", "Mountains"],
+        "tags": ["Trade Hub", "Garrison"],
+        "siteType": ["guild"],
+        "guildType": ["smith", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Loom",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["Trade Hub"],
+        "siteType": ["guild"],
+        "guildType": ["tailor"]
+    },
+
+
+
+
+
+    {
+        "type": "format",
+        "value": "Hall of the {{noun}}",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} Guild",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "format",
+        "value": "Guild of the {{noun}}",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}}'s Circle",
+        "weight": 1,
+        "siteType": ["guild"]
+    }
+]

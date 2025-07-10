@@ -1,0 +1,193 @@
+[
+    {
+      "type": "prefix",
+      "value": "Wren",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Dun",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Hearth",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Ash",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Thistle",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Oak",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Bramble",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Wind",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Fog",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "prefix",
+      "value": "Sun",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+
+
+
+
+
+    {
+      "type": "suffix",
+      "value": "loft",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "ridge",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "grove",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Hall",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Manor",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Cottage",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Keep",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Lodge",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "suffix",
+      "value": "Estate",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+
+
+
+
+    {
+      "type": "name",
+      "value": "Wrenloft House",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Dunridge Cottage",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Hearthmere Hall",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Ashgrove Lodge",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "The Silver Lantern",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Thistlebank Manor",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Oakhollow Residence",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "The Sable Hearth",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Windmere Estate",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+    {
+      "type": "name",
+      "value": "Shadowbend Keep",
+      "weight": 1,
+      "siteType": ["residence"]
+    },
+
+
+    {
+      "type": "format",
+      "value": "{{prefix}} {{suffix}}",
+      "weight": 1,
+      "siteType": ["residence"]
+    }
+]

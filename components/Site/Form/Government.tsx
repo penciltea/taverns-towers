@@ -1,6 +1,6 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { GOVERNMENT_FUNCTIONS, SECURITY_LEVELS } from "@/constants/site/government.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";

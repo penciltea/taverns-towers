@@ -1,5 +1,5 @@
 import { DomainTypes } from "@/constants/settlementOptions"
-import { SiteCondition, SiteSize } from "@/constants/siteOptions";
+import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     "Arcana": [

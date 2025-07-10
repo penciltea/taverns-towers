@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SiteSize, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { SITE_SIZE, SiteSize, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 export interface EntertainmentBySizeModel {

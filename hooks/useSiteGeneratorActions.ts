@@ -30,7 +30,7 @@ type GeneratorContext = {
 type UseSiteGeneratorActionsReturn = {
   name: (target?: string ) => Promise<void> | void;
   menuItems: (index?: number) => void;
-  all: () => void;
+  missing: () => void;
   reroll: () => void;
 };
 
@@ -220,7 +220,7 @@ export function useSiteGeneratorActions(
    * After generation, also generates the menu.
   */
 
-  const generateAll = useCallback(async () => {
+  const generateMissing = useCallback(async () => {
     if (!siteType) return;
 
     const env = await regenerateEnvironment(false);
@@ -243,28 +243,15 @@ export function useSiteGeneratorActions(
           },
       false
     );
-    
-    // Also generate guildName if it's a guild site and not already set
-    if (siteType === "guild") {
-      const currentGuildName = methods.getValues("guildName");
-      if (!currentGuildName) {
-        const guildType = getGuildType();
-        const name = await generateSiteName({
-          siteType: [siteType],
-          guildType,
-          terrain: env.terrain,
-          climate: env.climate,
-          tags: env.tags,
-        });
-        methods.setValue("guildName", name);
-      }
-    }
 
     // Only update fields that are empty or missing in the current form
     Object.entries(result).forEach(([key, value]) => {
       const currentValue = methods.getValues(key as keyof SiteFormData);
 
-      const isEmpty = currentValue === undefined || currentValue === null || currentValue === "" ||
+      const isEmpty =
+        currentValue === undefined ||
+        currentValue === null ||
+        currentValue === "" ||
         (Array.isArray(currentValue) && currentValue.length === 0);
 
       if (isEmpty && value !== undefined && value !== null && value !== "") {
@@ -272,10 +259,25 @@ export function useSiteGeneratorActions(
       }
     });
 
-    // Check if site type has menu
-    // If so, regenerate the menu with the new environment
+    // Check if name field is empty and call `generateName` if so
+    const currentName = getValues("name");
+    const currentGuildName = getValues("guildName");
+
+    if (
+      (siteType === "guild" && !currentName && !currentGuildName) ||
+      (siteType !== "guild" && !currentName)
+    ) {
+      await generateName();
+    }
+
+    // Check if site type has menu and menu is empty
     if (siteTypeHasMenu(siteType)) {
-      await generateMenuItems();
+      const currentMenu = methods.getValues("menu");
+      const isMenuEmpty = !Array.isArray(currentMenu) || currentMenu.length === 0;
+
+      if (isMenuEmpty) {
+        await generateMenuItems();
+      }
     }
   }, [siteType, methods, generateMenuItems, regenerateEnvironment]);
 
@@ -309,24 +311,14 @@ export function useSiteGeneratorActions(
           },
       true // rerollAll
     );
-
-    // Also generate guildName if it's a guild site
-    if (siteType === "guild") {
-      const guildType = getGuildType();
-      const name = await generateSiteName({
-        siteType: [siteType],
-        guildType,
-        terrain: env.terrain,
-        climate: env.climate,
-        tags: env.tags,
-      });
-      methods.setValue("guildName", name);
-    }
     
     // Set all generated fields directly, replacing current values
     Object.entries(result).forEach(([key, value]) => {
       methods.setValue(key as keyof SiteFormData, value);
     });
+
+    // Generate new name
+    await generateName();
 
     // Check if site type has menu
     // If so, regenerate the menu with the new environment
@@ -340,7 +332,7 @@ export function useSiteGeneratorActions(
   return {
     name: generateName,
     menuItems: generateMenuItems,
-    all: generateAll,
+    missing: generateMissing,
     reroll: rerollAll,
   };
 }

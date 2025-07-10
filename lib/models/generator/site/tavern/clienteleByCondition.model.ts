@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SiteCondition, SITE_CONDITION } from "@/constants/siteOptions";
+import { SiteCondition, SITE_CONDITION } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 export interface ClienteleByConditionModel {

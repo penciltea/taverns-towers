@@ -2,7 +2,7 @@ import { EntertainmentSite, SiteGenerationInput } from "@/interfaces/site.interf
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
-import { ENTERTAINMENT_VENUE_TYPES } from "@/constants/siteOptions";
+import { ENTERTAINMENT_VENUE_TYPES } from "@/constants/site/site.options";
 import { getRandom } from "@/lib/util/randomValues";
 import { entryBaseCost, entryConditionModifier, entrySizeModifier } from "./mappings/entertainment.mappings";
 import { formatCurrencyFromCp } from "@/lib/util/convertCurrency";
@@ -15,7 +15,7 @@ export async function applyEntertainmentVenueRule(data: Partial<SiteFormData>): 
   if (!isEntertainmentSite(data)) return data;  // Return early if not "entertainment" type
 
   if (!data.venueType || data.venueType === "random") {
-    data.venueType = getRandom(ENTERTAINMENT_VENUE_TYPES);
+    data.venueType = getRandom(ENTERTAINMENT_VENUE_TYPES).value;
   }
 
   return data;

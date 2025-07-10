@@ -2,12 +2,12 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
-import { generateSiteNameFromFragments } from "@/lib/util/generator/siteNameGenerator";
 import { generatorMenuItem, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
 import { generateMenu } from "../modules/site/common/menu.dispatcher";
+import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
 
 export async function generateSiteName({
   category,
@@ -17,14 +17,16 @@ export async function generateSiteName({
   terrain,
   climate,
   tags,
+  data
 }: {
   category?: string;
-  shopType?: string;
-  guildType?: string;
+  shopType?: string;   // Form uses string value
+  guildType?: string;  // Form uses string value
   siteType?: string[];
   terrain?: string[];
   climate?: string;
   tags?: string[];
+  data?: Partial<SiteFormData>;
 }): Promise<string> {
   await connectToDatabase();
 
@@ -35,14 +37,19 @@ export async function generateSiteName({
       typeof f.type === "string" && typeof f.value === "string"
   );
 
-  return generateSiteNameFromFragments(fragments, {
+  // Convert string for site sub-types into an array for dispatcher/generation logic
+  const toArray = <T>(val?: T | T[]): T[] | undefined =>
+    val === undefined ? undefined : Array.isArray(val) ? val : [val];
+
+  return dispatchSiteName(fragments, {
     category,
     siteType,
-    shopType,
-    guildType,
+    shopType: toArray(shopType),
+    guildType: toArray(guildType),
     terrain,
     climate,
     tags,
+    data,
   });
 }
 
@@ -94,11 +101,5 @@ export async function generateSiteData(
     tags: rerollAll ? input.tags ?? ["random"] : input.tags
   };
 
-  return await generateSiteValues(type, {
-    overrides: input.overrides ?? {},
-    climate: rerollAll ? input.climate ?? "random" : input.climate,
-    terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
-    tags: rerollAll ? input.tags ?? ["random"] : input.tags
-    // include any other context fields you want to pass along
-  });
+  return await generateSiteValues(type, baseInput);
 }

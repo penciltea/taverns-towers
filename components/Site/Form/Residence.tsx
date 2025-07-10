@@ -1,7 +1,7 @@
 import { FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { useFormContext } from "react-hook-form";
 

@@ -1,6 +1,6 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
-import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/siteOptions";
+import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";

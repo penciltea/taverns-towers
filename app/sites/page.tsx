@@ -6,7 +6,7 @@ import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
 import { usePaginatedSites } from '@/hooks/site.query';
 import FilteredGridView from "@/components/Grid/FilteredGridView";
-import { SITE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { SiteFilters } from "@/interfaces/site.interface";
 import GridItem from "@/components/Grid/GridItem";
 import { DefaultSiteFilters } from "@/interfaces/site.interface";

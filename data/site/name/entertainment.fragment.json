@@ -1,0 +1,76 @@
+[
+    {
+        "type": "prefix",
+        "value": "Laughing",
+        "weight": 2,
+        "siteType": ["entertainment"]
+    },
+
+
+
+
+    
+    {
+        "type": "suffix",
+        "value": "Stage",
+        "weight": 1,
+        "siteType": ["entertainment"]
+    },
+
+
+
+    {
+        "type": "noun",
+        "value": "Theater",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban"],
+        "tags": ["entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Theater"]
+    },
+    {
+        "type": "noun",
+        "value": "Arcade",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban"],
+        "tags": ["entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Street Performance Zone"]
+    },
+    {
+        "type": "noun",
+        "value": "Coliseum",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Arena / Coliseum"]
+    },
+    {
+        "type": "noun",
+        "value": "Bathhouse",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban"],
+        "tags": ["entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Bathhouse"]
+    },
+    {
+        "type": "noun",
+        "value": "Arena",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Urban"],
+        "tags": ["Entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Arena / Coliseum"]
+    },
+    {
+        "type": "noun",
+        "value": "Theater",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban"],
+        "tags": ["entertainment"],
+        "siteType": ["entertainment"],
+        "venueType": ["Theater"]
+    }
+]

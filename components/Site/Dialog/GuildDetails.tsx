@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
-import { SITE_CONDITION, SITE_SIZE } from '@/constants/siteOptions';
+import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 import { GUILD_TYPES } from '@/constants/site/guild.options';
 
 export function getGuildypeLabel(value: string): string {

@@ -1,5 +1,5 @@
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";

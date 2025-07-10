@@ -1,0 +1,123 @@
+[
+    {
+        "type": "prefix",
+        "value": "Sacred",
+        "weight": 2,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crystal",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Arcane Nexus", "Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Moonlight",
+        "climate": ["Temperate", "Polar"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["Arcane Nexus", "Hidden"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silvermoon",
+        "climate": ["Temperate", "Polar"],
+        "terrain": ["Mountains", "Tundra"],
+        "tags": ["Arcane Nexus", "Hidden"],
+        "siteType": ["temple"]
+    },
+
+
+
+    {
+        "type": "suffix",
+        "value": "Divine",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Sanctum",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Arcane Nexus", "Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Sanctuary",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Sacred Site"],
+        "siteType": ["temple"]
+    },
+    
+
+
+    {
+        "type": "noun",
+        "value": "Grove",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Sacred Site", "Druidic"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Light",
+        "weight": 2,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Vow",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Spire",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Arcane Nexus", "Capital"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Shrine",
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Hills"],
+        "tags": ["Sacred Site"],
+        "siteType": ["temple"]
+    },
+
+
+
+    {
+        "type": "format",
+        "value": "Temple of the {{noun}}",
+        "weight": 2,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "format",
+        "value": "Shrine of {{person}}",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} Sanctum",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "format",
+        "value": "Sanctuary of the {{noun}}",
+        "weight": 1,
+        "siteType": ["temple"]
+    }
+]

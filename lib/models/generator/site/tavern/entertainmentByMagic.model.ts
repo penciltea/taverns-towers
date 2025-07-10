@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
-import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/siteOptions";
+import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 
 export interface EntertainmentByMagicModel {

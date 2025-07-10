@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
-import { SITE_CONDITION, SITE_SIZE } from '@/constants/siteOptions';
+import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 
 export const TempleDetails = ({ site }: { site: TempleSite }) => {
   return (

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { SITE_SIZE, SITE_CONDITION, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_TYPES } from "@/constants/site/guild.options";
 const { Schema, models, model } = mongoose;
