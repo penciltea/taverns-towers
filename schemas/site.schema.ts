@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
+import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/siteOptions";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
@@ -95,7 +95,7 @@ export const governmentSchema = baseSiteSchema.extend({
 
 export const entertainmentSchema = baseSiteSchema.extend({
   type: z.literal("entertainment"),
-  venueType: z.string().optional(),
+  venueType: z.enum(ENTERTAINMENT_VENUE_TYPES as unknown as [string, ...string[]]).optional(),
   performances: z.string().optional(),
   owner: z.string().optional(),
   cost: z.string().optional(),
@@ -190,7 +190,6 @@ export const defaultSiteValues: Record<
     type: "entertainment",
     venueType: "",
     owner: "",
-    performances: "",
     cost: "",
   },
   hidden: {

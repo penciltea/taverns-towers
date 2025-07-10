@@ -23,11 +23,12 @@ import { generateShopData } from "./shop/shop.rules";
 import { generateGuildData } from "./guild/guild.rules";
 import { generateTempleData } from "./temple/temple.rules";
 import { generateGovernmentData } from "./government/government.rules";
+import { generateEntertainmentData } from "./entertainment/entertainment.rules";
 
-import { generateEntertainmentValues } from "./entertainment.rules";
 import { generateHiddenValues } from "./hidden.rules";
 import { generateMiscellaneousValues } from "./miscellaneous.rules";
 import { generateResidenceValues } from "./residence.rules";
+
 
 
 
@@ -36,7 +37,7 @@ export const SiteGenerator: Record<
   string,
   (input: SiteGenerationInput) => Promise<SiteFormData>
 > = {
-    entertainment: generateEntertainmentValues,
+    entertainment: generateEntertainmentData,
     government: generateGovernmentData,
     guild: generateGuildData,    
     hidden: generateHiddenValues,

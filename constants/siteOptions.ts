@@ -135,7 +135,7 @@ export const ENTERTAINMENT_VENUE_TYPES = [
   "Theater",
   "Underground Fight Pit",
   "Other"
-];
+] as const;
 
 /* For Tavern types */
 export const TAVERN_ENTERTAINMENT_OFFERINGS = [

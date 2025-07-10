@@ -97,7 +97,6 @@ export interface GovernmentSite extends BaseSite {
 export interface EntertainmentSite extends BaseSite {
   type: "entertainment";
   venueType?: string;
-  performances?: string;
   owner?: string;
   cost?: string;
 }

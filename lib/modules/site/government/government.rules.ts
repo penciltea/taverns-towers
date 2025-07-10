@@ -1,4 +1,4 @@
-import { GovernmentSite, SiteCondition, SiteGenerationInput, SiteSize } from "@/interfaces/site.interface";
+import { GovernmentSite, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
