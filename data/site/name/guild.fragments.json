@@ -1,12 +1,6 @@
 [
     {
         "type": "prefix",
-        "value": "Crimson",
-        "weight": 1,
-        "siteType": ["guild"]
-    },
-    {
-        "type": "prefix",
         "value": "Storm",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Mountains", "Hills"],

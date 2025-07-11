@@ -57,15 +57,6 @@
     },
     {
         "type": "prefix",
-        "value": "Iron",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Mountains", "Hills"],
-        "tags": ["Mining Camp", "Fortress"],
-        "siteType": ["shop"],
-        "shopType": ["blacksmith"]
-    },
-    {
-        "type": "prefix",
         "value": "Sunset",
         "climate": ["Temperate", "Dry", "Continental"],
         "terrain": ["Plains", "Coast"],
@@ -82,6 +73,84 @@
         "siteType": ["shop"],
         "shopType": ["jeweler"]
     },
+    {
+        "type": "prefix",
+        "value": "Iron",
+        "weight": 1,
+        "shopType": ["blacksmith", "armory", "weaponsmith", "toolsmith", "tanner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Steel",
+        "weight": 1,
+        "shopType": ["weaponsmith", "armory", "blacksmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bronze",
+        "weight": 1,
+        "shopType": ["blacksmith", "carpenter", "glassblower"]
+    },
+    {
+        "type": "prefix",
+        "value": "Copper",
+        "weight": 1,
+        "shopType": ["glassblower", "tinker", "toolsmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brass",
+        "weight": 1,
+        "shopType": ["clockmaker", "tinker", "toolsmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Pewter",
+        "weight": 1,
+        "shopType": ["trinketShop", "tinker", "toyMaker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mercury",
+        "weight": 1,
+        "shopType": ["alchemist", "apothecary", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Electrum",
+        "weight": 1,
+        "shopType": ["magic", "scrollShop", "enchanter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mithril",
+        "weight": 1,
+        "shopType": ["weaponsmith", "magic", "armory", "enchanter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Adamant",
+        "weight": 1,
+        "shopType": ["weaponsmith", "armory", "blacksmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Platinum",
+        "weight": 1,
+        "shopType": ["jeweler", "perfumer", "tailor"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 1,
+        "shopType": ["jeweler", "haberdasher", "milliner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silver",
+        "weight": 1,
+        "shopType": ["jeweler", "accessories", "perfumer"]
+    }
 
 
 
@@ -179,7 +248,7 @@
         "value": "Anvil",
         "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory"]
+        "shopType": ["blacksmith", "armory", "weaponsmith"]
     },
     {
         "type": "noun",

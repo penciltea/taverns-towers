@@ -9,16 +9,6 @@
         "value": "Iron",
         "weight": 2
     },
-    { 
-        "type": "prefix",
-        "value": "Silver",
-        "weight": 1
-    },
-    {
-        "type": "prefix",
-        "value": "Golden",
-        "weight": 2
-    },
     {
         "type": "prefix",
         "value": "Goldenleaf",
@@ -50,6 +40,17 @@
         "type": "prefix",
         "value": "Whispering",
         "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Leaning"
+    },
+    {
+        "type": "prefix",
+        "value": "Black",
+        "climate": ["Temperate", "Continental", "Polar"],
+        "terrain": ["Forest", "Mountains", "Tundra"],
+        "tags": ["infested", "Isolated"]
     },
     {
         "type": "prefix",
@@ -109,20 +110,7 @@
     },
     {
         "type": "prefix",
-        "value": "Golden",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Hills"],
-        "tags": ["Capital", "Trade Hub"]
-    },
-    {
-        "type": "prefix",
         "value": "Sable",
-        "weight": 1,
-        "siteType": ["residence", "guild"]
-    },
-    {
-        "type": "prefix",
-        "value": "Silver",
         "weight": 1,
         "siteType": ["residence", "guild"]
     },
@@ -144,45 +132,119 @@
         "weight": 1,
         "siteType": ["residence", "guild"]
     },
-
-
-
     {
-        "type": "suffix",
-        "value": "Rest",
+        "type": "prefix",
+        "value": "Crimson",
         "weight": 1
     },
     {
-        "type": "suffix",
-        "value": "Den",
-        "weight": 2
+        "type": "prefix",
+        "value": "Azure",
+        "weight": 1
     },
     {
-        "type": "suffix",
-        "value": "Roost",
-        "weight": 2
+        "type": "prefix",
+        "value": "Sable",
+        "weight": 1
     },
     {
-        "type": "suffix",
-        "value": "Lodge",
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Ivory",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Jade",
+        "weight": 1,
+        "terrain": ["forest", "jungle"]
+    },
+    {
+        "type": "prefix",
+        "value": "Obsidian",
+        "weight": 1,
+        "terrain": ["mountains", "underground"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silver",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Bronze",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Onyx",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Verdant",
+        "weight": 1,
+        "climate": ["tropical", "temperate"]
+    },
+    {
+        "type": "prefix",
+        "value": "Cerulean",
+        "weight": 1,
+        "terrain": ["coast", "river"]
+    },
+    {
+        "type": "prefix",
+        "value": "Amber",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Charcoal",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Rose",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Ashen",
+        "weight": 1,
+        "terrain": ["plains", "hills"],
+        "tags": ["overgrown", "infested"]
+    },
+    {
+        "type": "prefix",
+        "value": "Pale",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Lavender",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Scarlet",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Turquoise",
         "weight": 1
     },
 
 
 
-    {
-        "type": "suffix",
-        "value": "Brew",
-        "weight": 1
-    },
+
     {
         "type": "noun",
         "value": "Candle",
-        "weight": 1
-    },
-    {
-        "type": "noun",
-        "value": "Flagon",
         "weight": 1
     },
     {
@@ -385,7 +447,7 @@
     },
     {
         "type": "format",
-        "value": "{{adjective}} {{noun}} Hall",
+        "value": "{{prefix}} {{noun}} Hall",
         "weight": 1,
         "siteType": ["guild", "residence"]
     }

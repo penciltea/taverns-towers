@@ -1,12 +1,6 @@
 [
     {
         "type": "prefix",
-        "value": "Iron",
-        "weight": 2,
-        "siteType": ["government"]
-    },
-    {
-        "type": "prefix",
         "value": "High",
         "weight": 2,
         "siteType": ["government"]

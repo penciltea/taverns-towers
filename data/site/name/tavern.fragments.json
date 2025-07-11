@@ -1,5 +1,5 @@
 [
-    {
+  {
     "type": "prefix",
     "value": "Drunken",
     "climate": ["Temperate", "Continental", "Tropical"],
@@ -8,19 +8,53 @@
     "siteType": ["tavern"]
   },
   {
-    "type": "noun",
-    "value": "Mug",
-    "climate": ["Temperate", "Dry"],
-    "terrain": ["Plains", "Hills", "Desert"],
-    "tags": ["Border Post", "Garrison"],
-    "siteType": ["tavern"]
-  },
-  {
-    "type": "adjective",
+    "type": "prefix",
     "value": "Rusty",
     "climate": ["Temperate", "Continental", "Dry"],
     "terrain": ["Hills", "Mountains", "Plains"],
     "tags": ["Military Outpost", "Fortress"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Howling",
+    "climate": ["Polar", "Temperate"],
+    "terrain": ["Mountains", "Tundra"],
+    "tags": ["Isolated", "Fortress"],
+    "siteType": ["tavern"]
+  },
+
+  
+
+  {
+      "type": "suffix",
+      "value": "Rest",
+      "siteType": ["tavern"]
+  },
+  {
+      "type": "suffix",
+      "value": "Den",
+      "siteType": ["tavern"]
+  },
+  {
+      "type": "suffix",
+      "value": "Roost",
+      "siteType": ["tavern"]
+  },
+  {
+      "type": "suffix",
+      "value": "Lodge",
+      "siteType": ["tavern"]
+  },
+
+  
+  
+  {
+    "type": "noun",
+    "value": "Stag",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Forest", "Hills"],
+    "tags": ["Trade Hub", "Hidden"],
     "siteType": ["tavern"]
   },
   {
@@ -32,11 +66,11 @@
     "siteType": ["tavern"]
   },
   {
-    "type": "prefix",
-    "value": "Golden",
-    "climate": ["Temperate", "Tropical"],
-    "terrain": ["Coast", "Forest"],
-    "tags": ["Port", "Trade Hub"],
+    "type": "noun",
+    "value": "Mug",
+    "climate": ["Temperate", "Dry"],
+    "terrain": ["Plains", "Hills", "Desert"],
+    "tags": ["Border Post", "Garrison"],
     "siteType": ["tavern"]
   },
   {
@@ -46,39 +80,7 @@
     "terrain": ["Mountains", "Forest"],
     "tags": ["Ancient Ruins", "Fortress"],
     "siteType": ["tavern"]
-  },
-  {
-    "type": "person",
-    "value": "Bran",
-    "climate": ["Temperate", "Continental"],
-    "terrain": ["Forest", "Plains"],
-    "tags": ["hidden", "Military Outpost"],
-    "siteType": ["tavern"]
-  },
-  {
-    "type": "adjective",
-    "value": "Howling",
-    "climate": ["Polar", "Temperate"],
-    "terrain": ["Mountains", "Tundra"],
-    "tags": ["Isolated", "Fortress"],
-    "siteType": ["tavern"]
-  },
-  {
-    "type": "noun",
-    "value": "Stag",
-    "climate": ["Temperate", "Continental"],
-    "terrain": ["Forest", "Hills"],
-    "tags": ["Trade Hub", "Hidden"],
-    "siteType": ["tavern"]
-  },
-  {
-    "type": "prefix",
-    "value": "Silver",
-    "climate": ["Temperate", "Continental", "Polar"],
-    "terrain": ["Mountains", "Hills", "Tundra"],
-    "tags": ["Mining Camp", "Garrison"],
-    "siteType": ["tavern"]
-  },
+  }, 
   {
     "type": "noun",
     "value": "Goblet",
@@ -86,23 +88,7 @@
     "terrain": ["Plains", "river", "Forest"],
     "tags": ["Arcane Nexus", "Trade Hub"],
     "siteType": ["tavern"]
-  },
-  {
-    "type": "person",
-    "value": "Elara",
-    "climate": ["Temperate", "Tropical"],
-    "terrain": ["Forest", "Coast"],
-    "tags": ["hidden", "Druidic"],
-    "siteType": ["tavern"]
-  },
-  {
-    "type": "adjective",
-    "value": "Leaning",
-    "climate": ["Temperate", "Dry"],
-    "terrain": ["Desert", "Plains"],
-    "tags": ["nomadic", "Overgrown"],
-    "siteType": ["tavern"]
-  },
+  }, 
   {
     "type": "noun",
     "value": "Anchor",
@@ -111,12 +97,16 @@
     "tags": ["Port", "Garrison"],
     "siteType": ["tavern"]
   },
+
+
+
+
   {
-    "type": "prefix",
-    "value": "Black",
-    "climate": ["Temperate", "Continental", "Polar"],
-    "terrain": ["Forest", "Mountains", "Tundra"],
-    "tags": ["infested", "Isolated"],
+    "type": "person",
+    "value": "Bran",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Forest", "Plains"],
+    "tags": ["hidden", "Military Outpost"],
     "siteType": ["tavern"]
   }
 ]
