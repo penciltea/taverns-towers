@@ -4,12 +4,15 @@ import { weightedRandom } from "@/lib/util/randomValues";
 import { filterByAttributes } from "../name/filterByAttributes";
 import { groupFragmentsByType } from "../name/groupFragmentsByType";
 import { filterBySubType } from "../name/filterBySubtype";
+import { toTitleCase } from "@/lib/util/stringFormats";
 
 export const shopNameGenerator: SiteNameGenerator = {
   generateName(fragments: GeneratorSiteFragmentPlain[], filters: GenerateSiteNameOptions): string {
-    // Step 1: Common filters (siteType, tags, terrain, etc)
     console.log("filters: ", filters);
     console.log("filters.data: ", filters.data);
+
+
+    // Step 1: Common filters (siteType, tags, terrain, etc)
     let filtered = filterByAttributes(fragments, filters);
 
     // Step 2: Apply `shopType` filtering via helper (handles data fallback)
@@ -26,15 +29,15 @@ export const shopNameGenerator: SiteNameGenerator = {
     // Step 4: Pick a format template (fragment or fallback)
     const fallbackFormats = [
       "The {{prefix}} {{noun}}",
-      "{{person}}'s {{shopType}}",
-      "The {{shopType}} of {{prefix}}"
+      "{{person}}'s {{shopName}}",
+      "The {{shopName}} of {{prefix}}"
     ];
 
     const formatFragment = weightedRandom(grouped.format);
     const fallbackFormatFragment = weightedRandom(
       fallbackFormats.map(fmt => ({ value: fmt, weight: 1 }))
     );
-    const formatTemplate = formatFragment?.value || fallbackFormatFragment?.value || "The {{shopType}}";
+    const formatTemplate = formatFragment?.value || fallbackFormatFragment?.value || "The {{shopName}}";
 
     // Step 5: Fill in placeholders
     const usedFragments: Record<string, string[]> = {
@@ -46,8 +49,17 @@ export const shopNameGenerator: SiteNameGenerator = {
 
     const getReplacement = (key: string): string => {
       switch (key) {
-        case "shopType":
-          return shopTypes?.[0] ?? "";
+        case "shopName": {
+            const pool = grouped.shopName ?? [];
+            if (pool.length > 0) {
+                const selected = weightedRandom(pool);
+                return selected?.value ?? "";
+            }
+
+            // fallback: convert raw shopType to Title Case
+            const fallback = shopTypes?.[0];
+            return fallback ? toTitleCase(fallback) : "";
+        }
 
         case "prefix":
         case "suffix":

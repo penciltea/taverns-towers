@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 export interface GeneratorSiteFragmentPlain {
-  type: 'prefix' | 'suffix' | 'noun' | 'person' | 'shopType' | 'format';
+  type: 'prefix' | 'suffix' | 'noun' | 'person' | 'shopName' | 'format';
   weight?: number;
   value: string;
   siteType?: string[];     // e.g. ["tavern"]

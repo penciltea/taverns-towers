@@ -344,6 +344,378 @@
     },
 
 
+
+    {
+        "type": "shopName",
+        "value": "Blacksmith",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith"]
+    },
+    {
+        "type": "shopName",
+        "value": "Smith",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory"]
+    },
+    {
+        "type": "shopName",
+        "value": "Smithery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory"]
+    },
+    {
+        "type": "shopName",
+        "value": "Armory",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["armory"]
+    },
+    {
+        "type": "shopName",
+        "value": "Arms",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["armory"]
+    },
+    {
+        "type": "shopName",
+        "value": "Carpenter",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["carpenter"]
+    },
+    {
+        "type": "shopName",
+        "value": "Glassblower",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["glassblower"]
+    },
+    {
+        "type": "shopName",
+        "value": "Glass",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["glassblower"]
+    },
+    {
+        "type": "shopName",
+        "value": "Fletcher",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["fletcher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Tannery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tanner"]
+    },
+    {
+        "type": "shopName",
+        "value": "Leatherworker",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tanner"]
+    },
+    {
+        "type": "shopName",
+        "value": "Weaponsmith",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["weaponsmith"]
+    },
+    {
+        "type": "shopName",
+        "value": "Weapons",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["weaponsmith"]
+    },
+    {
+        "type": "shopName",
+        "value": "Accessories",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["accessories"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cobbler",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["cobbler"]
+    },
+    {
+        "type": "shopName",
+        "value": "Haberdasher",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["haberdasher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Shoes",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["haberdasher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Milliner",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["milliner"]
+    },
+    {
+        "type": "shopName",
+        "value": "Hats",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["milliner"]
+    },
+    {
+        "type": "shopName",
+        "value": "Tailor",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tailor"]
+    },
+    {
+        "type": "shopName",
+        "value": "Clothes",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "haberdasher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Jeweler",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "shopName",
+        "value": "Jewels",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["jeweler"]
+    },
+    {
+        "type": "shopName",
+        "value": "Finery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "accessories", "perfumer"]
+    },
+    {
+        "type": "shopName",
+        "value": "Perfumer",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["perfumer"]
+    },
+    {
+        "type": "shopName",
+        "value": "Bakery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Baked Goods",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Brewery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["brewery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Butcher",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["butcher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Meats",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["butcher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Meat",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["butcher"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cheesemonger",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["cheesemonger"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cheese",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["cheesemonger"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cheeses",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["cheesemonger"]
+    },
+    {
+        "type": "shopName",
+        "value": "Confectionery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["confectionery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Sweets",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["confectionery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Fishmonger",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger"]
+    },
+    {
+        "type": "shopName",
+        "value": "Fish",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger"]
+    },
+    {
+        "type": "shopName",
+        "value": "Meadery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["meadery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Produce Market",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["produce"]
+    },
+    {
+        "type": "shopName",
+        "value": "Produce",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["produce"]
+    },
+    {
+        "type": "shopName",
+        "value": "Spice Merchant",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["spiceMerchant"]
+    },
+    {
+        "type": "shopName",
+        "value": "Spices",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["spiceMerchant"]
+    },
+    {
+        "type": "shopName",
+        "value": "Tea House",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Teas",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Tea",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Coffee Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Coffee",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Coffees",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse"]
+    },
+    {
+        "type": "shopName",
+        "value": "Winery",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["winery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Wines",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["winery"]
+    },
+    {
+        "type": "shopName",
+        "value": "Alchemist",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["alchemist"]
+    },
+    {
+        "type": "shopName",
+        "value": "Apothecary",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["apothecary"]
+    },
     {
         "type": "shopName",
         "value": "Books",
@@ -358,11 +730,326 @@
         "siteType": ["shop"],
         "shopType": ["bookstore"]
     },
+    {
+        "type": "shopName",
+        "value": "Tomes",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["bookstore"]
+    },
+    {
+        "type": "shopName",
+        "value": "Diviner",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["divination"]
+    },
+    {
+        "type": "shopName",
+        "value": "Divination",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["divination"]
+    },
+    {
+        "type": "shopName",
+        "value": "Divination Parlor",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["divination"]
+    },
+    {
+        "type": "shopName",
+        "value": "Enchanter",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["enchanter"]
+    },
+    {
+        "type": "shopName",
+        "value": "Enchantments",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["enchanter"]
+    },
+    {
+        "type": "shopName",
+        "value": "Herbalist",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["herbalist"]
+    },
+    {
+        "type": "shopName",
+        "value": "Herbs",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["herbalist"]
+    },
+    {
+        "type": "shopName",
+        "value": "Magic Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "shopName",
+        "value": "Arcana",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["magic"]
+    },
+    {
+        "type": "shopName",
+        "value": "Mapmaker",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["mapmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Maps",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["mapmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cartography",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["mapmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Cartographer",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["mapmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Scroll Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["scrollShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Scrolls",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["scrollShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Curiosity Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Curiosities",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Curios",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop", "trinketShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Oddities",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Keepsakes",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop", "trinketShop", "generalStore", "pawnShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Clockmaker",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["clockmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Clocks",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["clockmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Timepieces",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["clockmaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "General Store",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore"]
+    },
+    {
+        "type": "shopName",
+        "value": "General Goods",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["generalStore"]
+    },
+    {
+        "type": "shopName",
+        "value": "Pawn Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["pawnShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Pet Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["petShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Pets",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["petShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Companions",
+        "siteType": ["shop"],
+        "shopType": ["petShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Provisioner",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["provisioner"]
+    },
+    {
+        "type": "shopName",
+        "value": "Provisions",
+        "siteType": ["shop"],
+        "shopType": ["provisioner"]
+    },
+    
+    {
+        "type": "shopName",
+        "value": "Outfitter",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["provisioner"]
+    },    
+    {
+        "type": "shopName",
+        "value": "Pantry",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["provisioner", "generalStore", "bakery", "butcher", "produce", "cheesemonger", "spiceMerchant"]
+    },
+    {
+        "type": "shopName",
+        "value": "Salvager",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["salvager"]
+    },
+    {
+        "type": "shopName",
+        "value": "Stable",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["stable"]
+    },
+    {
+        "type": "shopName",
+        "value": "Sundries",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["sundries"]
+    },
+    {
+        "type": "shopName",
+        "value": "Tinker",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tinker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Toolsmith",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["toolsmith"]
+    },
+    {
+        "type": "shopName",
+        "value": "Toy Maker",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["toyMaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Toys",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["toyMaker"]
+    },
+    {
+        "type": "shopName",
+        "value": "Trinket Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["trinketShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Trinkets",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["trinketShop"]
+    },
+    {
+        "type": "shopName",
+        "value": "Shop",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["other"]
+    },
+
+
 
 
     {
         "type": "format",
-        "value": "The {{shopName}} of {{prefix}}",
+        "value": "The {{shopName}} of {{suffix}}",
+        "weight": 2,
+        "siteType": [ "shop" ]
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}} {{shopName}}",
         "weight": 2,
         "siteType": [ "shop" ]
     },

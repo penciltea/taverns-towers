@@ -10,7 +10,6 @@ import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
 
 export async function generateSiteName({
-  category,
   siteType,
   shopType,
   guildType,
@@ -19,7 +18,6 @@ export async function generateSiteName({
   tags,
   data
 }: {
-  category?: string;
   shopType?: string;   // Form uses string value
   guildType?: string;  // Form uses string value
   siteType?: string[];
@@ -42,7 +40,6 @@ export async function generateSiteName({
     val === undefined ? undefined : Array.isArray(val) ? val : [val];
 
   return dispatchSiteName(fragments, {
-    category,
     siteType,
     shopType: toArray(shopType),
     guildType: toArray(guildType),
