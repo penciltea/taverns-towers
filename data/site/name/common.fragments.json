@@ -1,14 +1,6 @@
 [
-        {
-        "type": "prefix",
-        "value": "Stone",
-        "weight": 1
-    },
-    {
-        "type": "prefix",
-        "value": "Iron",
-        "weight": 2
-    },
+    
+    
     {
         "type": "prefix",
         "value": "Goldenleaf",
@@ -199,6 +191,11 @@
     {
         "type": "prefix",
         "value": "Amber",
+        "weight": 1
+    },
+    {
+        "type": "prefix",
+        "value": "Emerald",
         "weight": 1
     },
     {

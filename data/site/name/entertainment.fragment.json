@@ -5,72 +5,599 @@
         "weight": 2,
         "siteType": ["entertainment"]
     },
+    {
+        "type": "prefix",
+        "value": "Velvet",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "music", "theater"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twinkling",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "festival", "street"]
+    },
+    {
+        "type": "prefix",
+        "value": "Roaring",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "duel", "fightingPit"],
+        "terrain": ["Mountains", "Urban"],
+        "climate": ["Temperate", "Dry"],
+        "tags": ["Military Outpost", "Garrison"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "music", "gambling"],
+        "terrain": ["Urban"],
+        "climate": ["Temperate", "Continental"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Winking",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "gambling"]
+    },
+    {
+        "type": "prefix",
+        "value": "Spinning",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "festival", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Dusky",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "music", "bathhouse"],
+        "terrain": ["Coast", "Forest"],
+        "climate": ["Tropical", "Temperate"],
+        "tags": ["Hidden", "Port"]
+    },
+    {
+        "type": "prefix",
+        "value": "Harmonic",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "music", "magic", "theater"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brazen",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "duel", "arena"],
+        "tags": ["Military Outpost", "Garrison", "Criminal Hideout"]
+    },
+    {
+        "type": "prefix",
+        "value": "Painted",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "festival", "street"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mystic",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "bard", "theater"],
+        "tags": ["Arcane Nexus", "Sacred Site"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ebon",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "brothel", "gambling"],
+        "climate": ["Dry", "Continental"],
+        "tags": ["Underground", "Criminal Hideout"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crimson",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "fightingPit", "music"],
+        "tags": ["Criminal Hideout", "Hidden"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gilded",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "bard", "music", "gambling"]
+    },
+    {
+        "type": "prefix",
+        "value": "Howling",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "arena", "duel"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bubbling",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "brothel", "festival"]
+    },
+    {
+        "type": "prefix",
+        "value": "Blazing",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "festival", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Jade",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "brothel", "theater"]
+    },
+    {
+        "type": "prefix",
+        "value": "Rumbling",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "racing", "duel"]
+    },
+    {
+        "type": "prefix",
+        "value": "Moonlit",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "brothel", "magic", "bathhouse"]
+    },
+    {
+        "type": "prefix",
+        "value": "Wandering",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "street", "circusTent"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brass",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "circusTent", "racing"]
+    },
+    {
+        "type": "prefix",
+        "value": "Cracked",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "gambling", "duel"]
+    },
+    {
+        "type": "prefix",
+        "value": "Singing",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "music", "theater"]
+    },
+    {
+        "type": "prefix",
+        "value": "Radiant",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "theater", "bard", "festival"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twilight",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "bathhouse", "brothel", "theater"]
+    },
+    {
+        "type": "prefix",
+        "value": "Tideborn",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "music", "brothel"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Fishing", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sandblown",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "circusTent", "bard"],
+        "climate": ["Dry"],
+        "terrain": ["Desert", "Plains"],
+        "tags": ["Nomadic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frostbitten",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "bard", "music"],
+        "climate": ["Polar"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["Remote", "Isolated"]
+    },
+    {
+        "type": "prefix",
+        "value": "Misty",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "brothel", "street"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Swamp", "River"],
+        "tags": ["Hidden", "Arcane Nexus"]
+    },
+    {
+        "type": "prefix",
+        "value": "Craterborn",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "duel", "fightingPit"],
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Infested", "Garrison"]
+    },
+    {
+        "type": "prefix",
+        "value": "Junglewoven",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "circusTent", "magic"],
+        "climate": ["Tropical"],
+        "terrain": ["Jungle"],
+        "tags": ["Overgrown", "Druidic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Stormbound",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "arena", "fightingPit"],
+        "climate": ["Continental", "Temperate"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Capital", "Fortress"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sunken",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "brothel", "gambling"],
+        "climate": ["Tropical", "Temperate"],
+        "terrain": ["Swamp", "Urban"],
+        "tags": ["Hidden", "Criminal Hideout"]
+    },
+    {
+        "type": "prefix",
+        "value": "Emberlit",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "arena", "duel"],
+        "climate": ["Dry", "Temperate"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Military Outpost", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Waveswept",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "music", "brothel"],
+        "climate": ["Temperate"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Fishing"]
+    },
 
 
 
 
-    
     {
         "type": "suffix",
         "value": "Stage",
         "weight": 1,
         "siteType": ["entertainment"]
     },
+    {
+        "type": "suffix",
+        "value": "Spectacle",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["magic"]
+    },
+    {
+        "type": "suffix",
+        "value": "Carnival",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "festival"]
+    },
+    {
+        "type": "suffix",
+        "value": "Ring",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "fightingPit", "arena"]
+    },
+    {
+        "type": "suffix",
+        "value": "Show",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "music"]
+    },
+    {
+        "type": "suffix",
+        "value": "Soak",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse"]
+    },
+    {
+        "type": "suffix",
+        "value": "Revue",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "bard"]
+    },
+    {
+        "type": "suffix",
+        "value": "Track",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "suffix",
+        "value": "Parade",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "street"]
+    },
+    {
+        "type": "suffix",
+        "value": "House",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "theater", "magic"]
+    },
+    {
+        "type": "suffix",
+        "value": "Cabaret",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "music", "theater"]
+    },
+    {
+        "type": "suffix",
+        "value": "Falls",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "music", "brothel"],
+        "climate": ["Temperate"],
+        "terrain": ["River", "Hills"],
+        "tags": ["Remote", "Sacred Site"]
+    },
 
+    
 
 
     {
         "type": "noun",
+        "value": "Tide",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "bathhouse", "music"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Trade Hub"]
+    },
+    {
+        "type": "noun",
+        "value": "Dune",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "circusTent", "bard"],
+        "climate": ["Dry"],
+        "terrain": ["Desert"],
+        "tags": ["Nomadic"]
+    },
+    {
+        "type": "noun",
+        "value": "Ember",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "fightingPit", "magic"],
+        "climate": ["Dry", "Temperate"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Military Outpost"]
+    },
+    {
+        "type": "noun",
+        "value": "Frost",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "bard"],
+        "climate": ["Polar"],
+        "terrain": ["Tundra", "Mountains"],
+        "tags": ["Remote", "Isolated"]
+    },
+    {
+        "type": "noun",
         "value": "Theater",
+        "siteType": ["entertainment"],
+        "venueType": ["theater"],
         "climate": ["Temperate", "Continental"],
         "terrain": ["Urban"],
-        "tags": ["entertainment"],
-        "siteType": ["entertainment"],
-        "venueType": ["Theater"]
+        "tags": ["entertainment"]
     },
     {
         "type": "noun",
         "value": "Arcade",
+        "siteType": ["entertainment"],
+        "venueType": ["street"],
         "climate": ["Temperate", "Continental"],
         "terrain": ["Urban"],
-        "tags": ["entertainment"],
-        "siteType": ["entertainment"],
-        "venueType": ["Street Performance Zone"]
+        "tags": ["entertainment"]
     },
     {
         "type": "noun",
         "value": "Coliseum",
+        "siteType": ["entertainment"],
+        "venueType": ["arena"],
         "climate": ["Temperate", "Dry"],
         "terrain": ["Urban", "Plains"],
-        "tags": ["entertainment"],
-        "siteType": ["entertainment"],
-        "venueType": ["Arena / Coliseum"]
+        "tags": ["entertainment"]
     },
     {
         "type": "noun",
         "value": "Bathhouse",
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse"],
         "climate": ["Temperate", "Continental"],
         "terrain": ["Urban"],
-        "tags": ["entertainment"],
-        "siteType": ["entertainment"],
-        "venueType": ["Bathhouse"]
+        "tags": ["entertainment"]
     },
     {
         "type": "noun",
         "value": "Arena",
+        "siteType": ["entertainment"],
+        "venueType": ["arena"],
         "climate": ["Temperate", "Dry"],
         "terrain": ["Plains", "Urban"],
-        "tags": ["Entertainment"],
-        "siteType": ["entertainment"],
-        "venueType": ["Arena / Coliseum"]
+        "tags": ["entertainment"]
     },
     {
         "type": "noun",
-        "value": "Theater",
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Urban"],
-        "tags": ["entertainment"],
+        "value": "Troupe",
+        "weight": 2,
         "siteType": ["entertainment"],
-        "venueType": ["Theater"]
+        "venueType": ["bard", "theater", "street"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["Trade Hub", "Festival Grounds"]
+    },
+    {
+        "type": "noun",
+        "value": "Folly",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "theater"],
+        "climate": ["Temperate"],
+        "terrain": ["Hills", "Urban"],
+        "tags": ["Festival Grounds", "Overgrown"]
+    },
+    {
+        "type": "noun",
+        "value": "Jest",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "theater", "street"]
+    },
+    {
+        "type": "noun",
+        "value": "Chorus",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "bard"]
+    },
+    {
+        "type": "noun",
+        "value": "Curtain",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["theater"]
+    },
+    {
+        "type": "noun",
+        "value": "Cauldron",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["magic"],
+        "climate": ["Tropical"],
+        "terrain": ["Swamp", "Jungle"],
+        "tags": ["Arcane Nexus"]
+    },
+    {
+        "type": "noun",
+        "value": "Dice",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["gambling"],
+        "tags": ["Port", "Trade Hub", "Hidden"]
+    },
+    {
+        "type": "noun",
+        "value": "Delight",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "bathhouse"]
+    },
+    {
+        "type": "noun",
+        "value": "Specter",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "theater"]
+    },
+    {
+        "type": "noun",
+        "value": "Torch",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "duel"]
+    },
+    {
+        "type": "noun",
+        "value": "Mist",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "brothel", "street"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Swamp", "River", "Urban"],
+        "tags": ["Hidden", "Arcane Nexus"]
+    },
+    {
+        "type": "noun",
+        "value": "Basin",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse", "gambling", "music"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Hills", "River"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "type": "noun",
+        "value": "Canopy",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "circusTent", "magic"],
+        "climate": ["Tropical"],
+        "terrain": ["Jungle", "Forest"],
+        "tags": ["Overgrown", "Hidden"]
+    },
+    {
+        "type": "noun",
+        "value": "Crater",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "arena", "fightingPit"],
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Infested", "Mining Camp"]
     }
 ]

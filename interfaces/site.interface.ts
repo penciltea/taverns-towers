@@ -150,6 +150,8 @@ export interface GenerateSiteNameOptions {
   siteType?: string[];
   shopType?: string[];
   guildType?: string[];
+  venueType?: string[];
+  functionType?: string[];
   data?: Partial<SiteFormData>;
 }
 

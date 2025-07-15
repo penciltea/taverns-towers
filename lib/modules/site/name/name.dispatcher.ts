@@ -4,9 +4,15 @@ import { GenerateSiteNameOptions, SiteNameGenerator } from "@/interfaces/site.in
 //import { tavernNameGenerator } from "../tavern/tavern.name.generator";
 import { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { shopNameGenerator } from "../shop/shop.name.generator";
+import { guildNameGenerator } from "../guild/guild.name.generator";
+import { entertainmentNameGenerator } from "../entertainment/entertainment.name.generator";
+import { governmentNameGenerator } from "../government/government.name.generator";
 
 const siteNameGeneratorsByType: Record<string, SiteNameGenerator> = {
-  shop: shopNameGenerator
+  shop: shopNameGenerator,
+  guild: guildNameGenerator,
+  entertainment: entertainmentNameGenerator,
+  government: governmentNameGenerator
   //temple: templeNameGenerator,
   //tavern: tavernNameGenerator,
 };

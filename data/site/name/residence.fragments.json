@@ -1,193 +1,422 @@
 [
-    {
-      "type": "prefix",
-      "value": "Wren",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Dun",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Hearth",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Ash",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Thistle",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Oak",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Bramble",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Wind",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Fog",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "prefix",
-      "value": "Sun",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
+  {
+    "type": "prefix",
+    "value": "Wren",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dun",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Hearth",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Ash",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Thistle",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Oak",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bramble",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wind",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Fog",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sun",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Rose",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Silver",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Hollow",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bell",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Clover",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Duskwind",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Elm",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Tide",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Coast", "River"],
+    "climate": ["Temperate", "Tropical"]
+  },
+  {
+    "type": "prefix",
+    "value": "Frost",
+    "weight": 1,
+    "siteType": ["residence"],
+    "climate": ["Polar", "Dry"],
+    "terrain": ["Tundra", "Mountains"]
+  },
+  {
+    "type": "prefix",
+    "value": "Moss",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Swamp", "Forest"],
+    "tags": ["Druidic", "Overgrown"]
+  },
+  {
+    "type": "prefix",
+    "value": "Cinder",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Volcanic", "Mountains"],
+    "climate": ["Dry"]
+  },
+  {
+    "type": "prefix",
+    "value": "Reed",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Swamp", "River"],
+    "tags": ["Fishing"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bluff",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Hills", "Coast"],
+    "tags": ["Remote"]
+  },
+  {
+    "type": "prefix",
+    "value": "Drift",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Ember",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sable",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Glint",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Hush",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Mirth",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Petal",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "prefix",
+    "value": "Burrow",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Hills", "Underground"],
+    "tags": ["Hidden", "Isolated"]
+  },
+  {
+    "type": "prefix",
+    "value": "Glacier",
+    "weight": 1,
+    "siteType": ["residence"],
+    "climate": ["Polar"],
+    "terrain": ["Tundra", "Mountains"]
+  },
+  {
+    "type": "prefix",
+    "value": "Thorn",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Jungle", "Forest"],
+    "tags": ["Overgrown", "Druidic"]
+  },
+  {
+    "type": "prefix",
+    "value": "Pebble",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["River", "Plains"],
+    "climate": ["Temperate"]
+  },
+  {
+    "type": "prefix",
+    "value": "Brine",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Coast"],
+    "climate": ["Tropical", "Dry"],
+    "tags": ["Fishing", "Port"]
+  },
+  {
+    "type": "prefix",
+    "value": "Gale",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Plains", "Hills"],
+    "climate": ["Dry", "Continental"]
+  },
 
 
 
 
 
-    {
-      "type": "suffix",
-      "value": "loft",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "ridge",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "grove",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Hall",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Manor",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Cottage",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Keep",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Lodge",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "suffix",
-      "value": "Estate",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
+  {
+    "type": "suffix",
+    "value": "loft",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "ridge",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "grove",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "glen",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "mere",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "hollow",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "fall",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "brook",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "bough",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "fen",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Swamp", "River"],
+    "climate": ["Temperate", "Tropical"]
+  },
+  {
+    "type": "suffix",
+    "value": "dell",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Forest", "Hills"],
+    "climate": ["Temperate"]
+  },
+  {
+    "type": "suffix",
+    "value": "hearth",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "suffix",
+    "value": "barrow",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Hills", "Underground"],
+    "tags": ["Ancient Ruins", "Isolated"]
+  },
+  {
+    "type": "suffix",
+    "value": "point",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Coast", "Hills"]
+  },
+  {
+    "type": "suffix",
+    "value": "watch",
+    "weight": 1,
+    "siteType": ["residence"],
+    "tags": ["Border Post", "Remote"]
+  },
+  {
+    "type": "suffix",
+    "value": "shade",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Forest", "Jungle"],
+    "climate": ["Tropical"]
+  },
+  {
+    "type": "suffix",
+    "value": "cliff",
+    "weight": 1,
+    "siteType": ["residence"],
+    "terrain": ["Coast", "Mountains"]
+  },
+  {
+    "type": "suffix",
+    "value": "nest",
+    "weight": 1,
+    "siteType": ["residence"],
+    "tags": ["Isolated", "Hidden"]
+  },
 
 
 
-
-    {
-      "type": "name",
-      "value": "Wrenloft House",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Dunridge Cottage",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Hearthmere Hall",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Ashgrove Lodge",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "The Silver Lantern",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Thistlebank Manor",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Oakhollow Residence",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "The Sable Hearth",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Windmere Estate",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
-    {
-      "type": "name",
-      "value": "Shadowbend Keep",
-      "weight": 1,
-      "siteType": ["residence"]
-    },
+  {
+    "type": "noun",
+    "value": "Hall",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "Manor",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "Cottage",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "Keep",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "Lodge",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "Estate",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
+  {
+    "type": "noun",
+    "value": "House",
+    "weight": 1,
+    "siteType": ["residence"]
+  },
 
 
-    {
-      "type": "format",
-      "value": "{{prefix}} {{suffix}}",
-      "weight": 1,
-      "siteType": ["residence"]
-    }
+
+  {
+    "type": "format",
+    "value": "{{prefix}}{{suffix}} {{noun}}",
+    "weight": 2, 
+    "siteType": ["residence"]
+  }
 ]

@@ -1,208 +1,484 @@
 [
     {
         "type": "prefix",
-        "value": "High",
-        "weight": 2,
-        "siteType": ["government"]
-    },
-    {
-        "type": "prefix",
-        "value": "Steel",
-        "weight": 2,
-        "siteType": ["government"]
-    },
-    {
-        "type": "prefix",
-        "value": "Watch",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "prefix",
         "value": "Civic",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["townHall", "mayor", "publicWork"]
+    },
+    {
+        "type": "prefix",
+        "value": "Imperial",
         "weight": 1,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["embassy", "command", "garrison"]
+    },
+    {
+        "type": "prefix",
+        "value": "Royal",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["embassy", "mayor", "townHall"]
+    },
+    {
+        "type": "prefix",
+        "value": "Postal",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["postOffice"]
+    },
+    {
+        "type": "prefix",
+        "value": "Signal",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["watch", "command", "guardhouse"]
     },
     {
         "type": "prefix",
         "value": "Granite",
         "weight": 1,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["courthouse", "garrison", "barracks"]
     },
     {
         "type": "prefix",
-        "value": "Lawkeeper's",
+        "value": "Ledger",
         "weight": 1,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["tax", "archive", "census"]
     },
     {
         "type": "prefix",
-        "value": "Silver",
+        "value": "Signal",
         "weight": 1,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["watch", "command", "guardhouse"]
     },
     {
         "type": "prefix",
-        "value": "Gilded",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Urban"],
-        "tags": ["Capital", "Trade Hub"],
-        "siteType": ["government"]
+        "value": "Iron",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["barracks", "command", "garrison"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frontline",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["recruit", "barracks", "drillYard"]
+    },
+    {
+        "type": "prefix",
+        "value": "Seal",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["customs", "permit", "embassy"]
     },
     {
         "type": "prefix",
         "value": "Golden",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Urban"],
-        "tags": ["Capital", "Trade Hub"],
-        "siteType": ["government"]
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["tax", "bank", "mayor"]
+    },
+    {
+        "type": "prefix",
+        "value": "Oathbound",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["courtier", "watch", "bounty"]
+    },
+    {
+        "type": "prefix",
+        "value": "Swift",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["postOffice", "employment", "recruit"]
+    },
+    {
+        "type": "prefix",
+        "value": "Copper",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["tax", "customs", "archive"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crown",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["mayor", "townHall", "embassy"]
+    },
+    {
+        "type": "prefix",
+        "value": "Unity",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["townHall", "employment", "publicWork"]
+    },
+    {
+        "type": "prefix",
+        "value": "Marble",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["courthouse", "townHall", "archive"]
+    },
+    {
+        "type": "prefix",
+        "value": "Boundary",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["customs", "postOffice"]
+    },
+
+
+
+    {
+        "type": "suffix",
+        "value": "Station",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "quartermaster", "recruit", "postOffice"]
+    },
+    {
+        "type": "suffix",
+        "value": "Hall",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["townHall", "mayor", "employment", "archive"]
+    },
+    {
+        "type": "suffix",
+        "value": "Office",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["tax", "census", "permit", "bounty", "employment", "customs"]
+    },
+    {
+        "type": "suffix",
+        "value": "Command",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["command", "garrison", "barracks"]
+    },
+    {
+        "type": "suffix",
+        "value": "Tower",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["watch", "guardhouse"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frost",
+        "weight": 1,
+        "climate": ["Polar"],
+        "terrain": ["Mountains", "Tundra"],
+        "tags": ["Military Outpost", "Remote"],
+        "siteType": ["government"],
+        "functionType": ["watch", "garrison", "barracks"]
+    },
+    {
+        "type": "prefix",
+        "value": "Dust",
+        "weight": 1,
+        "climate": ["Dry"],
+        "terrain": ["Desert", "Hills"],
+        "tags": ["Border Post", "Remote"],
+        "siteType": ["government"],
+        "functionType": ["customs", "recruit", "watch"]
+    },
+    {
+        "type": "prefix",
+        "value": "Jungle",
+        "weight": 1,
+        "climate": ["Tropical"],
+        "terrain": ["Jungle", "Swamp"],
+        "tags": ["Infested", "Hidden"],
+        "siteType": ["government"],
+        "functionType": ["prison", "guardhouse", "drillYard"]
+    },
+    {
+        "type": "prefix",
+        "value": "Storm",
+        "weight": 1,
+        "climate": ["Tropical", "Temperate"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Trade Hub"],
+        "siteType": ["government"],
+        "functionType": ["postOffice", "customs", "embassy"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ironroot",
+        "weight": 1,
+        "climate": ["Temperate"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Druidic", "Overgrown"],
+        "siteType": ["government"],
+        "functionType": ["publicWork", "townHall", "permit"]
+    },
+    {
+        "type": "prefix",
+        "value": "Volcanic",
+        "weight": 1,
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Military Outpost"],
+        "siteType": ["government"],
+        "functionType": ["drillYard", "command", "quartermaster"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mist",
+        "weight": 1,
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["River", "Swamp"],
+        "tags": ["Hidden", "Remote"],
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "bounty", "watch"]
+    },
+    {
+        "type": "prefix",
+        "value": "Granite",
+        "weight": 1,
+        "climate": ["Continental", "Dry"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Fortress", "Garrison"],
+        "siteType": ["government"],
+        "functionType": ["barracks", "garrison", "courthouse"]
+    },
+    {
+        "type": "prefix",
+        "value": "Rivergate",
+        "weight": 1,
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["River", "Urban"],
+        "tags": ["Port", "Trade Hub"],
+        "siteType": ["government"],
+        "functionType": ["customs", "postOffice", "archive"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ashen",
+        "weight": 1,
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Mountains"],
+        "tags": ["Ancient Ruins", "Military Outpost"],
+        "siteType": ["government"],
+        "functionType": ["recruit", "command", "quartermaster"]
     },
     
     {
         "type": "prefix",
-        "value": "Stormwatch",
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Coast", "Mountains"],
-        "tags": ["Military Outpost", "Fortress"],
-        "siteType": ["government"]
+        "value": "Ember",
+        "weight": 1,
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Desert"],
+        "tags": ["Military Outpost"],
+        "siteType": ["government"],
+        "functionType": ["drillYard", "command", "quartermaster"]
     },
     {
         "type": "prefix",
-        "value": "Cragstone",
-        "climate": ["Temperate", "Polar"],
+        "value": "Marsh",
+        "weight": 1,
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Swamp", "River"],
+        "tags": ["Remote", "Infested"],
+        "siteType": ["government"],
+        "functionType": ["prison", "guardhouse", "publicWork"]
+    },
+
+
+
+    {
+        "type": "suffix",
+        "value": "Spire",
+        "weight": 1,
+        "climate": ["Polar", "Continental"],
         "terrain": ["Mountains", "Tundra"],
-        "tags": ["Fortress", "Isolated"],
-        "siteType": ["government"]
-    },
-
-
-
-
-    {
-        "type": "suffix",
-        "value": "Hold",
-        "weight": 1,
-        "siteType": ["government"]
+        "tags": ["Watch", "Military Outpost"],
+        "siteType": ["government"],
+        "functionType": ["watch", "garrison", "command"]
     },
     {
         "type": "suffix",
-        "value": "Wall",
+        "value": "Dock",
         "weight": 1,
-        "siteType": ["government"]
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Trade Hub"],
+        "siteType": ["government"],
+        "functionType": ["customs", "postOffice", "quartermaster"]
     },
     {
         "type": "suffix",
-        "value": "Chambers",
+        "value": "Canopy",
         "weight": 1,
-        "siteType": ["government"]
+        "climate": ["Tropical"],
+        "terrain": ["Jungle", "Swamp"],
+        "tags": ["Overgrown", "Hidden"],
+        "siteType": ["government"],
+        "functionType": ["publicWork", "guardhouse", "prison"]
     },
     {
         "type": "suffix",
-        "value": "Seat",
+        "value": "Roost",
         "weight": 1,
-        "siteType": ["government"]
-    },
-
-
-
-        {
-        "type": "noun",
-        "value": "Keep",
-        "weight": 2,
-        "siteType": ["government"]
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Hills", "Forest"],
+        "tags": ["Remote", "Watch"],
+        "siteType": ["government"],
+        "functionType": ["watch", "recruit", "barracks"]
     },
     {
-        "type": "noun",
-        "value": "Citadel",
+        "type": "suffix",
+        "value": "Vault",
         "weight": 1,
-        "siteType": ["government"]
+        "climate": ["Continental"],
+        "terrain": ["Urban", "Mountains"],
+        "tags": ["Capital", "Hidden"],
+        "siteType": ["government"],
+        "functionType": ["archive", "tax", "courtier"]
     },
     {
-        "type": "noun",
-        "value": "Garrison",
-        "weight": 2,
-        "siteType": ["government"]
-    },
-    {
-        "type": "noun",
-        "value": "Post",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "noun",
+        "type": "suffix",
         "value": "Hall",
         "weight": 2,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["townHall", "mayor", "archive", "employment"]
     },
     {
-        "type": "noun",
-        "value": "Council",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "noun",
-        "value": "Tribunal",
+        "type": "suffix",
+        "value": "Office",
         "weight": 2,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["census", "mayor", "permit", "postOffice", "employment"]
     },
     {
-        "type": "noun",
-        "value": "Embassy",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "noun",
-        "value": "Harbor",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Coast", "Port"],
-        "tags": ["Port", "Trade Hub"],
-        "siteType": ["government"]
-    }, 
-    {
-        "type": "noun",
-        "value": "Bastion",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Hills"],
-        "tags": ["Fortress", "Military Outpost"],
-        "siteType": ["government"]
-    },
-    {
-        "type": "noun",
-        "value": "Barracks",
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Hills"],
-        "tags": ["Military Outpost", "Garrison"],
-        "siteType": ["government"]
-    },
-
-
-
-
-    {
-        "type": "format",
-        "value": "The Hall of {{noun}}",
+        "type": "suffix",
+        "value": "Tower",
         "weight": 2,
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["watch", "command", "embassy"]
     },
     {
+        "type": "suffix",
+        "value": "House",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "mayor", "tax", "customs"]
+    },
+    {
+        "type": "suffix",
+        "value": "Yard",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["drillYard", "recruit", "barracks"]
+    },
+    {
+        "type": "suffix",
+        "value": "Keep",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["barracks", "garrison", "prison"]
+    },
+    {
+        "type": "suffix",
+        "value": "Station",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["quartermaster", "watch", "customs"]
+    },
+    {
+        "type": "suffix",
+        "value": "Wing",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["archive", "embassy", "townHall"]
+    },
+    {
+        "type": "suffix",
+        "value": "Chamber",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["courtier", "mayor", "permit"]
+    },
+    {
+        "type": "suffix",
+        "value": "Outpost",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["recruit", "bounty", "watch"]
+    },
+
+
+
+
+    {
+        "type": "noun",
+        "value": "Records",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["archive", "census"]
+    },
+    {
+        "type": "noun",
+        "value": "Signal",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["watch"]
+    },
+    {
+        "type": "noun",
+        "value": "Dispatch",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["postOffice", "bounty", "recruit"]
+    },
+    {
+        "type": "noun",
+        "value": "Command",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["command", "garrison"]
+    },
+    {
+        "type": "noun",
+        "value": "Court",
+        "weight": 2,
+        "siteType": ["government"],
+        "functionType": ["courthouse"]
+    },
+
+
+
+    {
         "type": "format",
-        "value": "The {{prefix}} Council",
+        "value": "{{prefix}} {{noun}}",
         "weight": 1,
         "siteType": ["government"]
     },
     {
         "type": "format",
-        "value": "{{prefix}} Keep",
+        "value": "{{noun}} of the {{suffix}}",
         "weight": 1,
         "siteType": ["government"]
     },
     {
         "type": "format",
-        "value": "The Office of the {{noun}}",
+        "value": "The {{prefix}} {{suffix}}",
         "weight": 1,
         "siteType": ["government"]
+    },
+    {
+        "type": "format",
+        "value": "{{noun}} Hall",
+        "weight": 1,
+        "siteType": ["government"],
+        "functionType": ["mayor", "townHall", "permit"]
     }
 ]

@@ -7,6 +7,7 @@ export function groupFragmentsByType(fragments: GeneratorSiteFragmentPlain[]) {
     noun: fragments.filter(f => f.type === "noun"),
     person: fragments.filter(f => f.type === "person"),
     shopName: fragments.filter(f => f.type === "shopName"),
+    guildHallName: fragments.filter(f => f.type === "guildHallName"),
     format: fragments.filter(f => f.type === "format"),
   };
 }

@@ -24,6 +24,211 @@
         "tags": ["Druidic", "Ancient Ruins"],
         "siteType": ["guild"]
     },
+    {
+        "type": "prefix",
+        "value": "Obsidian",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["assassin", "spy", "thief"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Urban", "Mountains"],
+        "tags": ["Criminal Hideout", "Hidden"]
+    },
+    {
+        "type": "prefix",
+        "value": "Whispering",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["spy", "thief", "broker"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Urban", "River"],
+        "tags": ["Criminal Hideout", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gilded",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["merchant", "banker", "auctioneer"],
+        "climate": ["Continental", "Temperate"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["Capital", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Starlit",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["mage", "scholar", "healer"],
+        "climate": ["Continental", "Temperate"],
+        "terrain": ["Hills", "Forest"],
+        "tags": ["Arcane Nexus", "Sacred Site"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sunken",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["dockworker", "seafarer", "explorer"],
+        "climate": ["Tropical", "Temperate"],
+        "terrain": ["Coast", "River"],
+        "tags": ["Port", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crimson",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["assassin", "hunter", "beastTamer"],
+        "climate": ["Dry", "Temperate"],
+        "terrain": ["Desert", "Plains", "Hills"],
+        "tags": ["Garrison", "Military Outpost"]
+    },
+    {
+        "type": "prefix",
+        "value": "Runestone",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["scribe", "scholar", "mage"],
+        "climate": ["Polar", "Temperate"],
+        "terrain": ["Mountains", "Tundra"],
+        "tags": ["Ancient Ruins", "Arcane Nexus"]
+    },
+    {
+        "type": "prefix",
+        "value": "Hollow",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["thief", "spy", "assassin"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Underground", "Urban"],
+        "tags": ["Hidden", "Criminal Hideout"]
+    },
+    {
+        "type": "prefix",
+        "value": "Goldenroot",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["healer", "herbalist", "druid"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Druidic", "Sacred Site"]
+    },
+    {
+        "type": "prefix",
+        "value": "Blazing",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["smith", "tinker", "artisan"],
+        "climate": ["Dry", "Continental"],
+        "terrain": ["Mountains", "Urban"],
+        "tags": ["Mining Camp", "Trade Hub"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twin",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["adventurer", "beastTamer", "hunter", "explorer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Silent",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["assassin", "spy", "thief"]
+    },
+    {
+        "type": "prefix",
+        "value": "Gleaming",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["jeweler", "artisan", "tailor", "banker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Cracked",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["tinker", "cartographer", "explorer", "salvager"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["merchant", "banker", "auctioneer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Duskwatch",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["adventurer", "monsterHunter", "spy"]
+    },
+    {
+        "type": "prefix",
+        "value": "Arcane",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["mage", "scholar", "scribe"]
+    },
+    {
+        "type": "prefix",
+        "value": "Broken",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["explorer", "spy", "thief"]
+    },
+    {
+        "type": "prefix",
+        "value": "Burnished",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["smith", "artisan", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Whispered",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["spy", "broker", "thief"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ivory",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["courtier", "artist", "tailor"]
+    },
+    {
+        "type": "prefix",
+        "value": "Verdant",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["druid", "forester", "healer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twilight",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["mage", "scholar", "healer", "diviner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brassbound",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["tinker", "clockmaker", "smith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Azure",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["seafarer", "dockworker", "merchant"]
+    },
 
 
 
@@ -35,11 +240,159 @@
         "weight": 2,
         "siteType": ["guild"]
     },
+    {
+        "type": "suffix",
+        "value": "Alliance",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "suffix",
+        "value": "Consortium",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "suffix",
+        "value": "Council",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Hammer",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "suffix",
+        "value": "Collective",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "suffix",
+        "value": "Brotherhood",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "suffix",
+        "value": "Syndicate",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "guildType": ["thief", "assassin", "spy"]
+    },
+    {
+        "type": "suffix",
+        "value": "Coven",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Arcane Nexus", "Druidic", "Sacred Site"],
+        "guildType": ["mage", "druid", "healer"]
+    },
 
 
 
 
-
+    {
+        "type": "noun",
+        "value": "Sanctuary",
+        "weight": 2,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Sacred Site"],
+        "guildType": ["healer", "druid", "scholar"]
+    },
+    {
+        "type": "noun",
+        "value": "Keep",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Fortress", "Garrison", "Military Outpost"],
+        "guildType": ["smith", "artisan", "hunter", "adventurer"]
+    },
+    {
+        "type": "noun",
+        "value": "Lair",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Hidden", "Criminal Hideout", "Infested"],
+        "guildType": ["assassin", "spy", "thief", "hunter"]
+    },
+    {
+        "type": "noun",
+        "value": "Outpost",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Border Post", "Military Outpost", "Garrison"],
+        "guildType": ["soldier", "hunter", "adventurer"]
+    },
+    {
+        "type": "noun",
+        "value": "Sanctum",
+        "weight": 2,
+        "siteType": ["guild"],
+        "tags": ["Arcane Nexus", "Sacred Site"],
+        "guildType": ["mage", "scholar", "healer"]
+    },
+    {
+        "type": "noun",
+        "value": "Bastion",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Fortress", "Military Outpost"],
+        "guildType": ["smith", "adventurer", "hunter"]
+    },
+    {
+        "type": "noun",
+        "value": "Refuge",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Plains", "Coast"],
+        "tags": ["Port", "Trade Hub"],
+        "guildType": ["merchant", "seafarer"]
+    },
+    {
+        "type": "noun",
+        "value": "Den",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "guildType": ["thief", "spy", "assassin"]
+    },
+    {
+        "type": "noun",
+        "value": "Nest",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Hidden"],
+        "guildType": ["beastTamer", "hunter", "monsterHunter"]
+    },
+    {
+        "type": "noun",
+        "value": "Workshop",
+        "weight": 2,
+        "siteType": ["guild"],
+        "guildType": ["artisan", "smith", "tinker", "glassblower"]
+    },
+    {
+        "type": "noun",
+        "value": "Gallery",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["artist", "entertainer"]
+    },
+    {
+        "type": "noun",
+        "value": "Parlor",
+        "weight": 1,
+        "siteType": ["guild"],
+        "guildType": ["entertainer", "courier", "merchant"]
+    },
     {
         "type": "noun",
         "value": "Hammer",
@@ -114,9 +467,443 @@
         "siteType": ["guild"],
         "guildType": ["tailor"]
     },
+    {
+        "type": "noun",
+        "value": "Oath",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Vanguard",
+        "weight": 2,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains", "Hills"],
+        "tags": ["Military Outpost", "Garrison"],
+        "guildType": ["adventurer", "monsterHunter", "hunter"]
+    },
+    {
+        "type": "noun",
+        "value": "Circle",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Druidic", "Sacred Site"],
+        "guildType": ["entertainer", "forester", "scholar", "mage", "druid", "healer"]
+    },
+    {
+        "type": "noun",
+        "value": "Den",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Forest", "Hills"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "guildType": ["druid", "forester", "thief", "spy", "assassin"]
+    },
+    {
+        "type": "noun",
+        "value": "Rookery",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Hills"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "guildType": ["thief", "assassin", "spy", "forester"]
+    },
+    {
+        "type": "noun",
+        "value": "Vault",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Mountains"],
+        "tags": ["Criminal Hideout", "Hidden"],
+        "guildType": ["thief", "assassin", "spy", "courtier"]
+    },
+    {
+        "type": "noun",
+        "value": "Forge",
+        "weight": 2,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Hills", "Mountains"],
+        "tags": ["Trade Hub", "Garrison"],
+        "guildType": ["smith", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Loom",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Urban", "Plains"],
+        "tags": ["Trade Hub"],
+        "guildType": ["tailor"]
+    },
+    {
+        "type": "noun",
+        "value": "Hall",
+        "weight": 2,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Sanctum",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Keep",
+        "weight": 1,
+        "siteType": ["guild"]
+    },
+    {
+        "type": "noun",
+        "value": "Stronghold",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Fortress", "Military Outpost"],
+        "guildType": ["adventurer", "hunter", "monsterHunter"]
+    },
+    {
+        "type": "noun",
+        "value": "Nest",
+        "weight": 1,
+        "siteType": ["guild"],
+        "tags": ["Hidden", "Criminal Hideout"],
+        "guildType": ["thief", "assassin", "spy"]
+    },
+    {
+        "type": "noun",
+        "value": "Camp",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Dry", "Continental"],
+        "terrain": ["Plains", "Hills", "Forest"],
+        "guildType": ["explorer", "hunter", "miner"]
+    },
+    {
+        "type": "noun",
+        "value": "Haven",
+        "weight": 1,
+        "siteType": ["guild"],
+        "climate": ["Temperate", "Dry"],
+        "terrain": ["Coast", "Plains"],
+        "tags": ["Port", "Trade Hub"],
+        "guildType": ["merchant", "seafarer"]
+    },
 
 
-
+    {
+        "type": "guildHallName",
+        "value": "Adventurers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["adventurer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Assassins' Guild",
+        "siteType": ["guild"],
+        "guildType": ["assassin"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Beast Tamers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["beastTamer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Hunters' Guild",
+        "siteType": ["guild"],
+        "guildType": ["hunter"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Monster Hunters' Guild",
+        "siteType": ["guild"],
+        "guildType": ["monsterHunter"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Thieves' Guild",
+        "siteType": ["guild"],
+        "guildType": ["thief"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Spy Network",
+        "siteType": ["guild"],
+        "guildType": ["spy"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Alchemists' Guild",
+        "siteType": ["guild"],
+        "guildType": ["alchemist"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Cartographers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["cartographer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Fletchers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["fletcher"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Glassblowers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["glassblower"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Jeweler's Guild",
+        "siteType": ["guild"],
+        "guildType": ["jeweler"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Leatherworkers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["leatherworker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Scribes' Guild",
+        "siteType": ["guild"],
+        "guildType": ["scribe"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Smiths' Guild",
+        "siteType": ["guild"],
+        "guildType": ["smith"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Stonecutters' Guild",
+        "siteType": ["guild"],
+        "guildType": ["stoneCutter"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Tailors' Guild",
+        "siteType": ["guild"],
+        "guildType": ["tailor"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Tinkers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["tinker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Woodworkers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["woodworker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Artisans' Guild",
+        "siteType": ["guild"],
+        "guildType": ["artisan"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Druids' Circle",
+        "siteType": ["guild"],
+        "guildType": ["druid"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Mages' Conclave",
+        "siteType": ["guild"],
+        "guildType": ["mage"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Healers' Lodge",
+        "siteType": ["guild"],
+        "guildType": ["healer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Scholars' Forum",
+        "siteType": ["guild"],
+        "guildType": ["scholar"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Couriers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["courier"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Dockworkers' Union",
+        "siteType": ["guild"],
+        "guildType": ["dockworker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Foresters' Circle",
+        "siteType": ["guild"],
+        "guildType": ["forester"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Laborers' Cooperative",
+        "siteType": ["guild"],
+        "guildType": ["laborer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Miners' Lodge",
+        "siteType": ["guild"],
+        "guildType": ["miner"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Seafarers' Guild",
+        "siteType": ["guild"],
+        "guildType": ["seafarer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Explorers' League",
+        "siteType": ["guild"],
+        "guildType": ["explorer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Artists' Collective",
+        "siteType": ["guild"],
+        "guildType": ["artist"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Auctioneers' Union",
+        "siteType": ["guild"],
+        "guildType": ["auctioneer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Bankers' Consortium",
+        "siteType": ["guild"],
+        "guildType": ["banker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Courtiers' Assembly",
+        "siteType": ["guild"],
+        "guildType": ["courtier"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Entertainers' Troupe",
+        "siteType": ["guild"],
+        "guildType": ["entertainer"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Information Brokers' Syndicate",
+        "siteType": ["guild"],
+        "guildType": ["broker"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Merchants' League",
+        "siteType": ["guild"],
+        "guildType": ["merchant"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Fellowship of Trades",
+        "siteType": ["guild"],
+        "guildType": ["artisan", "merchant", "tinker", "tailor"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Circle of Shadows",
+        "siteType": ["guild"],
+        "guildType": ["assassin", "spy", "thief"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Wanderers' Circle",
+        "siteType": ["guild"],
+        "guildType": ["adventurer", "explorer", "beastTamer", "courier"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Circle of Unity",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Company of the Wyrm",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Fellowship of the Veil",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Sovereigns' Assembly",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "The Scarlet Accord",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Keepers of the Flame",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "The Jade Court",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Eclipse Syndicate",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Guild of Secrets",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
+    {
+        "type": "guildHallName",
+        "value": "Society of Echoes",
+        "siteType": ["guild"],
+        "guildType": ["other"]
+    },
 
 
     {

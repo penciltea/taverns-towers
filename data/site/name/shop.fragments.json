@@ -15,13 +15,6 @@
     },
     {
         "type": "prefix",
-        "value": "Golden",
-        "weight": 1,
-        "siteType": ["shop"],
-        "shopType": ["alchemist"]
-    },
-    {
-        "type": "prefix",
         "value": "Gilded",
         "weight": 2,
         "siteType": ["shop"],
@@ -77,80 +70,578 @@
         "type": "prefix",
         "value": "Iron",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["blacksmith", "armory", "weaponsmith", "toolsmith", "tanner"]
     },
     {
         "type": "prefix",
         "value": "Steel",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["weaponsmith", "armory", "blacksmith"]
     },
     {
         "type": "prefix",
         "value": "Bronze",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["blacksmith", "carpenter", "glassblower"]
     },
     {
         "type": "prefix",
         "value": "Copper",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["glassblower", "tinker", "toolsmith"]
     },
     {
         "type": "prefix",
         "value": "Brass",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["clockmaker", "tinker", "toolsmith"]
     },
     {
         "type": "prefix",
         "value": "Pewter",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["trinketShop", "tinker", "toyMaker"]
     },
     {
         "type": "prefix",
         "value": "Mercury",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["alchemist", "apothecary", "magic"]
     },
     {
         "type": "prefix",
         "value": "Electrum",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["magic", "scrollShop", "enchanter"]
     },
     {
         "type": "prefix",
         "value": "Mithril",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["weaponsmith", "magic", "armory", "enchanter"]
     },
     {
         "type": "prefix",
         "value": "Adamant",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["weaponsmith", "armory", "blacksmith"]
     },
     {
         "type": "prefix",
         "value": "Platinum",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["jeweler", "perfumer", "tailor"]
     },
     {
         "type": "prefix",
         "value": "Golden",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["jeweler", "haberdasher", "milliner"]
     },
     {
         "type": "prefix",
         "value": "Silver",
         "weight": 1,
+        "siteType": ["shop"],
         "shopType": ["jeweler", "accessories", "perfumer"]
-    }
+    },
+    {
+        "type": "prefix",
+        "value": "Stone",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "weaponsmith", "armory", "carpenter", "generalStore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Marble",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "perfumer", "tailor"]
+    },
+    {
+        "type": "prefix",
+        "value": "Obsidian",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "enchanter", "scrollShop", "blacksmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Granite",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["carpenter", "blacksmith", "tanner", "provisioner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Basalt",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["armory", "blacksmith", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Quartz",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["enchanter", "apothecary", "alchemist", "herbalist"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crystal",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "magic", "scrollShop", "bookstore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Flint",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fletcher", "weaponsmith", "tanner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Jade",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "accessories", "curiosityShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Onyx",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "magic", "divination", "scrollShop", "temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Amethyst",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "magic", "perfumer", "apothecary", "herbalist"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sapphire",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "enchanter", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Topaz",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "enchanter", "curiosityShop", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Carnelian",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["enchanter", "herbalist"]
+    },
+    {
+        "type": "prefix",
+        "value": "Diamond",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "armory", "weaponsmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Garnet",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "tanner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Lapis",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bookstore", "magic", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Moonstone",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["divination", "temple", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Obsidian",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["weaponsmith", "enchanter", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Opal",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "perfumer", "divination"]
+    },
+    {
+        "type": "prefix",
+        "value": "Peridot",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["herbalist", "produce"]
+    },
+    {
+        "type": "prefix",
+        "value": "Zircon",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["clockmaker", "jeweler"]
+    },
+    {
+        "type": "prefix",
+        "value": "Charred",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "weaponsmith", "armory"]
+    },
+    {
+        "type": "prefix",
+        "value": "Carved",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["carpenter", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Smoked",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tanner", "butcher"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ashen",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["glassblower", "armory"]
+    },
+    {
+        "type": "prefix",
+        "value": "Feathered",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fletcher", "curiosityShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Velvet",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "milliner", "perfumer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Dapper",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["haberdasher", "accessories"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frilled",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["milliner", "tailor", "accessories"]
+    },
+    {
+        "type": "prefix",
+        "value": "Laced",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["cobbler", "tailor"]
+    },
+    {
+        "type": "prefix",
+        "value": "Golden Crust",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bakery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Smoky",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["butcher", "meadery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Spiced",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["spiceMerchant", "confectionery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Crackling",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["butcher", "cheesemonger"]
+    },
+    {
+        "type": "prefix",
+        "value": "Blooming",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse", "produce"]
+    },
+    {
+        "type": "prefix",
+        "value": "Runed",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "scrollShop", "enchanter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Eldritch",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "divination"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bound",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bookstore", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sealed",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["alchemist", "magic"]
+    },
+    {
+        "type": "prefix",
+        "value": "Whiskered",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["petShop", "curiosityShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Dented",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["pawnShop", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Scrap",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["salvager", "toolsmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Worn",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "salvager", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bartered",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["pawnShop", "generalStore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Veiled",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["divination", "magic", "curiosityShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Arcane",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "scrollShop", "enchanter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Wyrm",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["magic", "bookstore", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Eclipse",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["divination", "magic", "temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Glimmering",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["enchanter", "jeweler", "scrollShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Knotted",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["carpenter", "rope", "generalStore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Forged",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory", "weaponsmith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Hammered",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "tinker"]
+    },
+    {
+        "type": "prefix",
+        "value": "Threaded",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "haberdasher", "milliner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Woven",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "accessories", "milliner"]
+    },
+    {
+        "type": "prefix",
+        "value": "Toasted",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["bakery", "confectionery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Fruited",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["produce", "winery", "teaHouse"]
+    },
+    {
+        "type": "prefix",
+        "value": "Infused",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["perfumer", "apothecary", "teaHouse"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brined",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger", "butcher"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sour",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["brewery", "meadery", "confectionery"]
+    },
+    {
+        "type": "prefix",
+        "value": "Rusted",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["salvager", "pawnShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Forgotten",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["trinketShop", "curiosityShop", "salvager"]
+    },
+    {
+        "type": "prefix",
+        "value": "Wanderer's",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["generalStore", "provisioner", "curiosityShop"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bartered",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["pawnShop", "generalStore"]
+    },
+    {
+        "type": "prefix",
+        "value": "Twined",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["trinketShop", "accessories"]
+    },
+    {
+        "type": "prefix",
+        "value": "Frosted",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["apothecary", "alchemist", "magic"],
+        "climate": ["Polar"],
+        "terrain": ["Tundra"],
+        "tags": ["Isolated"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ember",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["weaponsmith", "blacksmith", "enchanter"],
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Underground"],
+        "tags": ["Fortress"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ember",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["weaponsmith", "blacksmith", "enchanter"],
+        "climate": ["Dry"],
+        "terrain": ["Volcanic", "Underground"],
+        "tags": ["Fortress"]
+    },
 
 
 
@@ -239,10 +730,132 @@
         "siteType": ["shop"],
         "shopType": ["generalStore", "pawnShop", "salvager", "magic", "spiceMerchant", "provisioner"]
     },
+    {
+        "type": "suffix",
+        "value": "Pantry",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["produce", "spiceMerchant", "provisioner"]
+    },
+    {
+        "type": "suffix",
+        "value": "Cask",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["meadery", "brewery", "winery"]
+    },
+    {
+        "type": "suffix",
+        "value": "Drip",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["perfumer", "teaHouse", "alchemy"]
+    },
+    {
+        "type": "suffix",
+        "value": "Spindle",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "haberdasher", "milliner"]
+    },
+    {
+        "type": "suffix",
+        "value": "Nest",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["petShop", "toyMaker"]
+    },
+    {
+        "type": "suffix",
+        "value": "Claw",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fletcher", "petShop", "tanner"]
+    },
+    {
+        "type": "suffix",
+        "value": "Vault",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "pawnShop", "enchanter"]
+    },
+    {
+        "type": "suffix",
+        "value": "Spire",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["divination", "scrollShop", "magic"]
+    },
+    {
+        "type": "suffix",
+        "value": "Workbench",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["toolsmith", "tinker", "clockmaker"]
+    },
+    {
+        "type": "suffix",
+        "value": "Grove",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["herbalist", "apothecary", "alchemist"],
+        "climate": ["Temperate"],
+        "terrain": ["Forest"],
+        "tags": ["Druidic", "Overgrown"]
+    },
+    {
+        "type": "suffix",
+        "value": "Pick",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory", "toolsmith"],
+        "climate": ["Dry"],
+        "terrain": ["Mountains"],
+        "tags": ["Mining Camp", "Garrison"]
+    },
+    {
+        "type": "suffix",
+        "value": "Dock",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger", "provisioner", "pawnShop"],
+        "climate": ["Tropical"],
+        "terrain": ["Coast"],
+        "tags": ["Port"]
+    },
+    {
+        "type": "suffix",
+        "value": "Script",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["scrollShop", "bookstore", "divination"],
+        "climate": ["Temperate"],
+        "terrain": ["Hills"],
+        "tags": ["Sacred Site"]
+    },
+    
 
 
-
-
+    {
+        "type": "noun",
+        "value": "Fang",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["apothecary", "herbalist", "trinketShop"],
+        "climate": ["Tropical"],
+        "terrain": ["Swamp"],
+        "tags": ["Infested"]
+    },
+    {
+        "type": "noun",
+        "value": "Spool",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "milliner", "haberdasher"],
+        "climate": ["Continental"],
+        "terrain": ["Urban"],
+        "tags": ["Capital", "Trade Hub"]
+    },
     {
         "type": "noun",
         "value": "Anvil",
@@ -392,7 +1005,6 @@
         "siteType": ["shop"],
         "shopType": ["generalStore"]
     },
-    
     {
         "type": "noun",
         "value": "Forge",
@@ -410,6 +1022,92 @@
         "tags": ["Trade Hub"],
         "siteType": ["shop"],
         "shopType": ["brewery"]
+    },
+    {
+        "type": "noun",
+        "value": "Gear",
+        "weight": 2,
+        "siteType": ["shop"],
+        "shopType": ["tinker", "toolsmith", "clockmaker"]
+    },
+    {
+        "type": "noun",
+        "value": "Bell",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["clockmaker", "curiosityShop"]
+    },
+    {
+        "type": "noun",
+        "value": "Cloth",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["tailor", "milliner", "haberdasher"]
+    },
+    {
+        "type": "noun",
+        "value": "Bite",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["butcher", "fishmonger", "confectionery"]
+    },
+    {
+        "type": "noun",
+        "value": "Spice",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["spiceMerchant", "apothecary", "alchemist"]
+    },
+    {
+        "type": "noun",
+        "value": "Bloom",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["herbalist", "perfumer", "teaHouse"]
+    },
+    {
+        "type": "noun",
+        "value": "Cup",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["teaHouse", "brewery", "winery"]
+    },
+    {
+        "type": "noun",
+        "value": "Draft",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["brewery", "meadery", "winery"]
+    },
+    {
+        "type": "noun",
+        "value": "Toy",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["toyMaker"]
+    },
+    {
+        "type": "noun",
+        "value": "Hinge",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["carpenter", "toolsmith"]
+    },
+    {
+        "type": "noun",
+        "value": "Scale",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["curiosityShop", "enchanter", "divination"]
+    },
+    {
+        "type": "noun",
+        "value": "Ripple",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["scrollShop", "magic", "alchemist"],
+        "climate": ["Tropical"],
+        "terrain": ["River"]
     },
 
 

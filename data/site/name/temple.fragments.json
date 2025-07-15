@@ -29,9 +29,78 @@
         "tags": ["Arcane Nexus", "Hidden"],
         "siteType": ["temple"]
     },
+    {
+        "type": "prefix",
+        "value": "Twilight",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Eclipsed",
+        "climate": ["Temperate", "Polar"],
+        "terrain": ["Mountains", "Tundra"],
+        "tags": ["Hidden", "Arcane Nexus"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Verdant",
+        "climate": ["Tropical", "Temperate"],
+        "terrain": ["Forest", "Jungle"],
+        "tags": ["Druidic", "Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Luminous",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ashen",
+        "climate": ["Dry", "Continental"],
+        "terrain": ["Hills", "Desert"],
+        "tags": ["Ancient Ruins", "Sacred Site"],
+        "siteType": ["temple"]
+    },
 
 
-
+    {
+        "type": "suffix",
+        "value": "Veil",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Haven",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Hills", "Plains"],
+        "tags": ["Sacred Site", "Remote"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Chapel",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Circle",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "Swamp"],
+        "tags": ["Druidic", "Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "suffix",
+        "value": "Ascension",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
     {
         "type": "suffix",
         "value": "Divine",
@@ -91,6 +160,40 @@
         "climate": ["Temperate", "Dry"],
         "terrain": ["Plains", "Hills"],
         "tags": ["Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Halo",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Wellspring",
+        "climate": ["Temperate", "Tropical"],
+        "terrain": ["Forest", "River"],
+        "tags": ["Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Omen",
+        "weight": 1,
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Beacon",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Mountains", "Urban"],
+        "tags": ["Capital", "Sacred Site"],
+        "siteType": ["temple"]
+    },
+    {
+        "type": "noun",
+        "value": "Offering",
+        "weight": 1,
         "siteType": ["temple"]
     },
 

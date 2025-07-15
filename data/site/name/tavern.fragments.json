@@ -23,6 +23,78 @@
     "tags": ["Isolated", "Fortress"],
     "siteType": ["tavern"]
   },
+  {
+    "type": "prefix",
+    "value": "Sleepy",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Hills", "Plains"],
+    "tags": ["Remote", "Hidden"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Smiling",
+    "climate": ["Temperate", "Tropical"],
+    "terrain": ["River", "Coast"],
+    "tags": ["Port", "Trade Hub"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Burning",
+    "climate": ["Dry", "Continental"],
+    "terrain": ["Desert", "Hills"],
+    "tags": ["Garrison", "Criminal Hideout"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Crooked",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Urban", "Forest"],
+    "tags": ["Criminal Hideout", "Trade Hub"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Winking",
+    "tags": ["Trade Hub", "Urban"],
+    "climate": ["Temperate", "Tropical"],
+    "terrain": ["Plains", "Urban"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Broken",
+    "tags": ["Criminal Hideout", "Garrison"],
+    "climate": ["Dry", "Continental"],
+    "terrain": ["Hills", "Desert"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Smoky",
+    "tags": ["Hidden", "Arcane Nexus"],
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Forest", "Urban"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Thirsty",
+    "tags": ["Remote", "Trade Hub"],
+    "climate": ["Dry", "Tropical"],
+    "terrain": ["Plains", "Desert", "River"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "prefix",
+    "value": "Croaking",
+    "tags": ["Swamp", "Infested"],
+    "climate": ["Tropical"],
+    "terrain": ["Swamp"],
+    "siteType": ["tavern"]
+  },
 
   
 
@@ -45,6 +117,58 @@
       "type": "suffix",
       "value": "Lodge",
       "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Taproom",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Flagon",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Hearth",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Bunkhouse",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Burrow",
+    "siteType": ["tavern"],
+    "tags": ["Hidden", "Isolated"]
+  },
+  {
+    "type": "suffix",
+    "value": "Barrelhouse",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Dive",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Hole",
+    "siteType": ["tavern"],
+    "tags": ["Criminal Hideout", "Isolated"]
+  },
+  {
+    "type": "suffix",
+    "value": "Spigot",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "suffix",
+    "value": "Cup",
+    "siteType": ["tavern"]
   },
 
   
@@ -97,6 +221,86 @@
     "tags": ["Port", "Garrison"],
     "siteType": ["tavern"]
   },
+  {
+    "type": "noun",
+    "value": "Fox",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Forest", "Hills"],
+    "tags": ["Remote", "Hidden"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Boot",
+    "climate": ["Temperate", "Tropical"],
+    "terrain": ["River", "Urban", "Coast"],
+    "tags": ["Trade Hub", "Port"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Griffon",
+    "climate": ["Continental", "Tundra"],
+    "terrain": ["Mountains"],
+    "tags": ["Fortress", "Ancient Ruins"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Pipe",
+    "climate": ["Temperate", "Continental"],
+    "terrain": ["Urban", "Plains"],
+    "tags": ["Trade Hub", "Criminal Hideout"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Lantern",
+    "climate": ["Temperate", "Tropical"],
+    "terrain": ["River", "Urban", "Coast"],
+    "tags": ["Arcane Nexus", "Port"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Tankard",
+    "climate": ["Temperate", "Dry"],
+    "terrain": ["Plains", "Desert"],
+    "tags": ["Military Outpost", "Garrison"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Newt",
+    "tags": ["Druidic", "Swamp"],
+    "terrain": ["Swamp", "Forest"],
+    "climate": ["Tropical"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Witch",
+    "tags": ["Arcane Nexus", "Hidden"],
+    "terrain": ["Forest", "Mountains"],
+    "climate": ["Temperate", "Continental"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Anvil",
+    "tags": ["Fortress", "Craftsmen"],
+    "terrain": ["Mountains", "Urban"],
+    "climate": ["Temperate", "Continental"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "noun",
+    "value": "Kraken",
+    "tags": ["Port", "Fishing"],
+    "terrain": ["Coast", "River"],
+    "climate": ["Tropical", "Temperate"],
+    "siteType": ["tavern"]
+  },
 
 
 
@@ -108,5 +312,27 @@
     "terrain": ["Forest", "Plains"],
     "tags": ["hidden", "Military Outpost"],
     "siteType": ["tavern"]
-  }
+  },
+  {
+    "type": "person",
+    "value": "Old Tom",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "person",
+    "value": "Mad Maggie",
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "person",
+    "value": "Captain Yorrik",
+    "tags": ["Port"],
+    "terrain": ["Coast", "River"],
+    "siteType": ["tavern"]
+  },
+  {
+    "type": "person",
+    "value": "Red Jarna",
+    "siteType": ["tavern"]
+  }  
 ]
