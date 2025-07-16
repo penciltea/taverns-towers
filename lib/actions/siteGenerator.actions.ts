@@ -13,6 +13,8 @@ export async function generateSiteName({
   siteType,
   shopType,
   guildType,
+  venueType,
+  functionType,
   terrain,
   climate,
   tags,
@@ -20,6 +22,8 @@ export async function generateSiteName({
 }: {
   shopType?: string;   // Form uses string value
   guildType?: string;  // Form uses string value
+  venueType?: string;
+  functionType?: string;
   siteType?: string[];
   terrain?: string[];
   climate?: string;
@@ -43,6 +47,8 @@ export async function generateSiteName({
     siteType,
     shopType: toArray(shopType),
     guildType: toArray(guildType),
+    venueType: toArray(venueType),
+    functionType: toArray(functionType),
     terrain,
     climate,
     tags,

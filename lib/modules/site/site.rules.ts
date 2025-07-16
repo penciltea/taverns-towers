@@ -31,6 +31,8 @@ import { generateResidenceValues } from "./residence.rules";
 
 type ShopSiteData = Extract<SiteFormData, { type: "shop" }>;
 type GuildSiteData = Extract<SiteFormData, { type: "guild" }>;
+type EntertainmentSiteData = Extract<SiteFormData, { type: "entertainment" }>;
+type GovernmentSiteData = Extract<SiteFormData, { type: "government" }>;
 
 
 // Maps site type strings to their respective async generation functions
@@ -72,17 +74,29 @@ export async function generateSiteValues(
   // Narrow shopType and guildType if applicable
   let shopType: string | undefined = undefined;
   let guildType: string | undefined = undefined;
+  let venueType: string | undefined = undefined;
+  let functionType: string | undefined = undefined;
 
   if (type === "shop") {
     const shopData = baseData as ShopSiteData;
     shopType = Array.isArray(shopData.shopType)
-      ? shopData.shopType[0] // ✅ extract first string
+      ? shopData.shopType[0] // extract first string
       : shopData.shopType;
   } else if (type === "guild") {
     const guildData = baseData as GuildSiteData;
     guildType = Array.isArray(guildData.guildType)
-      ? guildData.guildType[0] // ✅ extract first string
+      ? guildData.guildType[0] // extract first string
       : guildData.guildType;
+  } else if(type === "entertainment") {
+    const entertainmentData = baseData as EntertainmentSiteData;
+    venueType = Array.isArray(entertainmentData.venueType)
+      ? entertainmentData.venueType[0] // extract first string
+      : entertainmentData.venueType
+  } else if(type === "government") {
+    const governmentData = baseData as GovernmentSiteData;
+    functionType = Array.isArray(governmentData.function)
+      ? governmentData.function[0] // extract first string
+      : governmentData.function
   }
 
   // Generate a site name if one wasn't provided
@@ -90,6 +104,8 @@ export async function generateSiteValues(
     siteType: [type],
     shopType,
     guildType,
+    venueType,
+    functionType,
     terrain: input.terrain,
     climate: input.climate,
     tags: input.tags,

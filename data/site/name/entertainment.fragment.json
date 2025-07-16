@@ -309,7 +309,8 @@
         "type": "suffix",
         "value": "Stage",
         "weight": 1,
-        "siteType": ["entertainment"]
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "bard", "circusTent", "music", "theater"]
     },
     {
         "type": "suffix",
@@ -328,6 +329,13 @@
     {
         "type": "suffix",
         "value": "Ring",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "fightingPit", "arena"]
+    },
+    {
+        "type": "suffix",
+        "value": "Pit",
         "weight": 2,
         "siteType": ["entertainment"],
         "venueType": ["duel", "fightingPit", "arena"]
@@ -391,10 +399,184 @@
         "terrain": ["River", "Hills"],
         "tags": ["Remote", "Sacred Site"]
     },
+    {
+        "type": "suffix",
+        "value": "Curiosity",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Riddle",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Whimsy",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Jubilee",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Enigma",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Oddity",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Wonder",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Sprint",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "suffix",
+        "value": "Circuit",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "suffix",
+        "value": "Rumble",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "duel"]
+    },
+    {
+        "type": "suffix",
+        "value": "Racket",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "festival"]
+    },
+    {
+        "type": "suffix",
+        "value": "March",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "street", "other"]
+    },
+    {
+        "type": "suffix",
+        "value": "Procession",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "street"]
+    },
 
     
 
-
+    {
+        "type": "noun",
+        "value": "Track",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "noun",
+        "value": "Whip",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing", "fightingPit"]
+    },
+    {
+        "type": "noun",
+        "value": "Brawl",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "duel", "arena"]
+    },
+    {
+        "type": "noun",
+        "value": "Chariot",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing", "festival"]
+    },
+    {
+        "type": "noun",
+        "value": "Havoc",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["fightingPit", "street", "duel"]
+    },
+    {
+        "type": "noun",
+        "value": "Melody",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "street"]
+    },
+    {
+        "type": "noun",
+        "value": "Masquerade",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "brothel", "theater"]
+    },
+    {
+        "type": "noun",
+        "value": "Tumbler",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "street"]
+    },
+    {
+        "type": "noun",
+        "value": "Rush",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing", "duel"]
+    },
+    {
+        "type": "noun",
+        "value": "Pageantry",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "other"]
+    },
+    {
+        "type": "noun",
+        "value": "Spectacle",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "street", "festival"]
+    },
+    {
+        "type": "noun",
+        "value": "Thrill",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing", "duel", "other"]
+    },
     {
         "type": "noun",
         "value": "Tide",
@@ -497,8 +679,7 @@
         "siteType": ["entertainment"],
         "venueType": ["circusTent", "theater"],
         "climate": ["Temperate"],
-        "terrain": ["Hills", "Urban"],
-        "tags": ["Festival Grounds", "Overgrown"]
+        "terrain": ["Hills", "Urban"]
     },
     {
         "type": "noun",
@@ -526,18 +707,14 @@
         "value": "Cauldron",
         "weight": 2,
         "siteType": ["entertainment"],
-        "venueType": ["magic"],
-        "climate": ["Tropical"],
-        "terrain": ["Swamp", "Jungle"],
-        "tags": ["Arcane Nexus"]
+        "venueType": ["magic"]
     },
     {
         "type": "noun",
         "value": "Dice",
         "weight": 2,
         "siteType": ["entertainment"],
-        "venueType": ["gambling"],
-        "tags": ["Port", "Trade Hub", "Hidden"]
+        "venueType": ["gambling"]
     },
     {
         "type": "noun",
@@ -599,5 +776,47 @@
         "climate": ["Dry"],
         "terrain": ["Volcanic", "Mountains"],
         "tags": ["Infested", "Mining Camp"]
+    },
+    {
+        "type": "noun",
+        "value": "Marvel",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "noun",
+        "value": "Parade",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other", "street"]
+    },
+    {
+        "type": "noun",
+        "value": "Dream",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["other", "bard", "bathhouse", "brothel"]
+    },
+    {
+        "type": "noun",
+        "value": "Mirage",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other", "bathhouse", "brothel", "bard"]
+    },
+    {
+        "type": "noun",
+        "value": "Revelery",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
+    },
+    {
+        "type": "noun",
+        "value": "Pageant",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["other"]
     }
 ]

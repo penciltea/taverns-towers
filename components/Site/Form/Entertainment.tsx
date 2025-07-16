@@ -43,7 +43,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 label="Venue Type"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...ENTERTAINMENT_VENUE_TYPES]}
-                fieldError={errors.shopType}
+                fieldError={errors.venueType}
             />
 
             <FormTextField

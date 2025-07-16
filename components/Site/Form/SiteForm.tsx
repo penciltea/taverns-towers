@@ -20,7 +20,7 @@ type SiteFormProps = {
   isWilderness: boolean;
   generator?: {
     name: () => void;
-    menu: () => void;
+    menuItems: () => void;
     missing: () => void;
     reroll: () => void;
   };

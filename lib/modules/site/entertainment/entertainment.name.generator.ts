@@ -7,8 +7,8 @@ import { filterBySubType } from "../name/filterBySubtype";
 
 export const entertainmentNameGenerator: SiteNameGenerator = {
   generateName(fragments: GeneratorSiteFragmentPlain[], filters: GenerateSiteNameOptions): string {
-    //console.log("filters: ", filters);
-    //console.log("filters.data: ", filters.data);
+    // console.log("filters: ", filters);
+    // console.log("filters.data: ", filters.data);
 
 
     // Step 1: Common filters (siteType, tags, terrain, etc)
@@ -16,10 +16,13 @@ export const entertainmentNameGenerator: SiteNameGenerator = {
 
     // Step 2: Apply `venueType` filtering via helper (handles data fallback)
     const venueTypes =
-        filters.venueType ??
-        (filters.data?.type === "entertainment" && Array.isArray(filters.data.venueType)
-            ? filters.data.venueType
-            : undefined);
+      filters.venueType ??
+      (filters.data?.type === "entertainment" && Array.isArray(filters.data.venueType)
+        ? filters.data.venueType
+        : undefined);
+
+    console.log("filtering by venueType:", venueTypes);
+
     filtered = filterBySubType(filtered, "venueType", venueTypes);
 
     // Step 3: Group for selection
@@ -64,6 +67,12 @@ export const entertainmentNameGenerator: SiteNameGenerator = {
           return key;
       }
     };
+
+    // console.log("Fragments grouped:", {
+    //   format: grouped.format,
+    //   prefix: grouped.prefix,
+    //   suffix: grouped.suffix,
+    // });
 
     return formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_: string, key: string) => getReplacement(key));
   }

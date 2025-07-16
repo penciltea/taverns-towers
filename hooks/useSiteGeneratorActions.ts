@@ -51,15 +51,13 @@ export function useSiteGeneratorActions(
     tags: string[];
   } | null>(null);
 
-  // Helper to get the current shopType field value from the form
-  const getShopType = useCallback(() => {
-    return getValues("shopType");
-  }, [methods]);
+  // Helper to get the current site sub-type field value from the form 
+  type SubTypeKeys = "shopType" | "guildType" | "venueType" | "function";
 
-  // Helper to get the current guildType field value from the form
-  const getGuildType = useCallback(() => {
-    return getValues("guildType");
-  }, [methods]);
+  const getSubType = useCallback(
+    (key: SubTypeKeys) => getValues(key),
+    [getValues]
+  );
 
 
   /**
@@ -113,13 +111,17 @@ export function useSiteGeneratorActions(
       if (!siteType) return;
 
       const env = await regenerateEnvironment(false);
-      const shopType = getShopType();
-      const guildType = getGuildType();
+      const shopType = getSubType("shopType");
+      const guildType = getSubType("guildType");
+      const venueType = getSubType("venueType");
+      const functionType = getSubType("function");
 
       const name = await generateSiteName({
         siteType: [siteType],
         shopType: siteType === "shop" ? shopType : undefined,
         guildType: siteType === "guild" ? guildType : undefined,
+        venueType: siteType === "entertainment" ? venueType : undefined,
+        functionType: siteType === "government" ? functionType : undefined,
         terrain: env.terrain,
         climate: env.climate,
         tags: env.tags,
@@ -144,7 +146,7 @@ export function useSiteGeneratorActions(
         setValue("name", name);
       }
     },
-    [siteType, getShopType, getGuildType, regenerateEnvironment, getValues, setValue]
+    [siteType, getSubType, regenerateEnvironment, getValues, setValue]
   );
 
 
@@ -159,8 +161,10 @@ export function useSiteGeneratorActions(
     async (index?: number) => {
       if (!siteType) return;
 
-      const shopType = getShopType();
-      const guildType = getGuildType();
+      const shopType = getSubType("shopType");
+      const guildType = getSubType("guildType");
+      const venueType = getSubType("venueType");
+      const functionType = getSubType("function");
       const formData = methods.getValues();
       const siteSize = formData.size;
       const siteCondition = formData.condition;
@@ -169,6 +173,8 @@ export function useSiteGeneratorActions(
         siteType,
         shopType: siteType === "shop" ? shopType : undefined,
         guildType: siteType === "guild" ? guildType : undefined,
+        venueType: siteType === "entertainment" ? venueType : undefined,
+        functionType: siteType === "government" ? functionType : undefined,
         climate: context.climate,
         terrain: context.terrain,
         tags: context.tags,
@@ -210,7 +216,7 @@ export function useSiteGeneratorActions(
         methods.setValue("menu", cleanedItems);
       }
     },
-    [siteType, methods, getShopType, getGuildType, context, magic, wealth, setValue]
+    [siteType, methods, getSubType, context, magic, wealth, setValue]
   );
 
 
@@ -316,9 +322,6 @@ export function useSiteGeneratorActions(
     Object.entries(result).forEach(([key, value]) => {
       methods.setValue(key as keyof SiteFormData, value);
     });
-
-    // Generate new name
-    await generateName();
 
     // Check if site type has menu
     // If so, regenerate the menu with the new environment

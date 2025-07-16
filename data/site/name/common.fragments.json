@@ -235,50 +235,6 @@
         "value": "Turquoise",
         "weight": 1
     },
-
-
-
-
-    {
-        "type": "noun",
-        "value": "Candle",
-        "weight": 1
-    },
-    {
-        "type": "noun",
-        "value": "Crown",
-        "weight": 1
-    },
-    {
-        "type": "noun",
-        "value": "Hearth",
-        "weight": 2
-    },
-    {
-        "type": "noun",
-        "value": "Stag",
-        "weight": 2
-    },
-    {
-        "type": "noun",
-        "value": "Sword",
-        "weight": 1
-    },
-    {
-        "type": "noun",
-        "value": "Bell",
-        "weight": 2
-    },
-    {
-        "type": "noun",
-        "value": "Lantern",
-        "weight": 1
-    },
-    {
-        "type": "noun",
-        "value": "Scroll",
-        "weight": 2
-    },
     {
         "type": "noun",
         "value": "Rift",
