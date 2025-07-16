@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 export interface GeneratorSiteFragmentPlain {
-  type: 'prefix' | 'suffix' | 'noun' | 'person' | 'shopName' | 'guildHallName' | 'format';
+  type: 'prefix' | 'suffix' | 'noun' | 'person' | 'siteTypeName' | 'format';
   weight?: number;
   value: string;
   siteType?: string[];      // e.g. ["tavern"]
@@ -11,14 +11,14 @@ export interface GeneratorSiteFragmentPlain {
   climates?: string[];
   shopType?: string[];        // for shop type sites
   guildType?: string[];       // for guild type sites
-  venueType?: string[];     // for entertainment venue type sites
-  functionType?: string[];  // for government type sites
+  venueType?: string[];       // for entertainment venue type sites
+  functionType?: string[];    // for government type sites
   [key: string]: any;
 }
 
 
 const GeneratorSiteFragmentSchema = new mongoose.Schema({
-  type: { type: String, enum: ['prefix', 'suffix', 'noun', 'person', 'format', 'shopName', 'guildHallName'], required: true },
+  type: { type: String, enum: ['prefix', 'suffix', 'noun', 'person', 'format', 'siteTypeName'], required: true },
   value: { type: String, required: true },
   tags: { type: [String], required: false },
   weight: { type: Number, default: 1, required: false },

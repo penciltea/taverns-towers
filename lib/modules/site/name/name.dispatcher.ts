@@ -1,33 +1,21 @@
 import { generateSiteNameFromFragments } from "./generateSiteNameFromFragments";
-import { GenerateSiteNameOptions, SiteNameGenerator } from "@/interfaces/site.interface";
-//import { templeNameGenerator } from "../temple/temple.name.generator";
-//import { tavernNameGenerator } from "../tavern/tavern.name.generator";
+import { GenerateSiteNameOptions } from "@/interfaces/site.interface";
 import { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
-import { shopNameGenerator } from "../shop/shop.name.generator";
-import { guildNameGenerator } from "../guild/guild.name.generator";
-import { entertainmentNameGenerator } from "../entertainment/entertainment.name.generator";
-import { governmentNameGenerator } from "../government/government.name.generator";
-
-const siteNameGeneratorsByType: Record<string, SiteNameGenerator> = {
-  shop: shopNameGenerator,
-  guild: guildNameGenerator,
-  entertainment: entertainmentNameGenerator,
-  government: governmentNameGenerator
-  //temple: templeNameGenerator,
-  //tavern: tavernNameGenerator,
-};
-
-export const defaultSiteNameGenerator: SiteNameGenerator = {
-  generateName(fragments, options) {
-    return generateSiteNameFromFragments(fragments, options);
-  },
-};
+import { nameGeneratorConfigs } from "./nameGenerator.configs";
 
 export function dispatchSiteName(
   fragments: GeneratorSiteFragmentPlain[],
   options: GenerateSiteNameOptions
 ): string {
   const siteTypeKey = (options.siteType?.[0] ?? "").toLowerCase();
-  const generator = siteNameGeneratorsByType[siteTypeKey] || defaultSiteNameGenerator;
-  return generator.generateName(fragments, options);
+  const config = nameGeneratorConfigs[siteTypeKey];
+
+  return generateSiteNameFromFragments({
+    fragments,
+    filters: options,
+    ...(config ?? {
+      fallbackFormats: ["{{prefix}} {{suffix}}"],
+      allowedKeys: ["prefix", "suffix", "noun", "person"],
+    }),
+  });
 }

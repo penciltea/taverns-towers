@@ -162,6 +162,15 @@ export interface SiteNameGenerator {
   ): string;
 }
 
+// For site name generation fragments
+export type GroupKey =
+  | "prefix"
+  | "suffix"
+  | "noun"
+  | "person"
+  | "siteTypeName"
+  | "format";
+
 
 export interface SiteGenerationContext {
   climate?: string;

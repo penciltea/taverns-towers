@@ -24,10 +24,9 @@ import { generateGuildData } from "./guild/guild.rules";
 import { generateTempleData } from "./temple/temple.rules";
 import { generateGovernmentData } from "./government/government.rules";
 import { generateEntertainmentData } from "./entertainment/entertainment.rules";
-
-import { generateHiddenValues } from "./hidden.rules";
-import { generateMiscellaneousValues } from "./miscellaneous.rules";
-import { generateResidenceValues } from "./residence.rules";
+import { generateResidenceData } from "./residence/residence.rules";
+import { generateHiddenData } from "./hidden/hidden.rules";
+import { generateMiscellaneousData } from "./miscellaneous/miscellaneous.rules";
 
 type ShopSiteData = Extract<SiteFormData, { type: "shop" }>;
 type GuildSiteData = Extract<SiteFormData, { type: "guild" }>;
@@ -43,9 +42,9 @@ export const SiteGenerator: Record<
     entertainment: generateEntertainmentData,
     government: generateGovernmentData,
     guild: generateGuildData,    
-    hidden: generateHiddenValues,
-    miscellaneous: generateMiscellaneousValues,
-    residence: generateResidenceValues,
+    hidden: generateHiddenData,
+    miscellaneous: generateMiscellaneousData,
+    residence: generateResidenceData,
     shop: generateShopData,
     tavern: generateTavernData,
     temple: generateTempleData

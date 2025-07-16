@@ -416,7 +416,7 @@
   {
     "type": "format",
     "value": "{{prefix}}{{suffix}} {{noun}}",
-    "weight": 2, 
+    "weight": 3, 
     "siteType": ["residence"]
   }
 ]
