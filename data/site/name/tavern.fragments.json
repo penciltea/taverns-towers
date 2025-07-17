@@ -99,74 +99,74 @@
   
 
   {
-      "type": "suffix",
+      "type": "noun",
       "value": "Rest",
       "siteType": ["tavern"]
   },
   {
-      "type": "suffix",
+      "type": "noun",
       "value": "Den",
       "siteType": ["tavern"]
   },
   {
-      "type": "suffix",
+      "type": "noun",
       "value": "Roost",
       "siteType": ["tavern"]
   },
   {
-      "type": "suffix",
+      "type": "noun",
       "value": "Lodge",
       "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Taproom",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Flagon",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Hearth",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Bunkhouse",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Burrow",
     "siteType": ["tavern"],
     "tags": ["Hidden", "Isolated"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Barrelhouse",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Dive",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Hole",
     "siteType": ["tavern"],
     "tags": ["Criminal Hideout", "Isolated"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Spigot",
     "siteType": ["tavern"]
   },
   {
-    "type": "suffix",
+    "type": "noun",
     "value": "Cup",
     "siteType": ["tavern"]
   },
@@ -334,5 +334,5 @@
     "type": "person",
     "value": "Red Jarna",
     "siteType": ["tavern"]
-  }  
+  }
 ]

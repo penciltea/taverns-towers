@@ -169,6 +169,7 @@ export type GroupKey =
   | "noun"
   | "person"
   | "siteTypeName"
+  | "fullName"
   | "format";
 
 

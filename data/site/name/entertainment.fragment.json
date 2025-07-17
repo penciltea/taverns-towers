@@ -303,94 +303,29 @@
     },
 
 
-
-
     {
-        "type": "suffix",
-        "value": "Stage",
+        "type": "noun",
+        "value": "Parade",
         "weight": 1,
         "siteType": ["entertainment"],
-        "venueType": ["arena", "bard", "circusTent", "music", "theater"]
+        "venueType": ["festival", "street", "other"]
     },
     {
-        "type": "suffix",
-        "value": "Spectacle",
-        "weight": 2,
-        "siteType": ["entertainment"],
-        "venueType": ["magic"]
-    },
-    {
-        "type": "suffix",
-        "value": "Carnival",
-        "weight": 2,
-        "siteType": ["entertainment"],
-        "venueType": ["circusTent", "festival"]
-    },
-    {
-        "type": "suffix",
-        "value": "Ring",
-        "weight": 2,
-        "siteType": ["entertainment"],
-        "venueType": ["duel", "fightingPit", "arena"]
-    },
-    {
-        "type": "suffix",
-        "value": "Pit",
-        "weight": 2,
-        "siteType": ["entertainment"],
-        "venueType": ["duel", "fightingPit", "arena"]
-    },
-    {
-        "type": "suffix",
-        "value": "Show",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["theater", "music"]
-    },
-    {
-        "type": "suffix",
+        "type": "noun",
         "value": "Soak",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["bathhouse"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Revue",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["music", "bard"]
     },
     {
-        "type": "suffix",
-        "value": "Track",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["racing"]
-    },
-    {
-        "type": "suffix",
-        "value": "Parade",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["festival", "street"]
-    },
-    {
-        "type": "suffix",
-        "value": "House",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["music", "theater", "magic"]
-    },
-    {
-        "type": "suffix",
-        "value": "Cabaret",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["brothel", "music", "theater"]
-    },
-    {
-        "type": "suffix",
+        "type": "noun",
         "value": "Falls",
         "weight": 1,
         "siteType": ["entertainment"],
@@ -400,105 +335,74 @@
         "tags": ["Remote", "Sacred Site"]
     },
     {
-        "type": "suffix",
-        "value": "Curiosity",
+        "type": "noun",
+        "value": "Curiosities",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Riddle",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Whimsy",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Jubilee",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Enigma",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Oddity",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Wonder",
         "weight": 2,
         "siteType": ["entertainment"],
         "venueType": ["other"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Sprint",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["racing"]
     },
     {
-        "type": "suffix",
-        "value": "Circuit",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["racing"]
-    },
-    {
-        "type": "suffix",
+        "type": "noun",
         "value": "Rumble",
         "weight": 2,
         "siteType": ["entertainment"],
         "venueType": ["fightingPit", "duel"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Racket",
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["street", "festival"]
-    },
-    {
-        "type": "suffix",
-        "value": "March",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["festival", "street", "other"]
-    },
-    {
-        "type": "suffix",
-        "value": "Procession",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["festival", "street"]
-    },
-
-    
-
-    {
-        "type": "noun",
-        "value": "Track",
-        "weight": 2,
-        "siteType": ["entertainment"],
-        "venueType": ["racing"]
     },
     {
         "type": "noun",
@@ -558,13 +462,6 @@
     },
     {
         "type": "noun",
-        "value": "Pageantry",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["festival", "other"]
-    },
-    {
-        "type": "noun",
         "value": "Spectacle",
         "weight": 1,
         "siteType": ["entertainment"],
@@ -619,15 +516,6 @@
     },
     {
         "type": "noun",
-        "value": "Theater",
-        "siteType": ["entertainment"],
-        "venueType": ["theater"],
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Urban"],
-        "tags": ["entertainment"]
-    },
-    {
-        "type": "noun",
         "value": "Arcade",
         "siteType": ["entertainment"],
         "venueType": ["street"],
@@ -642,24 +530,6 @@
         "venueType": ["arena"],
         "climate": ["Temperate", "Dry"],
         "terrain": ["Urban", "Plains"],
-        "tags": ["entertainment"]
-    },
-    {
-        "type": "noun",
-        "value": "Bathhouse",
-        "siteType": ["entertainment"],
-        "venueType": ["bathhouse"],
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Urban"],
-        "tags": ["entertainment"]
-    },
-    {
-        "type": "noun",
-        "value": "Arena",
-        "siteType": ["entertainment"],
-        "venueType": ["arena"],
-        "climate": ["Temperate", "Dry"],
-        "terrain": ["Plains", "Urban"],
         "tags": ["entertainment"]
     },
     {
@@ -786,13 +656,6 @@
     },
     {
         "type": "noun",
-        "value": "Parade",
-        "weight": 1,
-        "siteType": ["entertainment"],
-        "venueType": ["other", "street"]
-    },
-    {
-        "type": "noun",
         "value": "Dream",
         "weight": 2,
         "siteType": ["entertainment"],
@@ -818,5 +681,209 @@
         "weight": 1,
         "siteType": ["entertainment"],
         "venueType": ["other"]
-    }
+    },
+
+
+    
+    {
+        "type": "siteTypeName",
+        "value": "Theater",
+        "siteType": ["entertainment"],
+        "venueType": ["theater"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Arena",
+        "siteType": ["entertainment"],
+        "venueType": ["arena"]
+    },
+    {
+        "type": "noun",
+        "value": "Dice Hall",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["gambling"]
+    },
+    {
+        "type": "noun",
+        "value": "Bathhouse",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["bathhouse"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Track",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Stage",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "bard", "circusTent", "music", "theater"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Carnival",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["circusTent", "festival"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Ring",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "fightingPit", "arena"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Pit",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "fightingPit", "arena"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Show",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["theater", "music"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Track",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "House",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "theater", "magic"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Cabaret",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "music", "theater"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Circuit",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["racing"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "College",
+        "weight": 2,
+        "siteType": ["entertainment"],
+        "venueType": ["bard"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "School",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["bard", "magic"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Parlor",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["brothel", "magic", "music"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Den",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["gambling", "brothel", "fightingPit"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Spectacle",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Extravaganza",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "festival"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Grounds",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["festival", "racing", "circusTent"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Circle",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "magic", "street"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Plaza",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "festival"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Gallery",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["magic", "theater"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Commons",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["street", "festival", "other"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Amphitheater",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["arena", "theater"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Circle",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["duel", "bard", "magic"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Terrace",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "street", "festival"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Lounge",
+        "weight": 1,
+        "siteType": ["entertainment"],
+        "venueType": ["music", "brothel", "bathhouse"]
+    }    
 ]

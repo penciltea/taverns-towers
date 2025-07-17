@@ -136,35 +136,35 @@
 
 
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Station",
         "weight": 2,
         "siteType": ["government"],
         "functionType": ["guardhouse", "quartermaster", "recruit", "postOffice"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Hall",
         "weight": 2,
         "siteType": ["government"],
         "functionType": ["townHall", "mayor", "employment", "archive"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Office",
         "weight": 2,
         "siteType": ["government"],
         "functionType": ["tax", "census", "permit", "bounty", "employment", "customs"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Command",
         "weight": 1,
         "siteType": ["government"],
         "functionType": ["command", "garrison", "barracks"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Tower",
         "weight": 1,
         "siteType": ["government"],
@@ -295,190 +295,233 @@
 
 
     {
-        "type": "suffix",
-        "value": "Spire",
-        "weight": 1,
-        "climate": ["Polar", "Continental"],
-        "terrain": ["Mountains", "Tundra"],
-        "tags": ["Watch", "Military Outpost"],
-        "siteType": ["government"],
-        "functionType": ["watch", "garrison", "command"]
+        "type": "noun",
+        "value": "Center",
+        "siteType": ["government"]
     },
     {
-        "type": "suffix",
-        "value": "Dock",
-        "weight": 1,
-        "climate": ["Temperate", "Tropical"],
-        "terrain": ["Coast", "River"],
-        "tags": ["Port", "Trade Hub"],
-        "siteType": ["government"],
-        "functionType": ["customs", "postOffice", "quartermaster"]
+        "type": "noun",
+        "value": "Annex",
+        "siteType": ["government"]
     },
     {
-        "type": "suffix",
-        "value": "Canopy",
-        "weight": 1,
-        "climate": ["Tropical"],
-        "terrain": ["Jungle", "Swamp"],
-        "tags": ["Overgrown", "Hidden"],
-        "siteType": ["government"],
-        "functionType": ["publicWork", "guardhouse", "prison"]
+        "type": "noun",
+        "value": "Division",
+        "siteType": ["government"]
     },
     {
-        "type": "suffix",
-        "value": "Roost",
-        "weight": 1,
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Hills", "Forest"],
-        "tags": ["Remote", "Watch"],
-        "siteType": ["government"],
-        "functionType": ["watch", "recruit", "barracks"]
-    },
-    {
-        "type": "suffix",
-        "value": "Vault",
-        "weight": 1,
-        "climate": ["Continental"],
-        "terrain": ["Urban", "Mountains"],
-        "tags": ["Capital", "Hidden"],
-        "siteType": ["government"],
-        "functionType": ["archive", "tax", "courtier"]
-    },
-    {
-        "type": "suffix",
-        "value": "Hall",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["townHall", "mayor", "archive", "employment"]
-    },
-    {
-        "type": "suffix",
-        "value": "Office",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["census", "mayor", "permit", "postOffice", "employment"]
-    },
-    {
-        "type": "suffix",
-        "value": "Tower",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["watch", "command", "embassy"]
-    },
-    {
-        "type": "suffix",
-        "value": "House",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["guardhouse", "mayor", "tax", "customs"]
-    },
-    {
-        "type": "suffix",
-        "value": "Yard",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["drillYard", "recruit", "barracks"]
-    },
-    {
-        "type": "suffix",
-        "value": "Keep",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["barracks", "garrison", "prison"]
-    },
-    {
-        "type": "suffix",
-        "value": "Station",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["quartermaster", "watch", "customs"]
-    },
-    {
-        "type": "suffix",
-        "value": "Wing",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["archive", "embassy", "townHall"]
-    },
-    {
-        "type": "suffix",
+        "type": "noun",
         "value": "Chamber",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["courtier", "mayor", "permit"]
-    },
-    {
-        "type": "suffix",
-        "value": "Outpost",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["recruit", "bounty", "watch"]
-    },
-
-
-
-
-    {
-        "type": "noun",
-        "value": "Records",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["archive", "census"]
+        "siteType": ["government"]
     },
     {
         "type": "noun",
-        "value": "Signal",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["watch"]
+        "value": "House",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Office",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Registry",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Station",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Watch",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Hall",
+        "siteType": ["government"]
     },
     {
         "type": "noun",
         "value": "Dispatch",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["postOffice", "bounty", "recruit"]
+        "siteType": ["government"]
     },
     {
         "type": "noun",
+        "value": "Post",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Tribunal",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Dock",
+        "siteType": ["government"]
+    },
+    {
+        "type": "noun",
+        "value": "Signal",
+        "siteType": ["government"]
+    },
+
+
+    {
+        "type": "siteTypeName",
+        "value": "Records",
+        "siteType": ["government"]
+    },
+    {
+        "type": "siteTypeName",
         "value": "Command",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["command", "garrison"]
+        "siteType": ["government"]
     },
     {
-        "type": "noun",
+        "type": "siteTypeName",
         "value": "Court",
-        "weight": 2,
+        "siteType": ["government"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Archives",
+        "siteType": ["government"],
+        "functionType": ["archive"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Census",
+        "siteType": ["government"],
+        "functionType": ["census"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Customs",
+        "siteType": ["government"],
+        "functionType": ["customs"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Mayor's Hall",
+        "siteType": ["government"],
+        "functionType": ["mayor"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Licensing",
+        "siteType": ["government"],
+        "functionType": ["permit"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Tax Office",
+        "siteType": ["government"],
+        "functionType": ["tax"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Town Hall",
+        "siteType": ["government"],
+        "functionType": ["townHall"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Barracks",
+        "siteType": ["government"],
+        "functionType": ["barracks"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Bounty Board",
+        "siteType": ["government"],
+        "functionType": ["bounty"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Court",
         "siteType": ["government"],
         "functionType": ["courthouse"]
     },
-
-
-
     {
-        "type": "format",
-        "value": "{{prefix}} {{noun}}",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "format",
-        "value": "{{noun}} of the {{suffix}}",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "format",
-        "value": "The {{prefix}} {{suffix}}",
-        "weight": 1,
-        "siteType": ["government"]
-    },
-    {
-        "type": "format",
-        "value": "{{noun}} Hall",
-        "weight": 1,
+        "type": "siteTypeName",
+        "value": "Drill Yard",
         "siteType": ["government"],
-        "functionType": ["mayor", "townHall", "permit"]
+        "functionType": ["drillYard"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Garrison",
+        "siteType": ["government"],
+        "functionType": ["garrison"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Guardhouse",
+        "siteType": ["government"],
+        "functionType": ["guardhouse"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Command",
+        "siteType": ["government"],
+        "functionType": ["command"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Prison",
+        "siteType": ["government"],
+        "functionType": ["prison"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Recruitment Post",
+        "siteType": ["government"],
+        "functionType": ["recruit"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Quartermaster's",
+        "siteType": ["government"],
+        "functionType": ["quartermaster"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Watchtower",
+        "siteType": ["government"],
+        "functionType": ["watch"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Embassy",
+        "siteType": ["government"],
+        "functionType": ["embassy"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Employment Office",
+        "siteType": ["government"],
+        "functionType": ["employment"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Post Office",
+        "siteType": ["government"],
+        "functionType": ["postOffice"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Public Works",
+        "siteType": ["government"],
+        "functionType": ["publicWork"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Civic Center",
+        "siteType": ["government"],
+        "functionType": ["other"]
     }
 ]

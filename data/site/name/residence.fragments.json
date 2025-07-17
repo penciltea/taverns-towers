@@ -244,130 +244,6 @@
 
 
 
-
-  {
-    "type": "suffix",
-    "value": "loft",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "ridge",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "grove",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "glen",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "mere",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "hollow",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "fall",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "brook",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "bough",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "fen",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Swamp", "River"],
-    "climate": ["Temperate", "Tropical"]
-  },
-  {
-    "type": "suffix",
-    "value": "dell",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Forest", "Hills"],
-    "climate": ["Temperate"]
-  },
-  {
-    "type": "suffix",
-    "value": "hearth",
-    "weight": 1,
-    "siteType": ["residence"]
-  },
-  {
-    "type": "suffix",
-    "value": "barrow",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Hills", "Underground"],
-    "tags": ["Ancient Ruins", "Isolated"]
-  },
-  {
-    "type": "suffix",
-    "value": "point",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Coast", "Hills"]
-  },
-  {
-    "type": "suffix",
-    "value": "watch",
-    "weight": 1,
-    "siteType": ["residence"],
-    "tags": ["Border Post", "Remote"]
-  },
-  {
-    "type": "suffix",
-    "value": "shade",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Forest", "Jungle"],
-    "climate": ["Tropical"]
-  },
-  {
-    "type": "suffix",
-    "value": "cliff",
-    "weight": 1,
-    "siteType": ["residence"],
-    "terrain": ["Coast", "Mountains"]
-  },
-  {
-    "type": "suffix",
-    "value": "nest",
-    "weight": 1,
-    "siteType": ["residence"],
-    "tags": ["Isolated", "Hidden"]
-  },
-
-
-
   {
     "type": "noun",
     "value": "Hall",
@@ -410,13 +286,10 @@
     "weight": 1,
     "siteType": ["residence"]
   },
-
-
-
   {
-    "type": "format",
-    "value": "{{prefix}}{{suffix}} {{noun}}",
-    "weight": 3, 
+    "type": "noun",
+    "value": "Lodge",
+    "weight": 1,
     "siteType": ["residence"]
   }
 ]

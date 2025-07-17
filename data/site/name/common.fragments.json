@@ -1,13 +1,4 @@
 [
-    
-    
-    {
-        "type": "prefix",
-        "value": "Goldenleaf",
-        "climate": ["Temperate", "Continental"],
-        "terrain": ["Forest", "Plains"],
-        "tags": ["Trade Hub", "Druidic"]
-    },
     {
         "type": "prefix",
         "value": "Old",
@@ -36,6 +27,13 @@
     {
         "type": "prefix",
         "value": "Leaning"
+    },
+    {
+        "type": "prefix",
+        "value": "Goldenleaf",
+        "climate": ["Temperate", "Continental"],
+        "terrain": ["Forest", "Plains"],
+        "tags": ["Trade Hub", "Druidic"]
     },
     {
         "type": "prefix",
@@ -235,6 +233,172 @@
         "value": "Turquoise",
         "weight": 1
     },
+
+
+    {
+        "type": "suffix",
+        "value": "mere"
+    },
+    {
+        "type": "suffix",
+        "value": "fall"
+    },
+    {
+        "type": "suffix",
+        "value": "reach"
+    },
+    {
+        "type": "suffix",
+        "value": "vale"
+    },
+    {
+        "type": "suffix",
+        "value": "shade"
+    },
+    {
+        "type": "suffix",
+        "value": "hold"
+    },
+    {
+        "type": "suffix",
+        "value": "hollow"
+    },
+    {
+        "type": "suffix",
+        "value": "watch"
+    },
+    {
+        "type": "suffix",
+        "value": "crest"
+    },
+    {
+        "type": "suffix",
+        "value": "moor"
+    },
+    {
+        "type": "suffix",
+        "value": "rest"
+    },
+    {
+        "type": "suffix",
+        "value": "run"
+    },
+    {
+        "type": "suffix",
+        "value": "forge"
+    },
+    {
+        "type": "suffix",
+        "value": "rock"
+    },
+    {
+        "type": "suffix",
+        "value": "spire"
+    },
+    {
+        "type": "suffix",
+        "value": "bluff"
+    },
+    {
+        "type": "suffix",
+        "value": "gate"
+    },
+    {
+        "type": "suffix",
+        "value": "brook"
+    },
+    {
+        "type": "suffix",
+        "value": "thorn"
+    },
+    {
+        "type": "suffix",
+        "value": "glade"
+    },    
+    {
+        "type": "suffix",
+        "value": "cliff"
+    },
+    {
+        "type": "suffix",
+        "value": "loft"
+    },
+    {
+        "type": "suffix",
+        "value": "ridge"
+    },
+    {
+        "type": "suffix",
+        "value": "glen"
+    },
+    {
+        "type": "suffix",
+        "value": "bough"
+    },
+    {
+        "type": "suffix",
+        "value": "fen"
+    },
+    {
+        "type": "suffix",
+        "value": "dell"
+    },
+    {
+        "type": "suffix",
+        "value": "hearth"
+    },
+    {
+        "type": "suffix",
+        "value": "brook",
+        "terrain": ["river"]
+    }, {
+        "type": "suffix",
+        "value": "fen",
+        "weight": 1,
+        "terrain": ["Swamp", "River"],
+        "climate": ["Temperate", "Tropical"]
+    },
+    {
+        "type": "suffix",
+        "value": "dell",
+        "weight": 1,
+        "terrain": ["Forest", "Hills"],
+        "climate": ["Temperate"]
+    },
+    {
+        "type": "suffix",
+        "value": "hearth",
+        "weight": 1
+    },
+    {
+        "type": "suffix",
+        "value": "barrow",
+        "weight": 1,
+        "terrain": ["Hills", "Underground"],
+        "tags": ["Ancient Ruins", "Isolated"]
+    },
+    {
+        "type": "suffix",
+        "value": "point",
+        "weight": 1,
+        "terrain": ["Coast", "Hills"]
+    },
+    {
+        "type": "suffix",
+        "value": "nest",
+        "weight": 1,
+        "tags": ["Isolated", "Hidden"]
+    }, 
+    {
+        "type": "suffix",
+        "value": "shade",
+        "weight": 1,
+        "terrain": ["Forest", "Jungle"],
+        "climate": ["Tropical"]
+    },
+
+
+
     {
         "type": "noun",
         "value": "Rift",
@@ -374,17 +538,41 @@
 
 
 
-
-
     {
         "type": "format",
-        "value": "{{noun}} & {{noun}}",
-        "weight": 2,
-        "siteType": [ "shop", "tavern" ]
+        "value": "{{fullName}}",
+        "weight": 1
     },
     {
         "type": "format",
-        "value": "The {{prefix}} {{suffix}}",
+        "value": "The {{siteTypeName}}",
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "government"]
+    },
+    {
+        "type": "format",
+        "value": "{{noun}} & {{noun}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "The {{noun}} and the {{noun}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}}{{suffix}} {{noun}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "The {{prefix}}{{suffix}} {{siteTypeName}}",
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}}{{suffix}} {{noun}}",
         "weight": 1
     },
     {
@@ -394,14 +582,62 @@
     },
     {
         "type": "format",
-        "value": "The {{noun}} and the {{noun}}",
-        "weight": 2,
-        "siteType": [ "shop", "tavern" ]
+        "value": "{{person}}'s {{siteTypeName}}",
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
     },
     {
         "type": "format",
-        "value": "{{prefix}} {{noun}} Hall",
+        "value": "{{person}} & Sons",
+        "weight": 2,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} & Daughters",
         "weight": 1,
-        "siteType": ["guild", "residence"]
+        "siteType": ["shop", "guild", "entertainment", "residence"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} & Co.",
+        "weight": 3,
+        "siteType": ["shop", "guild", "entertainment", "tavern"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}}’s {{siteTypeName}}",
+        "weight": 4,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} & Partner",
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} Bros.",
+        "weight": 1,
+        "siteType": ["entertainment", "guild", "shop"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} Family {{siteTypeName}}",
+        "weight": 1,
+        "siteType": ["residence", "shop", "tavern"]
+    },
+    {
+        "type": "format",
+        "value": "The House of {{person}}",
+        "weight": 1,
+        "siteType": ["residence", "entertainment", "temple"]
+    },
+    {
+        "type": "format",
+        "value": "{{person}} & Kin",
+        "weight": 1,
+        "siteType": ["shop", "residence", "guild"]
     }
 ]

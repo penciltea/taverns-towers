@@ -14,8 +14,8 @@ export const nameGeneratorConfigs: Record<string, {
       (filters.data?.type === "entertainment" && Array.isArray(filters.data.venueType)
         ? filters.data.venueType
         : undefined),
-    fallbackFormats: ["{{noun}} of the {{suffix}}", "{{noun}} Hall"],
-    allowedKeys: ["prefix", "suffix", "noun"],
+    fallbackFormats: ["The {{noun}} and the {{noun}}", "{{prefix}} Hall"],
+    allowedKeys: ["prefix", "suffix", "noun", "person", "fullName", "siteTypeName"],
   },
   government: {
     subtypeKey: "functionType",
@@ -24,7 +24,7 @@ export const nameGeneratorConfigs: Record<string, {
       (filters.data?.type === "government" && Array.isArray(filters.data.function)
         ? filters.data.function
         : undefined),
-    fallbackFormats: ["{{noun}} of the {{suffix}}", "{{noun}} Hall"],
+    fallbackFormats: ["{{noun}} of the {{suffix}}", "The {{siteTypeName}}"],
     allowedKeys: ["prefix", "suffix", "noun"],
   },
   shop: {
@@ -44,7 +44,7 @@ export const nameGeneratorConfigs: Record<string, {
       (filters.data?.type === "guild" && Array.isArray(filters.data.guildType)
         ? filters.data.guildType
         : undefined),
-    fallbackFormats: ["The {{prefix}} Guild", "Guild of the {{noun}}"],
+    fallbackFormats: ["The {{siteTypeName}} Guildhall", "The {{prefix}} {{noun}}"],
     allowedKeys: ["prefix", "noun", "suffix"],
   },
 };

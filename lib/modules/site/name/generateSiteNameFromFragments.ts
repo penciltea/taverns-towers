@@ -11,7 +11,7 @@ export function generateSiteNameFromFragments({
   subtypeKey,
   getSubtypeValues,
   fallbackFormats,
-  allowedKeys = ["prefix", "suffix", "noun", "person"],
+  allowedKeys = ["prefix", "suffix", "noun", "person", "siteTypeName", "fullName"],
 }: {
   fragments: GeneratorSiteFragmentPlain[];
   filters: GenerateSiteNameOptions;
@@ -33,12 +33,21 @@ export function generateSiteNameFromFragments({
   const grouped = groupFragmentsByType(filtered);
   const unfilteredGrouped = groupFragmentsByType(fragments);
 
-  // Step 4: Select format template
-  const formatFragment = weightedRandom(grouped.format);
-  const fallbackFormatFragment = weightedRandom(
-    fallbackFormats.map(fmt => ({ value: fmt, weight: 1 }))
-  );
-  const formatTemplate = formatFragment?.value || fallbackFormatFragment?.value || "The {{prefix}} {{noun}}";
+  // Step 4: Validate format templates
+  function canSatisfyFormat(template: string | undefined): boolean {
+    if (!template) return false;
+    const matches = [...template.matchAll(/\{\{\s*(.*?)\s*\}\}/g)];
+    return matches.every(([, key]) => {
+      if (!allowedKeys.includes(key)) return false;
+      const typedKey = key as GroupKey;
+      const group = grouped[typedKey] ?? unfilteredGrouped[typedKey];
+      return Array.isArray(group) && group.length > 0;
+    });
+  }
+
+  // Try formatFragment first, then fallbacks
+  const formatCandidates = [grouped.format?.length ? weightedRandom(grouped.format)?.value : undefined, ...fallbackFormats];
+  const formatTemplate = formatCandidates.find(canSatisfyFormat) || "The {{prefix}} {{noun}}";
 
   // Step 5: Replacement logic
   const usedFragments: Record<GroupKey, string[]> = {
@@ -47,6 +56,7 @@ export function generateSiteNameFromFragments({
     noun: [],
     person: [],
     siteTypeName: [],
+    fullName: [],
     format: [],
   };
 
@@ -71,6 +81,7 @@ export function generateSiteNameFromFragments({
     used.push(selected.value);
     return selected.value;
   };
+  
 
   return formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_: string, key: string) => getReplacement(key));
 }

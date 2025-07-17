@@ -235,25 +235,25 @@
 
 
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Order",
         "weight": 2,
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Alliance",
         "weight": 1,
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Consortium",
         "weight": 1,
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Council",
         "weight": 1,
         "siteType": ["guild"]
@@ -265,19 +265,19 @@
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Collective",
         "weight": 1,
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Brotherhood",
         "weight": 2,
         "siteType": ["guild"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Syndicate",
         "weight": 1,
         "siteType": ["guild"],
@@ -285,17 +285,13 @@
         "guildType": ["thief", "assassin", "spy"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Coven",
         "weight": 1,
         "siteType": ["guild"],
         "tags": ["Arcane Nexus", "Druidic", "Sacred Site"],
         "guildType": ["mage", "druid", "healer"]
     },
-
-
-
-
     {
         "type": "noun",
         "value": "Sanctuary",
@@ -599,335 +595,309 @@
 
 
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Adventurers' Guild",
         "siteType": ["guild"],
         "guildType": ["adventurer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Assassins' Guild",
         "siteType": ["guild"],
         "guildType": ["assassin"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Beast Tamers' Guild",
         "siteType": ["guild"],
         "guildType": ["beastTamer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Hunters' Guild",
         "siteType": ["guild"],
         "guildType": ["hunter"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Monster Hunters' Guild",
         "siteType": ["guild"],
         "guildType": ["monsterHunter"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Thieves' Guild",
         "siteType": ["guild"],
         "guildType": ["thief"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Spy Network",
         "siteType": ["guild"],
         "guildType": ["spy"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Alchemists' Guild",
         "siteType": ["guild"],
         "guildType": ["alchemist"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Cartographers' Guild",
         "siteType": ["guild"],
         "guildType": ["cartographer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Fletchers' Guild",
         "siteType": ["guild"],
         "guildType": ["fletcher"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Glassblowers' Guild",
         "siteType": ["guild"],
         "guildType": ["glassblower"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Jeweler's Guild",
         "siteType": ["guild"],
         "guildType": ["jeweler"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Leatherworkers' Guild",
         "siteType": ["guild"],
         "guildType": ["leatherworker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Scribes' Guild",
         "siteType": ["guild"],
         "guildType": ["scribe"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Smiths' Guild",
         "siteType": ["guild"],
         "guildType": ["smith"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Stonecutters' Guild",
         "siteType": ["guild"],
         "guildType": ["stoneCutter"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Tailors' Guild",
         "siteType": ["guild"],
         "guildType": ["tailor"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Tinkers' Guild",
         "siteType": ["guild"],
         "guildType": ["tinker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Woodworkers' Guild",
         "siteType": ["guild"],
         "guildType": ["woodworker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Artisans' Guild",
         "siteType": ["guild"],
         "guildType": ["artisan"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Druids' Circle",
         "siteType": ["guild"],
         "guildType": ["druid"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Mages' Conclave",
         "siteType": ["guild"],
         "guildType": ["mage"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Healers' Lodge",
         "siteType": ["guild"],
         "guildType": ["healer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Scholars' Forum",
         "siteType": ["guild"],
         "guildType": ["scholar"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Couriers' Guild",
         "siteType": ["guild"],
         "guildType": ["courier"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Dockworkers' Union",
         "siteType": ["guild"],
         "guildType": ["dockworker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Foresters' Circle",
         "siteType": ["guild"],
         "guildType": ["forester"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Laborers' Cooperative",
         "siteType": ["guild"],
         "guildType": ["laborer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Miners' Lodge",
         "siteType": ["guild"],
         "guildType": ["miner"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Seafarers' Guild",
         "siteType": ["guild"],
         "guildType": ["seafarer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Explorers' League",
         "siteType": ["guild"],
         "guildType": ["explorer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Artists' Collective",
         "siteType": ["guild"],
         "guildType": ["artist"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Auctioneers' Union",
         "siteType": ["guild"],
         "guildType": ["auctioneer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Bankers' Consortium",
         "siteType": ["guild"],
         "guildType": ["banker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Courtiers' Assembly",
         "siteType": ["guild"],
         "guildType": ["courtier"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Entertainers' Troupe",
         "siteType": ["guild"],
         "guildType": ["entertainer"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Information Brokers' Syndicate",
         "siteType": ["guild"],
         "guildType": ["broker"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Merchants' League",
         "siteType": ["guild"],
         "guildType": ["merchant"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Fellowship of Trades",
         "siteType": ["guild"],
         "guildType": ["artisan", "merchant", "tinker", "tailor"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Circle of Shadows",
         "siteType": ["guild"],
         "guildType": ["assassin", "spy", "thief"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Wanderers' Circle",
         "siteType": ["guild"],
         "guildType": ["adventurer", "explorer", "beastTamer", "courier"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Circle of Unity",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Company of the Wyrm",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Fellowship of the Veil",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Sovereigns' Assembly",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "The Scarlet Accord",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Keepers of the Flame",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "The Jade Court",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Eclipse Syndicate",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Guild of Secrets",
         "siteType": ["guild"],
         "guildType": ["other"]
     },
     {
-        "type": "guildHallName",
+        "type": "siteTypeName",
         "value": "Society of Echoes",
         "siteType": ["guild"],
         "guildType": ["other"]
-    },
-
-
-    {
-        "type": "format",
-        "value": "Hall of the {{noun}}",
-        "weight": 2,
-        "siteType": ["guild"]
-    },
-    {
-        "type": "format",
-        "value": "The {{prefix}} Guild",
-        "weight": 2,
-        "siteType": ["guild"]
-    },
-    {
-        "type": "format",
-        "value": "Guild of the {{noun}}",
-        "weight": 1,
-        "siteType": ["guild"]
-    },
-    {
-        "type": "format",
-        "value": "{{person}}'s Circle",
-        "weight": 1,
-        "siteType": ["guild"]
     }
 ]

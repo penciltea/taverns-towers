@@ -1,8 +1,9 @@
+import { GroupKey } from "@/interfaces/site.interface";
 import mongoose from "mongoose";
 
 
 export interface GeneratorSiteFragmentPlain {
-  type: 'prefix' | 'suffix' | 'noun' | 'person' | 'siteTypeName' | 'format';
+  type: GroupKey;
   weight?: number;
   value: string;
   siteType?: string[];      // e.g. ["tavern"]
@@ -18,7 +19,7 @@ export interface GeneratorSiteFragmentPlain {
 
 
 const GeneratorSiteFragmentSchema = new mongoose.Schema({
-  type: { type: String, enum: ['prefix', 'suffix', 'noun', 'person', 'format', 'siteTypeName'], required: true },
+  type: { type: String, enum: ['prefix', 'suffix', 'noun', 'person', 'siteTypeName', 'fullName', 'format'], required: true },
   value: { type: String, required: true },
   tags: { type: [String], required: false },
   weight: { type: Number, default: 1, required: false },
