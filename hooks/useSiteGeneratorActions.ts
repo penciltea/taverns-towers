@@ -17,6 +17,7 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
+import { shouldReplace } from "@/lib/util/randomValues";
 
 type GeneratorContext = {
   siteType: SiteFormData["type"];
@@ -116,12 +117,20 @@ export function useSiteGeneratorActions(
       const venueType = getSubType("venueType");
       const functionType = getSubType("function");
 
+      const selectedDomains = siteType === "temple"
+        ? (() => {
+            const val = getValues("domains");
+            return val && val.length > 0 ? val : undefined;
+          })()
+        : undefined;
+
       const name = await generateSiteName({
         siteType: [siteType],
         shopType: siteType === "shop" ? shopType : undefined,
         guildType: siteType === "guild" ? guildType : undefined,
         venueType: siteType === "entertainment" ? venueType : undefined,
         functionType: siteType === "government" ? functionType : undefined,
+        domains: selectedDomains,
         terrain: env.terrain,
         climate: env.climate,
         tags: env.tags,
@@ -169,12 +178,20 @@ export function useSiteGeneratorActions(
       const siteSize = formData.size;
       const siteCondition = formData.condition;
 
+      const selectedDomains = siteType === "temple"
+        ? (() => {
+            const val = getValues("domains");
+            return val && val.length > 0 ? val : undefined;
+          })()
+        : undefined;
+
       const generationContext = {
         siteType,
         shopType: siteType === "shop" ? shopType : undefined,
         guildType: siteType === "guild" ? guildType : undefined,
         venueType: siteType === "entertainment" ? venueType : undefined,
         functionType: siteType === "government" ? functionType : undefined,
+        domains: selectedDomains,
         climate: context.climate,
         terrain: context.terrain,
         tags: context.tags,
@@ -254,13 +271,7 @@ export function useSiteGeneratorActions(
     Object.entries(result).forEach(([key, value]) => {
       const currentValue = methods.getValues(key as keyof SiteFormData);
 
-      const isEmpty =
-        currentValue === undefined ||
-        currentValue === null ||
-        currentValue === "" ||
-        (Array.isArray(currentValue) && currentValue.length === 0);
-
-      if (isEmpty && value !== undefined && value !== null && value !== "") {
+      if (shouldReplace(currentValue) && value !== undefined && value !== null && value !== "") {
         methods.setValue(key as keyof SiteFormData, value);
       }
     });

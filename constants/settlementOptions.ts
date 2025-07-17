@@ -57,7 +57,6 @@ export const CRIMINAL_ACTIVITY_TYPES = [
   ];
 
 export const DOMAINS = [
-  "Arcana",
   "Arts",
   "Beauty",
   "Chaos",

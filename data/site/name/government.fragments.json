@@ -22,13 +22,6 @@
     },
     {
         "type": "prefix",
-        "value": "Postal",
-        "weight": 2,
-        "siteType": ["government"],
-        "functionType": ["postOffice"]
-    },
-    {
-        "type": "prefix",
         "value": "Signal",
         "weight": 1,
         "siteType": ["government"],
@@ -384,7 +377,8 @@
     {
         "type": "siteTypeName",
         "value": "Court",
-        "siteType": ["government"]
+        "siteType": ["government"],
+        "functionType": ["courthouse", "courtier", "embassy", "other"]
     },
     {
         "type": "siteTypeName",

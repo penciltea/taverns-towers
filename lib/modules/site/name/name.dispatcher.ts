@@ -14,8 +14,8 @@ export function dispatchSiteName(
     fragments,
     filters: options,
     ...(config ?? {
-      fallbackFormats: ["{{prefix}} {{suffix}}"],
-      allowedKeys: ["prefix", "suffix", "noun", "person"],
+      fallbackFormats: ["The {{prefix}} {{noun}}"],
+      allowedKeys: ["prefix", "suffix", "noun", "person", "fullName"],
     }),
   });
 }

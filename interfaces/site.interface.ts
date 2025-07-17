@@ -66,6 +66,7 @@ export interface TavernSite extends BaseSite {
 
 export interface TempleSite extends BaseSite {
   type: "temple";
+  domains: string[];
   leader?: string;
   relics?: string;
   menu?: { name: string; description: string; price: string; category?: string; rarity?: string; magic?: string;}[];
@@ -152,6 +153,7 @@ export interface GenerateSiteNameOptions {
   guildType?: string[];
   venueType?: string[];
   functionType?: string[];
+  domains?: string[];
   data?: Partial<SiteFormData>;
 }
 

@@ -13,7 +13,7 @@ export const TavernDetails = ({ site }: { site: TavernSite }) => {
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />
         <InfoListItem label="Owner" value={site.owner} />
         <InfoListItem label="Clientele" value={site.clientele} />
-        <InfoListItem label="Entertainment Offerings" value={site.entertainment} />
+        <InfoListItem label="Entertainment Offerings" value={site.entertainment?.length ? site.entertainment.join(', ') : 'N/A'} />
         <InfoListItem label="Room Cost per Night" value={site.cost} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
         <InfoListItem label="GM Notes" value={site.gmNotes} />

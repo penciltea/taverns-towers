@@ -96,61 +96,61 @@
     
 
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Rock",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Spire",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Vault",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Gate",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Mirror",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Shrine",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Hollow",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Basin",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Garden",
         "weight": 1,
         "siteType": ["miscellaneous"]
     },
     {
-        "type": "suffix",
+        "type": "noun",
         "value": "Pillar",
         "weight": 1,
         "siteType": ["miscellaneous"]

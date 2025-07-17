@@ -1,0 +1,170 @@
+[
+    {
+    "type": "prefix",
+    "value": "Veiled",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Forgotten",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Whispering",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Shrouded",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Silent",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Buried",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Obscured",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "prefix",
+    "value": "Nameless",
+    "siteType": ["hidden"]
+  },
+
+
+
+
+
+  
+  {
+    "type": "noun",
+    "value": "Vault",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Warren",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Chamber",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Hollow",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Sanctum",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Refuge",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Echo",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Crypt",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "noun",
+    "value": "Cell",
+    "siteType": ["hidden"]
+  },
+
+
+
+
+
+
+
+  {
+    "type": "siteTypeName",
+    "value": "Hideout",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Den",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Burrow",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Sanctuary",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Safehouse",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Retreat",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Strongroom",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Outpost",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Sanctum",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Smuggler's Den",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Bandit Hideaway",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "siteTypeName",
+    "value": "Hidden Compound",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "fullName",
+    "value": "The Lost Place",
+    "siteType": ["hidden"]
+  },
+  {
+    "type": "fullName",
+    "value": "The Forgotten Refuge",
+    "siteType": ["hidden"]
+  }
+]

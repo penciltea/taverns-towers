@@ -13,6 +13,7 @@ import { useSaveSettlementMutation } from "@/hooks/useSaveSettlementMutation";
 import { normalizeSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { generateSettlementData } from "@/lib/actions/settlementGenerator.actions";
 import { SettlementFormData, defaultSettlementValues } from "@/schemas/settlement.schema";
+import { shouldReplace } from "@/lib/util/randomValues";
 
 export function useSettlementFormHandlers(
     methods: UseFormReturn<SettlementFormData>,
@@ -32,15 +33,10 @@ export function useSettlementFormHandlers(
     // Generate full data from normalized input (rerollAll = false)
     const generatedValues = await generateSettlementData(normalizedInput, false);
 
-    // Only fill in missing or empty fields, preserve existing values (including name)
+    // Only fill in missing/empty or "random" fields, preserve existing values (including name)
     Object.entries(generatedValues).forEach(([key, value]) => {
       const currentVal = currentValues[key as keyof SettlementFormData];
-      if (
-        currentVal === undefined ||
-        currentVal === null ||
-        (typeof currentVal === "string" && currentVal.trim() === "") ||
-        (Array.isArray(currentVal) && currentVal.length === 0)
-      ) {
+      if (shouldReplace(currentVal) && value !== undefined && value !== null && value !== "") {
         methods.setValue(key as keyof SettlementFormData, value);
       }
     });

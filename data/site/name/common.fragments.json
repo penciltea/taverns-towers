@@ -546,34 +546,37 @@
     {
         "type": "format",
         "value": "The {{siteTypeName}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "government"]
+        "weight": 1
     },
     {
         "type": "format",
         "value": "{{noun}} & {{noun}}",
-        "weight": 1
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern"]
     },
     {
         "type": "format",
         "value": "The {{noun}} and the {{noun}}",
-        "weight": 1
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern"]
     },
     {
         "type": "format",
         "value": "The {{prefix}}{{suffix}} {{noun}}",
-        "weight": 1
-    },
-    {
-        "type": "format",
-        "value": "The {{prefix}}{{suffix}} {{siteTypeName}}",
         "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
     },
     {
         "type": "format",
         "value": "{{prefix}}{{suffix}} {{noun}}",
-        "weight": 1
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
+    },    
+    {
+        "type": "format",
+        "value": "The {{prefix}}{{suffix}} {{siteTypeName}}",
+        "weight": 1,
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
     },
     {
         "type": "format",
@@ -584,19 +587,19 @@
         "type": "format",
         "value": "{{person}}'s {{siteTypeName}}",
         "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence"]
     },
     {
         "type": "format",
         "value": "{{person}} & Sons",
         "weight": 2,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence"]
+        "siteType": ["shop", "guild", "entertainment", "tavern"]
     },
     {
         "type": "format",
         "value": "{{person}} & Daughters",
         "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "residence"]
+        "siteType": ["shop", "guild", "entertainment"]
     },
     {
         "type": "format",
@@ -606,21 +609,9 @@
     },
     {
         "type": "format",
-        "value": "{{person}}’s {{siteTypeName}}",
-        "weight": 4,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "temple"]
-    },
-    {
-        "type": "format",
         "value": "{{person}} & Partner",
         "weight": 1,
         "siteType": ["shop", "guild", "entertainment"]
-    },
-    {
-        "type": "format",
-        "value": "{{person}} Bros.",
-        "weight": 1,
-        "siteType": ["entertainment", "guild", "shop"]
     },
     {
         "type": "format",
@@ -632,12 +623,12 @@
         "type": "format",
         "value": "The House of {{person}}",
         "weight": 1,
-        "siteType": ["residence", "entertainment", "temple"]
+        "siteType": ["residence", "entertainment"]
     },
     {
         "type": "format",
         "value": "{{person}} & Kin",
         "weight": 1,
-        "siteType": ["shop", "residence", "guild"]
+        "siteType": ["shop", "guild"]
     }
 ]

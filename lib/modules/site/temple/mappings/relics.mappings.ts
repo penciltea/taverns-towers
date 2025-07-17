@@ -2,7 +2,7 @@ import { DomainTypes } from "@/constants/settlementOptions"
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
-    "Arcana": [
+    "Magic": [
         "The Rune-Carved Eye: A preserved eye socket etched with a forgotten arcane script, said to grant visions of magical anomalies.",
         "Wand of the First Spell: A cracked wand rumored to have cast the first arcane cantrip ever recorded.",
         "Ash of a Dissolved Mage: Contained in a glass vial, these are the remains of a wizard who willingly transmuted into pure energy."

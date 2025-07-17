@@ -24,8 +24,8 @@ export const nameGeneratorConfigs: Record<string, {
       (filters.data?.type === "government" && Array.isArray(filters.data.function)
         ? filters.data.function
         : undefined),
-    fallbackFormats: ["{{noun}} of the {{suffix}}", "The {{siteTypeName}}"],
-    allowedKeys: ["prefix", "suffix", "noun"],
+    fallbackFormats: ["The {{prefix}} {{siteTypeName}}", "The {{siteTypeName}}"],
+    allowedKeys: ["prefix", "suffix", "noun", "siteTypeName"],
   },
   shop: {
     subtypeKey: "shopType",
@@ -34,8 +34,8 @@ export const nameGeneratorConfigs: Record<string, {
       (filters.data?.type === "shop" && Array.isArray(filters.data.shopType)
         ? filters.data.shopType
         : undefined),
-    fallbackFormats: ["{{prefix}}'s {{noun}}", "The {{prefix}} {{noun}}"],
-    allowedKeys: ["prefix", "noun", "suffix"],
+    fallbackFormats: ["{{person}}'s {{siteTypeName}}", "The {{siteTypeName}}"],
+    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName"],
   },
   guild: {
     subtypeKey: "guildType",
@@ -45,6 +45,16 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.guildType
         : undefined),
     fallbackFormats: ["The {{siteTypeName}} Guildhall", "The {{prefix}} {{noun}}"],
-    allowedKeys: ["prefix", "noun", "suffix"],
+    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName"],
+  },
+  temple: {
+    subtypeKey: "domain",
+    getSubtypeValues: filters =>
+      filters.domains ??
+      (filters.data?.type === "temple" && Array.isArray(filters.data.domains)
+        ? filters.data.domains
+        : undefined),
+    fallbackFormats: ["{{siteTypeName}} of {{noun}}", "The {{prefix}} {{siteTypeName}}"],
+    allowedKeys: ["prefix", "noun", "siteTypeName"],
   },
 };

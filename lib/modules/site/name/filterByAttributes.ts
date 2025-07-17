@@ -7,13 +7,6 @@ export function filterByAttributes(
 ): GeneratorSiteFragmentPlain[] {
   const { tags = [], terrain = [], climate, siteType = [] } = filters;
 
-  const normalizedSiteTypes = Array.isArray(siteType)
-    ? siteType.map(s => s.toLowerCase())
-    : siteType
-    ? [siteType]
-    : [];
-
-
   return fragments.filter(f => {
     // Basic universal filters
 

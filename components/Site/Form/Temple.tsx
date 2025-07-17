@@ -1,8 +1,10 @@
-import { FormSelect, FormTextField } from "@/components/Form";
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+import { DOMAINS } from "@/constants/settlementOptions";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
@@ -22,6 +24,15 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
+            />
+
+            <FormChipSelect
+                name="domains"
+                label="Worshipped Domain(s)"
+                required
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
+                fieldError={errors.domains}
             />
 
             <FormSelect

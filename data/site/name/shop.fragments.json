@@ -1050,6 +1050,21 @@
     },
     {
         "type": "noun",
+        "value": "Hook",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger"]
+    },
+    
+    {
+        "type": "noun",
+        "value": "Catch",
+        "weight": 1,
+        "siteType": ["shop"],
+        "shopType": ["fishmonger"]
+    },
+    {
+        "type": "noun",
         "value": "Spice",
         "weight": 1,
         "siteType": ["shop"],

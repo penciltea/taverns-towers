@@ -21,7 +21,7 @@
     },
     {
         "terrain": "Mountains",
-        "domains": ["Forge", "War", "Glory", "Elements", "Arcana"]
+        "domains": ["Forge", "War", "Glory", "Elements", "Magic"]
     },
     {
         "terrain": "Plains",
@@ -41,10 +41,10 @@
     },
     {
         "terrain": "Underground",
-        "domains": ["Shadow", "Arcana", "Death", "Law"]
+        "domains": ["Shadow", "Magic", "Death", "Law"]
     },
     {
         "terrain": "Urban",
-        "domains": ["Arts", "Law", "Knowledge", "Trickery", "Luck", "Arcana"]
+        "domains": ["Arts", "Law", "Knowledge", "Trickery", "Luck", "Magic"]
     }
 ]

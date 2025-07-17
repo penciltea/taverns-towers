@@ -1,11 +1,11 @@
 [
     {
         "tag": "Ancient Ruins",
-        "domains": ["Death", "Shadow", "Arcana", "Time", "Knowledge"]
+        "domains": ["Death", "Shadow", "Magic", "Time", "Knowledge"]
     },
     {
         "tag": "Arcane Nexus",
-        "domains": ["Arcana", "Time", "Elements", "Dreams"]
+        "domains": ["Magic", "Time", "Elements", "Dreams"]
     },
     {
         "tag": "Border Post",

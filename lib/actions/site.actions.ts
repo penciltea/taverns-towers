@@ -43,6 +43,7 @@ function serializeSite(site: any): SiteType {
       return {
         ...baseData,
         type: "temple",
+        domains: Array.isArray(plain.domains) ? plain.domains : [],
         leader: plain.leader,
         relics: plain.relics,
         menu: plain.menu?.map((item: any) => ({
@@ -89,7 +90,6 @@ function serializeSite(site: any): SiteType {
         type: "government",
         function: plain.function,
         officials: plain.officials,
-        jurisdiction: plain.jurisdiction,
         security: plain.security,
       };
     case "entertainment":
@@ -97,7 +97,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "entertainment",
         venueType: plain.venueType,
-        performances: plain.performances,
         owner: plain.owner,
         cost: plain.cost,
       };

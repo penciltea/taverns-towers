@@ -371,7 +371,7 @@ export const HolidaysByMagicLevelMapping: Partial<Record<MagicLevel, string[]>> 
 
 
 export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
-  "Arcana": [
+  "Magic": [
     "Cipherday (First New Moon of Spring): Mages and scholars exchange riddles, puzzles, and cryptic scrolls in celebration of hidden knowledge.",
     "Sigilkind (Autumn Equinox): Towns draw ancient sigils in chalk on doors and stones to attract or repel magical forces.",
     "Runebloom (Mid-Spring): Magic users plant enchanted seeds that briefly bloom into glowing symbols, honoring the living nature of magic.",

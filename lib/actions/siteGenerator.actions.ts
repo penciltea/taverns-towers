@@ -2,12 +2,13 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
-import { generatorMenuItem, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
+import { generatorMenuItem, GroupKey, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
 import { getSettlementById } from "./settlement.actions";
 import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
+import { NAME_FRAGMENT_MAP_BY_TYPE } from "../modules/site/name/name.fragment.mappings";
 
 export async function generateSiteName({
   siteType,
@@ -15,6 +16,7 @@ export async function generateSiteName({
   guildType,
   venueType,
   functionType,
+  domains,
   terrain,
   climate,
   tags,
@@ -24,6 +26,7 @@ export async function generateSiteName({
   guildType?: string;  // Form uses string value
   venueType?: string;
   functionType?: string;
+  domains?: string[];
   siteType?: string[];
   terrain?: string[];
   climate?: string;
@@ -32,14 +35,28 @@ export async function generateSiteName({
 }): Promise<string> {
   await connectToDatabase();
 
-  const rawFragments = await GeneratorSiteFragment.find().lean();
+  let fragments: GeneratorSiteFragmentPlain[] = [];
 
-  const fragments = (rawFragments as any[]).filter(
-    (f): f is GeneratorSiteFragmentPlain =>
-      typeof f.type === "string" && typeof f.value === "string"
-  );
+  try {
+    const rawFragments = await GeneratorSiteFragment.find().lean();
+    fragments = (rawFragments as any[]).filter(
+      (f): f is GeneratorSiteFragmentPlain =>
+        typeof f.type === "string" && typeof f.value === "string"
+    );
+  } catch (error) {
+    console.warn("Failed to load site name fragments from DB, using fallback data", error);
+  }
 
-  // Convert string for site sub-types into an array for dispatcher/generation logic
+  // Use fallback if DB fragments are empty
+  if (!fragments.length) {
+    const fallbackFragments = Object.values(NAME_FRAGMENT_MAP_BY_TYPE).flat().map(frag => ({
+      ...frag,
+      type: frag.type as GroupKey,
+    }));
+
+    fragments = fallbackFragments;
+  }
+
   const toArray = <T>(val?: T | T[]): T[] | undefined =>
     val === undefined ? undefined : Array.isArray(val) ? val : [val];
 
@@ -49,6 +66,7 @@ export async function generateSiteName({
     guildType: toArray(guildType),
     venueType: toArray(venueType),
     functionType: toArray(functionType),
+    domains: toArray(domains),
     terrain,
     climate,
     tags,

@@ -9,9 +9,40 @@ import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 import { RELICS_BY_CONDITION_MAPPING, RELICS_BY_DOMAIN_MAPPING, RELICS_BY_SIZE_MAPPING } from "./mappings/relics.mappings";
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { getRandomSubset } from "@/lib/util/randomValues";
+import { getDomainsByEnvironment } from "../../common/domains/getDomainsByEnvironment.rules";
+import { domainCountBySiteSize } from "./mappings/domains.mappings";
 
 export function isTempleSite(data: Partial<SiteFormData>): data is Partial<TempleSite> {
   return data.type === "temple";
+}
+
+export async function applyTempleDomainsByConditions(
+  data: Partial<SiteFormData>,
+  context: SiteGenerationContext
+): Promise<Partial<SiteFormData>>{
+  if(!isTempleSite(data)) return data; // If type is somehow not "temple", return early
+
+  const settlementDomains = context.domains ?? [];
+  
+  const domainPool = await getDomainsByEnvironment({
+    tags: context.tags,
+    terrain: context.terrain,
+    climate: context.climate,
+  });
+  
+  // Apply weighting by duplicating settlement-aligned domains
+  const weightedPool = [
+    ...domainPool,
+    ...settlementDomains.flatMap((domain) =>
+      domainPool.includes(domain) ? Array(2).fill(domain) : []
+    ),
+  ];
+
+  // Pick based on site size
+  const [min, max] = domainCountBySiteSize[data.size ?? "modest"] ?? [1, 2];
+  data.domains = getRandomSubset(weightedPool, { min, max });
+
+  return data;
 }
 
 export async function applyRelicsByConditions(
@@ -123,6 +154,7 @@ export async function applyRelicsByConditions(
 
 const templeRules = [
   ...commonRules,
+  applyTempleDomainsByConditions,
   applyRelicsByConditions
 ];
 

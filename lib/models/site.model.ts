@@ -14,6 +14,7 @@ const shopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
 const guildTypes = GUILD_TYPES.flatMap(group =>
   group.options.map(option => option.value)
 );
+const venueTypes = ENTERTAINMENT_VENUE_TYPES.map(option => option.value);
 
 const BaseSiteSchema = new Schema(
   {
@@ -68,6 +69,7 @@ const Tavern =
   Site.discriminator(
     "temple",
     new Schema({
+      domains: { type: [String], required: false },
       leader: { type: String, required: false },
       relics: { type: String, required: false },
       menu: [MenuItemSchema],
@@ -117,7 +119,7 @@ const Tavern =
   Site.discriminator(
     "entertainment",
     new Schema({
-      venueType: { type: String, enum: ENTERTAINMENT_VENUE_TYPES, required: false },
+      venueType: { type: String, enum: venueTypes, required: false },
       performances: { type: String, required: false },
       owner: { type: String, required: false },
       cost: { type: String, required: false },

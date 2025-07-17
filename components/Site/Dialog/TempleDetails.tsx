@@ -9,6 +9,7 @@ export const TempleDetails = ({ site }: { site: TempleSite }) => {
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
+        <InfoListItem label="Worshipped Domain(s)" value={site.domains?.length ? site.domains.join(', ') : 'N/A'} />
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />   
         <InfoListItem label="Leader" value={site.leader} />

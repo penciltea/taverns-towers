@@ -12,17 +12,19 @@ export function getRandomSubset<T>(arr: T[], options: SubsetOptions): T[] {
 
   const shuffled = [...arr].sort(() => 0.5 - Math.random());
 
+  const unique = Array.from(new Set(shuffled));
+
   if ("count" in options) {
-    const count = Math.max(0, Math.min(options.count, arr.length));
-    return shuffled.slice(0, count);
+    const count = Math.max(0, Math.min(options.count, unique.length));
+    return unique.slice(0, count);
   }
 
   const { min, max } = options;
   const boundedMin = Math.max(0, min);
-  const boundedMax = Math.min(max, arr.length);
+  const boundedMax = Math.min(max, unique.length);
   const randomCount = Math.floor(Math.random() * (boundedMax - boundedMin + 1)) + boundedMin;
 
-  return shuffled.slice(0, randomCount);
+  return unique.slice(0, randomCount);
 }
 
 /**
@@ -42,4 +44,29 @@ export function weightedRandom<T extends { value: string; weight?: number }>(ite
   return weightedList.length > 0
     ? weightedList[Math.floor(Math.random() * weightedList.length)]
     : undefined;
+}
+
+/**
+ * A util function that determines if a field should be replaced or not
+ * Looks for empty or "random" values
+ * @param value 
+ * @returns 
+ */
+
+export function shouldReplace(value: unknown): boolean {
+  if (value === undefined || value === null || value === "") return true;
+
+  if (Array.isArray(value)) {
+    // Replace if array is empty or includes "random"
+    return (
+      value.length === 0 ||
+      value.some(v => typeof v === "string" && v.toLowerCase() === "random")
+    );
+  }
+
+  if (typeof value === "string") {
+    return value.toLowerCase() === "random";
+  }
+
+  return false;
 }
