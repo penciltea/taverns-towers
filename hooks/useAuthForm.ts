@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { registerUser } from "@/lib/actions/user.actions";
 import { loginUser } from "@/lib/actions/user.actions";
+import { useUIStore } from "@/store/uiStore";
 
 type AuthFormType = "login" | "register";
 
@@ -19,27 +20,44 @@ interface AuthPayload {
 }
 
 export function useAuthForm(options: AuthFormOptions) {
-  const { type, redirectTo = "/dashboard/account", onSuccess, onError } = options;
+  const { type, redirectTo, onSuccess, onError } = options;
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { showSnackbar } = useUIStore.getState();
 
   const submit = async (data: AuthPayload) => {
     setLoading(true);
     setError(null);
 
     try {
-      const result =
-        type === "register"
-          ? await registerUser(data)
-          : await loginUser(data);
+      let result;
+      let finalRedirect = redirectTo; // allow override
 
-          console.log("result: " , result);
+      switch (type) {
+        case "register":
+          result = await registerUser(data);
+          finalRedirect ??= "/auth/login"; // default to login after signup
+          break;
+        case "login":
+          result = await loginUser(data);
+          finalRedirect ??= "/dashboard/account"; // default after login
+          break;
+        default:
+          throw new Error("Invalid auth type");
+      }
+
+      console.log("result: " , result);
 
       if (result?.success) {
+         if (type === "register") {
+            showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
+        } else {
+            showSnackbar("Welcome back, traveler.", "success");
+        }
         onSuccess?.();
-        router.push(redirectTo);
+        router.push(finalRedirect);
       } else {
         const message = result?.error ?? "Something went wrong.";
         setError(message);
