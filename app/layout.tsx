@@ -1,11 +1,9 @@
-import { Box, CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/lib/muiTheme";
+import { Box } from "@mui/material";
 import Header from "@/components/Layout/Header";
 import Snackbar from '@/components/Common/Snackbar';
 import ErrorDialog from "@/components/Common/ErrorDialog";
-import QueryProviderWrapper from "@/components/Layout/QueryProviderWrapper";
 import DialogContainer from "@/components/Layout/DialogContainer";
+import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
 
 export const metadata = {
   title: "Taverns & Towers",
@@ -17,20 +15,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+        <AppProviderWrapper>
           <Snackbar />
           <ErrorDialog />
-          <QueryProviderWrapper>
-            <Header />
-            <Box sx={{ display: 'flex', paddingTop: { xs: '15vh', sm: '40px', md: '60px' } }}>
-              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {children}
-              </Box>
+          <Header />
+          <Box sx={{ display: 'flex', paddingTop: { xs: '15vh', sm: '40px', md: '60px' } }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+              {children}
             </Box>
-            <DialogContainer />
-          </QueryProviderWrapper>
-        </ThemeProvider>
+          </Box>
+          <DialogContainer />
+        </AppProviderWrapper>
       </body>
     </html>
   );

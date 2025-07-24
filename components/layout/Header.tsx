@@ -131,10 +131,10 @@ export default function Header() {
 
           {/* Auth Buttons */}
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button variant="outlined" color="inherit" size="small">
+            <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')} >
               Login
             </Button>
-            <Button variant="contained" color="secondary" size="small">
+            <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')} >
               Register
             </Button>
           </Box>

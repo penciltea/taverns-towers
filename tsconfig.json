@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "schemas", "lib/util/scripts/runSeedMenuMappings.js", "lib/util/scripts/seedMenuMappings.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "schemas"],
   "exclude": ["node_modules"]
 }

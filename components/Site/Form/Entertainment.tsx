@@ -1,7 +1,6 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
