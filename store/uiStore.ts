@@ -5,6 +5,8 @@ interface UIState {
     // Side drawer
     isDrawerOpen: boolean;
     toggleDrawer: () => void;
+    closeDrawer: () => void;
+    openDrawer: () => void;
 
     // Dialog state
     openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog';
@@ -43,6 +45,9 @@ interface UIState {
 export const useUIStore = create<UIState>((set) => ({
   isDrawerOpen: false,
   toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
+
+  closeDrawer: () => set({ isDrawerOpen: false }),
+  openDrawer: () => set({ isDrawerOpen: true }),
 
   openDialog: null,
   dialogProps: {},

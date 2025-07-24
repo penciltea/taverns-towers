@@ -5,6 +5,8 @@ import ErrorDialog from "@/components/Common/ErrorDialog";
 import DialogContainer from "@/components/Layout/DialogContainer";
 import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
 import AuthSync from "@/components/Layout/AuthSync";
+import { Sidebar } from "@/components/Layout/Sidebar";
+import LayoutWrapper from "@/components/Layout/LayoutWrapper";
 
 export const metadata = {
   title: "RealmFoundry",
@@ -20,12 +22,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <AuthSync />
           <Snackbar />
           <ErrorDialog />
-          <Header />
-          <Box sx={{ display: 'flex', paddingTop: { xs: '28vh', sm: '80px', md: '100px' } }}>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              {children}
-            </Box>
-          </Box>
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
           <DialogContainer />
         </AppProviderWrapper>
       </body>

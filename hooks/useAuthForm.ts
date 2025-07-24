@@ -1,10 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { registerUser } from "@/lib/actions/user.actions";
-import { loginUser } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
 import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
-import { useAuthStore } from "@/store/authStore";
 import { signIn } from "next-auth/react";
 
 type AuthFormType = "login" | "register";
@@ -27,8 +25,6 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
   const [error, setError] = useState<string | null>(null);
   const { showSnackbar } = useUIStore.getState();
 
-  const setUser = useAuthStore(state => state.setUser);
-
   const submit = async (data: AuthPayload<T>) => {
     setLoading(true);
     setError(null);
@@ -50,7 +46,7 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
           onError?.(message);
         }
       } else if (type === "login") {
-        finalRedirect ??= "/dashboard/account";
+        finalRedirect ??= "/account/dashboard";
         const result = await signIn("credentials", {
           redirect: false,
           callbackUrl: finalRedirect,
