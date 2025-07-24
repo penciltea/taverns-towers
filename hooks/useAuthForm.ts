@@ -3,23 +3,23 @@ import { useState } from "react";
 import { registerUser } from "@/lib/actions/user.actions";
 import { loginUser } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
+import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
+import { useAuthStore } from "@/store/authStore";
+import { signIn } from "next-auth/react";
 
 type AuthFormType = "login" | "register";
 
-interface AuthFormOptions {
-  type: AuthFormType;
+type AuthPayload<T extends AuthFormType> = 
+  T extends "register" ? RegisterPayload : LoginPayload;
+
+interface AuthFormOptions<T extends AuthFormType> {
+  type: T;
   redirectTo?: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
 }
 
-interface AuthPayload {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export function useAuthForm(options: AuthFormOptions) {
+export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>) {
   const { type, redirectTo, onSuccess, onError } = options;
   const router = useRouter();
 
@@ -27,41 +27,46 @@ export function useAuthForm(options: AuthFormOptions) {
   const [error, setError] = useState<string | null>(null);
   const { showSnackbar } = useUIStore.getState();
 
-  const submit = async (data: AuthPayload) => {
+  const setUser = useAuthStore(state => state.setUser);
+
+  const submit = async (data: AuthPayload<T>) => {
     setLoading(true);
     setError(null);
 
     try {
-      let result;
-      let finalRedirect = redirectTo; // allow override
+      let finalRedirect = redirectTo;
 
-      switch (type) {
-        case "register":
-          result = await registerUser(data);
-          finalRedirect ??= "/auth/login"; // default to login after signup
-          break;
-        case "login":
-          result = await loginUser(data);
-          finalRedirect ??= "/dashboard/account"; // default after login
-          break;
-        default:
-          throw new Error("Invalid auth type");
-      }
+      if (type === "register") {
+        const result = await registerUser(data as RegisterPayload);
+        finalRedirect ??= "/auth/login";
 
-      console.log("result: " , result);
-
-      if (result?.success) {
-         if (type === "register") {
-            showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
+        if (result.success) {
+          showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
+          onSuccess?.();
+          router.push(finalRedirect);
         } else {
-            showSnackbar("Welcome back, traveler.", "success");
+          const message = result.error ?? "Something went wrong.";
+          setError(message);
+          onError?.(message);
         }
-        onSuccess?.();
-        router.push(finalRedirect);
-      } else {
-        const message = result?.error ?? "Something went wrong.";
-        setError(message);
-        onError?.(message);
+      } else if (type === "login") {
+        finalRedirect ??= "/dashboard/account";
+        const result = await signIn("credentials", {
+          redirect: false,
+          callbackUrl: finalRedirect,
+          credential: (data as LoginPayload).credential,
+          password: (data as LoginPayload).password,
+        });
+
+        if (result?.ok) {
+          showSnackbar("Welcome back, traveler.", "success");
+          onSuccess?.();
+          router.push(finalRedirect!);
+        } else {
+          const message = result?.error ?? "Invalid login credentials.";
+          setError(message);
+          onError?.(message);
+        }
       }
     } catch (err) {
       const message = (err as Error).message || "Unexpected error";

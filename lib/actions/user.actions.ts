@@ -3,11 +3,18 @@
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.model";
+import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UserInterface } from "@/interfaces/user.interface";
 
-interface RegisterPayload {
-  username: string;
-  email: string;
-  password: string;
+// Serialize for client compatibility
+function serializeUser(user: any): UserInterface {
+  const obj = user.toObject?.() ?? user;
+
+  return {
+    id: obj._id.toString(),
+    email: obj.email,
+    username: obj.username,
+    tier: obj.tier,
+  };
 }
 
 export async function registerUser(data: RegisterPayload): Promise<{
@@ -34,8 +41,8 @@ export async function registerUser(data: RegisterPayload): Promise<{
 
     // Create user
     await User.create({
-      username: data.username,
-      email: data.email,
+      username: data.username.toLowerCase(),
+      email: data.email.toLowerCase(),
       password: hashedPassword,
     });
 
@@ -49,6 +56,42 @@ export async function registerUser(data: RegisterPayload): Promise<{
   }
 }
 
-export async function loginUser(data: any){
+
+type LoginResult = LoginSuccess | LoginFailure;
+
+export async function loginUser(data: LoginPayload): Promise<LoginResult>{
     await connectToDatabase();
+
+    const lookup = data.credential.trim().toLowerCase();
+
+    const user = await User.findOne({
+        $or: [
+        { username: lookup },
+        { email: lookup }
+        ]
+    });
+
+    if (!user) {
+        return { success: false, error: "Invalid username/email or password." };
+    }
+
+    // Verify password using bcrypt
+    const isMatch = await bcrypt.compare(data.password, user.password);
+    if (!isMatch) {
+        return { success: false, error: "Invalid username/email or password." };
+    }
+
+    // Serialize user before returning
+    const serializedUser = serializeUser(user);
+
+    // Return fields to the cleint
+    return {
+        success: true,
+        user: {
+            id: serializedUser.id,
+            email: serializedUser.email,
+            username: serializedUser.username,
+            tier: serializedUser.tier,
+        },
+    };
 }

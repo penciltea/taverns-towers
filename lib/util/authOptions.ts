@@ -1,10 +1,8 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db/mongoClient";
-import connectToDatabase from "@/lib/db/connect";
-import { User } from "@/lib/models/user.model";
-import bcrypt from "bcryptjs";
+import { loginUser } from "@/lib/actions/user.actions";
 
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
@@ -13,27 +11,28 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        credential: { label: "Email or Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.credential || !credentials?.password) return null;
 
-        await connectToDatabase();
-        const user = await User.findOne({ email: credentials.email });
+        // Call your existing loginUser server action
+        const result = await loginUser({
+          credential: credentials.credential,
+          password: credentials.password,
+        });
 
-        if (!user) return null;
-
-        const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) return null;
+        if (!result.success || !result.user) return null;
 
         return {
-          id: user._id.toString(),
-          email: user.email,
-          username: user.username || null,
+          id: result.user.id,
+          email: result.user.email,
+          username: result.user.username,
+          tier: result.user.tier,
         };
       },
-    }),
+    })
 
     // ToDo: Add Patreon
   ],
@@ -47,11 +46,21 @@ export const authOptions: AuthOptions = {
   },
 
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.username = user.username;
+        token.tier = user.tier;
+      }
+      return token;
+    },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub;
+        session.user.id = token.id as string;
+        session.user.username = token.username as string;
+        session.user.tier = token.tier as string;
       }
       return session;
     },
-  },
+  }
 };

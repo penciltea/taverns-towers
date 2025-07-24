@@ -2,16 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/store/authStore';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button, Box, Menu, MenuItem } from '@mui/material';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+
 export default function Header() {
     const router = useRouter();
     const isMobile = useIsMobile();
     const { setOpenDialog } = useUIStore();
+
+    const user = useAuthStore(state => state.user);
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [menuType, setMenuType] = useState<'settlements' | 'sites' | 'npcs' | 'guilds' | null>(null);
@@ -42,20 +47,59 @@ export default function Header() {
         <Toolbar
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
-            flexDirection: isMobile ? 'column' : 'row',
-            alignItems: 'center',
-            gap: isMobile ? 1 : 0,
-            py: isMobile ? 1.5 : 0.5,
+            flexDirection: 'column',
+            gap: 1,
+            py: 1
           }}
         >
-          {/* Logo */}
-          <Typography variant="h6" component={Link} href="/" sx={{ textDecoration: 'none', color: 'inherit' }}>
-            Taverns & Towers
-          </Typography>
+          { /* Top row */ }
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            {/* Logo */}
+            <Typography variant="h6" component={Link} href="/" sx={{ textDecoration: 'none', color: 'inherit' }}>
+              RealmFoundry
+            </Typography>
 
-          {/* Navigation Buttons */}
-          <Box display="flex" gap={2}>
+            {/* Auth Buttons */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+              { !user ? (
+                <>
+                  <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')} >
+                    Login
+                  </Button>
+                  <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')} >
+                    Register
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Typography variant="body1">Hi, {user.username}!</Typography>
+                  <Button variant="outlined" color="inherit" size="small" onClick={() => signOut({ callbackUrl: "/" })} >
+                    Logout
+                  </Button>
+                </>
+              )}
+            </Box>
+          </Box>
+          
+          { /* Bottom row */ }
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 2,
+                flexWrap: 'wrap',
+                flexDirection: { xs: 'column', sm: 'row' },
+                alignItems: 'center'
+              }}
+            >
               {/* Settlements */}
               <Button
                   onClick={(e) => handleMenuOpen(e, 'settlements')}
@@ -127,16 +171,6 @@ export default function Header() {
                   <MenuItem onClick={() => handleNavigate('/guilds/all')}>View Your Guilds</MenuItem>
                   <MenuItem onClick={() => handleNavigate('/guilds')}>Create Guild</MenuItem>
               </Menu>
-          </Box>
-
-          {/* Auth Buttons */}
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')} >
-              Login
-            </Button>
-            <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')} >
-              Register
-            </Button>
           </Box>
         </Toolbar>
       </AppBar>

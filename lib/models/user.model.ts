@@ -10,7 +10,7 @@ export interface UserModel {
 }
 
 const userSchema = new Schema<UserModel>({
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     tier: {

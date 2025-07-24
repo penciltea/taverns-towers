@@ -93,6 +93,7 @@ export default function RegisterPage(){
                         fieldError={errors.password}
                         passwordValue={password}
                         isTouched={isTouched}
+                        displayRequirements={true}
                     />
 
                     <Box sx={{ display: 'flex', justifyContent: 'end' }}>

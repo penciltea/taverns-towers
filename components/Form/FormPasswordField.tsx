@@ -14,6 +14,7 @@ interface FormPasswordFieldProps {
     required?: boolean;
     passwordValue: string;
     isTouched: boolean;
+    displayRequirements: boolean;
 }
 
 const FormPasswordField = ({
@@ -23,7 +24,8 @@ const FormPasswordField = ({
     fieldError,
     required = false,
     passwordValue,
-    isTouched
+    isTouched,
+    displayRequirements = false
 }: FormPasswordFieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => setShowPassword((prev) => !prev);
@@ -101,11 +103,15 @@ const FormPasswordField = ({
             </FormControl>
             
             {/* Password Requirements */}
-            <Typography variant="body2">Password Requirements</Typography>
-            <Box component="ul" id={checklistId} aria-live="polite" sx={{ pl: 2, mt: 1, mb: 2 }}>
-                <Requirement passed={isMinLength} text="At least 8 characters" />
-                <Requirement passed={hasSpecialChar} text="At least one special character" />
-            </Box>
+            {displayRequirements &&
+                <>
+                    <Typography variant="body2">Password Requirements</Typography>
+                    <Box component="ul" id={checklistId} aria-live="polite" sx={{ pl: 2, mt: 1, mb: 2 }}>
+                        <Requirement passed={isMinLength} text="At least 8 characters" />
+                        <Requirement passed={hasSpecialChar} text="At least one special character" />
+                    </Box>
+                </>
+            }
         </>
     );
 };
