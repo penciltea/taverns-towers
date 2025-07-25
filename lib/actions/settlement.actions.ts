@@ -13,6 +13,11 @@ function serializeSettlement(settlement: any): Settlement {
   return {
     ...obj,
     _id: obj._id.toString(),
+    userId: typeof obj.userId === 'string'
+      ? obj.userId
+      : obj.userId?._id
+        ? obj.userId._id.toString()  // If populated user document
+        : obj.userId?.toString?.(),  // fallback if ObjectId
     createdAt: obj.createdAt?.toISOString?.() ?? null,
     updatedAt: obj.updatedAt?.toISOString?.() ?? null,
   };
@@ -63,6 +68,7 @@ export async function getSettlements({
   const serializedSettlements = settlements.map((settlement) => ({
     ...settlement,
     _id: settlement._id.toString(),
+    userId: settlement.userId.toString()
   }));
 
   return {

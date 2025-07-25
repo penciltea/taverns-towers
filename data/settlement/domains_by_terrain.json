@@ -5,7 +5,7 @@
     },
     {
         "terrain": "Desert",
-        "domains": ["Sun", "Law", "Forge", "Survival", "Travel"]
+        "domains": ["Sun", "Law", "Forge", "Travel"]
     },
     {
         "terrain": "Forest",
@@ -21,7 +21,7 @@
     },
     {
         "terrain": "Mountains",
-        "domains": ["Forge", "War", "Glory", "Elements", "Magic"]
+        "domains": ["Forge", "War", "Glory", "Magic"]
     },
     {
         "terrain": "Plains",
@@ -37,7 +37,7 @@
     },
     {
         "terrain": "Tundra",
-        "domains": ["Winter", "Survival", "Moon", "Protection", "Glory"]
+        "domains": ["Winter", "Moon", "Protection", "Glory"]
     },
     {
         "terrain": "Underground",

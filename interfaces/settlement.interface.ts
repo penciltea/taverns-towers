@@ -48,7 +48,8 @@ export interface Settlement extends CommonInterface {
   holidays?: string;
   folklore?: string;
   crime?: string[];
-  isPublic?: boolean;
+  userId: string;
+  isPublic: boolean;
 }
 
 export const DefaultSettlementQueryParams = {

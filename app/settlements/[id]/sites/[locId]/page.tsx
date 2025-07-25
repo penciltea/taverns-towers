@@ -14,7 +14,7 @@ import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useQueryClient } from "@tanstack/react-query";
-import { useSiteFormSetup } from "@/hooks/useSiteFormSetup";
+import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
 import { useSiteQuery } from "@/hooks/site.query";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";

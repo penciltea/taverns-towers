@@ -60,12 +60,14 @@ export const DOMAINS = [
   "Arts",
   "Beauty",
   "Chaos",
+  "Cold",
   "Commerce",
   "Community",
   "Death",
   "Decay",
   "Dreams",
   "Fate",
+  "Fertility",
   "Forge",
   "Freedom",
   "Grave",
@@ -91,6 +93,7 @@ export const DOMAINS = [
   "Travel",
   "Trickery",
   "Twilight",
+  "Water",
   "War",
   "Other"
 ];

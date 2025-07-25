@@ -6,7 +6,7 @@ import type { Settlement } from "@/interfaces/settlement.interface";
 import { generateWildernessContext } from "@/lib/modules/settlement/rules/settlement.rules";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useState, useEffect, useMemo } from "react";
-import { useSettlementLoader } from "./useSettlementLoader";
+import { useSettlementLoader } from "@/hooks/settlement/useSettlementLoader";
 
 
 

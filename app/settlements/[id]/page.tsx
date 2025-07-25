@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { Box, Grid, Stack, Typography, Skeleton, Divider } from "@mui/material";
 import Image from "next/image";
 import { useUIStore } from '@/store/uiStore';
-import { useSettlementLoader } from '@/hooks/useSettlementLoader';
+import { useSettlementLoader } from '@/hooks/settlement/useSettlementLoader';
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";

@@ -2,14 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Typography, useMediaQuery, useTheme } from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography, useTheme } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 
 export const Sidebar = () => {
     const router = useRouter();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isMobile = useIsMobile();
 
     const { setOpenDialog } = useUIStore();
     const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
@@ -88,13 +88,8 @@ export const Sidebar = () => {
 
     const drawerContent = (
         <Box sx={{ width: drawerWidth, paddingTop: { xs: '7vh', sm: '40px', md: '60px' } }} role="presentation">
-        <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
+        <Box display="flex" alignItems="center" p={2}>
             <Typography variant="h6">Navigation</Typography>
-            {!isMobile && (
-            <IconButton onClick={closeDrawer} aria-label="close navigation">
-                <ChevronLeftIcon />
-            </IconButton>
-            )}
         </Box>
         <List disablePadding>
             {navItems.map((item) => (
@@ -123,34 +118,34 @@ export const Sidebar = () => {
 
     return (
         <Box
-        component="nav"
-        sx={{ width: { sm: isDrawerOpen ? drawerWidth : 0 }, flexShrink: { sm: 0 } }}
+            component="nav"
+            sx={{ width: { sm: isDrawerOpen ? drawerWidth : 0 }, flexShrink: { sm: 0 } }}
         >
-        {/* Mobile Drawer */}
-        <Drawer
-            variant="temporary"
-            open={isDrawerOpen && isMobile}
-            onClose={closeDrawer}
-            ModalProps={{ keepMounted: true }}
-            sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { width: drawerWidth }
-            }}
-        >
-            {drawerContent}
-        </Drawer>
+            {/* Mobile Drawer */}
+            <Drawer
+                variant="temporary"
+                open={isDrawerOpen && isMobile}
+                onClose={closeDrawer}
+                ModalProps={{ keepMounted: true }}
+                sx={{
+                display: { xs: "block", sm: "none" },
+                "& .MuiDrawer-paper": { width: drawerWidth }
+                }}
+            >
+                {drawerContent}
+            </Drawer>
 
-        {/* Desktop Drawer */}
-        <Drawer
-            variant="persistent"
-            open={isDrawerOpen && !isMobile}
-            sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" }
-            }}
-        >
-            {drawerContent}
-        </Drawer>
+            {/* Desktop Drawer */}
+            <Drawer
+                variant="persistent"
+                open={isDrawerOpen && !isMobile}
+                sx={{
+                display: { xs: "none", sm: "block" },
+                "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" }
+                }}
+            >
+                {drawerContent}
+            </Drawer>
         </Box>
     );
 };

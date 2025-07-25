@@ -11,10 +11,9 @@ import { useEffect, useState } from 'react';
 import { useSettlementQuery } from '@/hooks/settlement.query';
 import { useSiteContentStore } from '@/store/siteStore';
 import { useUIStore } from '@/store/uiStore';
-import { SiteType } from '@/interfaces/site.interface';
-import { usePaginatedSites } from './site.query';
 import { useSettlementContentStore } from '@/store/settlementStore';
-import { createSite } from '@/lib/actions/site.actions';
+import { useSiteManager } from '@/hooks/site/useSiteManager';
+import { usePaginatedSites } from '@/hooks/site.query';
 import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.rules';
 
 export function useSettlementLoader(settlementId: string | null) {
@@ -34,6 +33,9 @@ export function useSettlementLoader(settlementId: string | null) {
   // Fetch settlement data (null when wilderness)
   const { data: settlementData, isLoading: settlementLoading, refetch: refetchSettlement } = useSettlementQuery(isWilderness ? null : settlementId);
   const { data: siteData, refetch: refetchSites, isFetching: sitesLoading } = usePaginatedSites(isWilderness ? null : (settlementId as string), page, limit, "", []);
+
+  // Calling site manager hook for getting add/delete site
+  const { addSite, deleteSite } = useSiteManager(settlementId);
 
   // Generate wilderness environment context once on mount if in wilderness mode
   const [wildernessContext] = useState(() => (isWilderness ? generateWildernessContext() : null));
@@ -61,40 +63,6 @@ export function useSettlementLoader(settlementId: string | null) {
       setLoading(false);
     }
   }, [isWilderness, settlementData, siteData]);
-
-
-  // Handler function for adding new site for the current settlement or wilderness
-  async function addSite(newSite: SiteType, id: string) {
-    try {
-      const savedSite = await createSite(newSite, isWilderness ? 'wilderness' : id);
-
-      // Add newly created site to site content store
-      const store = useSiteContentStore.getState();
-      const currentSites = store.allItems;
-
-      store.setItems([...currentSites, savedSite]);
-
-      // Refetch sites from API if not wilderness
-      if (!isWilderness) {
-        await refetchSites();
-      }
-    } catch (error) {
-      console.error('Error adding site:', error);
-      showErrorDialog("There was a problem adding the site, please try again later!");
-    }
-  }
-
-  // Handler function for deleting a site by ID from the local store and refetching if needed
-  function deleteSite(id: string) {
-    const store = useSiteContentStore.getState();
-    const currentItems = store.allItems;
-    const filteredItems = currentItems.filter((loc) => loc._id !== id);
-    store.setItems(filteredItems);
-
-    if (!isWilderness) {
-      refetchSites();
-    }
-  }
 
   // Return current settlement, sites, pagination, loading, and CRUD functions
   return {

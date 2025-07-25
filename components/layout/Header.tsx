@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { signOut } from 'next-auth/react';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box } from '@mui/material';
-import { useIsMobile } from '@/hooks/useIsMobile';
 import { useUIStore } from '@/store/uiStore';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -14,7 +13,6 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 export default function Header() {
   const router = useRouter();
-  const isMobile = useIsMobile();
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
 
   const user = useAuthStore(state => state.user);
@@ -66,7 +64,7 @@ export default function Header() {
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
             >
               <Avatar sx={{ width: 26, height: 26, mr: 1 }}><PersonOutlineIcon /></Avatar>
-              Hi {user.username}!
+              Hi, {user.username}!
             </Button>
             <Menu
               id="user-menu"

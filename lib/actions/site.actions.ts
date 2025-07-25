@@ -19,6 +19,7 @@ function serializeSite(site: any): SiteType {
     publicNotes: plain.publicNotes,
     gmNotes: plain.gmNotes,
     settlementId: plain.settlementId?.toString(),
+    userId: plain.userId.toString(),
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
   };

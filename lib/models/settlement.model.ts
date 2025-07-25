@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
-import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes} from '@/constants/settlementOptions';
-import { ClimateTypes, TerrainTypes, TagTypes } from '@/constants/environmentOptions';
+import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, WEALTH_LEVELS, DOMAINS, DomainTypes} from '@/constants/settlementOptions';
+import { ClimateTypes, TerrainTypes, TagTypes, TAG_TYPES, TERRAIN_TYPES, CLIMATE_TYPES } from '@/constants/environmentOptions';
 const { Schema } = mongoose;
 
 export interface ISettlement extends Document {
@@ -22,43 +22,43 @@ export interface ISettlement extends Document {
   wealth: WealthLevel;
   tradeNotes: string;
   guilds: string;
-  domains: string[];
+  domains: DomainTypes[];
   holidays: string;
   folklore: string;
   crime: CriminalActivityTypes[];
   createdBy: Types.ObjectId;
   isPublic: boolean;
+  userId: Types.ObjectId;
 }
 
 
 const SettlementSchema = new Schema<ISettlement>(
   {
     name: { type: String, required: true },
-    size: { type: String, required: false},
-    tags: [String],
-    map: { type: String, required: false},
-    terrain: [{ type: String }],
-    climate: { type: String, required: false},
-    magic: { type: String, required: false},
-    races: { type: String, required: false},
-    description: { type: String, required: false},
-    publicNotes: { type: String, required: false},
-    gmNotes: { type: String, required: false},
-    leader: { type: String, required: false},
-    rulingStyle: { type: String, required: false},
-    wealth: { type: String, required: false},
-    tradeNotes: { type: String, required: false},
-    guilds: { type: String, required: false},
-    domains: [{ type: String, required: false}],
-    holidays: { type: String, required: false},
-    folklore: { type: String, required: false},
-    crime: [String],
-    /* ToDo: Add user/auth
-    createdBy: {
+    size: { type: String, required: false },
+    map: { type: String, required: false },
+    tags: [{ type: String, enum: TAG_TYPES, required: false }],
+    terrain: [{ type: String, enum: TERRAIN_TYPES, required: false }],
+    climate: { type: String, enum: CLIMATE_TYPES, required: false },
+    crime: [{ type: String, enum: CRIMINAL_ACTIVITY_TYPES, required: false }],
+    magic: { type: String, enum: MAGIC_LEVELS, required: false },
+    races: { type: String, required: false },
+    description: { type: String, required: false },
+    publicNotes: { type: String, required: false },
+    gmNotes: { type: String, required: false },
+    leader: { type: String, required: false },
+    rulingStyle: { type: String, enum: RULING_TYPES, required: false },
+    wealth: { type: String, enum: WEALTH_LEVELS, required: false },
+    tradeNotes: { type: String, required: false },
+    guilds: { type: String, required: false },
+    domains: [{ type: String,enum: DOMAINS, required: false }],
+    holidays: { type: String, required: false },
+    folklore: { type: String, required: false },
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-    }, */
+    },
 
     isPublic: { type: Boolean, default: false },
   },

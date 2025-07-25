@@ -13,7 +13,7 @@ import { usePaginatedSites } from "@/hooks/site.query";
 import { SiteType } from "@/interfaces/site.interface";
 import { createSite } from "@/lib/actions/site.actions";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";
-import { useSiteFormSetup } from "@/hooks/useSiteFormSetup";
+import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
 
 export default function NewSitePage() {
     const params = useParams();
