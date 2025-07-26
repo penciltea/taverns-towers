@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { registerUser } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
@@ -20,6 +20,7 @@ interface AuthFormOptions<T extends AuthFormType> {
 export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>) {
   const { type, redirectTo, onSuccess, onError } = options;
   const router = useRouter();
+  const pathname = usePathname();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +58,11 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
         if (result?.ok) {
           showSnackbar("Welcome back, traveler.", "success");
           onSuccess?.();
-          router.push(finalRedirect!);
+          
+          // Redirect only if currently on the login page
+          if (pathname === "/auth/login") {
+            router.push(finalRedirect!);
+          }
         } else {
           const message = result?.error ?? "Invalid login credentials.";
           setError(message);

@@ -42,8 +42,13 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
   const [tab, setTab] = useState(0);
   const methods = useFormContext<SettlementFormData>();
   const { handleSubmit } = methods;
-  const { selectedItem } = useSettlementContentStore();
+  const { selectedItem, clearDraftItem } = useSettlementContentStore();
   const { isSubmitting } = useUIStore();
+
+  function handleCancel(){
+    clearDraftItem();
+    history.back();
+  }
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
@@ -107,7 +112,7 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           <SettlementFormCulture />
         </TabPanel>
 
-        <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} />
+        <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} onCancel={handleCancel} />
       </Box>
     </Paper>
   );

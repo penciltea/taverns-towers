@@ -32,6 +32,11 @@ type ContentStore<T> = {
   clearContext?: () => void;
 
   reset: () => void;
+
+  // For when users attempt to create a piece of content while being unauthenticated
+  draftItem: Partial<T> | null;
+  setDraftItem: (item: Partial<T>) => void;
+  clearDraftItem: () => void;
 };
 
 export function createContentStore<T>() {
@@ -85,5 +90,9 @@ export function createContentStore<T>() {
       currentPage: 1,
       context: {},
     }),
-  }));
+
+    draftItem: null,
+    setDraftItem: (item: Partial<T>) => set({ draftItem: item }),
+    clearDraftItem: () => set({ draftItem: null }),
+  })); 
 }

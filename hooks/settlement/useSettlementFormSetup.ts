@@ -16,6 +16,7 @@ import { useSettlementGeneratorActions } from "./useSettlementGeneratorActions";
 import { shouldReplace } from "@/lib/util/randomValues";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
+import { useAuthStore } from "@/store/authStore";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
@@ -23,9 +24,10 @@ export function useSettlementFormSetup(
   mode: "add" | "edit"
 ) {
   const router = useRouter();
-  const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
-  const { clearSelectedItem, clearMode } = useSettlementContentStore();
+  const { showSnackbar, setSubmitting, showErrorDialog, setOpenDialog } = useUIStore();
+  const { clearSelectedItem, clearMode, setDraftItem } = useSettlementContentStore();
   const queryClient = useQueryClient();
+  const user = useAuthStore(state => state.user);
 
   const { generatePartial, generateFull } = useSettlementGeneratorActions();
   const saveSettlement = useSaveSettlement(mode, id ?? undefined);

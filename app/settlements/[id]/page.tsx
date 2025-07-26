@@ -10,6 +10,7 @@ import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
+import { useAuthStore } from "@/store/authStore";
 
 
 export default function ViewSettlementPage() {
@@ -17,6 +18,8 @@ export default function ViewSettlementPage() {
   const params = useParams();
   const id = params.id as string;
   const { settlement, loading, deleteSite } = useSettlementLoader(id);
+  const user = useAuthStore(state => state.user);
+  const isOwner = useAuthStore(state => state.isOwner);
 
   if (!loading && !settlement) {
     return <Typography>Settlement not found!</Typography>;
@@ -35,7 +38,7 @@ export default function ViewSettlementPage() {
           loading={loading}
           skeleton={<Skeleton variant="rectangular" width={120} height={40} />}
         >
-          {settlement && <SettlementActions settlementId={settlement._id} />}
+          {settlement && isOwner(settlement.userId) && <SettlementActions settlementId={settlement._id} />}
         </SkeletonLoader>
       </Stack>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { signOut } from 'next-auth/react';
@@ -18,6 +18,11 @@ export default function Header() {
   const user = useAuthStore(state => state.user);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+   useEffect(() => {
+    // Whenever the user changes (login or logout), close the menu to avoid dangling anchorEl
+    setAnchorEl(null);
+  }, [user]);
 
   const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

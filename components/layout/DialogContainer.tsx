@@ -5,6 +5,7 @@ import SiteTypeDialog from "../Site/Dialog/SiteTypeDialog";
 import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
 import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
 import TypeChangeDialog from "../Common/typeChangeDialog";
+import LoginDialog from "../Auth/LoginDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
@@ -20,7 +21,7 @@ export default function DialogContainer() {
               settlementId={dialogProps.siteData.settlementId}
               onDelete={() =>
                 dialogProps.siteData &&
-                dialogProps.onDelete?.() // fallback if you passed it via props
+                dialogProps.onDelete?.() // fallback if passed via props
               }
             />
         );
@@ -58,6 +59,14 @@ export default function DialogContainer() {
           onClose={closeDialog}
           siteChange={dialogProps.siteChange}
           methods={dialogProps.methods}
+        />
+      )
+    case 'LoginDialog':
+      return (
+        <LoginDialog
+          open
+          onClose={closeDialog}
+          onLoginSuccess={dialogProps?.onLoginSuccess}
         />
       )
     // Add more dialogs here as needed
