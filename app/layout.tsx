@@ -1,11 +1,8 @@
-import { Box } from "@mui/material";
-import Header from "@/components/Layout/Header";
 import Snackbar from '@/components/Common/Snackbar';
 import ErrorDialog from "@/components/Common/ErrorDialog";
 import DialogContainer from "@/components/Layout/DialogContainer";
 import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
-import AuthSync from "@/components/Layout/AuthSync";
-import { Sidebar } from "@/components/Layout/Sidebar";
+import AuthSync from "@/components/Auth/AuthSync";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper";
 
 export const metadata = {

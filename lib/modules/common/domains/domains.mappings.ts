@@ -9,7 +9,7 @@ export const DomainsByClimateMapping: Partial<Record<ClimateTypes, string[]>> = 
 };
 
 export const DomainsByTerrainMapping: Partial<Record<TerrainTypes, string[]>> = {
-  Coast: ["Tempest", "Storms", "Travel", "Water", "Luck"],
+  Coast: ["Storms", "Travel", "Water", "Luck"],
   Desert: ["Sun", "Law", "Forge", "Travel"],
   Forest: ["Nature", "Dreams", "Moon", "Life", "Twilight"],
   Jungle: ["Nature", "Fertility", "Chaos", "Death", "Trickery"],
@@ -30,7 +30,7 @@ export const DomainsByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Capital": ["Arts", "Beauty", "Law", "Glory", "Knowledge", "Luck", "Forge"],
   "Criminal Hideout": ["Trickery", "Shadow", "Chaos", "Luck"],
   "Druidic": ["Nature", "Fertility", "Harvest", "Moon", "Dreams"],
-  "Fishing": ["Water", "Luck", "Tempest", "Harvest", "Travel"],
+  "Fishing": ["Water", "Luck", "Storms", "Harvest", "Travel"],
   "Fortress": ["War", "Protection", "Forge", "Glory", "Law"],
   "Garrison": ["War", "Protection", "Glory", "Law"],
   "Hidden": ["Shadow", "Trickery", "Dreams", "Moon"],
@@ -39,7 +39,7 @@ export const DomainsByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Mining Camp": ["Forge", "Earth", "War", "Protection"],
   "Nomadic": ["Travel", "Luck", "Dreams", "Life", "Sun"],
   "Overgrown": ["Nature", "Chaos", "Life", "Fertility", "Harvest"],
-  "Port": ["Travel", "Water", "Tempest", "Luck", "Trade"],
+  "Port": ["Travel", "Water", "Storms", "Luck", "Trade"],
   "Prison Settlement": ["Law", "Shadow", "Death", "Protection", "Glory"],
   "Remote": ["Protection", "Moon", "Cold", "Dreams"],
   "Sacred Site": ["Life", "Light", "Glory", "Twilight", "Dreams"],

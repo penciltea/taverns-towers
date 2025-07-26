@@ -27,7 +27,7 @@ export default function SettlementActions({ settlementId }: { settlementId: stri
           entity="settlement"
           deleteAction={deleteSettlement}
           onSuccess={() => {
-            queryClient.invalidateQueries({ queryKey: ['settlements'] });
+            queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
             router.push("/settlements/all");
             showSnackbar('Settlement deleted successfully!', 'success');
           }}

@@ -70,6 +70,7 @@ export const DOMAINS = [
   "Fertility",
   "Forge",
   "Freedom",
+  "Glory",
   "Grave",
   "Harvest",
   "Hunt",

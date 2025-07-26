@@ -43,11 +43,6 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
         userId: user.id
       };
 
-      console.log("Saving settlement, mode:", mode, "id:", id);
-      console.log("Raw form data:", data);
-      console.log("Clean map:", cleanMap);
-      console.log("Transformed data:", settlementData);
-
       // Call appropriate server action
       const savedSettlement =
         mode === "edit" && id

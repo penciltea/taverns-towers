@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getSettlements, getSettlementById } from '@/lib/actions/settlement.actions';
+import { getSettlements, getSettlementById, getPublicSettlements, getOwnedSettlements } from '@/lib/actions/settlement.actions';
 import { SettlementResponse } from '@/interfaces/settlement.interface';
 import { Settlement } from '@/interfaces/settlement.interface';
 
@@ -18,5 +18,27 @@ export const useSettlementQuery = (settlementId: string | null) => {
     queryKey: ['settlement', settlementId],
     queryFn: () => getSettlementById(settlementId as string),
     enabled: !!settlementId, // Only fetch if settlementId is available
+  });
+};
+
+export const usePublicSettlementsQuery = (
+  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic' | 'userId'>
+): UseQueryResult<SettlementResponse> => {
+  return useQuery<SettlementResponse, Error, SettlementResponse, [string, typeof params]>({
+    queryKey: ['publicSettlements', params],
+    queryFn: () => getPublicSettlements(params),
+    staleTime: 1000 * 60 * 5,
+  });
+};
+
+export const useOwnedSettlementsQuery = (
+  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic'> & { userId: string },
+  options?: Partial<UseQueryResult>
+): UseQueryResult<SettlementResponse> => {
+  return useQuery<SettlementResponse, Error, SettlementResponse, [string, typeof params]>({
+    queryKey: ['ownedSettlements', params],
+    queryFn: () => getOwnedSettlements(params),
+    staleTime: 1000 * 60 * 5,
+    enabled: options?.isEnabled ?? true,
   });
 };

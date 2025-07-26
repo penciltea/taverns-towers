@@ -24,6 +24,8 @@ function serializeSettlement(settlement: any): Settlement {
 }
 
 export async function getSettlements({
+  userId,
+  isPublic,
   page = 1,
   limit = 12,
   search = '',
@@ -34,6 +36,8 @@ export async function getSettlements({
   tags = [],
   terrain = [],
 }: {
+  userId?: string;
+  isPublic?: boolean;
   page?: number;
   limit?: number;
   search?: string;
@@ -48,9 +52,10 @@ export async function getSettlements({
 
   const query: any = {};
 
-  if (search) {
-    query.name = { $regex: new RegExp(search, "i") };
-  }
+  if (userId) query.userId = userId;
+  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+
+  if (search) query.name = { $regex: new RegExp(search, 'i') };
   if (size) query.size = size;
   if (climate) query.climate = climate;
   if (magic) query.magic = magic;
@@ -63,12 +68,12 @@ export async function getSettlements({
     .sort({ createdAt: -1 })
     .skip((page - 1) * limit)
     .limit(limit)
-    .lean<Settlement[]>(); 
+    .lean<Settlement[]>();
 
   const serializedSettlements = settlements.map((settlement) => ({
     ...settlement,
     _id: settlement._id.toString(),
-    userId: settlement.userId.toString()
+    userId: settlement.userId.toString(),
   }));
 
   return {
@@ -78,6 +83,14 @@ export async function getSettlements({
     currentPage: page,
     totalPages: Math.ceil(total / limit),
   };
+}
+
+export async function getOwnedSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'userId'> & { userId: string }) {
+  return getSettlements({ ...options, userId: options.userId });
+}
+
+export async function getPublicSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>) {
+  return getSettlements({ ...options, isPublic: true });
 }
 
 

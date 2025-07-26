@@ -52,7 +52,7 @@ export interface Settlement extends CommonInterface {
   isPublic: boolean;
 }
 
-export const DefaultSettlementQueryParams = {
+export const DefaultSettlementQueryParams: SettlementQueryParams = {
   page: 1,
   limit: 12,
   search: '',
@@ -62,4 +62,18 @@ export const DefaultSettlementQueryParams = {
   wealth: '',
   tags: [],
   terrain: [],
+  userId: ''
+}
+
+export interface SettlementQueryParams {
+  page: number;
+  limit: number;
+  search: string;
+  size: string;
+  climate: string;
+  magic: string;
+  wealth: string;
+  tags: string[];
+  terrain: string[];
+  userId: string;
 }

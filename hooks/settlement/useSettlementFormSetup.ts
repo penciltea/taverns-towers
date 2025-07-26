@@ -70,7 +70,7 @@ export function useSettlementFormSetup(
 
       clearSelectedItem();
       clearMode();
-      queryClient.invalidateQueries({ queryKey: ["settlements"] });
+      queryClient.invalidateQueries({ queryKey: ["ownedSettlements"] });
 
       if (saved?._id) {
         router.push(`/settlements/${saved._id}`);
