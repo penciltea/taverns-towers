@@ -10,16 +10,13 @@ import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
-import { useAuthStore } from "@/store/authStore";
-
 
 export default function ViewSettlementPage() {
   const { setOpenDialog } = useUIStore();
   const params = useParams();
   const id = params.id as string;
   const { settlement, loading, deleteSite } = useSettlementLoader(id);
-  const user = useAuthStore(state => state.user);
-  const isOwner = useAuthStore(state => state.isOwner);
+
 
   if (!loading && !settlement) {
     return <Typography>Settlement not found!</Typography>;
@@ -38,7 +35,7 @@ export default function ViewSettlementPage() {
           loading={loading}
           skeleton={<Skeleton variant="rectangular" width={120} height={40} />}
         >
-          {settlement && isOwner(settlement.userId) && <SettlementActions settlementId={settlement._id} />}
+          {settlement && <SettlementActions settlementId={settlement._id} />}
         </SkeletonLoader>
       </Stack>
 
@@ -63,13 +60,16 @@ export default function ViewSettlementPage() {
               <Skeleton variant="rectangular" width="100%" height={300} sx={{ borderRadius: 2 }} />
             ) : settlement?.map ? (
               <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
-                <Image
-                  src={settlement.map}
+                <img
+                  src={settlement.map || ''}
                   alt="Your settlement map"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  style={{ borderRadius: '16px', boxShadow: '0px 2px 8px rgba(0,0,0,0.1)', objectFit: "cover" }}
+                  style={{
+                    borderRadius: '16px',
+                    boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
+                    width: '100%',
+                    height: '300px',
+                    objectFit: 'cover',
+                  }}
                 />
               </Box>
             ) : (

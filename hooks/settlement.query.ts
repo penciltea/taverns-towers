@@ -32,10 +32,12 @@ export const usePublicSettlementsQuery = (
 };
 
 export const useOwnedSettlementsQuery = (
-  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic'> & { userId: string },
-  options?: Partial<UseQueryResult>
+  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>,
+  options?: {
+    isEnabled: boolean;
+  }
 ): UseQueryResult<SettlementResponse> => {
-  return useQuery<SettlementResponse, Error, SettlementResponse, [string, typeof params]>({
+  return useQuery<SettlementResponse, Error>({
     queryKey: ['ownedSettlements', params],
     queryFn: () => getOwnedSettlements(params),
     staleTime: 1000 * 60 * 5,

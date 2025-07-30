@@ -7,6 +7,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
 import { deleteSettlement } from "@/lib/actions/settlement.actions";
 import DeleteButton from "@/components/Common/DeleteButton";
+import { useAuthStore } from "@/store/authStore";
+import ClientMounted from "@/components/Common/ClientMounted";
 
 export default function SettlementActions({ settlementId }: { settlementId: string }) {
   const router = useRouter();

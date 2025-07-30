@@ -3,6 +3,7 @@
 import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
+import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 
@@ -85,8 +86,11 @@ export async function getSettlements({
   };
 }
 
-export async function getOwnedSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'userId'> & { userId: string }) {
-  return getSettlements({ ...options, userId: options.userId });
+export async function getOwnedSettlements(
+  options: Omit<Parameters<typeof getSettlements>[0], 'userId'>
+) {
+  const user = await requireUser();
+  return getSettlements({ ...options, userId: user.id });
 }
 
 export async function getPublicSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>) {
@@ -108,8 +112,12 @@ export async function getSettlementById(id: string) {
 
 export async function createSettlement(data: Partial<Settlement>) {
   await connectToDatabase();
+  const user = await requireUser();
 
-  const newSettlement = await SettlementModel.create(data);
+  const newSettlement = await SettlementModel.create({
+    ...data,
+    userId: new ObjectId(user.id)
+  });
   revalidatePath("/settlements");
 
   return serializeSettlement(newSettlement);
@@ -119,7 +127,14 @@ export async function createSettlement(data: Partial<Settlement>) {
 
 export async function updateSettlement(id: string, data: Partial<Settlement>) {
   await connectToDatabase();
+  
   if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+
+  const user = await requireUser();
+  const existing = await SettlementModel.findById(id);
+
+  if(!existing) throw new Error("Settlement not found");
+  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
 
   const updatedSettlement = await SettlementModel.findByIdAndUpdate(id, data, { new: true });
   if (!updatedSettlement) throw new Error("Settlement not found");
@@ -133,6 +148,12 @@ export async function updateSettlement(id: string, data: Partial<Settlement>) {
 export async function deleteSettlement(id: string) {
   await connectToDatabase();
   if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+
+  const user = await requireUser();
+  const existing = await SettlementModel.findById(id);
+
+  if(!existing) throw new Error("Settlement not found");
+  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
 
   const deletedSettlement = await SettlementModel.findByIdAndDelete(id);
   if (!deletedSettlement) throw new Error("Settlement not found");

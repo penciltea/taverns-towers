@@ -8,6 +8,7 @@ export default function AuthSync() {
   const { data: session, status } = useSession();
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
+  const setHasHydrated = useAuthStore((state) => state.setHasHydrated);
 
   useEffect(() => {
     if (status === "loading") return;
@@ -22,6 +23,8 @@ export default function AuthSync() {
     } else if (status === "unauthenticated" && session === null) {
       clearUser();
     }
+
+    setHasHydrated();
   }, [status, session]);
 
   return null;

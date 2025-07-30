@@ -1,5 +1,3 @@
-import createCache from "@emotion/cache";
+import createCache from '@emotion/cache';
 
-export default function createEmotionCache() {
-  return createCache({ key: "css", prepend: true });
-}
+export const muiCache = createCache({ key: 'mui', prepend: true });

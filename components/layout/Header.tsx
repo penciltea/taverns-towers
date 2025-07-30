@@ -1,28 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/store/authStore';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
 import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
-
 export default function Header() {
   const router = useRouter();
+  const { data: session, status } = useSession();
+  
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
-
-  const user = useAuthStore(state => state.user);
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-   useEffect(() => {
-    // Whenever the user changes (login or logout), close the menu to avoid dangling anchorEl
-    setAnchorEl(null);
-  }, [user]);
+  if (status === "loading") {
+    // Avoid rendering until session is ready
+    return null; 
+  }
 
   const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,8 +36,9 @@ export default function Header() {
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
-    router.push('/');    
-  }
+    router.push('/');
+  };
+  
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -50,7 +48,7 @@ export default function Header() {
           aria-label="open drawer"
           edge="start"
           onClick={toggleDrawer}
-          sx={{ mr: 2, display: { xs: 'inline-flex', md: 'inline-flex' } }}
+          sx={{ mr: 2 }}
         >
           <MenuIcon />
         </IconButton>
@@ -58,8 +56,7 @@ export default function Header() {
           RealmFoundry
         </Typography>
 
-        { /* Auth Section */ }
-        { user ? (
+        {status === "authenticated" && session.user ? (
           <>
             <Button
               color="inherit"
@@ -68,8 +65,10 @@ export default function Header() {
               aria-haspopup="true"
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
             >
-              <Avatar sx={{ width: 26, height: 26, mr: 1 }}><PersonOutlineIcon /></Avatar>
-              Hi, {user.username}!
+              <Avatar sx={{ width: 26, height: 26, mr: 1 }}>
+                <PersonOutlineIcon />
+              </Avatar>
+              Hi, {session.user.username}!
             </Button>
             <Menu
               id="user-menu"
@@ -77,23 +76,22 @@ export default function Header() {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem disabled>Tier: {capitalizeFirstLetter(user.tier)}</MenuItem>
+              <MenuItem disabled>Tier: {capitalizeFirstLetter(session.user.tier)}</MenuItem>
               <Divider />
               <MenuItem onClick={() => handleNavigate('/account/settings')}>Account Settings</MenuItem>
               <MenuItem onClick={handleSignOut}>Logout</MenuItem>
             </Menu>
           </>
         ) : (
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }} >
-            <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+            <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')}>
               Login
             </Button>
-            <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')} >
+            <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')}>
               Register
             </Button>
           </Box>
-        )
-        }
+        )}
       </Toolbar>
     </AppBar>
   );

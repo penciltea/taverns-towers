@@ -51,7 +51,7 @@ export interface BaseSite {
   publicNotes?: string;
   gmNotes?: string;
   image?: string;
-  userId: string;
+  //userId: string;
   createdAt: string;
   updatedAt: string;
 }

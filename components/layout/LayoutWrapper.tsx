@@ -1,13 +1,12 @@
 'use client'
 
-import { Box, useMediaQuery, useTheme } from "@mui/material"
-import Header from "./Header"
+import { Box } from "@mui/material"
 import { Sidebar } from "./Sidebar"
 import { useUIStore } from "@/store/uiStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import Header from "./Header";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }){
-    const theme = useTheme();
     const isMobile = useIsMobile();
     const isDrawerOpen = useUIStore(state => state.isDrawerOpen);
     const drawerWidth = 240;

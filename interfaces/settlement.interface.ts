@@ -61,8 +61,7 @@ export const DefaultSettlementQueryParams: SettlementQueryParams = {
   magic: '',
   wealth: '',
   tags: [],
-  terrain: [],
-  userId: ''
+  terrain: []
 }
 
 export interface SettlementQueryParams {
@@ -75,5 +74,4 @@ export interface SettlementQueryParams {
   wealth: string;
   tags: string[];
   terrain: string[];
-  userId: string;
 }

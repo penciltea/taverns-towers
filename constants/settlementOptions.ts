@@ -77,6 +77,7 @@ export const DOMAINS = [
   "Invention",
   "Judgment",
   "Knowledge",
+  "Law",
   "Life",
   "Light",
   "Magic",

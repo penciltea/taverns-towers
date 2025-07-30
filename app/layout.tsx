@@ -4,18 +4,21 @@ import DialogContainer from "@/components/Layout/DialogContainer";
 import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
 import AuthSync from "@/components/Auth/AuthSync";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper";
+import { authOptions } from '@/lib/auth/authOptions';
+import { getServerSession } from 'next-auth';
 
 export const metadata = {
   title: "RealmFoundry",
   description: "A world builder for your TTRPG campaigns",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const session = await getServerSession(authOptions)
   return (
     <html lang="en">
       
       <body>
-        <AppProviderWrapper>
+        <AppProviderWrapper session={session}>
           <AuthSync />
           <Snackbar />
           <ErrorDialog />

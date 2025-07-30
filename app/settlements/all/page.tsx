@@ -20,13 +20,13 @@ export default function SettlementsPage() {
   // Set initial params after user loads
   useEffect(() => {
     if (user) {
-      setParams({ ...DefaultSettlementQueryParams, userId: user.id });
+      setParams({ ...DefaultSettlementQueryParams });
     }
   }, [user]);
 
   // Prevent query call until params are ready
   const { data, isLoading, error } = useOwnedSettlementsQuery(params!, {
-    isEnabled: !!params?.userId
+    isEnabled: !!params
   });
 
   return (
