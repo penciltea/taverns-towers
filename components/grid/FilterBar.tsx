@@ -38,7 +38,7 @@ export default function FilterBar<T>({
 
   // Handle page size change
   const handlePageSizeChange = (event: SelectChangeEvent<string>) => {
-    const updatedFilters = { ...filters, limit: parseInt(event.target.value, 12), page: 1 };
+    const updatedFilters = { ...filters, limit: parseInt(event.target.value, 10), page: 1 };
     setFilters(updatedFilters);
   };
 

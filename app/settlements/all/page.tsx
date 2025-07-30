@@ -15,7 +15,9 @@ export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
 
-  const [params, setParams] = useState<SettlementQueryParams | null>(null); // Temporarily allow null
+  const [params, setParams] = useState<SettlementQueryParams>({
+    ...DefaultSettlementQueryParams
+  });
 
   // Set initial params after user loads
   useEffect(() => {

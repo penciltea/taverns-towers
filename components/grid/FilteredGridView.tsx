@@ -43,7 +43,7 @@ export default function FilteredGridView<T extends CommonInterface>({
   currentPage,
   onPageChange,
   totalCount,
-  pageSize = 30,
+  pageSize = 12,
   emptyText = 'No items found.',
   fabLabel,
   fabLink,
