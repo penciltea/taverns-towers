@@ -34,6 +34,13 @@ const BaseSiteSchema = new Schema(
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
     image: { type: String, required: false },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    isPublic: { type: Boolean, default: false },
+    editors: [{type: String, required: false}] //editors: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   },
   { discriminatorKey: "type", timestamps: true }
 );

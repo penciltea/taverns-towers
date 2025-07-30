@@ -19,6 +19,8 @@ export default function DialogContainer() {
               onClose={closeDialog}
               siteData={dialogProps.siteData}
               settlementId={dialogProps.siteData.settlementId}
+              userId={dialogProps.userId}
+              editors={dialogProps.editors}
               onDelete={() =>
                 dialogProps.siteData &&
                 dialogProps.onDelete?.() // fallback if passed via props
@@ -33,16 +35,6 @@ export default function DialogContainer() {
                 dialogMode={dialogProps.dialogMode}
                 defaultSettlementId={dialogProps.settlementId}
             />
-        )
-    case 'SiteDetailsDialog' :
-        return (
-          <SiteDetailsDialog
-              open
-              onClose={closeDialog}
-              siteData={dialogProps.selected}
-              settlementId={dialogProps.settlementId}
-              onDelete={dialogProps.onDelete}
-          />
         )
     case 'SettlementDetailsDialog' :
       return (

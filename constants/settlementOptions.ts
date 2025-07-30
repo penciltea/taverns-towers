@@ -80,6 +80,7 @@ export const DOMAINS = [
   "Law",
   "Life",
   "Light",
+  "Luck",
   "Magic",
   "Moon",
   "Nature",

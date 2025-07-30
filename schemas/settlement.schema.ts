@@ -20,6 +20,7 @@ export const settlementSchema = z.object({
   folklore: z.string().optional(),
   crime: z.array(z.string()).optional(),
   isPublic: z.boolean().optional(),
+  editors: z.array(z.string()).optional(),
   map: z
     .any()
     .refine(
@@ -60,6 +61,7 @@ export const defaultSettlementValues =  {
   crime: [],
   map: undefined,
   isPublic: false,
+  editors: [],
   ...defaultEnvironmentValues // added for defaults for climate, terrain, and tags
 }
 

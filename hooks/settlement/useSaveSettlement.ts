@@ -23,6 +23,7 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
   const { user } = useAuthStore();
 
   return async function saveSettlement(data: SettlementFormData) {
+    console.log("user: ", user);
     if (!user?.id) {
       throw new Error("User is not logged in");
     }

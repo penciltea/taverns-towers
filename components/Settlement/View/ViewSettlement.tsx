@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Grid, Stack, Typography, Skeleton, Divider } from "@mui/material";
+import { Box, Grid, Stack, Typography, Divider } from "@mui/material";
 import { useUIStore } from '@/store/uiStore';
 import { Settlement } from '@/interfaces/settlement.interface';
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
@@ -17,9 +17,6 @@ interface Props {
 export default function ViewSettlement({ settlement, session }: Props) {
   const { setOpenDialog } = useUIStore();
 
-  // Check if user is authenticated and owns the settlement
-  const canEdit = session?.user?.id === settlement.userId;
-
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, justifyContent: 'space-between' }}>
@@ -27,7 +24,7 @@ export default function ViewSettlement({ settlement, session }: Props) {
           {settlement.name}
         </Typography>
 
-        {canEdit && <SettlementActions settlementId={settlement._id} />}
+        {settlement && <SettlementActions {...settlement} />}
       </Stack>
 
       <Divider sx={{ my: 2 }} />
@@ -74,7 +71,12 @@ export default function ViewSettlement({ settlement, session }: Props) {
         </Grid>
       </Grid>
 
-      <FabButton label="Add Site" onClick={() => setOpenDialog('siteTypeDialog', { dialogMode: 'direct', settlementId: settlement._id })} />
+      <FabButton label="Add Site" 
+        onClick={() => setOpenDialog('siteTypeDialog', { 
+          dialogMode: 'direct', 
+          settlementId: settlement._id, 
+        })} 
+      />
     </>
   );
 }

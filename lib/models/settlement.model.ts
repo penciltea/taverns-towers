@@ -29,6 +29,7 @@ export interface ISettlement extends Document {
   createdBy: Types.ObjectId;
   isPublic: boolean;
   userId: Types.ObjectId;
+  editors: string[];
 }
 
 
@@ -59,8 +60,8 @@ const SettlementSchema = new Schema<ISettlement>(
       ref: 'User',
       required: true,
     },
-
     isPublic: { type: Boolean, default: false },
+    editors: [{type: String, required: false}]
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

@@ -1,4 +1,5 @@
 export const TAG_TYPES = [
+    "Agricultural",
     "Ancient Ruins",
     "Arcane Nexus",
     "Border Post",

@@ -1,3 +1,5 @@
+'use client'
+
 import { Dialog, DialogTitle, DialogContent, Box, Button, Typography, Stack, DialogActions, } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from 'next/navigation';
@@ -15,6 +17,8 @@ import { EntertainmentDetails } from './EntertainmentDetails';
 import { HiddenDetails } from './HiddenDetails';
 import { ResidenceDetails } from './ResidenceDetails';
 import { MiscellaneousDetails } from './MiscellaneousDetails';
+import { useSession } from 'next-auth/react';
+import { canDelete, canEdit } from '@/lib/auth/authPermissions';
 
 const SiteTypeComponents = {
   tavern: TavernDetails,
@@ -36,8 +40,15 @@ const getSiteLabel = (type: string) => {
 export default function SiteDetailsDialog({ open, onClose, onDelete, settlementId, siteData }: SiteDialogProps) {
   const Component = (SiteTypeComponents as any)[siteData.type];
   const siteLabel = getSiteLabel(siteData.type);
+  const { data: session } = useSession();
   const router = useRouter();
   const { showSnackbar, closeDialog } = useUIStore();
+
+  const user = session?.user ? { id: session.user.id } : null;
+  const { userId, editors } = siteData;
+  
+  const editable = canEdit(user, { userId, editors });
+  const deletable = canDelete(user, { userId});
 
   const handleEdit = () => {
     const id = siteData._id;
@@ -91,26 +102,30 @@ export default function SiteDetailsDialog({ open, onClose, onDelete, settlementI
 
           {/* Action buttons */}
           <DialogActions>
-            <Button
-              variant="outlined"
-              sx={{ mx: 1 }}
-              startIcon={<EditIcon />}
-              onClick={handleEdit}
-            >
-              Edit
-            </Button>
-            <DeleteButton
-              id={siteData._id!}
-              entity="site"
-              deleteAction={deleteSite}
-              onSuccess={() => {
-                if(!siteData._id){ return }
-                if (onDelete) {
-                  onDelete(siteData._id);
-                  showSnackbar('Site deleted successfully!', 'success');
-                }
-              }}
-            />
+            { editable && (
+                <Button
+                variant="outlined"
+                sx={{ mx: 1 }}
+                startIcon={<EditIcon />}
+                onClick={handleEdit}
+              >
+                Edit
+              </Button>
+            )}
+            { deletable && (
+              <DeleteButton
+                id={siteData._id!}
+                entity="site"
+                deleteAction={deleteSite}
+                onSuccess={() => {
+                  if(!siteData._id){ return }
+                  if (onDelete) {
+                    onDelete(siteData._id);
+                    showSnackbar('Site deleted successfully!', 'success');
+                  }
+                }}
+              />
+            )}
           </DialogActions>
         </DialogContent>
       </Dialog>

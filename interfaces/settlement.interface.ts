@@ -50,6 +50,7 @@ export interface Settlement extends CommonInterface {
   crime?: string[];
   userId: string;
   isPublic: boolean;
+  editors: string[];
 }
 
 export const DefaultSettlementQueryParams: SettlementQueryParams = {

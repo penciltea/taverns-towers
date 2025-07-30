@@ -1,8 +1,14 @@
-export interface UserInterface{
+export interface UserInterface {
     id: string;
     email: string;
     username: string;
     tier: string;
+}
+
+export interface UserPermissions {
+  id: string;
+  roles?: string[];
+  permissions?: string[];
 }
 
 export interface RegisterPayload {

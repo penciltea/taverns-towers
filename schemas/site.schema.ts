@@ -28,6 +28,9 @@ export const baseSiteSchema = z.object({
   condition: z.string().optional(),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
+  isPublic: z.boolean().optional(),
+  userId: z.string().optional(),
+  editors: z.array(z.string()).optional(),
   image: z
     .any()
     .refine(

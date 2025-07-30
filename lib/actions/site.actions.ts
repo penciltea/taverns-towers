@@ -5,6 +5,7 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { BaseSite, SiteType } from "@/interfaces/site.interface";
 import { revalidatePath } from 'next/cache';
+import { requireUser } from "../auth/authHelpers";
 
 function serializeSite(site: any): SiteType {
   const plain = site.toObject ? site.toObject() : site;
@@ -19,7 +20,21 @@ function serializeSite(site: any): SiteType {
     publicNotes: plain.publicNotes,
     gmNotes: plain.gmNotes,
     settlementId: plain.settlementId?.toString(),
-    //userId: plain.userId.toString(),
+    isPublic: plain.isPublic,
+    editors: Array.isArray(plain.editors)
+      ? plain.editors.map((editor: any) =>
+          typeof editor === 'string'
+            ? editor
+            : editor?._id
+              ? editor._id.toString()
+              : editor?.toString?.()
+        )
+      : [],
+    userId: typeof plain.userId === 'string'
+      ? plain.userId
+      : plain.userId?._id
+        ? plain.userId._id.toString()  // If populated user document
+        : plain.userId?.toString?.(),  // fallback if ObjectId
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
   };
@@ -132,11 +147,17 @@ function serializeSite(site: any): SiteType {
 
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
+  const user = await requireUser();
   const model = Site.discriminators?.[data.type] || Site;
 
   const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
-  const newSite = await model.create({ ...data, settlementId: dbSettlementId });
+  const newSite = await model.create({
+    ...data, 
+    settlementId: dbSettlementId,
+    userId: new ObjectId(user.id)
+  });
+
   if (dbSettlementId) {
     revalidatePath(`/settlement/${dbSettlementId.toString()}`);
   } else {
@@ -151,7 +172,8 @@ export async function getSitesPaginated(
   page: number = 1,
   limit: number = 12,
   name: string,
-  types?: string[]  
+  types?: string[],
+  userId?: string,
 ) {
   await connectToDatabase();
 
@@ -163,10 +185,17 @@ export async function getSitesPaginated(
   } else if (settlementId && settlementId !== 'wilderness') {
     throw new Error("Invalid settlementId passed to getSitesPaginated");
   }
+
   if (types && types.length > 0) {
     query.type = { $in: types };
   }
-  if (name) query.name = new RegExp(name, "i");
+  if (name) {
+    query.name = new RegExp(name, "i");
+  }
+
+  if (userId) {
+    query.userId = new ObjectId(userId);
+  }
 
   const skip = (page - 1) * limit;
 
@@ -185,6 +214,73 @@ export async function getSitesPaginated(
   };
 }
 
+export async function getSites({
+  userId,
+  isPublic,
+  settlementId,
+  page = 1,
+  limit = 12,
+  name,
+  types = [],
+}: {
+  userId?: string;
+  isPublic?: boolean;
+  settlementId?: string | null;
+  page?: number;
+  limit?: number;
+  name?: string;
+  types?: string[];
+}) {
+  await connectToDatabase();
+
+  const query: Record<string, any> = {};
+
+  if (userId) query.userId = new ObjectId(userId);
+  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+
+  if (settlementId === 'wilderness') {
+    query.settlementId = null;
+  } else if (settlementId && ObjectId.isValid(settlementId)) {
+    query.settlementId = new ObjectId(settlementId);
+  }
+
+  if (name) {
+    query.name = new RegExp(name, 'i');
+  }
+
+  if (types.length > 0) {
+    query.type = { $in: types };
+  }
+
+  const skip = (page - 1) * limit;
+
+  const [sites, total] = await Promise.all([
+    Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
+    Site.countDocuments(query),
+  ]);
+
+  return {
+    success: true,
+    sites: sites.map(serializeSite),
+    total,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+  };
+}
+
+export async function getOwnedSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>
+) {
+  const user = await requireUser();
+  return getSites({ ...options, userId: user.id });
+}
+
+export async function getPublicSites(
+  options: Omit<Parameters<typeof getSites>[0], 'isPublic'>
+) {
+  return getSites({ ...options, isPublic: true });
+}
+
 
 export async function getSiteById(id: string) {
   await connectToDatabase();
@@ -200,8 +296,11 @@ type SiteUpdateData = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>>
 export async function updateSite(data: SiteUpdateData, id: string) {
   await connectToDatabase();
 
+  const user = await requireUser();
   const existing = await Site.findById(id);
+
   if (!existing) throw new Error("Site not found");
+  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
 
   const model = Site.discriminators?.[existing.type] || Site;
   const updated = await model.findByIdAndUpdate(id, data, { new: true });
@@ -212,7 +311,17 @@ export async function updateSite(data: SiteUpdateData, id: string) {
 
 export async function deleteSite(id: string) {
   await connectToDatabase();
-  const deleted = await Site.findByIdAndDelete(id);
-  if (deleted?.settlementId) revalidatePath(`/settlement/${deleted.settlementId}`);
+  if (!ObjectId.isValid(id)) throw new Error("Invalid site ID");
+
+  const user = await requireUser();
+  const existing = await Site.findById(id);
+
+  if(!existing) throw new Error("Site not found");
+  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  const deletedSite = await Site.findByIdAndDelete(id);
+  if (!deletedSite) throw new Error("Site not found");
+
+  if (deletedSite?.settlementId) revalidatePath(`/settlement/${deletedSite.settlementId}`);
   return { success: true };
 }

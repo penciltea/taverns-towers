@@ -57,7 +57,11 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
           subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
           onClick={() => {
             setSelected(site);
-            setOpenDialog('SiteDetailsDialog', {  siteData: site, settlementId: settlementId, onDelete: onDelete })
+            setOpenDialog('SiteDetailsDialog', {  
+              siteData: site, 
+              settlementId: settlementId,
+              onDelete: onDelete
+            })
           }}
         />
       )}

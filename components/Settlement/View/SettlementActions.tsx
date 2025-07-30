@@ -1,39 +1,51 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useUIStore } from "@/store/uiStore";
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
 import { deleteSettlement } from "@/lib/actions/settlement.actions";
 import DeleteButton from "@/components/Common/DeleteButton";
-import { useAuthStore } from "@/store/authStore";
-import ClientMounted from "@/components/Common/ClientMounted";
+import { Settlement } from "@/interfaces/settlement.interface";
+import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 
-export default function SettlementActions({ settlementId }: { settlementId: string }) {
+export default function SettlementActions({ _id, userId, editors }: Settlement) {
   const router = useRouter();
+  const { data: session } = useSession();
   const { showSnackbar } = useUIStore();
   const queryClient = useQueryClient();
+
+  const user = session?.user ? { id: session.user.id } : null;
+
+  const editable = canEdit(user, { userId, editors });
+  const deletable = canDelete(user, { userId});
+
   const handleEdit = () => {
-    router.push(`/settlements/${settlementId}/edit`);
+    router.push(`/settlements/${_id}/edit`);
   };
 
   return (
     <>
       <Box>
-        <Button sx={{ mx: 1 }} variant="outlined" startIcon={<EditIcon />}  onClick={handleEdit}>
-          Edit
-        </Button>
-        <DeleteButton
-          id={settlementId}
-          entity="settlement"
-          deleteAction={deleteSettlement}
-          onSuccess={() => {
-            queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
-            router.push("/settlements/all");
-            showSnackbar('Settlement deleted successfully!', 'success');
-          }}
-        />
+        { editable && <Button sx={{ mx: 1 }} variant="outlined" startIcon={<EditIcon />}  onClick={handleEdit}>
+            Edit
+          </Button>
+        }
+        {
+          deletable && (
+          <DeleteButton
+            id={_id}
+            entity="settlement"
+            deleteAction={deleteSettlement}
+            onSuccess={() => {
+              queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+              router.push("/settlements/all");
+              showSnackbar('Settlement deleted successfully!', 'success');
+            }}
+          />
+          )}
       </Box>
     </>
   );
