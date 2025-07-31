@@ -17,6 +17,13 @@ interface AuthFormOptions<T extends AuthFormType> {
   onError?: (error: string) => void;
 }
 
+const ERROR_MESSAGES: Record<string, string> = {
+  CredentialsSignin: "Invalid email or password.",
+  OAuthAccountNotLinked: "That account exists but is linked to a different provider.",
+  Configuration: "Server misconfiguration. Please try again later.",
+  default: "An unexpected error occurred. Please try again.",
+};
+
 export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>) {
   const { type, redirectTo, onSuccess, onError } = options;
   const router = useRouter();
@@ -64,7 +71,8 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
             router.push(finalRedirect!);
           }
         } else {
-          const message = result?.error ?? "Invalid login credentials.";
+          const rawError = result?.error ?? "default";
+          const message = ERROR_MESSAGES[rawError] ?? ERROR_MESSAGES.default;
           setError(message);
           onError?.(message);
         }

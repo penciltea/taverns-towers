@@ -28,13 +28,6 @@ export default function NewSettlementPage() {
 
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
 
-  const onLoginSuccess = () => {
-    if (draftItem) {
-      onSubmit(draftItem as SettlementFormData);
-      clearDraftItem();
-    }
-  };
-
    useEffect(() => {
     if (user && draftItem) {
       (async () => {
@@ -47,7 +40,7 @@ export default function NewSettlementPage() {
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {
       setDraftItem(data);
-      setOpenDialog("LoginDialog", {}); // `onLoginSuccess` now handled by useEffect
+      setOpenDialog("LoginDialog", {});
       return;
     }
 

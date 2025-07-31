@@ -16,7 +16,6 @@ import { useSettlementGeneratorActions } from "./useSettlementGeneratorActions";
 import { shouldReplace } from "@/lib/util/randomValues";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
-import { useAuthStore } from "@/store/authStore";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
