@@ -24,10 +24,9 @@ export function useSettlementFormSetup(
   mode: "add" | "edit"
 ) {
   const router = useRouter();
-  const { showSnackbar, setSubmitting, showErrorDialog, setOpenDialog } = useUIStore();
-  const { clearSelectedItem, clearMode, setDraftItem } = useSettlementContentStore();
+  const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
+  const { clearSelectedItem, clearMode } = useSettlementContentStore();
   const queryClient = useQueryClient();
-  const user = useAuthStore(state => state.user);
 
   const { generatePartial, generateFull } = useSettlementGeneratorActions();
   const saveSettlement = useSaveSettlement(mode, id ?? undefined);

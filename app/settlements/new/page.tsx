@@ -11,6 +11,7 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
+import { useEffect } from "react";
 
 export default function NewSettlementPage() {
   const { id } = useParams();
@@ -34,14 +35,25 @@ export default function NewSettlementPage() {
     }
   };
 
+   useEffect(() => {
+    if (user && draftItem) {
+      (async () => {
+        await onSubmit(draftItem as SettlementFormData);
+        clearDraftItem();
+      })();
+    }
+  }, [user]); // Only runs when user logs in
+
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {
-      setDraftItem(data); // ToDo: trigger auto-submit after logging in
-      setOpenDialog("LoginDialog", { onLoginSuccess });
+      setDraftItem(data);
+      setOpenDialog("LoginDialog", {}); // `onLoginSuccess` now handled by useEffect
       return;
     }
+
     await onSubmit(data);
   };
+
 
   return (
     <FormProvider {...methods}>
