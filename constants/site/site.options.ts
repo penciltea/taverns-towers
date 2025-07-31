@@ -1,3 +1,5 @@
+import { Flatten } from "../commonOptions";
+
 export const SITE_CATEGORIES = [
     { value: "tavern", label: "Taverns & Inns"},
     { value: "temple", label: "Temples & Shrines"},
@@ -181,8 +183,4 @@ export type SiteSize = typeof SITE_SIZE[number]["value"];
 export type SiteCondition = typeof SITE_CONDITION[number]["value"];
 export type SiteSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
 export type SiteEntertainmentType = typeof ENTERTAINMENT_VENUE_TYPES[number]["value"];
-
-type Flatten<T> = T extends Array<{ options: readonly any[] }>
-  ? T[number]["options"][number]
-  : never;
 export type SiteShopType = Flatten<typeof SHOP_TYPE_CATEGORIES>["value"];

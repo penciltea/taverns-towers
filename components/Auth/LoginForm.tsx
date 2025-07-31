@@ -50,7 +50,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
               },
             }}
           >
-            <strong>ERROR:</strong> {error}
+            <strong>ERROR:</strong> { error }
           </Typography>
         </Box>
       )}

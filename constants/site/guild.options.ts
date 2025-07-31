@@ -1,4 +1,5 @@
-/* For Guild site type form */
+import { Flatten } from "../commonOptions";
+
 export const GUILD_TYPES = [
   {
     label: "Adventuring & Combat",
@@ -115,12 +116,6 @@ export const GUILD_MEMBERSHIP_REQUIREMENTS = [
     ],
   },
 ];
-
-
-type Flatten<T> = T extends Array<{ options: readonly any[] }>
-  ? T[number]["options"][number]
-  : never;
-
 
 export type SiteGuildType = Flatten<typeof GUILD_TYPES>["value"];
 export type SiteGuildMembershipType = Flatten<typeof GUILD_MEMBERSHIP_REQUIREMENTS>["value"];

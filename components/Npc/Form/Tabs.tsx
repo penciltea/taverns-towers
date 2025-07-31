@@ -1,5 +1,5 @@
 import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box } from "@mui/material";
-import { SETTLEMENT_TABS } from "@/constants/settlementOptions";
+import { NPC_TABS } from "@/constants/npc.options";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -8,13 +8,13 @@ type Props = {
   setTab: (newTab: number) => void;
 };
 
-export default function SettlementFormTabs({ tab, setTab }: Props) {
+export default function NpcFormTabs({ tab, setTab }: Props) {
   const isMobile = useIsMobile();
 
   const [announcement, setAnnouncement] = useState("");
 
   useEffect(() => {
-    setAnnouncement(`${SETTLEMENT_TABS[tab]} section selected`);
+    setAnnouncement(`${NPC_TABS[tab]} section selected`);
   }, [tab]);
 
   const handleChange = (event: any) => {
@@ -25,14 +25,14 @@ export default function SettlementFormTabs({ tab, setTab }: Props) {
     return (
       <Box sx={{ mb: 2 }}>
         <FormControl fullWidth size="small">
-          <InputLabel id="settlement-tab-select-label">Section</InputLabel>
+          <InputLabel id="npc-tab-select-label">Section</InputLabel>
           <Select
-            labelId="settlement-tab-select-label"
+            labelId="npc-tab-select-label"
             value={tab}
             label="Section"
             onChange={handleChange}
           >
-            {SETTLEMENT_TABS.map((label, index) => (
+            {NPC_TABS.map((label, index) => (
               <MenuItem key={label} value={index}>
                 {label}
               </MenuItem>
@@ -65,13 +65,13 @@ export default function SettlementFormTabs({ tab, setTab }: Props) {
           },
         }}
       >
-        {SETTLEMENT_TABS.map((label, index) => (
+        {NPC_TABS.map((label, index) => (
           <Tab key={index} label={label} />
         ))}
       </Tabs>
 
       <div aria-live="polite" style={{ position: "absolute", left: "-9999px" }}>
-      {SETTLEMENT_TABS[tab]} section selected
+      {NPC_TABS[tab]} section selected
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { SiteSize } from "@/constants/siteOptions";
+import { SiteSize } from "@/constants/site/site.options";
 
 export const domainCountBySiteSize: Record<SiteSize, [number, number]> = {
   tiny: [1, 1],

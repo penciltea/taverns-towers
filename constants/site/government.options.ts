@@ -1,4 +1,5 @@
-/* For Government site type form */
+import { Flatten } from "../commonOptions";
+
 export const GOVERNMENT_FUNCTIONS = [
     {
         label: "Administrative",
@@ -54,10 +55,6 @@ export const SECURITY_LEVELS = [
   { value: "very_high", label: "Very High (Wards, elite protection)" },
   { value: "top_secret", label: "Top Secret (Highest clearance only)" }
 ];
-
-type Flatten<T> = T extends Array<{ options: readonly any[] }>
-  ? T[number]["options"][number]
-  : never;
 
 export type SiteSecurityLevel = typeof SECURITY_LEVELS[number]["value"];
 export type SiteGovernmentFunctionType = Flatten<typeof GOVERNMENT_FUNCTIONS>["value"];

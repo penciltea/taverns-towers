@@ -20,34 +20,34 @@ export const Sidebar = () => {
         {
             label: "Settlements",
             children: [
-            {
-                label: "View all settlements",
-                path: "/settlements/all",
-                enabled: true
-            },
-            {
-                label: "Create settlement",
-                enabled: true,
-                path: "/settlements/new"
-            }
+                {
+                    label: "View all settlements",
+                    path: "/settlements/all",
+                    enabled: true
+                },
+                {
+                    label: "Create settlement",
+                    enabled: true,
+                    path: "/settlements/new"
+                }
             ]
         },
         {
             label: "Sites",
             children: [
-            {
-                label: "View all sites",
-                path: "/sites",
-                enabled: true
-            },
-            {
-                label: "Create site",
-                enabled: true,
-                onClick: () =>
-                setOpenDialog("siteTypeDialog", {
-                    dialogMode: "global"
-                })
-            }
+                {
+                    label: "View all sites",
+                    path: "/sites",
+                    enabled: true
+                },
+                {
+                    label: "Create site",
+                    enabled: true,
+                    onClick: () =>
+                    setOpenDialog("siteTypeDialog", {
+                        dialogMode: "global"
+                    })
+                }
             ]
         },
         {
@@ -58,6 +58,11 @@ export const Sidebar = () => {
                     path: "/npcs",
                     enabled: false
                 },
+                {
+                    label: "Create NPC",
+                    enabled: true,
+                    path: "/npcs/new"
+                }
             ]
         },
         {
