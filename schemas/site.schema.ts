@@ -1,9 +1,10 @@
 import { z } from "zod";
-import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
+import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
 import { GOVERNMENT_FUNCTIONS } from "@/constants/site/government.options";
+import { extractValues, optionalEnum } from "@/lib/util/zodHelpers";
 
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];
 const entertainmentEnumValues = ENTERTAINMENT_VENUE_TYPES.map(opt => opt.value) as [string, ...string[]];
@@ -24,8 +25,8 @@ const shopTypeEnumValues = SHOP_TYPE_CATEGORIES.flatMap(group =>
 export const baseSiteSchema = z.object({
   name: z.string().min(1),
   type: z.string(),
-  size: z.string().optional(),
-  condition: z.string().optional(),
+  size: optionalEnum(extractValues(SITE_SIZE), "Invalid climate"),
+  condition: optionalEnum(extractValues(SITE_CONDITION), "Invalid condition"),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   isPublic: z.boolean().optional(),

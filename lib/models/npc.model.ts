@@ -13,7 +13,8 @@ const connectionSchema = new Schema(
       required: true,
       refPath: "connections.type", // Dynamically reference appropriate collection
     },
-    label: { type: String, required: false },
+    role: { type: String, required: false, default: "" },
+    label: { type: String, required: false, default: "" },
   },
   { _id: false }
 );
@@ -23,12 +24,12 @@ const npcSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true, trim: true },
-    age: { type: String, enum: NPC_AGE, required: true },
-    pronouns: { type: String, enum: NPC_PRONOUNS, required: true },
-    alignment: { type: String, enum: NPC_ALIGNMENT, required: true },
+    age: { type: String, enum: NPC_AGE, required: false },
+    pronouns: { type: String, enum: NPC_PRONOUNS, required: false },
+    alignment: { type: String, enum: NPC_ALIGNMENT, required: false },
     
-    status: { type: String, enum: NPC_STATUS, required: true },
-    race: { type: String, enum: NPC_RACES, required: true },
+    status: { type: String, enum: NPC_STATUS, required: false },
+    race: { type: String, enum: NPC_RACES, required: false },
     traits: [ { type: String, enum: npcTraitValues, required: false } ],
     description: { type: String, required: false },
     gmNotes: { type: String, required: false },

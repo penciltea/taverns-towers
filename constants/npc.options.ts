@@ -147,9 +147,37 @@ export const NPC_TRAITS = [
 export const NPC_CONNECTION_TYPE = [
     "settlement",
     "site",
-    "npc"
+    "npc",
+    "guild"
 ] as const;
 
+export const NPC_CONNECTION_SETTLEMENT_ROLE = [
+  { label: "Leader", value: "leader" },
+  { label: "Emissary", value: "emissary" },
+  { label: "Citizen", value: "citizen" },
+];
+
+export const NPC_CONNECTION_SITE_ROLE = [
+  { label: "Owner / Leader", value: "owner" },
+  { label: "Manager", value: "manager" }, 
+  { label: "Employee", value: "employee" },
+  { label: "Caretaker", value: "caretaker" },
+];
+
+export const NPC_CONNECTION_NPC_ROLE = [
+  { label: "Friend", value: "friend" },
+  { label: "Enemy", value: "enemy" },
+  { label: "Mentor", value: "mentor" },
+  { label: "Family", value: "family" },
+  { label: "Rival", value: "rival" },
+];
+
+export const NPC_CONNECTION_GUILD_ROLE = [
+  { label: "Guildmaster", value: "guildmaster" },
+  { label: "Officer", value: "officer" },
+  { label: "Member", value: "member" },
+  { label: "Recruit", value: "recruit" },
+];
 
 
 export type NpcAge = (typeof NPC_AGE)[number];
@@ -158,4 +186,4 @@ export type NpcAlignment = (typeof NPC_ALIGNMENT)[number];
 export type NpcRace = (typeof NPC_RACES)[number];
 export type NpcStatus = (typeof NPC_STATUS)[number];
 export type NpcTrait = Flatten<typeof NPC_TRAITS>["value"];
-export type NpcConenctionType = (typeof NPC_CONNECTION_TYPE)[number];
+export type NpcConnectionType = (typeof NPC_CONNECTION_TYPE)[number];

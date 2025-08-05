@@ -18,9 +18,9 @@ interface FormConnectionAccordionProps {
   availableOptions: { id: string; name: string }[];
   value: ConnectionItem[];
   onChange: (updated: ConnectionItem[]) => void;
-  roleOptions: string[];
-  control: Control<any>; // for FormSelect
-  namePrefix: string; // like "connections" or "guild.members"
+  roleOptions: Option[]; // updated to use structured { label, value }
+  control: Control<any>;
+  namePrefix: string;
 }
 
 export function FormConnectionAccordion({
@@ -52,16 +52,12 @@ export function FormConnectionAccordion({
     onChange(updated);
   };
 
-  const selectedIds = value.map((v) => v.id);
+  const safeValue = value ?? [];
+  const selectedIds = safeValue.map((v) => v.id);
 
   const selectOptions: Option[] = availableOptions.map((opt) => ({
     value: opt.id,
     label: opt.name,
-  }));
-
-  const roleSelectOptions: Option[] = roleOptions.map((r) => ({
-    value: r,
-    label: r,
   }));
 
   return (
@@ -72,13 +68,13 @@ export function FormConnectionAccordion({
       <AccordionDetails>
         <Box mb={2}>
           <FormSelect
-            name={`${namePrefix}.selector`} // this won't be submitted but helps RHF track changes
+            name={`${namePrefix}.selector`}
             label={`Add ${label}`}
             control={control}
             options={selectOptions.filter((opt) => !selectedIds.includes(opt.value))}
             onChange={(e) => {
-                const value = (e.target as HTMLInputElement).value;
-                handleAdd(value)
+              const value = (e.target as HTMLInputElement).value;
+              handleAdd(value);
             }}
           />
         </Box>
@@ -97,11 +93,11 @@ export function FormConnectionAccordion({
                 name={`${namePrefix}.${index}.role`}
                 label="Role"
                 control={control}
-                options={roleSelectOptions}
+                options={roleOptions}
                 value={item.role}
                 onChange={(e) => {
-                    const value = (e.target as HTMLInputElement).value;
-                    handleRoleChange(index, value)
+                  const value = (e.target as HTMLInputElement).value;
+                  handleRoleChange(index, value);
                 }}
               />
               <IconButton onClick={() => handleRemove(item.id)} aria-label="Remove">

@@ -51,7 +51,9 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box component="form"  onSubmit={handleSubmit(onSubmit, (errors) => {
+  console.error("Form validation errors:", errors);
+})}>
         <Typography variant="h3" component="h1" gutterBottom>
           {mode === "edit" ? `Edit ${selectedItem?.name}` : "Forge an NPC"}
         </Typography>

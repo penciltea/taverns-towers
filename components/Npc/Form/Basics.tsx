@@ -61,7 +61,7 @@ export default function NpcFormBasics(){
                 />
                 
                 <FormSelect
-                    name="Age"
+                    name="age"
                     label="Age"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_AGE)]}

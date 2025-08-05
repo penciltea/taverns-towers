@@ -1,32 +1,28 @@
-import { NPC_CONNECTION_TYPE, NPC_TRAITS } from "@/constants/npc.options";
 import { z } from "zod";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
+import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
 
 const allTraitValues = NPC_TRAITS.flatMap((group) => group.options.map((opt) => opt.value));
 
+const npcConnectionItemSchema = z.object({
+  id: z.string(),
+  type: z.enum(["settlement", "site", "npc", "guild"]),
+  role: z.string().optional(),
+  label: z.string().optional(),
+});
+
 export const npcSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  age: z.string().optional(),
-  pronouns: z.string().optional(),
-  alignment: z.string().optional(),
-  status: z.string().optional(),
-  race: z.string().optional(),
+  age: optionalEnum(NPC_AGE as [string, ...string[]], "Invalid age"),
+  pronouns: optionalEnum(NPC_PRONOUNS as [string, ...string[]], "Invalid pronouns"),
+  alignment: optionalEnum(NPC_ALIGNMENT as [string, ...string[]], "Invalid alignment"),
+  status: optionalEnum(NPC_STATUS as [string, ...string[]], "Invalid status"),
+  race: optionalEnum(NPC_RACES as [string, ...string[]], "Invalid race"),
   description: z.string().optional(),
   gmNotes: z.string().optional(),
   publicNotes: z.string().optional(),
-
-  traits: z
-    .array(z.enum(allTraitValues as [string, ...string[]]))
-    .optional(), // or `.min(1)` if at least one is required
-
-  connections: z
-    .array(
-      z.object({
-        type: z.enum(NPC_CONNECTION_TYPE),
-        id: z.string(), // Use Zod's `z.string().uuid()` if you're working with UUIDs
-        label: z.string().optional(),
-      })
-    )
-    .optional(),
+  traits: optionalEnumArray(allTraitValues, "Invalid trait"),
+  connections: z.array(npcConnectionItemSchema).optional(),
 });
 
 export const defaultNpcValues = {
@@ -37,7 +33,7 @@ export const defaultNpcValues = {
   status: "",
   race: "",
   traits: [],          // Optional multi-select
-  connections: [],     // Optional array of linked entities  
+  connections: [], 
   description: "",
   publicNotes: "",
   gmNotes: "",

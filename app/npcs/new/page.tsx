@@ -2,16 +2,16 @@
 
 import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
-import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useUIStore } from "@/store/uiStore";
 import { useAuthStore } from "@/store/authStore";
-import { npcSchema, defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
+import { NpcFormData } from "@/schemas/npc.schema";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import NpcForm from "@/components/Npc/Form/NpcForm";
-import { useNpcFormSetup } from "@/hooks/npc/useNpcFormSetup";
+import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useEffect } from "react";
+import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 
 export default function NewNpcPage() {
   const { id } = useParams();
@@ -20,37 +20,49 @@ export default function NewNpcPage() {
   useFormMode(safeId, useNpcContentStore);
   const { mode, draftItem, clearDraftItem, setDraftItem } = useNpcContentStore();
   const { setOpenDialog } = useUIStore();
-  const user = useAuthStore(state => state.user);
+  const user = useAuthStore((state) => state.user);
 
-  const methods = useFormWithSchema(npcSchema, {
-    defaultValues: defaultNpcValues,
-  });
+  const methods = useNpcForm();
 
-  const { onGenerate, onReroll, onSubmit } = useNpcFormSetup(methods, safeId ?? null, mode ?? "add");
-
-   useEffect(() => {
+  useEffect(() => {
     if (user && draftItem) {
       (async () => {
-        await onSubmit(draftItem as NpcFormData);
+        await handleSubmit(draftItem as NpcFormData);
         clearDraftItem();
       })();
     }
-  }, [user]); // Only runs when user logs in
+  }, [user]);
+
+  const { handleSubmit } = useNpcMutations({
+    mode: mode,
+    npcId: safeId,
+    onSuccess: () => {
+      //router.push("/npcs");
+    },
+  });
 
   const wrappedOnSubmit = async (data: NpcFormData) => {
-    // if (!user) {
-    //   setDraftItem(data);
-    //   setOpenDialog("LoginDialog", {});
-    //   return;
-    // }
-
-    await onSubmit(data);
+    try {
+      if (!user) {
+        setDraftItem(data);
+        setOpenDialog("LoginDialog", {});
+        return;
+      }
+      await handleSubmit(data);
+    } catch (err) {
+      console.error("Error during NPC submission:", err);
+      // Optionally report to Sentry or external logging service
+    }
   };
-
 
   return (
     <FormProvider {...methods}>
-      <NpcForm onSubmit={wrappedOnSubmit} mode={mode} onGenerate={onGenerate} onReroll={onReroll} />
+      <NpcForm
+        onSubmit={wrappedOnSubmit}
+        onGenerate={console.log}
+        onReroll={console.log}
+        mode={mode}
+      />
     </FormProvider>
   );
 }
