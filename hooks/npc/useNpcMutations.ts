@@ -1,10 +1,9 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Types } from "mongoose";
 import { NpcFormData } from "@/schemas/npc.schema";
 import { createNpc, updateNpc } from "@/lib/actions/npc.actions";
+import { useUIStore } from "@/store/uiStore";
 
 
 interface UseNpcMutationsProps {
@@ -15,31 +14,36 @@ interface UseNpcMutationsProps {
 
 export function useNpcMutations({ mode, npcId, onSuccess }: UseNpcMutationsProps) {
     const router = useRouter();
-    const [isLoading, setIsLoading] = useState(false);
+    const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
 
     async function handleSubmit(data: NpcFormData) {
-        setIsLoading(true);
+        setSubmitting(true);
         try {
             const payload = { ...data };
 
             if (mode === "add") {
-            await createNpc(payload);
+                await createNpc(payload);
             } else if (mode === "edit") {
-            if (!npcId) throw new Error("NPC ID is required for edit mode");
-            await updateNpc(npcId, payload);
+                if (!npcId) throw new Error("NPC ID is required for edit mode");
+                await updateNpc(npcId, payload);
             }
+
+            showSnackbar(
+                mode === "edit" ? "NPC updated successfully!" : "NPC created successfully!",
+                "success"
+            );
 
             router.refresh();
             onSuccess?.();
         } catch (error) {
+            showErrorDialog("Something went wrong saving the NPC. Please try again later.");
             console.error("NPC mutation error:", error);
         } finally {
-            setIsLoading(false);
+            setSubmitting(false);
         }
     }
 
     return {
-        handleSubmit,
-        isLoading,
+        handleSubmit
     };
 }

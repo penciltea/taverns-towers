@@ -37,6 +37,95 @@ function normalizeConnections(connections: any[] = []) {
   }));
 }
 
+
+export async function getNpcs({
+  userId,
+  isPublic,
+  page = 1,
+  limit = 12,
+  search = '',
+  race,
+  age,
+  alignment,
+  status,
+  traits = [],
+}: {
+  userId?: string;
+  isPublic?: boolean;
+  page?: number;
+  limit?: number;
+  search?: string;
+  race?: string;
+  age?: string;
+  alignment?: string;
+  status?: string;
+  traits?: string[];
+}) {
+  await connectToDatabase();
+
+  const query: any = {};
+
+  if (userId) query.userId = userId;
+  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+
+  if (search) query.name = { $regex: new RegExp(search, 'i') };
+  if (race) query.race = race;
+  if (age) query.age = age;
+  if (alignment) query.alignment = alignment;
+  if (status) query.status = status;
+  if (traits.length > 0) query.traits = { $all: traits };
+
+  const total = await NpcModel.countDocuments(query);
+  const npcs = await NpcModel.find(query)
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .lean<Npc[]>();
+
+  const serializedNpcs = npcs.map((npc) => ({
+    ...npc,
+    _id: npc._id.toString(),
+    userId: npc.userId.toString(),
+    connections: npc.connections.map((conn) => ({
+      ...conn,
+      id: conn.id.toString(),
+    })),
+  }));
+
+  return {
+    success: true,
+    npcs: serializedNpcs,
+    total,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+  };
+}
+
+export async function getOwnedNpcs(
+  options: Omit<Parameters<typeof getNpcs>[0], 'userId'>
+) {
+  const user = await requireUser();
+  return getNpcs({ ...options, userId: user.id });
+}
+
+export async function getPublicNpcs(
+  options: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>
+) {
+  return getNpcs({ ...options, isPublic: true });
+}
+
+
+export async function getNpcById(id: string) {
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+
+  const npc = await NpcModel.findById(id);
+  if (!npc) throw new Error("NPC not found");
+
+  return serializeNpc(npc);
+}
+
+
 export async function createNpc(data: Partial<Npc>) {
     await connectToDatabase();
     const user = await requireUser();
@@ -82,4 +171,21 @@ export async function updateNpc(id: string, data: Partial<Npc>) {
 
     revalidatePath("/npcs");
     return serializeNpc(updatedNpc);
+}
+
+export async function deleteNpc(id: string) {
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+
+  const user = await requireUser();
+  const existing = await NpcModel.findById(id);
+
+  if(!existing) throw new Error("NPC not found");
+  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  const deletedNpc = await NpcModel.findByIdAndDelete(id);
+  if (!deletedNpc) throw new Error("NPC not found");
+
+  revalidatePath("/npcs");
+  return { message: "NPC deleted successfully" };
 }

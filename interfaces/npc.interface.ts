@@ -26,3 +26,12 @@ export interface Npc {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+
+export interface NpcResponse {
+  success: boolean;
+  npcs: Npc[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+}
