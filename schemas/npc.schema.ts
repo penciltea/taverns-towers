@@ -12,7 +12,7 @@ const npcConnectionItemSchema = z.object({
 });
 
 export const npcSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "NPC name is required"),
   age: optionalEnum(NPC_AGE as [string, ...string[]], "Invalid age"),
   pronouns: optionalEnum(NPC_PRONOUNS as [string, ...string[]], "Invalid pronouns"),
   alignment: optionalEnum(NPC_ALIGNMENT as [string, ...string[]], "Invalid alignment"),

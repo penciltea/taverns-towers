@@ -42,7 +42,15 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             router.push(`/npcs/${saved._id}`);
 
         } catch (error) {
-            showErrorDialog("Something went wrong saving the NPC. Please try again later.");
+            let message = "Something went wrong saving the NPC. Please try again later.";
+
+            if (error instanceof Error) {
+                message = error.message;
+            } else if (typeof error === "string") {
+                message = error;
+            }
+
+            showErrorDialog(message);
             console.error("NPC mutation error:", error);
         } finally {
             setSubmitting(false);

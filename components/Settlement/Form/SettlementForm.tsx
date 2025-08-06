@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Typography, Paper, Box, Button } from "@mui/material";
 import SettlementFormTabs from "./Tabs";
@@ -40,10 +40,22 @@ function TabPanel({
 
 export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }: SettlementFormProps) {
   const [tab, setTab] = useState(0);
+  const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<SettlementFormData>();
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState: { errors } } = methods;
   const { selectedItem, clearDraftItem } = useSettlementContentStore();
   const { isSubmitting } = useUIStore();
+
+  useEffect(() => {
+      if (Object.keys(errors).length > 0) {
+        const messages = Object.values(errors)
+          .map((error: any) => error.message || "Invalid field")
+          .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
+        setFormError(messages.join(" • "));
+      } else {
+        setFormError(null);
+      }
+    }, [errors]);
 
   function handleCancel(){
     clearDraftItem();
@@ -101,6 +113,21 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
         </Box>
 
         <SettlementFormTabs tab={tab} setTab={setTab} />
+
+        {formError && (
+          <Box sx={{ mb: 2 }}>
+            <Typography color="error" sx={{ fontWeight: 'bold' }}>
+              Please fix the highlighted errors before submitting:
+            </Typography>
+            <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
+              {formError.split(" • ").map((message, idx) => (
+                <li key={idx}>
+                  <Typography component="span" variant="body2">{message}</Typography>
+                </li>
+              ))}
+            </ul>
+          </Box>
+        )}
 
         <TabPanel value={tab} index={0}>
           <SettlementFormBasics />

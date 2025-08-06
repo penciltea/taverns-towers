@@ -23,9 +23,9 @@ const shopTypeEnumValues = SHOP_TYPE_CATEGORIES.flatMap(group =>
 ) as [string, ...string[]];
 
 export const baseSiteSchema = z.object({
-  name: z.string().min(1),
+  name: z.string().min(1, "Site name is required"),
   type: z.string(),
-  size: optionalEnum(extractValues(SITE_SIZE), "Invalid climate"),
+  size: optionalEnum(extractValues(SITE_SIZE), "Invalid site size"),
   condition: optionalEnum(extractValues(SITE_CONDITION), "Invalid condition"),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),

@@ -14,9 +14,6 @@ export default async function ViewSettlementPage({ params }: { params: Promise<{
   }
 
   return (
-    <ViewSettlement
-      settlement={settlement}
-      session={session}
-    />
+    <ViewSettlement settlement={settlement} />
   );
 }

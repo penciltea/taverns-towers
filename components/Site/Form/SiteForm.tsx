@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Paper, Typography, Stack, Box, Button } from "@mui/material";
@@ -13,7 +16,6 @@ import { FormChipSelect, FormSelect } from "@/components/Form";
 import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
-
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
   mode: "add" | "edit" | null;
@@ -28,8 +30,9 @@ type SiteFormProps = {
 
 export default function SiteForm({ onSubmit, mode, isWilderness, generator }: SiteFormProps) {
   const searchParams = useSearchParams();
+  const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<SiteFormData>();
-  const { control, register, setValue, handleSubmit, formState: { errors } } = methods;
+  const { control, handleSubmit, formState: { errors } } = methods;
   const { selectedItem } = useSiteContentStore();
   const { isSubmitting } = useUIStore();
 
@@ -41,6 +44,18 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
   const typeLabel = typeParam
     ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
     : "Unknown";
+
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      const messages = Object.values(errors)
+        .map((error: any) => error.message || "Invalid field")
+        .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
+      setFormError(messages.join(" • "));
+    } else {
+      setFormError(null);
+    }
+  }, [errors]);
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
@@ -90,6 +105,21 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
         </Box>
 
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
+          {formError && (
+            <Box sx={{ mb: 2 }}>
+              <Typography color="error" sx={{ fontWeight: 'bold' }}>
+                Please fix the highlighted errors before submitting:
+              </Typography>
+              <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
+                {formError.split(" • ").map((message, idx) => (
+                  <li key={idx}>
+                    <Typography component="span" variant="body2">{message}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          )}
+          
           <Box>
             {isWilderness && (
               <>

@@ -11,10 +11,9 @@ import { Session } from 'next-auth';
 
 interface Props {
   settlement: Settlement;
-  session: Session | null;
 }
 
-export default function ViewSettlement({ settlement, session }: Props) {
+export default function ViewSettlement({ settlement }: Props) {
   const { setOpenDialog } = useUIStore();
 
   return (

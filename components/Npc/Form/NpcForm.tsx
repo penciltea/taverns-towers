@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Typography, Paper, Box, Button } from "@mui/material";
 import { NpcFormData } from "@/schemas/npc.schema";
@@ -39,10 +39,22 @@ function TabPanel({
 
 export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFormProps) {
   const [tab, setTab] = useState(0);
+  const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<NpcFormData>();
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState: { errors } } = methods;
   const { selectedItem, clearDraftItem } = useNpcContentStore();
   const { isSubmitting } = useUIStore();
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      const messages = Object.values(errors)
+        .map((error: any) => error.message || "Invalid field")
+        .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
+      setFormError(messages.join(" • "));
+    } else {
+      setFormError(null);
+    }
+  }, [errors]);
 
   function handleCancel(){
     clearDraftItem();
@@ -51,9 +63,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
-      <Box component="form"  onSubmit={handleSubmit(onSubmit, (errors) => {
-  console.error("Form validation errors:", errors);
-})}>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)} >
         <Typography variant="h3" component="h1" gutterBottom>
           {mode === "edit" ? `Edit ${selectedItem?.name}` : "Forge an NPC"}
         </Typography>
@@ -102,6 +112,22 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
         </Box>
 
         <NpcFormTabs tab={tab} setTab={setTab} />
+
+        
+        {formError && (
+          <Box sx={{ mb: 2 }}>
+            <Typography color="error" sx={{ fontWeight: 'bold' }}>
+              Please fix the highlighted errors before submitting:
+            </Typography>
+            <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
+              {formError.split(" • ").map((message, idx) => (
+                <li key={idx}>
+                  <Typography component="span" variant="body2">{message}</Typography>
+                </li>
+              ))}
+            </ul>
+          </Box>
+        )}
 
         <TabPanel value={tab} index={0}>
           <NpcFormBasics />
