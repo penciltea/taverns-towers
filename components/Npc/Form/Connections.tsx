@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { FormConnectionAccordion } from "@/components/Form/FormConnectionAccordion";
-import { NPC_CONNECTION_GUILD_ROLE, NPC_CONNECTION_NPC_ROLE, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_SITE_ROLE } from "@/constants/npc.options";
+import { NPC_CONNECTION_NPC_ROLE, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_SITE_ROLE } from "@/constants/npc.options";
 import { useOwnedSettlementsQuery } from "@/hooks/settlement.query";
 import { useOwnedNpcsQuery } from "@/hooks/npc.query";
 import { useOwnedSitesQuery } from "@/hooks/site.query";

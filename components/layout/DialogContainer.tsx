@@ -6,6 +6,7 @@ import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
 import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
 import TypeChangeDialog from "../Common/typeChangeDialog";
 import LoginDialog from "../Auth/LoginDialog";
+import NpcDetailsDialog from "../Npc/View/NpcDetailsDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
@@ -19,8 +20,6 @@ export default function DialogContainer() {
               onClose={closeDialog}
               siteData={dialogProps.siteData}
               settlementId={dialogProps.siteData.settlementId}
-              userId={dialogProps.userId}
-              editors={dialogProps.editors}
               onDelete={() =>
                 dialogProps.siteData &&
                 dialogProps.onDelete?.() // fallback if passed via props
@@ -59,6 +58,14 @@ export default function DialogContainer() {
           open
           onClose={closeDialog}
           onLoginSuccess={dialogProps?.onLoginSuccess}
+        />
+      )
+    case 'NpcDetailsDialog' :
+      return (
+        <NpcDetailsDialog 
+          open 
+          onClose={closeDialog} 
+          npc={dialogProps.npc} 
         />
       )
     // Add more dialogs here as needed

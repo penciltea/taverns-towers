@@ -1,3 +1,6 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import { GuildSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import MenuList from './MenuList';
@@ -15,6 +18,9 @@ export function getGuildypeLabel(value: string): string {
 }
 
 export const GuildDetails = ({ site }: { site: GuildSite }) => {
+  const { data: session } = useSession();
+  const user = session?.user ? { id: session.user.id } : null;
+
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
@@ -24,10 +30,12 @@ export const GuildDetails = ({ site }: { site: GuildSite }) => {
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />        
         <InfoListItem label="Leader(s)" value={site.leader} />
-        <InfoListItem label="Membership Requirements" value={site.membershipRequirements} />
+        <InfoListItem label="Membership Requirements" value={(site.membershipRequirements && site.membershipRequirements.length) ? site.membershipRequirements?.join(", ") : "N/A"} />
         <InfoListItem label="Known Rivals" value={site.knownRivals} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
-        <InfoListItem label="GM Notes" value={site.gmNotes} />
+        { user?.id === site.userId &&  (
+          <InfoListItem label="GM Notes" value={site.gmNotes} />
+        ) }
       </Box>
 
       <MenuList menu={site.menu || []} label="Wares" />

@@ -1,3 +1,6 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import { GovernmentSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
@@ -14,6 +17,9 @@ export function getGovernmentTypeLabel(value: string): string {
 }
 
 export const GovernmentDetails = ({ site }: { site: GovernmentSite }) => {
+  const { data: session } = useSession();
+  const user = session?.user ? { id: session.user.id } : null;
+
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
@@ -23,7 +29,9 @@ export const GovernmentDetails = ({ site }: { site: GovernmentSite }) => {
         <InfoListItem label="Official(s)" value={site.officials} />
         <InfoListItem label="Security" value={getLabelFromValue(SECURITY_LEVELS, site.security)} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
-        <InfoListItem label="GM Notes" value={site.gmNotes} />
+        { user?.id === site.userId &&  (
+          <InfoListItem label="GM Notes" value={site.gmNotes} />
+        ) }
       </Box>
     </>
   );

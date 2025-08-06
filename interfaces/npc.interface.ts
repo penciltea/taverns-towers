@@ -1,5 +1,6 @@
 import { NpcAge, NpcAlignment, NpcConnectionType, NpcPronounSet, NpcRace, NpcStatus, NpcTrait } from "@/constants/npc.options";
 import { CommonInterface } from "./common.interface";
+import { DialogProps } from "@mui/material";
 
 export interface NpcConnection {
   type: NpcConnectionType;
@@ -21,9 +22,10 @@ export interface Npc extends CommonInterface {
   image?: string;
   publicNotes?: string;
   description?: string;
-  gmNotes?: string;
-  isPublic: boolean;
+  gmNotes?: string;  
   connections: NpcConnection[];
+  isPublic: boolean;
+  editors: []
 }
 
 
@@ -55,4 +57,8 @@ export interface NpcQueryParams {
   pronouns: string;
   status: string;
   alignment: string;
+}
+
+export interface NpcDialogProps extends DialogProps {
+  npc: Npc;
 }

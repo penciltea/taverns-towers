@@ -63,9 +63,7 @@ export default function ViewSettlement({ settlement }: Props) {
         <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
           <SiteList
             settlementId={settlement._id}
-            onDelete={(id: string) => {
-              // implement your delete handler or pass as prop
-            }}
+            onDelete={(id: string) => {}}
           />
         </Grid>
       </Grid>

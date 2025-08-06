@@ -1,3 +1,6 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import { TavernSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import MenuList from './MenuList';
@@ -6,6 +9,9 @@ import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 
 export const TavernDetails = ({ site }: { site: TavernSite }) => {
+  const { data: session } = useSession();
+  const user = session?.user ? { id: session.user.id } : null;
+
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
@@ -16,7 +22,9 @@ export const TavernDetails = ({ site }: { site: TavernSite }) => {
         <InfoListItem label="Entertainment Offerings" value={site.entertainment?.length ? site.entertainment.join(', ') : 'N/A'} />
         <InfoListItem label="Room Cost per Night" value={site.cost} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
-        <InfoListItem label="GM Notes" value={site.gmNotes} />
+        { user?.id === site.userId &&  (
+          <InfoListItem label="GM Notes" value={site.gmNotes} />
+        ) }
       </Box>
 
       <MenuList menu={site.menu || []} label="Menu" />

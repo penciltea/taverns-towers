@@ -1,8 +1,15 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import { Dialog, DialogTitle, DialogContent, Divider, Box, Button, Typography, Chip, Stack } from '@mui/material';
 import { SettlementDialogProps } from "@/interfaces/settlement.interface";
 import SettlementAccordion from "./SettlementAccordion";
 
+
 export default function SettlementDetailsDialog({ open, onClose, settlement }: SettlementDialogProps) {
+    const { data: session } = useSession();
+    const user = session?.user ? { id: session.user.id } : null;
+
     return(
         <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth scroll="paper" aria-labelledby="settlement-dialog-title">
             <DialogTitle id="settlement-dialog-title">Additional Details - {settlement.name}</DialogTitle>
@@ -11,7 +18,6 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                 <SettlementAccordion title="Leadership & Wealth" defaultExpanded>
                     <Typography variant="body2" component="p"><strong>Leader(s):</strong> {settlement.leader || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Ruling Style:</strong> {settlement.rulingStyle || "N/A"}</Typography>
-                    <Typography variant="body2" component="p"><strong>Guilds:</strong> {settlement.guilds || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Trade Notes:</strong> {settlement.tradeNotes || "N/A"}</Typography>
                     <Typography variant="body2" component="p"><strong>Wealth:</strong> {settlement.wealth || "N/A"}</Typography>
                 </SettlementAccordion>
@@ -41,8 +47,13 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                 {/* Notes */}
                 <SettlementAccordion title="Notes" defaultExpanded>
                     <Typography variant="body2" component="p"><strong>Public Notes:</strong> {settlement.publicNotes || "N/A"}</Typography>
-                    <Divider sx={{ my: 2 }} />
-                    <Typography variant="body2" component="p"><strong>GM Notes:</strong> {settlement.gmNotes || "N/A"}</Typography>
+                    
+                    { user?.id === settlement.userId &&  (
+                        <>
+                            <Divider sx={{ my: 2 }} />
+                            <Typography variant="body2" component="p"><strong>GM Notes:</strong> {settlement.gmNotes || "N/A"}</Typography>
+                        </>
+                    ) }
                 </SettlementAccordion>
             </DialogContent>
 

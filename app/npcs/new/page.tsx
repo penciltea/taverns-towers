@@ -49,6 +49,7 @@ export default function NewNpcPage() {
       }
       await handleSubmit(data);
     } catch (err) {
+      
       console.error("Error during NPC submission:", err);
       // Optionally report to Sentry or external logging service
     }

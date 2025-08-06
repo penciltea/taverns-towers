@@ -1,3 +1,6 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import { ShopSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import MenuList from './MenuList';
@@ -14,6 +17,9 @@ export function getShopTypeLabel(value: string): string {
 }
 
 export const ShopDetails = ({ site }: { site: ShopSite }) => {
+  const { data: session } = useSession();
+  const user = session?.user ? { id: session.user.id } : null;
+
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
@@ -22,7 +28,9 @@ export const ShopDetails = ({ site }: { site: ShopSite }) => {
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />
         <InfoListItem label="Owner" value={site.owner} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
-        <InfoListItem label="GM Notes" value={site.gmNotes} />
+        { user?.id === site.userId &&  (
+          <InfoListItem label="GM Notes" value={site.gmNotes} />
+        ) }
       </Box>
 
       <MenuList menu={site.menu || []} label="Wares" />

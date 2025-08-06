@@ -84,20 +84,20 @@ export default function NpcFormBasics(){
                     fieldError={errors.alignment}
                 />
 
-                <FormSelect
-                    name="status"
-                    label="Status"
-                    control={control}
-                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_STATUS)]}
-                    fieldError={errors.status}
-                />
-
                 <FormChipSelect
                     name="traits"
                     label="Traits"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_TRAITS]}
                     fieldError={errors.tags}
+                />
+
+                <FormSelect
+                    name="status"
+                    label="Status"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_STATUS)]}
+                    fieldError={errors.status}
                 />
 
                 <FormTextField

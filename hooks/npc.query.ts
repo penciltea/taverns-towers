@@ -11,7 +11,7 @@ export const useOwnedNpcsQuery = (
   }
 ): UseQueryResult<NpcResponse> => {
   return useQuery<NpcResponse, Error>({
-    queryKey: ['ownedNpc', params],
+    queryKey: ['ownedNpcs', params],
     queryFn: () => getOwnedNpcs(params),
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
