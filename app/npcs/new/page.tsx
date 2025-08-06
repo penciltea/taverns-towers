@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
@@ -14,6 +15,7 @@ import { useEffect } from "react";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 
 export default function NewNpcPage() {
+  const router = useRouter();
   const { id } = useParams();
   const safeId = getSingleParam(id);
 
@@ -35,10 +37,7 @@ export default function NewNpcPage() {
 
   const { handleSubmit } = useNpcMutations({
     mode: mode,
-    npcId: safeId,
-    onSuccess: () => {
-      //router.push("/npcs");
-    },
+    npcId: safeId
   });
 
   const wrappedOnSubmit = async (data: NpcFormData) => {

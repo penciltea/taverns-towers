@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { defaultEnvironmentValues, environmentSchema } from "./environment.schema";
-import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
+import { optionalEnum } from "@/lib/util/zodHelpers";
 import { MAGIC_LEVELS, RULING_TYPES, SIZE_TYPES, WEALTH_LEVELS } from "@/constants/settlementOptions";
 const fileSizeLimit = 5 * 1024 * 1024;
 

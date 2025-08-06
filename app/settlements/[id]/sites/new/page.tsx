@@ -44,24 +44,24 @@ export default function NewSitePage() {
     // Submission handler
     const onSubmit = async (data: SiteFormData) => {
         try {
-        const cleanImage = await handleDynamicFileUpload(data, "image");
-        const siteData = {
-            ...transformSiteFormData(data),
-            image: cleanImage,
-        } as SiteType;
+            const cleanImage = await handleDynamicFileUpload(data, "image");
+            const siteData = {
+                ...transformSiteFormData(data),
+                image: cleanImage,
+            } as SiteType;
 
-        await createSite(siteData, settlementId);
+            await createSite(siteData, settlementId);
 
-        if (!isWilderness) {
-            await refetch();
-        }
+            if (!isWilderness) {
+                await refetch();
+            }
 
-        showSnackbar("Site created successfully!", "success");
-        router.push(`/settlements/${settlementId}`);
+            showSnackbar("Site created successfully!", "success");
+            router.push(`/settlements/${settlementId}`);
 
         } catch (err) {
-        console.error(err);
-        showErrorDialog("Something went wrong, please try again later!");
+            console.error(err);
+            showErrorDialog("Something went wrong, please try again later!");
         }
     };
 

@@ -6,6 +6,7 @@ import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import NpcModel from "../models/npc.model";
 import { Npc } from "@/interfaces/npc.interface";
+import { NpcFormData } from "@/schemas/npc.schema";
 
 // serialize for client compatibility
 function serializeNpc(npc: any): Npc {
@@ -48,7 +49,7 @@ export async function getNpcs({
   age,
   alignment,
   status,
-  traits = [],
+  pronouns
 }: {
   userId?: string;
   isPublic?: boolean;
@@ -59,7 +60,7 @@ export async function getNpcs({
   age?: string;
   alignment?: string;
   status?: string;
-  traits?: string[];
+  pronouns?: string;
 }) {
   await connectToDatabase();
 
@@ -73,7 +74,7 @@ export async function getNpcs({
   if (age) query.age = age;
   if (alignment) query.alignment = alignment;
   if (status) query.status = status;
-  if (traits.length > 0) query.traits = { $all: traits };
+  if (pronouns) query.pronouns = pronouns;
 
   const total = await NpcModel.countDocuments(query);
   const npcs = await NpcModel.find(query)
@@ -126,7 +127,7 @@ export async function getNpcById(id: string) {
 }
 
 
-export async function createNpc(data: Partial<Npc>) {
+export async function createNpc(data: NpcFormData): Promise<Npc> {
     await connectToDatabase();
     const user = await requireUser();
 
@@ -144,7 +145,7 @@ export async function createNpc(data: Partial<Npc>) {
     return serializeNpc(newNpc);
 }
 
-export async function updateNpc(id: string, data: Partial<Npc>) {
+export async function updateNpc(id: string, data: NpcFormData): Promise<Npc> {
     await connectToDatabase();
 
     if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");

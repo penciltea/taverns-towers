@@ -82,20 +82,20 @@ export default function AllSitesPage(){
                 )}
                 filterComponent={
                     <FilterBar
-                    filters={filters}
-                    setFilters={(newFilters) =>
-                        setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
-                    }
-                    clearFilters={() => {
-                        setFilters({ ...DefaultSiteFilters }); // reset to default
-                    }}
-                    chipFilters={[
-                        {
-                        title: "Filter by Category",
-                        key: "type",
-                        options: SITE_CATEGORIES,
-                        },
-                    ]}
+                        filters={filters}
+                        setFilters={(newFilters) =>
+                            setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
+                        }
+                        clearFilters={() => {
+                            setFilters({ ...DefaultSiteFilters }); // reset to default
+                        }}
+                        chipFilters={[
+                            {
+                            title: "Filter by Category",
+                            key: "type",
+                            options: SITE_CATEGORIES,
+                            },
+                        ]}
                     > </FilterBar>
                 }
                 currentPage={filters.page}

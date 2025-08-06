@@ -4,7 +4,7 @@ import { NpcResponse } from '@/interfaces/npc.interface';
 import { getNpcs, getOwnedNpcs, getPublicNpcs, getNpcById } from '@/lib/actions/npc.actions';
 
 
-export const useOwnedNpcQuery = (
+export const useOwnedNpcsQuery = (
   params: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>,
   options?: {
     isEnabled: boolean;

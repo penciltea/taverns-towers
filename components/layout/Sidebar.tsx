@@ -55,8 +55,8 @@ export const Sidebar = () => {
             children: [
                 {
                     label: "View all NPCs",
-                    path: "/npcs",
-                    enabled: false
+                    path: "/npcs/all",
+                    enabled: true
                 },
                 {
                     label: "Create NPC",
@@ -66,10 +66,10 @@ export const Sidebar = () => {
             ]
         },
         {
-            label: "Guilds",
+            label: "Guilds & Factions",
             children: [
                 {
-                    label: "View all Guilds",
+                    label: "View all",
                     path: "/guilds",
                     enabled: false
                 },

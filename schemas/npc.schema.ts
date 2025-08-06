@@ -23,7 +23,28 @@ export const npcSchema = z.object({
   publicNotes: z.string().optional(),
   traits: optionalEnumArray(allTraitValues, "Invalid trait"),
   connections: z.array(npcConnectionItemSchema).optional(),
+  image: z
+    .any()
+    .refine(
+      (val) =>
+        val === undefined ||
+        typeof val === "string" ||
+        (typeof FileList !== "undefined" && val instanceof FileList),
+      {
+        message: "Image must be a URL or FileList",
+      }
+    )
+    .optional(),
 });
+
+export const npcFilterSchema = z.object({
+  age: z.string().optional(),
+  race: z.string().optional(),
+  status: z.string().optional(),
+  alignment: z.string().optional(),
+  pronouns: z.string().optional(),
+  
+})
 
 export const defaultNpcValues = {
   name: "",
@@ -37,6 +58,7 @@ export const defaultNpcValues = {
   description: "",
   publicNotes: "",
   gmNotes: "",
+  image: undefined,
   isPublic: false,
   editors: [],
 };
