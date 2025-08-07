@@ -18,7 +18,7 @@ export interface SiteListProps {
   onDelete: (id: string) => void;
 }
 
-export interface SiteFilters {
+export interface SiteQueryParams {
   page: number;
   limit: number;
   settlementId: string;
@@ -26,7 +26,7 @@ export interface SiteFilters {
   search: string;
 }
 
-export const DefaultSiteFilters = {
+export const DefaultSiteQueryParams: SiteQueryParams = {
   page: 1,
   limit: 12,
   settlementId: '',

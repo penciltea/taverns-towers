@@ -7,22 +7,20 @@ import { SiteType } from '@/interfaces/site.interface';
 import { usePaginatedSites } from '@/hooks/site/site.query';
 import FilteredGridView from "@/components/Grid/FilteredGridView";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
-import { SiteFilters } from "@/interfaces/site.interface";
+import { SiteQueryParams } from "@/interfaces/site.interface";
 import GridItem from "@/components/Grid/GridItem";
-import { DefaultSiteFilters } from "@/interfaces/site.interface";
+import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { deleteSite } from '@/lib/actions/site.actions';
 import { siteListKey } from '@/lib/util/queryKeys';
 
 export default function AllSitesPage(){
-    const { closeDialog } = useUIStore();
+    const { closeDialog, showErrorDialog } = useUIStore();
     const [ selected, setSelected ] = useState<SiteType | null>(null);
     const queryClient = useQueryClient();
 
-    const [filters, setFilters] = useState<SiteFilters>({
-        ...DefaultSiteFilters
-    });
+    const [filters, setFilters] = useState<SiteQueryParams>({ ...DefaultSiteQueryParams });
 
     const { data } = usePaginatedSites(
         filters.settlementId,
@@ -36,24 +34,25 @@ export default function AllSitesPage(){
     const totalCount = data?.total || 0;
 
     async function handleDeleteSite(id: string) {
-    try {
-        await deleteSite(id);
+        try {
+            await deleteSite(id);
 
-        // Use the same key generator to invalidate the right query
-        queryClient.invalidateQueries({
-        queryKey: siteListKey(
-            filters.settlementId ?? 'all',
-            filters.page,
-            filters.limit,
-            filters.search,
-            filters.type
-        ),
-        });
+            // Use the same key generator to invalidate the right query
+            queryClient.invalidateQueries({
+            queryKey: siteListKey(
+                filters.settlementId ?? 'all',
+                filters.page,
+                filters.limit,
+                filters.search,
+                filters.type
+            ),
+            });
 
-        closeDialog(); // optional: close dialog after delete
-    } catch (error) {
-        console.error("Error deleting site:", error);
-    }
+            closeDialog();
+        } catch (error) {
+            showErrorDialog("There was a problem deleting the site, please try again later");
+            console.error("Error deleting site:", error);
+        }
     }
     
     return (
@@ -87,7 +86,7 @@ export default function AllSitesPage(){
                             setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
                         }
                         clearFilters={() => {
-                            setFilters({ ...DefaultSiteFilters }); // reset to default
+                            setFilters({ ...DefaultSiteQueryParams }); // reset to default
                         }}
                         chipFilters={[
                             {

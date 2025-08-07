@@ -4,20 +4,23 @@ import { queryClient } from '@/components/Layout/QueryProviderWrapper';
 import { getOwnedSettlements } from '@/lib/actions/settlement.actions';
 import { getOwnedSites } from '@/lib/actions/site.actions';
 import { getOwnedNpcs } from '@/lib/actions/npc.actions';
+import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
+import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
+import { DefaultNpcQueryParams } from '@/interfaces/npc.interface';
 
 export async function prefetchUserData() {
   await Promise.all([
     queryClient.prefetchQuery({
-      queryKey: ['ownedSettlements', {}],
-      queryFn: () => getOwnedSettlements({}),
+      queryKey: ['ownedSettlements', DefaultSettlementQueryParams],
+      queryFn: () => getOwnedSettlements(DefaultSettlementQueryParams),
     }),
     queryClient.prefetchQuery({
-      queryKey: ['ownedSites', {}],
-      queryFn: () => getOwnedSites({}),
+      queryKey: ['ownedSites', DefaultSiteQueryParams],
+      queryFn: () => getOwnedSites(DefaultSiteQueryParams),
     }),
     queryClient.prefetchQuery({
-      queryKey: ['ownedNpcs', {}],
-      queryFn: () => getOwnedNpcs({}),
+      queryKey: ['ownedNpcs', DefaultNpcQueryParams],
+      queryFn: () => getOwnedNpcs(DefaultNpcQueryParams),
     }),
   ]);
 }
