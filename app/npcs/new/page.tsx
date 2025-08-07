@@ -12,6 +12,7 @@ import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useEffect } from "react";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
+import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 
 export default function NewNpcPage() {
   const { id } = useParams();
@@ -24,6 +25,19 @@ export default function NewNpcPage() {
 
   const methods = useNpcForm();
 
+  const { handleSubmit } = useNpcMutations({
+    mode,
+    npcId: safeId,
+  });
+
+  const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
+
+  const generator = {
+    name: generateName,
+    missing: generateMissing,
+    reroll: rerollAll,
+  };
+
   useEffect(() => {
     if (user && draftItem) {
       (async () => {
@@ -31,12 +45,7 @@ export default function NewNpcPage() {
         clearDraftItem();
       })();
     }
-  }, [user]);
-
-  const { handleSubmit } = useNpcMutations({
-    mode: mode,
-    npcId: safeId
-  });
+  }, [user, draftItem, handleSubmit, clearDraftItem]);
 
   const wrappedOnSubmit = async (data: NpcFormData) => {
     try {
@@ -56,8 +65,7 @@ export default function NewNpcPage() {
     <FormProvider {...methods}>
       <NpcForm
         onSubmit={wrappedOnSubmit}
-        onGenerate={console.log}
-        onReroll={console.log}
+        generator={generator}
         mode={mode}
       />
     </FormProvider>

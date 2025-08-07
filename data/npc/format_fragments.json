@@ -1,0 +1,12 @@
+[
+    {
+        "type": "format",
+        "value": "{{fullName}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
+        "value": "{{first}} {{last}}",
+        "weight": 1
+    }
+]

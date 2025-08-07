@@ -3,11 +3,12 @@ import { Box, Stack } from "@mui/material";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
-import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
+import { NpcFormFieldProps } from "@/interfaces/npc.interface";
+import { generateNpcName } from "@/lib/actions/npcGenerator.actions";
 
-export default function NpcFormBasics(){
+export default function NpcFormBasics({generator}: NpcFormFieldProps){
     const {
         register,
         control,
@@ -26,14 +27,8 @@ export default function NpcFormBasics(){
         : null;
 
     const handleGenerateName = async () => {
-        const terrain = watch("terrain");
-        const tags = watch("tags");
-        const climate = watch("climate");
-        const generatedName = await generateSettlementName({
-            climate: climate,
-            terrain: Array.isArray(terrain) ? terrain : [terrain],
-            tags: Array.isArray(tags) ? tags : [tags],
-        });
+        const race = watch("race");
+        const generatedName = await generateNpcName({race: race});
         setValue("name", generatedName, { shouldValidate: true });
     };
 

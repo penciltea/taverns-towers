@@ -5,6 +5,7 @@ import { SiteFormData } from '@/schemas/site.schema';
 import { SiteGovernmentFunctionType, SiteSecurityLevel } from '@/constants/site/government.options';
 import { SiteGuildMembershipType } from '@/constants/site/guild.options';
 import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
+import { CommonInterface } from './common.interface';
 
  
 export interface SiteDialogProps extends DialogProps {
@@ -41,21 +42,13 @@ export interface SiteResponse {
   currentPage: number;
 }
 
-export interface BaseSite {
-  _id: string;
+export interface BaseSite extends CommonInterface {
   settlementId?: string;
   name: string;
   type: string;
   size?: SiteSize;
   condition?: SiteCondition;
-  publicNotes?: string;
-  gmNotes?: string;
   image?: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-  isPublic: boolean;
-  editors: string[];
 }
 
 export interface TavernSite extends BaseSite {

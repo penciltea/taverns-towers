@@ -12,8 +12,11 @@ import NpcFormBasics from "./Basics";
 type NpcFormProps = {
   onSubmit: (data: NpcFormData) => void;
   mode: "add" | "edit" | null;
-  onGenerate: () => void;
-  onReroll: () => void;
+  generator?: {
+    name: () => void;
+    missing: () => void;
+    reroll: () => void;
+  };
 };
 
 function TabPanel({
@@ -37,7 +40,7 @@ function TabPanel({
   );
 }
 
-export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFormProps) {
+export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
   const [tab, setTab] = useState(0);
   const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<NpcFormData>();
@@ -94,7 +97,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
           <Button
               type="button"
               variant="contained"
-              onClick={onGenerate}
+              onClick={generator?.missing}
               size="large"
               sx={{ mt: 2, py: 1.65 }}
           >
@@ -103,7 +106,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
           <Button
               type="button"
               variant="outlined"
-              onClick={onReroll}
+              onClick={generator?.reroll}
               size="large"
               sx={{ mt: 2, py: 1.65 }}
           >
@@ -130,7 +133,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
         )}
 
         <TabPanel value={tab} index={0}>
-          <NpcFormBasics />
+          <NpcFormBasics generator={generator} />
         </TabPanel>
         <TabPanel value={tab} index={1}>
           <NpcFormConnections />

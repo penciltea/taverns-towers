@@ -1,6 +1,7 @@
 import { NpcAge, NpcAlignment, NpcConnectionType, NpcPronounSet, NpcRace, NpcStatus, NpcTrait } from "@/constants/npc.options";
 import { CommonInterface } from "./common.interface";
 import { DialogProps } from "@mui/material";
+import { NpcFormData } from "@/schemas/npc.schema";
 
 export interface NpcConnection {
   type: NpcConnectionType;
@@ -10,9 +11,6 @@ export interface NpcConnection {
 }
 
 export interface Npc extends CommonInterface {
-  _id: string;
-  userId: string;
-  name: string;
   age?: NpcAge;
   race?: NpcRace;
   pronouns?: NpcPronounSet;
@@ -20,12 +18,8 @@ export interface Npc extends CommonInterface {
   alignment?: NpcAlignment
   traits?: NpcTrait[];
   image?: string;
-  publicNotes?: string;
   description?: string;
-  gmNotes?: string;  
   connections: NpcConnection[];
-  isPublic: boolean;
-  editors: []
 }
 
 
@@ -61,4 +55,39 @@ export interface NpcQueryParams {
 
 export interface NpcDialogProps extends DialogProps {
   npc: Npc;
+}
+
+export type NpcFormFieldProps = {
+  generator?: {
+    name?: (target?: string ) => Promise<void> | void;
+  };
+};
+
+export interface NpcGenerationContext {
+  age?: string;
+  race?: string;
+  pronouns?: string;
+  alignment?: string;
+  status?: string;
+  traits?: string[];
+  reroll?: boolean;
+}
+
+
+// For site name generation fragments
+export type NpcGroupKey =
+  | "prefix"
+  | "suffix"
+  | "first"
+  | "last"
+  | "fullName"
+  | "format";
+
+export interface GenerateNpcNameOptions {
+  race?: string;
+  data?: Partial<NpcFormData>;
+}
+
+export interface NpcGenerationInput extends NpcGenerationContext {
+  overrides?: Partial<NpcFormData>;
 }

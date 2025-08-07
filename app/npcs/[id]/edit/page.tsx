@@ -4,12 +4,11 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
-import { useUIStore } from "@/store/uiStore";
 import { useAuthStore } from "@/store/authStore";
 import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
-import { useGetNpcById } from "@/hooks/npc/npc.query"; // you'll need this
+import { useGetNpcById } from "@/hooks/npc/npc.query";
 import NpcForm from "@/components/Npc/Form/NpcForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { NpcFormData } from "@/schemas/npc.schema";
@@ -21,7 +20,6 @@ export default function EditNpcPage() {
   const safeId = getSingleParam(id);
 
   const { mode, setSelectedItem } = useNpcContentStore();
-  const { showErrorDialog } = useUIStore();
   const user = useAuthStore((state) => state.user);
   const methods = useNpcForm();
   const { handleSubmit } = useNpcMutations({ mode, npcId: safeId });
@@ -33,7 +31,7 @@ export default function EditNpcPage() {
   // Once NPC is fetched, hydrate store
   useEffect(() => {
     if (npc) {
-      setSelectedItem(npc); // store's `draftItem` is used by `useNpcForm` to prefill
+      setSelectedItem(npc); // store's `selectItem` is used by `useNpcForm` to prefill
     }
   }, [npc]);
 

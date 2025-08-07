@@ -38,8 +38,6 @@ export interface Settlement extends CommonInterface {
   climate?: string;
   magic?: string;
   races?: string;
-  publicNotes?: string;
-  gmNotes?: string;
   leader?: string;
   rulingStyle?: string;
   wealth?: string;
@@ -48,9 +46,6 @@ export interface Settlement extends CommonInterface {
   holidays?: string;
   folklore?: string;
   crime?: string[];
-  userId: string;
-  isPublic: boolean;
-  editors: string[];
 }
 
 export const DefaultSettlementQueryParams: SettlementQueryParams = {
