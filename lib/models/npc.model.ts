@@ -27,7 +27,6 @@ const npcSchema = new Schema(
     age: { type: String, enum: NPC_AGE, required: false },
     pronouns: { type: String, enum: NPC_PRONOUNS, required: false },
     alignment: { type: String, enum: NPC_ALIGNMENT, required: false },
-    
     status: { type: String, enum: NPC_STATUS, required: false },
     race: { type: String, enum: NPC_RACES, required: false },
     traits: [ { type: String, enum: npcTraitValues, required: false } ],
@@ -35,6 +34,7 @@ const npcSchema = new Schema(
     gmNotes: { type: String, required: false },
     publicNotes: { type: String, required: false },
     connections: [connectionSchema],
+    image: { type: String, required: false },
     isPublic: { type: Boolean, default: false },
     editors: [ { type: Schema.Types.ObjectId, ref: "User", } ]
   },

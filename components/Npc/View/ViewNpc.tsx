@@ -83,7 +83,7 @@ export default function ViewNpc({ npc }: Props){
               ) }
             </Grid>
 
-            <NpcConnections />
+            <NpcConnections connections={npc.connections} />
 
           </Grid>
         </>

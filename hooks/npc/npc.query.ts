@@ -1,7 +1,7 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { Npc } from '@/interfaces/npc.interface';
 import { NpcResponse } from '@/interfaces/npc.interface';
-import { getNpcs, getOwnedNpcs, getPublicNpcs, getNpcById } from '@/lib/actions/npc.actions';
+import { getNpcs, getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
 
 
 export const useOwnedNpcsQuery = (
@@ -27,3 +27,11 @@ export const usePublicNpcsQuery = (
     staleTime: 1000 * 60 * 5,
   });
 };
+
+export function useResolvedConnections(connections: Npc['connections']) {
+  return useQuery({
+    queryKey: ['resolvedConnections', connections],
+    queryFn: () => resolveConnectionNames(connections),
+    enabled: connections.length > 0,
+  });
+}

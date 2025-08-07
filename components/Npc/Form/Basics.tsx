@@ -130,7 +130,7 @@ export default function NpcFormBasics(){
 
             </Box>
             <Box sx={{paddingTop: 4}}>
-                <FormImageUpload name="map" label="Upload NPC Image" />
+                <FormImageUpload name="image" label="Upload NPC Image" />
             </Box>
         </Stack>
     );

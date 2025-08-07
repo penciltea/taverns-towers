@@ -7,6 +7,8 @@ import { requireUser } from "../auth/authHelpers";
 import NpcModel from "../models/npc.model";
 import { Npc } from "@/interfaces/npc.interface";
 import { NpcFormData } from "@/schemas/npc.schema";
+import Settlement from "../models/settlement.model";
+import Site from "../models/site.model";
 
 // serialize for client compatibility
 function serializeNpc(npc: any): Npc {
@@ -124,6 +126,41 @@ export async function getNpcById(id: string) {
   if (!npc) throw new Error("NPC not found");
 
   return serializeNpc(npc);
+}
+
+export async function resolveConnectionNames(connections: Npc['connections']) {
+  const results = await Promise.all(
+    connections.map(async (conn) => {
+      try {
+        let name = '';
+        switch (conn.type) {
+          case 'settlement': {
+            const doc = await Settlement.findById(conn.id).select('name');
+            name = doc?.name || '[Unknown Settlement]';
+            break;
+          }
+          case 'site': {
+            const doc = await Site.findById(conn.id).select('name');
+            name = doc?.name || '[Unknown Site]';
+            break;
+          }
+          case 'npc': {
+            const doc = await NpcModel.findById(conn.id).select('name');
+            name = doc?.name || '[Unknown NPC]';
+            break;
+          }
+          default:
+            name = '[Unknown Type]';
+        }
+        return { ...conn, name };
+      } catch (error) {
+        console.error(`Error resolving connection ${conn.type} (${conn.id}):`, error);
+        return { ...conn, name: '[Error Resolving Name]' };
+      }
+    })
+  );
+
+  return results;
 }
 
 

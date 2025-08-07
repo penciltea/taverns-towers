@@ -9,9 +9,9 @@ import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { usePaginatedSites } from "@/hooks/site/site.query";
 import FilteredGridView from "@/components/Grid/FilteredGridView";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
-import { SiteFilters } from "@/interfaces/site.interface";
+import { SiteQueryParams } from "@/interfaces/site.interface";
 import GridItem from "@/components/Grid/GridItem";
-import { DefaultSiteFilters } from "@/interfaces/site.interface";
+import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 
 export default function SiteList({ settlementId, onDelete }: SiteListProps) {
@@ -22,8 +22,8 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
   const { setOpenDialog } = useUIStore();
   const [selected, setSelected] = useState<SiteType | null>(null);
 
-  const [filters, setFilters] = useState<SiteFilters>({
-    ...DefaultSiteFilters,
+  const [filters, setFilters] = useState<SiteQueryParams>({
+    ...DefaultSiteQueryParams,
     settlementId,
   });
 
@@ -72,7 +72,7 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
             setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
           }
           clearFilters={() => {
-            setFilters({ ...DefaultSiteFilters, settlementId }); // reset to default + settlement
+            setFilters({ ...DefaultSiteQueryParams, settlementId }); // reset to default + settlement
           }}
           chipFilters={[
             {

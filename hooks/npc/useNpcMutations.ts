@@ -5,6 +5,8 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import { createNpc, updateNpc } from "@/lib/actions/npc.actions";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
+import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
+import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
 
 
 interface UseNpcMutationsProps {
@@ -20,12 +22,21 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
         try {
+            // Upload image if needed
+            const cleanImage = await handleDynamicFileUpload(data, "image");
+
+            // Transform form data for DB and attach the image
+            const transformed = {
+                ...transformNpcFormData(data),
+                image: cleanImage,
+            };
+
             let saved;
-            if(mode === "add") {
-                saved = await createNpc(data)
-            } else if(mode === "edit"){
-                if (!npcId) throw new Error("NPC ID is required for edit mode");
-                saved = await updateNpc(npcId, data);
+            if (mode === "add") {
+                saved = await createNpc(transformed);
+            } else if (mode === "edit") {
+            if (!npcId) throw new Error("NPC ID is required for edit mode");
+                saved = await updateNpc(npcId, transformed);
             } else {
                 throw new Error("Invalid mutation mode");
             }
