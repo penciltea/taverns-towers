@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
@@ -15,13 +14,12 @@ import { useEffect } from "react";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 
 export default function NewNpcPage() {
-  const router = useRouter();
   const { id } = useParams();
   const safeId = getSingleParam(id);
 
   useFormMode(safeId, useNpcContentStore);
   const { mode, draftItem, clearDraftItem, setDraftItem } = useNpcContentStore();
-  const { setOpenDialog } = useUIStore();
+  const { setOpenDialog, showErrorDialog } = useUIStore();
   const user = useAuthStore((state) => state.user);
 
   const methods = useNpcForm();
@@ -49,9 +47,8 @@ export default function NewNpcPage() {
       }
       await handleSubmit(data);
     } catch (err) {
-      
+      showErrorDialog(`Sorry, there was a problem: ${err}`);
       console.error("Error during NPC submission:", err);
-      // Optionally report to Sentry or external logging service
     }
   };
 

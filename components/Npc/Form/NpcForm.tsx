@@ -42,7 +42,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
   const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<NpcFormData>();
   const { handleSubmit, formState: { errors } } = methods;
-  const { selectedItem, clearDraftItem } = useNpcContentStore();
+  const { selectedItem, clearSelectedItem } = useNpcContentStore();
   const { isSubmitting } = useUIStore();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function NpcForm({ onSubmit, mode, onGenerate, onReroll }: NpcFor
   }, [errors]);
 
   function handleCancel(){
-    clearDraftItem();
+    clearSelectedItem();
     history.back();
   }
 

@@ -3,6 +3,13 @@ import { Npc } from '@/interfaces/npc.interface';
 import { NpcResponse } from '@/interfaces/npc.interface';
 import { getNpcs, getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
 
+export function useGetNpcById(id: string) {
+  return useQuery({
+    queryKey: ['npc', id],
+    queryFn: () => getNpcById(id),
+    enabled: !!id,
+  });
+}
 
 export const useOwnedNpcsQuery = (
   params: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>,

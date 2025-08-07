@@ -15,7 +15,7 @@ export const Sidebar = () => {
     const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
     const closeDrawer = useUIStore((state) => state.closeDrawer);
 
-    const drawerWidth = 240;
+    const drawerWidth = 250;
     const navItems = [
         {
             label: "Settlements",
@@ -133,8 +133,8 @@ export const Sidebar = () => {
                 onClose={closeDrawer}
                 ModalProps={{ keepMounted: true }}
                 sx={{
-                display: { xs: "block", sm: "none" },
-                "& .MuiDrawer-paper": { width: drawerWidth }
+                    display: { xs: "block", sm: "none" },
+                    "& .MuiDrawer-paper": { width: drawerWidth, overflowX: 'hidden' }
                 }}
             >
                 {drawerContent}
@@ -145,8 +145,8 @@ export const Sidebar = () => {
                 variant="persistent"
                 open={isDrawerOpen && !isMobile}
                 sx={{
-                display: { xs: "none", sm: "block" },
-                "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box" }
+                    display: { xs: "none", sm: "block" },
+                    "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box", overflowX: 'hidden' }
                 }}
             >
                 {drawerContent}
