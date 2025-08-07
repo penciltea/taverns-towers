@@ -2,7 +2,7 @@
 
 import SettlementFilters from '@/components/Settlement/View/SettlementFilter';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
-import { useOwnedSettlementsQuery } from '@/hooks/settlement.query';
+import { useOwnedSettlementsQuery } from '@/hooks/settlement/settlement.query';
 import { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { DefaultSettlementQueryParams, SettlementQueryParams } from '@/interfaces/settlement.interface';

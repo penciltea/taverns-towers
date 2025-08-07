@@ -8,12 +8,12 @@
  */
 
 import { useEffect, useState } from 'react';
-import { useSettlementQuery } from '@/hooks/settlement.query';
+import { useSettlementQuery } from '@/hooks/settlement/settlement.query';
 import { useSiteContentStore } from '@/store/siteStore';
 import { useUIStore } from '@/store/uiStore';
 import { useSettlementContentStore } from '@/store/settlementStore';
 import { useSiteManager } from '@/hooks/site/useSiteManager';
-import { usePaginatedSites } from '@/hooks/site.query';
+import { usePaginatedSites } from '@/hooks/site/site.query';
 import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.rules';
 
 export function useSettlementLoader(settlementId: string | null) {

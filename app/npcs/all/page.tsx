@@ -2,7 +2,7 @@
 
 import NpcFilters from '@/components/Npc/View/NpcFilter';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
-import { useOwnedNpcsQuery } from '@/hooks/npc.query';
+import { useOwnedNpcsQuery } from '@/hooks/npc/npc.query';
 import { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { DefaultNpcQueryParams, NpcQueryParams } from '@/interfaces/npc.interface';

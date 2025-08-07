@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
-import { usePaginatedSites } from '@/hooks/site.query';
+import { usePaginatedSites } from '@/hooks/site/site.query';
 import FilteredGridView from "@/components/Grid/FilteredGridView";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { SiteFilters } from "@/interfaces/site.interface";

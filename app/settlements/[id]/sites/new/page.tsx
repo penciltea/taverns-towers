@@ -9,7 +9,7 @@ import { useSiteContentStore } from "@/store/siteStore";
 import SiteForm from "@/components/Site/Form/SiteForm";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
-import { usePaginatedSites } from "@/hooks/site.query";
+import { usePaginatedSites } from "@/hooks/site/site.query";
 import { SiteType } from "@/interfaces/site.interface";
 import { createSite } from "@/lib/actions/site.actions";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";

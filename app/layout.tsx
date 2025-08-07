@@ -2,10 +2,10 @@ import Snackbar from '@/components/Common/Snackbar';
 import ErrorDialog from "@/components/Common/ErrorDialog";
 import DialogContainer from "@/components/Layout/DialogContainer";
 import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
-import AuthSync from "@/components/Auth/AuthSync";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper";
 import { authOptions } from '@/lib/auth/authOptions';
 import { getServerSession } from 'next-auth';
+import AuthSync from '@/components/Auth/AuthSync';
 
 export const metadata = {
   title: "RealmFoundry",

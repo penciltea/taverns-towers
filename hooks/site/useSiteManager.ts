@@ -6,7 +6,7 @@
 import { createSite } from "@/lib/actions/site.actions";
 import { useSiteContentStore } from "@/store/siteStore";
 import { useUIStore } from "@/store/uiStore";
-import { usePaginatedSites } from "@/hooks/site.query";
+import { usePaginatedSites } from "@/hooks/site/site.query";
 import { SiteType } from "@/interfaces/site.interface";
 
 export function useSiteManager(settlementId: string | null) {

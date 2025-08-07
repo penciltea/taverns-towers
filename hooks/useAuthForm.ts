@@ -4,6 +4,7 @@ import { registerUser } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
 import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
 import { signIn } from "next-auth/react";
+import { prefetchUserData } from "@/lib/util/userData.prefetch";
 
 type AuthFormType = "login" | "register";
 
@@ -64,6 +65,7 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
 
         if (result?.ok) {
           showSnackbar("Welcome back, traveler.", "success");
+          await prefetchUserData(); // prefetch settlements, sites, etc.
           onSuccess?.();
           
           // Redirect only if currently on the login page

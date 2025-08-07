@@ -12,7 +12,7 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
-import { useSettlementQuery } from "@/hooks/settlement.query";
+import { useSettlementQuery } from "@/hooks/settlement/settlement.query";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
 
