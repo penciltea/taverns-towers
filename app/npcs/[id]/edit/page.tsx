@@ -14,6 +14,7 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import { NpcFormData } from "@/schemas/npc.schema";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
+import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 
 export default function EditNpcPage() {
   const { id } = useParams();
@@ -28,10 +29,19 @@ export default function EditNpcPage() {
 
   useFormMode(safeId, useNpcContentStore); // set mode to 'edit' and load store draft
 
+  const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
+  
+    const generator = {
+      name: generateName,
+      missing: generateMissing,
+      reroll: rerollAll,
+    };
+
   // Once NPC is fetched, hydrate store
   useEffect(() => {
     if (npc) {
-      setSelectedItem(npc); // store's `selectItem` is used by `useNpcForm` to prefill
+      setSelectedItem(npc); // update the store
+      methods.reset(npc);   // reset the form with the loaded data
     }
   }, [npc]);
 
@@ -47,8 +57,7 @@ export default function EditNpcPage() {
         <FormProvider {...methods}>
         <NpcForm
             onSubmit={wrappedOnSubmit}
-            onGenerate={console.log}
-            onReroll={console.log}
+            generator={generator}
             mode={mode}
         />
         </FormProvider>

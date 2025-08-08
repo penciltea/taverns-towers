@@ -12,9 +12,9 @@ export function filterByAttributes(
 
     // Normalize input race filter
     const normalizedRaces = Array.isArray(race)
-      ? race.map(r => r.toLowerCase())
+      ? (race as string[]).map(r => r.toLowerCase())
       : race
-      ? [race]
+      ? [race.toLowerCase()]
       : [];
 
     // Normalize fragment.race
@@ -35,10 +35,10 @@ export function filterByAttributes(
 
     if (!matchesRace) return false;
 
-    // console.log("Filtering fragment", f.value, {
-    //   fragmentSiteTypes,
-    //   normalizedSiteTypes,
-    // });
+    console.log("Filtering fragment", f.value, {
+      fragmentRaces,
+      normalizedRaces,
+    });
 
     return true;
   });

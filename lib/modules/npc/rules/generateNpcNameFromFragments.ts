@@ -2,7 +2,7 @@ import { GenerateNpcNameOptions, NpcGroupKey } from "@/interfaces/npc.interface"
 import { GeneratorNpcFragmentPlain } from "@/lib/models/generator/npc/npcNameFragment.model";
 import { filterByAttributes } from "./filterByAttributes";
 import { groupNpcFragmentsByType } from "./groupNpcFragmentsByType";
-import { weightedRandom } from "@/lib/util/randomValues";
+import { getRandom, weightedRandom } from "@/lib/util/randomValues";
 
 export function generateNpcNameFromFragments({
     fragments,
@@ -40,7 +40,8 @@ export function generateNpcNameFromFragments({
         ...fallbackFormats,
     ];
 
-    const formatTemplate = formatCandidates.find(canSatisfyFormat) || "{{first}} {{last}}";
+    const validFormats = formatCandidates.filter(canSatisfyFormat);
+    const formatTemplate = getRandom(validFormats) || "{{first}} {{last}}";
 
     // Step 4: Replacement logic
     const usedFragments: Record<NpcGroupKey, string[]> = {

@@ -2,7 +2,7 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorNpcFragment, { GeneratorNpcFragmentPlain } from "@/lib/models/generator/npc/npcNameFragment.model";
-import { normalizeNpcInput, NormalizedNpcInput } from "../modules/npc/rules/normalize";
+import { normalizeNpcInput } from "../modules/npc/rules/normalize";
 import { Npc, NpcGenerationInput } from "@/interfaces/npc.interface";
 import { dispatchNpcName } from "../modules/npc/rules/name.dispatcher";
 import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
@@ -46,12 +46,15 @@ export async function generateNpcData(
 ): Promise<NpcFormData> {
   await connectToDatabase();
 
-  const baseInput = {
+  const baseInput = rerollAll ? {
     ...defaultCommonFields,
     ...defaultNpcValues,
-    ...input.overrides,
-    // You can include reroll logic here if relevant fields exist in the future
-  };
+    ...input.overrides
+  } : input;
 
-  return await generateNpcValues(baseInput);
+  const normalized = normalizeNpcInput({
+    ...baseInput
+  })
+
+  return await generateNpcValues(normalized);
 }

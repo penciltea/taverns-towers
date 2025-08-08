@@ -10,8 +10,14 @@ export function dispatchNpcName(
   const npcTypeKey = (options.race?.[0] ?? "").toLowerCase();
   const config = npcNameGeneratorConfigs[npcTypeKey] ?? npcNameGeneratorConfigs.default;
 
+  const filteredFragments = config.allowedKeys
+    ? fragments.filter((frag) => config.allowedKeys!.includes(frag.type))
+    : fragments;
+
+    console.log("Final fragment pool:", filteredFragments.map(f => `${f.type}: ${f.value}`));
+
   return generateNpcNameFromFragments({
-    fragments,
+    fragments: filteredFragments,
     filters: options,
     ...config,
   });

@@ -12,12 +12,17 @@
 
 import { generateNpcName } from "@/lib/actions/npcGenerator.actions";
 import { NormalizedNpcInput } from "./normalize";
-import { applyAgeRule } from "./applyRules";
+import { applyAgeRule, applyAlignmentRule, applyPronounsRule, applyRaceRule, applyStatusRule, applyTraitsRule } from "./applyRules";
 
 // List of rules to apply sequentially to normalized settlement input data.
 // Each rule enriches or modifies the settlement data based on various conditions.
 const ruleFns = [
   applyAgeRule,
+  applyPronounsRule,
+  applyRaceRule,
+  applyAlignmentRule,
+  applyStatusRule,
+  applyTraitsRule
 ];
 
 /**

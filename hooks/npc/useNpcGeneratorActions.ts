@@ -1,8 +1,11 @@
 import { useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { NpcFormData } from "@/schemas/npc.schema";
+import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
 import { generateNpcData, generateNpcName } from "@/lib/actions/npcGenerator.actions";
 import { shouldReplace } from "@/lib/util/randomValues";
+import { generateNpcWithName } from "@/lib/modules/npc/rules/npc.rules";
+import { normalizeNpcInput } from "@/lib/modules/npc/rules/normalize";
+import { defaultCommonFields } from "@/lib/util/normalizeData";
 
 type UseNpcGeneratorActionsReturn = {
   name: () => void;
@@ -52,28 +55,22 @@ export function useNpcGeneratorActions(
 
 
 
-
-
   /**
    * Force full reroll of all NPC fields.
    */
   const rerollAll = useCallback(async () => {
-    const emptyOverrides: Partial<NpcFormData> = {};
+  const result = await generateNpcWithName(
+    normalizeNpcInput({
+      ...defaultCommonFields,
+      ...defaultNpcValues
+    })
+  );
 
-    // Generate NPC data
-    const result = await generateNpcData(emptyOverrides, false);
-
-    // Only update fields that are empty or missing in the current form
-    Object.entries(result).forEach(([key, value]) => {
-      const currentValue = methods.getValues(key as keyof NpcFormData);
-
-      if (shouldReplace(currentValue) && value !== undefined && value !== null && value !== "") {
-        methods.setValue(key as keyof NpcFormData, value);
-      }
-    });
-
-    // Future: reroll other fields
-  }, [methods]);
+  // Overwrite all values
+  Object.entries(result).forEach(([key, value]) => {
+    methods.setValue(key as keyof NpcFormData, value);
+  });
+}, [methods]);
 
 
 
