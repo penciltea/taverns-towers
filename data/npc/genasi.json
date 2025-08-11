@@ -1,0 +1,266 @@
+[
+  {
+    "type": "first",
+    "value": "Azazel",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Belial",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Malphas",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Zariel",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Lilith",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Aamon",
+    "race": "fiend"
+  },
+  {
+    "type": "first",
+    "value": "Vex",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Kaelis",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Azazel",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Seraphine",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Temperance",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Patience",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Justice",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Felix",
+    "race": "tiefling"
+  },
+  {
+    "type": "first",
+    "value": "Zephyr",
+    "race": "tiefling"
+  },
+
+
+
+
+
+  {
+    "type": "last",
+    "value": "Hellfire",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Nightshade",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Darkflame",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Shadowthorn",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Emberblood",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Ashwalker",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Doomspire",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Bloodbane",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Sinclaw",
+    "race": "fiend"
+  },
+  {
+    "type": "last",
+    "value": "Firebrand",
+    "race": "tiefling"
+  },
+  {
+    "type": "last",
+    "value": "Ashenborn",
+    "race": "tiefling"
+  },
+  {
+    "type": "last",
+    "value": "Duskwalker",
+    "race": "tiefling"
+  },
+  {
+    "type": "last",
+    "value": "Ironhorn",
+    "race": "tiefling"
+  },
+  {
+    "type": "last",
+    "value": "Shadowflame",
+    "race": "tiefling"
+  },
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Cunning",
+    "race": "fiend"
+  },
+  {
+    "type": "nickname",
+    "value": "Hellborn",
+    "race": "fiend"
+  },
+  {
+    "type": "nickname",
+    "value": "Flameheart",
+    "race": "fiend"
+  },
+  {
+    "type": "nickname",
+    "value": "the Wicked",
+    "race": "fiend"
+  },
+  {
+    "type": "nickname",
+    "value": "the Veiled",
+    "race": "tiefling"
+  },
+  {
+    "type": "nickname",
+    "value": "Firewalker",
+    "race": "tiefling"
+  },
+  {
+    "type": "nickname",
+    "value": "Soulflame",
+    "race": "tiefling"
+  },
+
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Lord",
+    "race": "fiend"
+  },
+  {
+    "type": "prefix",
+    "value": "Lady",
+    "race": "fiend"
+  },
+  {
+    "type": "prefix",
+    "value": "Arch",
+    "race": "fiend"
+  },
+  {
+    "type": "prefix",
+    "value": "Dark",
+    "race": "fiend"
+  },
+  {
+    "type": "prefix",
+    "value": "Shadow",
+    "race": "tiefling"
+  },
+  {
+    "type": "prefix",
+    "value": "Hell",
+    "race": "tiefling"
+  },
+
+
+
+  
+  {
+    "type": "suffix",
+    "value": "the Damned",
+    "race": "fiend"
+  },
+  {
+    "type": "suffix",
+    "value": "of the Abyss",
+    "race": "fiend"
+  },
+  {
+    "type": "suffix",
+    "value": "Flameborn",
+    "race": "fiend"
+  },
+  {
+    "type": "suffix",
+    "value": "the Cursed",
+    "race": "fiend"
+  },
+  {
+    "type": "suffix",
+    "value": "the Infernal",
+    "race": "tiefling"
+  },
+  {
+    "type": "suffix",
+    "value": "of the Flame",
+    "race": "tiefling"
+  },
+  {
+    "type": "suffix",
+    "value": "of the Pit",
+    "race": "tiefling"
+  }
+]

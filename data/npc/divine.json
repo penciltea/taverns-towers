@@ -1,0 +1,449 @@
+[
+  {
+    "type": "first",
+    "value": "Aetherion",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Aurion",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Aurelian",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Calivra",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Caelith",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Coralyth",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Corvian",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Elyndra",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Isyra",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Lumara",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Lunara",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Lystrielle",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Noctyra",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Orionis",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Oriviel",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Selunara",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Seraphiel",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Seraphel",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Solenne",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Solthea",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Thalyior",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Thalyros",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Thalyss",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Veylin",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Virellan",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Zephyriel",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "first",
+    "value": "Zerathis",
+    "race": ["aasimar", "celestial"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Auricmantle",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Celestmark",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Cloudspire",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Cometfall",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Cosmoryn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Dawnbringer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Dawnwatch",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Eclipseborn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Eclipsera",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Galeforge",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Halosong",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Heavenstride",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Lightbringer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Lightweaver",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Moonveil",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Nebulaheart",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Skydancer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Skylumen",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Starborn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Starborne",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Starweaver",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Sunveil",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Sunwarden",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Voidwhisper",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Lightbringer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Radiantborn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "last",
+    "value": "Starborne",
+    "race": ["aasimar", "celestial"]
+  },
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "Comet-Touched",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "Haloed",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "Lightbearer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "Moonchild",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "Starborn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Radiant",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Eternal",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Haloed",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Infinite",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Luminous",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Pure",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Dawn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Star-Eyed",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Cosmic",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "The Whisperer",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "nickname",
+    "value": "Lightbearer",
+    "race": ["aasimar", "celestial"]
+  },
+
+
+
+
+  
+  {
+    "type": "prefix",
+    "value": "Arch",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "prefix",
+    "value": "High",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "prefix",
+    "value": "Lady",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "prefix",
+    "value": "Lord",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "prefix",
+    "value": "Nova",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "prefix",
+    "value": "Saint",
+    "race": ["aasimar", "celestial"]
+  },
+
+
+
+  
+  {
+    "type": "suffix",
+    "value": "of the Ascendant",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Dawn",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Heavens",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Infinite Skies",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Light",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Ascended",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Ascendant",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Astral",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Eternal",
+    "race": ["aasimar", "celestial"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Radiant",
+    "race": ["aasimar", "celestial"]
+  }
+]

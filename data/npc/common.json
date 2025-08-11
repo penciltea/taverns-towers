@@ -1,0 +1,414 @@
+[
+  {
+    "type": "first",
+    "value": "Alden"
+  },
+  {
+    "type": "first",
+    "value": "Seren"
+  },
+  {
+    "type": "first",
+    "value": "Thorne"
+  },
+  {
+    "type": "first",
+    "value": "Lyra"
+  },
+  {
+    "type": "first",
+    "value": "Corin"
+  },
+  {
+    "type": "first",
+    "value": "Mira"
+  },
+  {
+    "type": "first",
+    "value": "Ronan"
+  },
+  {
+    "type": "first",
+    "value": "Kael"
+  },
+  {
+    "type": "first",
+    "value": "Elara"
+  },
+  {
+    "type": "first",
+    "value": "Dorian"
+  },
+  {
+    "type": "first",
+    "value": "Arlen"
+  },
+  {
+    "type": "first",
+    "value": "Briala"
+  },
+  {
+    "type": "first",
+    "value": "Cyrus"
+  },
+  {
+    "type": "first",
+    "value": "Delphine"
+  },
+  {
+    "type": "first",
+    "value": "Eamon"
+  },
+  {
+    "type": "first",
+    "value": "Fiora"
+  },
+  {
+    "type": "first",
+    "value": "Garrick"
+  },
+  {
+    "type": "first",
+    "value": "Hester"
+  },
+  {
+    "type": "first",
+    "value": "Isolde"
+  },
+  {
+    "type": "first",
+    "value": "Jareth"
+  },
+  {
+    "type": "first",
+    "value": "Kieran"
+  },
+  {
+    "type": "first",
+    "value": "Leona"
+  },
+  {
+    "type": "first",
+    "value": "Magnus"
+  },
+  {
+    "type": "first",
+    "value": "Nerissa"
+  },
+  {
+    "type": "first",
+    "value": "Orin"
+  },
+  {
+    "type": "first",
+    "value": "Petra"
+  },
+  {
+    "type": "first",
+    "value": "Quentin"
+  },
+  {
+    "type": "first",
+    "value": "Rhea"
+  },
+  {
+    "type": "first",
+    "value": "Silas"
+  },
+  {
+    "type": "first",
+    "value": "Tamsin"
+  },
+  {
+    "type": "first",
+    "value": "Ulric"
+  },
+  {
+    "type": "first",
+    "value": "Vesper"
+  },
+  {
+    "type": "first",
+    "value": "Wystan"
+  },
+  {
+    "type": "first",
+    "value": "Xanthe"
+  },
+  {
+    "type": "first",
+    "value": "Ysabel"
+  },
+  {
+    "type": "first",
+    "value": "Zorren"
+  },
+
+
+
+
+  
+  {
+    "type": "last",
+    "value": "Brightwater"
+  },
+  {
+    "type": "last",
+    "value": "Stonebrook"
+  },
+  {
+    "type": "last",
+    "value": "Ashvale"
+  },
+  {
+    "type": "last",
+    "value": "Windmere"
+  },
+  {
+    "type": "last",
+    "value": "Thistledown"
+  },
+  {
+    "type": "last",
+    "value": "Ironwood"
+  },
+  {
+    "type": "last",
+    "value": "Holloway"
+  },
+  {
+    "type": "last",
+    "value": "Stormrider"
+  },
+  {
+    "type": "last",
+    "value": "Frostglen"
+  },
+  {
+    "type": "last",
+    "value": "Ravenshade"
+  },
+  {
+    "type": "last",
+    "value": "Amberfell"
+  },
+  {
+    "type": "last",
+    "value": "Blackbriar"
+  },
+  {
+    "type": "last",
+    "value": "Cindermere"
+  },
+  {
+    "type": "last",
+    "value": "Dewhurst"
+  },
+  {
+    "type": "last",
+    "value": "Ebonholt"
+  },
+  {
+    "type": "last",
+    "value": "Fairbairn"
+  },
+  {
+    "type": "last",
+    "value": "Glenhaven"
+  },
+  {
+    "type": "last",
+    "value": "Hawkwind"
+  },
+  {
+    "type": "last",
+    "value": "Ivorycrest"
+  },
+  {
+    "type": "last",
+    "value": "Jadebrook"
+  },
+  {
+    "type": "last",
+    "value": "Kingswell"
+  },
+  {
+    "type": "last",
+    "value": "Lockridge"
+  },
+  {
+    "type": "last",
+    "value": "Moonvale"
+  },
+  {
+    "type": "last",
+    "value": "Nighthollow"
+  },
+  {
+    "type": "last",
+    "value": "Oakenshade"
+  },
+  {
+    "type": "last",
+    "value": "Pinebarrow"
+  },
+  {
+    "type": "last",
+    "value": "Quickwater"
+  },
+  {
+    "type": "last",
+    "value": "Ravenholt"
+  },
+  {
+    "type": "last",
+    "value": "Silverstrand"
+  },
+  {
+    "type": "last",
+    "value": "Thornfield"
+  },
+  {
+    "type": "last",
+    "value": "Umberford"
+  },
+  {
+    "type": "last",
+    "value": "Valebridge"
+  },
+  {
+    "type": "last",
+    "value": "Westbrook"
+  },
+  {
+    "type": "last",
+    "value": "Yarrowgate"
+  },
+
+
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Bold"
+  },
+  {
+    "type": "nickname",
+    "value": "the Swift"
+  },
+  {
+    "type": "nickname",
+    "value": "the Quiet"
+  },
+  {
+    "type": "nickname",
+    "value": "One-Eye"
+  },
+  {
+    "type": "nickname",
+    "value": "the Red"
+  },
+  {
+    "type": "nickname",
+    "value": "the Cunning"
+  },
+  {
+    "type": "nickname",
+    "value": "the Wanderer"
+  },
+  {
+    "type": "nickname",
+    "value": "the Stubborn"
+  },
+  {
+    "type": "nickname",
+    "value": "the Lucky"
+  },
+  {
+    "type": "nickname",
+    "value": "the Ironhand"
+  },
+  {
+    "type": "nickname",
+    "value": "the Bear"
+  },
+  {
+    "type": "nickname",
+    "value": "the Fox"
+  },
+  {
+    "type": "nickname",
+    "value": "the Blade"
+  },
+  {
+    "type": "nickname",
+    "value": "the Hammer"
+  },
+  {
+    "type": "nickname",
+    "value": "the Owl"
+  },
+  {
+    "type": "nickname",
+    "value": "the Serpent"
+  },
+  {
+    "type": "nickname",
+    "value": "the Wolf"
+  },
+  {
+    "type": "nickname",
+    "value": "the Lantern"
+  },
+  {
+    "type": "nickname",
+    "value": "the Whisper"
+  },
+  {
+    "type": "nickname",
+    "value": "the Shield"
+  },
+  {
+    "type": "nickname",
+    "value": "the Hawk"
+  },
+  {
+    "type": "nickname",
+    "value": "the Flame"
+  },
+  {
+    "type": "nickname",
+    "value": "the Coin"
+  },
+  {
+    "type": "nickname",
+    "value": "the Harp"
+  },
+  {
+    "type": "nickname",
+    "value": "the Spear"
+  },
+  {
+    "type": "nickname",
+    "value": "the Thorn"
+  },
+  {
+    "type": "nickname",
+    "value": "the Rose"
+  },
+  {
+    "type": "nickname",
+    "value": "the Anvil"
+  },
+  {
+    "type": "nickname",
+    "value": "the Quill"
+  },
+  {
+    "type": "nickname",
+    "value": "the Star"
+  }
+]

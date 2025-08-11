@@ -1,0 +1,208 @@
+[
+  {
+    "type": "first",
+    "value": "Kaelen",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Thava",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Rhazir",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Soryth",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Zyreth",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Vashir",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Neryth",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Jhorin",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Kalyth",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "first",
+    "value": "Sylora",
+    "race": ["Dragonborn"]
+  },
+
+
+
+
+
+
+  {
+    "type": "last",
+    "value": "Drakthorn",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Firescale",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Emberclaw",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Stormfang",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Ironflame",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Ashblood",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Scaleborn",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Thunderstrike",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Brightscale",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "last",
+    "value": "Flameheart",
+    "race": ["Dragonborn"]
+  },
+
+
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Fierce",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Bold",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "nickname",
+    "value": "Scorchtongue",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Stormborn",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "nickname",
+    "value": "Firebreath",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Ironclad",
+    "race": ["Dragonborn"]
+  },
+
+
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Lord",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "prefix",
+    "value": "Lady",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "prefix",
+    "value": "Drake",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wyrm",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "prefix",
+    "value": "Flame",
+    "race": ["Dragonborn"]
+  },
+
+
+
+
+
+
+  
+  {
+    "type": "suffix",
+    "value": "of the Inferno",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Emberclad",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Storm",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Flameborn",
+    "race": ["Dragonborn"]
+  },
+  {
+    "type": "suffix",
+    "value": "Scalebringer",
+    "race": ["Dragonborn"]
+  }
+]

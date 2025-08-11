@@ -1,0 +1,247 @@
+[
+  {
+    "type": "first",
+    "value": "Bromin",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Thalgar",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Durvek",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Gralric",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Helga",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Eldira",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Karnak",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Ferrar",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Thora",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Dagni",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Morgran",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Branna",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Gundric",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Helrin",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "first",
+    "value": "Thalra",
+    "race": ["dwarf"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Ironfist",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Stonehammer",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Bronzebeard",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Fireforge",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Deepdelve",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Goldfinder",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Hammerfall",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Strongaxe",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Ironshield",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Rockbeard",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Grimstone",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Forgefire",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Anvilbreaker",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Shieldbearer",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "last",
+    "value": "Stoneforge",
+    "race": ["dwarf"]
+  },
+
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Unyielding",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Stonefoot",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Ironheart",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Miner",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Deepbeard",
+    "race": ["dwarf"]
+  },
+
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Thane",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Clan",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Stone",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Forge",
+    "race": ["dwarf"]
+  },
+
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "of the Mountain",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Deepdelver",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Forge",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Stonemason",
+    "race": ["dwarf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Anvil",
+    "race": ["dwarf"]
+  }
+]

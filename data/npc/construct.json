@@ -1,0 +1,210 @@
+[
+  {
+    "type": "first",
+    "value": "Cogswell",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Ferrix",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Axion",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Rivette",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Bronzek",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Gasket",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Klyss",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Weldric",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Morrivan",
+    "race": ["construct"]
+  },
+  {
+    "type": "first",
+    "value": "Zenthor",
+    "race": ["construct"]
+  },
+
+
+
+
+
+
+  {
+    "type": "last",
+    "value": "Gearwright",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Ironspoke",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Coppervein",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Steelmantle",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Boltforge",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Chainspire",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Pistonclad",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Brassbinder",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Loomshaft",
+    "race": ["construct"]
+  },
+  {
+    "type": "last",
+    "value": "Rivetbane",
+    "race": ["construct"]
+  },
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Unyielding",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "nickname",
+    "value": "the Clockwork",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "nickname",
+    "value": "the Forged",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "nickname",
+    "value": "the Steelheart",
+    "race": [
+      "construct"
+    ]
+  },
+   {
+    "type": "nickname",
+    "value": "Ironhide",
+    "race": ["construct"]
+  },
+  {
+    "type": "nickname",
+    "value": "Steamheart",
+    "race": ["construct"]
+  },
+  {
+    "type": "nickname",
+    "value": "Clockwork",
+    "race": ["construct"]
+  },
+
+
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Unit",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "prefix",
+    "value": "Model",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "prefix",
+    "value": "Master",
+    "race": ["construct"]
+  },
+
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "Mk.II",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "suffix",
+    "value": "Prototype",
+    "race": [
+      "construct"
+    ]
+  },
+  {
+    "type": "suffix",
+    "value": "the Unyielding",
+    "race": ["construct"]
+  },
+  {
+    "type": "suffix",
+    "value": "Mark IV",
+    "race": ["construct"]
+  }
+]
