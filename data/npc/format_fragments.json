@@ -1,12 +1,77 @@
 [
     {
         "type": "format",
-        "value": "{{fullName}}",
-        "weight": 1
+        "value": "{{first}} {{last}}"
     },
     {
         "type": "format",
-        "value": "{{first}} {{last}}",
-        "weight": 1
+        "value": "{{first}}"
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} {{first}} {{last}}"
+    },
+    {
+        "type": "format",
+        "value": "{{first}} {{last}} {{suffix}}"
+    },
+    {
+        "type": "format",
+        "value": "{{first}} \"{{nickname}}\" {{last}}"
+    },
+    {
+        "type": "format",
+        "value": "{{first}} the {{nickname}}"
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} {{first}}"
+    },
+    {
+        "type": "format",
+        "value": "{{last}}"
+    },
+    {
+        "type": "format",
+        "value": "\"{{nickname}}\" {{last}}"
+    },
+    {
+        "type": "format",
+        "value": "{{nickname}}"
+    },
+    {
+        "type": "format",
+        "value": "{{first}} {{first}} {{nickname}} {{last}}",
+        "race": ["gnome"]
+    },
+    {
+        "type": "format",
+        "value": "{{first}}-{{first}}",
+        "race": ["tabaxi", "elf", "half-elf"]
+    },
+    {
+        "type": "format",
+        "value": "{{first}}, {{title}}",
+        "race": ["Human", "half-elf", "elf", "Dragonborn", "tiefling", "aasimar"]
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} {{last}}",
+        "race": ["orc", "half-orc", "goblin", "kenku"]
+    },
+    {
+        "type": "format",
+        "value": "{{first}} {{suffix}}",
+        "race": ["elf", "half-elf", "tiefling"]
+    },
+    {
+        "type": "format",
+        "value": "Chief {{first}}",
+        "race": ["orc", "half-orc", "goblin"]
+    },
+    {
+        "type": "format",
+        "value": "{{last}} the {{nickname}}",
+        "race": ["orc", "half-orc", "goblin"]
     }
 ]

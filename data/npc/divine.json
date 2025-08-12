@@ -277,86 +277,21 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "Comet-Touched",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "Haloed",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "Lightbearer",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "Moonchild",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "Starborn",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Radiant",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Eternal",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Haloed",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Infinite",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Luminous",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Pure",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Dawn",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Star-Eyed",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Cosmic",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "The Whisperer",
-    "race": ["aasimar", "celestial"]
-  },
-  {
-    "type": "nickname",
-    "value": "Lightbearer",
-    "race": ["aasimar", "celestial"]
-  },
+  { "type": "nickname", "value": "Comet-Touched", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Haloed", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Lightbearer", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Moonchild", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Starborn", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Radiant", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Eternal", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Haloed", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Infinite", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Luminous", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Pure", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Dawn", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Star-Eyed", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Cosmic", "race": ["aasimar", "celestial"] },
+  { "type": "nickname", "value": "Whisperer", "race": ["aasimar", "celestial"] },
 
 
 
@@ -398,52 +333,52 @@
   
   {
     "type": "suffix",
-    "value": "of the Ascendant",
+    "value": "of Ascendant",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "of the Dawn",
+    "value": "of Dawn",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "of the Heavens",
+    "value": "of Heavens",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "of the Infinite Skies",
+    "value": "of Infinite Skies",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "of the Light",
+    "value": "of Light",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "the Ascended",
+    "value": "Ascended",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "the Ascendant",
+    "value": "Ascendant",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "the Astral",
+    "value": "Astral",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "the Eternal",
+    "value": "Eternal",
     "race": ["aasimar", "celestial"]
   },
   {
     "type": "suffix",
-    "value": "the Radiant",
+    "value": "Radiant",
     "race": ["aasimar", "celestial"]
   }
 ]

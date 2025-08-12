@@ -1,0 +1,665 @@
+[
+  {
+    "type": "first",
+    "value": "Shadara",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Keshari",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Zarim",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Mireth",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Tajiri",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Jalira",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Nimari",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Rathik",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Selara",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Vakari",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Velkira",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Sharuun",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Karith",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Nalira",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Darak",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Sithari",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Orasi",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Tashara",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Mirak",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Jaska",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Zahara",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Rakiri",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Kavren",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Nashira",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Thalik",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Saryn",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Omaris",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Tiranis",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Mirakha",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "first",
+    "value": "Jarek",
+    "race": ["tabaxi"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Swiftclaw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Duskmane",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Windstripe",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Shadowpelt",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Moonfang",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Goldenwhisker",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Stormtail",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Emberfur",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Ironstripe",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Cinderpounce",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Farscar",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Duskmane",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Stormpelt",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Swiftwhisker",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Nightstalker",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Goldenfur",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Silentclaw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Brightstripe",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Ironmane",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Cinderfur",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Firepelt",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Dusktail",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Stormclaw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Swiftstripe",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Nightwhisker",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Goldenpounce",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Silentfur",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Brighttail",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Ironpelt",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "last",
+    "value": "Cinderclaw",
+    "race": ["tabaxi"]
+  },
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "Silent Hunter",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Whisperwind",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Swift Shadow",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Nightprowler",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Golden Fang",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Moonclaw",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Ember Eyes",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Stormwhisker",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Ember Stalker",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Silent Claw",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Whisperstrike",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Night Whisperer",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Storm Prowler",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Duskmantle",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Burning Shadow",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Silent Fang",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Whisperclaw",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Night Prowler",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Goldenwhisker",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Stormclaw",
+    "race": ["tabaxi"]
+    },
+    {
+    "type": "nickname",
+    "value": "Swift Fang",
+    "race": ["tabaxi"]
+    },
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Fleet",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Shadow",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wild",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Silent",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Golden",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Storm",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Duskmantle",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Night",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Fire",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wind",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Silent",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bright",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Storm",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Golden",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Fire",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Shadow",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wind",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Silent",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bright",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Golden",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Storm",
+    "race": ["tabaxi"]
+  },
+
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "of Whispering Sands",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Burning Claw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Moonlit",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Golden Dunes",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Silent Pounce",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Storm Winds",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Duskmantle",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Wild Hunt",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Burning Sands",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Silent Paw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Golden Claw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Night Hunter",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Storm Winds",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Swift Pounce",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Duskmantle",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Wild Runner",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Burning Moon",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Silent Prowler",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Golden Sands",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Night Runner",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Stormclaw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Swift Paw",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Duskmantle",
+    "race": ["tabaxi"]
+  },
+  {
+    "type": "suffix",
+    "value": "Wild Shadow",
+    "race": ["tabaxi"]
+  }
+]

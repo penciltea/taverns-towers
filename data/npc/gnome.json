@@ -144,58 +144,25 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "the Ever-Curious",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "Tinkerhands",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Unstoppable",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "Whizbang",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "Sprocketfoot",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Great Juggler",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "Gearwhiz",
-    "race": ["gnome"]
-  },
-  {
-    "type": "nickname",
-    "value": "Quickwit",
-    "race": ["gnome"]
-  },
-  { "type": "nickname", "value": "the Gear-Juggler", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Gigglemaker", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Absent-Minded", "race": ["gnome"] },
+  { "type": "nickname", "value": "Ever-Curious", "race": ["gnome"] },
+  { "type": "nickname", "value": "Tinkerhands", "race": ["gnome"] },
+  { "type": "nickname", "value": "Unstoppable", "race": ["gnome"] },
+  { "type": "nickname", "value": "Whizbang", "race": ["gnome"] },
+  { "type": "nickname", "value": "Sprocketfoot", "race": ["gnome"] },
+  { "type": "nickname", "value": "Great-Juggler", "race": ["gnome"] },
+  { "type": "nickname", "value": "Gearwhiz", "race": ["gnome"] },
+  { "type": "nickname", "value": "Quickwit", "race": ["gnome"] },
+  { "type": "nickname", "value": "Gigglemaker", "race": ["gnome"] },
+  { "type": "nickname", "value": "Absent-Minded", "race": ["gnome"] },
   { "type": "nickname", "value": "Screwloose", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Caffeine-Fueled", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Marvelous Tinkerer", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Perpetually Confused", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Steam-Whisperer", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Joyful Tink", "race": ["gnome"] },
+  { "type": "nickname", "value": "Caffeine-Fueled", "race": ["gnome"] },
+  { "type": "nickname", "value": "Marvelous Tinkerer", "race": ["gnome"] },
+  { "type": "nickname", "value": "Perpetually Confused", "race": ["gnome"] },
+  { "type": "nickname", "value": "Steam-Whisperer", "race": ["gnome"] },
+  { "type": "nickname", "value": "Joyful Tink", "race": ["gnome"] },
   { "type": "nickname", "value": "Brassbrain", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Button Collector", "race": ["gnome"] },
-  { "type": "nickname", "value": "the Bubble-Crafter", "race": ["gnome"] },
+  { "type": "nickname", "value": "Button Collector", "race": ["gnome"] },
+  { "type": "nickname", "value": "Bubble-Crafter", "race": ["gnome"] },
 
 
 
@@ -244,7 +211,7 @@
 
   {
     "type": "suffix",
-    "value": "the Inventive",
+    "value": "Inventive",
     "race": ["gnome"]
   },
   {
@@ -254,32 +221,32 @@
   },
   {
     "type": "suffix",
-    "value": "the Perpetually Late",
+    "value": "Perpetually Late",
     "race": ["gnome"]
   },
   {
     "type": "suffix",
-    "value": "the Jolly",
+    "value": "Jolly",
     "race": ["gnome"]
   },
   {
     "type": "suffix",
-    "value": "of the Twinkling Eye",
+    "value": "of Twinkling Eye",
     "race": ["gnome"]
   },
   {
     "type": "suffix",
-    "value": "the Forgetful",
+    "value": "Forgetful",
     "race": ["gnome"]
   },
-  { "type": "suffix", "value": "the Brilliant", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Magnificent", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Clockwork Connoisseur", "race": ["gnome"] },
-  { "type": "suffix", "value": "of the Whistling Gears", "race": ["gnome"] },
-  { "type": "suffix", "value": "Keeper of the Ticking Tome", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Perpetual Optimist", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Ever-Fizzing", "race": ["gnome"] },
-  { "type": "suffix", "value": "of the Copper Kettle", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Inventive", "race": ["gnome"] },
-  { "type": "suffix", "value": "the Slightly Singed", "race": ["gnome"] }
+  { "type": "suffix", "value": "Brilliant", "race": ["gnome"] },
+  { "type": "suffix", "value": "Magnificent", "race": ["gnome"] },
+  { "type": "suffix", "value": "Clockwork Connoisseur", "race": ["gnome"] },
+  { "type": "suffix", "value": "of Whistling Gears", "race": ["gnome"] },
+  { "type": "suffix", "value": "Keeper of Ticking Tome", "race": ["gnome"] },
+  { "type": "suffix", "value": "Perpetual Optimist", "race": ["gnome"] },
+  { "type": "suffix", "value": "Ever-Fizzing", "race": ["gnome"] },
+  { "type": "suffix", "value": "of Copper Kettle", "race": ["gnome"] },
+  { "type": "suffix", "value": "Inventive", "race": ["gnome"] },
+  { "type": "suffix", "value": "Slightly Singed", "race": ["gnome"] }
 ]

@@ -159,31 +159,11 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "the Unyielding",
-    "race": ["dwarf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Stonefoot",
-    "race": ["dwarf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Ironheart",
-    "race": ["dwarf"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Miner",
-    "race": ["dwarf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Deepbeard",
-    "race": ["dwarf"]
-  },
+  { "type": "nickname", "value": "Unyielding", "race": ["dwarf"] },
+  { "type": "nickname", "value": "Stonefoot", "race": ["dwarf"] },
+  { "type": "nickname", "value": "Ironheart", "race": ["dwarf"] },
+  { "type": "nickname", "value": "Miner", "race": ["dwarf"] },
+  { "type": "nickname", "value": "Deepbeard", "race": ["dwarf"] },
 
 
 
@@ -221,27 +201,27 @@
 
   {
     "type": "suffix",
-    "value": "of the Mountain",
+    "value": "of Mountain",
     "race": ["dwarf"]
   },
   {
     "type": "suffix",
-    "value": "the Deepdelver",
+    "value": "Deepdelver",
     "race": ["dwarf"]
   },
   {
     "type": "suffix",
-    "value": "of the Forge",
+    "value": "of Forge",
     "race": ["dwarf"]
   },
   {
     "type": "suffix",
-    "value": "the Stonemason",
+    "value": "Stonemason",
     "race": ["dwarf"]
   },
   {
     "type": "suffix",
-    "value": "of the Anvil",
+    "value": "of Anvil",
     "race": ["dwarf"]
   }
 ]

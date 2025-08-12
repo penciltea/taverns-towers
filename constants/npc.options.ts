@@ -63,7 +63,6 @@ export const NPC_RACES = [
   "Orc",
   "Tabaxi",
   "Tiefling",
-  "Undead",
 ]
 
 export const NPC_TRAITS = [

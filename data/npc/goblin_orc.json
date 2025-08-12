@@ -1,0 +1,698 @@
+[
+  {
+    "type": "first",
+    "value": "Blix",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Boggle",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Dregmar",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Drak",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Druk",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Gash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Gorash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Gorm",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grashnik",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Gruk",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grukth",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grum",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grumth",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grunk",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Grunth",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Gurz",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Harg",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Korg",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Krag",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Kragdle",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Kragth",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Krug",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Mog",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Mogthar",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Mug",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "first",
+    "value": "Mugwort",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Muzg",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rogash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rok",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rogash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rugor",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rukthar",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Rukzik",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Snagrot",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Snagtooth",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "first",
+    "value": "Snark",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Skritch",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Thok",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Thokk",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Thrag",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Throkk",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Thruk",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Trogmuk",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Urog",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Urgash",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Vark",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Vrog",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Vurz",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Zhar",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Zogflesh",
+    "race": ["goblin"]
+  },
+  {
+    "type": "first",
+    "value": "Zug",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Zugor",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Zugthak",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "first",
+    "value": "Zugwort",
+    "race": ["goblin", "orc"]
+  },
+
+
+
+  {
+    "type": "last",
+    "value": "Blackmaw",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Blackfang",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Bloodspear",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Bloodskull",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Boneshank",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "last",
+    "value": "Bonesnicker",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Bonebreaker",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Bonecrusher",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Bonegrinder",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Deathhowl",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Deathmaw",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Dirtgrin",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Fangbreaker",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Fangtooth",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Filchtooth",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Fleshgnaw",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Grimblade",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Grimfist",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Grimjaw",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Grimeclaw",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Grimefist",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Ironfang",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Ironfist",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Ironmaw",
+    "race": ["orc", "half-orc"]
+  },{
+    "type": "last",
+    "value": "Ironbreaker",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Mudsnout",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "last",
+    "value": "Mucksnout",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "last",
+    "value": "Ratskull",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Rotfang",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "last",
+    "value": "Skullcleaver",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Skullcrusher",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Skullsplitter",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Snotgut",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Sootclaw",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "last",
+    "value": "Spitfang",
+    "race": ["goblin"]
+  },
+  {
+    "type": "last",
+    "value": "Stonecrusher",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Stonefury",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Stormfang",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Stormrage",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "last",
+    "value": "Warbringer",
+    "race": ["orc", "half-orc"]
+  },
+
+  
+
+  { "type": "nickname", "value": "Bonecrusher", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Fingers", "race": ["goblin"] },
+  { "type": "nickname", "value": "Ironfury", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Ironhide", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Ironjaw", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Mudstomper", "race": ["goblin", "orc"] },
+  { "type": "nickname", "value": "Sharp-Ear", "race": ["goblin"] },
+  { "type": "nickname", "value": "Squint", "race": ["goblin"] },
+  { "type": "nickname", "value": "Steelheart", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Stabnose", "race": ["goblin"] },
+  { "type": "nickname", "value": "Stonebreaker", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Stonefist", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Bloodied", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Bloodthirsty", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Brutal", "race": ["goblin", "orc", "half-orc"] },
+  { "type": "nickname", "value": "Crusher", "race": ["goblin", "orc", "half-orc"] },
+  { "type": "nickname", "value": "Destroyer", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Fierce", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Lurker", "race": ["goblin"] },
+  { "type": "nickname", "value": "Mangler", "race": ["goblin", "orc", "half-orc"] },
+  { "type": "nickname", "value": "Merciless", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Quick-Fingered", "race": ["goblin"] },
+  { "type": "nickname", "value": "Ravager", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Relentless", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Savage", "race": ["orc", "half-orc"] },
+  { "type": "nickname", "value": "Scrawny", "race": ["goblin"] },
+  { "type": "nickname", "value": "Sneaky", "race": ["goblin"] },
+  { "type": "nickname", "value": "Twitch", "race": ["goblin"] },
+  { "type": "nickname", "value": "Wartface", "race": ["goblin"] },
+
+
+
+  {
+    "type": "prefix",
+    "value": "Big",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "Blood",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Boss",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "Chief",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dark",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Death",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Gor",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Grim",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Old",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "Rage",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Skull",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sneak",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "Snag",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Stone",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Thrak",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "prefix",
+    "value": "Toad",
+    "race": ["goblin"]
+  },
+  {
+    "type": "prefix",
+    "value": "War",
+    "race": ["orc", "half-orc"]
+  },
+
+
+
+  {
+    "type": "suffix",
+    "value": "bane",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "breaker",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "cleaver",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "crusher",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "fang",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "fist",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "fury",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "gore",
+    "race": ["goblin", "orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "jaw",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "maw",
+    "race": ["orc", "half-orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "snout",
+    "race": ["goblin", "orc"]
+  },
+  {
+    "type": "suffix",
+    "value": "Many-Scars",
+    "race": ["goblin"]
+  },
+  {
+    "type": "suffix",
+    "value": "Quick-Fingered",
+    "race": ["goblin"]
+  },
+  {
+    "type": "suffix",
+    "value": "Unwashed",
+    "race": ["goblin"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Broken Tooth",
+    "race": ["goblin"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Shattered Ear",
+    "race": ["goblin"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Swamp",
+    "race": ["goblin"]
+  },
+
+  {
+    "type": "nickname",
+    "value": "Filthy",
+    "race": ["goblin"]
+  }
+]

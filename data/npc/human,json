@@ -1,0 +1,488 @@
+[
+  {
+    "type": "first",
+    "value": "Alaric",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Isolde",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Cedric",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Elena",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Roderic",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Sarai",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Khalid",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Amina",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Bjorn",
+    "race": ["human"]
+  },
+  {
+    "type": "first",
+    "value": "Yara",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Gareth",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Elowen",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Tariq",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Nadia",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Seamus",
+    "race": ["human"]
+  },
+  {
+    "type": "first",
+    "value": "Anya",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Lucan",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Sofia",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Eadric",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Morwenna",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Hakim",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Zaria",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Roland",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Freya",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "first",
+    "value": "Dmitri",
+    "race": ["human"]
+  },
+  {
+    "type": "first",
+    "value": "Anika",
+    "race": ["human", "half-elf"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Blackwood",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Stormborn",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "DaSilva",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Ivanov",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "Almeida",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "O'Malley",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "Nguyen",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Kowalski",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "de la Cruz",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Tanaka",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Fairbairn",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Montoya",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Kovacs",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "Hoshigaki",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Petrov",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "Murphy",
+    "race": ["human"]
+  },
+  {
+    "type": "last",
+    "value": "Santoro",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Osei",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Windrider",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "de Winter",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Moreau",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Faraday",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Khan",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Abadi",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Lombardi",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "last",
+    "value": "Kemp",
+    "race": ["human"]
+  },
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "The Bold",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Ironfist",
+    "race": ["human"]
+  },
+  {
+    "type": "nickname",
+    "value": "Silverblade",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Swiftfoot",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Shadowborn",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Ironheart",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Stormrider",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Brightshield",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Wolfborn",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Shadowbane",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Lionheart",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Stormwatcher",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Silent",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "Silvereye",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Ironclad",
+    "race": ["human", "half-elf"]
+  },
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Sir",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Lady",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Lord",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Master",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dame",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Captain",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Baron",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Count",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Duchess",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Marquis",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Squire",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Viscount",
+    "race": ["human", "half-elf"]
+  },
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "the Brave",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Wise",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Wanderer",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the North",
+    "race": ["human"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Vale",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Resolute",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Just",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Marsh",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Highlands",
+    "race": ["human"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Wanderer",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Defender",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the West",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Unyielding",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Eastern Realms",
+    "race": ["human", "half-elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Wanderer",
+    "race": ["human", "half-elf"]
+  }
+]

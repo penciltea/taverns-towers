@@ -110,49 +110,12 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "the Unyielding",
-    "race": [
-      "construct"
-    ]
-  },
-  {
-    "type": "nickname",
-    "value": "the Clockwork",
-    "race": [
-      "construct"
-    ]
-  },
-  {
-    "type": "nickname",
-    "value": "the Forged",
-    "race": [
-      "construct"
-    ]
-  },
-  {
-    "type": "nickname",
-    "value": "the Steelheart",
-    "race": [
-      "construct"
-    ]
-  },
-   {
-    "type": "nickname",
-    "value": "Ironhide",
-    "race": ["construct"]
-  },
-  {
-    "type": "nickname",
-    "value": "Steamheart",
-    "race": ["construct"]
-  },
-  {
-    "type": "nickname",
-    "value": "Clockwork",
-    "race": ["construct"]
-  },
+  { "type": "nickname", "value": "Unyielding", "race": ["construct"] },
+  { "type": "nickname", "value": "Clockwork", "race": ["construct"] },
+  { "type": "nickname", "value": "Forged", "race": ["construct"] },
+  { "type": "nickname", "value": "Steelheart", "race": ["construct"] },
+  { "type": "nickname", "value": "Ironhide", "race": ["construct"] },
+  { "type": "nickname", "value": "Steamheart", "race": ["construct"] },
 
 
 
@@ -199,7 +162,7 @@
   },
   {
     "type": "suffix",
-    "value": "the Unyielding",
+    "value": "Unyielding",
     "race": ["construct"]
   },
   {

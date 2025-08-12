@@ -249,95 +249,95 @@
 
 
   {
-    "type": "nickname",
-    "value": "Pip",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Buttons",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Roundbelly",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Quickfoot",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Merry",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Nibbs",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Nimble",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Snuggles",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Peach",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Buttercup",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Sprout",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Twinkle",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Biscuit",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Giggles",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Pockets",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Sprinkles",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Wags",
-    "race": ["halfling"]
-  },
-  {
-    "type": "nickname",
-    "value": "Chatter",
-    "race": ["halfling"]
-  },
+  "type": "nickname",
+  "value": "Pip",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Buttons",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Roundbelly",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Quickfoot",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Merry",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Nibbs",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Nimble",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Snuggles",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Peach",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Buttercup",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Sprout",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Twinkle",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Biscuit",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Giggles",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Pockets",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Sprinkles",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Wags",
+  "race": ["halfling"]
+},
+{
+  "type": "nickname",
+  "value": "Chatter",
+  "race": ["halfling"]
+},
 
 
 

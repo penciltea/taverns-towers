@@ -1,0 +1,559 @@
+[
+  {
+    "type": "first",
+    "value": "Kree",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Takka",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Rook",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Chirr",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Klik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Vraa",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Scree",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Pek",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Criss",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Karr",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Crick",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Snix",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Jik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Frik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Trek",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Skik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Zik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Krit",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Prit",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Blik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Grik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Skrax",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Krint",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Zrek",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Thrix",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Vrek",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Plik",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Bliz",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Snark",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "first",
+    "value": "Jrix",
+    "race": ["Kenku"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Featherfall",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Clatterwing",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Hollowbeak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Brightfeather",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Rattlesky",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Stormclack",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Swiftclaw",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Shadowbeak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Ashfeather",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Frostwing",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Cracklebill",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Windclack",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Dusksnap",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Blacktail",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Nightpeck",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Dustbeak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Ironclaw",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Grimfeather",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Shadowcall",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Gloomsong",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Blackrattle",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Grimsnap",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Crowcall",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Duskrattle",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Shadowbeak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Ravenshard",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Stormclack",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Ironrattle",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Gravepeck",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "last",
+    "value": "Blackwhisper",
+    "race": ["Kenku"]
+  },
+
+
+
+
+
+  {
+  "type": "nickname",
+  "value": "Shiny Snatcher",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Two-Note",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Rustle in Dark",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Echo",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Tin Clink",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Wind's Whistle",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Cawing Shadow",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Quickclaw",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Rattling Bone",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Whisperwing",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Rusted Feather",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Echo's Shadow",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Echoing",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Winged Shadow",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Rattler",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Silent Flight",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Whisperer",
+  "race": ["kenku"]
+},
+{
+  "type": "nickname",
+  "value": "Boneclacker",
+  "race": ["kenku"]
+},
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Sky",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Storm",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sharp",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Black",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Hollow",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Rust",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Blackwing",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Cold",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sharpbeak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Grim",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Shadow",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Rattle",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Crow",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dusky",
+    "race": ["Kenku"]
+  },
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "feather",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "claw",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "wing",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "beak",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "cry",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "snap",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "call",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "clack",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "peck",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "click",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "snap",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "call",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "click",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "peck",
+    "race": ["Kenku"]
+  },
+  {
+    "type": "suffix",
+    "value": "clack",
+    "race": ["Kenku"]
+  }
+]

@@ -253,11 +253,9 @@
 
 
   
-
-  
   {
     "type": "nickname",
-    "value": "the Cunning",
+    "value": "Cunning",
     "race": ["fiend"]
   },
   {
@@ -272,12 +270,12 @@
   },
   {
     "type": "nickname",
-    "value": "the Wicked",
+    "value": "Wicked",
     "race": ["fiend"]
   },
   {
     "type": "nickname",
-    "value": "the Veiled",
+    "value": "Veiled",
     "race": ["tiefling"]
   },
   {
@@ -290,6 +288,7 @@
     "value": "Soulflame",
     "race": ["tiefling"]
   },
+  
 
 
 
@@ -331,12 +330,12 @@
 
   {
     "type": "suffix",
-    "value": "the Damned",
+    "value": "Damned",
     "race": ["fiend"]
   },
   {
     "type": "suffix",
-    "value": "of the Abyss",
+    "value": "of Abyss",
     "race": ["fiend"]
   },
   {
@@ -346,22 +345,22 @@
   },
   {
     "type": "suffix",
-    "value": "the Cursed",
+    "value": "Cursed",
     "race": ["fiend"]
   },
   {
     "type": "suffix",
-    "value": "the Infernal",
+    "value": "Infernal",
     "race": ["tiefling"]
   },
   {
     "type": "suffix",
-    "value": "of the Flame",
+    "value": "of Flame",
     "race": ["tiefling"]
   },
   {
     "type": "suffix",
-    "value": "of the Pit",
+    "value": "of Pit",
     "race": ["tiefling"]
   }
 ]

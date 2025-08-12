@@ -112,36 +112,12 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "the Fierce",
-    "race": ["Dragonborn"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Bold",
-    "race": ["Dragonborn"]
-  },
-  {
-    "type": "nickname",
-    "value": "Scorchtongue",
-    "race": ["Dragonborn"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Stormborn",
-    "race": ["Dragonborn"]
-  },
-  {
-    "type": "nickname",
-    "value": "Firebreath",
-    "race": ["Dragonborn"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Ironclad",
-    "race": ["Dragonborn"]
-  },
+  { "type": "nickname", "value": "Fierce", "race": ["dragonborn"] },
+  { "type": "nickname", "value": "Bold", "race": ["dragonborn"] },
+  { "type": "nickname", "value": "Scorchtongue", "race": ["dragonborn"] },
+  { "type": "nickname", "value": "Stormborn", "race": ["dragonborn"] },
+  { "type": "nickname", "value": "Firebreath", "race": ["dragonborn"] },
+  { "type": "nickname", "value": "Ironclad", "race": ["dragonborn"] },
 
 
 
@@ -182,22 +158,22 @@
   
   {
     "type": "suffix",
-    "value": "of the Inferno",
+    "value": "of Inferno",
     "race": ["Dragonborn"]
   },
   {
     "type": "suffix",
-    "value": "the Emberclad",
+    "value": "Emberclad",
     "race": ["Dragonborn"]
   },
   {
     "type": "suffix",
-    "value": "of the Storm",
+    "value": "of Storm",
     "race": ["Dragonborn"]
   },
   {
     "type": "suffix",
-    "value": "the Flameborn",
+    "value": "Flameborn",
     "race": ["Dragonborn"]
   },
   {

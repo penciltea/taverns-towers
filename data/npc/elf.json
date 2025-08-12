@@ -2,84 +2,233 @@
   {
     "type": "first",
     "value": "Elarion",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Sylvara",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Thalir",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Faelar",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Lirael",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Caelith",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Aerendyl",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Mirethil",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Nimriel",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Vaelis",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Vaelith",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Selendis",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Rineth",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Eiranel",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Talandra",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "first",
     "value": "Lorien",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
-
+  {
+    "type": "first",
+    "value": "Aricel",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Serian",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Caedrin",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Thyra",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Elorin",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Varanel",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Joralen",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Neyrith",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Calthis",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Isren",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Lorienn",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Thamior",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Elvric",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Cerys",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Malathen",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Niala",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Coriel",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Daeren",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Isolde",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Rhovan",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Aelric",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Mirela",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Tirian",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Selric",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Veyra",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Daryen",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Orlisse",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Kaevren",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Nysera",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "first",
+    "value": "Edrion",
+    "race": ["Half-Elf"]
+  },
 
 
 
@@ -87,118 +236,262 @@
   {
     "type": "last",
     "value": "Silverleaf",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Moonwhisper",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Starbreeze",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Dawnsong",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Nightbloom",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Windrunner",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Glimmerstone",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Brightwood",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Evenstar",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Silvermoon",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Silverwind",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Brightglade",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Duskmantle",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Moonbrook",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Starfall",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "last",
     "value": "Windspire",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Oakriver",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Brightvale",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Moorsong",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Stonebloom",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Ashwhisper",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Dawnhearth",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Windhollow",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Silverdell",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Brookmantle",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Evenhollow",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Hollowbrook",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Winterglen",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Ashvale",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Moonridge",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Thornhearth",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Greystone",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Silvermead",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Ravenwell",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Sunrest",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Frostmere",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Shadowmere",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Hillspire",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Starhaven",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Oakspire",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Wolfthorn",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Dewspire",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Rivershadow",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Thistledown",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Brightmoor",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "last",
+    "value": "Windspire",
+    "race": ["Half-Elf"]
   },
 
 
 
 
+  { "type": "nickname", "value": "Graceful", "race": ["elf", "half-elf"] },
+  { "type": "nickname", "value": "Moonshadow", "race": ["elf", "half-elf"] },
+  { "type": "nickname", "value": "Starseer", "race": ["elf", "half-elf"] },
+  { "type": "nickname", "value": "Whisperer", "race": ["elf", "half-elf"] },
+  { "type": "nickname", "value": "Windwalker", "race": ["elf", "half-elf"] },
+  { "type": "nickname", "value": "Swift", "race": ["elf", "half-elf"] },
 
-  {
-    "type": "nickname",
-    "value": "the Graceful",
-    "race": ["Elf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Moonshadow",
-    "race": ["Elf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Starseer",
-    "race": ["Elf"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Whisperer",
-    "race": ["Elf"]
-  },
-  {
-    "type": "nickname",
-    "value": "Windwalker",
-    "race": ["Elf"]
-  },
-  {
-    "type": "nickname",
-    "value": "the Swift",
-    "race": ["Elf"]
-  },
+  { "type": "nickname", "value": "Wanderer", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Starborn", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Bridge", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Wildsong", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Twilight", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Oakshadow", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Horizonborn", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Ironleaf", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Quiet Arrow", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Seaborn", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Wild Gale", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Dawnstrider", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Horizon Walker", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Sunshadow", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Stormchild", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Moonveil", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Oathbound", "race": ["half-elf"] },
+  { "type": "nickname", "value": "Ironbranch", "race": ["half-elf"] },
 
 
 
@@ -207,56 +500,205 @@
   {
     "type": "prefix",
     "value": "High",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "prefix",
     "value": "Lord",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "prefix",
     "value": "Lady",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "prefix",
     "value": "Elder",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "prefix",
     "value": "Mist",
-    "race": ["Elf"]
+    "race": ["Elf", "Half-Elf"]
   },
-
+  {
+    "type": "prefix",
+    "value": "Bright",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Shadow",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "True",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Star",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Oak",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dawn",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Moon",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Stone",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Green",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "River",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sun",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Iron",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sky",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Frost",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "prefix",
+    "value": "Thorn",
+    "race": ["Half-Elf"]
+  },
 
 
 
 
   {
     "type": "suffix",
-    "value": "of the Glade",
-    "race": ["Elf"]
+    "value": "of Glade",
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "suffix",
-    "value": "the Enchanted",
-    "race": ["Elf"]
+    "value": "Enchanted",
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "suffix",
-    "value": "of the Moon",
-    "race": ["Elf"]
+    "value": "of Moon",
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "suffix",
-    "value": "the Radiant",
-    "race": ["Elf"]
+    "value": "Radiant",
+    "race": ["Elf", "Half-Elf"]
   },
   {
     "type": "suffix",
-    "value": "of the Stars",
-    "race": ["Elf"]
+    "value": "of Stars",
+    "race": ["Elf", "Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Vale",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Wayfarer",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Two Worlds",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Evenborn",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Silver Path",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Pathfinder",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Twilight Shores",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Wanderbound",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Crystal Glen",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Leafcrowned",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Dawnlands",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Dreamstrider",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Mistvale",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "Starbound",
+    "race": ["Half-Elf"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Wildgrove",
+    "race": ["Half-Elf"]
   }
 ]

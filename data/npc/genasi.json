@@ -138,71 +138,19 @@
 
 
 
-  {
-    "type": "nickname",
-    "value": "the Tempest",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Firebrand",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Stoneheart",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Flameheart",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Stormcaller",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Stonefist",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Wavebreaker",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Windwhisper",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Cinderborn",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Earthbinder",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Tidewalker",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Skyweaver",
-    "race": ["genasi"]
-  },
-  {
-    "type": "nickname",
-    "value": "Ashspeaker",
-    "race": ["genasi"]
-  },
+  { "type": "nickname", "value": "Tempest", "race": ["genasi"] },
+  { "type": "nickname", "value": "Firebrand", "race": ["genasi"] },
+  { "type": "nickname", "value": "Stoneheart", "race": ["genasi"] },
+  { "type": "nickname", "value": "Flameheart", "race": ["genasi"] },
+  { "type": "nickname", "value": "Stormcaller", "race": ["genasi"] },
+  { "type": "nickname", "value": "Stonefist", "race": ["genasi"] },
+  { "type": "nickname", "value": "Wavebreaker", "race": ["genasi"] },
+  { "type": "nickname", "value": "Windwhisper", "race": ["genasi"] },
+  { "type": "nickname", "value": "Cinderborn", "race": ["genasi"] },
+  { "type": "nickname", "value": "Earthbinder", "race": ["genasi"] },
+  { "type": "nickname", "value": "Tidewalker", "race": ["genasi"] },
+  { "type": "nickname", "value": "Skyweaver", "race": ["genasi"] },
+  { "type": "nickname", "value": "Ashspeaker", "race": ["genasi"] },
 
 
 
@@ -278,17 +226,17 @@
 
   {
     "type": "suffix",
-    "value": "of the Tempest",
+    "value": "of Tempest",
     "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "of the Ember",
+    "value": "of Ember",
     "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "of the Gale",
+    "value": "of Gale",
     "race": ["genasi"]
   },
   {
