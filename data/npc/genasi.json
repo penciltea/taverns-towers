@@ -1,154 +1,138 @@
 [
   {
     "type": "first",
-    "value": "Azazel",
-    "race": "fiend"
+    "value": "Zephra",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Belial",
-    "race": "fiend"
+    "value": "Thalor",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Malphas",
-    "race": "fiend"
+    "value": "Kaelin",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Zariel",
-    "race": "fiend"
+    "value": "Syra",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Lilith",
-    "race": "fiend"
+    "value": "Varek",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Aamon",
-    "race": "fiend"
+    "value": "Aeris",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Vex",
-    "race": "tiefling"
+    "value": "Ignis",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Kaelis",
-    "race": "tiefling"
+    "value": "Terran",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Azazel",
-    "race": "tiefling"
+    "value": "Sylra",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Seraphine",
-    "race": "tiefling"
+    "value": "Caelum",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Temperance",
-    "race": "tiefling"
+    "value": "Firael",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Patience",
-    "race": "tiefling"
+    "value": "Brontis",
+    "race": ["genasi"]
   },
   {
     "type": "first",
-    "value": "Justice",
-    "race": "tiefling"
+    "value": "Maris",
+    "race": ["genasi"]
   },
-  {
-    "type": "first",
-    "value": "Felix",
-    "race": "tiefling"
-  },
-  {
-    "type": "first",
-    "value": "Zephyr",
-    "race": "tiefling"
-  },
-
-
 
 
 
   {
     "type": "last",
-    "value": "Hellfire",
-    "race": "fiend"
+    "value": "Stormbrow",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Nightshade",
-    "race": "fiend"
+    "value": "Flamewalker",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Darkflame",
-    "race": "fiend"
+    "value": "Stonevein",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Shadowthorn",
-    "race": "fiend"
+    "value": "Windwhisper",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Emberblood",
-    "race": "fiend"
+    "value": "Emberborn",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Ashwalker",
-    "race": "fiend"
-  },
-  {
-    "type": "last",
-    "value": "Doomspire",
-    "race": "fiend"
-  },
-  {
-    "type": "last",
-    "value": "Bloodbane",
-    "race": "fiend"
-  },
-  {
-    "type": "last",
-    "value": "Sinclaw",
-    "race": "fiend"
+    "value": "Windrunner",
+    "race": ["genasi"]
   },
   {
     "type": "last",
     "value": "Firebrand",
-    "race": "tiefling"
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Ashenborn",
-    "race": "tiefling"
+    "value": "Stoneforge",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Duskwalker",
-    "race": "tiefling"
+    "value": "Wavecrest",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Ironhorn",
-    "race": "tiefling"
+    "value": "Stormveil",
+    "race": ["genasi"]
   },
   {
     "type": "last",
-    "value": "Shadowflame",
-    "race": "tiefling"
+    "value": "Ashenforge",
+    "race": ["genasi"]
   },
+  {
+    "type": "last",
+    "value": "Earthshaper",
+    "race": ["genasi"]
+  },
+  {
+    "type": "last",
+    "value": "Seaborn",
+    "race": ["genasi"]
+  },
+
 
 
 
@@ -156,111 +140,205 @@
 
   {
     "type": "nickname",
-    "value": "the Cunning",
-    "race": "fiend"
+    "value": "the Tempest",
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
-    "value": "Hellborn",
-    "race": "fiend"
+    "value": "Firebrand",
+    "race": ["genasi"]
+  },
+  {
+    "type": "nickname",
+    "value": "Stoneheart",
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
     "value": "Flameheart",
-    "race": "fiend"
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
-    "value": "the Wicked",
-    "race": "fiend"
+    "value": "Stormcaller",
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
-    "value": "the Veiled",
-    "race": "tiefling"
+    "value": "Stonefist",
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
-    "value": "Firewalker",
-    "race": "tiefling"
+    "value": "Wavebreaker",
+    "race": ["genasi"]
   },
   {
     "type": "nickname",
-    "value": "Soulflame",
-    "race": "tiefling"
+    "value": "Windwhisper",
+    "race": ["genasi"]
   },
-
+  {
+    "type": "nickname",
+    "value": "Cinderborn",
+    "race": ["genasi"]
+  },
+  {
+    "type": "nickname",
+    "value": "Earthbinder",
+    "race": ["genasi"]
+  },
+  {
+    "type": "nickname",
+    "value": "Tidewalker",
+    "race": ["genasi"]
+  },
+  {
+    "type": "nickname",
+    "value": "Skyweaver",
+    "race": ["genasi"]
+  },
+  {
+    "type": "nickname",
+    "value": "Ashspeaker",
+    "race": ["genasi"]
+  },
 
 
 
 
   {
     "type": "prefix",
-    "value": "Lord",
-    "race": "fiend"
+    "value": "Storm",
+    "race": ["genasi"]
   },
   {
     "type": "prefix",
-    "value": "Lady",
-    "race": "fiend"
+    "value": "Flame",
+    "race": ["genasi"]
   },
   {
     "type": "prefix",
-    "value": "Arch",
-    "race": "fiend"
+    "value": "Stone",
+    "race": ["genasi"]
   },
   {
     "type": "prefix",
-    "value": "Dark",
-    "race": "fiend"
+    "value": "Flame",
+    "race": ["genasi"]
   },
   {
     "type": "prefix",
-    "value": "Shadow",
-    "race": "tiefling"
+    "value": "Storm",
+    "race": ["genasi"]
   },
   {
     "type": "prefix",
-    "value": "Hell",
-    "race": "tiefling"
+    "value": "Stone",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wave",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Wind",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Cinder",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Ember",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Frost",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sky",
+    "race": ["genasi"]
+  },
+  {
+    "type": "prefix",
+    "value": "Tide",
+    "race": ["genasi"]
   },
 
 
 
-  
+
   {
     "type": "suffix",
-    "value": "the Damned",
-    "race": "fiend"
+    "value": "of the Tempest",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "of the Abyss",
-    "race": "fiend"
+    "value": "of the Ember",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "Flameborn",
-    "race": "fiend"
+    "value": "of the Gale",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "the Cursed",
-    "race": "fiend"
+    "value": "born",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "the Infernal",
-    "race": "tiefling"
+    "value": "weaver",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "of the Flame",
-    "race": "tiefling"
+    "value": "caller",
+    "race": ["genasi"]
   },
   {
     "type": "suffix",
-    "value": "of the Pit",
-    "race": "tiefling"
+    "value": "shaper",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "walker",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "singer",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "bringer",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "heart",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "forge",
+    "race": ["genasi"]
+  },
+  {
+    "type": "suffix",
+    "value": "soul",
+    "race": ["genasi"]
   }
 ]

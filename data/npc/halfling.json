@@ -1,0 +1,439 @@
+[
+  {
+    "type": "first",
+    "value": "Milo",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Daisy",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Roscoe",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Cora",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Tobin",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Euphemia",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Finnan",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Lyle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Bungo",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Lotta",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Perrin",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Felicity",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Rosie",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Hob",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Merrick",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Tilda",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Poppy",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Roscoe",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Tansy",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Hobbin",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Bran",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Flora",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Wilbur",
+    "race": ["halfling"]
+  },
+  {
+    "type": "first",
+    "value": "Tilly",
+    "race": ["halfling"]
+  },
+
+
+
+
+  {
+    "type": "last",
+    "value": "Goodbarrel",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Underbough",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Tealeaf",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Brushgather",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Hilltopple",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Greenbottle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Honeymug",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Sweetwater",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Brandybuck",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Cottonwick",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Harbottle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Goodbarrel",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Hillhaven",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Tealeaf",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Underfoot",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Whistlewick",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Brushgather",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Goodbarrel",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Merryweather",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Hilltopple",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Softfoot",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Underhill",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Sweetbottle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "last",
+    "value": "Brownlock",
+    "race": ["halfling"]
+  },
+
+
+
+
+
+  {
+    "type": "nickname",
+    "value": "Pip",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Buttons",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Roundbelly",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Quickfoot",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Merry",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Nibbs",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Nimble",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Snuggles",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Peach",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Buttercup",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Sprout",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Twinkle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Biscuit",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Giggles",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Pockets",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Sprinkles",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Wags",
+    "race": ["halfling"]
+  },
+  {
+    "type": "nickname",
+    "value": "Chatter",
+    "race": ["halfling"]
+  },
+
+
+
+
+  {
+    "type": "prefix",
+    "value": "Apple",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Brandy",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Gold",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Sun",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Maple",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Honey",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Berry",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Clover",
+    "race": ["halfling"]
+  },
+  {
+    "type": "prefix",
+    "value": "Honeydew",
+    "race": ["halfling"]
+  },
+
+
+
+
+  {
+    "type": "suffix",
+    "value": "foot",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "bottle",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "mug",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "bloom",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "twig",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "field",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "burrow",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "hill",
+    "race": ["halfling"]
+  },
+  {
+    "type": "suffix",
+    "value": "patch",
+    "race": ["halfling"]
+  }
+]

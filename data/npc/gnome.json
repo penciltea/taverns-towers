@@ -1,0 +1,285 @@
+[
+  {
+    "type": "first",
+    "value": "Boddynock",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Zindlewip",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Tinkfizzle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Quillifer",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Fennick",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Cogglewort",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Pennywhistle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Brassbuckle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Snorri",
+    "race": ["gnome"]
+  },
+  {
+    "type": "first",
+    "value": "Nimblewick",
+    "race": ["gnome"]
+  },
+  { "type": "first", "value": "Pimbletock", "race": ["gnome"] },
+  { "type": "first", "value": "Wizzlewort", "race": ["gnome"] },
+  { "type": "first", "value": "Tindleflip", "race": ["gnome"] },
+  { "type": "first", "value": "Bofflewick", "race": ["gnome"] },
+  { "type": "first", "value": "Rindlefin", "race": ["gnome"] },
+  { "type": "first", "value": "Sprottle", "race": ["gnome"] },
+  { "type": "first", "value": "Mindlequill", "race": ["gnome"] },
+  { "type": "first", "value": "Cobberwick", "race": ["gnome"] },
+  { "type": "first", "value": "Faddlebin", "race": ["gnome"] },
+  { "type": "first", "value": "Bricklehop", "race": ["gnome"] },
+  { "type": "first", "value": "Zibblebop", "race": ["gnome"] },
+  { "type": "first", "value": "Mufflenock", "race": ["gnome"] },
+  { "type": "first", "value": "Trundlewink", "race": ["gnome"] },
+  { "type": "first", "value": "Noddlewick", "race": ["gnome"] },
+  { "type": "first", "value": "Clacklefin", "race": ["gnome"] },
+  { "type": "first", "value": "Bimblejack", "race": ["gnome"] },
+  { "type": "first", "value": "Pofflenut", "race": ["gnome"] },
+  { "type": "first", "value": "Glimberwick", "race": ["gnome"] },
+  { "type": "first", "value": "Snindlequill", "race": ["gnome"] },
+  { "type": "first", "value": "Wobblebin", "race": ["gnome"] },
+
+
+  {
+    "type": "last",
+    "value": "Fizzlemantle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Geargrinder",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Wobbletop",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Merrymuddle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Quicksprocket",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Bumbleburr",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Wigglewrench",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Copperwhistle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Noodlefern",
+    "race": ["gnome"]
+  },
+  {
+    "type": "last",
+    "value": "Jumblepot",
+    "race": ["gnome"]
+  },
+  { "type": "last", "value": "Cranklewhip", "race": ["gnome"] },
+  { "type": "last", "value": "Muddlewharf", "race": ["gnome"] },
+  { "type": "last", "value": "Whistlepot", "race": ["gnome"] },
+  { "type": "last", "value": "Puddlespark", "race": ["gnome"] },
+  { "type": "last", "value": "Bramblefix", "race": ["gnome"] },
+  { "type": "last", "value": "Tinkerloop", "race": ["gnome"] },
+  { "type": "last", "value": "Janglebrew", "race": ["gnome"] },
+  { "type": "last", "value": "Fizzleknob", "race": ["gnome"] },
+  { "type": "last", "value": "Copperpuff", "race": ["gnome"] },
+  { "type": "last", "value": "Snagglepin", "race": ["gnome"] },
+  { "type": "last", "value": "Kettlesprocket", "race": ["gnome"] },
+  { "type": "last", "value": "Nogglepatch", "race": ["gnome"] },
+  { "type": "last", "value": "Cracklepot", "race": ["gnome"] },
+  { "type": "last", "value": "Bumblewhistle", "race": ["gnome"] },
+  { "type": "last", "value": "Fiddlestitch", "race": ["gnome"] },
+  { "type": "last", "value": "Whimsyworks", "race": ["gnome"] },
+  { "type": "last", "value": "Pufflenog", "race": ["gnome"] },
+  { "type": "last", "value": "Jigglepuff", "race": ["gnome"] },
+  { "type": "last", "value": "Muffinwharf", "race": ["gnome"] },
+  { "type": "last", "value": "Tickletorque", "race": ["gnome"] },
+
+
+
+  {
+    "type": "nickname",
+    "value": "the Ever-Curious",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "Tinkerhands",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Unstoppable",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "Whizbang",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "Sprocketfoot",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "the Great Juggler",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "Gearwhiz",
+    "race": ["gnome"]
+  },
+  {
+    "type": "nickname",
+    "value": "Quickwit",
+    "race": ["gnome"]
+  },
+  { "type": "nickname", "value": "the Gear-Juggler", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Gigglemaker", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Absent-Minded", "race": ["gnome"] },
+  { "type": "nickname", "value": "Screwloose", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Caffeine-Fueled", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Marvelous Tinkerer", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Perpetually Confused", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Steam-Whisperer", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Joyful Tink", "race": ["gnome"] },
+  { "type": "nickname", "value": "Brassbrain", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Button Collector", "race": ["gnome"] },
+  { "type": "nickname", "value": "the Bubble-Crafter", "race": ["gnome"] },
+
+
+
+  {
+    "type": "prefix",
+    "value": "Professor",
+    "race": ["gnome"]
+  },
+  {
+    "type": "prefix",
+    "value": "Master",
+    "race": ["gnome"]
+  },
+  {
+    "type": "prefix",
+    "value": "Tinker",
+    "race": ["gnome"]
+  },
+  {
+    "type": "prefix",
+    "value": "Whistle",
+    "race": ["gnome"]
+  },
+  {
+    "type": "prefix",
+    "value": "Bumble",
+    "race": ["gnome"]
+  },
+  {
+    "type": "prefix",
+    "value": "Clock",
+    "race": ["gnome"]
+  },
+  { "type": "prefix", "value": "Professor", "race": ["gnome"] },
+  { "type": "prefix", "value": "Doctor", "race": ["gnome"] },
+  { "type": "prefix", "value": "Master", "race": ["gnome"] },
+  { "type": "prefix", "value": "Mistress", "race": ["gnome"] },
+  { "type": "prefix", "value": "Inventor", "race": ["gnome"] },
+  { "type": "prefix", "value": "Tinkermaster", "race": ["gnome"] },
+  { "type": "prefix", "value": "Chief Engineer", "race": ["gnome"] },
+  { "type": "prefix", "value": "Captain", "race": ["gnome"] },
+  { "type": "prefix", "value": "Admiral", "race": ["gnome"] },
+  { "type": "prefix", "value": "Sir", "race": ["gnome"] },
+  { "type": "prefix", "value": "Lady", "race": ["gnome"] },
+
+
+  {
+    "type": "suffix",
+    "value": "the Inventive",
+    "race": ["gnome"]
+  },
+  {
+    "type": "suffix",
+    "value": "of Many Gears",
+    "race": ["gnome"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Perpetually Late",
+    "race": ["gnome"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Jolly",
+    "race": ["gnome"]
+  },
+  {
+    "type": "suffix",
+    "value": "of the Twinkling Eye",
+    "race": ["gnome"]
+  },
+  {
+    "type": "suffix",
+    "value": "the Forgetful",
+    "race": ["gnome"]
+  },
+  { "type": "suffix", "value": "the Brilliant", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Magnificent", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Clockwork Connoisseur", "race": ["gnome"] },
+  { "type": "suffix", "value": "of the Whistling Gears", "race": ["gnome"] },
+  { "type": "suffix", "value": "Keeper of the Ticking Tome", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Perpetual Optimist", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Ever-Fizzing", "race": ["gnome"] },
+  { "type": "suffix", "value": "of the Copper Kettle", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Inventive", "race": ["gnome"] },
+  { "type": "suffix", "value": "the Slightly Singed", "race": ["gnome"] }
+]
