@@ -1,8 +1,13 @@
+'use client'
+
 import { useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlementOptions";
 import { FormTextField, FormSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import FormAssignEntityField from "@/components/Form/FormAssignEntity";
+import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
+import { Npc } from "@/interfaces/npc.interface";
 
 export default function SettlementFormWealth(){
     const {
@@ -13,14 +18,11 @@ export default function SettlementFormWealth(){
 
     return (
         <Box>
-            <FormTextField
-                fullWidth
+            <FormAssignEntityField<Npc>
                 name="leader"
-                label="Leader(s)"
-                registration={register("leader")}
-                error={!!errors.leader}
-                helperText={typeof errors.leader?.message === "string" ? errors.leader.message : ""}
-                margin="normal"
+                label="Leaders"
+                dialogComponent={AssignNpcDialog}
+                getLabel={(npc) => npc.name || "Unnamed NPC"}
             />
 
             <FormSelect

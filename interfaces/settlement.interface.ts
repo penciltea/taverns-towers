@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { DialogProps } from "./dialogProps.interface";
 import { CommonInterface } from "./common.interface";
+import { Types } from "mongoose";
  
 export interface SettlementDialogProps extends DialogProps {
   settlement: Settlement;

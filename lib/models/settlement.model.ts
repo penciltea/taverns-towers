@@ -17,7 +17,7 @@ export interface ISettlement extends Document {
   description: string;
   publicNotes: string;
   gmNotes: string;
-  leader: string;
+  leader?: Types.ObjectId[];
   rulingStyle: RulingType;
   wealth: WealthLevel;
   tradeNotes: string;

@@ -41,7 +41,17 @@
     },
     {
         "type": "format",
-        "value": "{{first}} {{first}} {{nickname}} {{last}}",
+        "value": "{{first}} \"{{nickname}}\" {{first}} {{last}}",
+        "race": ["gnome"]
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} {{first}} \"{{nickname}}\" {{first}} {{last}}",
+        "race": ["gnome"]
+    },
+    {
+        "type": "format",
+        "value": "{{prefix}} {{first}} \"{{nickname}}\" {{first}} {{last}} {{suffix}}",
         "race": ["gnome"]
     },
     {
