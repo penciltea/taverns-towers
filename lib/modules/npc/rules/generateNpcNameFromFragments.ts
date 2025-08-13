@@ -1,6 +1,6 @@
 import { GenerateNpcNameOptions, NpcGroupKey } from "@/interfaces/npc.interface";
 import { GeneratorNpcFragmentPlain } from "@/lib/models/generator/npc/npcNameFragment.model";
-import { filterByAttributes } from "./filterByAttributes";
+import { filterNpcByAttributes } from "./filterByAttributes";
 import { groupNpcFragmentsByType } from "./groupNpcFragmentsByType";
 import { getRandom, weightedRandom } from "@/lib/util/randomValues";
 
@@ -8,7 +8,7 @@ export function generateNpcNameFromFragments({
     fragments,
     filters,
     fallbackFormats,
-    allowedKeys = ["prefix", "suffix", "first", "last", "fullName"],
+    allowedKeys = ["prefix", "suffix", "first", "last", "fullName", "nickname", "format"],
 }: {
     fragments: GeneratorNpcFragmentPlain[];
     filters: GenerateNpcNameOptions;
@@ -16,7 +16,9 @@ export function generateNpcNameFromFragments({
     allowedKeys?: string[];
 }): string {
     // Step 1: Filter by basic attributes
-    let filtered = filterByAttributes(fragments, filters);
+    let filtered = filterNpcByAttributes(fragments, filters);
+    //console.log("filters: " , filters);
+    //console.log("filtered fragments: " , filtered);
 
     // Step 2: Group fragments
     const grouped = groupNpcFragmentsByType(filtered);
@@ -26,13 +28,21 @@ export function generateNpcNameFromFragments({
     function canSatisfyFormat(template: string | undefined): boolean {
         if (!template) return false;
         const matches = [...template.matchAll(/\{\{\s*(.*?)\s*\}\}/g)];
-        return matches.every(([, key]) => {
-        if (!allowedKeys.includes(key)) return false;
-        const typedKey = key as NpcGroupKey;
-        const group = grouped[typedKey] ?? unfilteredGrouped[typedKey];
-        return Array.isArray(group) && group.length > 0;
+        return matches.some(([, key]) => {
+            if (!allowedKeys.includes(key)) return false;
+            const typedKey = key as NpcGroupKey;
+            const group = grouped[typedKey] ?? unfilteredGrouped[typedKey];
+            return Array.isArray(group) && group.length > 0;
         });
-  }
+    }
+
+    // console.log("Filtered fragments by type:", Object.fromEntries(
+    //     Object.entries(grouped).map(([k,v]) => [k, v.length])
+    // ));
+    // console.log("Unfiltered fragments by type:", Object.fromEntries(
+    //     Object.entries(unfilteredGrouped).map(([k,v]) => [k, v.length])
+    // ));
+    // console.log("Fallback formats:", fallbackFormats);
 
     // Try formatFragment first, then fallbacks
     const formatCandidates = [
@@ -43,12 +53,15 @@ export function generateNpcNameFromFragments({
     const validFormats = formatCandidates.filter(canSatisfyFormat);
     const formatTemplate = getRandom(validFormats) || "{{first}} {{last}}";
 
+    // console.log("validFormats: " , validFormats);
+
     // Step 4: Replacement logic
     const usedFragments: Record<NpcGroupKey, string[]> = {
         prefix: [],
         suffix: [],
         first: [],
         last: [],
+        nickname: [],
         fullName: [],
         format: [],
     };
@@ -65,8 +78,9 @@ export function generateNpcNameFromFragments({
 
         // Fallback: if no filtered fragments, try unfiltered (universal)
         if (pool.length === 0) {
-        pool = unfilteredGrouped[typedKey] ?? [];
+            pool = unfilteredGrouped[typedKey] ?? [];
         }
+
         const used = usedFragments[typedKey] ?? (usedFragments[typedKey] = []);
         const remaining = pool.filter(f => !used.includes(f.value));
         const selectionPool = remaining.length > 0 ? remaining : pool;

@@ -12,7 +12,7 @@ export interface GeneratorNpcFragmentPlain {
 
 
 const GeneratorNpcFragmentSchema = new mongoose.Schema({
-  type: { type: String, enum: ['prefix', 'suffix', 'first', 'last', 'fullName', 'format'], required: true },
+  type: { type: String, enum: ['prefix', 'suffix', 'first', 'last', 'fullName', 'nickname', 'format'], required: true },
   value: { type: String, required: true },
   tags: { type: [String], required: false },
   weight: { type: Number, default: 1, required: false },

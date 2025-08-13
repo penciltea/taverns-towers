@@ -14,7 +14,7 @@ export function dispatchNpcName(
     ? fragments.filter((frag) => config.allowedKeys!.includes(frag.type))
     : fragments;
 
-    console.log("Final fragment pool:", filteredFragments.map(f => `${f.type}: ${f.value}`));
+    //console.log("Final fragment pool:", filteredFragments.map(f => `${f.type}: ${f.value}`));
 
   return generateNpcNameFromFragments({
     fragments: filteredFragments,

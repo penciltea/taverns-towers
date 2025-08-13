@@ -80,11 +80,12 @@ export type NpcGroupKey =
   | "suffix"
   | "first"
   | "last"
+  | "nickname"
   | "fullName"
   | "format";
 
 export interface GenerateNpcNameOptions {
-  race?: string;
+  race?: string[];
   data?: Partial<NpcFormData>;
 }
 

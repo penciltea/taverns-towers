@@ -4,19 +4,18 @@ export const npcNameGeneratorConfigs: Record<string, {
 }> = {
   human: {
     fallbackFormats: ["{{first}} {{last}}"],
-    allowedKeys: ["prefix", "suffix", "first", "last", "fullName"],
+    allowedKeys: ["prefix", "suffix", "first", "last", "fullName", "format"],
   },
   gnome: {
     fallbackFormats: ["{{first}} '{{nickname}}' {{last}}", "{{first}} {{last}}"],
-    allowedKeys: ["prefix", "suffix", "first", "last", "nickname"],
+    allowedKeys: ["prefix", "suffix", "first", "last", "nickname", "format"],
   },
   tiefling: {
     fallbackFormats: ["{{fullName}}", "{{first}}"],
-    allowedKeys: ["prefix", "suffix", "fullName", "first"],
+    allowedKeys: ["prefix", "suffix", "fullName", "first", "format"],
   },
-  // Default fallback if race isn't listed
   default: {
     fallbackFormats: ["{{first}} {{last}}", "{{fullName}}"],
-    allowedKeys: ["prefix", "suffix", "first", "last", "fullName"],
-  },
+    allowedKeys: ["prefix", "suffix", "first", "last", "nickname", "fullName", "format"],
+  }
 };

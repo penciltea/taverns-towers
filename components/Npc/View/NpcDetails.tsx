@@ -2,6 +2,7 @@ import { Box, Typography, List } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import InfoListItem from "@/components/Common/InfoListItem";
 import { NPC_TRAITS } from "@/constants/npc.options";
+import { toTitleCase } from "@/lib/util/stringFormats";
 
 export function getTraitLabel(value: string): string {
   for (const category of NPC_TRAITS) {
@@ -15,7 +16,7 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
   const fields = [
     { label: "Pronouns", value: npc.pronouns ? npc.pronouns : "N/A" },
     { label: "Age", value: npc.age ? npc.age : "N/A" },
-    { label: "Race", value: npc.race ? npc.race : "N/A" },
+    { label: "Race", value: npc.race ? toTitleCase(npc.race) : "N/A" },
     { label: "Alignment", value: npc.alignment ? npc.alignment : "N/A" },
     {
       label: "Trait(s)",

@@ -1,7 +1,7 @@
 import { GenerateNpcNameOptions } from "@/interfaces/npc.interface";
 import { GeneratorNpcFragmentPlain } from "@/lib/models/generator/npc/npcNameFragment.model";
 
-export function filterByAttributes(
+export function filterNpcByAttributes(
   fragments: GeneratorNpcFragmentPlain[],
   filters: GenerateNpcNameOptions
 ): GeneratorNpcFragmentPlain[] {
@@ -12,9 +12,9 @@ export function filterByAttributes(
 
     // Normalize input race filter
     const normalizedRaces = Array.isArray(race)
-      ? (race as string[]).map(r => r.toLowerCase())
+      ? race.map(r => r.toLowerCase())
       : race
-      ? [race.toLowerCase()]
+      ? [race]
       : [];
 
     // Normalize fragment.race
@@ -35,10 +35,10 @@ export function filterByAttributes(
 
     if (!matchesRace) return false;
 
-    console.log("Filtering fragment", f.value, {
-      fragmentRaces,
-      normalizedRaces,
-    });
+    // console.log("Filtering fragment", f.value, {
+    //   fragmentRaces,
+    //   normalizedRaces,
+    // });
 
     return true;
   });

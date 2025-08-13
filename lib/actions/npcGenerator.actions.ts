@@ -3,13 +3,13 @@
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorNpcFragment, { GeneratorNpcFragmentPlain } from "@/lib/models/generator/npc/npcNameFragment.model";
 import { normalizeNpcInput } from "../modules/npc/rules/normalize";
-import { Npc, NpcGenerationInput } from "@/interfaces/npc.interface";
+import { NpcGenerationInput } from "@/interfaces/npc.interface";
 import { dispatchNpcName } from "../modules/npc/rules/name.dispatcher";
 import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
 import { generateNpcValues } from "../modules/npc/rules/npc.rules";
 import { defaultCommonFields } from "../util/normalizeData";
 
-export async function generateNpcName({ race }: { race?: string }): Promise<string> {
+export async function generateNpcName({ race }: { race?: string[] }): Promise<string> {
     await connectToDatabase();
 
     let fragments: GeneratorNpcFragmentPlain[] = [];

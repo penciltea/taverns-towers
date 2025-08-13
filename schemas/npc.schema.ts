@@ -3,6 +3,8 @@ import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, N
 import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
 
 const allTraitValues = NPC_TRAITS.flatMap((group) => group.options.map((opt) => opt.value));
+const raceValues = NPC_RACES.map(opt => opt.value);
+
 
 const npcConnectionItemSchema = z.object({
   id: z.string(),
@@ -17,7 +19,7 @@ export const npcSchema = z.object({
   pronouns: optionalEnum(NPC_PRONOUNS as [string, ...string[]], "Invalid pronouns"),
   alignment: optionalEnum(NPC_ALIGNMENT as [string, ...string[]], "Invalid alignment"),
   status: optionalEnum(NPC_STATUS as [string, ...string[]], "Invalid status"),
-  race: optionalEnum(NPC_RACES as [string, ...string[]], "Invalid race"),
+  race: optionalEnum(raceValues as [string, ...string[]], "Invalid race"),
   description: z.string().optional(),
   gmNotes: z.string().optional(),
   publicNotes: z.string().optional(),

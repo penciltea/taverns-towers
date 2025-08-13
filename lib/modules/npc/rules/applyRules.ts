@@ -23,7 +23,7 @@ export function applyPronounsRule(data: ReturnType<typeof normalizeNpcInput>): N
 // Logic for setting Race if set to "random" or missing
 export function applyRaceRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
     if (!data.race || data.race === "random") {
-        data.race = getRandom(NPC_RACES);
+        data.race = getRandom(NPC_RACES).value;
     }
 
     return data;

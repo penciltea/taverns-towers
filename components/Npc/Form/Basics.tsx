@@ -67,7 +67,7 @@ export default function NpcFormBasics({generator}: NpcFormFieldProps){
                     name="race"
                     label="Race"
                     control={control}
-                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_RACES)]}
+                    options={[{ label: "Random", value: "random" }, ...NPC_RACES]}
                     fieldError={errors.race}
                 />
 

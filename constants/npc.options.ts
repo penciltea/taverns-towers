@@ -45,25 +45,25 @@ export const NPC_STATUS = [
 ]
 
 export const NPC_RACES = [
-  "Aasimar",
-  "Celestial",
-  "Construct",
-  "Dragonborn",
-  "Dwarf",
-  "Elf",
-  "Fiend",
-  "Genasi",
-  "Gnome",
-  "Goblin",
-  "Half-Elf",
-  "Half-Orc",
-  "Halfling",
-  "Human",
-  "Kenku",
-  "Orc",
-  "Tabaxi",
-  "Tiefling",
-]
+  { label: "Aasimar", value: "aasimar" },
+  { label: "Celestial", value: "celestial" },
+  { label: "Construct", value: "construct" },
+  { label: "Dragonborn", value: "dragonborn" },
+  { label: "Dwarf", value: "dwarf" },
+  { label: "Elf", value: "elf" },
+  { label: "Fiend", value: "fiend" },
+  { label: "Genasi", value: "genasi" },
+  { label: "Gnome", value: "gnome" },
+  { label: "Goblin", value: "goblin" },
+  { label: "Half-Elf", value: "half-elf" },
+  { label: "Half-Orc", value: "half-orc" },
+  { label: "Halfling", value: "halfling" },
+  { label: "Human", value: "human" },
+  { label: "Kenku", value: "kenku" },
+  { label: "Orc", value: "orc" },
+  { label: "Tabaxi", value: "tabaxi" },
+  { label: "Tiefling", value: "tiefling" },
+];
 
 export const NPC_TRAITS = [
   {
@@ -182,7 +182,7 @@ export const NPC_CONNECTION_GUILD_ROLE = [
 export type NpcAge = (typeof NPC_AGE)[number];
 export type NpcPronounSet = (typeof NPC_PRONOUNS)[number];
 export type NpcAlignment = (typeof NPC_ALIGNMENT)[number];
-export type NpcRace = (typeof NPC_RACES)[number];
+export type NpcRace = (typeof NPC_RACES)[number]["value"];
 export type NpcStatus = (typeof NPC_STATUS)[number];
 export type NpcTrait = Flatten<typeof NPC_TRAITS>["value"];
 export type NpcConnectionType = (typeof NPC_CONNECTION_TYPE)[number];

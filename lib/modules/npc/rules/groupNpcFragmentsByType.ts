@@ -7,6 +7,7 @@ export function groupNpcFragmentsByType(fragments: GeneratorNpcFragmentPlain[]):
     suffix: fragments.filter(f => f.type === "suffix"),
     first: fragments.filter(f => f.type === "first"),
     last: fragments.filter(f => f.type === "last"),
+    nickname: fragments.filter(f => f.type === "nickname"),
     fullName: fragments.filter(f => f.type === "fullName"),
     format: fragments.filter(f => f.type === "format"),
   };
