@@ -179,10 +179,10 @@ export const NPC_CONNECTION_GUILD_ROLE = [
 ];
 
 
-export type NpcAge = (typeof NPC_AGE)[number];
-export type NpcPronounSet = (typeof NPC_PRONOUNS)[number];
-export type NpcAlignment = (typeof NPC_ALIGNMENT)[number];
-export type NpcRace = (typeof NPC_RACES)[number]["value"];
-export type NpcStatus = (typeof NPC_STATUS)[number];
+export type NpcAge = typeof NPC_AGE[number];
+export type NpcPronounSet = typeof NPC_PRONOUNS[number];
+export type NpcAlignment = typeof NPC_ALIGNMENT[number];
+export type NpcRace = typeof NPC_RACES[number]["value"];
+export type NpcStatus = typeof NPC_STATUS[number];
 export type NpcTrait = Flatten<typeof NPC_TRAITS>["value"];
-export type NpcConnectionType = (typeof NPC_CONNECTION_TYPE)[number];
+export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];

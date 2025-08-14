@@ -50,7 +50,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 "success"
             );
             queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
-            return saved; 
+            router.push(`/npcs/${saved._id}`);
 
         } catch (error) {
             let message = "Something went wrong saving the NPC. Please try again later.";

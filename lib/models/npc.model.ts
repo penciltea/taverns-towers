@@ -2,6 +2,7 @@ import mongoose, { Schema, Document} from "mongoose";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
 
 // Flatten trait values for enum use
+const raceValues = NPC_RACES.map(option => option.value);
 const npcTraitValues: string[] = NPC_TRAITS.flatMap((group) =>
   group.options.map((opt) => opt.value)
 );
@@ -44,7 +45,7 @@ const npcSchema = new Schema<INpc>(
     pronouns: { type: String, enum: NPC_PRONOUNS },
     alignment: { type: String, enum: NPC_ALIGNMENT },
     status: { type: String, enum: NPC_STATUS },
-    race: { type: String, enum: NPC_RACES },
+    race: { type: String, enum: raceValues },
     traits: [{ type: String, enum: npcTraitValues }], // <-- still enforced by Mongoose
     description: { type: String },
     gmNotes: { type: String },

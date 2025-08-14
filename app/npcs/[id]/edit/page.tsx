@@ -48,10 +48,7 @@ export default function EditNpcPage() {
   }, [npc]);
 
   const wrappedOnSubmit = async (data: NpcFormData) => {
-    const savedNpc = await handleSubmit(data);
-    if (savedNpc) {
-      router.push(`/npcs/${savedNpc._id}`);
-    }
+    await handleSubmit(data);
   };
 
   if (isLoading) return <p>Loading NPC...</p>;
