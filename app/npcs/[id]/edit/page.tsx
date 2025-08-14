@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
@@ -15,10 +15,12 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
+import { Paper } from "@mui/material";
 
 export default function EditNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
+  const router = useRouter();
 
   const { mode, setSelectedItem } = useNpcContentStore();
   const user = useAuthStore((state) => state.user);
@@ -46,7 +48,10 @@ export default function EditNpcPage() {
   }, [npc]);
 
   const wrappedOnSubmit = async (data: NpcFormData) => {
-    await handleSubmit(data);
+    const savedNpc = await handleSubmit(data);
+    if (savedNpc) {
+      router.push(`/npcs/${savedNpc._id}`);
+    }
   };
 
   if (isLoading) return <p>Loading NPC...</p>;
@@ -55,11 +60,13 @@ export default function EditNpcPage() {
   return (
     <SkeletonLoader loading={isLoading} skeleton={<Spinner />}>
         <FormProvider {...methods}>
-        <NpcForm
-            onSubmit={wrappedOnSubmit}
-            generator={generator}
-            mode={mode}
-        />
+          <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
+            <NpcForm
+              onSubmit={wrappedOnSubmit}
+              generator={generator}
+              mode={mode}
+            />
+          </Paper>
         </FormProvider>
     </SkeletonLoader>
   );

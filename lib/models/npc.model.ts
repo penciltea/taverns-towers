@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document} from "mongoose";
-import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcTrait } from "@/constants/npc.options";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
 
 // Flatten trait values for enum use
 const npcTraitValues: string[] = NPC_TRAITS.flatMap((group) =>
@@ -23,7 +23,7 @@ export interface INpc extends Document {
   pronouns?: string;
   alignment?: string;
   status?: string;
-  race?: string;
+  race?: NpcRace;
   traits?: NpcTrait[];
   description?: string;
   gmNotes?: string;

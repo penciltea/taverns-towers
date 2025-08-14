@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
 import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
 
 const allTraitValues = NPC_TRAITS.flatMap((group) => group.options.map((opt) => opt.value));

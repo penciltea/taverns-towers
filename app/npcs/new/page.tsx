@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useUIStore } from "@/store/uiStore";
@@ -13,10 +13,12 @@ import { useFormMode } from "@/hooks/useFormMode";
 import { useEffect } from "react";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
+import { Paper } from "@mui/material";
 
 export default function NewNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
+  const router = useRouter();
 
   useFormMode(safeId, useNpcContentStore);
   const { mode, draftItem, clearDraftItem, setDraftItem } = useNpcContentStore();
@@ -54,7 +56,10 @@ export default function NewNpcPage() {
         setOpenDialog("LoginDialog", {});
         return;
       }
-      await handleSubmit(data);
+      const savedNpc = await handleSubmit(data);
+      if (savedNpc) {
+        router.push(`/npcs/${savedNpc._id}`);
+      }
     } catch (err) {
       showErrorDialog(`Sorry, there was a problem: ${err}`);
       console.error("Error during NPC submission:", err);
@@ -63,11 +68,13 @@ export default function NewNpcPage() {
 
   return (
     <FormProvider {...methods}>
-      <NpcForm
-        onSubmit={wrappedOnSubmit}
-        generator={generator}
-        mode={mode}
-      />
+      <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
+        <NpcForm
+          onSubmit={wrappedOnSubmit}
+          generator={generator}
+          mode={mode}
+        />
+      </Paper>
     </FormProvider>
   );
 }
