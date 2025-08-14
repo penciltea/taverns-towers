@@ -8,14 +8,29 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormAssignEntityField from "@/components/Form/FormAssignEntity";
 import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { Npc } from "@/interfaces/npc.interface";
+import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 
 export default function SettlementFormWealth(){
     const {
         register,
         control,
-        setValue,
+        watch,
         formState: { errors },
     } = useFormContext();
+
+    // Get the array of leader IDs from the form
+    const leaderIds: string[] = watch("leader") || [];
+
+    // Fetch all owned NPCs (enabled only if there are leader IDs)
+    const { data: npcData } = useOwnedNpcsQuery(
+        { page: 1, limit: 999 }, // adjust as needed
+        { isEnabled: leaderIds.length > 0 }
+    );
+
+    // Map ID -> NPC object for name display
+    const npcMap = new Map<string, Npc>(
+        npcData?.npcs.map((npc) => [npc._id, npc]) || []
+    );
 
     return (
         <Box>
@@ -24,7 +39,8 @@ export default function SettlementFormWealth(){
                 label="Leaders"
                 dialogComponent={AssignNpcDialog}
                 getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only the string _id
+                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
+                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
             />
 
             <FormSelect

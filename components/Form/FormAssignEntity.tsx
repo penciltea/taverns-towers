@@ -4,39 +4,46 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Button, Box, Chip, Typography } from "@mui/material";
 
-interface AssignEntityFieldProps<V, D> {
+interface AssignEntityFieldProps<TFormValue, TDialogItem> {
   name: string;
   label?: string;
   dialogComponent: React.ComponentType<{
     open: boolean;
     onClose: () => void;
-    selected: D[];
-    onConfirm: (items: D[]) => void;
+    selected: TDialogItem[];
+    onConfirm: (items: TDialogItem[]) => void;
   }>;
-  initialSelected?: V[];
-  getLabel: (item: D) => string;
-  mapDialogToFormValue?: (item: D) => V; // optional mapping
+  initialSelected?: TFormValue[];
+  getLabel: (item: TDialogItem) => string; // always receives dialog item
+  mapDialogToFormValue: (item: TDialogItem) => TFormValue; // how to store in form
+  mapFormValueToDialogItem?: (value: TFormValue) => TDialogItem | undefined; // optional: reverse mapping
 }
 
-export default function FormAssignEntityField<V, D>({
+export default function FormAssignEntityField<TFormValue, TDialogItem>({
   name,
   label,
   dialogComponent: DialogComponent,
   initialSelected = [],
   getLabel,
-  mapDialogToFormValue = (item: any) => item as V, // default identity
-}: AssignEntityFieldProps<V, D>) {
+  mapDialogToFormValue,
+  mapFormValueToDialogItem,
+}: AssignEntityFieldProps<TFormValue, TDialogItem>) {
   const { watch, setValue } = useFormContext();
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const selectedItems: V[] = watch(name) || initialSelected;
+  const formValues: TFormValue[] = watch(name) || initialSelected;
+
+  // Map form values to dialog items for label display
+  const selectedDialogItems: TDialogItem[] = formValues
+    .map((val) => mapFormValueToDialogItem?.(val))
+    .filter((item): item is TDialogItem => !!item); // remove undefined
 
   return (
     <Box sx={{ mb: 2 }}>
       <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mb: 1 }}>
-        {selectedItems.length > 0 ? (
-          selectedItems.map((item, idx) => (
-            <Chip key={idx} label={getLabel(item as unknown as D)} size="small" />
+        {selectedDialogItems.length > 0 ? (
+          selectedDialogItems.map((item, idx) => (
+            <Chip key={idx} label={getLabel(item)} size="small" />
           ))
         ) : (
           <Typography variant="body2" color="textSecondary">
@@ -44,16 +51,20 @@ export default function FormAssignEntityField<V, D>({
           </Typography>
         )}
       </Box>
+
       <Button variant="outlined" onClick={() => setDialogOpen(true)}>
-        {selectedItems.length ? `Change ${label ?? "Items"}` : `Assign ${label ?? "Items"}`}
+        {selectedDialogItems.length
+          ? `Change ${label ?? "Items"}`
+          : `Assign ${label ?? "Items"}`}
       </Button>
 
       <DialogComponent
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
-        selected={selectedItems as unknown as D[]}
-        onConfirm={(items: D[]) => {
-          setValue(name, items.map(mapDialogToFormValue), { shouldValidate: true });
+        selected={selectedDialogItems}
+        onConfirm={(items: TDialogItem[]) => {
+          const mappedValues = items.map(mapDialogToFormValue);
+          setValue(name, mappedValues, { shouldValidate: true });
           setDialogOpen(false);
         }}
       />

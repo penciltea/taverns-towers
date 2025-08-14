@@ -41,6 +41,7 @@ export default function SettlementActions({ _id, userId, editors }: Settlement) 
             deleteAction={deleteSettlement}
             onSuccess={() => {
               queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+              queryClient.removeQueries({ queryKey: ['settlement', _id] }); // remove single settlement cache
               router.push("/settlements/all");
               showSnackbar('Settlement deleted successfully!', 'success');
             }}

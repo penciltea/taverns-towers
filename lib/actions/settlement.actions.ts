@@ -19,8 +19,8 @@ function serializeSettlement(settlement: any): Settlement {
     userId: typeof obj.userId === 'string'
       ? obj.userId
       : obj.userId?._id
-        ? obj.userId._id.toString()  // If populated user document
-        : obj.userId?.toString?.(),  // fallback if ObjectId
+        ? obj.userId._id.toString()
+        : obj.userId?.toString?.(),
     leader: (obj.leader || []).map((id: any) => id.toString()),
     createdAt: obj.createdAt?.toISOString?.() ?? null,
     updatedAt: obj.updatedAt?.toISOString?.() ?? null,
@@ -78,6 +78,7 @@ export async function getSettlements({
     ...settlement,
     _id: settlement._id.toString(),
     userId: settlement.userId.toString(),
+    leader: (settlement.leader || []).map((id: any) => id.toString())
   }));
 
   return {
