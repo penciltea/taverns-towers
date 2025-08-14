@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { DialogProps } from "./dialogProps.interface";
 import { CommonInterface } from "./common.interface";
 import { Types } from "mongoose";
+import { Npc } from "./npc.interface";
+import { SettlementFormData } from "@/schemas/settlement.schema";
  
 export interface SettlementDialogProps extends DialogProps {
   settlement: Settlement;
@@ -39,7 +41,7 @@ export interface Settlement extends CommonInterface {
   climate?: string;
   magic?: string;
   races?: string;
-  leader?: string;
+  leader?: string[];
   rulingStyle?: string;
   wealth?: string;
   tradeNotes?: string;

@@ -23,27 +23,23 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
   const { user } = useAuthStore();
 
   return async function saveSettlement(data: SettlementFormData) {
-    if (!user?.id) {
-      throw new Error("User is not logged in");
-    }
+    if (!user?.id) throw new Error("User is not logged in");
 
     try {
-      // Upload the map image, if present
       const cleanMap = await handleDynamicFileUpload(data, "map");
 
-      // Clean up tag list
       if (Array.isArray(data.tags)) {
         data.tags = data.tags.filter(tag => tag.trim() !== "");
       }
 
-      // Transform for DB format
+      // Transform form data for DB
       const settlementData = {
         ...transformSettlementFormData(data),
+        leader: data.leader ?? [],
         map: cleanMap,
-        userId: user.id
+        userId: user.id,
       };
 
-      // Call appropriate server action
       const savedSettlement =
         mode === "edit" && id
           ? await updateSettlement(id, settlementData)

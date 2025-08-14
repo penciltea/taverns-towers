@@ -47,7 +47,7 @@ const SettlementSchema = new Schema<ISettlement>(
     description: { type: String, required: false },
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
-    leader: { type: String, required: false },
+    leader: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
     rulingStyle: { type: String, enum: RULING_TYPES, required: false },
     wealth: { type: String, enum: WEALTH_LEVELS, required: false },
     tradeNotes: { type: String, required: false },
@@ -65,6 +65,11 @@ const SettlementSchema = new Schema<ISettlement>(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
+
+export interface SettlementDbData extends Document {
+  name: string;
+  leader?: Types.ObjectId[];
+}
 
 
 SettlementSchema.virtual('id').get(function () {

@@ -6,6 +6,8 @@ import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
+import { Types } from "mongoose";
+import { toObjectIdArray } from "../util/transformFormDataForDB";
 
 // Serialize for client compatibility
 function serializeSettlement(settlement: any): Settlement {
@@ -19,6 +21,7 @@ function serializeSettlement(settlement: any): Settlement {
       : obj.userId?._id
         ? obj.userId._id.toString()  // If populated user document
         : obj.userId?.toString?.(),  // fallback if ObjectId
+    leader: (obj.leader || []).map((id: any) => id.toString()),
     createdAt: obj.createdAt?.toISOString?.() ?? null,
     updatedAt: obj.updatedAt?.toISOString?.() ?? null,
   };
@@ -116,10 +119,11 @@ export async function createSettlement(data: Partial<Settlement>) {
 
   const newSettlement = await SettlementModel.create({
     ...data,
-    userId: new ObjectId(user.id)
+    leader: toObjectIdArray(data.leader),
+    userId: new ObjectId(user.id),
   });
-  revalidatePath("/settlements");
 
+  revalidatePath("/settlements");
   return serializeSettlement(newSettlement);
 }
 
@@ -127,16 +131,24 @@ export async function createSettlement(data: Partial<Settlement>) {
 
 export async function updateSettlement(id: string, data: Partial<Settlement>) {
   await connectToDatabase();
-  
+
   if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
 
   const user = await requireUser();
   const existing = await SettlementModel.findById(id);
 
-  if(!existing) throw new Error("Settlement not found");
-  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  if (!existing) throw new Error("Settlement not found");
+  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
 
-  const updatedSettlement = await SettlementModel.findByIdAndUpdate(id, data, { new: true });
+  const updatedSettlement = await SettlementModel.findByIdAndUpdate(
+    id,
+    {
+      ...data,
+      leader: toObjectIdArray(data.leader),
+    },
+    { new: true }
+  );
+
   if (!updatedSettlement) throw new Error("Settlement not found");
 
   revalidatePath("/settlements");

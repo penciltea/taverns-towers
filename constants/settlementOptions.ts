@@ -66,6 +66,7 @@ export const DOMAINS = [
   "Death",
   "Decay",
   "Dreams",
+  "Earth",
   "Fate",
   "Fertility",
   "Forge",

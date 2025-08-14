@@ -13,16 +13,18 @@ export default function SettlementFormWealth(){
     const {
         register,
         control,
+        setValue,
         formState: { errors },
     } = useFormContext();
 
     return (
         <Box>
-            <FormAssignEntityField<Npc>
+            <FormAssignEntityField<string, Npc>
                 name="leader"
                 label="Leaders"
                 dialogComponent={AssignNpcDialog}
                 getLabel={(npc) => npc.name || "Unnamed NPC"}
+                mapDialogToFormValue={(npc) => npc._id} // store only the string _id
             />
 
             <FormSelect

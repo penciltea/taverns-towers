@@ -9,6 +9,7 @@ import { SettlementFormData } from "@/schemas/settlement.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
+import { useRouter } from "next/navigation";
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;
@@ -40,6 +41,7 @@ function TabPanel({
 
 export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }: SettlementFormProps) {
   const [tab, setTab] = useState(0);
+  const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<SettlementFormData>();
   const { handleSubmit, formState: { errors } } = methods;
@@ -59,7 +61,7 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
 
   function handleCancel(){
     clearDraftItem();
-    history.back();
+    router.back();
   }
 
   return (

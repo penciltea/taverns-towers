@@ -61,7 +61,7 @@
     },
     {
         "tag": "Port",
-        "domains": ["Travel", "Water", "Storms", "Luck", "Trade"]
+        "domains": ["Travel", "Water", "Storms", "Luck", "Commerce"]
     },
     {
         "tag": "Prison Settlement",

@@ -6,7 +6,6 @@ import { Npc } from "@/interfaces/npc.interface";
 import { Spinner } from "@/components/Common/Spinner";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 import { Typography } from "@mui/material";
-import NewNpcPage from "@/app/npcs/new/page";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 import { useNpcForm } from "@/hooks/npc/useNpcForm";
 
@@ -24,21 +23,20 @@ export default function AssignNpcDialog({
   onClose,
   selected,
   onConfirm
-}: AssignNpcDialogProps & { generator?: typeof NewNpcPage.prototype.generator }) {
+}: AssignNpcDialogProps) {
   const { data, isLoading, error } = useOwnedNpcsQuery(DefaultNpcQueryParams);
   const { handleSubmit: createNpcMutation } = useNpcMutations({ mode: "add" });
-  const methods = useNpcForm(); // React Hook Form methods
+  const methods = useNpcForm(); 
   const npcGenerator = useNpcGeneratorActions(methods);
 
-  return isLoading ? (
-    <Spinner />
-  ) : error || !data?.success ? (
-    <Typography>Failed to load NPCs.</Typography>
-  ) : (
+  if (isLoading) return <Spinner />;
+  if (error || !data?.success) return <Typography>Failed to load NPCs.</Typography>;
+
+  return (
     <EntityLinkDialog<Npc>
       open={open}
       onClose={onClose}
-      onConfirm={onConfirm}
+      onConfirm={onConfirm} // <-- passes full NPC[] back to form
       selected={selected}
       entities={data.npcs}
       getId={(npc) => npc._id}
@@ -49,9 +47,8 @@ export default function AssignNpcDialog({
         <NpcForm
           mode="add"
           onSubmit={async (npcData) => {
-            // Call your existing mutation from useNpcMutations
             const newNpc = await createNpcMutation(npcData);
-            return newNpc; // must return the newly-created NPC for EntityLinkDialog
+            return newNpc;
           }}
           generator={npcGenerator}
         />

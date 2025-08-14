@@ -1,13 +1,19 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { NpcFormData } from "@/schemas/npc.schema";
+import { Types } from "mongoose";
+
+export function toObjectIdArray(ids?: string[]): Types.ObjectId[] | undefined {
+  return ids?.map((id) => new Types.ObjectId(id));
+}
 
 export function transformSettlementFormData(data: SettlementFormData) {
   return {
     ...data,
-    tags: data.tags || [],
-    terrain: data.terrain || [],
-    crime: data.crime || [],
+    tags: data.tags ?? [],
+    terrain: data.terrain ?? [],
+    leader: data.leader ?? [],    // keeps string[] for UI
+    crime: data.crime ?? [],
     map:
       typeof data.map === "string" && data.map.startsWith("http")
         ? data.map
