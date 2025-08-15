@@ -152,7 +152,9 @@ export const NPC_CONNECTION_TYPE = [
 
 export const NPC_CONNECTION_SETTLEMENT_ROLE = [
   { label: "Leader", value: "leader" },
+  { label: "Advisor", value: "advisor" },
   { label: "Emissary", value: "emissary" },
+  { label: "Diplomat", value: "diplomat" },
   { label: "Citizen", value: "citizen" },
 ];
 

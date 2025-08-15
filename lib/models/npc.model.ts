@@ -1,20 +1,12 @@
 import mongoose, { Schema, Document} from "mongoose";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
+import { NpcConnection } from "@/interfaces/connection.interface";
+import { connectionSchema } from "./connection.model";
 
 // Flatten trait values for enum use
 const raceValues = NPC_RACES.map(option => option.value);
 const npcTraitValues: string[] = NPC_TRAITS.flatMap((group) =>
   group.options.map((opt) => opt.value)
-);
-
-const connectionSchema = new Schema(
-  {
-    type: { type: String, enum: NPC_CONNECTION_TYPE, required: true },
-    id: { type: Schema.Types.ObjectId, required: true, refPath: "connections.type" },
-    role: { type: String, default: "" },
-    label: { type: String, default: "" },
-  },
-  { _id: false }
 );
 
 export interface INpc extends Document {
@@ -29,7 +21,7 @@ export interface INpc extends Document {
   description?: string;
   gmNotes?: string;
   publicNotes?: string;
-  connections?: { type: string; id: mongoose.Types.ObjectId; role?: string; label?: string }[];
+  connections?: NpcConnection[];
   image?: string;
   isPublic?: boolean;
   editors?: mongoose.Types.ObjectId[];

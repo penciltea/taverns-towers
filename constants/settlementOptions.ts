@@ -1,4 +1,4 @@
-export const SETTLEMENT_TABS = ["Basics", "Leadership & Wealth", "Culture & Society"];
+export const SETTLEMENT_TABS = ["Basics", "Leadership & Wealth", "Culture & Society", "Connections"];
 
 export const SIZE_TYPES = [
     "Encampment",

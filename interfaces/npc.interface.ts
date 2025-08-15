@@ -2,13 +2,7 @@ import { NpcAge, NpcAlignment, NpcConnectionType, NpcPronounSet, NpcRace, NpcSta
 import { CommonInterface } from "./common.interface";
 import { DialogProps } from "@mui/material";
 import { NpcFormData } from "@/schemas/npc.schema";
-
-export interface NpcConnection {
-  type: NpcConnectionType;
-  id: string;
-  role?: string;
-  label?: string;
-}
+import { NpcConnection } from "./connection.interface";
 
 export interface Npc extends CommonInterface {
   age?: NpcAge;

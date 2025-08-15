@@ -10,6 +10,7 @@ import FormActions from "@/components/Form/FormActions";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
+import SettlementFormConnections from "./Connections";
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;
@@ -139,6 +140,9 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
         </TabPanel>
         <TabPanel value={tab} index={2}>
           <SettlementFormCulture />
+        </TabPanel>
+        <TabPanel value={tab} index={3}>
+          <SettlementFormConnections />
         </TabPanel>
 
         <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} onCancel={handleCancel} />

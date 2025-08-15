@@ -2,12 +2,9 @@ import { Box, Typography, List, Button } from "@mui/material";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { useUIStore } from "@/store/uiStore";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { useNpcNames } from "@/hooks/npc/useNpcNames";
 
 export default function SettlementDetails({ settlement }: { settlement: Settlement }) {
   const { setOpenDialog, openDialog, closeDialog } = useUIStore();
-
-  const leaderNames = useNpcNames(settlement.leader);
 
 
   const fields = [
@@ -16,8 +13,7 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
     { label: "Terrain", value: settlement.terrain?.length ? settlement.terrain.join(", ") : "N/A" },
     { label: "Climate", value: settlement.climate },
     { label: "Magic Use/Level", value: settlement.magic },
-    { label: "Wealth", value: settlement.wealth },
-    { label: "Leader(s)", value: leaderNames },
+    { label: "Wealth", value: settlement.wealth }
   ];
 
   if (!settlement) {

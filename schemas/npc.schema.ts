@@ -1,17 +1,11 @@
 import { z } from "zod";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
 import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
+import { npcConnectionItemSchema } from "./connection.schema";
 
 const allTraitValues = NPC_TRAITS.flatMap((group) => group.options.map((opt) => opt.value));
 const raceValues = NPC_RACES.map(opt => opt.value);
 
-
-const npcConnectionItemSchema = z.object({
-  id: z.string(),
-  type: z.enum(["settlement", "site", "npc", "guild"]),
-  role: z.string().optional(),
-  label: z.string().optional(),
-});
 
 export const npcSchema = z.object({
   name: z.string().min(1, "NPC name is required"),

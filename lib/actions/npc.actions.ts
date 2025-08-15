@@ -9,6 +9,7 @@ import { Npc } from "@/interfaces/npc.interface";
 import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
+import { normalizeConnections } from "../util/connectionHelpers";
 
 // serialize for client compatibility
 function serializeNpc(npc: any): Npc {
@@ -30,16 +31,6 @@ function serializeNpc(npc: any): Npc {
         updatedAt: obj.updatedAt?.toISOString?.() ?? null,
     };
 }
-
-function normalizeConnections(connections: any[] = []) {
-  return connections.map(conn => ({
-    ...conn,
-    id: ObjectId.isValid(conn.id) ? new ObjectId(conn.id) : conn.id,
-    role: conn.role ?? "",  // default to empty string if undefined
-    label: conn.label ?? "",
-  }));
-}
-
 
 export async function getNpcs({
   userId,

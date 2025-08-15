@@ -2,6 +2,7 @@ import { z } from "zod";
 import { defaultEnvironmentValues, environmentSchema } from "./environment.schema";
 import { optionalEnum } from "@/lib/util/zodHelpers";
 import { MAGIC_LEVELS, RULING_TYPES, SIZE_TYPES, WEALTH_LEVELS } from "@/constants/settlementOptions";
+import { npcConnectionItemSchema } from "./connection.schema";
 const fileSizeLimit = 5 * 1024 * 1024;
 
 export const settlementSchema = z.object({
@@ -12,7 +13,6 @@ export const settlementSchema = z.object({
   description: z.string().optional(),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
-  leader: z.array(z.string()).optional(),
   rulingStyle: optionalEnum(RULING_TYPES as [string, ...string[]], "Invalid ruling style"),
   wealth: optionalEnum(WEALTH_LEVELS as [string, ...string[]], "Invalid wealth level"),
   tradeNotes: z.string().optional(),
@@ -23,6 +23,7 @@ export const settlementSchema = z.object({
   crime: z.array(z.string()).optional(),
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
+  connections: z.array(npcConnectionItemSchema).optional(),
   map: z
     .any()
     .refine(
@@ -52,7 +53,6 @@ export const defaultSettlementValues =  {
   races: "",
   publicNotes: "",
   gmNotes: "",
-  leader: [],
   rulingStyle: "",
   wealth: "",
   tradeNotes: "",
@@ -64,6 +64,7 @@ export const defaultSettlementValues =  {
   map: undefined,
   isPublic: false,
   editors: [],
+  connections: [],
   ...defaultEnvironmentValues // added for defaults for climate, terrain, and tags
 }
 

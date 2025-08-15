@@ -7,6 +7,7 @@ import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { toObjectIdArray } from "../util/transformFormDataForDB";
+import { normalizeConnections } from "../util/connectionHelpers";
 
 // Serialize for client compatibility
 function serializeSettlement(settlement: any): Settlement {
@@ -20,7 +21,10 @@ function serializeSettlement(settlement: any): Settlement {
       : obj.userId?._id
         ? obj.userId._id.toString()
         : obj.userId?.toString?.(),
-    leader: (obj.leader || []).map((id: any) => id.toString()),
+    connections: (obj.connections || []).map((conn: any) => ({
+        ...conn,
+        id: conn.id?.toString ? conn.id.toString() : conn.id,
+    })),
     createdAt: obj.createdAt?.toISOString?.() ?? null,
     updatedAt: obj.updatedAt?.toISOString?.() ?? null,
   };
@@ -77,7 +81,10 @@ export async function getSettlements({
     ...settlement,
     _id: settlement._id.toString(),
     userId: settlement.userId.toString(),
-    leader: (settlement.leader || []).map((id: any) => id.toString())
+    connections: settlement.connections.map((conn) => ({
+      ...conn,
+      id: conn.id.toString(),
+    })),
   }));
 
   return {
@@ -117,10 +124,14 @@ export async function createSettlement(data: Partial<Settlement>) {
   await connectToDatabase();
   const user = await requireUser();
 
+  // Normalize connection ids
+      const normalizedConnections = normalizeConnections(data.connections);
+  
+
   const newSettlement = await SettlementModel.create({
     ...data,
-    leader: toObjectIdArray(data.leader),
     userId: new ObjectId(user.id),
+    connections: normalizedConnections,
   });
 
   revalidatePath("/settlements");
@@ -140,11 +151,14 @@ export async function updateSettlement(id: string, data: Partial<Settlement>) {
   if (!existing) throw new Error("Settlement not found");
   if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
 
+  // Normalize connection ids
+    const normalizedConnections = normalizeConnections(data.connections);
+
   const updatedSettlement = await SettlementModel.findByIdAndUpdate(
     id,
     {
       ...data,
-      leader: toObjectIdArray(data.leader),
+      connections: normalizedConnections,
     },
     { new: true }
   );

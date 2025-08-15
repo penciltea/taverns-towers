@@ -8,6 +8,7 @@ import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
 import { Session } from 'next-auth';
+import SettlementConnections from "./SettlementConnections";
 
 interface Props {
   settlement: Settlement;
@@ -66,7 +67,14 @@ export default function ViewSettlement({ settlement }: Props) {
             onDelete={(id: string) => {}}
           />
         </Grid>
+
+         {/* Connections List */}
+        <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
+          <SettlementConnections connections={settlement.connections} />
+        </Grid>
       </Grid>
+
+
 
       <FabButton label="Add Site" 
         onClick={() => setOpenDialog('siteTypeDialog', { 
