@@ -6,11 +6,14 @@ import { Box } from '@mui/material';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import InfoListItem from '@/components/Common/InfoListItem';
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
+import { useNpcNames } from '@/hooks/npc/useNpcNames';
 
 
 export const EntertainmentDetails = ({ site }: { site: EntertainmentSite }) => {
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
+
+  const ownerNames = useNpcNames(site.owner);
 
   return (
     <>
@@ -19,7 +22,7 @@ export const EntertainmentDetails = ({ site }: { site: EntertainmentSite }) => {
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />        
         <InfoListItem label="Cost" value={site.cost} />
-        <InfoListItem label="Owner(s)" value={site.owner} />
+        <InfoListItem label="Owner(s)" value={ownerNames} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
 
         { user?.id === site.userId &&  (

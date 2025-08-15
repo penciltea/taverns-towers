@@ -59,7 +59,7 @@ export const menuItemSchema = z.object({
 
 export const tavernSchema = baseSiteSchema.extend({
   type: z.literal("tavern"),
-  owner: z.string().optional(),
+  owner: z.array(z.string()).optional(),
   clientele: z.string().optional(),
   cost: z.string().optional(),
   entertainment: z.array(z.string()),
@@ -69,7 +69,7 @@ export const tavernSchema = baseSiteSchema.extend({
 export const templeSchema = baseSiteSchema.extend({
   type: z.literal("temple"),
   domains: z.array(z.string()),
-  leader: z.string().optional(),
+  leader: z.array(z.string()).optional(),
   relics: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
 });
@@ -77,7 +77,7 @@ export const templeSchema = baseSiteSchema.extend({
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
   shopType: z.enum(shopTypeEnumValues),
-  owner: z.string().optional(),
+  owner: z.array(z.string()).optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
@@ -86,7 +86,7 @@ export const guildSchema = baseSiteSchema.extend({
   guildType: z.enum(guildTypeEnumValues),
   guildName: z.string().optional(),
   name: z.string().optional(),
-  leader: z.string().optional(),
+  leader: z.array(z.string()).optional(),
   membershipRequirements: z.array(z.enum(guildMembershipEnumValues)).optional().default([]),
   knownRivals: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
@@ -95,7 +95,7 @@ export const guildSchema = baseSiteSchema.extend({
 export const governmentSchema = baseSiteSchema.extend({
   type: z.literal("government"),
   function: z.enum(governmentFunctionEnumValues).optional(),
-  officials: z.string().optional(),
+  officials: z.array(z.string()).optional(),
   security: z.enum(securityEnumValues)
 });
 
@@ -103,7 +103,7 @@ export const entertainmentSchema = baseSiteSchema.extend({
   type: z.literal("entertainment"),
   venueType: z.enum(entertainmentEnumValues).optional(),
   performances: z.string().optional(),
-  owner: z.string().optional(),
+  owner: z.array(z.string()).optional(),
   cost: z.string().optional(),
 });
 
@@ -113,7 +113,7 @@ export const hiddenSchema = baseSiteSchema.extend({
   .array(z.enum(secrecyEnumValues as [string, ...string[]]))
   .optional()
   .default([]),
-  leader: z.string().optional(),
+  leader: z.array(z.string()).optional(),
   knownTo: z.string().optional(),
   defenses: z.string().optional(),
   purpose: z.string().optional(),
@@ -121,7 +121,7 @@ export const hiddenSchema = baseSiteSchema.extend({
 
 export const residenceSchema = baseSiteSchema.extend({
   type: z.literal("residence"),
-  occupant: z.string().optional(),
+  occupant: z.array(z.string()).optional(),
   wealth: z.string().optional(),
   notableFeatures: z.string().optional(),
 });
@@ -155,7 +155,7 @@ export const defaultSiteValues: Record<
     name: "",
     type: "tavern",
     clientele: "",
-    owner: "",
+    owner: [],
     entertainment: [],
     cost: "",
     menu: []
@@ -164,7 +164,7 @@ export const defaultSiteValues: Record<
     name: "",
     type: "temple",
     domains: [],
-    leader: "",
+    leader: [],
     relics: "",
     menu: []
   },
@@ -172,7 +172,7 @@ export const defaultSiteValues: Record<
     name: "",
     type: "shop",
     shopType: "",
-    owner: "",
+    owner: [],
     menu: []
   },
   guild: {
@@ -180,7 +180,7 @@ export const defaultSiteValues: Record<
     type: "guild",
     guildType: "",
     guildName: "",
-    leader: "",
+    leader: [],
     membershipRequirements: [],
     knownRivals: "",
     menu: []
@@ -189,14 +189,14 @@ export const defaultSiteValues: Record<
     name: "",
     type: "government",
     function: "",
-    officials: "",
+    officials: [],
     security: "",
   },
   entertainment: {
     name: "",
     type: "entertainment",
     venueType: "",
-    owner: "",
+    owner: [],
     cost: "",
   },
   hidden: {
@@ -210,7 +210,7 @@ export const defaultSiteValues: Record<
   residence: {
     name: "",
     type: "residence",
-    occupant: "",
+    occupant: [],
     notableFeatures: ""
   },
   miscellaneous: {

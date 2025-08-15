@@ -14,7 +14,7 @@ export interface Npc extends CommonInterface {
   age?: NpcAge;
   race?: NpcRace;
   pronouns?: NpcPronounSet;
-  status?: NpcStatus
+  status?: NpcStatus;
   alignment?: NpcAlignment
   traits?: NpcTrait[];
   image?: string;

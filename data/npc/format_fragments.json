@@ -61,7 +61,7 @@
     },
     {
         "type": "format",
-        "value": "{{first}}, {{title}}",
+        "value": "{{first}}, \"the {{nickname}}\"",
         "race": ["Human", "half-elf", "elf", "Dragonborn", "tiefling", "aasimar"]
     },
     {

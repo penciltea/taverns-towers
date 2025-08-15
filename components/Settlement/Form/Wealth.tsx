@@ -36,7 +36,7 @@ export default function SettlementFormWealth(){
         <Box>
             <FormAssignEntityField<string, Npc>
                 name="leader"
-                label="Leaders"
+                label="Leader(s)"
                 dialogComponent={AssignNpcDialog}
                 getLabel={(npc) => npc.name || "Unnamed NPC"}
                 mapDialogToFormValue={(npc) => npc._id} // store only ID in form

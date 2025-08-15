@@ -7,17 +7,20 @@ import MenuList from './MenuList';
 import InfoListItem from '@/components/Common/InfoListItem';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
+import { useNpcNames } from '@/hooks/npc/useNpcNames';
 
 export const TavernDetails = ({ site }: { site: TavernSite }) => {
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
+
+  const ownerNames = useNpcNames(site.owner);
 
   return (
     <>
       <Box component="dl" sx={{ mt: 1, px: 3 }}>
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />
-        <InfoListItem label="Owner" value={site.owner} />
+        <InfoListItem label="Owner" value={ownerNames} />
         <InfoListItem label="Clientele" value={site.clientele} />
         <InfoListItem label="Entertainment Offerings" value={site.entertainment?.length ? site.entertainment.join(', ') : 'N/A'} />
         <InfoListItem label="Room Cost per Night" value={site.cost} />

@@ -46,7 +46,7 @@ export default function EntityLinkDialog<T>({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={onClose} fullWidth>
       <DialogTitle>Assign {entityLabel}</DialogTitle>
       <DialogContent>
         <Autocomplete<T>

@@ -2,17 +2,12 @@ import { Box, Typography, List, Button } from "@mui/material";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { useUIStore } from "@/store/uiStore";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
-import { Npc } from "@/interfaces/npc.interface";
+import { useNpcNames } from "@/hooks/npc/useNpcNames";
 
 export default function SettlementDetails({ settlement }: { settlement: Settlement }) {
   const { setOpenDialog, openDialog, closeDialog } = useUIStore();
 
-  // Fetch all NPCs that could be leaders (or your full owned NPC list)
-  const { data: npcData } = useOwnedNpcsQuery({ page: 1, limit: 999 });
-  const npcMap = new Map<string, Npc>(npcData?.npcs.map((npc) => [npc._id, npc]) || []);
-
-  const leaderNames = settlement.leader?.map((id) => npcMap.get(id)?.name || "Unnamed NPC").join(", ") || "N/A";
+  const leaderNames = useNpcNames(settlement.leader);
 
 
   const fields = [
