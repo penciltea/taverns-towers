@@ -1,8 +1,30 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { useGroupedConnections } from "@/hooks/npc/useGroupedConnections";
+import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
-export function ConnectionsList({ connections }: { connections: any[] }) {
+interface Props {
+  connections: NpcConnection[];
+  siteType: string;
+}
+
+export function ConnectionsList({ connections, siteType }: Props) {
   const { grouped, isLoading, hasConnections } = useGroupedConnections(connections);
+
+  function getNpcRoleLabel(roleValue: string, siteType?: string): string {
+    // 1. Search base roles
+    const baseMatch = NPC_CONNECTION_SITE_ROLE.find(r => r.value === roleValue);
+    if (baseMatch) return baseMatch.label;
+
+    // 2. Search site-specific roles (if siteType provided)
+    if (siteType && NPC_CONNECTION_SITE_TYPE_ROLES[siteType]) {
+      const siteMatch = NPC_CONNECTION_SITE_TYPE_ROLES[siteType].find(r => r.value === roleValue);
+      if (siteMatch) return siteMatch.label;
+    }
+
+    // 3. Fallback: just return the raw value
+    return roleValue;
+  }
 
   if (isLoading) {
     return (
@@ -33,7 +55,7 @@ export function ConnectionsList({ connections }: { connections: any[] }) {
                 <ListItemText
                   sx={{ textTransform: 'capitalize'}}
                   primary={conn.name || "Unknown NPC"}
-                  secondary={conn.role ? `Role: ${conn.role}` : undefined}
+                  secondary={conn.role ? `Role: ${getNpcRoleLabel(conn.role, siteType)}` : undefined}
                 />
               </ListItem>
             ))}

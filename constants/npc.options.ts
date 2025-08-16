@@ -159,11 +159,79 @@ export const NPC_CONNECTION_SETTLEMENT_ROLE = [
 ];
 
 export const NPC_CONNECTION_SITE_ROLE = [
-  { label: "Owner / Leader", value: "owner" },
-  { label: "Manager", value: "manager" }, 
-  { label: "Employee", value: "employee" },
+  { label: "Owner", value: "owner" },
+  { label: "Leader", value: "Leader" },
+  { label: "Manager", value: "manager" },
+  { label: "Employee / Staff", value: "employee" },
   { label: "Caretaker", value: "caretaker" },
 ];
+
+// site-specific roles keyed by site type
+export const NPC_CONNECTION_SITE_TYPE_ROLES: Record<string, { label: string; value: string }[]> = {
+  "tavern": [
+    { label: "Innkeeper", value: "innkeeper" },
+    { label: "Barkeep", value: "barkeep" },
+    { label: "Cook", value: "cook" },
+    { label: "Server", value: "server" },
+    { label: "Entertainer / Bard", value: "entertainer" },
+    { label: "Regular Patron", value: "regularPatron" },
+  ],
+
+  "temple": [
+    { label: "High Priest / Priestess", value: "highPriest" },
+    { label: "Cleric / Acolyte", value: "acolyte" },
+    { label: "Monk / Devotee", value: "devotee" },
+    { label: "Pilgrim", value: "pilgrim" },
+  ],
+
+  "shop": [
+    { label: "Apprentice", value: "apprentice" },
+    { label: "Craftsman / Artisan", value: "artisan" },
+    { label: "Customer", value: "customer" },
+  ],
+
+  "guild": [
+    { label: "Guildmaster", value: "guildmaster" },
+    { label: "Guild Officer", value: "officer" },
+    { label: "Guild Member", value: "member" },
+    { label: "Recruit", value: "recruit" },
+  ],
+
+  "government": [
+    { label: "Mayor / Ruler", value: "mayor" },
+    { label: "Council Member", value: "councilMember" },
+    { label: "Clerk / Official", value: "clerk" },
+    { label: "Guard / Watch", value: "watch" },
+  ],
+
+  "entertainment": [
+    { label: "Performer", value: "performer" },
+    { label: "Troupe Leader", value: "troupeLeader" },
+    { label: "Stagehand / Crew", value: "crew" },
+    { label: "Spectator", value: "spectator" },
+  ],
+
+  "hidden": [
+    { label: "Mastermind", value: "mastermind" },
+    { label: "Conspirator", value: "conspirator" },
+    { label: "Cultist", value: "cultist" },
+    { label: "Spy / Informant", value: "spy" },
+  ],
+
+  "residence": [
+    { label: "Head of Household", value: "headOfHousehold" },
+    { label: "Family Member", value: "family" },
+    { label: "Servant", value: "servant" },
+    { label: "Guest", value: "guest" },
+  ],
+
+  "miscellaneous": [
+    { label: "Wanderer", value: "wanderer" },
+    { label: "Hermit", value: "hermit" },
+    { label: "Stranger", value: "stranger" },
+    { label: "Caretaker / Warden", value: "warden" },
+  ],
+};
 
 export const NPC_CONNECTION_NPC_ROLE = [
   { label: "Friend", value: "friend" },

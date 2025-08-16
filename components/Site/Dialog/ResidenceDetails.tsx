@@ -26,7 +26,7 @@ export const ResidenceDetails = ({ site }: { site: ResidenceSite }) => {
 
       </Box>
       
-      <ConnectionsList connections={site.connections} />
+      <ConnectionsList connections={site.connections} siteType="residence" />
     </>
   );
 };

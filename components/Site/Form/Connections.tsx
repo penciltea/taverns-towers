@@ -2,14 +2,28 @@
 
 import { useFormContext } from "react-hook-form";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { NPC_CONNECTION_SITE_ROLE } from "@/constants/npc.options";
+import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
+import { SiteFormData } from "@/schemas/site.schema";
+import { useSiteContentStore } from "@/store/siteStore";
+import { useSearchParams } from "next/navigation";
+import { Option } from "@/components/Form/FormSelect";
 
-export default function SiteFormConnections() {
+interface Props {
+    mode: "add" | "edit" | null;
+}
+
+export default function SiteFormConnections({ mode }: Props) {
   const { control, watch, setValue } = useFormContext();
+  const { selectedItem } = useSiteContentStore();  
+  const searchParams = useSearchParams();
 
   const { data: npcsData, isLoading: npcsLoading } = useOwnedNpcsQuery({}, { isEnabled: true });
+
+  const typeParam = mode === 'edit'
+    ? selectedItem?.type
+    : (searchParams?.get("type") as SiteFormData["type"]);
 
   const rawConnections = watch("connections");
   const connections: ConnectionItem[] = Array.isArray(rawConnections) ? rawConnections : [];
@@ -23,6 +37,14 @@ export default function SiteFormConnections() {
       [...connections.filter(c => c.type !== "npc"), ...updatedWithType]
     );
   };
+
+  function getSiteRoles(siteType?: string): Option[] {
+    return [
+      ...NPC_CONNECTION_SITE_ROLE,
+      ...(siteType ? NPC_CONNECTION_SITE_TYPE_ROLES[siteType] ?? [] : []), // get specific extra roles from site type constant
+      { label: "Other", value: "other" }
+    ];
+  }
 
   const npcOptions = (npcsData?.npcs ?? []).map((npc) => ({
     id: npc._id,
@@ -57,7 +79,7 @@ export default function SiteFormConnections() {
       value={connections.filter(c => c.type === "npc")}
       onChange={handleNpcConnectionsChange}
       availableOptions={npcOptions}
-      roleOptions={NPC_CONNECTION_SITE_ROLE}
+      roleOptions={getSiteRoles(typeParam)}
       control={control}
       namePrefix="connections.npc"
     />
