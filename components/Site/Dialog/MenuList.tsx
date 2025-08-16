@@ -18,7 +18,7 @@ const MenuList = ({ menu = [], label }: MenuListProps) => {
     return (
       menu.length > 0 && (
         <Box sx={{mt: 2}}>
-          <Typography variant="h6" component="h2" sx={{ textDecoration: "underline" }}><strong>{label}</strong></Typography>
+          <Typography variant="h6" component="h2" sx={{ textDecoration: "underline" }}>{ label }</Typography>
           <ul>
             {menu.map((item, index) => (
               <li key={index}>
