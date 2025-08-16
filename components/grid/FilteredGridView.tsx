@@ -52,7 +52,7 @@ export default function FilteredGridView<T extends CommonInterface>({
   const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
-    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
+    <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
       <Typography variant={titleVariant} component={titleComponent}>{title}</Typography>
 
       <Box sx={{ my: 3 }}>

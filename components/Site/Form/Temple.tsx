@@ -1,8 +1,6 @@
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import FormAssignEntityField from "@/components/Form/FormAssignEntity";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { DOMAINS } from "@/constants/settlementOptions";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
@@ -68,15 +66,6 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
-            />
-
-            <FormAssignEntityField<string, Npc>
-                name="leader"
-                label="Leader(s)"
-                dialogComponent={AssignNpcDialog}
-                getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
-                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
             />
 
             <FormTextField

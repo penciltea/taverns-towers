@@ -3,8 +3,6 @@ import { useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import FormAssignEntityField from "@/components/Form/FormAssignEntity";
-import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { Npc } from "@/interfaces/npc.interface";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 
@@ -69,15 +67,6 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 label="Entry / Ticket Cost"
                 registration={register("cost")}
                 fieldError={errors.cost}
-            />
-
-            <FormAssignEntityField<string, Npc>
-                name="owner"
-                label="Owner(s)"
-                dialogComponent={AssignNpcDialog}
-                getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
-                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
             />
 
             <FormTextField

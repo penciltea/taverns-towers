@@ -11,6 +11,7 @@ import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { getDomainsByEnvironment } from "../../common/domains/getDomainsByEnvironment.rules";
 import { domainCountBySiteSize } from "./mappings/domains.mappings";
+import { DOMAINS } from "@/constants/settlementOptions";
 
 export function isTempleSite(data: Partial<SiteFormData>): data is Partial<TempleSite> {
   return data.type === "temple";
@@ -40,7 +41,12 @@ export async function applyTempleDomainsByConditions(
 
   // Pick based on site size
   const [min, max] = domainCountBySiteSize[data.size ?? "modest"] ?? [1, 2];
-  data.domains = getRandomSubset(weightedPool, { min, max });
+
+  if(weightedPool.length = 0){
+    data.domains = getRandomSubset(domainPool, { min, max });
+  } else {
+    data.domains = getRandomSubset(DOMAINS, { min, max }); // fallback if environmental or settlement context gives no pool of results, choose any domains from constants
+  }
 
   return data;
 }

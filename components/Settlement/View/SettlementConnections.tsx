@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Divider, Grid, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
 import { Npc } from "@/interfaces/npc.interface";
 
@@ -35,13 +35,11 @@ export default function SettlementConnections({ connections }: Props) {
     }, {});
 
     return (
-        <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
+        <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
             <Typography variant="h4" component="h3" sx={{ mb: 2 }}>Connections</Typography>
-            <Divider sx={{ mb: 2 }} />
 
             {Object.entries(grouped).map(([type, group]) => (
                 <Box key={type} sx={{ mb: 3 }}>
-                    <Typography variant="h6" sx={{ textTransform: 'capitalize', mb: 1 }}>{type}s</Typography>
                     <List dense>
                         {group.map((conn) => (
                             <ListItem key={conn.id}>
@@ -55,6 +53,6 @@ export default function SettlementConnections({ connections }: Props) {
                     </List>
                 </Box>
             ))}
-        </Grid>
+        </Paper>
     );
 }

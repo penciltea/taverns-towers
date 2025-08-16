@@ -33,11 +33,11 @@ export default function EditNpcPage() {
 
   const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
   
-    const generator = {
-      name: generateName,
-      missing: generateMissing,
-      reroll: rerollAll,
-    };
+  const generator = {
+    name: generateName,
+    missing: generateMissing,
+    reroll: rerollAll,
+  };
 
   // Once NPC is fetched, hydrate store
   useEffect(() => {

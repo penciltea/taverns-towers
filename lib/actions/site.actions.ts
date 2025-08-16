@@ -32,6 +32,10 @@ function serializeSite(site: any): SiteType {
               : editor?.toString?.()
         )
       : [],
+    connections: (plain.connections || []).map((conn: any) => ({
+        ...conn,
+        id: conn.id?.toString ? conn.id.toString() : conn.id,
+    })),
     userId: typeof plain.userId === 'string'
       ? plain.userId
       : plain.userId?._id
@@ -46,7 +50,6 @@ function serializeSite(site: any): SiteType {
       return {
         ...baseData,
         type: "tavern",
-        owner: (plain.owner || []).map((id: any) => id.toString()),
         clientele: plain.clientele,
         entertainment: plain.entertainment,
         cost: plain.cost,
@@ -62,7 +65,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "temple",
         domains: Array.isArray(plain.domains) ? plain.domains : [],
-        leader: (plain.leader || []).map((id: any) => id.toString()),
         relics: plain.relics,
         menu: plain.menu?.map((item: any) => ({
           name: item.name,
@@ -76,7 +78,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "shop",
         shopType: plain.shopType,
-        owner: (plain.owner || []).map((id: any) => id.toString()),
         menu: plain.menu?.map((item: any) => ({
           name: item.name,
           category: item.category,
@@ -90,7 +91,6 @@ function serializeSite(site: any): SiteType {
         type: "guild",
         guildName: plain.guildName,
         guildType: plain.guildType,
-        leader: (plain.leader || []).map((id: any) => id.toString()),
         membershipRequirements: Array.isArray(plain.membershipRequirements)
           ? plain.membershipRequirements.map((req: any) => String(req))
           : [],
@@ -107,7 +107,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "government",
         function: plain.function,
-        officials: (plain.officials || []).map((id: any) => id.toString()),
         security: plain.security,
       };
     case "entertainment":
@@ -115,7 +114,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "entertainment",
         venueType: plain.venueType,
-        owner: (plain.owner || []).map((id: any) => id.toString()),
         cost: plain.cost,
       };
     case "hidden":
@@ -123,7 +121,6 @@ function serializeSite(site: any): SiteType {
         ...baseData,
         type: "hidden",
         secrecy: Array.isArray(plain.secrecy) ? plain.secrecy : [plain.secrecy].filter(Boolean),
-        leader: (plain.leader || []).map((id: any) => id.toString()),
         knownTo: plain.knownTo,
         defenses: plain.defenses,
         purpose: plain.purpose,
@@ -132,7 +129,6 @@ function serializeSite(site: any): SiteType {
       return {
         ...baseData,
         type: "residence",
-        occupant: (plain.occupant || []).map((id: any) => id.toString()),
         notableFeatures: plain.notableFeatures,
       };
     case "miscellaneous":
@@ -147,22 +143,6 @@ function serializeSite(site: any): SiteType {
   }
 }
 
-function getPeopleField(data: SiteType): Record<string, unknown> {
-  const peopleField: Record<string, unknown> = {};
-
-  if (isTavernOrShopOrEntertainment(data)) {
-    peopleField.owner = toObjectIdArray(data.owner);
-  } else if (isTempleGuildHidden(data)) {
-    peopleField.leader = toObjectIdArray(data.leader);
-  } else if (isGovernment(data)) {
-    peopleField.officials = toObjectIdArray(data.officials);
-  } else if (isResidence(data)) {
-    peopleField.occupant = toObjectIdArray(data.occupant);
-  }
-
-  return peopleField;
-}
-
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
   const user = await requireUser();
@@ -172,11 +152,8 @@ export async function createSite(data: SiteType, settlementId: string) {
 
   const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
-  const peopleField = getPeopleField(data);
-
   const newSite = await model.create({
     ...data,
-    ...peopleField,
     settlementId: dbSettlementId,
     userId: new ObjectId(user.id),
   });
@@ -332,15 +309,9 @@ export async function updateSite(data: SiteUpdateData, id: string) {
 
   const model = Site.discriminators?.[existing.type] || Site;
 
-  // Normalize people fields based on site type
-  const peopleField = getPeopleField({
-    ...existing.toObject(),
-    ...data,
-  } as any); // cast to SiteType to satisfy the helper
-
   const updated = await model.findByIdAndUpdate(
     id,
-    { ...data, ...peopleField },
+    { ...data },
     { new: true }
   );
 

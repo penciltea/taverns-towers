@@ -1,5 +1,7 @@
 import { Flatten } from "../commonOptions";
 
+export const SITE_TABS = ["Basics", "Connections"]
+
 export const SITE_CATEGORIES = [
     { value: "tavern", label: "Taverns & Inns"},
     { value: "temple", label: "Temples & Shrines"},

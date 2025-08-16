@@ -1,20 +1,19 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
-import { Paper, Typography, Stack, Box, Button } from "@mui/material";
+import { Paper, Typography, Box, Button } from "@mui/material";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SITE_CATEGORIES } from "@/constants/site/site.options";
-import { siteFormFieldsByType } from "@/components/Site/Form/FieldsByType";
-import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
+import SiteFormTabs from "./Tabs";
+import SiteFormBasics from "./Basics";
+import SiteFormConnections from "./Connections";
+import { siteFormFieldsByType } from "./FieldsByType";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
-import { FormChipSelect, FormSelect } from "@/components/Form";
-import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { useSearchParams } from "next/navigation";
 
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
@@ -28,23 +27,35 @@ type SiteFormProps = {
   };
 };
 
+function TabPanel({
+  children,
+  value,
+  index,
+}: {
+  children: React.ReactNode;
+  value: number;
+  index: number;
+}) {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`settlement-tabpanel-${index}`}
+      aria-labelledby={`settlement-tab-${index}`}
+    >
+      {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
+    </div>
+  );
+}
+
 export default function SiteForm({ onSubmit, mode, isWilderness, generator }: SiteFormProps) {
+  const [tab, setTab] = useState(0);
   const searchParams = useSearchParams();
   const [formError, setFormError] = useState<string | null>(null);
   const methods = useFormContext<SiteFormData>();
-  const { control, handleSubmit, formState: { errors } } = methods;
-  const { selectedItem } = useSiteContentStore();
+  const { handleSubmit, formState: { errors } } = methods;
+  const { selectedItem, clearSelectedItem } = useSiteContentStore();
   const { isSubmitting } = useUIStore();
-
-  const typeParam = mode === 'edit'
-    ? selectedItem?.type
-    : (searchParams?.get("type") as SiteFormData["type"]);
-
-  const SpecificFieldsComponent = typeParam && siteFormFieldsByType[typeParam];
-  const typeLabel = typeParam
-    ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
-    : "Unknown";
-
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -56,6 +67,20 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
       setFormError(null);
     }
   }, [errors]);
+
+  const typeParam = mode === 'edit'
+      ? selectedItem?.type
+      : (searchParams?.get("type") as SiteFormData["type"]);
+  
+  const SpecificFieldsComponent = typeParam && siteFormFieldsByType[typeParam];
+  const typeLabel = typeParam
+    ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
+    : "Unknown";
+
+  function handleCancel(){
+    clearSelectedItem();
+    history.back();
+  }
 
   return (
     <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
@@ -104,73 +129,31 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           </Button>
         </Box>
 
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }}>
-          {formError && (
-            <Box sx={{ mb: 2 }}>
-              <Typography color="error" sx={{ fontWeight: 'bold' }}>
-                Please fix the highlighted errors before submitting:
-              </Typography>
-              <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
-                {formError.split(" • ").map((message, idx) => (
-                  <li key={idx}>
-                    <Typography component="span" variant="body2">{message}</Typography>
-                  </li>
-                ))}
-              </ul>
-            </Box>
-          )}
-          
-          <Box>
-            {isWilderness && (
-              <>
-                <Box sx={{marginBottom: 4}}>
-                  <Typography variant="h5" component="p" gutterBottom>Wilderness Details</Typography>
-                  <Typography variant="subtitle1" component="p" gutterBottom>While most sites are created in the context of a settlement, you may want to create a site that is detached from any settlements-- small wayshrines, trading caravans, and so on.</Typography>
-                  <Typography variant="subtitle1" component="p" gutterBottom>The fields below will help the arcane forces conjure appropriate site details based on their surroundings. Feel free to choose specific options or randomize them as you see fit! </Typography>
+        <SiteFormTabs tab={tab} setTab={setTab} />
 
-                  <FormSelect
-                      name="climate"
-                      label="Climate"
-                      control={control}
-                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
-                  />
-                  <FormChipSelect
-                      name="terrain"
-                      label="Terrain Type"
-                      control={control}
-                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
-                  />
-
-                  <FormChipSelect
-                      name="tags"
-                      label="Tags"
-                      control={control}
-                      options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
-                  />
-                  
-                </Box>
-
-                <Typography variant="h5" component="p" gutterBottom>Site Details</Typography>
-              </>
-            )}
-
-            {SpecificFieldsComponent ? (
-              <SpecificFieldsComponent generator={generator} />
-            ) : (
-              <Typography variant="body2">
-                {typeParam ? `Unknown site type: ${typeParam}` : "No site type selected."}
-              </Typography>
-            )}
+        {formError && (
+          <Box sx={{ mb: 2 }}>
+            <Typography color="error" sx={{ fontWeight: 'bold' }}>
+              Please fix the highlighted errors before submitting:
+            </Typography>
+            <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
+              {formError.split(" • ").map((message, idx) => (
+                <li key={idx}>
+                  <Typography component="span" variant="body2">{message}</Typography>
+                </li>
+              ))}
+            </ul>
           </Box>
+        )}
 
-          {typeParam && (
-            <Box sx={{ paddingTop: 4 }}>
-              <FormImageUpload name="image" label="Upload Site Image" />
-            </Box>
-          )}
-        </Stack>
+        <TabPanel value={tab} index={0}>
+          <SiteFormBasics generator={generator} isWilderness={isWilderness} mode={mode} />
+        </TabPanel>
+        <TabPanel value={tab} index={1}>
+          <SiteFormConnections />
+        </TabPanel>
 
-        <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" />
+        <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />
       </Box>
     </Paper>
   );

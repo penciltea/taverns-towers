@@ -2,11 +2,11 @@
 
 import { useFormContext } from "react-hook-form";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { NPC_CONNECTION_SETTLEMENT_ROLE } from "@/constants/npc.options";
+import { NPC_CONNECTION_SITE_ROLE } from "@/constants/npc.options";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
 
-export default function SettlementFormConnections() {
+export default function SiteFormConnections() {
   const { control, watch, setValue } = useFormContext();
 
   const { data: npcsData, isLoading: npcsLoading } = useOwnedNpcsQuery({}, { isEnabled: true });
@@ -57,7 +57,7 @@ export default function SettlementFormConnections() {
       value={connections.filter(c => c.type === "npc")}
       onChange={handleNpcConnectionsChange}
       availableOptions={npcOptions}
-      roleOptions={NPC_CONNECTION_SETTLEMENT_ROLE}
+      roleOptions={NPC_CONNECTION_SITE_ROLE}
       control={control}
       namePrefix="connections.npc"
     />

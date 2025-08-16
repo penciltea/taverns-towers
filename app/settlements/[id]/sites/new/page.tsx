@@ -67,12 +67,12 @@ export default function NewSitePage() {
 
     return (
         <FormProvider {...methods}>
-        <SiteForm
-            onSubmit={onSubmit}
-            mode={mode}
-            generator={generator}
-            isWilderness={isWilderness}
-        />
+            <SiteForm
+                onSubmit={onSubmit}
+                mode={mode}
+                generator={generator}
+                isWilderness={isWilderness}
+            />
         </FormProvider>
     );
 }

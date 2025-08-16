@@ -5,7 +5,7 @@ import { Box, Stack, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Control } from "react-hook-form";
 import FormSelect, { Option } from "@/components/Form/FormSelect";
-import { NpcConnection } from "@/interfaces/npc.interface";
+import { NpcConnection } from "@/interfaces/connection.interface";
 import { NpcConnectionType } from "@/constants/npc.options";
 
 export type ConnectionItem = NpcConnection & { name: string };

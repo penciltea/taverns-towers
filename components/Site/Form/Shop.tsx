@@ -6,8 +6,6 @@ import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/sit
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import FormAssignEntityField from "@/components/Form/FormAssignEntity";
-import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { Npc } from "@/interfaces/npc.interface";
 
@@ -80,16 +78,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
-            />
-
-            <FormAssignEntityField<string, Npc>
-                name="owner"
-                label="Owner(s)"
-                dialogComponent={AssignNpcDialog}
-                getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
-                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
-            />         
+            />   
 
             <FormSelect
                 name="size"

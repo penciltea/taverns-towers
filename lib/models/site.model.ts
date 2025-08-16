@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { SITE_SIZE, SITE_CONDITION, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_TYPES } from "@/constants/site/guild.options";
+import { connectionSchema } from "./connection.model";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
@@ -34,6 +35,7 @@ const BaseSiteSchema = new Schema(
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
     image: { type: String, required: false },
+    connections: [connectionSchema],
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -63,7 +65,6 @@ const Tavern =
   Site.discriminator(
     "tavern",
     new Schema({
-      owner: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       clientele: { type: String, required: false },
       cost: { type: String, required: false },
       entertainment: { type: [String], enum: TAVERN_ENTERTAINMENT_OFFERINGS, required: false },
@@ -77,7 +78,6 @@ const Tavern =
     "temple",
     new Schema({
       domains: { type: [String], required: false },
-      leader: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       relics: { type: String, required: false },
       menu: [MenuItemSchema],
     })
@@ -89,7 +89,6 @@ const Tavern =
     "shop",
     new Schema({
       shopType: { type: String, enum: shopTypes, required: true },
-      owner: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       menu: [MenuItemSchema],
     })
   );
@@ -102,7 +101,6 @@ const Tavern =
       guildName: { type: String, required: true },
       name: { type: String, required: true },
       guildType: { type: String, enum: guildTypes, required: true },
-      leader: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       membershipRequirements: { type: [String], required: false },
       knownRivals: { type: String, required: false },
       menu: [MenuItemSchema],
@@ -115,7 +113,6 @@ const Tavern =
     "government",
     new Schema({
       function: { type: String, required: false },
-      officials: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       jurisdiction: { type: String, required: false },
       security: { type: String, enum: securityValues, required: false }
     })
@@ -128,7 +125,6 @@ const Tavern =
     new Schema({
       venueType: { type: String, enum: venueTypes, required: false },
       performances: { type: String, required: false },
-      owner: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       cost: { type: String, required: false },
     })
   );
@@ -139,7 +135,6 @@ const Tavern =
     "hidden",
     new Schema({
       secrecy: { type: [String], enum: secrecyValues, default: [], },
-      leader: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       knownTo: { type: String, required: false },
       defenses: { type: String, required: false },
       purpose: { type: String, required: false },
@@ -151,7 +146,6 @@ const Tavern =
   Site.discriminator(
     "residence",
     new Schema({
-      occupant: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
       notableFeatures: { type: String, required: false },
     })
   );

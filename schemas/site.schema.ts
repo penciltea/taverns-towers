@@ -5,6 +5,7 @@ import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/gui
 import { environmentSchema } from "./environment.schema";
 import { GOVERNMENT_FUNCTIONS } from "@/constants/site/government.options";
 import { extractValues, optionalEnum } from "@/lib/util/zodHelpers";
+import { npcConnectionItemSchema } from "./connection.schema";
 
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];
 const entertainmentEnumValues = ENTERTAINMENT_VENUE_TYPES.map(opt => opt.value) as [string, ...string[]];
@@ -29,6 +30,7 @@ export const baseSiteSchema = z.object({
   condition: optionalEnum(extractValues(SITE_CONDITION), "Invalid condition"),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
+  connections: z.array(npcConnectionItemSchema).optional(),
   isPublic: z.boolean().optional(),
   userId: z.string().optional(),
   editors: z.array(z.string()).optional(),
@@ -59,7 +61,6 @@ export const menuItemSchema = z.object({
 
 export const tavernSchema = baseSiteSchema.extend({
   type: z.literal("tavern"),
-  owner: z.array(z.string()).optional(),
   clientele: z.string().optional(),
   cost: z.string().optional(),
   entertainment: z.array(z.string()),
@@ -69,7 +70,6 @@ export const tavernSchema = baseSiteSchema.extend({
 export const templeSchema = baseSiteSchema.extend({
   type: z.literal("temple"),
   domains: z.array(z.string()),
-  leader: z.array(z.string()).optional(),
   relics: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
 });
@@ -77,7 +77,6 @@ export const templeSchema = baseSiteSchema.extend({
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
   shopType: z.enum(shopTypeEnumValues),
-  owner: z.array(z.string()).optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
@@ -86,7 +85,6 @@ export const guildSchema = baseSiteSchema.extend({
   guildType: z.enum(guildTypeEnumValues),
   guildName: z.string().optional(),
   name: z.string().optional(),
-  leader: z.array(z.string()).optional(),
   membershipRequirements: z.array(z.enum(guildMembershipEnumValues)).optional().default([]),
   knownRivals: z.string().optional(),
   menu: z.array(menuItemSchema).optional(),
@@ -95,7 +93,6 @@ export const guildSchema = baseSiteSchema.extend({
 export const governmentSchema = baseSiteSchema.extend({
   type: z.literal("government"),
   function: z.enum(governmentFunctionEnumValues).optional(),
-  officials: z.array(z.string()).optional(),
   security: z.enum(securityEnumValues)
 });
 
@@ -103,7 +100,6 @@ export const entertainmentSchema = baseSiteSchema.extend({
   type: z.literal("entertainment"),
   venueType: z.enum(entertainmentEnumValues).optional(),
   performances: z.string().optional(),
-  owner: z.array(z.string()).optional(),
   cost: z.string().optional(),
 });
 
@@ -113,7 +109,6 @@ export const hiddenSchema = baseSiteSchema.extend({
   .array(z.enum(secrecyEnumValues as [string, ...string[]]))
   .optional()
   .default([]),
-  leader: z.array(z.string()).optional(),
   knownTo: z.string().optional(),
   defenses: z.string().optional(),
   purpose: z.string().optional(),
@@ -121,7 +116,6 @@ export const hiddenSchema = baseSiteSchema.extend({
 
 export const residenceSchema = baseSiteSchema.extend({
   type: z.literal("residence"),
-  occupant: z.array(z.string()).optional(),
   wealth: z.string().optional(),
   notableFeatures: z.string().optional(),
 });
@@ -155,7 +149,6 @@ export const defaultSiteValues: Record<
     name: "",
     type: "tavern",
     clientele: "",
-    owner: [],
     entertainment: [],
     cost: "",
     menu: []
@@ -164,7 +157,6 @@ export const defaultSiteValues: Record<
     name: "",
     type: "temple",
     domains: [],
-    leader: [],
     relics: "",
     menu: []
   },
@@ -172,7 +164,6 @@ export const defaultSiteValues: Record<
     name: "",
     type: "shop",
     shopType: "",
-    owner: [],
     menu: []
   },
   guild: {
@@ -180,7 +171,6 @@ export const defaultSiteValues: Record<
     type: "guild",
     guildType: "",
     guildName: "",
-    leader: [],
     membershipRequirements: [],
     knownRivals: "",
     menu: []
@@ -189,14 +179,12 @@ export const defaultSiteValues: Record<
     name: "",
     type: "government",
     function: "",
-    officials: [],
     security: "",
   },
   entertainment: {
     name: "",
     type: "entertainment",
     venueType: "",
-    owner: [],
     cost: "",
   },
   hidden: {
@@ -210,7 +198,6 @@ export const defaultSiteValues: Record<
   residence: {
     name: "",
     type: "residence",
-    occupant: [],
     notableFeatures: ""
   },
   miscellaneous: {

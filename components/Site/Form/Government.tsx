@@ -4,8 +4,6 @@ import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { GOVERNMENT_FUNCTIONS, SECURITY_LEVELS } from "@/constants/site/government.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import FormAssignEntityField from "@/components/Form/FormAssignEntity";
-import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { Npc } from "@/interfaces/npc.interface";
 
@@ -76,16 +74,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SECURITY_LEVELS]}
                 fieldError={errors.security}
-            />
-
-            <FormAssignEntityField<string, Npc>
-                name="official"
-                label="Official(s)"
-                dialogComponent={AssignNpcDialog}
-                getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
-                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
-            />            
+            />           
 
             <FormTextField
                 name="publicNotes"

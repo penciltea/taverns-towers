@@ -1,8 +1,6 @@
 import { FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
-import FormAssignEntityField from "@/components/Form/FormAssignEntity";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import AssignNpcDialog from "@/components/Npc/Dialog/AssignNpcDialog";
 import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { Npc } from "@/interfaces/npc.interface";
@@ -57,15 +55,6 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition}
-            />
-
-            <FormAssignEntityField<string, Npc>
-                name="occupant"
-                label="Occupant(s)"
-                dialogComponent={AssignNpcDialog}
-                getLabel={(npc) => npc.name || "Unnamed NPC"}
-                mapDialogToFormValue={(npc) => npc._id} // store only ID in form
-                mapFormValueToDialogItem={(id) => npcMap.get(id)} // look up NPC object for display
             />
             
             <FormTextField

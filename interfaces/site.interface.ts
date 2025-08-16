@@ -6,6 +6,7 @@ import { SiteGovernmentFunctionType, SiteSecurityLevel } from '@/constants/site/
 import { SiteGuildMembershipType } from '@/constants/site/guild.options';
 import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
 import { CommonInterface } from './common.interface';
+import { NpcConnection } from './connection.interface';
 
  
 export interface SiteDialogProps extends DialogProps {
@@ -49,11 +50,11 @@ export interface BaseSite extends CommonInterface {
   size?: SiteSize;
   condition?: SiteCondition;
   image?: string;
+  connections: NpcConnection[];
 }
 
 export interface TavernSite extends BaseSite {
   type: "tavern";
-  owner?: string[];
   clientele?: string;
   entertainment?: string[];
   cost?: string;
@@ -63,7 +64,6 @@ export interface TavernSite extends BaseSite {
 export interface TempleSite extends BaseSite {
   type: "temple";
   domains: string[];
-  leader?: string[];
   relics?: string;
   menu?: { name: string; description: string; price: string; category?: string; rarity?: string; magic?: string;}[];
 }
@@ -71,7 +71,6 @@ export interface TempleSite extends BaseSite {
 export interface ShopSite extends BaseSite {
   type: "shop";
   shopType: SiteShopType;
-  owner?: string[];
   menu?: { name: string; description?: string; category?: string; quality?: string; quantity?: string; price: string; rarity?: string; magic?: string; }[];
 }
 
@@ -79,7 +78,6 @@ export interface GuildSite extends BaseSite {
   type: "guild";
   guildName?: string;
   guildType: SiteGuildMembershipType;
-  leader?: string[];
   membershipRequirements?: string[];
   knownRivals?: string;
   menu?: { name: string; description?: string; price: string; category?: string; rarity?: string; magic?: string; }[];
@@ -88,21 +86,18 @@ export interface GuildSite extends BaseSite {
 export interface GovernmentSite extends BaseSite {
   type: "government";
   function?: SiteGovernmentFunctionType;
-  officials?: string[];
   security?: SiteSecurityLevel;
 }
 
 export interface EntertainmentSite extends BaseSite {
   type: "entertainment";
   venueType?: SiteEntertainmentType;
-  owner?: string[];
   cost?: string;
 }
 
 export interface HiddenSite extends BaseSite {
   type: "hidden";
   secrecy?: string[];
-  leader?: string[],
   knownTo?: string;
   defenses?: string;
   purpose?: string;
@@ -110,7 +105,6 @@ export interface HiddenSite extends BaseSite {
 
 export interface ResidenceSite extends BaseSite {
   type: "residence";
-  occupant?: string[];
   notableFeatures?: string;
 }
 

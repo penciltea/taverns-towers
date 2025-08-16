@@ -61,7 +61,7 @@ export default function ViewSettlement({ settlement }: Props) {
         </Grid>
 
         {/* Site List */}
-        <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
+        <Grid size={{xs: 12}} sx={{ marginTop: 2 }}>
           <SiteList
             settlementId={settlement._id}
             onDelete={(id: string) => {}}
@@ -69,7 +69,7 @@ export default function ViewSettlement({ settlement }: Props) {
         </Grid>
 
          {/* Connections List */}
-        <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
+        <Grid size={{xs: 12}} sx={{ marginTop: 2 }}>
           <SettlementConnections connections={settlement.connections} />
         </Grid>
       </Grid>
