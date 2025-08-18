@@ -95,6 +95,8 @@ export async function getNpcs({
   };
 }
 
+
+
 export async function getOwnedNpcs(
   options: Omit<Parameters<typeof getNpcs>[0], 'userId'>
 ) {
@@ -102,11 +104,15 @@ export async function getOwnedNpcs(
   return getNpcs({ ...options, userId: user.id });
 }
 
+
+
 export async function getPublicNpcs(
   options: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>
 ) {
   return getNpcs({ ...options, isPublic: true });
 }
+
+
 
 
 export async function getNpcById(id: string) {
@@ -155,6 +161,7 @@ export async function resolveConnectionNames(connections: Npc['connections']) {
 }
 
 
+
 export async function createNpc(data: NpcFormData): Promise<Npc> {
     await connectToDatabase();
     const user = await requireUser();
@@ -172,6 +179,9 @@ export async function createNpc(data: NpcFormData): Promise<Npc> {
 
     return serializeNpc(newNpc);
 }
+
+
+
 
 export async function updateNpc(id: string, data: NpcFormData): Promise<Npc> {
     await connectToDatabase();
@@ -201,6 +211,8 @@ export async function updateNpc(id: string, data: NpcFormData): Promise<Npc> {
     revalidatePath("/npcs");
     return serializeNpc(updatedNpc);
 }
+
+
 
 export async function deleteNpc(id: string) {
   await connectToDatabase();

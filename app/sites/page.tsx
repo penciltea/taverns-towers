@@ -16,7 +16,7 @@ import { deleteSite } from '@/lib/actions/site.actions';
 import { siteListKey } from '@/lib/util/queryKeys';
 
 export default function AllSitesPage(){
-    const { closeDialog, showErrorDialog } = useUIStore();
+    const { closeDialog, setOpenDialog, showErrorDialog } = useUIStore();
     const [ selected, setSelected ] = useState<SiteType | null>(null);
     const queryClient = useQueryClient();
 
@@ -69,14 +69,14 @@ export default function AllSitesPage(){
                 items={sites}
                 renderItem={(site) => (
                     <GridItem
-                    key={site._id}
-                    title={site.name}
-                    image={site.image}
-                    subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
-                    onClick={() => {
-                        setSelected(site);
-                        useUIStore.getState().setOpenDialog('SiteDetailsDialog', { siteData: site, onDelete: () => handleDeleteSite(site._id)});
-                    }}
+                        key={site._id}
+                        title={site.name}
+                        image={site.image}
+                        subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
+                        onClick={() => {
+                            setSelected(site);
+                            useUIStore.getState().setOpenDialog('SiteDetailsDialog', { siteData: site, onDelete: () => handleDeleteSite(site._id)});
+                        }}
                     />
                 )}
                 filterComponent={
@@ -101,6 +101,12 @@ export default function AllSitesPage(){
                 onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}
                 totalCount={totalCount}
                 pageSize={filters.limit}
+                fabLabel="Add Site"
+                fabOnClick={() =>
+                    setOpenDialog("siteTypeDialog", {
+                        dialogMode: "global"
+                    })
+                }
             />
         </>
     );

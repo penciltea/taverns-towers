@@ -35,7 +35,6 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
       // Transform form data for DB
       const settlementData = {
         ...transformSettlementFormData(data),
-        leader: data.leader ?? [],
         map: cleanMap,
         userId: user.id,
       };

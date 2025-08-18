@@ -147,7 +147,7 @@ export const NPC_CONNECTION_TYPE = [
     "settlement",
     "site",
     "npc",
-    "guild"
+    //"guild"
 ] as const;
 
 export const NPC_CONNECTION_SETTLEMENT_ROLE = [

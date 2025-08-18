@@ -130,3 +130,83 @@ export function siteTypeHasMenu(siteType: string | undefined): boolean {
   const MENU_SUPPORTED_TYPES = ["shop", "tavern", "guild", "temple"]; // add more if needed
   return !!siteType && MENU_SUPPORTED_TYPES.includes(siteType);
 }
+
+
+export function mapSiteToForm(site: any): SiteFormData | null {
+  switch (site.type) {
+    case "tavern":
+      return {
+        type: "tavern",
+        name: site.name ?? "",
+        clientele: site.clientele ?? "",
+        entertainment: site.entertainment ?? [],
+        cost: site.cost ?? "",
+        menu: site.menu ?? [],
+      };
+    case "temple":
+      return {
+        type: "temple",
+        name: site.name ?? "",
+        domains: site.domains ?? [],
+        relics: site.relics ?? "",
+        menu: site.menu ?? [],
+      };
+    case "shop":
+      return {
+        type: "shop",
+        name: site.name ?? "",
+        shopType: site.shopType ?? "" as any,
+        menu: site.menu ?? [],
+      };
+    case "guild":
+      return {
+        type: "guild",
+        name: site.name ?? "",
+        guildType: site.guildType ?? "" as any,
+        guildName: site.guildName ?? "",
+        membershipRequirements: site.membershipRequirements ?? [],
+        knownRivals: site.knownRivals ?? "",
+        menu: site.menu ?? [],
+      };
+    case "government":
+      return {
+        type: "government",
+        name: site.name ?? "",
+        function: site.function ?? "" as any,
+        security: site.security ?? "" as any,
+      };
+    case "entertainment":
+      return {
+        type: "entertainment",
+        name: site.name ?? "",
+        venueType: site.venueType ?? "" as any,
+        cost: site.cost ?? "",
+        performances: site.performances ?? "",
+      };
+    case "hidden":
+      return {
+        type: "hidden",
+        name: site.name ?? "",
+        secrecy: site.secrecy ?? [],
+        knownTo: site.knownTo ?? "",
+        defenses: site.defenses ?? "",
+        purpose: site.purpose ?? "",
+      };
+    case "residence":
+      return {
+        type: "residence",
+        name: site.name ?? "",
+        notableFeatures: site.notableFeatures ?? "",
+      };
+    case "miscellaneous":
+      return {
+        type: "miscellaneous",
+        name: site.name ?? "",
+        features: site.features ?? "",
+        use: site.use ?? "",
+      };
+    default:
+      console.warn("Unknown site type", site.type);
+      return null;
+  }
+}

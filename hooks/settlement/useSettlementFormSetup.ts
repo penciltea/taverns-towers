@@ -16,6 +16,8 @@ import { useSettlementGeneratorActions } from "./useSettlementGeneratorActions";
 import { shouldReplace } from "@/lib/util/randomValues";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
+import { addConnection } from "@/lib/actions/connections.actions";
+import { invalidateConnections } from "@/lib/util/invalidateQuery";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
@@ -62,6 +64,31 @@ export function useSettlementFormSetup(
 
     try {
       const saved = await saveSettlement(data);
+
+      if (data.connections?.length) {
+        for (const conn of data.connections) {
+          await addConnection({
+              sourceType: "settlement",
+              sourceId: saved._id,
+              targetType: conn.type,
+              targetId: conn.id,
+              role: conn.role,
+          });
+
+          queryClient.setQueryData([conn.type, conn.id], (old: any) => {
+            if (!old) return old;
+            return {
+              ...old,
+              connections: [
+                ...old.connections,
+                { type: "settlement", refId: saved._id, role: conn.role },
+              ],
+            };
+          });
+        }
+
+        invalidateConnections(queryClient, data.connections);
+      }
 
       showSnackbar(
         mode === "edit" ? "Settlement updated successfully!" : "Settlement created successfully!",

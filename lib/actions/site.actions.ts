@@ -6,8 +6,6 @@ import Site from '@/lib/models/site.model';
 import { BaseSite, SiteType } from "@/interfaces/site.interface";
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { toObjectIdArray } from "../util/transformFormDataForDB";
-import { isTavernOrShopOrEntertainment, isTempleGuildHidden, isGovernment, isResidence } from "./site.typeguards";
 
 function serializeSite(site: any): SiteType {
   const plain = site.toObject ? site.toObject() : site;

@@ -1,19 +1,19 @@
 'use client'
 
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { siteSchema, defaultSiteValues, SiteFormData } from "@/schemas/site.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
 import SiteForm from "@/components/Site/Form/SiteForm";
-import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
-import { usePaginatedSites } from "@/hooks/site/site.query";
-import { SiteType } from "@/interfaces/site.interface";
-import { createSite } from "@/lib/actions/site.actions";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";
 import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
+import { useSiteMutations } from "@/hooks/site/useSiteMutations";
+import { useAuthStore } from "@/store/authStore";
+import { useFormMode } from "@/hooks/useFormMode";
+
 
 export default function NewSitePage() {
     const params = useParams();
@@ -29,11 +29,20 @@ export default function NewSitePage() {
     const methods = useFormWithSchema(siteSchema, {
         defaultValues,
     });
+    const { mode, draftItem, clearDraftItem, setDraftItem, selectedItem } = useSiteContentStore();
 
-    const router = useRouter();
-    const { showSnackbar, showErrorDialog } = useUIStore();
-    const { mode } = useSiteContentStore();
-    const { refetch } = usePaginatedSites(settlementId, 1, 12, "", []);
+    // Use the site ID (if editing) or undefined (if creating new)
+    const siteId = selectedItem?._id; 
+    useFormMode(siteId, useSiteContentStore);
+
+    const { setOpenDialog, showErrorDialog } = useUIStore();
+    
+    const user = useAuthStore((state) => state.user);
+
+    const { handleSubmit } = useSiteMutations({
+        mode,
+        settlementId
+    })
 
     const { generator, isWilderness } = useSiteFormSetup({
         methods,
@@ -41,34 +50,33 @@ export default function NewSitePage() {
         rawSiteType: rawTypeParam,
     });
 
-    // Submission handler
-    const onSubmit = async (data: SiteFormData) => {
+    useEffect(() => {
+        if (user && draftItem) {
+          (async () => {
+            await handleSubmit(draftItem as SiteFormData);
+            clearDraftItem();
+          })();
+        }
+      }, [user, draftItem, handleSubmit, clearDraftItem]);
+
+    const wrappedOnSubmit = async (data: SiteFormData) => {
         try {
-            const cleanImage = await handleDynamicFileUpload(data, "image");
-            const siteData = {
-                ...transformSiteFormData(data),
-                image: cleanImage,
-            } as SiteType;
-
-            await createSite(siteData, settlementId);
-
-            if (!isWilderness) {
-                await refetch();
+            if (!user) {
+            setDraftItem(data);
+            setOpenDialog("LoginDialog", {});
+            return;
             }
-
-            showSnackbar("Site created successfully!", "success");
-            router.push(`/settlements/${settlementId}`);
-
+            await handleSubmit(data);
         } catch (err) {
-            console.error(err);
-            showErrorDialog("Something went wrong, please try again later!");
+            showErrorDialog(`Sorry, there was a problem: ${err}`);
+            console.error("Error during site submission:", err);
         }
     };
 
     return (
         <FormProvider {...methods}>
             <SiteForm
-                onSubmit={onSubmit}
+                onSubmit={wrappedOnSubmit}
                 mode={mode}
                 generator={generator}
                 isWilderness={isWilderness}

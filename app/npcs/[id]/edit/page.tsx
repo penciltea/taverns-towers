@@ -1,10 +1,9 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
-import { useAuthStore } from "@/store/authStore";
 import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
@@ -20,10 +19,8 @@ import { Paper } from "@mui/material";
 export default function EditNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
-  const router = useRouter();
 
   const { mode, setSelectedItem } = useNpcContentStore();
-  const user = useAuthStore((state) => state.user);
   const methods = useNpcForm();
   const { handleSubmit } = useNpcMutations({ mode, npcId: safeId });
 

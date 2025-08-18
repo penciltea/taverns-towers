@@ -1,57 +1,61 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { NpcFormData } from "@/schemas/npc.schema";
-import { createNpc, updateNpc } from "@/lib/actions/npc.actions";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
+import { SiteFormData } from "@/schemas/site.schema";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
 import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
+import { createSite, updateSite } from "@/lib/actions/site.actions";
+import { SiteType } from "@/interfaces/site.interface";
 
 
-interface UseNpcMutationsProps {
+interface UseSiteMutationsProps {
     mode: "add" | "edit" | null;
-    npcId?: string; // Required in edit mode
+    settlementId: string;
+    siteId?: string; // Required in edit mode
 }
 
-export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
+export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutationsProps){
     const router = useRouter();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
 
-    async function handleSubmit(data: NpcFormData) {
+    async function handleSubmit(data: SiteFormData){
         setSubmitting(true);
-        try {
+        try{
             // Upload image if needed
             const cleanImage = await handleDynamicFileUpload(data, "image");
 
             // Transform form data for DB and attach the image
-            const transformed = {
-                ...transformNpcFormData(data),
+            const siteData = {
+                ...transformSiteFormData(data),
                 image: cleanImage,
-            };
-
+            } as SiteType;
+ 
             let saved;
+
+            console.log("mode: ", mode);
             
             if (mode === "add") {
-                saved = await createNpc(transformed);
+                saved = await createSite(siteData, settlementId);
             } else if (mode === "edit") {
-            if (!npcId) throw new Error("NPC ID is required for edit mode");
-                saved = await updateNpc(npcId, transformed);
+            if (!siteId) throw new Error("Site ID is required for edit mode");
+                saved = await updateSite(siteData, siteId);
             } else {
                 throw new Error("Invalid mutation mode");
             }
 
             if (!saved || !saved._id) {
-                throw new Error("There was a problem saving the NPC, please try again later!");
+                throw new Error("There was a problem saving the site, please try again later!");
             }
 
             if (data.connections?.length) {
                 for (const conn of data.connections) {
                     await addConnection({
-                        sourceType: "npc",
+                        sourceType: "site",
                         sourceId: saved._id,
                         targetType: conn.type,
                         targetId: conn.id,
@@ -74,14 +78,19 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             }
 
             showSnackbar(
-                mode === "edit" ? "NPC updated successfully!" : "NPC created successfully!",
+                mode === "edit" ? "Site updated successfully!" : "Site created successfully!",
                 "success"
             );
-            queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
-            router.push(`/npcs/${saved._id}`);
+
+            queryClient.invalidateQueries({
+                queryKey: ['sites', settlementId],
+                exact: false
+            });
+
+            router.push(`/settlements/${settlementId}`);
 
         } catch (error) {
-            let message = "Something went wrong saving the NPC. Please try again later.";
+            let message = "Something went wrong saving the site. Please try again later.";
 
             if (error instanceof Error) {
                 message = error.message;
@@ -90,7 +99,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             }
 
             showErrorDialog(message);
-            console.error("NPC mutation error:", error);
+            console.error("Site mutation error:", error);
         } finally {
             setSubmitting(false);
         }

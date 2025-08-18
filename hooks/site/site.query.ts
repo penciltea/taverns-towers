@@ -3,6 +3,14 @@ import { getOwnedSites, getPublicSites, getSiteById, getSites, getSitesPaginated
 import { siteListKey } from '@/lib/util/queryKeys';
 import { SiteResponse } from '@/interfaces/site.interface';
 
+export function useGetSiteById(id: string) {
+  return useQuery({
+    queryKey: ['site', id],
+    queryFn: () => getSiteById(id),
+    enabled: !!id,
+  });
+}
+
 export const usePaginatedSites = (
   settlementId: string | null,
   page: number,

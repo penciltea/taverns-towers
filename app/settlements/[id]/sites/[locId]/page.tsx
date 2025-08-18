@@ -1,23 +1,20 @@
 'use client'
 
-import { useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
-import { useFormWithSchema } from "@/hooks/useFormWithSchema";
+import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
-import { siteSchema, SiteFormData } from "@/schemas/site.schema";
-import { useUIStore } from "@/store/uiStore";
+import { defaultSiteValues, SiteFormData, siteSchema } from "@/schemas/site.schema";
 import { useSiteContentStore } from "@/store/siteStore";
-import { updateSite } from "@/lib/actions/site.actions";
-import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import { useFormMode } from "@/hooks/useFormMode";
-import { useQueryClient } from "@tanstack/react-query";
 import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
-import { useSiteQuery } from "@/hooks/site/site.query";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
+import { useSiteMutations } from "@/hooks/site/useSiteMutations";
+import { useFormWithSchema } from "@/hooks/useFormWithSchema";
+import { useEffect } from "react";
+import { useGetSiteById } from "@/hooks/site/site.query";
+import { mapSiteToForm } from "@/lib/util/siteHelpers";
 
 export default function EditSitePage() {
   const { id, locId } = useParams();
@@ -28,75 +25,48 @@ export default function EditSitePage() {
     return <div className="error-message">Invalid site ID.</div>;
   }
 
-  const queryClient = useQueryClient();
-  const { data: siteData, isLoading, error } = useSiteQuery(safeId);
-
-  const { showSnackbar, showErrorDialog } = useUIStore();
-  const { selectedItem, setSelectedItem, clearSelectedItem, mode } = useSiteContentStore();
-
-  const router = useRouter();
-  useFormMode(safeId, useSiteContentStore);
-
+  const { mode, selectedItem, setSelectedItem } = useSiteContentStore();
   const methods = useFormWithSchema<typeof siteSchema>(siteSchema);
-  const { reset } = methods;
 
-  useEffect(() => {
-    if (isLoading) return;
-
-    if (siteData) {
-      // Only set selectedItem if different from current to avoid infinite loops
-      if (selectedItem?._id !== siteData._id) {
-        setSelectedItem(siteData);
-        reset({
-          ...(siteData as SiteFormData),
-          image: siteData.image ?? undefined,
-        });
-      }
-    } else {
-      showErrorDialog("Site could not be found, please try again later!");
-      clearSelectedItem();
-    }
-  }, [siteData, isLoading, setSelectedItem, clearSelectedItem, reset, showErrorDialog, selectedItem]);
-
-
-  const { generator, isWilderness } = useSiteFormSetup({
-    methods,
-    settlementId,
-    rawSiteType: selectedItem?.type,
+  const { handleSubmit } = useSiteMutations({
+      mode,
+      settlementId,
+      siteId: safeId
   });
 
-  const onSubmit = async (data: SiteFormData) => {
-    const cleanImage = await handleDynamicFileUpload(data, "image");
+  const { data: site, isLoading, isError } = useGetSiteById(safeId ?? '');
 
-    try {
-      const siteData = {
-        ...transformSiteFormData(data),
-        image: cleanImage,
-      };
+  useFormMode(safeId, useSiteContentStore);
+  
 
-      await updateSite(siteData, safeId);
-      
-      // Update React Query queries (both for getting all sites and getting site by ID)
-      queryClient.invalidateQueries({ queryKey: ['site', safeId] });
-
-      if (settlementId !== "wilderness") {
-        queryClient.invalidateQueries({ queryKey: ['sites', settlementId] });
-      }      
-
-      clearSelectedItem();
-      showSnackbar("Site updated successfully!", "success");
-      router.push(`/settlements/${settlementId}`);
-    } catch (error){
-      console.error("Failed to update site: ", error);
-      showErrorDialog("Something went wrong, please try again later!");
+  const { generator, isWilderness } = useSiteFormSetup({
+      methods,
+      settlementId,
+      rawSiteType: selectedItem?.type,
+  });
+  
+  // Once site is fetched, hydrate store
+  useEffect(() => {
+    if (site) {
+      setSelectedItem(site); // keep full DB object in store
+      methods.reset({
+        ...(mapSiteToForm(site) as SiteFormData) // cast here
+      });
     }
+  }, [site]);
+
+  const wrappedOnSubmit = async (data: SiteFormData) => {
+    await handleSubmit(data);
   };
+
+  if (isLoading) return <p>Loading site...</p>;
+  if (isError || !site) return <p>Site not found or failed to load.</p>;
 
   return (
     <SkeletonLoader loading={isLoading} skeleton={<Spinner />}>
       <FormProvider {...methods}>
         <SiteForm
-          onSubmit={onSubmit}
+          onSubmit={wrappedOnSubmit}
           mode={mode}
           generator={generator}
           isWilderness={isWilderness}
