@@ -2,6 +2,8 @@
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box } from "@mui/material";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import useNpcMap from "@/hooks/npc/useNpcMap";
+import useSettlementMap from "@/hooks/settlement/useSettlementMap";
+import useSiteMap from "@/hooks/site/useSiteMap";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 
 export default function DeleteConnectionDialog({
@@ -12,6 +14,8 @@ export default function DeleteConnectionDialog({
 }: DialogProps) {
   
   const npcMap = useNpcMap();
+  const settlementMap = useSettlementMap();
+  const siteMap = useSiteMap();
 
 
   return (
@@ -20,17 +24,20 @@ export default function DeleteConnectionDialog({
       <DialogContent>
         <Typography>The following connections will be deleted when you save this data:</Typography>
         <ul>
-          {deletedConnections && deletedConnections.map((conn) => {
-            const baseName =
-              conn.type === "npc"
-                ? npcMap.get(conn.id)?.name || conn.label || conn.id
-                : conn.label || conn.id;
-
-            const formatted = conn.role
+          {deletedConnections?.map((conn) => {
+            let baseName = "";
+            if(conn.type === 'npc'){
+              baseName = npcMap.get(conn.id)?.name || conn.label || conn.id;
+            } else if(conn.type === 'settlement'){
+              baseName = settlementMap.get(conn.id)?.name || conn.label || conn.id;
+            } else if(conn.type === 'site'){
+              baseName = siteMap.get(conn.id)?.name || conn.label || conn.id;
+            }
+            const formattedLabel = conn.role
               ? `${baseName}: ${capitalizeFirstLetter(conn.role)}`
               : baseName;
 
-            return <li key={conn.id}>{formatted}</li>;
+            return <li key={conn.id}>{formattedLabel}</li>;
           })}
         </ul>
       </DialogContent>

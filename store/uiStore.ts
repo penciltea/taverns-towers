@@ -9,7 +9,7 @@ interface UIState {
     openDrawer: () => void;
 
     // Dialog state
-    openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'NpcDetailsDialog';
+    openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'NpcDetailsDialog' | 'DeleteConnectionDialog' ;
     dialogProps: Record<string, any>;
     setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
     closeDialog: () => void;

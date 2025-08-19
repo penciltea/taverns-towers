@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useNpcForm } from "@/hooks/npc/useNpcForm";
@@ -15,12 +15,17 @@ import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 import { Paper } from "@mui/material";
+import { useHandleDeletedConnections } from "@/hooks/connection/useHandleDeletedConnections";
+import { NpcConnection } from "@/interfaces/connection.interface";
+import { useUIStore } from "@/store/uiStore";
 
 export default function EditNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
+  const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
 
-  const { mode, setSelectedItem } = useNpcContentStore();
+  const { mode, setSelectedItem, clearSelectedItem } = useNpcContentStore();
+  const { showErrorDialog } = useUIStore();
   const methods = useNpcForm();
   const { handleSubmit } = useNpcMutations({ mode, npcId: safeId });
 
@@ -29,6 +34,8 @@ export default function EditNpcPage() {
   useFormMode(safeId, useNpcContentStore); // set mode to 'edit' and load store draft
 
   const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
+  const { handleDeletedConnections } = useHandleDeletedConnections<NpcFormData>("npc");
+    
   
   const generator = {
     name: generateName,
@@ -38,15 +45,30 @@ export default function EditNpcPage() {
 
   // Once NPC is fetched, hydrate store
   useEffect(() => {
+    if (isLoading) return;
+    
     if (npc) {
       setSelectedItem(npc); // update the store
+      setInitialConnections(npc.connections);
       methods.reset(npc);   // reset the form with the loaded data
+    } else if(safeId && !isLoading){
+      // If no NPC, clear selection
+      clearSelectedItem();
+      showErrorDialog("NPC could not be found, please try again later!");
     }
-  }, [npc]);
+  }, [npc, isLoading, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
-  const wrappedOnSubmit = async (data: NpcFormData) => {
-    await handleSubmit(data);
-  };
+  const wrappedSubmit = async (data: NpcFormData) => {
+      await handleDeletedConnections({
+        sourceId: safeId ?? "",
+        initialConnections,
+        currentConnections: data.connections,
+        formData: data,
+        onConfirm: async (formData) => {
+          await handleSubmit(formData);
+        },
+      });
+    };
 
   if (isLoading) return <p>Loading NPC...</p>;
   if (isError || !npc) return <p>NPC not found or failed to load.</p>;
@@ -56,7 +78,7 @@ export default function EditNpcPage() {
         <FormProvider {...methods}>
           <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }}>
             <NpcForm
-              onSubmit={wrappedOnSubmit}
+              onSubmit={wrappedSubmit}
               generator={generator}
               mode={mode}
             />

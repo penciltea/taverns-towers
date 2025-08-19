@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
-import { defaultSiteValues, SiteFormData, siteSchema } from "@/schemas/site.schema";
+import { SiteFormData, siteSchema } from "@/schemas/site.schema";
 import { useSiteContentStore } from "@/store/siteStore";
 import SiteForm from "@/components/Site/Form/SiteForm";
 import { getSingleParam } from "@/lib/util/getSingleParam";
@@ -12,20 +12,25 @@ import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGetSiteById } from "@/hooks/site/site.query";
 import { mapSiteToForm } from "@/lib/util/siteHelpers";
+import { NpcConnection } from "@/interfaces/connection.interface";
+import { useHandleDeletedConnections } from "@/hooks/connection/useHandleDeletedConnections";
+import { useUIStore } from "@/store/uiStore";
 
 export default function EditSitePage() {
   const { id, locId } = useParams();
   const settlementId = id as string;
   const safeId = getSingleParam(locId);
+  const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
 
   if (!safeId) {
     return <div className="error-message">Invalid site ID.</div>;
   }
 
-  const { mode, selectedItem, setSelectedItem } = useSiteContentStore();
+  const { showErrorDialog } = useUIStore();
+  const { mode, selectedItem, setSelectedItem, clearSelectedItem } = useSiteContentStore();
   const methods = useFormWithSchema<typeof siteSchema>(siteSchema);
 
   const { handleSubmit } = useSiteMutations({
@@ -35,6 +40,7 @@ export default function EditSitePage() {
   });
 
   const { data: site, isLoading, isError } = useGetSiteById(safeId ?? '');
+  const { handleDeletedConnections } = useHandleDeletedConnections<SiteFormData>("site");
 
   useFormMode(safeId, useSiteContentStore);
   
@@ -47,16 +53,32 @@ export default function EditSitePage() {
   
   // Once site is fetched, hydrate store
   useEffect(() => {
+    if (isLoading) return;
+
     if (site) {
       setSelectedItem(site); // keep full DB object in store
+      setInitialConnections(site.connections);
       methods.reset({
         ...(mapSiteToForm(site) as SiteFormData) // cast here
       });
+    } else if(safeId && !isLoading){
+      // If no settlement, clear selection
+      clearSelectedItem();
+      showErrorDialog("Site could not be found, please try again later!")
+
     }
-  }, [site]);
+  }, [site, isLoading, safeId, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
   const wrappedOnSubmit = async (data: SiteFormData) => {
-    await handleSubmit(data);
+    await handleDeletedConnections({
+      sourceId: safeId ?? "",
+      initialConnections,
+      currentConnections: data.connections,
+      formData: data,
+      onConfirm: async (formData) => {
+        await handleSubmit(formData);
+      },
+    });
   };
 
   if (isLoading) return <p>Loading site...</p>;

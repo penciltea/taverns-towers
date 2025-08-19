@@ -46,7 +46,10 @@ export const baseSiteSchema = z.object({
       }
     )
     .optional(),
-}).merge(environmentSchema).partial();
+}).merge(environmentSchema).partial()
+  .extend({
+    connections: z.array(npcConnectionItemSchema), // explicitly setting connections back to required after merging
+  });
 
 export const menuItemSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -151,20 +154,23 @@ export const defaultSiteValues: Record<
     clientele: "",
     entertainment: [],
     cost: "",
-    menu: []
+    menu: [],
+    connections: []
   },
   temple: {
     name: "",
     type: "temple",
     domains: [],
     relics: "",
-    menu: []
+    menu: [],
+    connections: []
   },
   shop: {
     name: "",
     type: "shop",
     shopType: "",
-    menu: []
+    menu: [],
+    connections: []
   },
   guild: {
     name: "",
@@ -173,19 +179,22 @@ export const defaultSiteValues: Record<
     guildName: "",
     membershipRequirements: [],
     knownRivals: "",
-    menu: []
+    menu: [],
+    connections: []
   },
   government: {
     name: "",
     type: "government",
     function: "",
     security: "",
+    connections: []
   },
   entertainment: {
     name: "",
     type: "entertainment",
     venueType: "",
     cost: "",
+    connections: []
   },
   hidden: {
     name: "",
@@ -194,16 +203,19 @@ export const defaultSiteValues: Record<
     knownTo: "",
     defenses: "",
     purpose: "",
+    connections: []
   }, 
   residence: {
     name: "",
     type: "residence",
-    notableFeatures: ""
+    notableFeatures: "",
+    connections: []
   },
   miscellaneous: {
     name: "",
     type: "miscellaneous",
     features: "",
-    use: ""
+    use: "",
+    connections: []
   }
 };
