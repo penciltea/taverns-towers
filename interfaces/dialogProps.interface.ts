@@ -1,5 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 import { ReactNode } from "react";
+import { NpcConnection } from "./connection.interface";
 
 export interface DialogProps {
     open: boolean;
@@ -18,4 +19,5 @@ export interface DialogProps {
       field: "shopType" | "guildType";
       value: string;
     }
+    deletedConnections?: NpcConnection[] // Optional, for displaying connections that will be deleted on saving a form
   }

@@ -1,4 +1,4 @@
-import { useResolvedConnections } from "@/hooks/useResolvedConnections";
+import { useResolvedConnections } from "@/hooks/connection/useResolvedConnections";
 
 export function useGroupedConnections(connections: any[]) {
   const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);

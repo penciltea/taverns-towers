@@ -35,7 +35,7 @@ export async function addConnection({
         throw new Error(`Unsupported connection type: ${sourceType} or ${targetType}`);
     }
 
-     // Remove any existing connection for this source
+    // Remove any existing connection for this source
     await TargetModel.findByIdAndUpdate(targetId, {
         $pull: { connections: { type: sourceType, id: sourceId } },
     });
@@ -46,4 +46,38 @@ export async function addConnection({
     });
 
     return { sourceId, targetId, sourceType, targetType, role };
+}
+
+
+export async function deleteConnection({
+  sourceType,
+  sourceId,
+  targetType,
+  targetId,
+}: AddConnectionInput) {
+  await connectToDatabase();
+
+  const TargetModel = MODEL_MAP[targetType];
+
+  if (!TargetModel) {
+    throw new Error(`Unsupported connection type: ${sourceType} or ${targetType}`);
+  }
+
+  if (!sourceId || !targetId) {
+    throw new Error("Invalid source or target ID for connection deletion");
+  }
+
+  const updatedDoc = await TargetModel.findByIdAndUpdate(
+    targetId,
+    { $pull: { connections: { type: sourceType, id: sourceId } } },
+    { new: true }
+  );
+
+  if (!updatedDoc) {
+    throw new Error(
+      `Failed to delete connection: ${targetType} with id ${targetId} not found`
+    );
+  }
+
+  return { sourceId, targetId, sourceType, targetType };
 }

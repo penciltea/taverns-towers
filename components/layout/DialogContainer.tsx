@@ -7,7 +7,7 @@ import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog"
 import TypeChangeDialog from "../Common/typeChangeDialog";
 import LoginDialog from "../Auth/LoginDialog";
 import NpcDetailsDialog from "../Npc/View/NpcDetailsDialog";
-import DeleteConfirmationDialog from "../Common/DeleteConfirmationDialog";
+import DeleteConnectionDialog from "../Common/EntityLink/DeleteConnectionDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
@@ -69,15 +69,14 @@ export default function DialogContainer() {
           npc={dialogProps.npc} 
         />
       )
-    case 'deleteConfirmationDialog':
+    case 'DeleteConnectionDialog':
       return (
-        <DeleteConfirmationDialog
+        <DeleteConnectionDialog
           open
           onClose={closeDialog}
-          title={dialogProps?.title ?? "Confirm Deletion"}
-          message={dialogProps?.message ?? "Are you sure you want to delete this?"}
           onConfirm={dialogProps?.onConfirm}
-          deleteText={dialogProps.deleteText ?? "delete"}
+          deletedConnections={dialogProps?.deletedConnections}
+
         />
       )
     // Add more dialogs here as needed
