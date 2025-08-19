@@ -30,7 +30,7 @@ export const baseSiteSchema = z.object({
   condition: optionalEnum(extractValues(SITE_CONDITION), "Invalid condition"),
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
-  connections: z.array(npcConnectionItemSchema).optional(),
+  connections: z.array(npcConnectionItemSchema),
   isPublic: z.boolean().optional(),
   userId: z.string().optional(),
   editors: z.array(z.string()).optional(),

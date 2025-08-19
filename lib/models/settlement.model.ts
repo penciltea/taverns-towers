@@ -32,7 +32,7 @@ export interface ISettlement extends Document {
   isPublic: boolean;
   userId: Types.ObjectId;
   editors: string[];
-  connections?: NpcConnection[];
+  connections: NpcConnection[];
 }
 
 

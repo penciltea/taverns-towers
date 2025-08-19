@@ -21,7 +21,7 @@ export interface INpc extends Document {
   description?: string;
   gmNotes?: string;
   publicNotes?: string;
-  connections?: NpcConnection[];
+  connections: NpcConnection[];
   image?: string;
   isPublic?: boolean;
   editors?: mongoose.Types.ObjectId[];

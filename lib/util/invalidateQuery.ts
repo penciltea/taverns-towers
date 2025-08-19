@@ -23,6 +23,7 @@ export function invalidateConnections(queryClient: QueryClient, connections: que
       case "site":
         queryClient.invalidateQueries({ queryKey: ["site", conn.id] });
         queryClient.invalidateQueries({ queryKey: ["ownedSites"] });
+        queryClient.invalidateQueries({ queryKey: ["sites"] });
         break;
     }
   }

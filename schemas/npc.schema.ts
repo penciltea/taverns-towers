@@ -18,7 +18,7 @@ export const npcSchema = z.object({
   gmNotes: z.string().optional(),
   publicNotes: z.string().optional(),
   traits: optionalEnumArray(allTraitValues, "Invalid trait"),
-  connections: z.array(npcConnectionItemSchema).optional(),
+  connections: z.array(npcConnectionItemSchema),
   image: z
     .any()
     .refine(

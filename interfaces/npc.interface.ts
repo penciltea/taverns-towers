@@ -1,4 +1,4 @@
-import { NpcAge, NpcAlignment, NpcConnectionType, NpcPronounSet, NpcRace, NpcStatus, NpcTrait } from "@/constants/npc.options";
+import { NpcAge, NpcAlignment, NpcPronounSet, NpcRace, NpcStatus, NpcTrait } from "@/constants/npc.options";
 import { CommonInterface } from "./common.interface";
 import { DialogProps } from "@mui/material";
 import { NpcFormData } from "@/schemas/npc.schema";
