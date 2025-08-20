@@ -42,9 +42,7 @@ export default function EntityLinkList({
       {Object.entries(grouped).map(([type, group]) => (
         <Box key={type} sx={{ mb: 3 }}>
           {showType && (
-            <Typography variant="h6" sx={{ textTransform: 'capitalize', mb: 1 }}>
-              {type}
-            </Typography>
+            <Typography variant="h6" sx={{ textTransform: type.toLowerCase() === "npc" ? "uppercase" : "capitalize", mb: 1 }}>{ type }</Typography>
           )}
           <List dense>
             {group.map((conn) => (
