@@ -1,5 +1,10 @@
 import { NpcConnectionType } from "@/constants/npc.options";
 import mongoose from "mongoose";
+import { Npc } from "./npc.interface";
+
+export interface ConnectionProps{
+  connections: Npc['connections'];
+}
 
 export interface NpcConnection {
   type: NpcConnectionType;

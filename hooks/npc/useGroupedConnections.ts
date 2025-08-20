@@ -9,5 +9,7 @@ export function useGroupedConnections(connections: any[]) {
     return acc;
   }, {}) ?? {};
 
+  console.log("grouped: ", connections);
+
   return { grouped, isLoading, hasConnections: !!resolvedConnections?.length };
 }

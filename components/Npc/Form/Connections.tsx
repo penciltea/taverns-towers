@@ -3,11 +3,12 @@
 import { useFormContext } from "react-hook-form";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { AccordionWrapper } from "@/components/Common/AccordionWrapper";
-import { NPC_CONNECTION_NPC_ROLE, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_SITE_ROLE, NpcConnectionType } from "@/constants/npc.options";
+import { NPC_CONNECTION_NPC_ROLE, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NpcConnectionType } from "@/constants/npc.options";
 import { useOwnedSettlementsQuery } from "@/hooks/settlement/settlement.query";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
+import { Option } from "@/components/Form/FormSelect";
 
 export default function NpcFormConnections() {
   const { control, watch, setValue } = useFormContext();
@@ -27,18 +28,34 @@ export default function NpcFormConnections() {
 
   const formatOptions = (items?: any[]) => (items ?? []).map(item => ({ id: item._id, name: item.name }));
 
+  /** Generates the role options dynamically per site row */
+  const getSiteRoleOptions = (siteId: string | undefined) => {
+    if (!siteId || !sitesData?.sites) return NPC_CONNECTION_SITE_ROLE;
+
+    const site = sitesData.sites.find(s => s._id === siteId);
+    if (!site) return NPC_CONNECTION_SITE_ROLE;
+
+    const siteType = site.type;
+    return [
+      ...NPC_CONNECTION_SITE_ROLE, // generic roles
+      ...(siteType ? NPC_CONNECTION_SITE_TYPE_ROLES[siteType] ?? [] : []),
+    ];
+  };
+
   const renderAccordion = ({
     label,
     type,
     loading,
     options,
     roleOptions,
+    dynamicRoleOptions,
   }: {
     label: string;
     type: NpcConnectionType;
     loading: boolean;
     options: { id: string; name: string }[];
-    roleOptions: { label: string; value: string }[];
+    roleOptions: Option[];
+    dynamicRoleOptions?: (id: string | undefined) => Option[];
   }) => {
     if (loading) {
       return (
@@ -59,18 +76,19 @@ export default function NpcFormConnections() {
     }
 
     return (
-        <AccordionWrapper label={label}>
-            <EntityLinkForm
-                type={type}
-                label={label}
-                availableOptions={options}
-                value={connections.filter(c => c.type === type)}
-                onChange={(updated: ConnectionItem[]) => handleConnectionsChange(type, updated)}
-                roleOptions={roleOptions}
-                control={control}
-                namePrefix={`connections.${type}`}
-            />
-        </AccordionWrapper>
+      <AccordionWrapper label={label}>
+        <EntityLinkForm
+          type={type}
+          label={label}
+          availableOptions={options}
+          value={connections.filter(c => c.type === type)}
+          onChange={(updated: ConnectionItem[]) => handleConnectionsChange(type, updated)}
+          roleOptions={roleOptions}
+          dynamicRoleOptions={dynamicRoleOptions}
+          control={control}
+          namePrefix={`connections.${type}`}
+        />
+      </AccordionWrapper>
     );
   };
 
@@ -89,6 +107,7 @@ export default function NpcFormConnections() {
         loading: sitesLoading,
         options: formatOptions(sitesData?.sites),
         roleOptions: NPC_CONNECTION_SITE_ROLE,
+        dynamicRoleOptions: getSiteRoleOptions
       })}
       {renderAccordion({
         label: "NPCs",

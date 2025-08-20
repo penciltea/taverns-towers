@@ -27,7 +27,7 @@ export const EntertainmentDetails = ({ site }: { site: EntertainmentSite }) => {
         ) }
       </Box>
       
-      <ConnectionsList connections={site.connections} siteType="entertaiment" />
+      <ConnectionsList connections={site.connections} />
     </>
   );
 };

@@ -1,12 +1,11 @@
-import { Box, Divider, Grid, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+'use client';
+
+import { Box, Paper, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
-import { Npc } from "@/interfaces/npc.interface";
+import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
+import { ConnectionProps } from "@/interfaces/connection.interface";
 
-interface Props {
-  connections: Npc['connections'];
-}
-
-export default function SettlementConnections({ connections }: Props) {
+export default function SettlementConnections({ connections }: ConnectionProps) {
     const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
 
     if (isLoading) {
@@ -27,32 +26,9 @@ export default function SettlementConnections({ connections }: Props) {
         );
     }
 
-    // Group by type
-    const grouped = resolvedConnections.reduce<Record<string, typeof resolvedConnections>>((acc, conn) => {
-        if (!acc[conn.type]) acc[conn.type] = [];
-        acc[conn.type].push(conn);
-        return acc;
-    }, {});
-
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Typography variant="h4" component="h3" sx={{ mb: 2 }}>Connections</Typography>
-
-            {Object.entries(grouped).map(([type, group]) => (
-                <Box key={type} sx={{ mb: 3 }}>
-                    <List dense>
-                        {group.map((conn) => (
-                            <ListItem key={conn.id}>
-                                <ListItemText
-                                    sx={{ textTransform: 'capitalize'}}
-                                    primary={conn.name}
-                                    secondary={conn.role ? `Role: ${conn.role}` : undefined}
-                                />
-                            </ListItem>
-                        ))}
-                    </List>
-                </Box>
-            ))}
+            <EntityLinkList connections={resolvedConnections} showType={false} />
         </Paper>
     );
 }

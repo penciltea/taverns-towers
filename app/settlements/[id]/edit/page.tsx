@@ -27,7 +27,7 @@ export default function EditSettlementFormPage() {
   useFormMode(safeId, useSettlementContentStore);
   const { mode } = useSettlementContentStore();
 
-  const { showErrorDialog, setOpenDialog, closeDialog } = useUIStore();
+  const { showErrorDialog } = useUIStore();
   const { setSelectedItem, clearSelectedItem } = useSettlementContentStore();
   
   const methods = useFormWithSchema(settlementSchema, {

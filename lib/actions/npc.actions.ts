@@ -142,8 +142,13 @@ export async function resolveConnectionNames(connections: Npc['connections']) {
             break;
           }
           case 'npc': {
-            const doc = await NpcModel.findById(conn.id).select('name');
-            name = doc?.name || '[Unknown NPC]';
+            const doc = await NpcModel.findById(conn.id);
+            if (doc) {
+                const serialized = serializeNpc(doc);
+                return { ...conn, name: serialized.name, npcData: serialized };
+            } else {
+                name = '[Unknown NPC]';
+            }
             break;
           }
           default:

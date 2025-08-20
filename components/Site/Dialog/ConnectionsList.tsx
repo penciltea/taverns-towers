@@ -1,15 +1,12 @@
-import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
-import { useGroupedConnections } from "@/hooks/npc/useGroupedConnections";
+import { Box, Typography } from "@mui/material";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
-import { NpcConnection } from "@/interfaces/connection.interface";
+import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
+import { useResolvedConnections } from "@/hooks/npc/npc.query";
+import { ConnectionProps } from "@/interfaces/connection.interface";
 
-interface Props {
-  connections: NpcConnection[];
-  siteType: string;
-}
 
-export function ConnectionsList({ connections, siteType }: Props) {
-  const { grouped, isLoading, hasConnections } = useGroupedConnections(connections);
+export function ConnectionsList({ connections }: ConnectionProps) {
+  const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
 
   function getNpcRoleLabel(roleValue: string, siteType?: string): string {
     // 1. Search base roles
@@ -27,41 +24,31 @@ export function ConnectionsList({ connections, siteType }: Props) {
   }
 
   if (isLoading) {
-    return (
+      return (
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Connections</Typography>
-        <Typography variant="body2" color="text.secondary">Loading connections...</Typography>
+          <Typography variant="h5">Connections</Typography>
+          <Typography variant="body2" color="text.secondary">Loading connections...</Typography>
       </Box>
-    );
+      );
   }
 
-  if (!hasConnections) {
-    return (
+  if (!resolvedConnections || resolvedConnections.length === 0) {
+      return (
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h5">Connections</Typography>
-        <Typography variant="body2" color="text.secondary">No connections available.</Typography>
+          <Typography variant="h5">Connections</Typography>
+          <Typography variant="body2" color="text.secondary">No connections available.</Typography>
       </Box>
-    );
+      );
   }
 
   return (
     <Box>
-      <Typography variant="h6" component="h2" sx={{ textDecoration: "underline" }}>Connections</Typography>
-      {Object.entries(grouped).map(([type, group]) => (
-        <Box key={type} sx={{ mb: 3 }}>
-          <List dense>
-            {group.map((conn) => (
-              <ListItem key={conn.id}>
-                <ListItemText
-                  sx={{ textTransform: 'capitalize'}}
-                  primary={conn.name || "Unknown NPC"}
-                  secondary={conn.role ? `Role: ${getNpcRoleLabel(conn.role, siteType)}` : undefined}
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      ))}
+      <EntityLinkList
+        connections={resolvedConnections}
+        title="Connections"
+        showType={false}
+        mapRole={(role) => getNpcRoleLabel(role, 'entertainment')}
+      />
     </Box>
   );
 }

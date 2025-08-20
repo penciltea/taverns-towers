@@ -28,7 +28,7 @@ export const HiddenDetails = ({ site }: { site: HiddenSite }) => {
         ) }   
       </Box>
       
-      <ConnectionsList connections={site.connections} siteType="hidden" />
+      <ConnectionsList connections={site.connections} />
     </>
   );
 };

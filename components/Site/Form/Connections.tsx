@@ -2,13 +2,13 @@
 
 import { useFormContext } from "react-hook-form";
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
 import { SiteFormData } from "@/schemas/site.schema";
 import { useSiteContentStore } from "@/store/siteStore";
 import { useSearchParams } from "next/navigation";
 import { Option } from "@/components/Form/FormSelect";
+import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
 
 interface Props {
     mode: "add" | "edit" | null;
@@ -36,12 +36,12 @@ export default function SiteFormConnections({ mode }: Props) {
       // Remove existing npc connections before adding updated ones
       [...connections.filter(c => c.type !== "npc"), ...updatedWithType]
     );
-  };
+  };  
 
   function getSiteRoles(siteType?: string): Option[] {
     return [
       ...NPC_CONNECTION_SITE_ROLE,
-      ...(siteType ? NPC_CONNECTION_SITE_TYPE_ROLES[siteType] ?? [] : []), // get specific extra roles from site type constant
+      ...(siteType ? NPC_CONNECTION_SITE_TYPE_ROLES[siteType] ?? [] : []),
       { label: "Other", value: "other" }
     ];
   }
@@ -50,6 +50,8 @@ export default function SiteFormConnections({ mode }: Props) {
     id: npc._id,
     name: npc.name,
   }));
+
+ 
 
   if (npcsLoading) {
     return (

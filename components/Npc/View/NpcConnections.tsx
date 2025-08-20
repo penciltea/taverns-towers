@@ -1,12 +1,9 @@
-import { Box, Divider, Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
-import { Npc } from "@/interfaces/npc.interface";
+import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
+import { ConnectionProps } from "@/interfaces/connection.interface";
 
-interface Props {
-  connections: Npc['connections'];
-}
-
-export default function NpcConnections({ connections }: Props) {
+export default function NpcConnections({ connections }: ConnectionProps) {
     const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
 
     if (isLoading) {
@@ -27,34 +24,9 @@ export default function NpcConnections({ connections }: Props) {
         );
     }
 
-    // Group by type
-    const grouped = resolvedConnections.reduce<Record<string, typeof resolvedConnections>>((acc, conn) => {
-        if (!acc[conn.type]) acc[conn.type] = [];
-        acc[conn.type].push(conn);
-        return acc;
-    }, {});
-
     return (
         <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
-            <Typography variant="h4" component="h3" sx={{ mb: 2 }}>Connections</Typography>
-            <Divider sx={{ mb: 2 }} />
-
-            {Object.entries(grouped).map(([type, group]) => (
-                <Box key={type} sx={{ mb: 3 }}>
-                    <Typography variant="h6" sx={{ textTransform: 'capitalize', mb: 1 }}>{type}s</Typography>
-                    <List dense>
-                        {group.map((conn) => (
-                            <ListItem key={conn.id}>
-                                <ListItemText
-                                    sx={{ textTransform: 'capitalize'}}
-                                    primary={conn.name}
-                                    secondary={conn.role ? `Role: ${conn.role}` : undefined}
-                                />
-                            </ListItem>
-                        ))}
-                    </List>
-                </Box>
-            ))}
+            <EntityLinkList connections={resolvedConnections} showType={true} />
         </Grid>
     );
 }

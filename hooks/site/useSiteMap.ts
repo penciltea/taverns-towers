@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from "react";
-import { useOwnedSitesQuery } from "@/hooks/site/site.query"; // your query hook
+import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import { SiteType } from "@/interfaces/site.interface";
 
 export default function useSiteMap() {

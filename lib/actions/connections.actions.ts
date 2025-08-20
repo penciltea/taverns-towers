@@ -4,6 +4,7 @@ import connectToDatabase from "@/lib/db/connect";
 import NpcModel from "@/lib/models/npc.model";
 import SiteModel from "@/lib/models/site.model";
 import SettlementModel from "@/lib/models/settlement.model";
+import { NPC_ROLE_PAIRS } from "@/constants/npc.options";
 
 // You could extend this with more as needed
 const MODEL_MAP = {
@@ -35,6 +36,8 @@ export async function addConnection({
         throw new Error(`Unsupported connection type: ${sourceType} or ${targetType}`);
     }
 
+    const reciprocalRole = NPC_ROLE_PAIRS[role] ?? role;
+
     // Remove any existing connection for this source
     await TargetModel.findByIdAndUpdate(targetId, {
         $pull: { connections: { type: sourceType, id: sourceId } },
@@ -42,10 +45,10 @@ export async function addConnection({
 
     // Add new connection with the updated role
     await TargetModel.findByIdAndUpdate(targetId, {
-        $push: { connections: { type: sourceType, id: sourceId, role } },
+        $push: { connections: { type: sourceType, id: sourceId, role: reciprocalRole } },
     });
 
-    return { sourceId, targetId, sourceType, targetType, role };
+    return { sourceId, targetId, sourceType, targetType, role, targetRole: reciprocalRole };
 }
 
 

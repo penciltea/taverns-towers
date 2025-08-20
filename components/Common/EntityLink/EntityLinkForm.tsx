@@ -19,6 +19,7 @@ interface EntityLinkFormProps {
     control: Control<any>;
     namePrefix: string;
     type: NpcConnectionType;
+    dynamicRoleOptions?: (id: string | undefined) => Option[];
 }
 
 export default function EntityLinkForm({
@@ -29,9 +30,10 @@ export default function EntityLinkForm({
     roleOptions,
     control,
     namePrefix,
-    type
+    type,
+    dynamicRoleOptions,
 }: EntityLinkFormProps) {
-    // Map IDs → names to display properly when editing
+    // Map IDs to names to display properly when editing
     const optionsMap = useMemo(() => new Map(availableOptions.map(o => [o.id, o.name])), [availableOptions]);
 
     const handleAdd = (id: string) => {
@@ -66,39 +68,45 @@ export default function EntityLinkForm({
         {/* Selector for adding new items */}
         <Box mb={2}>
             <FormSelect
-            name={`${namePrefix}.selector`}
-            label={`Add ${label}`}
-            control={control}
-            options={selectOptions.filter(opt => !selectedIds.includes(opt.value))}
-            onChange={(e) => handleAdd((e.target as HTMLInputElement).value)}
+                name={`${namePrefix}.selector`}
+                label={`Add ${label}`}
+                control={control}
+                options={selectOptions.filter(opt => !selectedIds.includes(opt.value))}
+                onChange={(e) => handleAdd((e.target as HTMLInputElement).value)}
             />
         </Box>
 
         <Stack spacing={2}>
             {safeValue.map((item, index) => {
-            const displayName = optionsMap.get(item.id) ?? item.name ?? "[Unknown]";
-            return (
-                <Box
-                key={item.id}
-                display="grid"
-                gridTemplateColumns="1fr 1fr auto"
-                alignItems="center"
-                gap={2}
-                >
-                <Typography>{displayName}</Typography>
-                <FormSelect
-                    name={`${namePrefix}.${index}.role`}
-                    label="Role"
-                    control={control}
-                    options={roleOptions}
-                    value={item.role}
-                    onChange={(e) => handleRoleChange(index, (e.target as HTMLInputElement).value)}
-                />
-                <IconButton onClick={() => handleRemove(item.id)} aria-label="Remove">
-                    <DeleteIcon />
-                </IconButton>
-                </Box>
-            );
+                const displayName = optionsMap.get(item.id) ?? item.name ?? "[Unknown]";
+
+                const rowRoleOptions = dynamicRoleOptions
+                    ? dynamicRoleOptions(item.id)
+                    : roleOptions;
+
+                return (
+                    <Box
+                        key={item.id}
+                        display="grid"
+                        gridTemplateColumns="1fr 1fr auto"
+                        alignItems="center"
+                        gap={2}
+                    >
+                        <Typography>{displayName}</Typography>
+                        <FormSelect
+                            name={`${namePrefix}.${index}.role`}
+                            label="Role"
+                            required
+                            control={control}
+                            options={rowRoleOptions}
+                            value={item.role}
+                            onChange={(e) => handleRoleChange(index, (e.target as HTMLInputElement).value)}
+                        />
+                        <IconButton onClick={() => handleRemove(item.id)} aria-label="Remove">
+                            <DeleteIcon />
+                        </IconButton>
+                    </Box>
+                );
             })}
         </Stack>
         </>

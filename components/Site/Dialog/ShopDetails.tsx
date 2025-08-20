@@ -33,7 +33,7 @@ export const ShopDetails = ({ site }: { site: ShopSite }) => {
         ) }
       </Box>
       
-      <ConnectionsList connections={site.connections} siteType="shop" />
+      <ConnectionsList connections={site.connections} />
 
       <MenuList menu={site.menu || []} label="Wares" />
     </>
