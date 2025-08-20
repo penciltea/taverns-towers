@@ -2,6 +2,9 @@ import { ObjectId } from "bson";
 import { ConnectionInput } from "../actions/npcConnections";
 import { Npc } from "@/interfaces/npc.interface";
 import { Settlement } from "@/interfaces/settlement.interface";
+import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_NPC_ROLE } from "@/constants/npc.options";
+import { getLabelFromValue } from "./getLabelFromValue";
+import { Option } from "@/components/Form/FormSelect";
 
 export function normalizeConnections(connections: ConnectionInput[] = []) {
   return connections.map((conn) => ({

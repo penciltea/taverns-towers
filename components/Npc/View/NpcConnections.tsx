@@ -6,6 +6,8 @@ import { ConnectionProps } from "@/interfaces/connection.interface";
 export default function NpcConnections({ connections }: ConnectionProps) {
     const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
 
+    console.log("conns: ", resolvedConnections);
+
     if (isLoading) {
         return (
         <Box sx={{ mt: 4 }}>

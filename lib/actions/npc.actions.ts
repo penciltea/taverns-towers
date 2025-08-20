@@ -137,8 +137,14 @@ export async function resolveConnectionNames(connections: Npc['connections']) {
             break;
           }
           case 'site': {
-            const doc = await Site.findById(conn.id).select('name');
-            name = doc?.name || '[Unknown Site]';
+            const doc = await Site.findById(conn.id);
+            if(doc){
+              console.log("doc: ", doc);
+              return {...conn, name: doc.name, siteType: doc.type}
+            } else {
+              name = '[Unknown Site]';
+            }
+            
             break;
           }
           case 'npc': {
