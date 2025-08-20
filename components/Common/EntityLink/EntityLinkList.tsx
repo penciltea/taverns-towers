@@ -28,9 +28,7 @@ function mapConnectionRole(conn: any, pageSiteType?: string) {
   if (!role) return "Unknown";
 
   let options: Option[] = [];
-  console.log("pageType: ", pageSiteType);
-
-  console.log("conn: ", conn);
+  
   const typeForLookup = siteType ?? pageSiteType; // use fallback
 
   switch (type) {

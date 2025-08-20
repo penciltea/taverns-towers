@@ -139,7 +139,6 @@ export async function resolveConnectionNames(connections: Npc['connections']) {
           case 'site': {
             const doc = await Site.findById(conn.id);
             if(doc){
-              console.log("doc: ", doc);
               return {...conn, name: doc.name, siteType: doc.type}
             } else {
               name = '[Unknown Site]';
