@@ -1,8 +1,8 @@
 'use client';
 
-import { Box, List, ListItem, ListItemText, Typography, Chip, Stack } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography, Chip, Stack, TypographyProps } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
-import { capitalizeFirstLetter, toTitleCase } from "@/lib/util/stringFormats";
+import { toTitleCase } from "@/lib/util/stringFormats";
 import React from "react";
 import { Option } from "@/components/Form/FormSelect";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_NPC_ROLE } from "@/constants/npc.options";
@@ -19,19 +19,25 @@ interface EntityLinkListProps {
   connections: Array<any>;
   title?: string;
   showType?: boolean;
+  variant?: TypographyProps["variant"]; // optional, for setting title variant
+  pageSiteType?: string; // optional, used for label lookup
 }
 
-function mapConnectionRole(conn: any) {
+function mapConnectionRole(conn: any, pageSiteType?: string) {
   const { type, role, siteType } = conn;
   if (!role) return "Unknown";
 
   let options: Option[] = [];
+  console.log("pageType: ", pageSiteType);
+
+  console.log("conn: ", conn);
+  const typeForLookup = siteType ?? pageSiteType; // use fallback
 
   switch (type) {
     case "site":
       options = [
         ...NPC_CONNECTION_SITE_ROLE,
-        ...(siteType ? NPC_CONNECTION_SITE_TYPE_ROLES[siteType] ?? [] : []),
+        ...(typeForLookup ? NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? [] : []),
       ];
       break;
 
@@ -40,7 +46,10 @@ function mapConnectionRole(conn: any) {
       break;
 
     case "npc":
-      options = NPC_CONNECTION_NPC_ROLE;
+      options = [
+        ...NPC_CONNECTION_NPC_ROLE,
+        ...(typeForLookup ? NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? [] : []),
+      ];
       break;
 
     default:
@@ -54,6 +63,8 @@ export default function EntityLinkList({
   connections,
   title = 'Connections',
   showType = false,
+  variant = "h4",
+  pageSiteType
 }: EntityLinkListProps) {
   if (!connections || connections.length === 0) return null;
 
@@ -65,7 +76,7 @@ export default function EntityLinkList({
 
   return (
     <>
-      <Typography variant="h4" component="h3" sx={{ mb: 2 }}>
+      <Typography variant={variant} component="h3" sx={{ mb: 2 }}>
         {title}
       </Typography>
 
@@ -88,13 +99,13 @@ export default function EntityLinkList({
                     isNpcConnection(conn) ? (
                       <Stack direction="row" spacing={1} flexWrap="wrap" component="div">
                         {conn.role && (
-                          <Chip label={mapConnectionRole(conn)} size="small" />
+                          <Chip label={mapConnectionRole(conn, pageSiteType)} size="small" />
                         )}
                         {conn.npcData.race && (
                           <Chip label={toTitleCase(conn.npcData.race)} size="small" />
                         )}
                         {conn.npcData.pronouns && (
-                          <Chip label={mapConnectionRole({ type: "pronouns", role: conn.npcData.pronouns })} size="small" />
+                          <Chip label={toTitleCase(conn.npcData.pronouns)} size="small" />
                         )}
                       </Stack>
                     ) : conn.role ? (

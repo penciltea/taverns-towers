@@ -34,7 +34,7 @@ export const GovernmentDetails = ({ site }: { site: GovernmentSite }) => {
         ) }
       </Box>
       
-      <ConnectionsList connections={site.connections} />
+      <ConnectionsList connections={site.connections} pageSiteType="government" />
     </>
   );
 };

@@ -10,6 +10,7 @@ import GridItem from '@/components/Grid/GridItem';
 import { Spinner } from '@/components/Common/Spinner';
 import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';
+import { toTitleCase } from '@/lib/util/stringFormats';
 
 export default function NpcsPage() {
   const defaultImage = '/placeholders/town.png';
@@ -53,7 +54,7 @@ export default function NpcsPage() {
               key={npc._id}
               link={`/npcs/${npc._id}`}
               title={npc.name}
-              subtitle={`Race: ${npc.race || 'N/A'}`}
+              subtitle={`Race: ${toTitleCase(npc.race ?? 'N/A') || 'N/A'}`}
               image={npc.image || defaultImage}
             />
           )}
