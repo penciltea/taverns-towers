@@ -40,6 +40,10 @@ interface UIState {
     tId: string | null;
     setSettlementId: (id: string) => void;   
     clearSettlementId: () => void; 
+
+    // For UI Themes
+    theme: 'light' | 'dark' | 'purple';
+    setTheme: (theme: UIState['theme']) => void;
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -73,5 +77,8 @@ export const useUIStore = create<UIState>((set) => ({
 
   tId: null,
   setSettlementId: (id) => set({ tId: id }),
-  clearSettlementId: () => set({ tId: null})
+  clearSettlementId: () => set({ tId: null}),
+
+  theme: 'light',
+  setTheme: (theme) => set({ theme }),
 }));
