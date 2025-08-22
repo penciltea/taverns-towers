@@ -16,7 +16,7 @@ const userSchema = new Schema<UserModel>({
     tier: {
         type: String,
         enum: userTier,
-        default: userTier[0], // "free"
+        default: userTier[0], // "free"/"observer"
         required: true,
     },
 })

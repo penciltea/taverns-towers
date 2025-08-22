@@ -64,16 +64,6 @@ export const Sidebar = () => {
                     path: "/npcs/new"
                 }
             ]
-        },
-        {
-            label: "Guilds & Factions",
-            children: [
-                {
-                    label: "View all",
-                    path: "/guilds",
-                    enabled: false
-                },
-            ]
         }
     ];
 

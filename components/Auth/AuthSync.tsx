@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useAuthStore } from "@/store/authStore";
+import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 
 export default function AuthSync() {
   const { data: session, status } = useSession();
@@ -18,7 +19,7 @@ export default function AuthSync() {
         id: session.user.id,
         username: session.user.username,
         email: session.user.email,
-        tier: session.user.tier,
+        tier: capitalizeFirstLetter(session.user.tier),
       });
     } else if (status === "unauthenticated" && session === null) {
       clearUser();

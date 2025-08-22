@@ -22,6 +22,6 @@ export async function requireUser(): Promise<UserInterface> {
     id,
     username,
     email,
-    tier: tier ?? "free", // fallback just in case
+    tier: tier ?? "observer", // fallback just in case
   };
 }

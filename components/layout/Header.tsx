@@ -8,6 +8,7 @@ import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, I
 import MenuIcon from '@mui/icons-material/Menu';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import Link from 'next/link';
 
 export default function Header() {
   const router = useRouter();
@@ -53,7 +54,7 @@ export default function Header() {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          RealmFoundry
+          <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>RealmFoundry</Link>
         </Typography>
 
         {status === "authenticated" && session.user ? (
