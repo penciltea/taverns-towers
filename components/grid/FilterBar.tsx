@@ -85,7 +85,7 @@ export default function FilterBar<T>({
             size="large"
             startIcon={<TuneIcon />}
             onClick={onOpenAdvanced}
-            color="primary"
+            color="secondary"
             sx={isMobile ? { my: 2 } : undefined}
           >
             {isMobile ? "Filters" : "Advanced"}

@@ -6,6 +6,7 @@ import LayoutWrapper from "@/components/Layout/LayoutWrapper";
 import { authOptions } from '@/lib/auth/authOptions';
 import { getServerSession } from 'next-auth';
 import AuthSync from '@/components/Auth/AuthSync';
+import { UITheme } from '@/constants/ui.options';
 
 export const metadata = {
   title: "RealmFoundry",
@@ -13,12 +14,14 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
+  const initialTheme = (session?.user?.theme as UITheme) ?? 'dark';
+
   return (
     <html lang="en">
       
       <body>
-        <AppProviderWrapper session={session}>
+        <AppProviderWrapper session={session} initialTheme={initialTheme}>
           <AuthSync />
           <Snackbar />
           <ErrorDialog />

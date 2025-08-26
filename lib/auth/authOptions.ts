@@ -30,6 +30,7 @@ export const authOptions: AuthOptions = {
           email: result.user.email,
           username: result.user.username,
           tier: result.user.tier,
+          theme: result.user.theme,
         };
       },
     })
@@ -51,6 +52,7 @@ export const authOptions: AuthOptions = {
         token.id = user.id;
         token.username = user.username;
         token.tier = user.tier;
+        token.theme = user.theme;
       }
       return token;
     },
@@ -59,6 +61,7 @@ export const authOptions: AuthOptions = {
         session.user.id = token.id as string;
         session.user.username = token.username as string;
         session.user.tier = token.tier as string;
+        session.user.theme = token.theme as string;
       }
       return session;
     },

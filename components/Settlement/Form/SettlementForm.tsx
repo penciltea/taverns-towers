@@ -99,6 +99,7 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
               type="button"
               variant="contained"
               onClick={onGenerate}
+              color="secondary"
               size="large"
               sx={{ mt: 2, py: 1.65 }}
           >

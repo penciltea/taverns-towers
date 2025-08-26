@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 import { userTier } from "@/constants/user.options";
+import { UI_THEMES } from "@/constants/ui.options";
 
 export interface UserModel {
     username: string;
     email: string;
     password: string;
     tier: string;
+    theme: string
 }
 
 const userSchema = new Schema<UserModel>({
@@ -19,6 +21,12 @@ const userSchema = new Schema<UserModel>({
         default: userTier[0], // "free"/"traveler"
         required: true,
     },
+    theme: { 
+        type: String, 
+        enum: UI_THEMES, 
+        required: true, 
+        default: UI_THEMES[0] // "dark"
+    }
 })
 
 export const User = 

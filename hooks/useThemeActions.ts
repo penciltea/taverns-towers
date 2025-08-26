@@ -1,20 +1,21 @@
+'use client'
+
+import { useSession } from "next-auth/react";
 import { UIState } from "@/interfaces/ui.interface";
-import { useAuthStore } from "@/store/authStore";
+import { updateUserTheme } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
 
 export default function useThemeActions(){
   const setTheme = useUIStore((state) => state.setTheme);
-  const user = useAuthStore((state) => state.user);
+  const { data: session } = useSession();
+
+  const user = session?.user ? { id: session.user.id } : null;
 
   const updateTheme = async (theme: UIState['theme']) => {
     setTheme(theme);
 
     if (user) {
-      await fetch('/api/user/theme', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ theme }),
-      });
+      await updateUserTheme(user.id, theme);
     }
   };
 

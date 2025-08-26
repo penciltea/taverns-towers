@@ -1,3 +1,4 @@
+import NextMuiLink from "@/components/Common/NextMuiLink";
 import PatreonCta from "@/components/Common/PatreonCta";
 import { Box, Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
 import Link from "next/link";
@@ -134,7 +135,7 @@ export default function AlphaRelease() {
 
             <Box sx={{ mt: 6 }}>
                 <Typography variant="h4" component="h4">Looking Ahead</Typography>
-                <Typography variant="body1">For a full view of planned features and updates, check out our{" "}<Link href="/roadmap">Roadmap</Link>.</Typography>
+                <Typography variant="body1">For a full view of planned features and updates, check out our <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.</Typography>
             </Box>
 
             <PatreonCta />

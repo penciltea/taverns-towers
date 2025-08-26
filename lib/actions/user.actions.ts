@@ -4,6 +4,7 @@ import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.model";
 import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UserInterface } from "@/interfaces/user.interface";
+import { UI_THEMES } from "@/constants/ui.options";
 
 // Serialize for client compatibility
 function serializeUser(user: any): UserInterface {
@@ -14,6 +15,7 @@ function serializeUser(user: any): UserInterface {
     email: obj.email,
     username: obj.username,
     tier: obj.tier,
+    theme: obj.theme
   };
 }
 
@@ -44,6 +46,7 @@ export async function registerUser(data: RegisterPayload): Promise<{
       username: data.username.toLowerCase(),
       email: data.email.toLowerCase(),
       password: hashedPassword,
+      theme: UI_THEMES[0] // default theme
     });
 
     return { success: true };
@@ -92,6 +95,31 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
             email: serializedUser.email,
             username: serializedUser.username,
             tier: serializedUser.tier,
+            theme: serializedUser.theme
         },
     };
+}
+
+export async function updateUserTheme(userId: string, theme: "light" | "dark"): Promise<{
+  success: boolean;
+  error?: string;
+}> {
+  try {
+    await connectToDatabase();
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { theme },
+      { new: true } // return updated doc
+    );
+
+    if (!user) {
+      return { success: false, error: "User not found." };
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error("Error updating theme:", err);
+    return { success: false, error: "Could not update theme preference." };
+  }
 }

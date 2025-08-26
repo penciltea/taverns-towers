@@ -83,7 +83,16 @@ export const Sidebar = () => {
     };
 
     const drawerContent = (
-        <Box sx={{ width: drawerWidth, paddingTop: { xs: '7vh', sm: '40px', md: '60px' } }} role="presentation">
+        <Box 
+            sx={{
+                width: drawerWidth,
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                paddingTop: { xs: '7vh', sm: '40px', md: '60px' }
+            }}
+            role="presentation"
+        >
             <Box display="flex" alignItems="center" p={2}>
                 <Typography variant="h6">Navigation</Typography>
             </Box>

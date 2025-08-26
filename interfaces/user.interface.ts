@@ -3,6 +3,7 @@ export interface UserInterface {
     email: string;
     username: string;
     tier: string;
+    theme: string;
 }
 
 export interface UserPermissions {
@@ -24,7 +25,7 @@ export interface LoginPayload {
 
 export interface LoginSuccess {
   success: true;
-  user: { id: string; email: string; username: string; tier: string };
+  user: { id: string; email: string; username: string; tier: string, theme: string };
 }
 
 export interface LoginFailure {

@@ -113,6 +113,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
             type="button"
             variant="contained"
             onClick={generator?.missing}
+            color="secondary"
             size="large"
             sx={{ mt: 2, py: 1.65 }}
           >

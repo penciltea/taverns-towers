@@ -1,84 +1,85 @@
 import { create } from 'zustand';
-
+import { UI_THEMES, UITheme } from '@/constants/ui.options';
 
 interface UIState {
-    // Side drawer
-    isDrawerOpen: boolean;
-    toggleDrawer: () => void;
-    closeDrawer: () => void;
-    openDrawer: () => void;
+  // Side drawer
+  isDrawerOpen: boolean;
+  toggleDrawer: () => void;
+  closeDrawer: () => void;
+  openDrawer: () => void;
 
-    // Dialog state
-    openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'NpcDetailsDialog' | 'DeleteConnectionDialog' ;
-    dialogProps: Record<string, any>;
-    setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
-    closeDialog: () => void;
+  // Dialog state
+  openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'NpcDetailsDialog' | 'DeleteConnectionDialog';
+  dialogProps: Record<string, any>;
+  setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
+  closeDialog: () => void;
 
-    // Snackbar
-    snackbarMessage: string;
-    isSnackbarOpen: boolean;
-    snackbarSeverity: 'success' | 'error' | 'info' | 'warning';
-    showSnackbar: (message: string, severity?: UIState['snackbarSeverity']) => void;
+  // Snackbar
+  snackbarMessage: string;
+  isSnackbarOpen: boolean;
+  snackbarSeverity: 'success' | 'error' | 'info' | 'warning';
+  showSnackbar: (message: string, severity?: UIState['snackbarSeverity']) => void;
+  closeSnackbar: () => void;
 
-    // For error dialogs
-    isErrorDialogOpen: boolean;
-    errorMessage: string;
-    showErrorDialog: (message: string) => void;
-    closeErrorDialog: () => void;
+  // Error dialog
+  isErrorDialogOpen: boolean;
+  errorMessage: string;
+  showErrorDialog: (message: string) => void;
+  closeErrorDialog: () => void;
 
+  // Loading & submitting
+  isLoading: boolean;
+  setLoading: (isLoading: boolean) => void;
+  isSubmitting: boolean;
+  setSubmitting: (isSubmitting: boolean) => void;
 
-    closeSnackbar: () => void;
+  // Settlement
+  tId: string | null;
+  setSettlementId: (id: string) => void;
+  clearSettlementId: () => void;
 
-    // Data Loading & Sending
-    isLoading: boolean;
-    setLoading: (isLoading: boolean) => void;
-
-    isSubmitting: boolean;
-    setSubmitting: (isSubmitting: boolean) => void;
-
-    // Settlement
-    tId: string | null;
-    setSettlementId: (id: string) => void;   
-    clearSettlementId: () => void; 
-
-    // For UI Themes
-    theme: 'light' | 'dark' | 'purple';
-    setTheme: (theme: UIState['theme']) => void;
+  // Theme
+  theme: UITheme;
+  setTheme: (theme: UITheme) => void;
 }
 
-export const useUIStore = create<UIState>((set) => ({
-  isDrawerOpen: false,
-  toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
+export const useUIStore = create<UIState>((set) => {
+  return {
+    isDrawerOpen: false,
+    toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
+    closeDrawer: () => set({ isDrawerOpen: false }),
+    openDrawer: () => set({ isDrawerOpen: true }),
 
-  closeDrawer: () => set({ isDrawerOpen: false }),
-  openDrawer: () => set({ isDrawerOpen: true }),
+    openDialog: null,
+    dialogProps: {},
+    setOpenDialog: (dialog, props = {}) => set({ openDialog: dialog, dialogProps: props }),
+    closeDialog: () => set({ openDialog: null }),
 
-  openDialog: null,
-  dialogProps: {},
-  setOpenDialog: (dialog, props = {}) => set({ openDialog: dialog, dialogProps: props }),
-  closeDialog: () => set({ openDialog: null }),
+    snackbarMessage: '',
+    isSnackbarOpen: false,
+    snackbarSeverity: 'info',
+    showSnackbar: (snackbarMessage, snackbarSeverity = 'info') =>
+      set({ snackbarMessage, snackbarSeverity, isSnackbarOpen: true }),
+    closeSnackbar: () => set({ isSnackbarOpen: false }),
 
-  snackbarMessage: '',
-  isSnackbarOpen: false,
-  snackbarSeverity: 'info',
-  showSnackbar: (snackbarMessage, snackbarSeverity = 'info') => set({ snackbarMessage, snackbarSeverity, isSnackbarOpen: true }),
-  closeSnackbar: () => set({ isSnackbarOpen: false }),
+    isErrorDialogOpen: false,
+    errorMessage: '',
+    showErrorDialog: (message: string) => set({ errorMessage: message, isErrorDialogOpen: true }),
+    closeErrorDialog: () => set({ isErrorDialogOpen: false, errorMessage: '' }),
 
-  isErrorDialogOpen: false,
-  errorMessage: '',
-  showErrorDialog: (message: string) => set({ errorMessage: message, isErrorDialogOpen: true }),
-  closeErrorDialog: () => set({ isErrorDialogOpen: false, errorMessage: '' }),
+    isLoading: false,
+    setLoading: (isLoading) => set({ isLoading }),
+    isSubmitting: false,
+    setSubmitting: (isSubmitting) => set({ isSubmitting }),
 
-  isLoading: false,
-  setLoading: (isLoading) => set({ isLoading }),
+    tId: null,
+    setSettlementId: (id) => set({ tId: id }),
+    clearSettlementId: () => set({ tId: null }),
 
-  isSubmitting: false,
-  setSubmitting: (isSubmitting) => set({ isSubmitting }),
-
-  tId: null,
-  setSettlementId: (id) => set({ tId: id }),
-  clearSettlementId: () => set({ tId: null}),
-
-  theme: 'light',
-  setTheme: (theme) => set({ theme }),
-}));
+    theme: 'dark',
+    setTheme: (theme: UITheme) => {
+      set({ theme });
+      if (typeof window !== 'undefined') localStorage.setItem('theme', theme);
+    },
+  };
+});

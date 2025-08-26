@@ -1,8 +1,9 @@
 'use client'
 
-import { Box, Typography, Button, Container, List, ListItem, ListItemText, Stack } from "@mui/material"
+import { Box, Typography, Button, Container, List, ListItem, ListItemText, Paper } from "@mui/material"
 import PatreonCta from "./PatreonCta"
 import Link from "next/link"
+import NextMuiLink from "./NextMuiLink";
 
 export default function HomeContent(){
     return (
@@ -10,8 +11,11 @@ export default function HomeContent(){
             {/* Hero Section */}
             <Box
                 sx={{
-                    backgroundColor: "primary.main",
-                    color: "white",
+                    background: (theme) =>
+                    theme.palette.mode === "light"
+                        ? "linear-gradient(0deg, #00b7c2 -80%, #f8f4e9 100%)"
+                        : "linear-gradient(0deg, #00b7c2 -80%, #2B2B3F 100%)", // dark mode gradient
+                    color: (theme) => theme.palette.text.primary,
                     py: 10,
                     textAlign: "center",
                 }}
@@ -20,8 +24,16 @@ export default function HomeContent(){
                 <Typography variant="h6" component="p" gutterBottom>Generate towns, locations, and characters with powerful tools tailored for GMs, writers, and world-builders.</Typography>
                 <Button
                     variant="contained"
-                    color="secondary"
-                    sx={{ mt: 4 }}
+                    sx={{
+                        mt: 4,
+                        backgroundColor: (theme) =>
+                        theme.palette.mode === "dark" ? "#8c5aff" : theme.palette.secondary.main,
+                        color: "white",
+                        "&:hover": {
+                        backgroundColor: (theme) =>
+                            theme.palette.mode === "dark" ? "#7b3fe5" : theme.palette.secondary.dark,
+                        },
+                    }}
                     component={Link}
                     href="/settlements/new"
                 >
@@ -67,7 +79,7 @@ export default function HomeContent(){
             </Container>
 
             {/* Features Section */}
-            <Container sx={{ py: 8, backgroundColor: "grey.100", borderRadius: 2 }}>
+            <Paper sx={{ px: 2, py: 4, borderRadius: 2 }}>
                 <Typography variant="h4" component="h2" gutterBottom>
                     What You Can Do Right Now
                 </Typography>
@@ -86,9 +98,9 @@ export default function HomeContent(){
                     </ListItem>
                 </List>
                 <Typography variant="body1" sx={{ mt: 2 }}>
-                    See what's live in the <a href="/alpha-notes">Alpha Release Notes</a> or what's coming in the{" "}<Link href="/roadmap">Roadmap</Link>.
+                    See what's live in the <NextMuiLink href="/releases/alpha-dateTBD" underline="always">Alpha Release Notes</NextMuiLink> or what's coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.
                 </Typography>
-            </Container>
+            </Paper>
 
             <PatreonCta />
         </Box>

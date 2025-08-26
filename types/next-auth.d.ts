@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import { UI_THEME } from "@/types/ui";
 
 declare module "next-auth" {
   interface Session {
@@ -7,6 +8,7 @@ declare module "next-auth" {
       email: string;
       username: string;
       tier: string;
+      theme: UI_THEME;
     };
   }
 
@@ -15,6 +17,7 @@ declare module "next-auth" {
     email: string;
     username: string;
     tier: string;
+    theme: string;
   }
 }
 
@@ -24,5 +27,6 @@ declare module "next-auth/jwt" {
     email: string;
     username: string;
     tier: string;
+    theme: string;
   }
 }

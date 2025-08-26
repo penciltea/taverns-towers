@@ -20,6 +20,7 @@ export default function AuthSync() {
         username: session.user.username,
         email: session.user.email,
         tier: capitalizeFirstLetter(session.user.tier),
+        theme: session.user.theme
       });
     } else if (status === "unauthenticated" && session === null) {
       clearUser();
