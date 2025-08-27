@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -13,6 +13,7 @@ import Link from 'next/link';
 export default function Header() {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const theme = useTheme();
   
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -39,21 +40,24 @@ export default function Header() {
     await signOut({ redirect: false });
     router.push('/');
   };
+
+  // Conditional color: darkSlate when light mode, otherwise inherit
+  const headerTextColor =
+    theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
   
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <IconButton
-          color="inherit"
           aria-label="open drawer"
           edge="start"
           onClick={toggleDrawer}
-          sx={{ mr: 2 }}
+          sx={{ mr: 2, color: headerTextColor }}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, color: headerTextColor }}>
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>RealmFoundry</Link>
         </Typography>
 
@@ -65,6 +69,7 @@ export default function Header() {
               aria-controls={anchorEl ? 'user-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
+              sx={{ color: headerTextColor }}
             >
               <Avatar sx={{ width: 26, height: 26, mr: 1 }}>
                 <PersonOutlineIcon />
@@ -85,7 +90,7 @@ export default function Header() {
           </>
         ) : (
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-            <Button variant="outlined" color="inherit" size="small" onClick={() => handleNavigate('/auth/login')}>
+            <Button variant="outlined" color="inherit" size="small" sx={{ color: headerTextColor }} onClick={() => handleNavigate('/auth/login')}>
               Login
             </Button>
             <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')}>

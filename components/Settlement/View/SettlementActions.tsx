@@ -29,7 +29,7 @@ export default function SettlementActions({ _id, userId, editors }: Settlement) 
   return (
     <>
       <Box>
-        { editable && <Button sx={{ mx: 1 }} variant="outlined" startIcon={<EditIcon />}  onClick={handleEdit}>
+        { editable && <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
             Edit
           </Button>
         }

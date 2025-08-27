@@ -103,9 +103,10 @@ export default function SiteDetailsDialog({ open, onClose, onDelete, settlementI
           {/* Action buttons */}
           <DialogActions>
             { editable && (
-                <Button
-                variant="outlined"
-                sx={{ mx: 1 }}
+              <Button
+                variant="contained"
+                sx={{ mx: 1, color: "#1d2a3b" }}
+                color="primary"
                 startIcon={<EditIcon />}
                 onClick={handleEdit}
               >

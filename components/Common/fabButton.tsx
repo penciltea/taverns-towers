@@ -25,7 +25,7 @@ export default function FabButton({ label, link, onClick }: FabButtonProps) {
       variant="extended"
       color="primary"
       aria-label={label}
-      sx={{ position: "fixed", bottom: 16, right: 16 }}
+      sx={{ position: "fixed", bottom: 16, right: 16, color: "#1d2a3b" }}
       onClick={handleClick}
     >
       <AddIcon /> {label}

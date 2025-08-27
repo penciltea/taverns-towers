@@ -29,7 +29,7 @@ export default function NpcActions({ _id, userId, editors }: Npc) {
   return (
     <>
       <Box>
-        { editable && <Button sx={{ mx: 1 }} variant="outlined" startIcon={<EditIcon />}  onClick={handleEdit}>
+        { editable && <Button sx={{ mx: 1, color: "#1d2a3b" }} variant="contained" color="primary" startIcon={<EditIcon />}  onClick={handleEdit}>
             Edit
           </Button>
         }

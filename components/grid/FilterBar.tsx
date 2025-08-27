@@ -121,6 +121,7 @@ export default function FilterBar<T>({
         <Button
           variant="text"
           size="small"
+          color="secondary"
           sx={{
             textDecoration: "underline",
             ...(isMobile

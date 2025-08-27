@@ -6,7 +6,6 @@ import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
 import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
 import TypeChangeDialog from "../Common/typeChangeDialog";
 import LoginDialog from "../Auth/LoginDialog";
-import NpcDetailsDialog from "../Npc/View/NpcDetailsDialog";
 import DeleteConnectionDialog from "../Common/EntityLink/DeleteConnectionDialog";
 
 export default function DialogContainer() {
@@ -59,14 +58,6 @@ export default function DialogContainer() {
           open
           onClose={closeDialog}
           onLoginSuccess={dialogProps?.onLoginSuccess}
-        />
-      )
-    case 'NpcDetailsDialog' :
-      return (
-        <NpcDetailsDialog 
-          open 
-          onClose={closeDialog} 
-          npc={dialogProps.npc} 
         />
       )
     case 'DeleteConnectionDialog':

@@ -30,7 +30,7 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
             <InfoListItem key={ field.label } label={ field.label } value={ field.value } />
           ))}
         </List>
-        <Button variant="outlined" onClick={() => setOpenDialog('SettlementDetailsDialog', { settlement: settlement })}>Additional Details</Button>
+        <Button variant="outlined" color="secondary" onClick={() => setOpenDialog('SettlementDetailsDialog', { settlement: settlement })}>Additional Details</Button>
       </Box>
     </>
   );
