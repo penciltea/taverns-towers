@@ -104,12 +104,19 @@ export default function Roadmap(){
                         disableTypography
                         primary="Account dashboard with recently modified content and settings."
                     />
+                </ListItem>                
+                <ListItem disablePadding>
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Integration with Patreon for account creation, exclusive features, and perks."
+                    />
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary="“Publicly available” flag to control visibility of creations."
+                        primary="'Publicly available' flag to control visibility of creations."
                     />
                 </ListItem>
                 <ListItem disablePadding>

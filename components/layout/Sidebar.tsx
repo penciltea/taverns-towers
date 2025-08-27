@@ -6,6 +6,8 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography, useTheme } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
+import { en } from "zod/v4/locales";
+import path from "path";
 
 
 export const Sidebar = () => {
@@ -63,6 +65,21 @@ export const Sidebar = () => {
                     label: "Create NPC",
                     enabled: true,
                     path: "/npcs/new"
+                }
+            ]
+        },
+        {
+            label: "Release Info",
+            children: [
+                {
+                    label: "Alpha Release Notes",
+                    path: "/releases/alpha-dateTBD",
+                    enabled: true
+                },
+                {
+                    label: "Roadmap",
+                    path: "/roadmap",
+                    enabled: true
                 }
             ]
         }

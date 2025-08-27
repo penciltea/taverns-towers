@@ -44,8 +44,8 @@ export default function FilterBar<T>({
 
   // Clear search input and reset filters
   const handleClearFilters = () => {
-    setFilters({ ...filters, search: "" }); // Clear the search field in the filters
-    clearFilters(); // Reset other filters to their default state
+    setFilters({ ...filters, search: "" });
+    clearFilters();
   };
 
   const renderFilterContent = (layout: "mobile" | "desktop") => {
@@ -54,13 +54,16 @@ export default function FilterBar<T>({
     const layoutProps = isMobile
       ? { direction: "column" as const }
       : {
-          display: "grid",
-          gridTemplateColumns: "350px 250px 150px auto",
-          gridTemplateRows: "3",
-          gap: 2,
-          justifyItems: "flex-start",
-          alignItems: "center",
-        };
+        display: "grid",
+        gap: 2,
+        justifyItems: "flex-start",
+        alignItems: "center",
+        gridTemplateColumns: {
+          xs: "1fr",
+          sm: "1fr 1fr",
+          md: "350px 250px 150px auto",
+        }
+      };
 
     return (
       <Layout {...layoutProps}>

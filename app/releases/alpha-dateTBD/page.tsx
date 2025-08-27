@@ -1,7 +1,6 @@
 import NextMuiLink from "@/components/Common/NextMuiLink";
 import PatreonCta from "@/components/Common/PatreonCta";
 import { Box, Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
-import Link from "next/link";
 
 export const metadata = {
     title: "RealmFoundry Alpha Release - 2025-08-22",
@@ -76,7 +75,7 @@ export default function AlphaRelease() {
                             sx={{ display: 'list-item' }}
                             disableTypography
                             primary={<strong>Two-way connection synergies:</strong>}
-                            secondary={<span> Connections automatically mirror between NPCs and their associated sites or settlements. Pairing roles like parent/child or teacher/student update both sides.</span>}
+                            secondary={<span> Connections automatically mirror between NPCs. Pairing roles like parent/child or teacher/student update both sides.</span>}
                         />
                     </ListItem>
                     <ListItem disablePadding>
@@ -127,6 +126,13 @@ export default function AlphaRelease() {
                         <ListItemText
                             sx={{ display: 'list-item' }}
                             disableTypography
+                            primary="Users can currently create their account but cannot edit account information or view account details."
+                        />
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemText
+                            sx={{ display: 'list-item' }}
+                            disableTypography
                             primary="Data may be reset during alpha testing."
                         />
                     </ListItem>
@@ -134,7 +140,7 @@ export default function AlphaRelease() {
             </Box>
 
             <Box sx={{ mt: 6 }}>
-                <Typography variant="h4" component="h4">Looking Ahead</Typography>
+                <Typography variant="h4" component="h4" gutterBottom>Looking Ahead</Typography>
                 <Typography variant="body1">For a full view of planned features and updates, check out our <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.</Typography>
             </Box>
 
