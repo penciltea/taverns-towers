@@ -146,8 +146,6 @@ export async function createSite(data: SiteType, settlementId: string) {
   const user = await requireUser();
   const model = Site.discriminators?.[data.type] || Site;
 
-  console.log("site data: ", data);
-
   const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
   const newSite = await model.create({

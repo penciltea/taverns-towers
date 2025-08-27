@@ -142,6 +142,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         entertainment: site.entertainment ?? [],
         cost: site.cost ?? "",
         menu: site.menu ?? [],
+        connections: site.connections ?? [],
       };
     case "temple":
       return {
@@ -150,6 +151,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         domains: site.domains ?? [],
         relics: site.relics ?? "",
         menu: site.menu ?? [],
+        connections: site.connections ?? [],
       };
     case "shop":
       return {
@@ -157,6 +159,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         name: site.name ?? "",
         shopType: site.shopType ?? "" as any,
         menu: site.menu ?? [],
+        connections: site.connections ?? [],
       };
     case "guild":
       return {
@@ -167,6 +170,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         membershipRequirements: site.membershipRequirements ?? [],
         knownRivals: site.knownRivals ?? "",
         menu: site.menu ?? [],
+        connections: site.connections ?? [],
       };
     case "government":
       return {
@@ -174,6 +178,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         name: site.name ?? "",
         function: site.function ?? "" as any,
         security: site.security ?? "" as any,
+        connections: site.connections ?? [],
       };
     case "entertainment":
       return {
@@ -182,6 +187,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         venueType: site.venueType ?? "" as any,
         cost: site.cost ?? "",
         performances: site.performances ?? "",
+        connections: site.connections ?? [],
       };
     case "hidden":
       return {
@@ -191,12 +197,14 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         knownTo: site.knownTo ?? "",
         defenses: site.defenses ?? "",
         purpose: site.purpose ?? "",
+        connections: site.connections ?? [],
       };
     case "residence":
       return {
         type: "residence",
         name: site.name ?? "",
         notableFeatures: site.notableFeatures ?? "",
+        connections: site.connections ?? [],
       };
     case "miscellaneous":
       return {
@@ -204,6 +212,7 @@ export function mapSiteToForm(site: any): SiteFormData | null {
         name: site.name ?? "",
         features: site.features ?? "",
         use: site.use ?? "",
+        connections: site.connections ?? [],
       };
     default:
       console.warn("Unknown site type", site.type);

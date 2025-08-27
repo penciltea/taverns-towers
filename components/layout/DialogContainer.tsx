@@ -45,12 +45,7 @@ export default function DialogContainer() {
       )
     case 'typeChangeDialog' :
       return (
-        <TypeChangeDialog
-          open
-          onClose={closeDialog}
-          siteChange={dialogProps.siteChange}
-          methods={dialogProps.methods}
-        />
+        <TypeChangeDialog />
       )
     case 'LoginDialog':
       return (

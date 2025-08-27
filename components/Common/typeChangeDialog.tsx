@@ -41,7 +41,7 @@ export default function TypeChangeDialog() {
         </DialogContent>
         <DialogActions>
             <Button onClick={closeDialog}>Cancel</Button>
-            <Button color="error" onClick={onConfirm}>
+            <Button color="error" variant="contained" onClick={onConfirm}>
             Confirm
             </Button>
         </DialogActions>

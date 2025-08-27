@@ -7,8 +7,7 @@ import { ConnectionProps } from "@/interfaces/connection.interface";
 
 export function ConnectionsList({ connections, variant, pageSiteType }: ConnectionProps) {
   const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
-  console.log("page: ", pageSiteType);
-  console.log("conns: ", resolvedConnections);
+  
   if (isLoading) {
       return (
       <Box sx={{ mt: 4 }}>
