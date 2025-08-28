@@ -36,8 +36,6 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
             } as SiteType;
  
             let saved;
-
-            console.log("mode: ", mode);
             
             if (mode === "add") {
                 saved = await createSite(siteData, settlementId);

@@ -5,10 +5,9 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
-import { NpcFormFieldProps } from "@/interfaces/npc.interface";
 import { generateNpcName } from "@/lib/actions/npcGenerator.actions";
 
-export default function NpcFormBasics({generator}: NpcFormFieldProps){
+export default function NpcFormBasics(){
     const {
         register,
         control,
@@ -96,7 +95,6 @@ export default function NpcFormBasics({generator}: NpcFormFieldProps){
                 />
 
                 <FormTextField
-                    name="description"
                     label="Description"
                     multiline
                     rows={4}
@@ -105,7 +103,6 @@ export default function NpcFormBasics({generator}: NpcFormFieldProps){
                 />
 
                 <FormTextField
-                    name="publicNotes"
                     label="Public Notes"
                     multiline
                     rows={4}
@@ -114,7 +111,6 @@ export default function NpcFormBasics({generator}: NpcFormFieldProps){
                 />
 
                 <FormTextField
-                    name="gmNotes"
                     label="GM Notes"
                     multiline
                     rows={4}

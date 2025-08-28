@@ -6,30 +6,13 @@ import { useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
-import { Npc } from "@/interfaces/npc.interface";
 
 export default function TavernFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
-        watch,
         formState: { errors },
     } = useFormContext();
-
-    // Get the array of owner IDs from the form
-    const ownerIds: string[] = watch("owner") || [];
-
-    // Fetch all owned NPCs (enabled only if there are owner IDs)
-    const { data: npcData } = useOwnedNpcsQuery(
-        { page: 1, limit: 999 }, // adjust as needed
-        { isEnabled: ownerIds.length > 0 }
-    );
-
-    // Map ID -> NPC object for name display
-    const npcMap = new Map<string, Npc>(
-        npcData?.npcs.map((npc) => [npc._id, npc]) || []
-    );
     
     return (
         <>
@@ -59,7 +42,6 @@ export default function TavernFields({generator}: SiteFormFieldProps){
             />
             
             <FormTextField
-                name="clientele"
                 label="Clientele"
                 registration={register("clientele")}
                 fieldError={errors.clientele}
@@ -74,14 +56,12 @@ export default function TavernFields({generator}: SiteFormFieldProps){
             />
 
             <FormTextField
-                name="cost"
                 label="Room Cost per Night"
                 registration={register("cost")}
                 fieldError={errors.cost}
             />
 
             <FormTextField
-                name="publicNotes"
                 label="Public Notes"
                 multiline
                 rows={4}
@@ -90,7 +70,6 @@ export default function TavernFields({generator}: SiteFormFieldProps){
             />
 
             <FormTextField
-                name="gmNotes"
                 label="GM Notes"
                 multiline
                 rows={4}

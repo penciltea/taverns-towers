@@ -3,26 +3,26 @@
 import { useMemo } from "react";
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Control } from "react-hook-form";
+import { Control, FieldValues } from "react-hook-form";
 import FormSelect, { Option } from "@/components/Form/FormSelect";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { NpcConnectionType } from "@/constants/npc.options";
 
 export type ConnectionItem = NpcConnection & { name: string };
 
-interface EntityLinkFormProps {
+interface EntityLinkFormProps<TFieldValues extends FieldValues> {
     label: string;
     availableOptions: { id: string; name: string }[];
     value: ConnectionItem[];
     onChange: (updated: ConnectionItem[]) => void;
     roleOptions: Option[];
-    control: Control<any>;
+    control: Control<TFieldValues>;
     namePrefix: string;
     type: NpcConnectionType;
     dynamicRoleOptions?: (id: string | undefined) => Option[];
 }
 
-export default function EntityLinkForm({
+export default function EntityLinkForm<TFieldValues extends FieldValues>({
     label,
     availableOptions,
     value,
@@ -32,7 +32,7 @@ export default function EntityLinkForm({
     namePrefix,
     type,
     dynamicRoleOptions,
-}: EntityLinkFormProps) {
+}: EntityLinkFormProps<TFieldValues>) {
     // Map IDs to names to display properly when editing
     const optionsMap = useMemo(() => new Map(availableOptions.map(o => [o.id, o.name])), [availableOptions]);
 

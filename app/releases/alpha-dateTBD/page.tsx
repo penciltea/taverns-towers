@@ -13,12 +13,12 @@ export default function AlphaRelease() {
             {/* Header */}
             <Typography variant="h3" component="h1" gutterBottom>RealmFoundry Alpha Release - FullDateTBD</Typography>
             <Typography variant="body1" gutterBottom>
-                Welcome to the limited alpha of RealmFoundry! This release is an early look at the tools we're building for GMs, writers, and world-builders. Features are still in development, so expect some rough edges. Your feedback is invaluable as we shape the project.
+                Welcome to the limited alpha of RealmFoundry! This release is an early look at the tools we&apos;re building for GMs, writers, and world-builders. Features are still in development, so expect some rough edges. Your feedback is invaluable as we shape the project.
             </Typography>
 
             {/* What's Available */}
             <Box sx={{ mt: 6 }}>
-                <Typography variant="h4" component="h2" gutterBottom>What's Available</Typography>
+                <Typography variant="h4" component="h2" gutterBottom>What&apos;s Available</Typography>
                 <List sx={{ listStyleType: 'disc', pl: 4 }}>
                     <ListItem disablePadding>
                         <ListItemText 
@@ -91,7 +91,7 @@ export default function AlphaRelease() {
                             sx={{ display: 'list-item' }}
                             disableTypography
                             primary={<strong>Sharing:</strong>}
-                            secondary={<span> Share URLs with friends. Only the creator can edit or delete. "GM Notes" fields remain private.</span>}
+                            secondary={<span> Share URLs with friends. Only the creator can edit or delete. &quot;GM Notes&quot; fields remain private.</span>}
                         />
                     </ListItem>
                 </List>

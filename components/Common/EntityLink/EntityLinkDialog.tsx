@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Chip, Stack, Box } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Chip, Stack } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import React, { ReactElement } from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 
 interface EntityLinkDialogProps<T> {
   open: boolean;

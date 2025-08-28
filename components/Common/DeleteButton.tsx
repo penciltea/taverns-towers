@@ -6,10 +6,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useUIStore } from "@/store/uiStore";
 import DeleteConfirmationDialog from "@/components/Common/DeleteConfirmationDialog";
 
-interface DeleteButtonProps {
+interface DeleteButtonProps<T = unknown> {
     id: string;
     entity: string;
-    deleteAction: (id: string) => Promise<any>;
+    deleteAction: (id: string) => Promise<T>;
     onSuccess?: () => void;
 }
 

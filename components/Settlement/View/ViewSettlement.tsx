@@ -7,7 +7,6 @@ import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
-import { Session } from 'next-auth';
 import SettlementConnections from "./SettlementConnections";
 
 interface Props {

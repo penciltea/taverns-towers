@@ -4,7 +4,7 @@ import { useUIStore } from "@/store/uiStore";
 import InfoListItem from "@/components/Common/InfoListItem";
 
 export default function SettlementDetails({ settlement }: { settlement: Settlement }) {
-  const { setOpenDialog, openDialog, closeDialog } = useUIStore();
+  const { setOpenDialog } = useUIStore();
 
 
   const fields = [

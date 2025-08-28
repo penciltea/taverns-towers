@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, TextField, Stack, MenuItem, SelectChangeEvent } from "@mui/material";
+import { Box, Button, Stack, SelectChangeEvent } from "@mui/material";
 import TuneIcon from '@mui/icons-material/Tune';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ContentFilters } from "@/store/contentStore";
@@ -11,7 +11,7 @@ import { pageSizeOptions } from "@/constants/commonOptions";
 import { ChipFilterConfig, ChipFilters} from "./ChipFilters";
 
 
-interface FilterBarProps<T> {
+interface FilterBarProps {
     filters: ContentFilters;
     setFilters: (filters: ContentFilters) => void;
     clearFilters: () => void;
@@ -20,14 +20,14 @@ interface FilterBarProps<T> {
     chipFilters?: ChipFilterConfig[];
 }
 
-export default function FilterBar<T>({
+export default function FilterBar({
   filters,
   setFilters,
   clearFilters,
   children,
   onOpenAdvanced,
   chipFilters
-}: FilterBarProps<T>) {
+}: FilterBarProps) {
   const isMobile = useIsMobile();
 
   // Handle search changes at the FilterBar level

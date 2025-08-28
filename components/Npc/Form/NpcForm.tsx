@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Typography, Paper, Box, Button } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import { NpcFormData } from "@/schemas/npc.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useNpcContentStore } from "@/store/npc.store";
@@ -75,7 +75,7 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
       </Typography>
 
       <Typography variant="subtitle1" component="p" gutterBottom>
-        The generator fills in all NPC details—like age, race, traits, and more. Fields set to "random" will be chosen based on your other selections.
+        The generator fills in all NPC details—like age, race, traits, and more. Fields set to &quot;random&quot; will be chosen based on your other selections.
       </Typography>
 
       <Typography variant="subtitle1" component="p" gutterBottom>
@@ -133,7 +133,7 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
       )}
 
       <TabPanel value={tab} index={0}>
-        <NpcFormBasics generator={generator} />
+        <NpcFormBasics />
       </TabPanel>
       <TabPanel value={tab} index={1}>
         <NpcFormConnections />

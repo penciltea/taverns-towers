@@ -1,9 +1,7 @@
 import { FormSelect, FormChipSelect } from "@/components/Form"
 import FormImageUpload from "@/components/Form/FormImageUpload"
 import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environmentOptions"
-import { SITE_CATEGORIES } from "@/constants/site/site.options"
 import { toSelectOptions } from "@/lib/util/formatSelectOptions"
-import { getLabelFromValue } from "@/lib/util/getLabelFromValue"
 import { SiteFormData } from "@/schemas/site.schema"
 import { useSiteContentStore } from "@/store/siteStore"
 import { Box, Stack, Typography } from "@mui/material"
@@ -25,25 +23,14 @@ interface Props {
 export default function SiteFormBasics( { mode, isWilderness, generator }: Props){
     const { selectedItem } = useSiteContentStore();  
     const searchParams = useSearchParams();
-     const {
-        register,
-        control,
-        watch,
-        setValue,
-        formState: { errors },
-    } = useFormContext();
+     const { control } = useFormContext();
 
     
     const typeParam = mode === 'edit'
         ? selectedItem?.type
         : (searchParams?.get("type") as SiteFormData["type"]);
     
-      const SpecificFieldsComponent = typeParam && siteFormFieldsByType[typeParam];
-      const typeLabel = typeParam
-        ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
-        : "Unknown";
-    
-    
+    const SpecificFieldsComponent = typeParam && siteFormFieldsByType[typeParam];    
 
     return (
         <Stack

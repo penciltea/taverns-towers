@@ -2,7 +2,7 @@ import { GovernmentSite, SiteGenerationInput } from "@/interfaces/site.interface
 import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
-import { GOVERNMENT_FUNCTIONS, SiteGovernmentFunctionType, SiteSecurityLevel } from "@/constants/site/government.options";
+import { GOVERNMENT_FUNCTIONS, SiteGovernmentFunctionType } from "@/constants/site/government.options";
 import { getRandom } from "@/lib/util/randomValues";
 import { SECURITY_BASELINE_BY_FUNCTION, SIZE_SECURITY_WEIGHT, CONDITION_SECURITY_WEIGHT } from "./mappings/government.mappings";
 

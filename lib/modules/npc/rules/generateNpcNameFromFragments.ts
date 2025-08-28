@@ -16,7 +16,7 @@ export function generateNpcNameFromFragments({
     allowedKeys?: string[];
 }): string {
     // Step 1: Filter by basic attributes
-    let filtered = filterNpcByAttributes(fragments, filters);
+    const filtered = filterNpcByAttributes(fragments, filters);
     //console.log("filters: " , filters);
     //console.log("filtered fragments: " , filtered);
 

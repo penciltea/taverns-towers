@@ -3,11 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography, useTheme } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
-import { en } from "zod/v4/locales";
-import path from "path";
 
 
 export const Sidebar = () => {

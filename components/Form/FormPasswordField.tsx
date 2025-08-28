@@ -2,12 +2,11 @@
 
 import { useState, useId } from "react";
 import { FieldError, Merge, FieldErrorsImpl, UseFormRegisterReturn } from "react-hook-form";
-import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, FormHelperText, Box, Typography } from "@mui/material";
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, Box, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 
 interface FormPasswordFieldProps {
-    name: string;
     label: string;
     registration: UseFormRegisterReturn;
     fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
@@ -18,7 +17,6 @@ interface FormPasswordFieldProps {
 }
 
 const FormPasswordField = ({
-    name,
     label,
     registration,
     fieldError,
@@ -29,7 +27,6 @@ const FormPasswordField = ({
 }: FormPasswordFieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => setShowPassword((prev) => !prev);
-    const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
     const id = useId();
 
     // For checking if the password matches validation requirements

@@ -8,7 +8,7 @@ if (!API_URL) {
   );
 }
 
-let cached = (global as any).mongoose || { conn: null, promise: null };
+const cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {
   if (cached.conn) {

@@ -11,7 +11,7 @@ import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
+import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteGenerationContext, SiteGenerationInput, SiteType, TavernSite, TempleSite } from "@/interfaces/site.interface";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -132,87 +132,115 @@ export function siteTypeHasMenu(siteType: string | undefined): boolean {
 }
 
 
-export function mapSiteToForm(site: any): SiteFormData | null {
+export function mapSiteToForm(site: SiteType): SiteFormData | null {
   switch (site.type) {
     case "tavern":
+      // TypeScript now knows 'site' is TavernSite
+      const tavernSite = site as TavernSite;
       return {
         type: "tavern",
-        name: site.name ?? "",
-        clientele: site.clientele ?? "",
-        entertainment: site.entertainment ?? [],
-        cost: site.cost ?? "",
-        menu: site.menu ?? [],
-        connections: site.connections ?? [],
+        name: tavernSite.name ?? "",
+        clientele: tavernSite.clientele ?? "",
+        entertainment: tavernSite.entertainment ?? [],
+        cost: tavernSite.cost ?? "",
+        menu: tavernSite.menu ?? [],
+        connections: tavernSite.connections ?? [],
       };
+
     case "temple":
+      const templeSite = site as TempleSite;
       return {
         type: "temple",
-        name: site.name ?? "",
-        domains: site.domains ?? [],
-        relics: site.relics ?? "",
-        menu: site.menu ?? [],
-        connections: site.connections ?? [],
+        name: templeSite.name ?? "",
+        size: templeSite.size ?? "",
+        condition: templeSite.condition ?? "",
+        domains: templeSite.domains ?? [],
+        relics: templeSite.relics ?? "",
+        menu: templeSite.menu ?? [],
+        connections: templeSite.connections ?? [],
       };
+
     case "shop":
+      const shopSite = site as ShopSite;
       return {
         type: "shop",
-        name: site.name ?? "",
-        shopType: site.shopType ?? "" as any,
-        menu: site.menu ?? [],
-        connections: site.connections ?? [],
+        name: shopSite.name ?? "",
+        shopType: shopSite.shopType ?? "" as ShopSite["shopType"],
+        size: shopSite.size ?? "",
+        condition: shopSite.condition ?? "",
+        menu: shopSite.menu ?? [],
+        connections: shopSite.connections ?? [],
       };
+
     case "guild":
+      const guildSite = site as GuildSite;
       return {
         type: "guild",
-        name: site.name ?? "",
-        guildType: site.guildType ?? "" as any,
-        guildName: site.guildName ?? "",
-        membershipRequirements: site.membershipRequirements ?? [],
-        knownRivals: site.knownRivals ?? "",
-        menu: site.menu ?? [],
-        connections: site.connections ?? [],
+        name: guildSite.name ?? "",
+        size: guildSite.size ?? "",
+        condition: guildSite.condition ?? "",
+        guildType: guildSite.guildType ?? "" as GuildSite["guildType"],
+        guildName: guildSite.guildName ?? "",
+        membershipRequirements: guildSite.membershipRequirements ?? [],
+        knownRivals: guildSite.knownRivals ?? "",
+        menu: guildSite.menu ?? [],
+        connections: guildSite.connections ?? [],
       };
     case "government":
+      const governmentSite = site as GovernmentSite;
       return {
         type: "government",
-        name: site.name ?? "",
-        function: site.function ?? "" as any,
-        security: site.security ?? "" as any,
-        connections: site.connections ?? [],
+        name: governmentSite.name ?? "",
+        size: governmentSite.size ?? "",
+        condition: governmentSite.condition ?? "",
+        function: governmentSite.function ?? "" as any,
+        security: governmentSite.security ?? "" as any,
+        connections: governmentSite.connections ?? [],
       };
     case "entertainment":
+      const entertainmentSite = site as EntertainmentSite;
       return {
         type: "entertainment",
-        name: site.name ?? "",
-        venueType: site.venueType ?? "" as any,
-        cost: site.cost ?? "",
-        performances: site.performances ?? "",
-        connections: site.connections ?? [],
+        name: entertainmentSite.name ?? "",
+        size: entertainmentSite.size ?? "",
+        condition: entertainmentSite.condition ?? "",
+        venueType: entertainmentSite.venueType ?? "" as any,
+        cost: entertainmentSite.cost ?? "",
+        connections: entertainmentSite.connections ?? [],
       };
     case "hidden":
+      const hiddenSite = site as HiddenSite;
       return {
         type: "hidden",
-        name: site.name ?? "",
-        secrecy: site.secrecy ?? [],
-        knownTo: site.knownTo ?? "",
-        defenses: site.defenses ?? "",
-        purpose: site.purpose ?? "",
-        connections: site.connections ?? [],
+        name: hiddenSite.name ?? "",
+        size: hiddenSite.size ?? "",
+        condition: hiddenSite.condition ?? "",
+        secrecy: hiddenSite.secrecy ?? [],
+        knownTo: hiddenSite.knownTo ?? "",
+        defenses: hiddenSite.defenses ?? "",
+        purpose: hiddenSite.purpose ?? "",
+        connections: hiddenSite.connections ?? [],
       };
     case "residence":
+      const residenceSite = site as ResidenceSite;
       return {
         type: "residence",
-        name: site.name ?? "",
-        notableFeatures: site.notableFeatures ?? "",
-        connections: site.connections ?? [],
+        name: residenceSite.name ?? "",
+        size: residenceSite.size ?? "",
+        condition: residenceSite.condition ?? "",
+        notableFeatures: residenceSite.notableFeatures ?? "",
+        connections: residenceSite.connections ?? [],
       };
     case "miscellaneous":
+      const miscellaneousSite = site as MiscellaneousSite;
       return {
         type: "miscellaneous",
-        name: site.name ?? "",
-        features: site.features ?? "",
-        use: site.use ?? "",
-        connections: site.connections ?? [],
+        name: miscellaneousSite.name ?? "",
+        size: miscellaneousSite.size ?? "",
+        condition: miscellaneousSite.condition ?? "",
+        features: miscellaneousSite.features ?? "",
+        use: miscellaneousSite.use ?? "",
+        connections: miscellaneousSite.connections ?? [],
       };
     default:
       console.warn("Unknown site type", site.type);

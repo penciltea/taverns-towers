@@ -35,7 +35,7 @@ export default function NewSettlementPage() {
         clearDraftItem();
       })();
     }
-  }, [user]); // Only runs when user logs in
+  }, [user, onSubmit, clearDraftItem, draftItem]); // Only runs when user logs in
 
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {

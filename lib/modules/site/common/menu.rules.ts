@@ -72,8 +72,6 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     return [];
   }
 
-  const fallbackContext = { siteType, shopType, guildType };
-
   const climateIds = extractFromMapping(climateRes, FALLBACK_CLIMATE_ITEMS, climate ? [climate] : []);
   const terrainIds = extractFromMapping(terrainRes, FALLBACK_TERRAIN_ITEMS, terrain ?? []);
   const tagIds = extractFromMapping(tagRes, FALLBACK_TAG_ITEMS, tags ?? []);

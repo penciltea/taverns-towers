@@ -1,5 +1,5 @@
 'use client';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from "@mui/material";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import useNpcMap from "@/hooks/npc/useNpcMap";
 import useSettlementMap from "@/hooks/settlement/useSettlementMap";
@@ -27,11 +27,11 @@ export default function DeleteConnectionDialog({
           {deletedConnections?.map((conn) => {
             let baseName = "";
             if(conn.type === 'npc'){
-              baseName = npcMap.get(conn.id)?.name || conn.label || conn.id;
+              baseName = npcMap.get(conn.id)?.name || conn.id;
             } else if(conn.type === 'settlement'){
-              baseName = settlementMap.get(conn.id)?.name || conn.label || conn.id;
+              baseName = settlementMap.get(conn.id)?.name || conn.id;
             } else if(conn.type === 'site'){
-              baseName = siteMap.get(conn.id)?.name || conn.label || conn.id;
+              baseName = siteMap.get(conn.id)?.name || conn.id;
             }
             const formattedLabel = conn.role
               ? `${baseName}: ${capitalizeFirstLetter(conn.role)}`

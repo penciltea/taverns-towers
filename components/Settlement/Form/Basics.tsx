@@ -101,14 +101,12 @@ export default function SettlementFormBasics(){
                     />
 
                     <FormTextField
-                        name="races"
                         label="Common Races"
                         registration={register("races")}
                         fieldError={errors.races}
                     />
 
                     <FormTextField
-                        name="description"
                         label="Description"
                         multiline
                         rows={4}
@@ -117,7 +115,6 @@ export default function SettlementFormBasics(){
                     />
 
                     <FormTextField
-                        name="publicNotes"
                         label="Public Notes"
                         multiline
                         rows={4}
@@ -126,7 +123,6 @@ export default function SettlementFormBasics(){
                     />
 
                     <FormTextField
-                        name="gmNotes"
                         label="GM Notes"
                         multiline
                         rows={4}

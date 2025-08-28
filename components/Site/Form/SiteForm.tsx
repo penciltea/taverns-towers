@@ -72,7 +72,6 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
       ? selectedItem?.type
       : (searchParams?.get("type") as SiteFormData["type"]);
   
-  const SpecificFieldsComponent = typeParam && siteFormFieldsByType[typeParam];
   const typeLabel = typeParam
     ? getLabelFromValue(SITE_CATEGORIES, typeParam, "Unknown")
     : "Unknown";
@@ -94,7 +93,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
         </Typography>
 
         <Typography variant="subtitle1" component="p" gutterBottom>
-            The generator fills in all site details—like size, condition, and more. Fields set to "random" will be chosen based on your other selections.
+            The generator fills in all site details—like size, condition, and more. Fields set to &quot;random&quot; will be chosen based on your other selections.
         </Typography>
 
         <Typography variant="subtitle1" component="p" gutterBottom>

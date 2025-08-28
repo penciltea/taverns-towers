@@ -27,7 +27,7 @@ export default function AuthSync() {
     }
 
     setHasHydrated();
-  }, [status, session]);
+  }, [status, session, setUser, clearUser, setHasHydrated]);
 
   return null;
 }

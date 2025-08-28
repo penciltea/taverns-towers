@@ -3,31 +3,15 @@ import { useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { Npc } from "@/interfaces/npc.interface";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 
 export default function EntertainmentFields({generator}: SiteFormFieldProps){
     const {
         register,
         control,
-        watch,
         formState: { errors },
     } = useFormContext();
 
-    // Get the array of owner IDs from the form
-    const ownerIds: string[] = watch("owner") || [];
-
-    // Fetch all owned NPCs (enabled only if there are owner IDs)
-    const { data: npcData } = useOwnedNpcsQuery(
-        { page: 1, limit: 999 }, // adjust as needed
-        { isEnabled: ownerIds.length > 0 }
-    );
-
-    // Map ID -> NPC object for name display
-    const npcMap = new Map<string, Npc>(
-        npcData?.npcs.map((npc) => [npc._id, npc]) || []
-    );
-    
     return (
         <>
             <FormFieldWithGenerate
@@ -63,14 +47,12 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
             />
 
             <FormTextField
-                name="cost"
                 label="Entry / Ticket Cost"
                 registration={register("cost")}
                 fieldError={errors.cost}
             />
 
             <FormTextField
-                name="publicNotes"
                 label="Public Notes"
                 multiline
                 rows={4}
@@ -79,7 +61,6 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
             />
 
             <FormTextField
-                name="gmNotes"
                 label="GM Notes"
                 multiline
                 rows={4}

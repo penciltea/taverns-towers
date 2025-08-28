@@ -15,25 +15,26 @@ import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 
 export default function SiteList({ settlementId, onDelete }: SiteListProps) {
-  if (!settlementId) {
-    return <Typography color="error">Invalid settlement ID</Typography>;
-  }
 
   const { setOpenDialog } = useUIStore();
-  const [selected, setSelected] = useState<SiteType | null>(null);
+  const [ selected, setSelected ] = useState<SiteType | null>(null);
 
-  const [filters, setFilters] = useState<SiteQueryParams>({
+  const [ filters, setFilters ] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
     settlementId,
   });
 
-  const { data, isFetching, isPlaceholderData, isPending, isError } = usePaginatedSites(
+  const { data } = usePaginatedSites(
     filters.settlementId,
     filters.page,
     filters.limit,
     filters.search,
     filters.type,
   );
+
+  if (!settlementId) {
+    return <Typography color="error">Invalid settlement ID</Typography>;
+  }
   
   const sites = data?.sites || [];
   const totalCount = data?.total || 0;

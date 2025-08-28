@@ -43,7 +43,7 @@ export default function NpcFilters({ filters, setFilters }: NpcFiltersProps) {
           onChange={(e) =>
             setFilters({ race: e.target.value })
           }
-          options={toSelectOptions(NPC_RACES)}
+          options={NPC_RACES}
         />
         
       </FilterBar>

@@ -20,7 +20,7 @@ export default function RegisterPage(){
     const password = watch("password", "");
     const isTouched = !!touchedFields.password;
 
-    const { submit, loading, error } = useAuthForm({ type: "register" });
+    const { submit, error } = useAuthForm({ type: "register" });
 
     const onSubmit = (data: UserSchema) => submit(data);
 

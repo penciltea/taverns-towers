@@ -1,13 +1,12 @@
 'use client';
 
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography} from "@mui/material";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { useUIStore } from "@/store/uiStore";
 
 export default function SettlementTypeDialog({ open, onClose }: DialogProps) {
   const router = useRouter();
-  const params = useParams();
   const { closeDialog } = useUIStore();
 
   const handleGenerator = () => {

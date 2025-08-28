@@ -2,11 +2,11 @@
 
 import NpcFilters from '@/components/Npc/View/NpcFilter';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
+import GridItem from '@/components/Grid/GridItem';
 import { useOwnedNpcsQuery } from '@/hooks/npc/npc.query';
 import { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { DefaultNpcQueryParams, NpcQueryParams } from '@/interfaces/npc.interface';
-import GridItem from '@/components/Grid/GridItem';
 import { Spinner } from '@/components/Common/Spinner';
 import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';

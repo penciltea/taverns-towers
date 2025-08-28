@@ -40,6 +40,8 @@ export const settlementSchema = z.object({
 .merge(environmentSchema); // added for climate, terrain, and tags fields
 
 export const settlementFilterSchema = z.object({
+  tags: z.array(z.string()).optional(),
+  terrain: z.array(z.string()).optional(),
   size: z.string().optional(),
   magic: z.string().optional(),
   wealth: z.string().optional(),

@@ -1,4 +1,5 @@
-import { TextField } from "@mui/material";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState, useEffect } from "react";
 
 interface SearchInputProps {
@@ -13,22 +14,27 @@ export default function SearchInput({ value, onSearchChange, clearSearch }: Sear
   // Sync internal state with the value prop
   useEffect(() => {
     setSearchInput(value);
-  }, [value]); // This will run whenever the value prop changes
+  }, [value]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value); // Update the internal state but do not trigger the search yet
+    setSearchInput(e.target.value);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      onSearchChange(searchInput); // Trigger the search when "Enter" is pressed
+      onSearchChange(searchInput);
     }
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      onSearchChange(searchInput); // Trigger the search when "Enter" is pressed (for mobile)
+      onSearchChange(searchInput);
     }
+  };
+
+  const handleClear = () => {
+    setSearchInput("");
+    clearSearch();
   };
 
   return (
@@ -41,6 +47,15 @@ export default function SearchInput({ value, onSearchChange, clearSearch }: Sear
       onKeyDown={handleKeyDown}
       fullWidth
       margin="normal"
+      InputProps={{
+        endAdornment: searchInput ? (
+          <InputAdornment position="end">
+            <IconButton onClick={handleClear} size="small">
+              <ClearIcon fontSize="small" />
+            </IconButton>
+          </InputAdornment>
+        ) : null,
+      }}
     />
   );
 }

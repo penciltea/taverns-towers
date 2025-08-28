@@ -4,7 +4,7 @@ import { Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
 export default function Roadmap(){
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-            <Typography variant="h4" component="h1" sx={{marginBottom: 3}}>What's Coming Next</Typography>
+            <Typography variant="h4" component="h1" sx={{marginBottom: 3}}>What&apos;s Coming Next</Typography>
 
             {/* Name & Generation Enhancements */}
             <Typography variant="h5" gutterBottom>Name & Generation Enhancements</Typography>

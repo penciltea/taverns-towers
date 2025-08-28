@@ -1,7 +1,6 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useUIStore } from '@/store/uiStore';
 import { Box, Grid, Stack, Typography, Divider } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import NpcActions from './NpcActions';
@@ -14,7 +13,6 @@ interface Props {
 
 
 export default function ViewNpc({ npc }: Props){
-  const { setOpenDialog } = useUIStore();
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
 

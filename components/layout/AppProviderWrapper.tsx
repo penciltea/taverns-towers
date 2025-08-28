@@ -31,7 +31,7 @@ export default function AppProviderWrapper({ children, session, initialTheme }: 
       setTheme(initialTheme);
     }
     setMounted(true); 
-  }, []);
+  }, [initialTheme, setTheme]);
 
   if (!mounted) return null;
 

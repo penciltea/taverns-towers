@@ -1,24 +1,37 @@
 /**
  * Converts string ID arrays in an object to ObjectId arrays.
  *
- * @param data - The object containing fields with string IDs.
+ * @param data - The object containing fields with string ID arrays.
  * @param fields - Array of field names to convert.
  * @returns A new object with the specified fields converted to ObjectId[]
  */
 
-import mongoose, { Types } from "mongoose";
+import { Types } from "mongoose";
 
-export function mapStringFieldsToObjectIds<T extends Record<string, any>, K extends keyof T>(
+export function mapStringFieldsToObjectIds<
+  T extends Record<string, unknown>,
+  K extends keyof T
+>(
   data: T,
-  fields: K[]
-): Omit<T, K> & Record<K, Types.ObjectId[]> {
-  const result = { ...data } as any;
+  fields: readonly K[]
+): Omit<T, K> & { [P in K]: Types.ObjectId[] } {
+  const result = {} as Omit<T, K> & { [P in K]: Types.ObjectId[] };
 
-  fields.forEach((field) => {
-    const values = result[field];
-    // Always produce an array of ObjectId, even if empty or undefined
-    result[field] = (Array.isArray(values) ? values : []).map((id: string) => new mongoose.Types.ObjectId(id));
-  });
+  for (const key in data) {
+    // Narrow key type
+    const typedKey = key as keyof T;
+
+    if (fields.includes(typedKey as K)) {
+      const value = data[typedKey];
+      // Explicit cast ensures TS understands this assignment is safe
+      (result as { [P in K]: Types.ObjectId[] })[typedKey as K] = Array.isArray(value)
+        ? value.map((id) => new Types.ObjectId(String(id)))
+        : [];
+    } else {
+      // Copy non-converted fields
+      (result as Omit<T, K>)[typedKey as Exclude<keyof T, K>] = data[typedKey] as T[Exclude<keyof T, K>];
+    }
+  }
 
   return result;
 }

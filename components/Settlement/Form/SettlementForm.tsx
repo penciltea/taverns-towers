@@ -77,7 +77,7 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
         </Typography>
 
         <Typography variant="subtitle1" component="p" gutterBottom>
-          The generator fills in all settlement details—like terrain, climate, crime, and ruling style. Fields set to "random" will be chosen based on your other selections.
+          The generator fills in all settlement details—like terrain, climate, crime, and ruling style. Fields set to &quot;random&quot; will be chosen based on your other selections.
         </Typography>
 
         <Typography variant="subtitle1" component="p" gutterBottom>

@@ -1,4 +1,4 @@
-import { Npc, NpcConnection } from "@/interfaces/npc.interface";
+import { Npc } from "@/interfaces/npc.interface";
 import { normalizeCommonInput } from "@/lib/util/normalizeData";
 
 // All required fields after normalization

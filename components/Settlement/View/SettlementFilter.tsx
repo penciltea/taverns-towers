@@ -58,6 +58,9 @@ export default function SettlementFilters({ filters, setFilters }: SettlementFil
             ...filters,
             tags: filters.tags ?? [],
             terrain: filters.terrain ?? [],
+            climate: filters.climate ?? "",
+            wealth: filters.wealth ?? "",
+            magic: filters.magic ?? "",
           }}
         >
           <Box display="flex" flexDirection="column" gap={2}>

@@ -56,7 +56,7 @@ export default function EditNpcPage() {
       clearSelectedItem();
       showErrorDialog("NPC could not be found, please try again later!");
     }
-  }, [npc, isLoading, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
+  }, [npc, safeId, isLoading, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
   const wrappedSubmit = async (data: NpcFormData) => {
       await handleDeletedConnections({

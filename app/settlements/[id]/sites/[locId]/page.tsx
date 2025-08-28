@@ -25,10 +25,6 @@ export default function EditSitePage() {
   const safeId = getSingleParam(locId);
   const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
 
-  if (!safeId) {
-    return <div className="error-message">Invalid site ID.</div>;
-  }
-
   const { showErrorDialog } = useUIStore();
   const { mode, selectedItem, setSelectedItem, clearSelectedItem } = useSiteContentStore();
   const methods = useFormWithSchema<typeof siteSchema>(siteSchema);
@@ -80,6 +76,10 @@ export default function EditSitePage() {
       },
     });
   };
+  
+  if (!safeId) {
+    return <div className="error-message">Invalid site ID.</div>;
+  }
 
   if (isLoading) return <p>Loading site...</p>;
   if (isError || !site) return <p>Site not found or failed to load.</p>;

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document} from "mongoose";
-import { NPC_AGE, NPC_ALIGNMENT, NPC_CONNECTION_TYPE, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { connectionSchema } from "./connection.model";
 
