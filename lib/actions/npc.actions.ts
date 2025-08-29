@@ -10,6 +10,7 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
 import { normalizeConnections } from "../util/connectionHelpers";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
 // serialize for client compatibility
 function serializeNpc(npc: any): Npc {
@@ -23,7 +24,7 @@ function serializeNpc(npc: any): Npc {
             : obj.userId?._id
                 ? obj.userId._id.toString()  // If populated user document
                 : obj.userId?.toString?.(),  // fallback if ObjectId
-        connections: (obj.connections || []).map((conn: any) => ({
+        connections: (obj.connections || []).map((conn: NpcConnection) => ({
             ...conn,
             id: conn.id?.toString ? conn.id.toString() : conn.id,
         })),
@@ -57,7 +58,7 @@ export async function getNpcs({
 }) {
   await connectToDatabase();
 
-  const query: any = {};
+  const query: Record<string, unknown> = {};
 
   if (userId) query.userId = userId;
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;

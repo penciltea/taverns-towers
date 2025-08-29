@@ -38,6 +38,7 @@ export default function NewSettlementPage() {
   }, [user, onSubmit, clearDraftItem, draftItem]); // Only runs when user logs in
 
   const wrappedOnSubmit = async (data: SettlementFormData) => {
+    console.log("Form submitted with data:", data);
     if (!user) {
       setDraftItem(data);
       setOpenDialog("LoginDialog", {});

@@ -3,7 +3,6 @@ import { useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 
 export default function EntertainmentFields({generator}: SiteFormFieldProps){
     const {

@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { FilterQuery, Types } from "mongoose";
 import { SiteGenerationContext } from "@/interfaces/site.interface";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { tavernMenuRules } from "../tavern/menu.rules";
@@ -78,7 +78,7 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
   const magicIds = extractFromMapping(magicRes, FALLBACK_MAGIC_ITEMS, magic ? [magic] : []);
 
   // Build universal query for DB
-  const universalQuery: any = {
+  const universalQuery: FilterQuery<GeneratorSiteMenuPlain> = {
     siteType,
     climate: { $size: 0 },
     terrain: { $size: 0 },

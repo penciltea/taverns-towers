@@ -21,11 +21,11 @@ export async function generateSettlementName({
   await connectToDatabase();
   const rawFragments = await GeneratorSettlementFragment.find().lean();
 
-  const fragments = (rawFragments as any[]).filter(
+  const fragments = (rawFragments as unknown as GeneratorSettlementFragmentPlain[]).filter(
     (f): f is GeneratorSettlementFragmentPlain =>
       typeof f.type === "string" && typeof f.value === "string"
   );
-  return generateSettlementNameFromFragments(fragments, {climate, terrain, tags });
+  return generateSettlementNameFromFragments(fragments, { climate, terrain, tags });
 }
 
 export async function generateSettlementData(

@@ -16,7 +16,7 @@ export async function generateNpcName({ race }: { race?: string[] }): Promise<st
 
     try {
         const rawFragments = await GeneratorNpcFragment.find().lean();
-        fragments = (rawFragments as any[]).filter(
+        fragments = (rawFragments as unknown as GeneratorNpcFragmentPlain[]).filter(
         (f): f is GeneratorNpcFragmentPlain =>
             typeof f.type === "string" && typeof f.value === "string"
         );

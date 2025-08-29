@@ -111,7 +111,7 @@ export async function applyRelicsByConditions(
   // Site size values taken from constants
   switch(siteSize){
     case "tiny":
-      sizeMin = 1,
+      sizeMin = 1;
       sizeMax = 1;
     break;
 

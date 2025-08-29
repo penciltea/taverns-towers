@@ -193,8 +193,8 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
         name: governmentSite.name ?? "",
         size: governmentSite.size ?? "",
         condition: governmentSite.condition ?? "",
-        function: governmentSite.function ?? "" as any,
-        security: governmentSite.security ?? "" as any,
+        function: governmentSite.function as GovernmentSite["function"] ?? "" ,
+        security: governmentSite.security as GovernmentSite["security"] ?? "",
         connections: governmentSite.connections ?? [],
       };
     case "entertainment":
@@ -204,7 +204,7 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
         name: entertainmentSite.name ?? "",
         size: entertainmentSite.size ?? "",
         condition: entertainmentSite.condition ?? "",
-        venueType: entertainmentSite.venueType ?? "" as any,
+        venueType: entertainmentSite.venueType ?? "" as EntertainmentSite["venueType"],
         cost: entertainmentSite.cost ?? "",
         connections: entertainmentSite.connections ?? [],
       };

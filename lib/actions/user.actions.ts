@@ -2,13 +2,14 @@
 
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
-import { User } from "../models/user.model";
+import { User, UserModel } from "../models/user.model";
 import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
+import mongoose from "mongoose";
 
 // Serialize for client compatibility
-function serializeUser(user: any): UserInterface {
-  const obj = user.toObject?.() ?? user;
+function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
+  const obj = 'toObject' in user ? user.toObject() : user;
 
   return {
     id: obj._id.toString(),

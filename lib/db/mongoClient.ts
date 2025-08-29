@@ -1,22 +1,17 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
 
 const uri = process.env.API_URL!;
 const options = {};
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-if (!process.env.API_URL) {
-  throw new Error('Please define the API_URL environment variable inside .env.local');
+if (!uri) {
+  throw new Error("Please define the API_URL environment variable inside .env.local");
 }
 
-if (process.env.NODE_ENV === 'development') {
-  if (!(global as any)._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    (global as any)._mongoClientPromise = client.connect();
-  }
-  clientPromise = (global as any)._mongoClientPromise;
-} else {
+// Singleton pattern: module-scoped variable
+let client: MongoClient | undefined;
+let clientPromise: Promise<MongoClient> | undefined;
+
+if (!clientPromise) {
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }

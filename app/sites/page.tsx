@@ -20,7 +20,7 @@ export default function AllSitesPage() {
   const queryClient = useQueryClient();
 
   // Correctly type selected state
-  const [_selected, setSelected] = useState<SiteType | null>(null);
+  const [selected, setSelected] = useState<SiteType | null>(null);
 
   const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,

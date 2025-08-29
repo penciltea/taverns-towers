@@ -3,6 +3,7 @@ import connectToDatabase from "@/lib/db/connect";
 import { GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { MenuRuleFn, menuRulesBySiteType } from "./menu.rules";
 import { getRandom } from "@/lib/util/randomValues";
+import { FilterQuery } from "mongoose";
 
 export function normalizeMenuItem(item: Partial<generatorMenuItem>): generatorMenuItem{
   return{
@@ -25,7 +26,7 @@ export async function applyMenuRules({
 }): Promise<GeneratorSiteMenuPlain[]> {
   await connectToDatabase();
 
-  const baseQuery: any = {
+  const baseQuery: FilterQuery<GeneratorSiteMenuPlain> = {
     siteType: context.siteType,
   };
 

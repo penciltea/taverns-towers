@@ -8,31 +8,27 @@ if (!API_URL) {
   );
 }
 
-const cached = (global as any).mongoose || { conn: null, promise: null };
+// Module-level cache
+let cachedConn: typeof mongoose | null = null;
+let cachedPromise: Promise<typeof mongoose> | null = null;
 
-export const connectToDatabase = async () => {
-  if (cached.conn) {
-    return cached.conn;
+export const connectToDatabase = async (): Promise<typeof mongoose> => {
+  if (cachedConn) {
+    return cachedConn;
   }
 
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
-
-    cached.promise = mongoose.connect(API_URL!, opts).then((mongoose) => {
-      return mongoose;
-    });
+  if (!cachedPromise) {
+    const opts = { bufferCommands: false };
+    cachedPromise = mongoose.connect(API_URL, opts);
   }
 
   try {
-    cached.conn = await cached.promise;
+    cachedConn = await cachedPromise;
+    return cachedConn;
   } catch (error) {
-    cached.promise = null;
+    cachedPromise = null;
     throw error;
   }
-
-  return cached.conn;
 };
 
 export default connectToDatabase;

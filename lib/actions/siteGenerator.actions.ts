@@ -38,8 +38,8 @@ export async function generateSiteName({
   let fragments: GeneratorSiteFragmentPlain[] = [];
 
   try {
-    const rawFragments = await GeneratorSiteFragment.find().lean();
-    fragments = (rawFragments as any[]).filter(
+    const rawFragments = await GeneratorSiteFragment.find().lean<GeneratorSiteFragmentPlain[]>();
+    fragments = rawFragments.filter(
       (f): f is GeneratorSiteFragmentPlain =>
         typeof f.type === "string" && typeof f.value === "string"
     );

@@ -7,6 +7,7 @@ import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "../util/connectionHelpers";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
 // Serialize for client compatibility
 function serializeSettlement(settlement: any): Settlement {
@@ -20,7 +21,7 @@ function serializeSettlement(settlement: any): Settlement {
       : obj.userId?._id
         ? obj.userId._id.toString()
         : obj.userId?.toString?.(),
-    connections: (obj.connections || []).map((conn: any) => ({
+    connections: (obj.connections || []).map((conn: NpcConnection) => ({
         ...conn,
         id: conn.id?.toString ? conn.id.toString() : conn.id,
     })),

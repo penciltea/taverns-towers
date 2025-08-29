@@ -23,7 +23,7 @@ export const settlementSchema = z.object({
   crime: z.array(z.string()).optional(),
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
-  connections: z.array(npcConnectionItemSchema),
+  connections: z.array(npcConnectionItemSchema).default([]),
   map: z
     .any()
     .refine(
@@ -50,13 +50,13 @@ export const settlementFilterSchema = z.object({
 
 export const defaultSettlementValues =  {
   name: "",
-  size: "",
-  magic: "",
+  size: undefined,
+  magic: undefined,
   races: "",
   publicNotes: "",
   gmNotes: "",
-  rulingStyle: "",
-  wealth: "",
+  rulingStyle: undefined,
+  wealth: undefined,
   tradeNotes: "",
   guilds: "",
   domains: [],

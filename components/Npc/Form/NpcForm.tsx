@@ -8,6 +8,7 @@ import { useUIStore } from "@/store/uiStore";
 import NpcFormTabs from "./Tabs";
 import NpcFormConnections from "./Connections";
 import NpcFormBasics from "./Basics";
+import { FieldErrors } from "react-hook-form";
 
 type NpcFormProps = {
   onSubmit: (data: NpcFormData) => void;
@@ -49,15 +50,15 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
   const { isSubmitting } = useUIStore();
 
   useEffect(() => {
-    if (Object.keys(errors).length > 0) {
-      const messages = Object.values(errors)
-        .map((error: any) => error.message || "Invalid field")
-        .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
-      setFormError(messages.join(" • "));
-    } else {
-      setFormError(null);
-    }
-  }, [errors]);
+      if (Object.keys(errors).length > 0) {
+        const messages = Object.values(errors as FieldErrors<NpcFormData>)
+          .map((error) => error?.message || "Invalid field")
+          .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
+        setFormError(messages.join(" • "));
+      } else {
+        setFormError(null);
+      }
+    }, [errors]);
 
   function handleCancel(){
     clearSelectedItem();

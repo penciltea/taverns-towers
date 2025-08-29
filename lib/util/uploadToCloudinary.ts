@@ -34,9 +34,12 @@ function isFileList(value: unknown): value is FileList {
   );
 }
 
-export async function handleDynamicFileUpload<T extends Record<string, any>>(
+export async function handleDynamicFileUpload<
+  T extends Record<string, unknown>, 
+  K extends keyof T
+>(
   data: T,
-  field: keyof T
+  field: K
 ): Promise<string | undefined> {
   const input = data[field];
 

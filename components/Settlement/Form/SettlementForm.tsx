@@ -11,6 +11,7 @@ import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
 import SettlementFormConnections from "./Connections";
+import { FieldErrors, FieldError } from "react-hook-form";
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;
@@ -50,15 +51,15 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
   const { isSubmitting } = useUIStore();
 
   useEffect(() => {
-      if (Object.keys(errors).length > 0) {
-        const messages = Object.values(errors)
-          .map((error: any) => error.message || "Invalid field")
-          .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
-        setFormError(messages.join(" • "));
-      } else {
-        setFormError(null);
-      }
-    }, [errors]);
+    if (Object.keys(errors).length > 0) {
+      const messages = Object.values(errors as FieldErrors<SettlementFormData>)
+        .map((error) => error?.message || "Invalid field")
+        .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
+      setFormError(messages.join(" • "));
+    } else {
+      setFormError(null);
+    }
+  }, [errors]);
 
   function handleCancel(){
     clearDraftItem();

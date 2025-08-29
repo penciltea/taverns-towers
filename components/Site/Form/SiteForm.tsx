@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { FieldErrors, useFormContext } from "react-hook-form";
 import { Paper, Typography, Box, Button } from "@mui/material";
 import { SiteFormData } from "@/schemas/site.schema";
 import FormActions from "@/components/Form/FormActions";
@@ -10,7 +10,6 @@ import { useSiteContentStore } from "@/store/siteStore";
 import SiteFormTabs from "./Tabs";
 import SiteFormBasics from "./Basics";
 import SiteFormConnections from "./Connections";
-import { siteFormFieldsByType } from "./FieldsByType";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { useSearchParams } from "next/navigation";
@@ -59,8 +58,8 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
-      const messages = Object.values(errors)
-        .map((error: any) => error.message || "Invalid field")
+      const messages = Object.values(errors as FieldErrors<SiteFormData>)
+        .map((error) => error?.message || "Invalid field")
         .filter((msg) => msg !== "Please fix the highlighted errors before submitting:");
       setFormError(messages.join(" • "));
     } else {

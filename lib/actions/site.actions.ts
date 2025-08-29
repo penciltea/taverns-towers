@@ -3,15 +3,68 @@
 import { ObjectId } from "mongodb";
 import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
-import { BaseSite, SiteType } from "@/interfaces/site.interface";
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
+import { Types } from "mongoose";
+import { BaseSite, SiteType, TavernSite, TempleSite, ShopSite, GuildSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
-function serializeSite(site: any): SiteType {
-  const plain = site.toObject ? site.toObject() : site;
+type SiteDocument = {
+  _id: Types.ObjectId | string;
+  name: string;
+  image?: string;
+  type: SiteType["type"];
+  size?: string;
+  condition?: string;
+  publicNotes?: string;
+  gmNotes?: string;
+  settlementId?: Types.ObjectId | string | null;
+  isPublic: boolean;
+  editors?: (Types.ObjectId | string | { _id: Types.ObjectId | string })[];
+  connections?: NpcConnection[];
+  userId: Types.ObjectId | string | { _id: Types.ObjectId | string };
+  createdAt: Date;
+  updatedAt: Date;
+  // Tavern
+  clientele?: TavernSite["clientele"];
+  entertainment?: TavernSite["entertainment"];
+  cost?: TavernSite["cost"];
+  menu?: TavernSite["menu"];
+  // Temple
+  domains?: TempleSite["domains"];
+  relics?: TempleSite["relics"];
+  // Shop
+  shopType?: ShopSite["shopType"];
+  // Guild
+  guildName?: GuildSite["guildName"];
+  guildType?: GuildSite["guildType"];
+  membershipRequirements?: GuildSite["membershipRequirements"];
+  knownRivals?: GuildSite["knownRivals"];
+  // Government
+  function?: GovernmentSite["function"];
+  security?: GovernmentSite["security"];
+  // Entertainment
+  venueType?: EntertainmentSite["venueType"];
+  // Hidden
+  secrecy?: HiddenSite["secrecy"];
+  knownTo?: HiddenSite["knownTo"];
+  defenses?: HiddenSite["defenses"];
+  purpose?: HiddenSite["purpose"];
+  // Residence
+  notableFeatures?: ResidenceSite["notableFeatures"];
+  // Miscellaneous
+  features?: MiscellaneousSite["features"];
+  use?: MiscellaneousSite["use"];
+};
+
+function serializeSite(site: SiteDocument | (SiteDocument & { toObject?: () => SiteDocument })): BaseSite | SiteType {
+  const plain: SiteDocument =
+    typeof (site as { toObject?: () => SiteDocument }).toObject === "function"
+      ? (site as { toObject: () => SiteDocument }).toObject()
+      : (site as SiteDocument);
 
   const baseData: BaseSite = {
-    _id: plain._id.toString(),
+    _id: typeof plain._id === "string" ? plain._id : plain._id.toString(),
     name: plain.name,
     image: plain.image,
     type: plain.type,
@@ -19,26 +72,32 @@ function serializeSite(site: any): SiteType {
     condition: plain.condition,
     publicNotes: plain.publicNotes,
     gmNotes: plain.gmNotes,
-    settlementId: plain.settlementId?.toString(),
+    settlementId: plain.settlementId
+      ? typeof plain.settlementId === "string"
+        ? plain.settlementId
+        : plain.settlementId.toString()
+      : undefined,
     isPublic: plain.isPublic,
     editors: Array.isArray(plain.editors)
-      ? plain.editors.map((editor: any) =>
-          typeof editor === 'string'
+      ? plain.editors.map((editor) =>
+          typeof editor === "string"
             ? editor
-            : editor?._id
-              ? editor._id.toString()
-              : editor?.toString?.()
+            : (editor as { _id?: Types.ObjectId | string })._id
+            ? (editor as { _id: Types.ObjectId | string })._id.toString()
+            : typeof (editor as { toString?: () => string }).toString === "function"
+            ? (editor as { toString: () => string }).toString()
+            : ""
         )
       : [],
-    connections: (plain.connections || []).map((conn: any) => ({
-        ...conn,
-        id: conn.id?.toString ? conn.id.toString() : conn.id,
-    })),
+    connections: (plain.connections || []).map((conn: NpcConnection) => ({
+            ...conn,
+            id: conn.id?.toString ? conn.id.toString() : conn.id,
+        })),
     userId: typeof plain.userId === 'string'
-      ? plain.userId
-      : plain.userId?._id
-        ? plain.userId._id.toString()  // If populated user document
-        : plain.userId?.toString?.(),  // fallback if ObjectId
+            ? plain.userId
+            : plain.userId?._id
+                ? plain.userId._id.toString()  // If populated user document
+                : plain.userId?.toString?.(),  // fallback if ObjectId
     createdAt: plain.createdAt?.toISOString(),
     updatedAt: plain.updatedAt?.toISOString(),
   };
@@ -51,12 +110,15 @@ function serializeSite(site: any): SiteType {
         clientele: plain.clientele,
         entertainment: plain.entertainment,
         cost: plain.cost,
-        menu: plain.menu?.map((item: any) => ({
-          name: item.name,
-          category: item.category,
-          description: item.description,
-          price: item.price,
-        })) ?? [],
+        menu:
+          Array.isArray(plain.menu) && plain.menu.length > 0
+            ? plain.menu.map((item) => ({
+                name: item.name,
+                category: item.category,
+                description: item.description,
+                price: item.price,
+              }))
+            : [],
       };
     case "temple":
       return {
@@ -64,24 +126,30 @@ function serializeSite(site: any): SiteType {
         type: "temple",
         domains: Array.isArray(plain.domains) ? plain.domains : [],
         relics: plain.relics,
-        menu: plain.menu?.map((item: any) => ({
-          name: item.name,
-          category: item.category,
-          description: item.description,
-          price: item.price,
-        })) ?? [],
+        menu:
+          Array.isArray(plain.menu) && plain.menu.length > 0
+            ? plain.menu.map((item) => ({
+                name: item.name,
+                category: item.category,
+                description: item.description,
+                price: item.price,
+              }))
+            : [],
       };
     case "shop":
       return {
         ...baseData,
         type: "shop",
         shopType: plain.shopType,
-        menu: plain.menu?.map((item: any) => ({
-          name: item.name,
-          category: item.category,
-          description: item.description,
-          price: item.price,
-        })) ?? [],
+        menu:
+          Array.isArray(plain.menu) && plain.menu.length > 0
+            ? plain.menu.map((item) => ({
+                name: item.name,
+                category: item.category,
+                description: item.description,
+                price: item.price,
+              }))
+            : [],
       };
     case "guild":
       return {
@@ -90,15 +158,18 @@ function serializeSite(site: any): SiteType {
         guildName: plain.guildName,
         guildType: plain.guildType,
         membershipRequirements: Array.isArray(plain.membershipRequirements)
-          ? plain.membershipRequirements.map((req: any) => String(req))
+          ? plain.membershipRequirements.map((req) => String(req))
           : [],
         knownRivals: plain.knownRivals,
-        menu: plain.menu?.map((item: any) => ({
-          name: item.name,
-          category: item.category,
-          description: item.description,
-          price: item.price,
-        })) ?? [],
+        menu:
+          Array.isArray(plain.menu) && plain.menu.length > 0
+            ? plain.menu.map((item) => ({
+                name: item.name,
+                category: item.category,
+                description: item.description,
+                price: item.price,
+              }))
+            : [],
       };
     case "government":
       return {
@@ -118,7 +189,11 @@ function serializeSite(site: any): SiteType {
       return {
         ...baseData,
         type: "hidden",
-        secrecy: Array.isArray(plain.secrecy) ? plain.secrecy : [plain.secrecy].filter(Boolean),
+        secrecy: Array.isArray(plain.secrecy)
+          ? plain.secrecy
+          : plain.secrecy
+          ? [plain.secrecy]
+          : [],
         knownTo: plain.knownTo,
         defenses: plain.defenses,
         purpose: plain.purpose,
@@ -176,7 +251,8 @@ export async function getSitesPaginated(
 ) {
   await connectToDatabase();
 
-  const query: Record<string, any> = {};
+  const query: Record<string, unknown> = {};
+
   if (settlementId === 'wilderness') {
     query.settlementId = null; // Query for wilderness sites
   } else if (settlementId && ObjectId.isValid(settlementId)) {
@@ -232,7 +308,7 @@ export async function getSites({
 }) {
   await connectToDatabase();
 
-  const query: Record<string, any> = {};
+  const query: Record<string, unknown> = {};
 
   if (userId) query.userId = new ObjectId(userId);
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;

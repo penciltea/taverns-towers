@@ -14,11 +14,10 @@ export interface GeneratorSiteFragmentPlain {
   guildType?: string[];       // for guild type sites
   venueType?: string[];       // for entertainment venue type sites
   functionType?: string[];    // for government type sites
-  [key: string]: any;
 }
 
 
-const GeneratorSiteFragmentSchema = new mongoose.Schema({
+const GeneratorSiteFragmentSchema = new mongoose.Schema<GeneratorSiteFragmentPlain>({
   type: { type: String, enum: ['prefix', 'suffix', 'noun', 'person', 'siteTypeName', 'fullName', 'format'], required: true },
   value: { type: String, required: true },
   tags: { type: [String], required: false },

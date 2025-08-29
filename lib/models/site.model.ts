@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { HydratedDocument, InferSchemaType } from "mongoose";
 import { SITE_SIZE, SITE_CONDITION, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_TYPES } from "@/constants/site/guild.options";
 import { connectionSchema } from "./connection.model";
+import { siteSchema } from "@/schemas/site.schema";
 const { Schema, models, model } = mongoose;
 
 const sizeValues = SITE_SIZE.map(option => option.value);
@@ -60,31 +61,30 @@ const MenuItemSchema = new Schema({
 const Site = models.Site || model("Site", BaseSiteSchema);
 
 // Define discriminators
-const Tavern =
-  Site.discriminators?.tavern ||
+if (!Site.discriminators?.tavern) {
   Site.discriminator(
     "tavern",
     new Schema({
-      clientele: { type: String, required: false },
-      cost: { type: String, required: false },
+      clientele: String,
+      cost: String,
       entertainment: { type: [String], enum: TAVERN_ENTERTAINMENT_OFFERINGS, required: false },
       menu: [MenuItemSchema]
     })
   );
+}
 
-  const Temple =
-  Site.discriminators?.temple ||
+if (!Site.discriminators?.temple) {
   Site.discriminator(
     "temple",
     new Schema({
       domains: { type: [String], required: false },
-      relics: { type: String, required: false },
+      relics: String,
       menu: [MenuItemSchema],
     })
   );
+}
 
-  const Shop =
-  Site.discriminators?.shop ||
+if (!Site.discriminators?.shop) {
   Site.discriminator(
     "shop",
     new Schema({
@@ -92,9 +92,9 @@ const Tavern =
       menu: [MenuItemSchema],
     })
   );
+}
 
-  const Guild =
-  Site.discriminators?.guild ||
+if (!Site.discriminators?.guild) {
   Site.discriminator(
     "guild",
     new Schema({
@@ -102,63 +102,67 @@ const Tavern =
       name: { type: String, required: true },
       guildType: { type: String, enum: guildTypes, required: true },
       membershipRequirements: { type: [String], required: false },
-      knownRivals: { type: String, required: false },
+      knownRivals: String,
       menu: [MenuItemSchema],
     })
   );
+}
 
-  const Government =
-  Site.discriminators?.government ||
+if (!Site.discriminators?.government) { 
   Site.discriminator(
     "government",
     new Schema({
-      function: { type: String, required: false },
-      jurisdiction: { type: String, required: false },
+      function: String,
+      jurisdiction: String,
       security: { type: String, enum: securityValues, required: false }
     })
   );
+}
 
-  const Entertainment =
-  Site.discriminators?.entertainment ||
+if (!Site.discriminators?.entertainment) {
   Site.discriminator(
     "entertainment",
     new Schema({
       venueType: { type: String, enum: venueTypes, required: false },
-      performances: { type: String, required: false },
-      cost: { type: String, required: false },
+      performances: String,
+      cost: String,
     })
   );
+}
 
-  const Hidden =
-  Site.discriminators?.hidden ||
+if (!Site.discriminators?.hidden) {
   Site.discriminator(
     "hidden",
     new Schema({
       secrecy: { type: [String], enum: secrecyValues, default: [], },
-      knownTo: { type: String, required: false },
-      defenses: { type: String, required: false },
-      purpose: { type: String, required: false },
+      knownTo: String,
+      defenses: String,
+      purpose: String,
     })
   );
+}
 
-  const Residence =
-  Site.discriminators?.residence ||
+if (!Site.discriminators?.residence) {
   Site.discriminator(
     "residence",
     new Schema({
-      notableFeatures: { type: String, required: false },
+      notableFeatures: String,
     })
   );
+}
 
-  const Miscellaneous =
-  Site.discriminators?.miscellaneous ||
+if (!Site.discriminators?.miscellaneous) {
   Site.discriminator(
     "miscellaneous",
     new Schema({
-      features: { type: String, required: false },
-      use: { type: String, required: false },
+      features: String,
+      use: String,
     })
   );
+}
 
 
 export default Site;
+
+export type SiteObject = InferSchemaType<typeof siteSchema>;
+export type SiteDocument = HydratedDocument<SiteObject>;
