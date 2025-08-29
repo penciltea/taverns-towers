@@ -5,211 +5,121 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { Types } from "mongoose";
-import { BaseSite, SiteType, TavernSite, TempleSite, ShopSite, GuildSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
+import { BaseSite, SiteType, GuildSite, generatorMenuItem, TavernSite, TempleSite, ShopSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
 import { NpcConnection } from "@/interfaces/connection.interface";
+import { serializeFromDb } from "@/lib/util/serializeFromDb";
 
-type SiteDocument = {
-  _id: Types.ObjectId | string;
-  name: string;
-  image?: string;
-  type: SiteType["type"];
-  size?: string;
-  condition?: string;
-  publicNotes?: string;
-  gmNotes?: string;
-  settlementId?: Types.ObjectId | string | null;
-  isPublic: boolean;
-  editors?: (Types.ObjectId | string | { _id: Types.ObjectId | string })[];
-  connections?: NpcConnection[];
-  userId: Types.ObjectId | string | { _id: Types.ObjectId | string };
-  createdAt: Date;
-  updatedAt: Date;
-  // Tavern
-  clientele?: TavernSite["clientele"];
-  entertainment?: TavernSite["entertainment"];
-  cost?: TavernSite["cost"];
-  menu?: TavernSite["menu"];
-  // Temple
-  domains?: TempleSite["domains"];
-  relics?: TempleSite["relics"];
-  // Shop
-  shopType?: ShopSite["shopType"];
-  // Guild
-  guildName?: GuildSite["guildName"];
-  guildType?: GuildSite["guildType"];
-  membershipRequirements?: GuildSite["membershipRequirements"];
-  knownRivals?: GuildSite["knownRivals"];
-  // Government
-  function?: GovernmentSite["function"];
-  security?: GovernmentSite["security"];
-  // Entertainment
-  venueType?: EntertainmentSite["venueType"];
-  // Hidden
-  secrecy?: HiddenSite["secrecy"];
-  knownTo?: HiddenSite["knownTo"];
-  defenses?: HiddenSite["defenses"];
-  purpose?: HiddenSite["purpose"];
-  // Residence
-  notableFeatures?: ResidenceSite["notableFeatures"];
-  // Miscellaneous
-  features?: MiscellaneousSite["features"];
-  use?: MiscellaneousSite["use"];
-};
+function serializeSite(site: Parameters<typeof serializeFromDb>[0]): BaseSite | SiteType {
+  const serialized = serializeFromDb(site);
 
-function serializeSite(site: SiteDocument | (SiteDocument & { toObject?: () => SiteDocument })): BaseSite | SiteType {
-  const plain: SiteDocument =
-    typeof (site as { toObject?: () => SiteDocument }).toObject === "function"
-      ? (site as { toObject: () => SiteDocument }).toObject()
-      : (site as SiteDocument);
+  // Ensure the result is an object and has a 'type' property
+  if (
+    !serialized ||
+    typeof serialized !== "object" ||
+    Array.isArray(serialized) ||
+    !("type" in serialized)
+  ) {
+    throw new Error("Invalid serialized site data");
+  }
 
-  const baseData: BaseSite = {
-    _id: typeof plain._id === "string" ? plain._id : plain._id.toString(),
-    name: plain.name,
-    image: plain.image,
-    type: plain.type,
-    size: plain.size,
-    condition: plain.condition,
-    publicNotes: plain.publicNotes,
-    gmNotes: plain.gmNotes,
-    settlementId: plain.settlementId
-      ? typeof plain.settlementId === "string"
-        ? plain.settlementId
-        : plain.settlementId.toString()
-      : undefined,
-    isPublic: plain.isPublic,
-    editors: Array.isArray(plain.editors)
-      ? plain.editors.map((editor) =>
-          typeof editor === "string"
-            ? editor
-            : (editor as { _id?: Types.ObjectId | string })._id
-            ? (editor as { _id: Types.ObjectId | string })._id.toString()
-            : typeof (editor as { toString?: () => string }).toString === "function"
-            ? (editor as { toString: () => string }).toString()
-            : ""
-        )
+  // Map connections
+  const baseData = {
+    ...serialized,
+    connections: Array.isArray((serialized as { connections?: NpcConnection[] }).connections)
+      ? ((serialized as unknown as { connections: NpcConnection[] }).connections).map((conn: NpcConnection) => ({
+          ...conn,
+          id: conn.id?.toString() ?? conn.id,
+        }))
       : [],
-    connections: (plain.connections || []).map((conn: NpcConnection) => ({
-            ...conn,
-            id: conn.id?.toString ? conn.id.toString() : conn.id,
-        })),
-    userId: typeof plain.userId === 'string'
-            ? plain.userId
-            : plain.userId?._id
-                ? plain.userId._id.toString()  // If populated user document
-                : plain.userId?.toString?.(),  // fallback if ObjectId
-    createdAt: plain.createdAt?.toISOString(),
-    updatedAt: plain.updatedAt?.toISOString(),
-  };
+  } as BaseSite;
 
-  switch (plain.type) {
+  // Handle type-specific fields
+  switch (serialized.type) {
     case "tavern":
       return {
         ...baseData,
         type: "tavern",
-        clientele: plain.clientele,
-        entertainment: plain.entertainment,
-        cost: plain.cost,
-        menu:
-          Array.isArray(plain.menu) && plain.menu.length > 0
-            ? plain.menu.map((item) => ({
-                name: item.name,
-                category: item.category,
-                description: item.description,
-                price: item.price,
-              }))
-            : [],
+        clientele: serialized.clientele as TavernSite["clientele"],
+        entertainment: serialized.entertainment as TavernSite["entertainment"],
+        cost: serialized.cost as TavernSite["cost"],
+        menu: Array.isArray((serialized as { menu?: generatorMenuItem[] }).menu)
+          ? ((serialized as unknown as { menu: generatorMenuItem[] }).menu).map((item: generatorMenuItem) => ({
+            name: item.name,
+            category: item.category,
+            description: item.description,
+            price: item.price,
+          }))
+          : [],
       };
     case "temple":
       return {
         ...baseData,
         type: "temple",
-        domains: Array.isArray(plain.domains) ? plain.domains : [],
-        relics: plain.relics,
-        menu:
-          Array.isArray(plain.menu) && plain.menu.length > 0
-            ? plain.menu.map((item) => ({
-                name: item.name,
-                category: item.category,
-                description: item.description,
-                price: item.price,
-              }))
-            : [],
+        domains: Array.isArray(serialized.domains as TempleSite["domains"]) ? serialized.domains as TempleSite["domains"] : [],
+        relics: serialized.relics as TempleSite["relics"],
       };
     case "shop":
       return {
         ...baseData,
         type: "shop",
-        shopType: plain.shopType,
-        menu:
-          Array.isArray(plain.menu) && plain.menu.length > 0
-            ? plain.menu.map((item) => ({
-                name: item.name,
-                category: item.category,
-                description: item.description,
-                price: item.price,
-              }))
-            : [],
+        shopType: serialized.shopType as ShopSite["shopType"],
+        menu: Array.isArray((serialized as { menu?: generatorMenuItem[] }).menu)
+          ? ((serialized as unknown as { menu: generatorMenuItem[] }).menu).map((item: generatorMenuItem) => ({
+            name: item.name,
+            category: item.category,
+            description: item.description,
+            price: item.price,
+          }))
+          : [],
       };
     case "guild":
       return {
         ...baseData,
         type: "guild",
-        guildName: plain.guildName,
-        guildType: plain.guildType,
-        membershipRequirements: Array.isArray(plain.membershipRequirements)
-          ? plain.membershipRequirements.map((req) => String(req))
-          : [],
-        knownRivals: plain.knownRivals,
-        menu:
-          Array.isArray(plain.menu) && plain.menu.length > 0
-            ? plain.menu.map((item) => ({
-                name: item.name,
-                category: item.category,
-                description: item.description,
-                price: item.price,
-              }))
-            : [],
-      };
+        guildName: serialized.guildName as GuildSite["guildName"],
+        guildType: serialized.guildType as GuildSite["guildType"],
+        membershipRequirements: Array.isArray(serialized.membershipRequirements)
+          ? (serialized.membershipRequirements.map((req: unknown): string => String(req)) as GuildSite["membershipRequirements"])
+          : ([] as GuildSite["membershipRequirements"]),
+        knownRivals: serialized.knownRivals as GuildSite["knownRivals"],
+      } as GuildSite;
     case "government":
       return {
         ...baseData,
         type: "government",
-        function: plain.function,
-        security: plain.security,
+        function: serialized.function as GovernmentSite["function"],
+        security: serialized.security as GovernmentSite["security"],
       };
     case "entertainment":
       return {
         ...baseData,
         type: "entertainment",
-        venueType: plain.venueType,
-        cost: plain.cost,
+        venueType: serialized.venueType as EntertainmentSite["venueType"],
+        cost: serialized.cost as EntertainmentSite["cost"],
       };
     case "hidden":
       return {
         ...baseData,
         type: "hidden",
-        secrecy: Array.isArray(plain.secrecy)
-          ? plain.secrecy
-          : plain.secrecy
-          ? [plain.secrecy]
-          : [],
-        knownTo: plain.knownTo,
-        defenses: plain.defenses,
-        purpose: plain.purpose,
+        secrecy: Array.isArray(serialized.secrecy)
+          ? (serialized.secrecy as unknown[]).map((s: unknown): string => String(s)) as HiddenSite["secrecy"]
+          : ([] as HiddenSite["secrecy"]),
+        knownTo: serialized.knownTo as HiddenSite["knownTo"],
+        defenses: serialized.defenses as HiddenSite["defenses"],
+        purpose: serialized.purpose as HiddenSite["purpose"],
       };
     case "residence":
       return {
         ...baseData,
         type: "residence",
-        notableFeatures: plain.notableFeatures,
+        notableFeatures: serialized.notableFeatures as ResidenceSite["notableFeatures"],
       };
     case "miscellaneous":
       return {
         ...baseData,
         type: "miscellaneous",
-        features: plain.features,
-        use: plain.use,
+        features: serialized.features as MiscellaneousSite["features"],
+        use: serialized.use as MiscellaneousSite["use"],
       };
     default:
       return baseData;
@@ -403,8 +313,14 @@ export async function deleteSite(id: string) {
   const user = await requireUser();
   const existing = await Site.findById(id);
 
-  if(!existing) throw new Error("Site not found");
-  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  if (!existing) {
+    // already deleted – just return a success-like response
+    return { success: true, message: "Already deleted" };
+  }
+
+  if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
   const deletedSite = await Site.findByIdAndDelete(id);
   if (!deletedSite) throw new Error("Site not found");

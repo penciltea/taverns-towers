@@ -11,7 +11,7 @@ import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
 import SettlementFormConnections from "./Connections";
-import { FieldErrors, FieldError } from "react-hook-form";
+import { FieldErrors } from "react-hook-form";
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;

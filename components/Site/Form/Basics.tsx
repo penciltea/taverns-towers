@@ -24,7 +24,6 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
     const { selectedItem } = useSiteContentStore();  
     const searchParams = useSearchParams();
      const { control } = useFormContext();
-
     
     const typeParam = mode === 'edit'
         ? selectedItem?.type

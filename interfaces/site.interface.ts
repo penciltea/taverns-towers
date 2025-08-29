@@ -17,7 +17,6 @@ export interface SiteDialogProps extends DialogProps {
 
 export interface SiteListProps {
   settlementId: string;
-  onDelete: (id: string) => void;
 }
 
 export interface SiteQueryParams {

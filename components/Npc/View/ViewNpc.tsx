@@ -6,6 +6,7 @@ import { Npc } from "@/interfaces/npc.interface";
 import NpcActions from './NpcActions';
 import NpcDetails from './NpcDetails';
 import NpcConnections from './NpcConnections';
+import Image from 'next/image';
 
 interface Props {
   npc: Npc;
@@ -41,20 +42,20 @@ export default function ViewNpc({ npc }: Props){
               <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>
                 {npc.image ? (
                   <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
-                    <img
+                    <Image
+                      priority
                       src={npc.image}
-                      alt="Your NPC Portrait"
+                      alt={`Portrait of ${npc.image}`}
+                      fill
                       style={{
                         borderRadius: '16px',
-                        boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
-                        width: '100%',
-                        height: '300px',
                         objectFit: 'cover',
+                        boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
                       }}
                     />
                   </Box>
                 ) : (
-                  <Typography variant="body1">No NPC portrait uploaded.</Typography>
+                  <Typography variant="body1">No map image uploaded.</Typography>
                 )}
               </Box>
             </Grid>

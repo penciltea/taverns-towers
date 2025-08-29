@@ -29,7 +29,7 @@ export const TavernDetails = ({ site }: { site: TavernSite }) => {
 
       </Box>
       
-      <ConnectionsList connections={site.connections} pageSiteType="tavern" />
+      <ConnectionsList connections={site.connections} variant="h6" pageSiteType="tavern" />
 
       <MenuList menu={site.menu || []} label="Menu" />
     </>

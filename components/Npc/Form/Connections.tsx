@@ -26,7 +26,10 @@ export default function NpcFormConnections() {
     setValue("connections", [...existing, ...updatedWithType]);
   };
 
-  const formatOptions = (items?: any[]) => (items ?? []).map(item => ({ id: item._id, name: item.name }));
+  type EntityWithIdAndName = { _id: string; name: string };
+
+  const formatOptions = (items?: EntityWithIdAndName[]) =>
+    (items ?? []).map(item => ({ id: item._id, name: item.name }));
 
   /** Generates the role options dynamically per site row */
   const getSiteRoleOptions = (siteId: string | undefined) => {

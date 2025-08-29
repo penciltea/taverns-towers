@@ -1,4 +1,4 @@
-import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box } from "@mui/material";
+import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
 import { SITE_TABS } from "@/constants/site/site.options";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
@@ -17,8 +17,8 @@ export default function SiteFormTabs({ tab, setTab }: Props) {
     setAnnouncement(`${SITE_TABS[tab]} section selected`);
   }, [tab]);
 
-  const handleChange = (event: any) => {
-    setTab(event.target.value);
+  const handleChange = (event: SelectChangeEvent<number>) => {
+    setTab(Number(event.target.value));
   };
 
   if (isMobile) {
@@ -71,7 +71,7 @@ export default function SiteFormTabs({ tab, setTab }: Props) {
       </Tabs>
 
       <div aria-live="polite" style={{ position: "absolute", left: "-9999px" }}>
-      {SITE_TABS[tab]} section selected
+        {announcement}
       </div>
     </>
   );

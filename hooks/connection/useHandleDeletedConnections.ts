@@ -4,14 +4,12 @@ import findDeletedConnections from "@/lib/util/findDeletedConnections";
 import { deleteConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useQueryClient } from "@tanstack/react-query";
-import useNpcMap from "@/hooks/npc/useNpcMap";
 import { NpcConnectionType } from "@/constants/npc.options";
 
 export function useHandleDeletedConnections<T extends { connections: NpcConnection[] }>(
   sourceType: NpcConnectionType
 ) {
   const { setOpenDialog, closeDialog } = useUIStore();
-  const npcMap = useNpcMap();
   const queryClient = useQueryClient();
 
   async function handleDeletedConnections({
@@ -43,10 +41,13 @@ export function useHandleDeletedConnections<T extends { connections: NpcConnecti
               role: conn.role,
             });
 
-            invalidateConnections(queryClient, formData.connections);
+            invalidateConnections(queryClient, Array.isArray(formData.connections) ? formData.connections : []);
           }
 
-          await onConfirm(formData);
+          await onConfirm({
+            ...formData,
+            connections: Array.isArray(formData.connections) ? formData.connections : [],
+          });
           closeDialog();
         },
         onClose: closeDialog,

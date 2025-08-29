@@ -38,7 +38,7 @@ export const GuildDetails = ({ site }: { site: GuildSite }) => {
         ) }
       </Box>
 
-      <ConnectionsList connections={site.connections} pageSiteType="guild" />
+      <ConnectionsList connections={site.connections} variant="h6" pageSiteType="guild" />
 
       <MenuList menu={site.menu || []} label="Wares" />
     </>

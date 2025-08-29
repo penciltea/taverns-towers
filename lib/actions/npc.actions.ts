@@ -10,27 +10,24 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
 import { normalizeConnections } from "../util/connectionHelpers";
-import { NpcConnection } from "@/interfaces/connection.interface";
+import { serializeFromDb } from "@/lib/util/serializeFromDb";
+
 
 // serialize for client compatibility
-function serializeNpc(npc: any): Npc {
-    const obj = npc.toObject?.() ?? npc;
+function serializeNpc(npc: Parameters<typeof serializeFromDb>[0]): Npc {
+  const serialized = serializeFromDb(npc) as Npc | null;
 
-    return {
-        ...obj,
-        _id: obj._id.toString(),
-        userId: typeof obj.userId === 'string'
-            ? obj.userId
-            : obj.userId?._id
-                ? obj.userId._id.toString()  // If populated user document
-                : obj.userId?.toString?.(),  // fallback if ObjectId
-        connections: (obj.connections || []).map((conn: NpcConnection) => ({
-            ...conn,
-            id: conn.id?.toString ? conn.id.toString() : conn.id,
-        })),
-        createdAt: obj.createdAt?.toISOString?.() ?? null,
-        updatedAt: obj.updatedAt?.toISOString?.() ?? null,
-    };
+  if (!serialized || !Array.isArray(serialized.connections)) {
+    throw new Error("Invalid NPC data for serialization");
+  }
+
+  return {
+    ...serialized,
+    connections: serialized.connections.map((conn) => ({
+      ...conn,
+      id: conn.id.toString(),
+    })),
+  };
 }
 
 export async function getNpcs({

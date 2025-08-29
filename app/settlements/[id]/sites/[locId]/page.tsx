@@ -66,6 +66,8 @@ export default function EditSitePage() {
   }, [site, isLoading, safeId, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
   const wrappedOnSubmit = async (data: SiteFormData) => {
+    const normalizedConnections = Array.isArray(data.connections) ? data.connections : [];
+    
     await handleDeletedConnections({
       sourceId: safeId ?? "",
       initialConnections,
@@ -75,6 +77,9 @@ export default function EditSitePage() {
         await handleSubmit(formData);
       },
     });
+
+    // Update initialConnections so next deletion is correct
+    setInitialConnections(normalizedConnections);
   };
   
   if (!safeId) {

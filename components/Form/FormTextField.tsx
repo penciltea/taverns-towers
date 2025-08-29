@@ -3,16 +3,19 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { FieldError, UseFormRegisterReturn, Merge, FieldErrorsImpl } from "react-hook-form";
 
-interface FormTextFieldProps extends Omit<TextFieldProps, "name"> {
+import { FieldValues } from "react-hook-form";
+
+interface FormTextFieldProps<TFieldValues extends FieldValues>
+  extends Omit<TextFieldProps, "name"> {
   label: string;
   registration: UseFormRegisterReturn;
-  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<TFieldValues>> | undefined;
   required?: boolean;
   multiline?: boolean;
   rows?: number;
 }
 
-const FormTextField = ({
+const FormTextField = <TFieldValues extends FieldValues>({
   label,
   registration,
   fieldError,
@@ -20,8 +23,7 @@ const FormTextField = ({
   multiline = false,
   rows = 4,
   ...rest
-}: FormTextFieldProps) => {
-  // Ensure that fieldError.message is a string, or use an empty string if undefined
+}: FormTextFieldProps<TFieldValues>) => {
   const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
 
   return (
@@ -30,7 +32,7 @@ const FormTextField = ({
       label={label}
       {...registration}
       error={!!fieldError}
-      helperText={errorMessage} // Safely pass a string to helperText
+      helperText={errorMessage}
       margin="normal"
       required={required}
       multiline={multiline}

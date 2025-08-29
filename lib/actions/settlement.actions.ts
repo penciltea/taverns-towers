@@ -7,28 +7,25 @@ import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "../util/connectionHelpers";
-import { NpcConnection } from "@/interfaces/connection.interface";
+import { serializeFromDb } from "@/lib/util/serializeFromDb";
 
 // Serialize for client compatibility
-function serializeSettlement(settlement: any): Settlement {
-  const obj = settlement.toObject?.() ?? settlement;
+function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
+  const serialized = serializeFromDb(settlement) as Settlement | null;
+
+  if (!serialized || !Array.isArray(serialized.connections)) {
+    throw new Error("Invalid settlement data for serialization");
+  }
 
   return {
-    ...obj,
-    _id: obj._id.toString(),
-    userId: typeof obj.userId === 'string'
-      ? obj.userId
-      : obj.userId?._id
-        ? obj.userId._id.toString()
-        : obj.userId?.toString?.(),
-    connections: (obj.connections || []).map((conn: NpcConnection) => ({
-        ...conn,
-        id: conn.id?.toString ? conn.id.toString() : conn.id,
+    ...serialized,
+    connections: serialized.connections.map((conn) => ({
+      ...conn,
+      id: conn.id.toString(),
     })),
-    createdAt: obj.createdAt?.toISOString?.() ?? null,
-    updatedAt: obj.updatedAt?.toISOString?.() ?? null,
   };
 }
+
 
 export async function getSettlements({
   userId,
@@ -57,7 +54,7 @@ export async function getSettlements({
 }) {
   await connectToDatabase();
 
-  const query: any = {};
+  const query: Record<string, unknown> = {};
 
   if (userId) query.userId = userId;
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;

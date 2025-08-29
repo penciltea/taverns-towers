@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { Box, Typography } from "@mui/material";
 import { useId } from "react";
+import Image from "next/image";
 
 type FormImageUploadProps = {
   name: string;
@@ -47,7 +48,7 @@ export default function FormImageUpload({ name, label }: FormImageUploadProps) {
       {previewUrl && (
         <Box mt={2}>
           <Typography variant="subtitle2">Preview:</Typography>
-          <img
+          <Image
             src={previewUrl}
             alt={`${label} preview`}
             style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}

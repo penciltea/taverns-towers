@@ -3,8 +3,10 @@ import { useUIStore } from '@/store/uiStore';
 import useThemeActions from '@/hooks/useThemeActions';
 import { UI_THEMES } from '@/constants/ui.options';
 
+type Theme = typeof UI_THEMES[number];
+
 export default function ThemeSwitch() {
-  const theme = useUIStore((state) => state.theme);
+  const theme = useUIStore((state) => state.theme as Theme);
   const { updateTheme } = useThemeActions();
 
   const themeMap = UI_THEMES.map((t) => (
@@ -20,11 +22,10 @@ export default function ThemeSwitch() {
         labelId="theme-select-label"
         id="theme-select"
         value={theme}
-        onChange={(e) => updateTheme(e.target.value as any)}
+        onChange={(e) => updateTheme(e.target.value as Theme)}
         aria-label="Select application theme"
       >
         {themeMap}
-        
       </Select>
     </FormControl>
   );

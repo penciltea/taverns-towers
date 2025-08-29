@@ -59,6 +59,8 @@ export default function EditNpcPage() {
   }, [npc, safeId, isLoading, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
   const wrappedSubmit = async (data: NpcFormData) => {
+    const normalizedConnections = Array.isArray(data.connections) ? data.connections : [];
+
       await handleDeletedConnections({
         sourceId: safeId ?? "",
         initialConnections,
@@ -68,7 +70,10 @@ export default function EditNpcPage() {
           await handleSubmit(formData);
         },
       });
-    };
+
+      // Update initialConnections so next deletion is correct
+      setInitialConnections(normalizedConnections);
+  };
 
   if (isLoading) return <p>Loading NPC...</p>;
   if (isError || !npc) return <p>NPC not found or failed to load.</p>;

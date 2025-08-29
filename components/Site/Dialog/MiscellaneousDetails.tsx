@@ -27,7 +27,7 @@ export const MiscellaneousDetails = ({ site }: { site: MiscellaneousSite }) => {
 
       </Box>
       
-      <ConnectionsList connections={site.connections} pageSiteType="miscellaneous" />
+      <ConnectionsList connections={site.connections} variant="h6" pageSiteType="miscellaneous" />
     </>
   );
 };

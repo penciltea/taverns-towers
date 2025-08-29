@@ -13,11 +13,12 @@ import { SiteQueryParams } from "@/interfaces/site.interface";
 import GridItem from "@/components/Grid/GridItem";
 import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
+import { queryClient } from "@/components/Layout/QueryProviderWrapper";
+import { deleteSite } from "@/lib/actions/site.actions";
 
-export default function SiteList({ settlementId, onDelete }: SiteListProps) {
+export default function SiteList({ settlementId }: SiteListProps) {
 
-  const { setOpenDialog } = useUIStore();
-  const [ selected, setSelected ] = useState<SiteType | null>(null);
+  const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
 
   const [ filters, setFilters ] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
@@ -31,6 +32,21 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
     filters.search,
     filters.type,
   );
+
+  async function handleDeleteSite(id: string) {
+      try {
+        await deleteSite(id);
+  
+        queryClient.invalidateQueries({ queryKey: ["sites"] });
+  
+        closeDialog();
+      } catch (error) {
+        showErrorDialog(
+          'There was a problem deleting the site, please try again later'
+        );
+        console.error('Error deleting site:', error);
+      }
+    }
 
   if (!settlementId) {
     return <Typography color="error">Invalid settlement ID</Typography>;
@@ -57,11 +73,10 @@ export default function SiteList({ settlementId, onDelete }: SiteListProps) {
           image={site.image}
           subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
           onClick={() => {
-            setSelected(site);
             setOpenDialog('SiteDetailsDialog', {  
               siteData: site, 
               settlementId: settlementId,
-              onDelete: onDelete
+              onDelete: () => handleDeleteSite(site._id),
             })
           }}
         />

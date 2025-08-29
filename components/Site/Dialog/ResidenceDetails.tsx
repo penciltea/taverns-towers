@@ -26,7 +26,7 @@ export const ResidenceDetails = ({ site }: { site: ResidenceSite }) => {
 
       </Box>
       
-      <ConnectionsList connections={site.connections} variant="h5" pageSiteType="residence" />
+      <ConnectionsList connections={site.connections} variant="h6" pageSiteType="residence" />
     </>
   );
 };

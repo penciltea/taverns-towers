@@ -63,6 +63,8 @@ export default function EditSettlementFormPage() {
   }, [settlement, isLoading, safeId, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 
   const wrappedSubmit = async (data: SettlementFormData) => {
+    const normalizedConnections = Array.isArray(data.connections) ? data.connections : [];
+
     await handleDeletedConnections({
       sourceId: safeId ?? "",
       initialConnections,
@@ -72,6 +74,9 @@ export default function EditSettlementFormPage() {
         await onSubmit(formData);
       },
     });
+
+    // Update initialConnections so next deletion is correct
+    setInitialConnections(normalizedConnections);
   };
 
   if (error) {

@@ -16,15 +16,6 @@ export default function NpcFormBasics(){
         formState: { errors },
     } = useFormContext();
 
-    const mapValue = watch("map");
-    const isBrowser = typeof window !== "undefined";
-
-    typeof mapValue === "string"
-        ? mapValue // existing URL from DB
-        : isBrowser && mapValue instanceof FileList && mapValue[0]
-        ? URL.createObjectURL(mapValue[0])
-        : null;
-
     const handleGenerateName = async () => {
         const race = watch("race");
         const generatedName = await generateNpcName({race: race});

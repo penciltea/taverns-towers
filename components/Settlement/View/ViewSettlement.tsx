@@ -8,6 +8,7 @@ import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
 import SettlementConnections from "./SettlementConnections";
+import Image from "next/image";
 
 interface Props {
   settlement: Settlement;
@@ -38,18 +39,18 @@ export default function ViewSettlement({ settlement }: Props) {
           <Typography variant="h4" component="h3" sx={{ paddingBottom: 2, marginTop: 1 }}>
             Map
           </Typography>
-          <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>
+           <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>
             {settlement.map ? (
               <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
-                <img
+                <Image
+                  priority
                   src={settlement.map}
-                  alt="Your settlement map"
+                  alt={`Map of ${settlement.name}`}
+                  fill
                   style={{
                     borderRadius: '16px',
-                    boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
-                    width: '100%',
-                    height: '300px',
                     objectFit: 'cover',
+                    boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
                   }}
                 />
               </Box>
@@ -63,7 +64,6 @@ export default function ViewSettlement({ settlement }: Props) {
         <Grid size={{xs: 12}} sx={{ marginTop: 2 }}>
           <SiteList
             settlementId={settlement._id}
-            onDelete={(id: string) => {}}
           />
         </Grid>
 

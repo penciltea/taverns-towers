@@ -28,7 +28,7 @@ export const TempleDetails = ({ site }: { site: TempleSite }) => {
         ) } 
       </Box>
       
-      <ConnectionsList connections={site.connections} pageSiteType="temple" />
+      <ConnectionsList connections={site.connections} variant="h6" pageSiteType="temple" />
 
       <MenuList menu={site.menu || []} label="Services Offered" />
     </>

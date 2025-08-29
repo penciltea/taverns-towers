@@ -11,7 +11,7 @@ export function ConnectionsList({ connections, variant, pageSiteType }: Connecti
   if (isLoading) {
       return (
       <Box sx={{ mt: 4 }}>
-          <Typography variant="h5">Connections</Typography>
+          <Typography variant="h6">Connections</Typography>
           <Typography variant="body2" color="text.secondary">Loading connections...</Typography>
       </Box>
       );
@@ -20,7 +20,7 @@ export function ConnectionsList({ connections, variant, pageSiteType }: Connecti
   if (!resolvedConnections || resolvedConnections.length === 0) {
       return (
       <Box sx={{ mt: 4 }}>
-          <Typography variant="h5">Connections</Typography>
+          <Typography variant="h6">Connections</Typography>
           <Typography variant="body2" color="text.secondary">No connections available.</Typography>
       </Box>
       );

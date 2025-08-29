@@ -1,18 +1,20 @@
 import { Stack, Button } from "@mui/material";
-import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
+import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegisterReturn } from "react-hook-form";
 import { FormTextField } from "@/components/Form";
 
-type FormFieldWithGenerateProps = {
+type FormFieldWithGenerateProps<TFieldValues extends FieldValues> = {
   name: string;
   label: string;
   required?: boolean;
   onGenerate?: (target?: string) => Promise<void> | void;
-  registration: ReturnType<any>; // typically `register('name')`
-  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
+  registration: UseFormRegisterReturn; 
+  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<TFieldValues>>;
   buttonLabel?: string;
 };
 
-export default function FormFieldWithGenerate({
+export default function FormFieldWithGenerate<
+  TFieldValues extends FieldValues
+>({
   name,
   label,
   required = false,
@@ -20,11 +22,10 @@ export default function FormFieldWithGenerate({
   registration,
   fieldError,
   buttonLabel = "Generate",
-}: FormFieldWithGenerateProps) {
+}: FormFieldWithGenerateProps<TFieldValues>) {
   return (
     <Stack direction="row" spacing={1} alignItems="flex-start" sx={{ mt: 1.5 }}>
       <FormTextField
-        name={name}
         label={label}
         registration={registration}
         fieldError={fieldError}
