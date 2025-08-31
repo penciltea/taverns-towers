@@ -12,7 +12,6 @@ export function transformSettlementFormData(data: SettlementFormData) {
     ...data,
     tags: data.tags ?? [],
     terrain: data.terrain ?? [],
-    leader: data.leader ?? [],    // keeps string[] for UI
     crime: data.crime ?? [],
     map:
       typeof data.map === "string" && data.map.startsWith("http")

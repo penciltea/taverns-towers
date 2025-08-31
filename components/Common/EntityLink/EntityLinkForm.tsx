@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Control, FieldValues } from "react-hook-form";
+import { Control, FieldValues, Path } from "react-hook-form";
 import FormSelect, { Option } from "@/components/Form/FormSelect";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { NpcConnectionType } from "@/constants/npc.options";
@@ -68,7 +68,7 @@ export default function EntityLinkForm<TFieldValues extends FieldValues>({
         {/* Selector for adding new items */}
         <Box mb={2}>
             <FormSelect
-                name={`${namePrefix}.selector`}
+                name={`${namePrefix}.selector` as Path<TFieldValues>}
                 label={`Add ${label}`}
                 control={control}
                 options={selectOptions.filter(opt => !selectedIds.includes(opt.value))}
@@ -94,7 +94,7 @@ export default function EntityLinkForm<TFieldValues extends FieldValues>({
                     >
                         <Typography>{displayName}</Typography>
                         <FormSelect
-                            name={`${namePrefix}.${index}.role`}
+                            name={`${namePrefix}.${index}.role` as Path<TFieldValues>}
                             label="Role"
                             required
                             control={control}

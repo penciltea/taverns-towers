@@ -1,5 +1,5 @@
 import { FormSelect, FormTextField } from "@/components/Form";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
@@ -27,7 +27,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -35,14 +35,14 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
             <FormSelect
                 name="venueType"
                 label="Venue Type"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...ENTERTAINMENT_VENUE_TYPES]}
-                fieldError={errors.venueType}
+                fieldError={errors.venueType as FieldError | undefined}
             />
 
             <FormTextField

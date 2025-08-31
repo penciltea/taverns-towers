@@ -9,7 +9,7 @@ export interface Npc extends CommonInterface {
   race?: NpcRace;
   pronouns?: NpcPronounSet;
   status?: NpcStatus;
-  alignment?: NpcAlignment
+  alignment?: NpcAlignment;
   traits?: NpcTrait[];
   image?: string;
   description?: string;

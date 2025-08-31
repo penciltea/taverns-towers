@@ -5,7 +5,7 @@ import clientPromise from "@/lib/db/mongoClient";
 import { loginUser } from "@/lib/actions/user.actions";
 
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(clientPromise!),
 
   providers: [
     CredentialsProvider({

@@ -26,9 +26,11 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
   children,
   title = "Advanced Filters",
 }: FilterDialogProps<T>) {
+  const initialValues = { ...schema.parse({}), ...defaultValues };
+
   const methods = useForm<z.infer<T>>({
     resolver: zodResolver(schema),
-    defaultValues,
+    defaultValues: initialValues,
   });
 
   const titleId = useId(); // for accessibility/screen readers

@@ -56,9 +56,11 @@ export const generateNpcWithName = async (input: NormalizedNpcInput) => {
   // First run all generation rules to get full settlement data
   const coreData = await generateNpcValues(input);
 
+  const raceArray = coreData.race ? [coreData.race] : undefined;
+
   // Generate a thematic name based on environmental context
   const name = await generateNpcName({
-    race: coreData.race
+    race: raceArray
   });
 
   // Return settlement data combined with the generated name

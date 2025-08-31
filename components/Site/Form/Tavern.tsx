@@ -2,7 +2,7 @@ import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { Box } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormEditableCard from "@/components/Form/FormEditableCard";
@@ -30,7 +30,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -38,7 +38,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
             
             <FormTextField

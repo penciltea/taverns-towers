@@ -1,5 +1,5 @@
 import { FormSelect, FormTextField } from "@/components/Form";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { GOVERNMENT_FUNCTIONS, SECURITY_LEVELS } from "@/constants/site/government.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
@@ -28,7 +28,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -36,7 +36,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
 
             <FormSelect
@@ -47,7 +47,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                     { label: "Random", value: "random" },
                     ...GOVERNMENT_FUNCTIONS,
                 ]}
-                fieldError={errors.function}
+                fieldError={errors.function as FieldError | undefined}
             />
 
             <FormSelect
@@ -55,7 +55,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 label="Security Level"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SECURITY_LEVELS]}
-                fieldError={errors.security}
+                fieldError={errors.security as FieldError | undefined}
             />           
 
             <FormTextField

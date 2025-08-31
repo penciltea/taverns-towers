@@ -8,12 +8,13 @@ export interface GeneratorSiteFragmentPlain {
   value: string;
   siteType?: string[];      // e.g. ["tavern"]
   tags?: string[];          // e.g. ["hidden", "trade hub"]
-  terrains?: string[];      // e.g. ["forest"]
-  climates?: string[];
+  terrain?: string[];      // e.g. ["forest"]
+  climate?: string[];
   shopType?: string[];        // for shop type sites
   guildType?: string[];       // for guild type sites
   venueType?: string[];       // for entertainment venue type sites
   functionType?: string[];    // for government type sites
+  domain?: string[];        // for temple type sites
 }
 
 
@@ -23,8 +24,8 @@ const GeneratorSiteFragmentSchema = new mongoose.Schema<GeneratorSiteFragmentPla
   tags: { type: [String], required: false },
   weight: { type: Number, default: 1, required: false },
   siteType: { type: [String], required: false },
-  terrains: { type: [String], required: false },
-  climates: { type: [String], required: false },
+  terrain: { type: [String], required: false },
+  climate: { type: [String], required: false },
   shopType: { type: String, required: false },
   guildType: { type: String, required: false },
   venueType: { type: String, required: false },

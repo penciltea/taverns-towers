@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
 import { RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlementOptions";
 import { FormTextField, FormSelect } from "@/components/Form";
@@ -48,7 +48,7 @@ export default function SettlementFormWealth(){
                 label="Wealth"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
-                fieldError={errors.wealth}
+                fieldError={errors.wealth as FieldError | undefined}
             />
             
             <FormSelect
@@ -56,11 +56,10 @@ export default function SettlementFormWealth(){
                 label="Ruling Style"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
-                fieldError={errors.rulingStyle}
+                fieldError={errors.rulingStyle as FieldError | undefined}
             />
 
             <FormTextField
-                name="tradeNotes"
                 fullWidth
                 label="Trade Notes"
                 multiline

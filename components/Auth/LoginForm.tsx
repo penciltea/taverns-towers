@@ -56,14 +56,12 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       )}
 
       <FormTextField
-        name="credential"
         label="Username or Email"
         registration={register("credential")}
         fieldError={errors.credential}
       />
 
       <FormPasswordField
-        name="password"
         label="Password"
         registration={register("password")}
         fieldError={errors.password}

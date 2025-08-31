@@ -46,13 +46,21 @@ export default function FormImageUpload({ name, label }: FormImageUploadProps) {
       )}
 
       {previewUrl && (
-        <Box mt={2}>
+        <Box 
+          mt={2}
+          maxWidth={400}
+        >
           <Typography variant="subtitle2">Preview:</Typography>
-          <Image
-            src={previewUrl}
-            alt={`${label} preview`}
-            style={{ width: "100%", maxWidth: 400, borderRadius: 8 }}
-          />
+          <Box sx={{ position: "relative", width: "100%", borderRadius: 2, overflow: "hidden" }}>
+            <Image
+              src={previewUrl}
+              alt={`${label} preview`}
+              priority
+              width={800}   // pick a large enough default
+              height={600}  // maintains aspect ratio
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
+            />
+          </Box>
         </Box>
       )}
     </Box>

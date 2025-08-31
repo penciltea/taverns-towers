@@ -30,7 +30,6 @@ export default function SettlementFormCulture(){
             />
 
             <FormTextField
-                name="holidays"
                 label="Holidays & Festivals"
                 multiline
                 rows={6}
@@ -39,7 +38,6 @@ export default function SettlementFormCulture(){
             />
             
             <FormTextField
-                name="folklore"
                 label="Folklore & Superstitions"
                 multiline
                 rows={6}

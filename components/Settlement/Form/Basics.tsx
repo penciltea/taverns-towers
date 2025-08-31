@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { Box, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { MAGIC_LEVELS, SIZE_TYPES } from "@/constants/settlementOptions";
@@ -50,7 +50,7 @@ export default function SettlementFormBasics(){
                     label="Size Category"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(SIZE_TYPES)]}
-                    fieldError={errors.size}
+                    fieldError={errors.size as FieldError | undefined}
                 />
 
                 <FormChipSelect
@@ -80,7 +80,7 @@ export default function SettlementFormBasics(){
                         label="Climate"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
-                        fieldError={errors.climate}
+                        fieldError={errors.climate as FieldError | undefined}
                     />
 
                     <FormSelect
@@ -88,7 +88,7 @@ export default function SettlementFormBasics(){
                         label="Magic Level / Use"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
-                        fieldError={errors.magic}
+                        fieldError={errors.magic as FieldError | undefined}
                     />
 
                     <FormTextField

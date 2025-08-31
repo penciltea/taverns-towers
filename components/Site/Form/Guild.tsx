@@ -2,7 +2,7 @@ import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { Box } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
@@ -23,7 +23,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 required
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...GUILD_TYPES]}
-                fieldError={errors.guildTypes}
+                fieldError={errors.guildTypes as FieldError | undefined}
             />
 
             <FormFieldWithGenerate
@@ -49,7 +49,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -57,7 +57,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
 
             <FormChipSelect

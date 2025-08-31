@@ -51,7 +51,6 @@ export async function resolveConnectionNames(connections: Npc['connections'] = [
           type: conn.type as NpcConnectionType,
           id: conn.id.toString?.() ?? conn.id,
           role: conn.role ?? '',
-          label: conn.label ?? '',
           name
         };
       } catch (error) {
@@ -60,7 +59,6 @@ export async function resolveConnectionNames(connections: Npc['connections'] = [
           type: conn.type as NpcConnectionType,
           id: conn.id.toString?.() ?? conn.id,
           role: conn.role ?? '',
-          label: conn.label ?? '',
           name
         };
       }

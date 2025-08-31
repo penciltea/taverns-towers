@@ -1,11 +1,10 @@
-import { FilterQuery, Types } from "mongoose";
+import { Types } from "mongoose";
 import { SiteGenerationContext } from "@/interfaces/site.interface";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { tavernMenuRules } from "../tavern/menu.rules";
 import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
 import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
-import { MenuItemMappingEntry } from "@/lib/models/generator/site/menu/menu.type";
 import { MenuItemMappingByMagic, MenuItemMappingByMagicModel } from "@/lib/models/generator/site/menu/menuItemMappingByMagic.model";
 import { FALLBACK_CLIMATE_ITEMS, FALLBACK_TERRAIN_ITEMS, FALLBACK_TAG_ITEMS, FALLBACK_MAGIC_ITEMS, FALLBACK_UNIVERSAL_ITEMS } from "./mappings/menu.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
@@ -17,12 +16,35 @@ export type MenuRuleFn = (
   context: SiteGenerationContext
 ) => Promise<GeneratorSiteMenuPlain[]>;
 
+type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
+type FallbackKey = keyof typeof FALLBACK_UNIVERSAL_ITEMS;
+
+function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
+  return items.map((item) => ({
+    _id: item._id,
+    name: item.name ?? "Unnamed Item",
+    description: item.description ?? "",
+    category: item.category ?? "",
+    price: item.price ?? "0",
+    siteType: item.siteType,
+    shopType: "shopType" in item ? item.shopType ?? "" : "",
+    magic: "magic" in item ? item.magic ?? "" : "",
+    quality: "quality" in item ? item.quality ?? "Standard" : "Standard",
+    rarity: item.rarity ?? "Common",
+    climate: item.climate ?? [],
+    terrain: item.terrain ?? [],
+    tags: item.tags ?? [],
+    guildType: "guildType" in item ? (Array.isArray(item.guildType) ? item.guildType.join(", ") : item.guildType) : undefined,
+  }));
+}
+
+
 export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => {
   const { climate, terrain, tags, magic, siteType, shopType, guildType } = context;
 
   if (!siteType || !siteTypeHasMenu(siteType)) return [];
 
-  // Build queries (or null if not applicable)
+  // Build queries
   const climateQuery = climate ? { climate } : null;
   const terrainQuery = terrain?.length ? { terrain: { $in: terrain } } : null;
   const tagQuery = tags?.length ? { tag: { $in: tags } } : null;
@@ -45,24 +67,23 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     return false;
   };
 
-  function extractFromMapping(
-    result: PromiseSettledResult<{ items: MenuItemMappingEntry[] } | { items: MenuItemMappingEntry[] }[] | null>,
+  function extractFromMapping<T extends { items?: { itemId: Types.ObjectId; siteType: string; shopType?: string; guildType?: string | string[] }[] }>(
+    result: PromiseSettledResult<T | T[] | null>,
     fallback: Record<string, GeneratorSiteMenuPlain[]> | undefined,
-    keys: string[] | undefined,
+    keys: string[] | undefined
   ): (GeneratorSiteMenuPlain | Types.ObjectId)[] {
     if (result.status === "fulfilled" && result.value) {
       const mappings = Array.isArray(result.value) ? result.value : [result.value];
-      return mappings.flatMap(m =>
-        (m.items ?? []).filter(matchesContext).map(i => i.itemId)
+      return mappings.flatMap((m) =>
+        (m.items ?? []).filter(matchesContext).map((i) => i.itemId)
       );
     }
     if (fallback && keys?.length) {
-      return keys.flatMap(key => (fallback[key] || []).filter(matchesContext));
+      return keys.flatMap((key) => fallback[key] ?? []);
     }
     return [];
   }
 
-  // Helper to get fallback keys for universal items
   function getUniversalKeys() {
     if (siteType === "shop") return shopType ? [shopType] : [];
     if (siteType === "guild") {
@@ -77,32 +98,15 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
   const tagIds = extractFromMapping(tagRes, FALLBACK_TAG_ITEMS, tags ?? []);
   const magicIds = extractFromMapping(magicRes, FALLBACK_MAGIC_ITEMS, magic ? [magic] : []);
 
-  // Build universal query for DB
-  const universalQuery: FilterQuery<GeneratorSiteMenuPlain> = {
-    siteType,
-    climate: { $size: 0 },
-    terrain: { $size: 0 },
-    tags: { $size: 0 },
-  };
-
-  if (siteType === "shop" && shopType) universalQuery.shopType = shopType;
-  if (siteType === "guild" && guildType) {
-    universalQuery.guildType = Array.isArray(guildType) ? { $in: guildType } : guildType;
-  }
-
-  // Fetch universal items from DB or fallback
-  let universalFallbackItems: GeneratorSiteMenuPlain[] = [];
-
-  try {
-    universalFallbackItems = await GeneratorSiteMenu.find(universalQuery).lean<GeneratorSiteMenuPlain[]>();
-    if (!universalFallbackItems.length) {
-      const keys = getUniversalKeys();
-      universalFallbackItems = keys.flatMap(key => FALLBACK_UNIVERSAL_ITEMS[key] ?? []);
+  // Universal fallback items
+  const universalKeys = getUniversalKeys();
+  const universalFallbackItems: GeneratorSiteMenuPlain[] = universalKeys.flatMap((key) => {
+    if (key in FALLBACK_UNIVERSAL_ITEMS) {
+      const items = FALLBACK_UNIVERSAL_ITEMS[key as FallbackKey];
+      return normalizeFallbackItems(items);
     }
-  } catch {
-    const keys = getUniversalKeys();
-    universalFallbackItems = keys.flatMap(key => FALLBACK_UNIVERSAL_ITEMS[key] ?? []);
-  }
+    return [];
+  });
 
   // Combine all fallback items
   const allFallbackItems = [...climateIds, ...terrainIds, ...tagIds, ...magicIds, ...universalFallbackItems];

@@ -1,7 +1,7 @@
 import { useUIStore } from "@/store/uiStore";
 import { FormSelect, FormTextField } from "@/components/Form";
 import { Box } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
@@ -48,7 +48,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     { label: "Random", value: "random" },
                     ...SHOP_TYPE_CATEGORIES,
                 ]}
-                fieldError={errors.shopType}
+                fieldError={errors.shopType as FieldError | undefined}
                 onChange={(e) => handleTypeChange("shopType", e.target.value as string)}
             />
 
@@ -66,7 +66,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -74,7 +74,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
 
             <FormTextField

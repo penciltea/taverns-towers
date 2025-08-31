@@ -31,9 +31,9 @@ export function normalizeSettlementInput(data: Partial<Settlement>): NormalizedS
     domains: data.domains?.length ? data.domains : ["random"],
     map: data.map,
     races: data.races,
-    leader: data.leader,
     tradeNotes: data.tradeNotes,
     holidays: data.holidays,
     folklore: data.folklore,
+    connections: data.connections?.length ? data.connections : []
   };
 }

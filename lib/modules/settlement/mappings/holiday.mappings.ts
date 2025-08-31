@@ -377,7 +377,14 @@ export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
     "Runebloom (Mid-Spring): Magic users plant enchanted seeds that briefly bloom into glowing symbols, honoring the living nature of magic.",
     "Silence of the Sphere (Every Eclipse): A day of magical fasting and quiet reflection to honor the source of arcane power.",
     "Vaultlight (First Snowfall): Spellbooks are aired in moonlight and rare tomes are read aloud in public squares.",
-    "Leythrum (Summer Solstice): Communities gather at leyline crossings to sing harmonic spells and offer crystals to the deep weave."
+    "Leythrum (Summer Solstice): Communities gather at leyline crossings to sing harmonic spells and offer crystals to the deep weave.",
+    "Mana Surge (Spring equinox): Spells are cast into the sky in brilliant displays. Celebrated to revel in arcane power.",
+    "Arcanum Eve (Winter solstice): Mages gather for silent meditation under the stars. Celebrated for introspection and cosmic awareness.",
+    "Leyline Bloom (Midsummer): Crystals are buried to 'nurture' magical earth currents. Celebrated to heal magical imbalance.",
+    "Rite of Mirrors (Full moon of spring): Illusions and glamours are displayed in artistic competition. Celebrated for illusion and truth.",
+    "Spellkindle (First snowfall): Cantrips are exchanged like gifts. Celebrated to foster camaraderie among practitioners.",
+    "Nullwake (Rare lunar eclipse): No magic is used for a full day. Celebrated to respect boundaries and magical restraint."
+  
   ],
   "Arts": [
     "Paintwake (Spring Equinox): Walls and sidewalks are painted freely with vibrant murals; no design is off-limits.",
@@ -529,14 +536,6 @@ export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
     "Kindlefast (Late autumn): No fires are lit until sundown, then one flame is shared house to house. Celebrated to unify communities.",
     "Radiant Path (Late spring): Walkways are lit with golden lanterns. Celebrated for guidance and hopeful direction.",
     "Brightwake (First thaw): Children release paper birds with reflective wings. Celebrated to welcome joy after darkness."
-  ],
-  "Magic": [
-    "Mana Surge (Spring equinox): Spells are cast into the sky in brilliant displays. Celebrated to revel in arcane power.",
-    "Arcanum Eve (Winter solstice): Mages gather for silent meditation under the stars. Celebrated for introspection and cosmic awareness.",
-    "Leyline Bloom (Midsummer): Crystals are buried to 'nurture' magical earth currents. Celebrated to heal magical imbalance.",
-    "Rite of Mirrors (Full moon of spring): Illusions and glamours are displayed in artistic competition. Celebrated for illusion and truth.",
-    "Spellkindle (First snowfall): Cantrips are exchanged like gifts. Celebrated to foster camaraderie among practitioners.",
-    "Nullwake (Rare lunar eclipse): No magic is used for a full day. Celebrated to respect boundaries and magical restraint."
   ],
   "Moon": [
     "Silverwatch (Full moon of autumn): Night vigils are held under the open sky. Celebrated to honor mystery and reflection.",

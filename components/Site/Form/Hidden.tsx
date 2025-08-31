@@ -1,7 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
 import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 
@@ -28,7 +28,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -36,7 +36,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
             <FormChipSelect
                 name="secrecy"

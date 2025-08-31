@@ -1,7 +1,7 @@
 "use client";
 
 import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader} from "@mui/material";
-import { Control, Controller, FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
+import { Control, Controller, FieldError, FieldValues, Path } from "react-hook-form";
 import { useId } from "react";
 
 export interface Option {
@@ -14,16 +14,22 @@ export interface OptionGroup {
   options: ReadonlyArray<Option>;
 }
 
-export interface FormSelectProps extends Omit<SelectProps, "name"> {
-  name: string;
+export interface FormSelectProps<
+  TFieldValues extends FieldValues,
+  TName extends Path<TFieldValues>
+> extends Omit<SelectProps, "name"> {
+  name: TName;
   label: string;
-  control?: Control<any>;
+  control?: Control<TFieldValues>;
   options: ReadonlyArray<Option | OptionGroup>;
-  fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
+  fieldError?: FieldError;
   required?: boolean;
 }
 
-const FormSelect = ({
+function FormSelect<
+  TFieldValues extends FieldValues,
+  TName extends Path<TFieldValues>
+>({
   name,
   label,
   control,
@@ -31,16 +37,17 @@ const FormSelect = ({
   fieldError,
   required = false,
   ...rest
-}: FormSelectProps) => {
+}: FormSelectProps<TFieldValues, TName>) {
   const id = useId();
   const selectId = `${id}-${name}`;
   const labelId = `${selectId}-label`;
   const errorId = `${selectId}-error`;
   const hasError = !!fieldError;
-  const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
+  const errorMessage =
+    typeof fieldError?.message === "string" ? fieldError.message : "";
 
   function isGroupedOption(option: Option | OptionGroup): option is OptionGroup {
-    return typeof option === "object" && "options" in option;
+    return "options" in option;
   }
 
   return (
@@ -67,7 +74,9 @@ const FormSelect = ({
             {options.map((opt) =>
               isGroupedOption(opt) ? (
                 [
-                  <ListSubheader key={`group-${opt.label}`}>{opt.label}</ListSubheader>,
+                  <ListSubheader key={`group-${opt.label}`}>
+                    {opt.label}
+                  </ListSubheader>,
                   ...opt.options.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -88,6 +97,6 @@ const FormSelect = ({
       )}
     </FormControl>
   );
-};
+}
 
 export default FormSelect;

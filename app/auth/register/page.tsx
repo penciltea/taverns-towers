@@ -73,21 +73,18 @@ export default function RegisterPage(){
                     }
 
                     <FormTextField
-                        name="usernane"
                         label="Username"
                         registration={register("username")}
                         fieldError={errors.username}
                     />
 
                     <FormTextField
-                        name="email"
                         label="Email"
                         registration={register("email")}
                         fieldError={errors.email}
                     />
 
                     <FormPasswordField
-                        name="password"
                         label="Password"
                         registration={register("password")}
                         fieldError={errors.password}

@@ -3,7 +3,7 @@ import { FormSelect } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 
 export default function ResidenceFields({generator}: SiteFormFieldProps){
     const {
@@ -28,7 +28,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 label="Size Category"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
-                fieldError={errors.size}
+                fieldError={errors.size as FieldError | undefined}
             />
 
             <FormSelect
@@ -36,7 +36,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 label="Condition"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
-                fieldError={errors.condition}
+                fieldError={errors.condition as FieldError | undefined}
             />
             
             <FormTextField

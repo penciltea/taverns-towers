@@ -25,7 +25,9 @@ export function useNpcGeneratorActions(
    */
   const generateName = useCallback(async () => {
     const formData = getValues();
-    const name = await generateNpcName(formData);
+    const raceArray = formData.race ? [formData.race] : undefined;
+
+    const name = await generateNpcName({ ...formData, race: raceArray });
     setValue("name", name);
   }, [getValues, setValue]);
 

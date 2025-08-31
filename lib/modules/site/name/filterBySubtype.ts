@@ -11,11 +11,19 @@ export function filterBySubType(
 
   return fragments.filter(fragment => {
     const fragmentSubtypes = fragment[subtypeKey];
-    if (!fragmentSubtypes || fragmentSubtypes.length === 0) return true;
 
-    const normalizedFragmentSubtypes = Array.isArray(fragmentSubtypes)
-      ? fragmentSubtypes.map(s => s.toLowerCase())
-      : [fragmentSubtypes.toLowerCase()];
+    if (!fragmentSubtypes) return true;
+
+    let normalizedFragmentSubtypes: string[];
+
+    if (Array.isArray(fragmentSubtypes)) {
+      normalizedFragmentSubtypes = fragmentSubtypes.map(s => s.toLowerCase());
+    } else if (typeof fragmentSubtypes === "string") {
+      normalizedFragmentSubtypes = [fragmentSubtypes.toLowerCase()];
+    } else {
+      // it's a number → we can't lowercase it, so wrap it as string
+      normalizedFragmentSubtypes = [String(fragmentSubtypes)];
+    }
 
     return normalizedFragmentSubtypes.some(val => normalized.includes(val));
   });

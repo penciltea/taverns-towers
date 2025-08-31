@@ -2,11 +2,6 @@ import { DomainTypes } from "@/constants/settlementOptions"
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
-    "Magic": [
-        "The Rune-Carved Eye: A preserved eye socket etched with a forgotten arcane script, said to grant visions of magical anomalies.",
-        "Wand of the First Spell: A cracked wand rumored to have cast the first arcane cantrip ever recorded.",
-        "Ash of a Dissolved Mage: Contained in a glass vial, these are the remains of a wizard who willingly transmuted into pure energy."
-    ],
     "Arts": [
       "Brush of the First Painter: A worn brush said to have captured the very essence of color in its bristles.",
       "Lyre of the Eternal Song: An ancient instrument that plays melodies heard only in moments of deep emotion.",
@@ -105,7 +100,10 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     "Magic": [
       "Phantom Thread: An ethereal strand said to link all magic users across time.",
       "Orb of Whispered Secrets: A smoky crystal ball that murmurs forgotten spells to those who listen closely.",
-      "Cloak of Flickering Shadows: A tattered cloak that shimmers with arcane energy in moonlight."
+      "Cloak of Flickering Shadows: A tattered cloak that shimmers with arcane energy in moonlight.",
+      "The Rune-Carved Eye: A preserved eye socket etched with a forgotten arcane script, said to grant visions of magical anomalies.",
+      "Wand of the First Spell: A cracked wand rumored to have cast the first arcane cantrip ever recorded.",
+      "Ash of a Dissolved Mage: Contained in a glass vial, these are the remains of a wizard who willingly transmuted into pure energy."
     ],
     "Moon": [
       "Silver Crescent Pendant: A delicate moon-shaped pendant said to wax and wane with the lunar phases.",

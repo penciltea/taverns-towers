@@ -6,6 +6,7 @@ import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
 import { generateNpcName } from "@/lib/actions/npcGenerator.actions";
+import { Npc } from "@/interfaces/npc.interface";
 
 export default function NpcFormBasics(){
     const {
@@ -14,11 +15,13 @@ export default function NpcFormBasics(){
         watch,
         setValue,
         formState: { errors },
-    } = useFormContext();
+    } = useFormContext<Npc>();
 
     const handleGenerateName = async () => {
-        const race = watch("race");
-        const generatedName = await generateNpcName({race: race});
+        const race = watch("race"); // string | undefined
+        const generatedName = await generateNpcName({ 
+            race: race ? [race] : undefined
+        });
         setValue("name", generatedName, { shouldValidate: true });
     };
 
@@ -74,7 +77,7 @@ export default function NpcFormBasics(){
                     label="Traits"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_TRAITS]}
-                    fieldError={errors.tags}
+                    fieldError={errors.traits}
                 />
 
                 <FormSelect

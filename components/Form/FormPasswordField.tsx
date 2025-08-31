@@ -1,22 +1,22 @@
 "use client";
 
 import { useState, useId } from "react";
-import { FieldError, Merge, FieldErrorsImpl, UseFormRegisterReturn } from "react-hook-form";
+import { FieldError, Merge, FieldErrorsImpl, UseFormRegisterReturn, FieldValues } from "react-hook-form";
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, Box, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 
-interface FormPasswordFieldProps {
+interface FormPasswordFieldProps<TFieldValues extends FieldValues> {
     label: string;
     registration: UseFormRegisterReturn;
-    fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+    fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<TFieldValues>> | undefined;
     required?: boolean;
     passwordValue: string;
     isTouched: boolean;
     displayRequirements: boolean;
 }
 
-const FormPasswordField = ({
+const FormPasswordField = <TFieldValues extends FieldValues>({
     label,
     registration,
     fieldError,
@@ -24,7 +24,7 @@ const FormPasswordField = ({
     passwordValue,
     isTouched,
     displayRequirements = false
-}: FormPasswordFieldProps) => {
+}: FormPasswordFieldProps<TFieldValues>) => {
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => setShowPassword((prev) => !prev);
     const id = useId();

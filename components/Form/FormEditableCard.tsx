@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
+import { FieldError, FieldValues, Path, useFieldArray, FieldArrayPath, useFormContext, useWatch, FieldArray } from "react-hook-form";
 import { Box, Card, Typography, TextField, Button, IconButton, Collapse } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { QUALITY_OPTIONS, MENU_FIELDS_BY_SITE_TYPE, MENU_FIELD_LABELS, RARITY_OPTIONS } from "@/constants/site/menu.options"
@@ -10,8 +10,10 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { getCategoryOptions } from "@/lib/util/siteHelpers";
 
-interface FormEditableCardProps {
-  name: string;
+type WithSiteMeta = FieldValues & { shopType?: string; guildType?: string };
+
+interface FormEditableCardProps<TFieldValues extends WithSiteMeta = WithSiteMeta> {
+  name: FieldArrayPath<TFieldValues>;
   siteType: string;
   header?: string;
   buttonLabel?: string;
@@ -19,31 +21,47 @@ interface FormEditableCardProps {
   onGenerateItems?: (index?: number) => void;
 }
 
-function getItemDisplayName(item: Record<string, any>, index: number): string {
-  const priorityFields = ["name", "label", "quality", "rarity"];
+function getItemDisplayName<T extends Record<string, unknown>>(
+  item: T,
+  index: number
+): string {
+  const priorityFields = ["name", "label", "quality", "rarity"] as const;
 
   for (const field of priorityFields) {
-    if (item[field]) {
-      // Optional: return field name as prefix if it's not 'name'
-      return field === "name" ? item[field] : `${capitalizeFirstLetter(field)}: ${item[field]}`;
+    const value = item[field];
+    if (value) {
+      return field === "name"
+        ? String(value)
+        : `${capitalizeFirstLetter(field)}: ${String(value)}`;
     }
   }
 
   return `Item ${index + 1}`;
 }
 
-export default function FormEditableCard({
+export default function FormEditableCard<TFieldValues extends FieldValues>({
   name,
   siteType,
   header,
   onGenerateItems,
   buttonLabel = "Generate",
   menuWarning,
-}: FormEditableCardProps) {
-  const { control, register, formState: { errors } } = useFormContext();
-  const { fields, append, remove } = useFieldArray({ control, name });
+}: FormEditableCardProps<TFieldValues>) {
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<TFieldValues>();
 
-  // track expansion per card
+  const { fields, append, remove } = useFieldArray<
+    TFieldValues,
+    FieldArrayPath<TFieldValues>,
+    "id"
+  >({
+    control,
+    name,
+  });
+
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
   const [liveMessage, setLiveMessage] = useState("");
 
@@ -53,12 +71,30 @@ export default function FormEditableCard({
     label: MENU_FIELD_LABELS[field] || field,
   }));
 
-  const watchedShopType = useWatch({ control, name: "shopType" });
-  const watchedGuildType = useWatch({ control, name: "guildType" });
+  const watchedShopType = useWatch<TFieldValues, Path<TFieldValues>>({
+    control,
+    name: "shopType" as Path<TFieldValues>,
+  });
+  const watchedGuildType = useWatch<TFieldValues, Path<TFieldValues>>({
+    control,
+    name: "guildType" as Path<TFieldValues>,
+  });
 
-  const disableGenerate = (siteType === "shop" && (!watchedShopType || watchedShopType === "random")) || (siteType === "guild" && (!watchedGuildType || watchedGuildType === "random"));
+  const disableGenerate =
+    (siteType === "shop" &&
+      (!watchedShopType || watchedShopType === "random")) ||
+    (siteType === "guild" &&
+      (!watchedGuildType || watchedGuildType === "random"));
 
-  const handleAdd = () => append(Object.fromEntries(fieldList.map((field) => [field, ""])));
+  type ItemType = FieldArray<TFieldValues, FieldArrayPath<TFieldValues>>;
+
+  const handleAdd = () => {
+    const newItem: ItemType = Object.fromEntries(
+      fieldList.map((f) => [f, ""])
+    ) as ItemType;
+
+    append(newItem);
+  };
 
   useEffect(() => {
     setExpandedMap((prev) => {
@@ -72,7 +108,11 @@ export default function FormEditableCard({
     });
   }, [fields]);
 
-  const toggleCard = (id: string, index: number, item: Record<string, any>) => {
+  const toggleCard = (
+    id: string,
+    index: number,
+    item: Record<string, unknown>
+  ) => {
     const next = !(expandedMap[id] ?? true);
 
     setExpandedMap((prev) => ({
@@ -113,7 +153,7 @@ export default function FormEditableCard({
             )}
           </Box>
           {disableGenerate && (
-            <Typography color="error" sx={{ mt: 1, textAlign: 'center' }}>
+            <Typography color="error" sx={{ mt: 1, textAlign: "center" }}>
               {menuWarning}
             </Typography>
           )}
@@ -139,7 +179,10 @@ export default function FormEditableCard({
               }}
               aria-expanded={isExpanded}
               aria-controls={collapseId}
-              aria-label={`${isExpanded ? "Collapse" : "Expand"} details for ${getItemDisplayName(item, index)}`}
+              aria-label={`${isExpanded ? "Collapse" : "Expand"} details for ${getItemDisplayName(
+                item,
+                index
+              )}`}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -158,7 +201,7 @@ export default function FormEditableCard({
                 {getItemDisplayName(item, index)}
               </Typography>
 
-              <Box sx={{display: 'flex'}}>
+              <Box sx={{ display: "flex" }}>
                 {onGenerateItems && (
                   <Box mt={2}>
                     <Button
@@ -166,9 +209,9 @@ export default function FormEditableCard({
                       size="small"
                       disabled={disableGenerate}
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent toggle
-                        onGenerateItems(index)}
-                      }
+                        e.stopPropagation();
+                        onGenerateItems(index);
+                      }}
                     >
                       Conjure Item
                     </Button>
@@ -177,11 +220,11 @@ export default function FormEditableCard({
 
                 <IconButton
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent toggle
+                    e.stopPropagation();
                     remove(index);
                   }}
                   size="medium"
-                  sx={{mt: 1.25, ml: 2}}
+                  sx={{ mt: 1.25, ml: 2 }}
                 >
                   <DeleteIcon />
                 </IconButton>
@@ -191,18 +234,23 @@ export default function FormEditableCard({
             <Collapse in={isExpanded} timeout="auto" unmountOnExit>
               <Box role="region" aria-labelledby={headerId} id={collapseId}>
                 {columns.map((col) => {
-                  const fieldName = `${name}.${index}.${col.field}`;
-                  const fieldError = (errors?.[name] as any)?.[index]?.[col.field];
+                  const fieldName = `${name}.${index}.${col.field}` as Path<TFieldValues>;
+                  const fieldError: FieldError | undefined = (
+                    errors?.[name] as Record<number, Record<string, FieldError>>
+                  )?.[index]?.[col.field];
 
-                  const isSelectField = col.field === "quality" || col.field === "rarity";
+                  const isSelectField =
+                    col.field === "quality" || col.field === "rarity";
                   const isCategoryField = col.field === "category";
 
                   return (
                     <Box key={col.field} mb={1}>
                       {!isSelectField && !isCategoryField && (
-                        <Typography variant="subtitle2">{col.label}</Typography>
+                        <Typography variant="subtitle2">
+                          {col.label}
+                        </Typography>
                       )}
-                      
+
                       {isSelectField ? (
                         <FormSelect
                           name={fieldName}
@@ -221,7 +269,11 @@ export default function FormEditableCard({
                           label={col.label}
                           control={control}
                           options={toSelectOptions(
-                            getCategoryOptions(siteType, watchedShopType, (item as any)?.[col.field])
+                            getCategoryOptions(
+                              siteType,
+                              watchedShopType,
+                              (item as Record<string, unknown>)[col.field] as string | undefined
+                            )
                           )}
                           fieldError={fieldError}
                         />
@@ -243,7 +295,6 @@ export default function FormEditableCard({
                     </Box>
                   );
                 })}
-                
               </Box>
             </Collapse>
           </Card>
@@ -251,19 +302,28 @@ export default function FormEditableCard({
       })}
 
       <Box>
-        <Button variant="outlined" onClick={handleAdd} disabled={disableGenerate}>
+        <Button
+          variant="outlined"
+          onClick={handleAdd}
+          disabled={disableGenerate}
+        >
           Add Item
         </Button>
       </Box>
 
-      {/* Added for accessibility */}
       <Box
         aria-live="polite"
-        sx={{ position: "absolute", left: -9999, top: "auto", width: 1, height: 1, overflow: "hidden" }}
+        sx={{
+          position: "absolute",
+          left: -9999,
+          top: "auto",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+        }}
       >
         {liveMessage}
       </Box>
     </>
-    
   );
 }
