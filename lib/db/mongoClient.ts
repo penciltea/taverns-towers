@@ -1,10 +1,10 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.API_URL!;
+const uri = process.env.MONGODB_URI!;
 const options = {};
 
 if (!uri) {
-  throw new Error("Please define the API_URL environment variable inside .env.local");
+  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
 }
 
 // Singleton pattern: module-scoped variable
