@@ -3,7 +3,7 @@ import PatreonCta from "@/components/Common/PatreonCta";
 import { Box, Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
 
 export const metadata = {
-    title: "RealmFoundry Alpha Release - 2025-08-22",
+    title: "RealmFoundry Alpha Release - Sept. 03, 2025",
     description: "Alpha release of RealmFoundry with settlement, site, and NPC generators. Features are in early development and subject to change.",
 };
 
@@ -11,7 +11,7 @@ export default function AlphaRelease() {
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
             {/* Header */}
-            <Typography variant="h3" component="h1" gutterBottom>RealmFoundry Alpha Release - FullDateTBD</Typography>
+            <Typography variant="h3" component="h1" gutterBottom>RealmFoundry Alpha Release - September 03, 2025</Typography>
             <Typography variant="body1" gutterBottom>
                 Welcome to the limited alpha of RealmFoundry! This release is an early look at the tools we&apos;re building for GMs, writers, and world-builders. Features are still in development, so expect some rough edges. Your feedback is invaluable as we shape the project.
             </Typography>

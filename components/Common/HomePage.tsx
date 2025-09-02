@@ -99,7 +99,7 @@ export default function HomeContent(){
                     </ListItem>
                 </List>
                 <Typography variant="body1" sx={{ mt: 2 }}>
-                    See what&apos;s live in the <NextMuiLink href="/releases/alpha-dateTBD" underline="always">Alpha Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.
+                    See what&apos;s live in the <NextMuiLink href="/releases/alpha-25-09-03" underline="always">Alpha Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.
                 </Typography>
             </Paper>
 

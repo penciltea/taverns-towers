@@ -71,7 +71,7 @@ export const Sidebar = () => {
             children: [
                 {
                     label: "Alpha Release Notes",
-                    path: "/releases/alpha-dateTBD",
+                    path: "/releases/alpha-25-09-03",
                     enabled: true
                 },
                 {
