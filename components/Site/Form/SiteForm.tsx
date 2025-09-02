@@ -13,6 +13,7 @@ import SiteFormConnections from "./Connections";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { useSearchParams } from "next/navigation";
+import { Spinner } from "@/components/Common/Spinner";
 
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
@@ -81,79 +82,82 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
   }
 
   return (
-    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant="h4" gutterBottom>
-          {mode === 'edit' ? `Edit ${selectedItem?.name}` : `Create Site (${typeLabel})`}
-        </Typography>
+    <>
+      {isSubmitting && <Spinner />}
+      <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2, maxWidth: 1400, mx: 'auto' }} >
+        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <Typography variant="h4" gutterBottom>
+            {mode === 'edit' ? `Edit ${selectedItem?.name}` : `Create Site (${typeLabel})`}
+          </Typography>
 
-        <Typography variant="subtitle1" component="p" gutterBottom>
-            Whether you prefer to craft every detail or need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
-        </Typography>
+          <Typography variant="subtitle1" component="p" gutterBottom>
+              Whether you prefer to craft every detail or need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
+          </Typography>
 
-        <Typography variant="subtitle1" component="p" gutterBottom>
-            The generator fills in all site details—like size, condition, and more. Fields set to &quot;random&quot; will be chosen based on your other selections.
-        </Typography>
+          <Typography variant="subtitle1" component="p" gutterBottom>
+              The generator fills in all site details—like size, condition, and more. Fields set to &quot;random&quot; will be chosen based on your other selections.
+          </Typography>
 
-        <Typography variant="subtitle1" component="p" gutterBottom>
-            Use the buttons to either fill missing/random fields or to fully reroll all fields. You can always adjust results afterward!
-        </Typography>
+          <Typography variant="subtitle1" component="p" gutterBottom>
+              Use the buttons to either fill missing/random fields or to fully reroll all fields. You can always adjust results afterward!
+          </Typography>
 
-        <Box sx={{
-          display: 'flex', 
-          justifyContent: 'flex-end', 
-          marginTop: 2,
-          marginBottom: { xs: 5, sm: 2 },
-          gap: 2,
-          flexDirection: { xs: 'column', sm: 'row' }
-        }}>
-          <Button
-            type="button"
-            variant="contained"
-            onClick={generator?.missing}
-            color="secondary"
-            size="large"
-            sx={{ mt: 2, py: 1.65 }}
-          >
-            Generate Missing Fields
-          </Button>
-          <Button
-            type="button"
-            variant="outlined"
-            onClick={generator?.reroll}
-            size="large"
-            sx={{ mt: 2, py: 1.65 }}
-          >
-            Reroll All Fields
-          </Button>
-        </Box>
-
-        <SiteFormTabs tab={tab} setTab={setTab} />
-
-        {formError && (
-          <Box sx={{ mb: 2 }}>
-            <Typography color="error" sx={{ fontWeight: 'bold' }}>
-              Please fix the highlighted errors before submitting:
-            </Typography>
-            <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
-              {formError.split(" • ").map((message, idx) => (
-                <li key={idx}>
-                  <Typography component="span" variant="body2">{message}</Typography>
-                </li>
-              ))}
-            </ul>
+          <Box sx={{
+            display: 'flex', 
+            justifyContent: 'flex-end', 
+            marginTop: 2,
+            marginBottom: { xs: 5, sm: 2 },
+            gap: 2,
+            flexDirection: { xs: 'column', sm: 'row' }
+          }}>
+            <Button
+              type="button"
+              variant="contained"
+              onClick={generator?.missing}
+              color="secondary"
+              size="large"
+              sx={{ mt: 2, py: 1.65 }}
+            >
+              Generate Missing Fields
+            </Button>
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={generator?.reroll}
+              size="large"
+              sx={{ mt: 2, py: 1.65 }}
+            >
+              Reroll All Fields
+            </Button>
           </Box>
-        )}
 
-        <TabPanel value={tab} index={0}>
-          <SiteFormBasics generator={generator} isWilderness={isWilderness} mode={mode} />
-        </TabPanel>
-        <TabPanel value={tab} index={1}>
-          <SiteFormConnections mode={mode} />
-        </TabPanel>
+          <SiteFormTabs tab={tab} setTab={setTab} />
 
-        <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />
-      </Box>
-    </Paper>
+          {formError && (
+            <Box sx={{ mb: 2 }}>
+              <Typography color="error" sx={{ fontWeight: 'bold' }}>
+                Please fix the highlighted errors before submitting:
+              </Typography>
+              <ul style={{ color: '#d32f2f', marginTop: 4, marginBottom: 0, paddingLeft: 24 }}>
+                {formError.split(" • ").map((message, idx) => (
+                  <li key={idx}>
+                    <Typography component="span" variant="body2">{message}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          )}
+
+          <TabPanel value={tab} index={0}>
+            <SiteFormBasics generator={generator} isWilderness={isWilderness} mode={mode} />
+          </TabPanel>
+          <TabPanel value={tab} index={1}>
+            <SiteFormConnections mode={mode} />
+          </TabPanel>
+
+          <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />
+        </Box>
+      </Paper>
+    </>
   );
 }

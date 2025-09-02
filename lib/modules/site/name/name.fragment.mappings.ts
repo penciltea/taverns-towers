@@ -4559,7 +4559,7 @@ export const NAME_FRAGMENT_MAP_BY_TYPE = {
         "temple"
       ],
       "domain": [
-        "Commerce",
+        "Trade",
         "Arts",
         "Beauty",
         "Judgment",
@@ -8736,7 +8736,7 @@ export const NAME_FRAGMENT_MAP_BY_TYPE = {
         "temple"
       ],
       "domain": [
-        "Commerce"
+        "Trade"
       ]
     },
     {
@@ -8747,7 +8747,7 @@ export const NAME_FRAGMENT_MAP_BY_TYPE = {
         "temple"
       ],
       "domain": [
-        "Commerce"
+        "Trade"
       ]
     },
     {
@@ -8758,7 +8758,7 @@ export const NAME_FRAGMENT_MAP_BY_TYPE = {
         "temple"
       ],
       "domain": [
-        "Commerce",
+        "Trade",
         "Luck",
         "Other"
       ]

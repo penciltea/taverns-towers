@@ -17,6 +17,7 @@ export default function HomeContent(){
                         : "linear-gradient(0deg, #00b7c2 -80%, #2B2B3F 100%)", // dark mode gradient
                     color: (theme) => theme.palette.text.primary,
                     py: 10,
+                    px: 0.5,
                     textAlign: "center",
                 }}
             >

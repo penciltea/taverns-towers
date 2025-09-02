@@ -37,7 +37,7 @@
     },
     {
         "terrain": "Tundra",
-        "domains": ["Winter", "Moon", "Protection", "Glory"]
+        "domains": ["Cold", "Moon", "Protection", "Glory"]
     },
     {
         "terrain": "Underground",

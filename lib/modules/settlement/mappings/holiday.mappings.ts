@@ -408,7 +408,7 @@ export const HolidaysByDomainMapping: Partial<Record<DomainTypes, string[]>> = {
     "Stormglide (During Sudden Downpour): Participants race barefoot through rain-slick streets, invoking chaos-born joy.",
     "Coinflip Day (Undated): Every town decision is made by flipping coins or drawing lots for one day each year."
   ],
-  "Commerce": [
+  "Trade": [
     "Coinkindle (Start of Trade Season): New coinage is polished and shared to bless financial prosperity.",
     "Marketday of Weighing (Autumn Equinox): Merchants bring their largest goods for display and ritual weighing.",
     "Silverbell Eve (Winter Solstice): Tiny bells are traded among friends to honor deals made and broken.",
