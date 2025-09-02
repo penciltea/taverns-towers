@@ -133,6 +133,13 @@ export default function AlphaRelease() {
                         <ListItemText
                             sx={{ display: 'list-item' }}
                             disableTypography
+                            primary="Users cannot link Patreon accounts direrctly to RealmFoundry yet."
+                        />
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemText
+                            sx={{ display: 'list-item' }}
+                            disableTypography
                             primary="Data may be reset during alpha testing."
                         />
                     </ListItem>
