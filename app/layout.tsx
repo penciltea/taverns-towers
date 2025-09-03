@@ -7,6 +7,7 @@ import { authOptions } from '@/lib/auth/authOptions';
 import { getServerSession } from 'next-auth';
 import AuthSync from '@/components/Auth/AuthSync';
 import { UITheme } from '@/constants/ui.options';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: "RealmFoundry",
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       
       <body>
         <AppProviderWrapper session={session} initialTheme={initialTheme}>
+          <Analytics />
           <AuthSync />
           <Snackbar />
           <ErrorDialog />
