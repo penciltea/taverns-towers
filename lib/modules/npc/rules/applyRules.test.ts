@@ -2,7 +2,7 @@ import { applyAgeRule, applyPronounsRule, applyRaceRule, applyAlignmentRule, app
 import { normalizeNpcInput } from "./normalize";
 import * as randomValues from "@/lib/util/randomValues";
 
-describe('applyAgeRule', () => {
+describe('applyAgeRules', () => {
     afterEach(() => {
         jest.restoreAllMocks(); // resets spyOn/mocks
     });
