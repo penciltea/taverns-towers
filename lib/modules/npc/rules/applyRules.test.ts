@@ -1,7 +1,6 @@
 import { applyAgeRule, applyPronounsRule, applyRaceRule, applyAlignmentRule, applyStatusRule, applyTraitsRule } from './applyRules';
 import { normalizeNpcInput } from "./normalize";
 import * as randomValues from "@/lib/util/randomValues";
-import * as npcOptions from "@/constants/npc.options";
 
 describe('applyAgeRule', () => {
     afterEach(() => {
