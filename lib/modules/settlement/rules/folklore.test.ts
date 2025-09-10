@@ -7,6 +7,7 @@ import { FolkloreByTag } from "@/lib/models/generator/settlement/folkloreByTags.
 import { FolkloreByTerrain } from "@/lib/models/generator/settlement/folkloreByTerrain.model";
 import { FolkloreByDomain } from "@/lib/models/generator/settlement/folkloreByDomain.model";
 import { FolkloreByClimateMapping, FolkloreByMagicLevelMapping, FolkloreByTagMapping, FolkloreByTerrainMapping, FolkloreByDomainMapping } from "@/lib/modules/settlement/mappings/folklore.mappings";
+import { makeSettlementInput } from "@/lib/util/fixtures/settlementInputBuilder";
 
 jest.mock("@/lib/models/generator/settlement/folkloreByClimate.model");
 jest.mock("@/lib/models/generator/settlement/folkloreByMagic.model");
@@ -15,9 +16,8 @@ jest.mock("@/lib/models/generator/settlement/folkloreByTerrain.model");
 jest.mock("@/lib/models/generator/settlement/folkloreByDomain.model");
 
 describe("applyFolkloreByConditions", () => {
-    const baseInput = {
+    const baseInput = makeSettlementInput({
         name: "TestTown",
-        size: "Town",
         climate: "temperate",
         magic: "high",
         tags: ["magic"],
@@ -26,12 +26,7 @@ describe("applyFolkloreByConditions", () => {
         wealth: "Average",
         crime: ["Pickpocketing"],
         domains: ["arcana"],
-        folklore: "",
-        connections: [],
-        userId: "user1",
-        editors: [],
-        isPublic: true
-    };
+    });
 
     const climateData = { folklore: ["rain dances"] };
     const magicData = { folklore: ["mana rituals", "wizard tales"] };
@@ -43,23 +38,33 @@ describe("applyFolkloreByConditions", () => {
         jest.clearAllMocks();
 
         // Properly handle arrays of DB objects in extractor
-        jest.spyOn(extractUtils, "extractArrayFromResult").mockImplementation(
-        (result, extractor, fallback) => {
+        jest
+        .spyOn(extractUtils, "extractArrayFromResult")
+        .mockImplementation((result, extractor, fallback) => {
             if (result.status === "fulfilled" && result.value) {
             return Array.isArray(result.value)
                 ? result.value.flatMap((v) => extractor(v) ?? [])
                 : extractor(result.value) ?? [];
             }
             return fallback;
-        }
-        );
+        });
 
         // Default DB mocks
-        (FolkloreByClimate.findOne as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(climateData) });
-        (FolkloreByMagic.findOne as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(magicData) });
-        (FolkloreByTag.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(tagData) });
-        (FolkloreByTerrain.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(terrainData) });
-        (FolkloreByDomain.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(domainData) });
+        (FolkloreByClimate.findOne as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(climateData),
+        });
+        (FolkloreByMagic.findOne as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(magicData),
+        });
+        (FolkloreByTag.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(tagData),
+        });
+        (FolkloreByTerrain.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(terrainData),
+        });
+        (FolkloreByDomain.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(domainData),
+        });
 
         // Default getRandomSubset returns all items (deterministic)
         jest.spyOn(randomValues, "getRandomSubset").mockImplementation((arr) => arr);
@@ -82,7 +87,10 @@ describe("applyFolkloreByConditions", () => {
     });
 
     it("returns unchanged input if folklore already exists", async () => {
-        const input = { ...baseInput, folklore: "existing folklore" };
+        const input = makeSettlementInput({
+            ...baseInput,
+            folklore: "existing folklore",
+        });
         const result = await applyFolkloreByConditions(input);
 
         expect(result.folklore).toBe("existing folklore");
@@ -90,11 +98,21 @@ describe("applyFolkloreByConditions", () => {
 
     it("uses fallback mappings if DB returns nothing", async () => {
         // Override DB to return nothing
-        (FolkloreByClimate.findOne as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(null) });
-        (FolkloreByMagic.findOne as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue(null) });
-        (FolkloreByTag.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue([]) });
-        (FolkloreByTerrain.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue([]) });
-        (FolkloreByDomain.find as jest.Mock).mockReturnValue({ lean: jest.fn().mockResolvedValue([]) });
+        (FolkloreByClimate.findOne as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(null),
+        });
+        (FolkloreByMagic.findOne as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue(null),
+        });
+        (FolkloreByTag.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue([]),
+        });
+        (FolkloreByTerrain.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue([]),
+        });
+        (FolkloreByDomain.find as jest.Mock).mockReturnValue({
+            lean: jest.fn().mockResolvedValue([]),
+        });
 
         const result = await applyFolkloreByConditions(baseInput);
         const lines = result.folklore?.split("\n") ?? [];
@@ -108,5 +126,60 @@ describe("applyFolkloreByConditions", () => {
         ];
 
         expect(lines).toEqual(expect.arrayContaining(expectedFallback));
+    });
+
+    it("treats empty string folklore as needing generation", async () => {
+        const input = { ...baseInput, folklore: "" };
+        const result = await applyFolkloreByConditions(input);
+
+        expect(result.folklore).toBeDefined();
+        expect(result.folklore).not.toBe("");
+    });
+
+    it("does not query climate if none provided", async () => {
+        const input = { ...baseInput, climate: "" };
+        await applyFolkloreByConditions(input);
+
+        expect(FolkloreByClimate.findOne).not.toHaveBeenCalled();
+    });
+
+    it("does not query magic if none provided", async () => {
+        const input = { ...baseInput, magic: "" };
+        await applyFolkloreByConditions(input);
+
+        expect(FolkloreByMagic.findOne).not.toHaveBeenCalled();
+    });
+
+    it("handles no tags gracefully", async () => {
+        const input = { ...baseInput, tags: [] };
+        const result = await applyFolkloreByConditions(input);
+
+        expect(result.folklore).toBeDefined();
+        expect(result.folklore).not.toBe("");
+    });
+
+    it("handles no terrain gracefully", async () => {
+        const input = { ...baseInput, terrain: [] };
+        const result = await applyFolkloreByConditions(input);
+
+        expect(result.folklore).toBeDefined();
+        expect(result.folklore).not.toBe("");
+    });
+
+    it("handles no domains gracefully", async () => {
+        const input = { ...baseInput, domains: [] };
+        const result = await applyFolkloreByConditions(input);
+
+        expect(result.folklore).toBeDefined();
+        expect(result.folklore).not.toBe("");
+    });
+
+    it("does not assign folklore if getRandomSubset returns empty", async () => {
+        (randomValues.getRandomSubset as jest.Mock).mockReturnValue([]);
+
+        const input = { ...baseInput, folklore: "" };
+        const result = await applyFolkloreByConditions(input);
+
+        expect(result.folklore).toBe("");
     });
 });

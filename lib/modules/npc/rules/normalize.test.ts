@@ -1,6 +1,7 @@
 import { normalizeNpcInput } from "./normalize";
 import { normalizeCommonInput } from "@/lib/util/normalizeData";
 import { Npc } from "@/interfaces/npc.interface";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
 jest.mock("@/lib/util/normalizeData");
 
@@ -87,17 +88,15 @@ describe("normalizeNpcInput", () => {
   it("normalizes invalid or incomplete connections to valid NpcConnection[]", () => {
     mockNormalizeCommonInput.mockReturnValue({ name: "NPC With Bad Connections" });
 
-    const input: Partial<Npc> = {
-        connections: [
-        // missing 'role'
-        { type: "settlement", id: "settlement-1" } as any,
-        // missing 'type'
-        { id: "npc-2", role: "friend" } as any,
-        // completely invalid
-        null as any,
-        ],
-    };
-
+    // Explicitly mark invalid shapes as Partial<NpcConnection> | null
+    const input = {
+      connections: [
+        { type: "settlement", id: "settlement-1" }, // missing 'role'
+        { id: "npc-2", role: "friend" },           // missing 'type'
+        null,                                      // completely invalid
+      ],
+    } as unknown as Partial<Npc>;
+    
     const result = normalizeNpcInput(input);
 
     // Should still default to empty array because the input was invalid

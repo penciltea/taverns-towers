@@ -6,7 +6,7 @@ import { generateSettlementNameFromFragments } from "@/lib/util/generator/settle
 import { normalizeSettlementInput, NormalizedSettlementInput } from "../modules/settlement/rules/normalize";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { generateEnvironment } from "./environmentGenerator.actions";
-import { generateSettlementValues } from "../modules/settlement/rules/settlement.rules";
+import { generateSettlementValues } from "../modules/settlement/rules/settlement.dispatcher";
 
 
 export async function generateSettlementName({

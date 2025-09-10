@@ -3,7 +3,7 @@
 // - A site created outside of a settlement/in "wilderness" and with those fields generated procedurally
 
 import type { Settlement } from "@/interfaces/settlement.interface";
-import { generateWildernessContext } from "@/lib/modules/settlement/rules/settlement.rules";
+import { generateWildernessContext } from "@/lib/modules/settlement/rules/settlement.dispatcher";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useState, useEffect, useMemo } from "react";
 import { useSettlementLoader } from "@/hooks/settlement/useSettlementLoader";
