@@ -27,7 +27,7 @@ jest.mock("@/lib/models/generator/site/menu/menuItemMappingByMagic.model", () =>
 }));
 
 jest.mock("@/lib/util/randomValues", () => ({
-    getRandomSubset: jest.fn((arr, _opts) => arr.slice(0, 2)), // deterministic
+    getRandomSubset: jest.fn((arr) => arr.slice(0, 2)), // deterministic
 }));
 
 // helper to simulate mongoose query chains
@@ -42,7 +42,7 @@ describe("Menu Generation Rules", () => {
 
     describe("fetchMenuItemsByCondition", () => {
         it("returns empty array if siteType is missing or invalid", async () => {
-            const context = { siteType: undefined } as any;
+            const context = { siteType: undefined };
             const result = await fetchMenuItemsByCondition([], context);
 
             expect(result).toEqual([]);

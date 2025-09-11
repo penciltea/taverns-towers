@@ -37,7 +37,7 @@ export default function Roadmap(){
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>New Field - "Tone":</strong>}
+                        primary={<strong>New Field - &#34;Tone&#34;:</strong>}
                         secondary={<span> A new field for both settlements and sites, to help guide roleplay flavor and generator choices.</span>}
                     />
                 </ListItem>
