@@ -64,7 +64,7 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
       if (!guildType) return true;
       return Array.isArray(item.guildType) ? item.guildType.includes(guildType) : item.guildType === guildType;
     }
-    return false;
+    return true;
   };
 
   function extractFromMapping<T extends { items?: { itemId: Types.ObjectId; siteType: string; shopType?: string; guildType?: string | string[] }[] }>(
@@ -74,9 +74,11 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
   ): (GeneratorSiteMenuPlain | Types.ObjectId)[] {
     if (result.status === "fulfilled" && result.value) {
       const mappings = Array.isArray(result.value) ? result.value : [result.value];
-      return mappings.flatMap((m) =>
-        (m.items ?? []).filter(matchesContext).map((i) => i.itemId)
-      );
+
+      return mappings.flatMap((m) => {
+        const filtered = (m.items ?? []).filter(matchesContext);
+        return filtered.map((i) => i.itemId);
+      });
     }
     if (fallback && keys?.length) {
       return keys.flatMap((key) => fallback[key] ?? []);

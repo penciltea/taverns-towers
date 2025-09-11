@@ -2444,6 +2444,144 @@ export const FALLBACK_TAG_ITEMS = {
         "Capital",
         "Trade Hub"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
     }
   ],
   "Arcane Nexus": [
@@ -7734,6 +7872,85 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Arcane Nexus"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce5",
+      "name": "Thaumaturgic Tea",
+      "description": "An herbal infusion that tingles with latent magic. Often consumed before spellcasting.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "1gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Arcane Nexus"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfb",
+      "name": "Temporal Crumble",
+      "description": "A layered dessert where each bite tastes like a memory from the past or future.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [],
+      "tags": [
+        "Arcane Nexus"
+      ]
     }
   ],
   "Garrison": [
@@ -8393,6 +8610,71 @@ export const FALLBACK_TAG_ITEMS = {
         "Garrison",
         "Military Outpost"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc7",
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Spirits & Brews",
+      "price": "8sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
     }
   ],
   "Criminal Hideout": [
@@ -8960,6 +9242,22 @@ export const FALLBACK_TAG_ITEMS = {
         "Underground",
         "Urban"
       ],
+      "tags": [
+        "Criminal Hideout"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce8",
+      "name": "Smuggler’s Brew",
+      "description": "A smoky, high-proof drink served in inconspicuous mugs. Strong enough to forget your name.",
+      "category": "Spirits & Brews",
+      "price": "9cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
       "tags": [
         "Criminal Hideout"
       ]
@@ -10776,6 +11074,88 @@ export const FALLBACK_TAG_ITEMS = {
         "Infested",
         "Druidic"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce9",
+      "name": "Forestroot Stew",
+      "description": "A vegetarian stew made from wild roots, mushrooms, and sacred herbs.",
+      "category": "Food",
+      "price": "6cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf8",
+      "name": "Ethereal Cheese Platter",
+      "description": "Cheeses aged in the Feywild, some of which can only be tasted when you close your eyes.",
+      "category": "Food",
+      "price": "9gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
     }
   ],
   "Nomadic": [
@@ -11747,6 +12127,26 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Nomadic",
         "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cca",
+      "name": "Spiced Jungle Fruit Stew",
+      "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
+      "category": "Specialty Dishes",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Nomadic"
       ]
     }
   ],
@@ -15076,6 +15476,103 @@ export const FALLBACK_TAG_ITEMS = {
         "Isolated",
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ceb",
+      "name": "Blessed Grain Loaf",
+      "description": "A soft white bread baked with sanctified grains. Traditionally served with honey and wine.",
+      "category": "Food",
+      "price": "1sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf9",
+      "name": "Sunforge Nectar",
+      "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfa",
+      "name": "Lunar-Spun Mead",
+      "description": "Mead brewed beneath a full moon using silverleaf honey. Whispers of ancient songs accompany each sip.",
+      "category": "Spirits & Brews",
+      "price": "6gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cff",
+      "name": "Divine Ember Tea",
+      "description": "A searing-hot tea brewed from radiant embers of a celestial tree. Glows softly when sipped.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "10gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [],
+      "tags": [
+        "Sacred Site",
+        "Capital"
+      ]
     }
   ],
   "Remote": [
@@ -15918,6 +16415,46 @@ export const FALLBACK_TAG_ITEMS = {
         "Tundra"
       ],
       "tags": [
+        "Remote"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc5",
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfd",
+      "name": "Spiritblossom Elixir",
+      "description": "An effervescent drink brewed from a flower that only grows near portals to the Ethereal Plane.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "9gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Hidden",
         "Remote"
       ]
     }
@@ -17246,6 +17783,86 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Capital",
         "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce7",
+      "name": "Regal Quail Skewers",
+      "description": "Succulent skewers of seasoned quail, marinated in imported citrus and saffron.",
+      "category": "Specialty Dishes",
+      "price": "2gp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cff",
+      "name": "Divine Ember Tea",
+      "description": "A searing-hot tea brewed from radiant embers of a celestial tree. Glows softly when sipped.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "10gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [],
+      "tags": [
+        "Sacred Site",
+        "Capital"
       ]
     }
   ],
@@ -19237,6 +19854,89 @@ export const FALLBACK_TAG_ITEMS = {
         "Druidic",
         "Hidden"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc5",
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf8",
+      "name": "Ethereal Cheese Platter",
+      "description": "Cheeses aged in the Feywild, some of which can only be tasted when you close your eyes.",
+      "category": "Food",
+      "price": "9gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfd",
+      "name": "Spiritblossom Elixir",
+      "description": "An effervescent drink brewed from a flower that only grows near portals to the Ethereal Plane.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "9gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Hidden",
+        "Remote"
+      ]
     }
   ],
   "Fishing": [
@@ -19828,6 +20528,164 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Fishing",
         "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d00",
+      "name": "Salt-Crusted Sea Bass",
+      "description": "Fresh-caught sea bass, baked in a crust of sea salt and herbs. A coastal delicacy.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d04",
+      "name": "Brined Eel Skewers",
+      "description": "Smoked eel pieces skewered and brined in spiced seawater. Chewy and satisfying.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing"
       ]
     }
   ],
@@ -20499,6 +21357,175 @@ export const FALLBACK_TAG_ITEMS = {
       ],
       "tags": [
         "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccd",
+      "name": "Spiced Citrus Mead",
+      "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d00",
+      "name": "Salt-Crusted Sea Bass",
+      "description": "Fresh-caught sea bass, baked in a crust of sea salt and herbs. A coastal delicacy.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d02",
+      "name": "Gullscream Grog",
+      "description": "A sharp rum-based drink with a salty tang, named for the squawking gulls overhead.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d05",
+      "name": "Captain’s Rum Cake",
+      "description": "A dense dessert soaked in dark rum and topped with candied citrus. A sailor’s favorite.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
         "Port"
       ]
     }
@@ -21245,6 +22272,46 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Ancient Ruins"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce4",
+      "name": "Dust of Ages Porridge",
+      "description": "A hearty grain porridge flavored with rare herbs found only in the ruins. Said to promote dreams of lost empires.",
+      "category": "Food",
+      "price": "7cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
     }
   ],
   "Magic Hub": [
@@ -21976,6 +23043,44 @@ export const FALLBACK_TAG_ITEMS = {
         "Infested",
         "Druidic"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cea",
+      "name": "Spider Sausage",
+      "description": "Controversial but oddly flavorful sausage made from giant spider meat. Locals swear by it.",
+      "category": "Food",
+      "price": "5cp",
+      "quality": "Poor",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Infested"
+      ]
     }
   ],
   "Fortress": [
@@ -22583,6 +23688,27 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Fortress"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc7",
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Spirits & Brews",
+      "price": "8sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
     }
   ],
   "Isolated": [
@@ -22960,6 +24086,29 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Isolated",
         "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
       ]
     }
   ],
@@ -23619,6 +24768,27 @@ export const FALLBACK_TAG_ITEMS = {
       ],
       "tags": [
         "Garrison",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf9",
+      "name": "Sunforge Nectar",
+      "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
         "Military Outpost"
       ]
     }
@@ -24321,6 +25491,22 @@ export const FALLBACK_TAG_ITEMS = {
       "tags": [
         "Border Post"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce6",
+      "name": "Garrison Goulash",
+      "description": "A spicy meat-and-potato stew favored by soldiers stationed at the frontier.",
+      "category": "Food",
+      "price": "8cp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Border Post"
+      ]
     }
   ],
   "Mining Camp": [
@@ -24605,6 +25791,79 @@ export const FALLBACK_TAG_ITEMS = {
       ],
       "tags": [
         "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    }
+  ],
+  "Modest": [
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    }
+  ],
+  "Prison Settlement": [
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
       ]
     }
   ]
@@ -25794,6 +27053,87 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Druidic",
         "Overgrown"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc5",
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cca",
+      "name": "Spiced Jungle Fruit Stew",
+      "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
+      "category": "Specialty Dishes",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfe",
+      "name": "Prismatic Puff Pastry",
+      "description": "A delicate pastry filled with chromatic cream that changes flavor with each color swirl.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": []
     }
   ],
   "Desert": [
@@ -27780,6 +29120,88 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Nomadic",
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf2",
+      "name": "Phoenix Feather Tart",
+      "description": "A fiery pastry that slowly regenerates after each bite until fully consumed. Said to inspire courage.",
+      "category": "Specialty Dishes",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Legendary",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfc",
+      "name": "Basilisk Jerky",
+      "description": "Cured strips of magically treated basilisk meat that cause momentary stiffness of the joints.",
+      "category": "Food",
+      "price": "4gp",
+      "quality": "Standard",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
     }
   ],
   "Hills": [
@@ -31919,6 +33341,46 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Isolated"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfa",
+      "name": "Lunar-Spun Mead",
+      "description": "Mead brewed beneath a full moon using silverleaf honey. Whispers of ancient songs accompany each sip.",
+      "category": "Spirits & Brews",
+      "price": "6gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
     }
   ],
   "Mountains": [
@@ -35678,6 +37140,155 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Sacred Site",
         "Isolated"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc7",
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Spirits & Brews",
+      "price": "8sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd1",
+      "name": "Spiced Goat Milk Cheese",
+      "description": "Fresh goat cheese with a hint of exotic spices, common in mountain inns.",
+      "category": "Food",
+      "price": "7sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf9",
+      "name": "Sunforge Nectar",
+      "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Military Outpost"
       ]
     }
   ],
@@ -48457,6 +50068,139 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Druidic",
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd0",
+      "name": "Rustic Vegetable Pie",
+      "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf8",
+      "name": "Ethereal Cheese Platter",
+      "description": "Cheeses aged in the Feywild, some of which can only be tasted when you close your eyes.",
+      "category": "Food",
+      "price": "9gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
     }
   ],
   "Tundra": [
@@ -50092,6 +51836,47 @@ export const FALLBACK_TERRAIN_ITEMS = {
       ],
       "tags": [
         "Remote"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cef",
+      "name": "Frostpetal Salad",
+      "description": "A crisp, magically-chilled salad made from petals that never wilt and melt in the mouth.",
+      "category": "Specialty Dishes",
+      "price": "3gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Moderate",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
       ]
     }
   ],
@@ -52025,6 +53810,178 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Fishing",
         "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccd",
+      "name": "Spiced Citrus Mead",
+      "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d00",
+      "name": "Salt-Crusted Sea Bass",
+      "description": "Fresh-caught sea bass, baked in a crust of sea salt and herbs. A coastal delicacy.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d02",
+      "name": "Gullscream Grog",
+      "description": "A sharp rum-based drink with a salty tang, named for the squawking gulls overhead.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d04",
+      "name": "Brined Eel Skewers",
+      "description": "Smoked eel pieces skewered and brined in spiced seawater. Chewy and satisfying.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing"
       ]
     }
   ],
@@ -56938,6 +58895,118 @@ export const FALLBACK_TERRAIN_ITEMS = {
       "tags": [
         "Nomadic"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd0",
+      "name": "Rustic Vegetable Pie",
+      "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": []
     }
   ],
   "Swamp": [
@@ -58519,6 +60588,47 @@ export const FALLBACK_TERRAIN_ITEMS = {
         "Infested",
         "Druidic"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfd",
+      "name": "Spiritblossom Elixir",
+      "description": "An effervescent drink brewed from a flower that only grows near portals to the Ethereal Plane.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "9gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Hidden",
+        "Remote"
+      ]
     }
   ],
   "River": [
@@ -59669,6 +61779,122 @@ export const FALLBACK_TERRAIN_ITEMS = {
       ],
       "tags": [
         "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d04",
+      "name": "Brined Eel Skewers",
+      "description": "Smoked eel pieces skewered and brined in spiced seawater. Chewy and satisfying.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing"
       ]
     }
   ],
@@ -63030,6 +65256,176 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Infested",
         "Druidic"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc5",
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cca",
+      "name": "Spiced Jungle Fruit Stew",
+      "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
+      "category": "Specialty Dishes",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccd",
+      "name": "Spiced Citrus Mead",
+      "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfe",
+      "name": "Prismatic Puff Pastry",
+      "description": "A delicate pastry filled with chromatic cream that changes flavor with each color swirl.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
     }
   ],
   "Dry": [
@@ -66173,6 +68569,154 @@ export const FALLBACK_CLIMATE_ITEMS = {
         "Isolated",
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf2",
+      "name": "Phoenix Feather Tart",
+      "description": "A fiery pastry that slowly regenerates after each bite until fully consumed. Said to inspire courage.",
+      "category": "Specialty Dishes",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Legendary",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf9",
+      "name": "Sunforge Nectar",
+      "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfc",
+      "name": "Basilisk Jerky",
+      "description": "Cured strips of magically treated basilisk meat that cause momentary stiffness of the joints.",
+      "category": "Food",
+      "price": "4gp",
+      "quality": "Standard",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
     }
   ],
   "Temperate": [
@@ -82934,6 +85478,380 @@ export const FALLBACK_CLIMATE_ITEMS = {
       "tags": [
         "Criminal Hideout"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccd",
+      "name": "Spiced Citrus Mead",
+      "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd0",
+      "name": "Rustic Vegetable Pie",
+      "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd1",
+      "name": "Spiced Goat Milk Cheese",
+      "description": "Fresh goat cheese with a hint of exotic spices, common in mountain inns.",
+      "category": "Food",
+      "price": "7sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf8",
+      "name": "Ethereal Cheese Platter",
+      "description": "Cheeses aged in the Feywild, some of which can only be tasted when you close your eyes.",
+      "category": "Food",
+      "price": "9gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d00",
+      "name": "Salt-Crusted Sea Bass",
+      "description": "Fresh-caught sea bass, baked in a crust of sea salt and herbs. A coastal delicacy.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d04",
+      "name": "Brined Eel Skewers",
+      "description": "Smoked eel pieces skewered and brined in spiced seawater. Chewy and satisfying.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing"
+      ]
     }
   ],
   "Polar": [
@@ -84683,6 +87601,91 @@ export const FALLBACK_CLIMATE_ITEMS = {
       ],
       "tags": [
         "Remote"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cef",
+      "name": "Frostpetal Salad",
+      "description": "A crisp, magically-chilled salad made from petals that never wilt and melt in the mouth.",
+      "category": "Specialty Dishes",
+      "price": "3gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Moderate",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cff",
+      "name": "Divine Ember Tea",
+      "description": "A searing-hot tea brewed from radiant embers of a celestial tree. Glows softly when sipped.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "10gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [],
+      "tags": [
+        "Sacred Site",
+        "Capital"
       ]
     }
   ],
@@ -88380,6 +91383,247 @@ export const FALLBACK_CLIMATE_ITEMS = {
       ],
       "tags": [
         "Isolated"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc7",
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Spirits & Brews",
+      "price": "8sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd0",
+      "name": "Rustic Vegetable Pie",
+      "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfb",
+      "name": "Temporal Crumble",
+      "description": "A layered dessert where each bite tastes like a memory from the past or future.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [],
+      "tags": [
+        "Arcane Nexus"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
       ]
     }
   ],
@@ -101179,6 +104423,699 @@ export const FALLBACK_MAGIC_ITEMS = {
       "tags": [
         "Sacred Site"
       ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc3",
+      "name": "Salt-Crusted River Trout",
+      "description": "Freshly caught trout baked in river stones and crusted with coarse salt. A regional favorite.",
+      "category": "Food",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc4",
+      "name": "Goat Stew with Root Vegetables",
+      "description": "A hearty mountain stew made from local goat meat, parsnips, and wild herbs.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains",
+        "Plains"
+      ],
+      "tags": [
+        "Isolated",
+        "Mining Camp"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc5",
+      "name": "Spiced Jungle Rum",
+      "description": "Fermented sugarcane drink infused with tropical spices and jungle berries.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Remote",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc6",
+      "name": "Fried Swamp Frog Legs",
+      "description": "Lightly battered and crisped frog legs served with a tangy marsh dip.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Dry"
+      ],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Infested",
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc7",
+      "name": "Dwarven Stout",
+      "description": "A rich, dark ale brewed by mountain dwarves using stone-filtered spring water.",
+      "category": "Spirits & Brews",
+      "price": "8sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Fortress",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc8",
+      "name": "Smoked Salted Fish",
+      "description": "Freshly caught fish from nearby waters, smoked and salted to preserve flavor.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental",
+        "Polar"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cc9",
+      "name": "Honey-Glazed Roast Venison",
+      "description": "Tender venison roasted with local honey and herbs, a delicacy in forested regions.",
+      "category": "Specialty Dishes",
+      "price": "1gp 5sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Mountains"
+      ],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cca",
+      "name": "Spiced Jungle Fruit Stew",
+      "description": "A hearty stew made from exotic tropical fruits and spices, popular in jungle settlements.",
+      "category": "Specialty Dishes",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": [
+        "Nomadic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccb",
+      "name": "Mountain Goat Cheese Platter",
+      "description": "Locally made goat cheeses served with wild herbs and crusty bread.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Trade Hub",
+        "Garrison"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccc",
+      "name": "Barley Ale",
+      "description": "Locally brewed ale with a rich, malty flavor and slight bitterness.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "River"
+      ],
+      "tags": [
+        "Capital",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccd",
+      "name": "Spiced Citrus Mead",
+      "description": "Sweet mead infused with spices and fresh citrus, popular in coastal areas.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cce",
+      "name": "Herbal Tea Blend",
+      "description": "A soothing blend of local herbs, ideal for relaxing after a long day.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Dry"
+      ],
+      "terrain": [
+        "Plains",
+        "Desert"
+      ],
+      "tags": [
+        "Druidic",
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ccf",
+      "name": "Honey Ale",
+      "description": "A mildly sweet ale brewed with wild honey, favored in rural taverns.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Forest",
+        "Plains"
+      ],
+      "tags": [
+        "Modest",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd0",
+      "name": "Rustic Vegetable Pie",
+      "description": "A flaky pie filled with root vegetables and herbs, hearty and satisfying.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Plains",
+        "Forest"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd1",
+      "name": "Spiced Goat Milk Cheese",
+      "description": "Fresh goat cheese with a hint of exotic spices, common in mountain inns.",
+      "category": "Food",
+      "price": "7sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd2",
+      "name": "Traveler's Stew",
+      "description": "A simple but filling stew made from whatever is available—meat, tubers, or grains. Served in nearly every tavern across the lands.",
+      "category": "Food",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd3",
+      "name": "Stale Hardtack",
+      "description": "A tough, dry biscuit often soaked in ale to make it edible.",
+      "category": "Food",
+      "price": "2cp",
+      "quality": "Poor",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd4",
+      "name": "Turnip Stew",
+      "description": "A thin broth with a few chunks of turnip and wild greens.",
+      "category": "Food",
+      "price": "3cp",
+      "quality": "Poor",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd5",
+      "name": "Watered Ale",
+      "description": "A weak, watery ale barely strong enough to lift spirits.",
+      "category": "Spirits & Brews",
+      "price": "2cp",
+      "quality": "Poor",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd6",
+      "name": "Onion Flatbread",
+      "description": "A coarse flatbread topped with fried onions. Simple, filling fare.",
+      "category": "Food",
+      "price": "5cp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd7",
+      "name": "Stewed Beans",
+      "description": "A bowl of seasoned beans slow-cooked with herbs and scraps of meat.",
+      "category": "Food",
+      "price": "6cp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd8",
+      "name": "Braised Cabbage and Sausage",
+      "description": "A hearty plate of braised cabbage and coarse-ground sausage.",
+      "category": "Specialty Dishes",
+      "price": "8cp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cd9",
+      "name": "House Bread and Butter",
+      "description": "A fresh loaf of the tavern's own bread, served warm with a generous slab of butter.",
+      "category": "Food",
+      "price": "2sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cda",
+      "name": "Copper Mug Ale",
+      "description": "A standard ale served in most taverns. No frills, but reliable.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cdb",
+      "name": "Roasted Nuts",
+      "description": "A bowl of salted, roasted nuts. A common snack to accompany drinks.",
+      "category": "Food",
+      "price": "1sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cdc",
+      "name": "Mulled Wine",
+      "description": "Warm red wine steeped with spices and citrus peel. A tavern staple for cold nights.",
+      "category": "Spirits & Brews",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cdd",
+      "name": "Truffled Game Pie",
+      "description": "A rich meat pie filled with pheasant, wild boar, and black truffle shavings.",
+      "category": "Specialty Dishes",
+      "price": "2gp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cde",
+      "name": "Velvet Red Reserve",
+      "description": "An aged red wine with a smooth finish, imported from distant vineyards.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce4",
+      "name": "Dust of Ages Porridge",
+      "description": "A hearty grain porridge flavored with rare herbs found only in the ruins. Said to promote dreams of lost empires.",
+      "category": "Food",
+      "price": "7cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce6",
+      "name": "Garrison Goulash",
+      "description": "A spicy meat-and-potato stew favored by soldiers stationed at the frontier.",
+      "category": "Food",
+      "price": "8cp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Border Post"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce7",
+      "name": "Regal Quail Skewers",
+      "description": "Succulent skewers of seasoned quail, marinated in imported citrus and saffron.",
+      "category": "Specialty Dishes",
+      "price": "2gp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Capital"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce8",
+      "name": "Smuggler’s Brew",
+      "description": "A smoky, high-proof drink served in inconspicuous mugs. Strong enough to forget your name.",
+      "category": "Spirits & Brews",
+      "price": "9cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Criminal Hideout"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cea",
+      "name": "Spider Sausage",
+      "description": "Controversial but oddly flavorful sausage made from giant spider meat. Locals swear by it.",
+      "category": "Food",
+      "price": "5cp",
+      "quality": "Poor",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Infested"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d00",
+      "name": "Salt-Crusted Sea Bass",
+      "description": "Fresh-caught sea bass, baked in a crust of sea salt and herbs. A coastal delicacy.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d01",
+      "name": "Dockhand's Delight",
+      "description": "A hearty stew of whitefish, potatoes, and seaweed, favored by longshoremen and sailors.",
+      "category": "Food",
+      "price": "5sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Continental"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d02",
+      "name": "Gullscream Grog",
+      "description": "A sharp rum-based drink with a salty tang, named for the squawking gulls overhead.",
+      "category": "Spirits & Brews",
+      "price": "3sp",
+      "quality": "Standard",
+      "rarity": "Common",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d03",
+      "name": "Pearl Diver's Lager",
+      "description": "Light and crisp, this lager is brewed to quench thirst after long dives beneath the waves.",
+      "category": "Spirits & Brews",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical",
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast"
+      ],
+      "tags": [
+        "Fishing",
+        "Port"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387d04",
+      "name": "Brined Eel Skewers",
+      "description": "Smoked eel pieces skewered and brined in spiced seawater. Chewy and satisfying.",
+      "category": "Food",
+      "price": "6sp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "None",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Coast",
+        "River"
+      ],
+      "tags": [
+        "Fishing"
+      ]
     }
   ],
   "Low": [
@@ -108110,6 +112047,126 @@ export const FALLBACK_MAGIC_ITEMS = {
       "tags": [
         "Isolated",
         "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cdf",
+      "name": "Glowberry Glazed Ham",
+      "description": "Succulent ham glazed with rare glowberries, giving it a faint luminous sheen.",
+      "category": "Specialty Dishes",
+      "price": "3gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce0",
+      "name": "Wyrmfire Brandy",
+      "description": "A strong brandy with a warming magical aftertaste that lingers pleasantly.",
+      "category": "Spirits & Brews",
+      "price": "2gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce5",
+      "name": "Thaumaturgic Tea",
+      "description": "An herbal infusion that tingles with latent magic. Often consumed before spellcasting.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "1gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Arcane Nexus"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce9",
+      "name": "Forestroot Stew",
+      "description": "A vegetarian stew made from wild roots, mushrooms, and sacred herbs.",
+      "category": "Food",
+      "price": "6cp",
+      "quality": "Standard",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Druidic"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387ceb",
+      "name": "Blessed Grain Loaf",
+      "description": "A soft white bread baked with sanctified grains. Traditionally served with honey and wine.",
+      "category": "Food",
+      "price": "1sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cec",
+      "name": "Emberglow Soup",
+      "description": "A spicy tomato and pepper soup that warms the body and glows faintly in the dark.",
+      "category": "Food",
+      "price": "8sp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ced",
+      "name": "Luminous Lager",
+      "description": "A fizzy beer that glows faintly blue and never goes flat, even when left out.",
+      "category": "Spirits & Brews",
+      "price": "1gp",
+      "quality": "Fine",
+      "rarity": "Uncommon",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387d05",
+      "name": "Captain’s Rum Cake",
+      "description": "A dense dessert soaked in dark rum and topped with candied citrus. A sailor’s favorite.",
+      "category": "Specialty Dishes",
+      "price": "4sp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Low",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": [
+        "Port"
       ]
     }
   ],
@@ -116062,6 +120119,52 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce2",
+      "name": "Elixir of Twilight",
+      "description": "A sparkling cocktail that shifts color with the drinker's mood. Popular among nobles and mages.",
+      "category": "Spirits & Brews",
+      "price": "4gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Moderate",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cee",
+      "name": "Echoing Mead",
+      "description": "A golden mead that causes the drinker's laughter to echo a few seconds after it stops.",
+      "category": "Spirits & Brews",
+      "price": "2gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Moderate",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cef",
+      "name": "Frostpetal Salad",
+      "description": "A crisp, magically-chilled salad made from petals that never wilt and melt in the mouth.",
+      "category": "Specialty Dishes",
+      "price": "3gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "Moderate",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [
+        "Tundra"
+      ],
+      "tags": []
     }
   ],
   "High": [
@@ -120403,6 +124506,202 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce1",
+      "name": "Chrono-Spiced Duck",
+      "description": "Roasted duck marinated in time-dilated spices, intensifying its flavor exponentially.",
+      "category": "Specialty Dishes",
+      "price": "5gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387ce3",
+      "name": "Astral Crème Tartlet",
+      "description": "A decadent dessert that flickers like a starry sky and is said to improve clarity of thought.",
+      "category": "Specialty Dishes",
+      "price": "3gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf0",
+      "name": "Starfire Risotto",
+      "description": "Rice simmered in starlight-infused broth, shimmering with flecks of cosmic dust.",
+      "category": "Specialty Dishes",
+      "price": "5gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf1",
+      "name": "Veilwine Elixir",
+      "description": "A translucent purple wine that grants momentary night vision after a single sip.",
+      "category": "Spirits & Brews",
+      "price": "4gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf4",
+      "name": "Starlit Nectar",
+      "description": "A luminous drink brewed from moonflowers and distilled stardust. Said to reveal distant memories.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "6gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Coast",
+        "Jungle"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf5",
+      "name": "Planar Sashimi",
+      "description": "Slices of fish caught in overlapping planes of reality, shifting in flavor as it's eaten.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate",
+        "Tropical"
+      ],
+      "terrain": [
+        "River",
+        "Forest"
+      ],
+      "tags": [
+        "Fishing",
+        "Port",
+        "Ancient Ruins"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf6",
+      "name": "Heartfire Broth",
+      "description": "This glowing red broth restores warmth to the soul and grants courage. Consumed before great quests.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [
+        "Mountains",
+        "Hills"
+      ],
+      "tags": [
+        "Garrison",
+        "Trade Hub"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfa",
+      "name": "Lunar-Spun Mead",
+      "description": "Mead brewed beneath a full moon using silverleaf honey. Whispers of ancient songs accompany each sip.",
+      "category": "Spirits & Brews",
+      "price": "6gp",
+      "quality": "Fine",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Hills"
+      ],
+      "tags": [
+        "Sacred Site"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfb",
+      "name": "Temporal Crumble",
+      "description": "A layered dessert where each bite tastes like a memory from the past or future.",
+      "category": "Food",
+      "price": "7gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Continental"
+      ],
+      "terrain": [],
+      "tags": [
+        "Arcane Nexus"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfc",
+      "name": "Basilisk Jerky",
+      "description": "Cured strips of magically treated basilisk meat that cause momentary stiffness of the joints.",
+      "category": "Food",
+      "price": "4gp",
+      "quality": "Standard",
+      "rarity": "Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfe",
+      "name": "Prismatic Puff Pastry",
+      "description": "A delicate pastry filled with chromatic cream that changes flavor with each color swirl.",
+      "category": "Specialty Dishes",
+      "price": "8gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "High",
+      "siteType": "tavern",
+      "climate": [
+        "Tropical"
+      ],
+      "terrain": [
+        "Jungle"
+      ],
+      "tags": []
     }
   ],
   "Mythic": [
@@ -121350,6 +125649,141 @@ export const FALLBACK_MAGIC_ITEMS = {
       "climate": [],
       "terrain": [],
       "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf2",
+      "name": "Phoenix Feather Tart",
+      "description": "A fiery pastry that slowly regenerates after each bite until fully consumed. Said to inspire courage.",
+      "category": "Specialty Dishes",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Legendary",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Desert"
+      ],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf3",
+      "name": "Eternity Cider",
+      "description": "A radiant gold cider that halts the aging process for one hour per sip. Extremely rare.",
+      "category": "Spirits & Brews",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Legendary",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [],
+      "tags": []
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf7",
+      "name": "Essence of Eclipse",
+      "description": "A jet-black spirit that dims surrounding light when uncorked. Said to heighten arcane focus.",
+      "category": "Spirits & Brews",
+      "price": "10gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry",
+        "Polar"
+      ],
+      "terrain": [
+        "Desert",
+        "Tundra"
+      ],
+      "tags": [
+        "Arcane Nexus",
+        "Prison Settlement"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf8",
+      "name": "Ethereal Cheese Platter",
+      "description": "Cheeses aged in the Feywild, some of which can only be tasted when you close your eyes.",
+      "category": "Food",
+      "price": "9gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Temperate"
+      ],
+      "terrain": [
+        "Forest"
+      ],
+      "tags": [
+        "Druidic",
+        "Hidden"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cf9",
+      "name": "Sunforge Nectar",
+      "description": "Harvested from fireblossoms that bloom only during eclipses in volcanic regions. Sets your breath aglow.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "12gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Dry"
+      ],
+      "terrain": [
+        "Mountains"
+      ],
+      "tags": [
+        "Sacred Site",
+        "Military Outpost"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cfd",
+      "name": "Spiritblossom Elixir",
+      "description": "An effervescent drink brewed from a flower that only grows near portals to the Ethereal Plane.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "9gp",
+      "quality": "Exquisite",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [],
+      "terrain": [
+        "Swamp"
+      ],
+      "tags": [
+        "Hidden",
+        "Remote"
+      ]
+    },
+    {
+      "_id": "68856bf5ce122085e3387cff",
+      "name": "Divine Ember Tea",
+      "description": "A searing-hot tea brewed from radiant embers of a celestial tree. Glows softly when sipped.",
+      "category": "Non-Alcoholic Drinks",
+      "price": "10gp",
+      "quality": "Fine",
+      "rarity": "Very Rare",
+      "magic": "Mythic",
+      "siteType": "tavern",
+      "climate": [
+        "Polar"
+      ],
+      "terrain": [],
+      "tags": [
+        "Sacred Site",
+        "Capital"
+      ]
     }
   ]
 };
