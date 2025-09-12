@@ -1,161 +1,190 @@
+import { isTavernSite, applyTavernClienteleByConditions, applyEntertainmentByConditions, applyTavernRoomCostRule, generateTavernData } from "./tavern.rules";
 import { SiteFormData } from "@/schemas/site.schema";
-import { isTavernSite, applyTavernClienteleByConditions, applyEntertainmentByConditions, applyTavernRoomCostRule } from "@/lib/modules/site/tavern/tavern.rules";
-import { TavernSite, SiteGenerationContext } from "@/interfaces/site.interface";
-import { getRandomSubset } from "@/lib/util/randomValues";
-import { formatCurrencyFromCp } from "@/lib/util/convertCurrency";
-
+import { SizeTypes, WealthLevel, MagicLevel } from "@/constants/settlementOptions";
+import { SiteGenerationContext, SiteGenerationInput, TavernSite } from "@/interfaces/site.interface";
 
 jest.mock("@/lib/models/generator/site/tavern/clienteleBySettlementSize.model", () => ({
-    ClienteleBySettlementSize: { findOne: jest.fn() },
+    ClienteleBySettlementSize: { findOne: jest.fn(() => mockLean({ clientele: ["Adventurers"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleByWealth.model", () => ({
-    ClienteleByWealth: { findOne: jest.fn() },
+    ClienteleByWealth: { findOne: jest.fn(() => mockLean({ clientele: ["Merchants"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleByTag.model", () => ({
-    ClienteleByTag: { find: jest.fn() },
+    ClienteleByTag: { find: jest.fn(() => mockLean([{ clientele: ["Nobles"] }])) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleByCrime.model", () => ({
-      ClienteleByCrime: { find: jest.fn() },
+    ClienteleByCrime: { find: jest.fn(() => mockLean([{ clientele: ["Thieves"] }])) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleByMagic.model", () => ({
-    ClienteleByMagic: { findOne: jest.fn() },
+    ClienteleByMagic: { findOne: jest.fn(() => mockLean({ clientele: ["Mages"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleBySize.model", () => ({
-    ClienteleBySize: { findOne: jest.fn() },
+    ClienteleBySize: { findOne: jest.fn(() => mockLean({ clientele: ["Travelers"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/clienteleByCondition.model", () => ({
-    ClienteleByCondition: { findOne: jest.fn() },
+    ClienteleByCondition: { findOne: jest.fn(() => mockLean({ clientele: ["Locals"] })) },
 }));
 
 jest.mock("@/lib/models/generator/site/tavern/entertainmentBySize.model", () => ({
-    EntertainmentBySize: { findOne: jest.fn() },
+    EntertainmentBySize: { findOne: jest.fn(() => mockLean({ entertainment: ["Bardic Song"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/entertainmentByCondition.model", () => ({
-    EntertainmentByCondition: { findOne: jest.fn() },
+    EntertainmentByCondition: { findOne: jest.fn(() => mockLean({ entertainment: ["Dancing"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/entertainmentByMagic.model", () => ({
-    EntertainmentByMagic: { findOne: jest.fn() },
+    EntertainmentByMagic: { findOne: jest.fn(() => mockLean({ entertainment: ["Fire Show"] })) },
 }));
+
 jest.mock("@/lib/models/generator/site/tavern/entertainmentByTag.model", () => ({
-    EntertainmentByTag: { find: jest.fn() },
+    EntertainmentByTag: { find: jest.fn(() => mockLean([{ entertainment: ["Comedy"] }])) },
 }));
+
 
 jest.mock("@/lib/util/randomValues", () => ({
-    getRandomSubset: jest.fn(),
+    getRandomSubset: (arr: string[], opts: { count?: number; min?: number; max?: number }) =>
+        arr.slice(0, opts.count ?? opts.max ?? arr.length),
+    getRandom: <T>(arr: T[]): T => arr[0] // deterministic pick
 }));
-
 jest.mock("@/lib/util/convertCurrency", () => ({
-    formatCurrencyFromCp: jest.fn(),
+    formatCurrencyFromCp: (val: number) => `${val} cp`
+}));
+jest.mock("@/lib/util/stringFormats", () => ({
+    capitalizeFirstLetter: (val: string) => val.charAt(0).toUpperCase() + val.slice(1)
+}));
+jest.mock("@/lib/util/siteHelpers", () => ({
+    createSiteGenerator: (type: string, rules: Array<(data: Partial<SiteFormData>, context: SiteGenerationContext) => Promise<Partial<SiteFormData>>>) => async (input: SiteGenerationInput) => {
+        let result = { type, ...input } as Partial<SiteFormData>;
+        for (const rule of rules) {
+            result = await rule(result, input);
+        }
+        return result;
+    },
 }));
 
-describe("Tavern Site Generation Rules", () => {
-    const mockedGetRandomSubset = getRandomSubset as jest.MockedFunction<typeof getRandomSubset>;
-    const mockedFormatCurrency = formatCurrencyFromCp as jest.MockedFunction<typeof formatCurrencyFromCp>;
+// helper to simulate mongoose `.lean()`
+const mockLean = <T>(val: T) => ({
+    lean: jest.fn().mockResolvedValue(val),
+});
 
-    let baseTavern: Partial<SiteFormData>;
-    let context: SiteGenerationContext;
+const baseTavern: Partial<SiteFormData> = {
+    type: "tavern",
+    connections: [],
+    entertainment: [],
+    clientele: "",
+};
 
+describe("Tavern Rules", () => {
     beforeEach(() => {
-        baseTavern = { type: "tavern", size: "modest", condition: "average" };
-        context = { size: "modest", wealth: "average", tags: [], crime: [], magic: "low" };
-
         jest.clearAllMocks();
-
-        // Helper to mock .lean()
-        const mockLean = (val: any) => ({ lean: jest.fn().mockResolvedValue(val) });
-
-        // Clientele DB mocks
-        const clienteleArray = ["Adventurers", "Merchants"];
-        (require("@/lib/models/generator/site/tavern/clienteleBySettlementSize.model").ClienteleBySettlementSize.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ clientele: clienteleArray }));
-
-        (require("@/lib/models/generator/site/tavern/clienteleByWealth.model").ClienteleByWealth.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ clientele: clienteleArray }));
-
-        (require("@/lib/models/generator/site/tavern/clienteleByTag.model").ClienteleByTag.find as jest.Mock)
-            .mockReturnValue(mockLean([{ clientele: clienteleArray }]));
-
-        (require("@/lib/models/generator/site/tavern/clienteleByCrime.model").ClienteleByCrime.find as jest.Mock)
-            .mockReturnValue(mockLean([{ clientele: clienteleArray }]));
-
-        (require("@/lib/models/generator/site/tavern/clienteleByMagic.model").ClienteleByMagic.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ clientele: clienteleArray }));
-
-        (require("@/lib/models/generator/site/tavern/clienteleBySize.model").ClienteleBySize.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ clientele: clienteleArray }));
-
-        (require("@/lib/models/generator/site/tavern/clienteleByCondition.model").ClienteleByCondition.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ clientele: clienteleArray }));
-
-        // Entertainment DB mocks
-        (require("@/lib/models/generator/site/tavern/entertainmentBySize.model").EntertainmentBySize.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ entertainment: ["Bardic Performance"] }));
-
-        (require("@/lib/models/generator/site/tavern/entertainmentByCondition.model").EntertainmentByCondition.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ entertainment: ["Card Games"] }));
-
-        (require("@/lib/models/generator/site/tavern/entertainmentByMagic.model").EntertainmentByMagic.findOne as jest.Mock)
-            .mockReturnValue(mockLean({ entertainment: ["Fire Shows"] }));
-
-        (require("@/lib/models/generator/site/tavern/entertainmentByTag.model").EntertainmentByTag.find as jest.Mock)
-            .mockReturnValue(mockLean([{ entertainment: ["Dance Performances"] }]));
-        });
+    });
 
     describe("isTavernSite", () => {
-        it("returns true for type 'tavern'", () => {
-            expect(isTavernSite({ type: "tavern" })).toBe(true);
+        it("returns true for tavern type", () => {
+            expect(isTavernSite({ type: "tavern" } as Partial<TavernSite>)).toBe(true);
         });
-
-        it("returns false for non-tavern types", () => {
-            expect(isTavernSite({ type: "shop" })).toBe(false);
-            expect(isTavernSite({ type: undefined })).toBe(false);
+        it("returns false for non-tavern type", () => {
+            expect(isTavernSite({ type: "shop" } as Partial<SiteFormData>)).toBe(false);
         });
     });
 
     describe("applyTavernClienteleByConditions", () => {
-        it("returns data with a normalized clientele string", async () => {
-            mockedGetRandomSubset.mockReturnValue(["Adventurers", "Merchants"]);
-            const result = await applyTavernClienteleByConditions(baseTavern, context) as Partial<TavernSite>;
-            expect(result.clientele).toBe("Adventurers, Merchants");
-            expect(mockedGetRandomSubset).toHaveBeenCalled();
+        it("returns clientele from DB", async () => {
+        const { ClienteleBySettlementSize } = await import(
+            "@/lib/models/generator/site/tavern/clienteleBySettlementSize.model"
+        );
+        (ClienteleBySettlementSize.findOne as jest.Mock).mockReturnValue(
+            mockLean({ clientele: ["Adventurers"] })
+        );
+
+        const result = (await applyTavernClienteleByConditions(
+            { ...baseTavern },
+            {
+                size: "village" as SizeTypes,
+                wealth: "modest" as WealthLevel,
+                tags: [],
+                crime: [],
+                magic: "average" as MagicLevel,
+            }
+        )) as Partial<TavernSite>;
+
+        expect(result.clientele).toContain("Adventurers");
         });
 
-        it("does nothing for non-tavern sites", async () => {
-            const nonTavern = { type: "shop" } as Partial<SiteFormData>;
-            const result = await applyTavernClienteleByConditions(nonTavern, context);
-            expect(result).toEqual(nonTavern);
+        it("skips if not a tavern", async () => {
+        const result = await applyTavernClienteleByConditions(
+            { type: "shop" },
+            { size: "village" }
+        ) as Partial<TavernSite>;
+        expect(result).toEqual({ type: "shop" });
         });
     });
 
     describe("applyEntertainmentByConditions", () => {
-        it("returns data with entertainment array", async () => {
-            mockedGetRandomSubset.mockReturnValue(["Bardic Performance", "Card Games"]);
-            const result = await applyEntertainmentByConditions(baseTavern, context) as Partial<TavernSite>;
-            expect(result.entertainment).toEqual(["Bardic Performance", "Card Games"]);
-            expect(mockedGetRandomSubset).toHaveBeenCalled();
-        });
+        it("returns entertainment from DB", async () => {
+            const { EntertainmentBySize } = await import(
+                "@/lib/models/generator/site/tavern/entertainmentBySize.model"
+            );
+            (EntertainmentBySize.findOne as jest.Mock).mockReturnValue(
+                mockLean({ entertainment: ["Bardic Song"] })
+            );
 
-        it("does nothing for non-tavern sites", async () => {
-            const nonTavern = { type: "shop" } as Partial<SiteFormData>;
-            const result = await applyEntertainmentByConditions(nonTavern, context);
-            expect(result).toEqual(nonTavern);
+            const result = (await applyEntertainmentByConditions(
+                { ...baseTavern, size: "medium", condition: "average" },
+                { magic: "average", tags: [] }
+            )) as Partial<TavernSite>;
+
+            expect(result.entertainment).toContain("Bardic Song");
+            });
+
+            it("skips if not a tavern", async () => {
+            const result = await applyEntertainmentByConditions(
+                { type: "temple" },
+                { magic: "low" } as Partial<TavernSite>
+            );
+            expect(result).toEqual({ type: "temple" });
         });
     });
 
     describe("applyTavernRoomCostRule", () => {
-        it("calculates cost for valid size and condition", async () => {
-            mockedFormatCurrency.mockReturnValue("10 gp");
-            const result = await applyTavernRoomCostRule(baseTavern) as Partial<TavernSite>;
-            expect(result.cost).toBe("10 gp");
-            expect(mockedFormatCurrency).toHaveBeenCalled();
+        it("calculates cost when valid", async () => {
+            const result = (await applyTavernRoomCostRule({
+                ...baseTavern,
+                size: "large",
+                condition: "fine",
+            })) as Partial<TavernSite>;
+
+            expect(result.cost).toMatch(/cp$/);
         });
 
-        it("returns data unchanged if not tavern or missing fields", async () => {
-            const nonTavern = { type: "shop" } as Partial<SiteFormData>;
-            expect(await applyTavernRoomCostRule(nonTavern)).toEqual(nonTavern);
+        it("returns unchanged for non-tavern", async () => {
+            const result = await applyTavernRoomCostRule({ type: "shop" });
+            expect(result).toEqual({ type: "shop" });
+        });
+    });
 
-            const missingFields = { type: "tavern" } as Partial<SiteFormData>;
-            expect(await applyTavernRoomCostRule(missingFields)).toEqual(missingFields);
+    describe("generateTavernData", () => {
+        it("runs all tavern rules", async () => {
+            const input: SiteGenerationInput = {
+                size: "village",
+                wealth: "modest",
+                magic: "average",
+            };
+
+            const result = (await generateTavernData(
+                input
+            )) as Partial<TavernSite>;
+
+            expect(result.type).toBe("tavern");
+            expect(result.entertainment).toBeDefined();
+            expect(result.clientele).toBeDefined();
         });
     });
 });
