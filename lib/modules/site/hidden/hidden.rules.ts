@@ -54,7 +54,7 @@ export async function applyKnownTo(data: Partial<SiteFormData>): Promise<Partial
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.knownTo)) {
-    let min = 1;
+    const min = 1;
     let max = 3;
 
     // More secret sites are known to fewer groups
@@ -80,7 +80,7 @@ export async function applyDefenses(data: Partial<SiteFormData>): Promise<Partia
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.defenses)) {
-    let min = 1;
+    const min = 1;
     let max = 3;
 
     // More secret or larger sites get more defenses
@@ -105,8 +105,8 @@ export async function applyPurpose(data: Partial<SiteFormData>): Promise<Partial
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.purpose)) {
-    let min = 1;
-    let max = 2;
+    const min = 1;
+    const max = 2;
 
     // Highly secret sites more likely to have high-stakes or occult purposes
     const highSecrecy = data.secrecy?.some((s) => ["magically_hidden", "mythical"].includes(s));
