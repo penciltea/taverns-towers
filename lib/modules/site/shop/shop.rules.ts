@@ -1,7 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
-import { commonRules } from "../common/rules";
-import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { ShopSite, SiteGenerationInput } from "@/interfaces/site.interface";
+import { createSiteGenerator } from "@/lib/util/siteHelpers";
+import { commonRules } from "../common/rules";
 import { SHOP_TYPE_CATEGORIES, SiteShopType } from "@/constants/site/site.options";
 import { getRandom } from "@/lib/util/randomValues";
 
@@ -13,12 +13,11 @@ export async function applyShopTypeRule(data: Partial<SiteFormData>): Promise<Pa
   if (!isShopSite(data)) return data;
 
   if (!data.shopType || data.shopType === "random") {
-    // Flatten all options' values into one array
-    const allShopTypes = SHOP_TYPE_CATEGORIES.flatMap(category =>
-      category.options.map(option => option.value)
+    const allShopTypes: SiteShopType[] = SHOP_TYPE_CATEGORIES.flatMap(category =>
+      category.options.map(option => option.value) as SiteShopType[]
     );
 
-    data.shopType = getRandom(allShopTypes) as SiteShopType;
+    data.shopType = getRandom(allShopTypes);
   }
 
   return data;
@@ -30,6 +29,5 @@ const shopRules = [
 ];
 
 export async function generateShopData(input: SiteGenerationInput): Promise<SiteFormData> {
-  // Call the createSiteGenerator with the input object
   return await createSiteGenerator("shop", shopRules)(input);
 }

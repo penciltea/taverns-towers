@@ -1,7 +1,6 @@
 import { Types } from "mongoose";
 import { SiteGenerationContext } from "@/interfaces/site.interface";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
-import { tavernMenuRules } from "../tavern/menu.rules";
 import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
 import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
@@ -267,7 +266,7 @@ export function withCommonRules(rules: MenuRuleFn[]): MenuRuleFn[] {
 }
 
 export const menuRulesBySiteType: Record<string, MenuRuleFn[]> = {
-  tavern: withCommonRules(tavernMenuRules),
+  tavern: withCommonRules([]),
   shop: withCommonRules([]),
   temple: withCommonRules([]),
   guild: withCommonRules([]),

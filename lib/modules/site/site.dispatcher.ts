@@ -60,9 +60,10 @@ export const SiteGenerator: Record<
  * @param input - Context and overrides used by the generator
  * @returns Generated site data including name
  */
+
 export async function generateSiteValues(
   type: string,
-  input: SiteGenerationInput
+  input: SiteGenerationInput & { overrides?: Partial<SiteFormData> }
 ): Promise<SiteFormData> {
   const generator = SiteGenerator[type];
   if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
@@ -70,32 +71,30 @@ export async function generateSiteValues(
   // Generate base site data from the rules for the given type
   const baseData = await generator(input);
 
-  // Narrow shopType and guildType if applicable
-  let shopType: string | undefined = undefined;
-  let guildType: string | undefined = undefined;
-  let venueType: string | undefined = undefined;
-  let functionType: string | undefined = undefined;
+  // Merge overrides into the base data
+  const mergedData = {
+    ...baseData,
+    ...input.overrides,
+  } as SiteFormData;
+
+  // Narrow shopType, guildType, venueType, functionType as needed
+  let shopType: string | undefined;
+  let guildType: string | undefined;
+  let venueType: string | undefined;
+  let functionType: string | undefined;
 
   if (type === "shop") {
-    const shopData = baseData as ShopSiteData;
-    shopType = Array.isArray(shopData.shopType)
-      ? shopData.shopType[0] // extract first string
-      : shopData.shopType;
+    const shopData = mergedData as ShopSiteData;
+    shopType = Array.isArray(shopData.shopType) ? shopData.shopType[0] : shopData.shopType;
   } else if (type === "guild") {
-    const guildData = baseData as GuildSiteData;
-    guildType = Array.isArray(guildData.guildType)
-      ? guildData.guildType[0] // extract first string
-      : guildData.guildType;
-  } else if(type === "entertainment") {
-    const entertainmentData = baseData as EntertainmentSiteData;
-    venueType = Array.isArray(entertainmentData.venueType)
-      ? entertainmentData.venueType[0] // extract first string
-      : entertainmentData.venueType
-  } else if(type === "government") {
-    const governmentData = baseData as GovernmentSiteData;
-    functionType = Array.isArray(governmentData.function)
-      ? governmentData.function[0] // extract first string
-      : governmentData.function
+    const guildData = mergedData as GuildSiteData;
+    guildType = Array.isArray(guildData.guildType) ? guildData.guildType[0] : guildData.guildType;
+  } else if (type === "entertainment") {
+    const entertainmentData = mergedData as EntertainmentSiteData;
+    venueType = Array.isArray(entertainmentData.venueType) ? entertainmentData.venueType[0] : entertainmentData.venueType;
+  } else if (type === "government") {
+    const governmentData = mergedData as GovernmentSiteData;
+    functionType = Array.isArray(governmentData.function) ? governmentData.function[0] : governmentData.function;
   }
 
   // Generate a site name if one wasn't provided
@@ -108,14 +107,16 @@ export async function generateSiteValues(
     terrain: input.terrain,
     climate: input.climate,
     tags: input.tags,
-    data: baseData,
+    data: mergedData,
   });
 
   return {
-    ...baseData,
-    name: baseData.name && baseData.name !== "" ? baseData.name : name,
+    ...mergedData,
+    name: mergedData.name && mergedData.name !== "" ? mergedData.name : name,
   };
 }
+
+
 
 /**
  * Convenience function to generate site data from settlement context.

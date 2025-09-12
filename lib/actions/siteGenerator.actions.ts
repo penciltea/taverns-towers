@@ -4,7 +4,7 @@ import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { generatorMenuItem, GroupKey, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.rules";
+import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.dispatcher";
 import { getSettlementById } from "./settlement.actions";
 import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
