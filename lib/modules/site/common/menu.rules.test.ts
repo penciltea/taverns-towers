@@ -25,7 +25,7 @@ jest.mock("@/lib/models/generator/site/menu/menuItemMappingByMagic.model", () =>
 }));
 
 jest.mock("@/lib/util/randomValues", () => ({
-    getRandomSubset: jest.fn((arr: any[]) => arr.slice(0, 2)), // deterministic
+    getRandomSubset: jest.fn((arr: string[]) => arr.slice(0, 2)), // deterministic
 }));
 
 // Helper to simulate mongoose query chains

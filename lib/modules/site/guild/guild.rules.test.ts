@@ -1,4 +1,4 @@
-import { generateGuildData, applyGuildTypeRule, applyMembershipByTypeRule, isGuildSite } from "./guild.rules";
+import { applyGuildTypeRule, applyMembershipByTypeRule, isGuildSite } from "./guild.rules";
 import { GUILD_TYPES } from "@/constants/site/guild.options";
 import { MembershipByGuildType } from "@/lib/models/generator/site/guild/membershipMappingByType.model";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";

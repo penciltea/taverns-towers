@@ -4,7 +4,6 @@ import { getRandom } from "@/lib/util/randomValues";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { formatCurrencyFromCp } from "@/lib/util/convertCurrency";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SiteGenerationInput } from "@/interfaces/site.interface";
 
 jest.mock("@/lib/util/randomValues", () => ({
   getRandom: jest.fn(),
