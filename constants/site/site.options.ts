@@ -33,14 +33,7 @@ export const SITE_CONDITION = [
 
 
 /* For Hidden site type form */
-export const SECRECY_LEVELS = [
-  { value: "unknown", label: "Unknown (Unnoticed, not hidden)" },
-  { value: "concealed", label: "Concealed (Blends into surroundings)" },
-  { value: "guarded", label: "Guarded (Few know of it)" },
-  { value: "encrypted", label: "Encrypted (Codes or riddles required)" },
-  { value: "magically_hidden", label: "Magically Hidden (Arcane concealment)" },
-  { value: "mythical", label: "Mythical (Believed to be legend)" }
-];
+
 
 
 
@@ -183,6 +176,6 @@ export const TAVERN_ENTERTAINMENT_OFFERINGS = [
 export type SiteCategory = typeof SITE_CATEGORIES[number]["value"];
 export type SiteSize = typeof SITE_SIZE[number]["value"];
 export type SiteCondition = typeof SITE_CONDITION[number]["value"];
-export type SiteSecrecyLevel = typeof SECRECY_LEVELS[number]["value"];
+
 export type SiteEntertainmentType = typeof ENTERTAINMENT_VENUE_TYPES[number]["value"];
 export type SiteShopType = Flatten<typeof SHOP_TYPE_CATEGORIES>["value"];

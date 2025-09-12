@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { ENTERTAINMENT_VENUE_TYPES, SECRECY_LEVELS, SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ENTERTAINMENT_VENUE_TYPES, SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from "@/constants/site/hidden.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { environmentSchema } from "./environment.schema";
@@ -10,6 +11,9 @@ import { npcConnectionItemSchema } from "./connection.schema";
 const securityEnumValues = SECURITY_LEVELS.map(opt => opt.value) as [string, ...string[]];
 const entertainmentEnumValues = ENTERTAINMENT_VENUE_TYPES.map(opt => opt.value) as [string, ...string[]];
 const secrecyEnumValues = SECRECY_LEVELS.map(opt => opt.value);
+const knownToEnumValues = KNOWN_TO.map(opt => opt.value);
+const defenseEnumValues = DEFENSE.map(opt => opt.value);
+const purposeEnumValue = PURPOSE.map(opt => opt.value);
 const guildTypeEnumValues = GUILD_TYPES.flatMap(group =>
   group.options.map(option => option.value)
 ) as [string, ...string[]];
@@ -112,9 +116,18 @@ export const hiddenSchema = baseSiteSchema.extend({
   .array(z.enum(secrecyEnumValues as [string, ...string[]]))
   .optional()
   .default([]),
-  knownTo: z.string().optional(),
-  defenses: z.string().optional(),
-  purpose: z.string().optional(),
+  knownTo: z
+  .array(z.enum(knownToEnumValues as [string, ...string[]]))
+  .optional()
+  .default([]),
+  defenses: z
+  .array(z.enum(defenseEnumValues as [string, ...string[]]))
+  .optional()
+  .default([]),
+  purpose: z
+  .array(z.enum(purposeEnumValue as [string, ...string[]]))
+  .optional()
+  .default([]),
 });
 
 export const residenceSchema = baseSiteSchema.extend({
@@ -200,9 +213,9 @@ export const defaultSiteValues: Record<
     name: "",
     type: "hidden",
     secrecy: [],
-    knownTo: "",
-    defenses: "",
-    purpose: "",
+    knownTo: [],
+    defenses: [],
+    purpose: [],
     connections: []
   }, 
   residence: {
