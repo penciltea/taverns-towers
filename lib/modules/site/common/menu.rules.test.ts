@@ -1,11 +1,12 @@
 import { Query, Types } from "mongoose";
-import { fetchMenuItemsByCondition, filterByWealthLevel, applyMenuSizeLimit, applyQuantityRule, normalizeFallbackItems } from "@/lib/modules/site/common/menu.rules";
+import { fetchMenuItemsByCondition, filterByWealthLevel, applyMenuSizeLimit, applyQuantityRule, normalizeFallbackItems, FallbackItem } from "@/lib/modules/site/common/menu.rules";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { MenuItemMappingByClimate } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
 import { MenuItemMappingByMagic } from "@/lib/models/generator/site/menu/menuItemMappingByMagic.model";
 import { MenuItemMappingByTag } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
 import { MenuItemMappingByTerrain } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
+import { applyQuantityRule } from "@/lib/modules/site/common/menu.rules";
 
 jest.mock("@/lib/models/generator/site/menu.model", () => ({
     GeneratorSiteMenu: { find: jest.fn() },
@@ -186,8 +187,22 @@ describe("Menu Generation Rules", () => {
 
     describe("normalizeFallbackItems", () => {
         it("fills missing optional fields", () => {
-            const raw: any[] = [
-                { _id: new Types.ObjectId(), siteType: "tavern" },
+            const raw: FallbackItem[] = [
+                { 
+                    _id: "testId",
+                    name: "Unnamed Item",
+                    price: "0",
+                    siteType: "tavern",
+                    description: "",
+                    category: "",
+                    rarity: "Common",
+                    quality: "Standard",
+                    climate: [],
+                    terrain: [],
+                    tags: [],
+                    magic: "",
+                    shopType: ""
+                },
             ];
             const normalized = normalizeFallbackItems(raw);
             expect(normalized[0]).toMatchObject({
@@ -279,8 +294,6 @@ describe("Menu Generation Rules", () => {
 
 
     describe("applyQuantityRule - boundary quantities & missing fields", () => {
-        const { applyQuantityRule } = require("@/lib/modules/site/common/menu.rules");
-
         it("sets quantity to 1 when baseQty < 1", async () => {
             const items: GeneratorSiteMenuPlain[] = [
                 { siteType: "tavern", quality: "Exquisite", rarity: "Legendary", name: "test item", price: "1cp" } // extreme penalties

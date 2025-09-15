@@ -155,6 +155,8 @@ describe("Hidden Site Generation Rules", () => {
   
 
   describe("Miscellaneous code coverage tests", () => {
+    type SecrecyItem = string | { value: string };
+
     it("does nothing for non-hidden sites", async () => {
       const site = { type: "tavern", secrecy: ["random"], connections: [] } as Partial<SiteFormData>;
       const result = await applySecrecyByConditions(site);
@@ -168,7 +170,7 @@ describe("Hidden Site Generation Rules", () => {
       // Expect at least one high-level secrecy option possible
       
       // Normalize secrecy values to always compare strings
-      const secrecyValues = result.secrecy?.map((s: any) =>
+      const secrecyValues = result.secrecy?.map((s: SecrecyItem) =>
         typeof s === "string" ? s : s.value
       );
 
@@ -189,7 +191,7 @@ describe("Hidden Site Generation Rules", () => {
       expect(result.secrecy).toBeDefined();
 
       // Normalize secrecy values to always compare strings
-      const secrecyValues = result.secrecy?.map((s: any) =>
+      const secrecyValues = result.secrecy?.map((s: SecrecyItem) =>
         typeof s === "string" ? s : s.value
       );
 

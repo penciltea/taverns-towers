@@ -15,7 +15,7 @@ export type MenuRuleFn = (
   context: SiteGenerationContext
 ) => Promise<GeneratorSiteMenuPlain[]>;
 
-type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
+export type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
 type FallbackKey = keyof typeof FALLBACK_UNIVERSAL_ITEMS;
 
 export function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
