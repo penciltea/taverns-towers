@@ -27,7 +27,7 @@ export function isTavernSite(data: Partial<SiteFormData>): data is Partial<Taver
   return data.type === "tavern";
 }
 
-function normalizeClientele(clientele: string[]): string[] {
+export function normalizeClientele(clientele: string[]): string[] {
   const seen = new Set<string>();
   const result: string[] = [];
 

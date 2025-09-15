@@ -31,12 +31,6 @@ export const SITE_CONDITION = [
     { value: "aristocratic", label: "Aristocratic (Highest quality, lavish and luxurious standards)"}
 ];
 
-
-/* For Hidden site type form */
-
-
-
-
 /* for Shop types */
 export const SHOP_TYPE_CATEGORIES = [
   {

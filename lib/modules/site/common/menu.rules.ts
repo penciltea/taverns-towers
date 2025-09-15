@@ -18,7 +18,7 @@ export type MenuRuleFn = (
 type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
 type FallbackKey = keyof typeof FALLBACK_UNIVERSAL_ITEMS;
 
-function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
+export function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
   return items.map((item) => ({
     _id: item._id,
     name: item.name ?? "Unnamed Item",
@@ -61,8 +61,13 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     if (siteType === "shop") return !shopType || item.shopType === shopType;
     if (siteType === "guild") {
       if (!guildType) return true;
-      return Array.isArray(item.guildType) ? item.guildType.includes(guildType) : item.guildType === guildType;
+      if (Array.isArray(item.guildType)) {
+        if (Array.isArray(guildType)) return item.guildType.some(g => guildType.includes(g));
+        return item.guildType.includes(guildType);
+      }
+      return item.guildType === guildType || (Array.isArray(guildType) && guildType.includes(item.guildType));
     }
+
     return true;
   };
 

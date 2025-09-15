@@ -1,5 +1,5 @@
 import { Query, Types } from "mongoose";
-import { fetchMenuItemsByCondition, filterByWealthLevel, applyMenuSizeLimit, applyQuantityRule } from "@/lib/modules/site/common/menu.rules";
+import { fetchMenuItemsByCondition, filterByWealthLevel, applyMenuSizeLimit, applyQuantityRule, normalizeFallbackItems } from "@/lib/modules/site/common/menu.rules";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { MenuItemMappingByClimate } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
@@ -181,6 +181,122 @@ describe("Menu Generation Rules", () => {
                 expect(i.quantity).toBeDefined();
                 expect(Number(i.quantity)).toBeGreaterThanOrEqual(1);
             });
+        });
+    });
+
+    describe("normalizeFallbackItems", () => {
+        it("fills missing optional fields", () => {
+            const raw: any[] = [
+                { _id: new Types.ObjectId(), siteType: "tavern" },
+            ];
+            const normalized = normalizeFallbackItems(raw);
+            expect(normalized[0]).toMatchObject({
+                name: "Unnamed Item",
+                description: "",
+                category: "",
+                price: "0",
+                siteType: "tavern",
+                shopType: "",
+                magic: "",
+                quality: "Standard",
+                rarity: "Common",
+                climate: [],
+                terrain: [],
+                tags: [],
+            });
+        });
+    });
+
+    describe("fetchMenuItemsByCondition edge cases", () => {
+        it("handles universal fallback keys for shopType", async () => {
+            const context = { siteType: "shop", shopType: "general" };
+            (MenuItemMappingByClimate.findOne as jest.Mock).mockReturnValue(mockQuery(null));
+            (MenuItemMappingByTerrain.find as jest.Mock).mockReturnValue(mockQuery([]));
+            (MenuItemMappingByTag.find as jest.Mock).mockReturnValue(mockQuery([]));
+            (MenuItemMappingByMagic.findOne as jest.Mock).mockReturnValue(mockQuery(null));
+            (GeneratorSiteMenu.find as jest.Mock).mockReturnValue(mockQuery([]));
+
+            const result = await fetchMenuItemsByCondition([], context);
+            expect(result).toBeInstanceOf(Array);
+        });
+
+        it("handles universal fallback keys for guildType string or array", async () => {
+            const context = { siteType: "guild", guildType: "thief" };
+            (MenuItemMappingByClimate.findOne as jest.Mock).mockReturnValue(mockQuery(null));
+            (MenuItemMappingByTerrain.find as jest.Mock).mockReturnValue(mockQuery([]));
+            (MenuItemMappingByTag.find as jest.Mock).mockReturnValue(mockQuery([]));
+            (MenuItemMappingByMagic.findOne as jest.Mock).mockReturnValue(mockQuery(null));
+            (GeneratorSiteMenu.find as jest.Mock).mockReturnValue(mockQuery([]));
+
+            const result = await fetchMenuItemsByCondition([], context);
+            expect(result).toBeInstanceOf(Array);
+        });
+    });
+
+    describe("filterByWealthLevel edge cases", () => {
+        const items: GeneratorSiteMenuPlain[] = [
+            { name: "Masterpiece", quality: "Masterwork", price: "10gp", siteType: "shop" },
+            { name: "Fine Item", quality: "Fine", price: "5gp", siteType: "shop" },
+            { name: "Standard Item", quality: "Standard", price: "2gp", siteType: "shop" },
+        ];
+
+        it("filters correctly for Struggling", async () => {
+            const filtered = await filterByWealthLevel(items, { wealth: "Struggling" });
+            expect(filtered.some(i => i.quality === "Masterwork")).toBe(false);
+        });
+
+        it("filters correctly for Affluent", async () => {
+            const filtered = await filterByWealthLevel(items, { wealth: "Affluent" });
+            expect(filtered.some(i => i.quality === "Poor")).toBe(false);
+        });
+    });
+
+    describe("applyMenuSizeLimit edge cases", () => {
+        it("always returns at least 1 item", async () => {
+            const items: GeneratorSiteMenuPlain[] = [{ name: "SingleItem", price: "1cp", siteType: "tavern" }];
+            const context = { size: "Town", wealth: "Modest", siteSize: "modest", siteCondition: "average" };
+            const result = await applyMenuSizeLimit(items, context);
+            expect(result.length).toBeGreaterThanOrEqual(1);
+        });
+    });
+
+    describe("applyQuantityRule edge cases", () => {
+        it("respects min/max quantity bounds", async () => {
+            const items: GeneratorSiteMenuPlain[] = [
+            { name: "Exquisite Item", quality: "Exquisite", rarity: "Legendary", price: "10gp", siteType: "shop" },
+            { name: "Poor Item", quality: "Poor", rarity: "Common", price: "1cp", siteType: "shop" },
+            ];
+            const context = { siteSize: "tiny", siteCondition: "squalid" };
+            const result = await applyQuantityRule(items, context);
+
+            result.forEach((i) => {
+            const qty = Number(i.quantity);
+            expect(qty).toBeGreaterThanOrEqual(1);
+            expect(qty).toBeLessThanOrEqual(10);
+            });
+        });
+    });
+
+
+    describe("applyQuantityRule - boundary quantities & missing fields", () => {
+        const { applyQuantityRule } = require("@/lib/modules/site/common/menu.rules");
+
+        it("sets quantity to 1 when baseQty < 1", async () => {
+            const items: GeneratorSiteMenuPlain[] = [
+                { siteType: "tavern", quality: "Exquisite", rarity: "Legendary", name: "test item", price: "1cp" } // extreme penalties
+            ];
+            const context = { siteSize: "tiny", siteCondition: "squalid" };
+            const result = await applyQuantityRule(items, context);
+            expect(Number(result[0].quantity)).toBe(1);
+        });
+
+        it("caps quantity at 10 when baseQty > 10", async () => {
+            const items: GeneratorSiteMenuPlain[] = [
+                { siteType: "tavern", quality: "Poor", rarity: "Common", name: "test item", price: "1cp" } // boosts
+            ];
+            const context = { siteSize: "sprawling", siteCondition: "aristocratic" };
+            const result = await applyQuantityRule(items, context);
+            expect(Number(result[0].quantity)).toBeLessThanOrEqual(10);
         });
     });
 });

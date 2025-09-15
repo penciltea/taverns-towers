@@ -1,4 +1,4 @@
-import { isEntertainmentSite, applyEntertainmentVenueRule, generateEntertainmentData } from "./entertainment.rules";
+import { isEntertainmentSite, applyEntertainmentVenueRule, generateEntertainmentData, applyEntryCostRule } from "./entertainment.rules";
 import { ENTERTAINMENT_VENUE_TYPES } from "@/constants/site/site.options";
 import { getRandom } from "@/lib/util/randomValues";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
@@ -16,6 +16,7 @@ jest.mock("@/lib/util/siteHelpers", () => ({
 jest.mock("@/lib/util/convertCurrency", () => ({
   formatCurrencyFromCp: jest.fn((cp: number) => `${cp} cp`),
 }));
+
 
 // Narrowed interface for entertainment-specific tests
 type EntertainmentFormData = Extract<SiteFormData, { type: "entertainment" }>;
@@ -69,6 +70,54 @@ describe("applyEntertainmentVenueRule", () => {
     const data: EntertainmentTestData = { type: "entertainment", venueType: "Concert Hall", connections: [] };
     const result = await applyEntertainmentVenueRule(data);
     expect((result as Partial<SiteFormData> & { venueType: string }).venueType).toBe("Concert Hall");
+  });
+});
+
+describe("applyEntryCostRule", () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  it("returns data unchanged if not entertainment type", async () => {
+    const data: Partial<SiteFormData> = { type: "shop" };
+    const result = await applyEntryCostRule(data);
+    expect(result).toEqual(data);
+  });
+
+  it("sets cost to 'Free, tipping encouraged' for Street Performance Zone", async () => {
+    const data: EntertainmentTestData = {
+      type: "entertainment",
+      venueType: "Street Performance Zone",      
+      size: "medium",
+      condition: "wealthy",
+      connections: []
+    };
+    const result = (await applyEntryCostRule(data)) as EntertainmentTestData;
+    expect(result.cost).toBe("Free, tipping encouraged");
+  });
+
+  it("calculates cost for other venues", async () => {
+    const data: EntertainmentTestData = {
+      type: "entertainment",
+      venueType: "Other",
+      size: "medium",
+      condition: "wealthy",
+      connections: []
+    };
+    const result = (await applyEntryCostRule(data)) as EntertainmentTestData;
+    expect(formatCurrencyFromCp).toHaveBeenCalled();
+    expect(result.cost).toBeDefined();
+  });
+
+  it("enforces minimum cost of 1 cp", async () => {
+    const data: EntertainmentTestData = {
+      type: "entertainment",
+      venueType: "Other",
+      size: "tiny",
+      condition: "poor",
+      connections: []
+    };
+    const result = (await applyEntryCostRule(data)) as EntertainmentTestData;
+    expect(formatCurrencyFromCp).toHaveBeenCalledWith(expect.any(Number));
+    expect(result.cost).toBeDefined();
   });
 });
 
