@@ -2,6 +2,7 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { applySecrecyByConditions, applyKnownTo, applyDefenses, applyPurpose, isHiddenSite, generateHiddenData } from "@/lib/modules/site/hidden/hidden.rules";
 import { SECRECY_LEVELS, KNOWN_TO, DEFENSE, PURPOSE } from "@/constants/site/hidden.options";
 import { HiddenSite } from "@/interfaces/site.interface";
+import * as randomUtil from "@/lib/util/randomValues";
 
 describe("Hidden Site Generation Rules", () => {
   let baseSite: Partial<SiteFormData>;
@@ -164,6 +165,8 @@ describe("Hidden Site Generation Rules", () => {
     });
 
     it("defenses increase secrecy cap", async () => {
+      jest.spyOn(randomUtil, "getRandomSubset").mockImplementation((arr) => [...arr]);
+
       const site = { type: "hidden", size: "small", secrecy: ["random"], defenses: ["walls"] } as Partial<SiteFormData>;
       const result = await applySecrecyByConditions(site) as Partial<HiddenSite>;
       expect(result.secrecy).toBeDefined();
