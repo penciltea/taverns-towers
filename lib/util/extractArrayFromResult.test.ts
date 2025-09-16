@@ -1,22 +1,30 @@
 import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 
+interface TestObj {
+  foo?: string[];
+  bar?: string[];
+}
+
 describe("extractArrayFromResult", () => {
   const fallback = ["default1", "default2"];
 
   it("returns extracted array for a fulfilled single object", () => {
-    const result = Promise.resolve({ value: ["a", "b"] } as any);
-    const settledResult: PromiseSettledResult<any> = { status: "fulfilled", value: { foo: ["a", "b"] } };
-    
-    const output = extractArrayFromResult(
+    const settledResult: PromiseSettledResult<TestObj> = {
+      status: "fulfilled",
+      value: { foo: ["a", "b"] },
+    };
+
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
       (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(["a", "b"]);
   });
 
   it("returns extracted array for a fulfilled array of objects", () => {
-    const settledResult: PromiseSettledResult<any[]> = {
+    const settledResult: PromiseSettledResult<TestObj[]> = {
       status: "fulfilled",
       value: [
         { foo: ["a"] },
@@ -25,30 +33,32 @@ describe("extractArrayFromResult", () => {
       ],
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
       (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(["a", "b", "c"]);
   });
 
   it("returns fallback if fulfilled single object has undefined extraction", () => {
-    const settledResult: PromiseSettledResult<any> = {
+    const settledResult: PromiseSettledResult<TestObj> = {
       status: "fulfilled",
       value: { bar: ["x"] }, // extractor returns undefined
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
-      (v) => v.foo, // foo does not exist
+      (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(fallback);
   });
 
   it("returns fallback if fulfilled array of objects has no extracted values", () => {
-    const settledResult: PromiseSettledResult<any[]> = {
+    const settledResult: PromiseSettledResult<TestObj[]> = {
       status: "fulfilled",
       value: [
         { bar: ["x"] },
@@ -56,78 +66,76 @@ describe("extractArrayFromResult", () => {
       ],
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
-      (v) => v.foo, // extractor returns undefined
+      (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(fallback);
   });
 
-  it("returns fallback for rejected promise result", () => {
-    interface TestObj {
-        foo?: string[];
-    }
-
-    const fallback = ["default1", "default2"];
-
+  it("returns extracted values even when extractor returns optional field", () => {
     const settledResult: PromiseSettledResult<TestObj> = {
-        status: "fulfilled",
-        value: { foo: ["a", "b"] },
+      status: "fulfilled",
+      value: { foo: ["a", "b"] },
     };
 
     const output = extractArrayFromResult<TestObj>(
-        settledResult,
-        (v) => v.foo,
-        fallback
+      settledResult,
+      (v) => v.foo,
+      fallback
     );
 
     expect(output).toEqual(["a", "b"]);
   });
 
   it("returns fallback for null value", () => {
-    const settledResult: PromiseSettledResult<any> = {
+    const settledResult: PromiseSettledResult<TestObj | null> = {
       status: "fulfilled",
       value: null,
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
       (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(fallback);
   });
 
   it("flattens multiple objects and ignores undefined extractions", () => {
-    const settledResult: PromiseSettledResult<any[]> = {
+    const settledResult: PromiseSettledResult<TestObj[]> = {
       status: "fulfilled",
       value: [
         { foo: ["x"] },
-        { bar: ["y"] },
+        { bar: ["y"] }, // extractor returns undefined
         { foo: ["z"] },
       ],
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
       (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(["x", "z"]);
   });
 
   it("returns fallback if extracted arrays are empty", () => {
-    const settledResult: PromiseSettledResult<any[]> = {
+    const settledResult: PromiseSettledResult<TestObj[]> = {
       status: "fulfilled",
       value: [{ foo: [] }, { foo: [] }],
     };
 
-    const output = extractArrayFromResult(
+    const output = extractArrayFromResult<TestObj>(
       settledResult,
       (v) => v.foo,
       fallback
     );
+
     expect(output).toEqual(fallback);
   });
 });
