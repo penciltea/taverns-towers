@@ -4,5 +4,5 @@ export function capitalizeFirstLetter(str: string): string {
 }
 
 export function toTitleCase(str: string): string {
-  return str.replace(/\w\S*/g, txt => txt[0].toUpperCase() + txt.slice(1));
-}
+  return str.replace(/\b\w+/g, (txt) => txt[0].toUpperCase() + txt.slice(1));
+};

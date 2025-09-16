@@ -1,5 +1,6 @@
 import mongoose, { HydratedDocument, InferSchemaType } from "mongoose";
-import { SITE_SIZE, SITE_CONDITION, SECRECY_LEVELS, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
+import { SITE_SIZE, SITE_CONDITION, ENTERTAINMENT_VENUE_TYPES, TAVERN_ENTERTAINMENT_OFFERINGS, SHOP_TYPE_CATEGORIES } from "@/constants/site/site.options";
+import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from "@/constants/site/hidden.options";
 import { SECURITY_LEVELS } from "@/constants/site/government.options";
 import { GUILD_TYPES } from "@/constants/site/guild.options";
 import { connectionSchema } from "./connection.model";
@@ -10,6 +11,9 @@ const sizeValues = SITE_SIZE.map(option => option.value);
 const conditionValues = SITE_CONDITION.map(option => option.value);
 const securityValues = SECURITY_LEVELS.map(opt => opt.value);
 const secrecyValues = SECRECY_LEVELS.map(opt => opt.value);
+const knownToValues = KNOWN_TO.map(opt => opt.value);
+const defenseValues = DEFENSE.map(opt => opt.value);
+const purposeValues = PURPOSE.map(opt => opt.value);
 const shopTypes = SHOP_TYPE_CATEGORIES.flatMap(group =>
   group.options.map(option => option.value)
 );
@@ -135,9 +139,9 @@ if (!Site.discriminators?.hidden) {
     "hidden",
     new Schema({
       secrecy: { type: [String], enum: secrecyValues, default: [], },
-      knownTo: String,
-      defenses: String,
-      purpose: String,
+      knownTo: { type: [String], enum: knownToValues, default: [], },
+      defenses: { type: [String], enum: defenseValues, default: [], },
+      purpose: { type: [String], enum: purposeValues, default: [], }
     })
   );
 }

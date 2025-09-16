@@ -27,7 +27,7 @@ export function isTavernSite(data: Partial<SiteFormData>): data is Partial<Taver
   return data.type === "tavern";
 }
 
-function normalizeClientele(clientele: string[]): string[] {
+export function normalizeClientele(clientele: string[]): string[] {
   const seen = new Set<string>();
   const result: string[] = [];
 
@@ -42,7 +42,7 @@ function normalizeClientele(clientele: string[]): string[] {
   return result;
 }
 
-async function applyTavernClienteleByConditions(
+export async function applyTavernClienteleByConditions(
   data: Partial<SiteFormData>,
   context: SiteGenerationContext
 ): Promise<Partial<SiteFormData>> {
@@ -134,7 +134,7 @@ async function applyTavernClienteleByConditions(
   return data;
 }
 
-async function applyEntertainmentByConditions(
+export async function applyEntertainmentByConditions(
   data: Partial<SiteFormData>,
   context: SiteGenerationContext
 ): Promise<Partial<SiteFormData>> {
@@ -194,7 +194,7 @@ async function applyEntertainmentByConditions(
 }
 
 
-async function applyTavernRoomCostRule(
+export async function applyTavernRoomCostRule(
   data: Partial<SiteFormData>
 ): Promise<Partial<SiteFormData>> {
   if (

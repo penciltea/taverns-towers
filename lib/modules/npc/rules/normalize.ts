@@ -1,3 +1,4 @@
+import { NpcConnection } from "@/interfaces/connection.interface";
 import { Npc } from "@/interfaces/npc.interface";
 import { normalizeCommonInput } from "@/lib/util/normalizeData";
 
@@ -13,6 +14,11 @@ export type NormalizedNpcInput = Omit<Npc, '_id' | 'createdAt' | 'updatedAt'> & 
 
 export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {
     const common = normalizeCommonInput(data);
+
+    const normalizedConnections: NpcConnection[] = Array.isArray(data.connections)
+    ? data.connections
+        .filter((c): c is NpcConnection => !!c && "type" in c && "id" in c && "role" in c)
+    : [];
     
     return {
         ...common,
@@ -25,6 +31,6 @@ export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {
         traits: !data.traits || data.traits.length === 0 ? ["random"] : data.traits,
         image: data.image,
         description: data.description,
-        connections: data.connections ?? [],
+        connections: normalizedConnections,
     };
 }

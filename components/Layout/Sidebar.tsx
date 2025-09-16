@@ -70,6 +70,11 @@ export const Sidebar = () => {
             label: "Release Info",
             children: [
                 {
+                    label: "All Releases",
+                    path: "/releases/",
+                    enabled: true
+                },
+                {
                     label: "Alpha Release Notes",
                     path: "/releases/alpha-25-09-03",
                     enabled: true

@@ -11,7 +11,7 @@ export type SerializedNpcConnection = Omit<NpcConnection, "id"> & { id: string; 
 /**
  * Convert an ID to string safely.
  */
-function toStringId(id: string | ObjectId | undefined | null): string {
+export function toStringId(id: string | ObjectId | undefined | null): string {
   if (!id) return "";
   return typeof id === "string" ? id : id.toString();
 }
@@ -19,7 +19,7 @@ function toStringId(id: string | ObjectId | undefined | null): string {
 /**
  * Convert date to ISO string safely.
  */
-function toISOStringSafe(date?: Date | string | null): string | null {
+export function toISOStringSafe(date?: Date | string | null): string | null {
   if (!date) return null;
   return date instanceof Date ? date.toISOString() : String(date);
 }

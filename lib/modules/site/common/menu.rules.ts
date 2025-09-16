@@ -1,7 +1,6 @@
 import { Types } from "mongoose";
 import { SiteGenerationContext } from "@/interfaces/site.interface";
 import { GeneratorSiteMenu, GeneratorSiteMenuPlain } from "@/lib/models/generator/site/menu.model";
-import { tavernMenuRules } from "../tavern/menu.rules";
 import { MenuItemMappingByClimate, MenuItemMappingByClimateModel } from "@/lib/models/generator/site/menu/menuItemMappingByClimate.model";
 import { MenuItemMappingByTerrain, MenuItemMappingByTerrainModel } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
 import { MenuItemMappingByTag, MenuItemMappingByTagModel } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
@@ -16,10 +15,10 @@ export type MenuRuleFn = (
   context: SiteGenerationContext
 ) => Promise<GeneratorSiteMenuPlain[]>;
 
-type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
+export type FallbackItem = (typeof FALLBACK_UNIVERSAL_ITEMS)[keyof typeof FALLBACK_UNIVERSAL_ITEMS][number];
 type FallbackKey = keyof typeof FALLBACK_UNIVERSAL_ITEMS;
 
-function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
+export function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenuPlain[] {
   return items.map((item) => ({
     _id: item._id,
     name: item.name ?? "Unnamed Item",
@@ -62,9 +61,14 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
     if (siteType === "shop") return !shopType || item.shopType === shopType;
     if (siteType === "guild") {
       if (!guildType) return true;
-      return Array.isArray(item.guildType) ? item.guildType.includes(guildType) : item.guildType === guildType;
+      if (Array.isArray(item.guildType)) {
+        if (Array.isArray(guildType)) return item.guildType.some(g => guildType.includes(g));
+        return item.guildType.includes(guildType);
+      }
+      return item.guildType === guildType || (Array.isArray(guildType) && guildType.includes(item.guildType));
     }
-    return false;
+
+    return true;
   };
 
   function extractFromMapping<T extends { items?: { itemId: Types.ObjectId; siteType: string; shopType?: string; guildType?: string | string[] }[] }>(
@@ -74,9 +78,11 @@ export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => 
   ): (GeneratorSiteMenuPlain | Types.ObjectId)[] {
     if (result.status === "fulfilled" && result.value) {
       const mappings = Array.isArray(result.value) ? result.value : [result.value];
-      return mappings.flatMap((m) =>
-        (m.items ?? []).filter(matchesContext).map((i) => i.itemId)
-      );
+
+      return mappings.flatMap((m) => {
+        const filtered = (m.items ?? []).filter(matchesContext);
+        return filtered.map((i) => i.itemId);
+      });
     }
     if (fallback && keys?.length) {
       return keys.flatMap((key) => fallback[key] ?? []);
@@ -265,7 +271,7 @@ export function withCommonRules(rules: MenuRuleFn[]): MenuRuleFn[] {
 }
 
 export const menuRulesBySiteType: Record<string, MenuRuleFn[]> = {
-  tavern: withCommonRules(tavernMenuRules),
+  tavern: withCommonRules([]),
   shop: withCommonRules([]),
   temple: withCommonRules([]),
   guild: withCommonRules([]),

@@ -12,7 +12,7 @@ import { useSiteContentStore } from '@/store/siteStore';
 import { useUIStore } from '@/store/uiStore';
 import { useSettlementContentStore } from '@/store/settlementStore';
 import { usePaginatedSites } from '@/hooks/site/site.query';
-import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.rules';
+import { generateWildernessContext } from '@/lib/modules/settlement/rules/settlement.dispatcher';
 
 export function useSettlementLoader(settlementId: string | null) {
   // Store setters for updating settlement and site data globally

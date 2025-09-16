@@ -6,7 +6,7 @@ import { normalizeNpcInput } from "../modules/npc/rules/normalize";
 import { NpcGenerationInput } from "@/interfaces/npc.interface";
 import { dispatchNpcName } from "../modules/npc/rules/name.dispatcher";
 import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
-import { generateNpcValues } from "../modules/npc/rules/npc.rules";
+import { generateNpcValues } from "../modules/npc/rules/npc.dispatcher";
 import { defaultCommonFields } from "../util/normalizeData";
 
 export async function generateNpcName({ race }: { race?: string[] }): Promise<string> {

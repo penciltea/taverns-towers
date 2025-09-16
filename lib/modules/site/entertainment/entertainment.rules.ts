@@ -21,7 +21,7 @@ export async function applyEntertainmentVenueRule(data: Partial<SiteFormData>): 
   return data;
 }
 
-async function applyEntryCostRule(
+export async function applyEntryCostRule(
   data: Partial<SiteFormData>
 ): Promise<Partial<SiteFormData>> {
   if (

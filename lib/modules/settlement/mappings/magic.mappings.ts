@@ -1,4 +1,4 @@
-import { SizeTypes, MagicLevel, MAGIC_LEVELS } from "@/constants/settlementOptions";
+import { SizeTypes, MagicLevel, MAGIC_LEVELS, WealthLevel } from "@/constants/settlementOptions";
 
 export const MagicBySize: Record<SizeTypes, MagicLevel[]> = {
   Encampment: MAGIC_LEVELS.slice(0, 2),     // "None", "Low"
@@ -10,7 +10,7 @@ export const MagicBySize: Record<SizeTypes, MagicLevel[]> = {
   Metropolis: MAGIC_LEVELS.slice(3, 5),     // "High", "Mythic"
 };
 
-export const MagicByWealthMapping: Record<string, string[]> = {
+export const MagicByWealthMapping: Record<WealthLevel, string[]> = {
   Impoverished: ["None"],
   Struggling: ["None", "Low"],
   Modest: ["Low", "Moderate"],

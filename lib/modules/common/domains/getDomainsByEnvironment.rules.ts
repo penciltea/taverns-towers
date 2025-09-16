@@ -14,7 +14,7 @@ export async function getDomainsByEnvironment({
   tags = [],
   terrain = [],
   climate,
-}: DomainInput): Promise<string[]> { 
+}: DomainInput): Promise<string[]> {
 
   // DB calls for populating arrays
   const results = await Promise.allSettled([
@@ -23,27 +23,26 @@ export async function getDomainsByEnvironment({
     climate ? DomainsByClimate.findOne({ climate }).lean<DomainsByClimateModel | null>() : Promise.resolve(null),
   ]);
 
+  // Extract domains safely
   const tagDomains = extractArrayFromResult(
     results[0],
-    (val) => val.domains,
+    (val) => (Array.isArray(val) ? val.flatMap((d) => d.domains ?? []) : []),
     tags.flatMap((tag) => DomainsByTagMapping[tag] ?? [])
   );
 
   const terrainDomains = extractArrayFromResult(
     results[1],
-    (val) => val.domains,
-    terrain.flatMap((terrain) => DomainsByTerrainMapping[terrain] ?? [])
+    (val) => (Array.isArray(val) ? val.flatMap((d) => d.domains ?? []) : []),
+    terrain.flatMap((t) => DomainsByTerrainMapping[t] ?? [])
   );
 
   const climateDomains = extractArrayFromResult(
     results[2],
-    (val) => val.domains,
+    (val) => (val ? val.domains ?? [] : []),
     climate ? DomainsByClimateMapping[climate] ?? [] : []
   );
 
-  // Combine, remove duplicates, and return final data
+  // Combine all domains and remove duplicates
   const combined = [...tagDomains, ...terrainDomains, ...climateDomains];
-  const unique = Array.from(new Set(combined));
-
-  return unique;
+  return Array.from(new Set(combined));
 }

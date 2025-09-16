@@ -3,7 +3,7 @@ import { UseFormReturn } from "react-hook-form";
 import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
 import { generateNpcData, generateNpcName } from "@/lib/actions/npcGenerator.actions";
 import { shouldReplace } from "@/lib/util/randomValues";
-import { generateNpcWithName } from "@/lib/modules/npc/rules/npc.rules";
+import { generateNpcWithName } from "@/lib/modules/npc/rules/npc.dispatcher";
 import { normalizeNpcInput } from "@/lib/modules/npc/rules/normalize";
 import { defaultCommonFields } from "@/lib/util/normalizeData";
 

@@ -216,9 +216,9 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
         size: hiddenSite.size ?? "",
         condition: hiddenSite.condition ?? "",
         secrecy: hiddenSite.secrecy ?? [],
-        knownTo: hiddenSite.knownTo ?? "",
-        defenses: hiddenSite.defenses ?? "",
-        purpose: hiddenSite.purpose ?? "",
+        knownTo: hiddenSite.knownTo ?? [],
+        defenses: hiddenSite.defenses ?? [],
+        purpose: hiddenSite.purpose ?? [],
         connections: hiddenSite.connections ?? [],
       };
     case "residence":

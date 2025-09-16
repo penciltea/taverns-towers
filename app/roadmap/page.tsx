@@ -33,6 +33,23 @@ export default function Roadmap(){
                         secondary={<span> Optionally generate appropriate sites when creating a new settlement, previewing types and quantities before submission.</span>}
                     />
                 </ListItem>
+                <ListItem disablePadding>
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary={<strong>New Field - &#34;Tone&#34;:</strong>}
+                        secondary={<span> A new field for both settlements and sites, to help guide roleplay flavor and generator choices.</span>}
+                    />
+                </ListItem>
+                
+                <ListItem disablePadding>
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary={<strong>New Field - &#34;Military Presence&#34;:</strong>}
+                        secondary={<span> A new field for settlements, to provide better storytelling and influence generator choices.</span>}
+                    />
+                </ListItem>
             </List>
 
             {/* Guilds & Factions */}

@@ -7,6 +7,7 @@ import { SiteGuildMembershipType } from '@/constants/site/guild.options';
 import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
 import { CommonInterface } from './common.interface';
 import { NpcConnection } from './connection.interface';
+import { KNOWN_TO, SECRECY_LEVELS, PURPOSE, DEFENSE, SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
 
  
 export interface SiteDialogProps extends DialogProps {
@@ -96,10 +97,10 @@ export interface EntertainmentSite extends BaseSite {
 
 export interface HiddenSite extends BaseSite {
   type: "hidden";
-  secrecy?: string[];
-  knownTo?: string;
-  defenses?: string;
-  purpose?: string;
+  secrecy?: SiteSecrecyLevel[];
+  knownTo?: SiteKnownTo[];
+  defenses?: SiteDefense[];
+  purpose?: SitePurpose[];
 }
 
 export interface ResidenceSite extends BaseSite {

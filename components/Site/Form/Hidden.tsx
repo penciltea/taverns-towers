@@ -1,6 +1,7 @@
 import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
-import { SECRECY_LEVELS, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from "@/constants/site/hidden.options";
 import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
@@ -46,21 +47,27 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 fieldError={errors.secrecy}
             />
             
-            <FormTextField
+            <FormChipSelect
+                name="knownTo"
                 label="Known To"
-                registration={register("knownTo")}
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...KNOWN_TO]}
                 fieldError={errors.knownTo}
             />
 
-            <FormTextField
+            <FormChipSelect
+                name="defenses"
                 label="Defense(s)"
-                registration={register("defenses")}
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...DEFENSE]}
                 fieldError={errors.defenses}
             />
 
-            <FormTextField
-                label="Purpose"
-                registration={register("purpose")}
+            <FormChipSelect
+                name="purpose"
+                label="Purpose(s)"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...PURPOSE]}
                 fieldError={errors.purpose}
             />
 

@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { useUIStore } from "@/store/uiStore";
-import { useSettlementsQuery } from "@/hooks/settlement/settlement.query";
+import { useOwnedSettlementsQuery } from "@/hooks/settlement/settlement.query";
 import { DefaultSettlementQueryParams } from "@/interfaces/settlement.interface";
 
 export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettlementId }: DialogProps) {
@@ -17,7 +17,7 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
   const params = useParams();
   const { closeDialog } = useUIStore();
   const [settlementParams] = useState(DefaultSettlementQueryParams);
-  const { data } = useSettlementsQuery(settlementParams);
+  const { data } = useOwnedSettlementsQuery(settlementParams);
 
   const handleCreateSite = () => {
     if(dialogMode === 'direct'){

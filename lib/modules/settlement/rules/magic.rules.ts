@@ -20,7 +20,7 @@ export async function applyMagicByWealthRule(data: NormalizedSettlementInput): P
 
     const results =
       entry?.magic 
-      ?? MagicByWealthMapping[data.size] 
+      ?? MagicByWealthMapping[data.wealth] 
       ?? [];
 
     data.magic = getRandom(results);

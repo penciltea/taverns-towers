@@ -5,7 +5,8 @@ import { HiddenSite } from '@/interfaces/site.interface';
 import { Box } from '@mui/material';
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import InfoListItem from '@/components/Common/InfoListItem';
-import { SITE_CONDITION, SITE_SIZE, SECRECY_LEVELS } from '@/constants/site/site.options';
+import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
+import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from '@/constants/site/hidden.options';
 import { ConnectionsList } from './ConnectionsList';
 
 export const HiddenDetails = ({ site }: { site: HiddenSite }) => {
@@ -19,9 +20,9 @@ export const HiddenDetails = ({ site }: { site: HiddenSite }) => {
         <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
         <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />
         <InfoListItem label="Security" value={site.secrecy?.length ? site.secrecy.map((value) => getLabelFromValue(SECRECY_LEVELS, value)).join(", ") : "N/A"} />
-        <InfoListItem label="Known To" value={site.knownTo} />
-        <InfoListItem label="Defense(s)" value={site.defenses} />
-        <InfoListItem label="Purpose" value={site.purpose} />
+        <InfoListItem label="Known To" value={site.knownTo?.length ? site.knownTo.map((value) => getLabelFromValue(KNOWN_TO, value)).join(", ") : "N/A"} />
+        <InfoListItem label="Defense(s)" value={site.defenses?.length ? site.defenses.map((value) => getLabelFromValue(DEFENSE, value)).join(", ") : "N/A"} />
+        <InfoListItem label="Purpose" value={site.purpose?.length ? site.purpose.map((value) => getLabelFromValue(PURPOSE, value)).join(", ") : "N/A"} />
         <InfoListItem label="Public Notes" value={site.publicNotes} />
         { user?.id === site.userId &&  (
           <InfoListItem label="GM Notes" value={site.gmNotes} />

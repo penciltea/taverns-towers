@@ -1,5 +1,5 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
-import { getRandom } from "@/lib/util/randomValues";
+import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
 import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
 
 // Logic for setting Age if set to "random" or missing
@@ -50,20 +50,16 @@ export function applyStatusRule(data: ReturnType<typeof normalizeNpcInput>): Nor
 
 
 // Logic for setting Traits if set to "random" or missing
-export function applyTraitsRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
-    if (!data.traits.length || data.traits.includes("random")) {
-        // Flatten all available trait values
-        const allTraits = NPC_TRAITS.flatMap(group => group.options.map(opt => opt.value));
+export function applyTraitsRule(
+  data: ReturnType<typeof normalizeNpcInput>
+): ReturnType<typeof normalizeNpcInput> {
+  if (shouldReplace(data.traits)) {
+    const allTraits = NPC_TRAITS.flatMap(group =>
+      group.options.map(opt => opt.value)
+    );
 
-        // Shuffle the array
-        const shuffled = [...allTraits].sort(() => 0.5 - Math.random());
+    data.traits = getRandomSubset(allTraits, { min: 1, max: 4 });
+  }
 
-        // Choose a random number between min and max
-        const count = Math.floor(Math.random() * 4) + 1;
-
-        // Return the first `count` traits
-        data.traits = shuffled.slice(0, count);
-    }
-
-    return data;
+  return data;
 }
