@@ -1,9 +1,12 @@
 export interface UserInterface {
-    id: string;
-    email: string;
-    username: string;
-    tier: string;
-    theme: string;
+  id: string;
+  email: string;
+  username: string;
+  tier: string;
+  theme: string;
+  passwordHash: string;
+  passwordResetToken?: string;
+  passwordResetExpires?: Date;
 }
 
 export interface UserPermissions {
@@ -19,8 +22,8 @@ export interface RegisterPayload {
 }
 
 export interface LoginPayload {
-    credential: string;
-    password: string;
+  credential: string;
+  password: string;
 }
 
 export interface LoginSuccess {

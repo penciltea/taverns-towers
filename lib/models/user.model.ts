@@ -8,7 +8,10 @@ export interface UserModel {
     email: string;
     password: string;
     tier: string;
-    theme: string
+    theme: string;
+    passwordHash: string;
+    passwordResetToken?: string;
+    passwordResetExpires?: Date;
 }
 
 const userSchema = new Schema<UserModel>({
@@ -26,7 +29,10 @@ const userSchema = new Schema<UserModel>({
         enum: UI_THEMES, 
         required: true, 
         default: UI_THEMES[0] // "dark"
-    }
+    },
+    passwordHash: String,
+    passwordResetToken: String,
+    passwordResetExpires: Date
 })
 
 export const User = 

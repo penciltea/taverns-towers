@@ -20,3 +20,22 @@ export const loginSchema = z.object({
 });
 
 export type LoginSchema = z.infer<typeof loginSchema>;
+
+
+// Password schemas
+export const forgotPasswordSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+
+export const resetPasswordSchema = z.object({
+  token: z.string().min(1, "Invalid or missing reset token"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+});
+
+
+export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
