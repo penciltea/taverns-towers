@@ -4,6 +4,7 @@ import { Box, Typography, Button, Container, List, ListItem, ListItemText, Paper
 import PatreonCta from "./PatreonCta"
 import Link from "next/link"
 import NextMuiLink from "./NextMuiLink";
+import ThemedButton from "./ThemedButton";
 
 export default function HomeContent(){
     return (
@@ -23,23 +24,9 @@ export default function HomeContent(){
             >
                 <Typography variant="h2" component="h1" gutterBottom>Build Worlds, Craft Stories, Play Better</Typography>
                 <Typography variant="h6" component="p" gutterBottom>Generate towns, locations, and characters with powerful tools tailored for GMs, writers, and world-builders.</Typography>
-                <Button
-                    variant="contained"
-                    sx={{
-                        mt: 4,
-                        backgroundColor: (theme) =>
-                        theme.palette.mode === "dark" ? "#8c5aff" : theme.palette.secondary.main,
-                        color: "white",
-                        "&:hover": {
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === "dark" ? "#7b3fe5" : theme.palette.secondary.dark,
-                        },
-                    }}
-                    component={Link}
-                    href="/settlements/new"
-                >
-                    Create Your World
-                </Button>
+                <Box sx={{ marginTop: 4 }}>
+                    <ThemedButton text="create your world" href="/settlements/new" />
+                </Box>
             </Box>
 
             {/* Alpha Banner */}

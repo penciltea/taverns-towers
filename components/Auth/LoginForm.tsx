@@ -7,6 +7,7 @@ import { loginSchema, LoginSchema } from "@/schemas/user.schema";
 import { Box, Button, Typography } from "@mui/material";
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { Spinner } from "../Common/Spinner";
+import NextMuiLink from "../Common/NextMuiLink";
 
 type LoginFormProps = {
   onSuccess?: () => void;
@@ -73,16 +74,18 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           displayRequirements={false}
         />
 
-        <Box sx={{ display: "flex", justifyContent: "end", my: 2 }}>
+        <Box sx={{ display: "flex", justifyContent: "end", my: 2, flexDirection: "column", alignItems: "center" }}>
           <Button
             size="large"
             type="submit"
             variant="contained"
+            fullWidth
             disabled={isSubmitting || loading}
             sx={{ px: 8 }}
           >
             Log In
           </Button>
+          <Typography variant="body1" sx={{py: 2}} >Forgot your password? <NextMuiLink href="/forgot-password" underline="always">Reset it here!</NextMuiLink>.</Typography>
         </Box>
       </Box>
     </>

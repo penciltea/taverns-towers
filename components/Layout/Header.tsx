@@ -84,7 +84,7 @@ export default function Header() {
             >
               <MenuItem disabled>Tier: {capitalizeFirstLetter(session.user.tier)}</MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleNavigate('/account/settings')}>Account Settings</MenuItem>
+              <MenuItem onClick={() => handleNavigate('/account/dashboard')}>Account Dashboard</MenuItem>
               <MenuItem onClick={handleSignOut}>Logout</MenuItem>
             </Menu>
           </>
