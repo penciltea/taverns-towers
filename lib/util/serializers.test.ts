@@ -1,8 +1,11 @@
 import { serializeSettlement, serializeSite, serializeNpc } from "@/lib/util/serializers";
 import * as serializeModule from "@/lib/util/serializeFromDb";
 import { NpcConnection } from "@/interfaces/connection.interface";
+import { BaseSite, TavernSite, ShopSite, GuildSite, TempleSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
 
 jest.mock("@/lib/util/serializeFromDb");
+
+type SerializeInput = Parameters<typeof serializeModule.serializeFromDb>[0];
 
 describe("Serialization utils", () => {
     const mockConnection: NpcConnection = { id: "123", type: "npc", role: "friend" };
@@ -19,7 +22,7 @@ describe("Serialization utils", () => {
                 connections: [{ ...mockConnection, id: 123 }],
             });
 
-            const result = serializeSettlement({} as any);
+            const result = serializeSettlement({} as SerializeInput);
 
             expect(result.connections[0].id).toBe("123");
             expect(result.name).toBe("Test Settlement");
@@ -31,7 +34,7 @@ describe("Serialization utils", () => {
                 name: "Bad Settlement",
             });
 
-            expect(() => serializeSettlement({} as any)).toThrow(
+            expect(() => serializeSettlement({} as SerializeInput)).toThrow(
                 "Invalid settlement data for serialization"
             );
         });
@@ -46,7 +49,7 @@ describe("Serialization utils", () => {
                 connections: [],
             });
 
-            const result = serializeSite({} as any);
+            const result = serializeSite({} as SerializeInput) as BaseSite;
             expect(result.type).toBe("alien");
             expect(result.connections).toEqual([]);
         });
@@ -59,14 +62,15 @@ describe("Serialization utils", () => {
                 clientele: "Adventurers",
                 entertainment: ["music"],
                 cost: "High",
-                menu: [{ name: "Ale", category: "Drink", description: "Strong", price: 5 }],
+                menu: [{ name: "Ale", category: "Drink", description: "Strong", price: "5" }],
                 connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as TavernSite;
 
             expect(result.type).toBe("tavern");
-            expect(result.menu[0].name).toBe("Ale");
+            expect(result.menu!).toHaveLength(1);
+            expect(result.menu![0].name).toBe("Ale");
             expect(result.clientele).toBe("Adventurers");
         });
 
@@ -76,15 +80,16 @@ describe("Serialization utils", () => {
                 name: "Magic Shop",
                 type: "shop",
                 shopType: "generalStore",
-                menu: [{ name: "Potion", category: "Item", description: "Healing", price: 10 }],
+                menu: [{ name: "Potion", category: "Item", description: "Healing", price: "10" }],
                 connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as ShopSite;
 
             expect(result.type).toBe("shop");
             expect(result.shopType).toBe("generalStore");
-            expect(result.menu[0].name).toBe("Potion");
+            expect(result.menu!).toHaveLength(1);
+            expect(result.menu![0].name).toBe("Potion");
         });
 
         it("serializes guild site membershipRequirements", () => {
@@ -99,7 +104,7 @@ describe("Serialization utils", () => {
                 connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as GuildSite;
 
             expect(result.membershipRequirements).toEqual(["1", "2"]);
             expect(result.guildName).toBe("Shadow Hand");
@@ -107,15 +112,15 @@ describe("Serialization utils", () => {
 
         it("serializes temple site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "temple1",
-            name: "Grand Temple",
-            type: "temple",
-            domains: ["Life", "Light"],
-            relics: ["Holy Sword"],
-            connections: [],
+                _id: "temple1",
+                name: "Grand Temple",
+                type: "temple",
+                domains: ["Life", "Light"],
+                relics: ["Holy Sword"],
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as TempleSite;
 
             expect(result.type).toBe("temple");
             expect(result.domains).toEqual(["Life", "Light"]);
@@ -124,15 +129,15 @@ describe("Serialization utils", () => {
 
         it("serializes government site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "gov1",
-            name: "City Hall",
-            type: "government",
-            function: "Administration",
-            security: "High",
-            connections: [],
+                _id: "gov1",
+                name: "City Hall",
+                type: "government",
+                function: "Administration",
+                security: "High",
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as GovernmentSite;
 
             expect(result.type).toBe("government");
             expect(result.function).toBe("Administration");
@@ -141,15 +146,15 @@ describe("Serialization utils", () => {
 
         it("serializes entertainment site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "ent1",
-            name: "Grand Arena",
-            type: "entertainment",
-            venueType: "Arena",
-            cost: "High",
-            connections: [],
+                _id: "ent1",
+                name: "Grand Arena",
+                type: "entertainment",
+                venueType: "Arena",
+                cost: "High",
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as EntertainmentSite;
 
             expect(result.type).toBe("entertainment");
             expect(result.venueType).toBe("Arena");
@@ -158,17 +163,17 @@ describe("Serialization utils", () => {
 
         it("serializes hidden site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "hidden1",
-            name: "Secret Lair",
-            type: "hidden",
-            secrecy: ["Underground", "Locked"],
-            knownTo: ["NPC1"],
-            defenses: "Traps",
-            purpose: "Hide treasure",
-            connections: [],
+                _id: "hidden1",
+                name: "Secret Lair",
+                type: "hidden",
+                secrecy: ["Underground", "Locked"],
+                knownTo: ["NPC1"],
+                defenses: "Traps",
+                purpose: "Hide treasure",
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as HiddenSite;
 
             expect(result.type).toBe("hidden");
             expect(result.secrecy).toEqual(["Underground", "Locked"]);
@@ -179,14 +184,14 @@ describe("Serialization utils", () => {
 
         it("serializes residence site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "res1",
-            name: "Castle",
-            type: "residence",
-            notableFeatures: ["Moat", "Towers"],
-            connections: [],
+                _id: "res1",
+                name: "Castle",
+                type: "residence",
+                notableFeatures: ["Moat", "Towers"],
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as ResidenceSite;
 
             expect(result.type).toBe("residence");
             expect(result.notableFeatures).toEqual(["Moat", "Towers"]);
@@ -194,25 +199,25 @@ describe("Serialization utils", () => {
 
         it("serializes miscellaneous site correctly", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue({
-            _id: "misc1",
-            name: "Weird Site",
-            type: "miscellaneous",
-            features: ["Strange artifact"],
-            use: "Unknown",
-            connections: [],
+                _id: "misc1",
+                name: "Weird Site",
+                type: "miscellaneous",
+                features: ["Strange artifact"],
+                use: "Unknown",
+                connections: [],
             });
 
-            const result = serializeSite({} as any) as any;
+            const result = serializeSite({} as SerializeInput) as MiscellaneousSite;
 
             expect(result.type).toBe("miscellaneous");
             expect(result.features).toEqual(["Strange artifact"]);
             expect(result.use).toBe("Unknown");
-        });
+            });
 
-        it("throws error if serialized data is invalid", () => {
+            it("throws error if serialized data is invalid", () => {
             (serializeModule.serializeFromDb as jest.Mock).mockReturnValue(null);
 
-            expect(() => serializeSite({} as any)).toThrow("Invalid serialized site data");
+            expect(() => serializeSite({} as SerializeInput)).toThrow("Invalid serialized site data");
         });
     });
 
@@ -224,7 +229,7 @@ describe("Serialization utils", () => {
                 connections: [{ ...mockConnection, id: 456 }],
             });
 
-            const result = serializeNpc({} as any);
+            const result = serializeNpc({} as SerializeInput);
             expect(result.connections[0].id).toBe("456");
             expect(result.name).toBe("Test NPC");
         });
@@ -235,7 +240,7 @@ describe("Serialization utils", () => {
                 name: "No Connections",
             });
 
-            expect(() => serializeNpc({} as any)).toThrow("Invalid NPC data for serialization");
+            expect(() => serializeNpc({} as SerializeInput)).toThrow("Invalid NPC data for serialization");
         });
     });
 });

@@ -29,7 +29,7 @@ export interface IBaseSite {
   updatedAt: Date;
   userId: string;
   name: string;
-  [key: string]: any; // allows extra fields from discriminators
+  [key: string]: unknown; // allows extra fields from discriminators
 }
 
 const BaseSiteSchema = new Schema(
