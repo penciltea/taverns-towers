@@ -3,11 +3,12 @@
 import AuthGate from '@/components/Auth/AuthGuard';
 import { useAuthStore } from '@/store/authStore';
 import DashboardSection from "@/components/Dashboard/DashboardSection";
-import { Button, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link"
 import { userTier } from '@/constants/user.options';
 import { toTitleCase } from '@/lib/util/stringFormats';
 import ThemedButton from '@/components/Common/ThemedButton';
+import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
@@ -46,6 +47,8 @@ export default function AccountDashboard(){
                         <Typography>Benefits: TBD</Typography>
                     </DashboardSection>
                 </Stack>
+                
+                <DashboardActivity />
             </Paper>
         </AuthGate>
     )

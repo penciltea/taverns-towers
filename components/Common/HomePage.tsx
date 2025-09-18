@@ -1,8 +1,7 @@
 'use client'
 
-import { Box, Typography, Button, Container, List, ListItem, ListItemText, Paper } from "@mui/material"
+import { Box, Typography, Container, List, ListItem, ListItemText, Paper } from "@mui/material"
 import PatreonCta from "./PatreonCta"
-import Link from "next/link"
 import NextMuiLink from "./NextMuiLink";
 import ThemedButton from "./ThemedButton";
 

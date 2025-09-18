@@ -6,6 +6,11 @@ import { User, UserModel } from "../models/user.model";
 import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
 import mongoose from "mongoose";
+import { requireUser } from "@/lib/auth/authHelpers";
+import Site from "@/lib/models/site.model";
+import NpcModel from "@/lib/models/npc.model";
+import SettlementModel from "@/lib/models/settlement.model";
+import { serializeNpc, serializeSettlement, serializeSite } from "../util/serializers";
 
 // Serialize for client compatibility
 function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
@@ -16,7 +21,8 @@ function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInte
     email: obj.email,
     username: obj.username,
     tier: obj.tier,
-    theme: obj.theme
+    theme: obj.theme,
+    passwordHash: obj.passwordHash
   };
 }
 
@@ -123,4 +129,28 @@ export async function updateUserTheme(userId: string, theme: "light" | "dark"): 
     console.error("Error updating theme:", err);
     return { success: false, error: "Could not update theme preference." };
   }
+}
+
+
+// For use on the account dashboard "recent activity" section
+export async function getRecentActivity(limit = 5) {
+  const user = await requireUser();
+  await connectToDatabase();
+
+  const [npcs, settlements, sites] = await Promise.all([
+    NpcModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
+    SettlementModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
+    Site.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
+  ]);
+
+  const tagged = [
+    ...npcs.map((n) => ({ ...serializeNpc(n), type: "npc" })),
+    ...settlements.map((s) => ({ ...serializeSettlement(s), type: "settlement" })),
+    ...sites.map((s) => ({ ...serializeSite(s), type: "site" })),
+  ];
+
+  // Sort by updatedAt descending
+  return tagged
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    .slice(0, limit);
 }

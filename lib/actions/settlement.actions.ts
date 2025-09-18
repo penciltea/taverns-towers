@@ -7,25 +7,7 @@ import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "../util/connectionHelpers";
-import { serializeFromDb } from "@/lib/util/serializeFromDb";
-
-// Serialize for client compatibility
-function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
-  const serialized = serializeFromDb(settlement) as Settlement | null;
-
-  if (!serialized || !Array.isArray(serialized.connections)) {
-    throw new Error("Invalid settlement data for serialization");
-  }
-
-  return {
-    ...serialized,
-    connections: serialized.connections.map((conn) => ({
-      ...conn,
-      id: conn.id.toString(),
-    })),
-  };
-}
-
+import { serializeSettlement } from "../util/serializers";
 
 export async function getSettlements({
   userId,

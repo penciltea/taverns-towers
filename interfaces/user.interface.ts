@@ -35,3 +35,13 @@ export interface LoginFailure {
   success: false;
   error?: string;
 }
+
+
+// for the "recent activity" section of the account dashboard
+
+export type RecentItem = {
+  _id: string;
+  updatedAt: string;
+  type: string;
+  [key: string]: any;
+};
