@@ -4,6 +4,9 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db/mongoClient";
 import { loginUser } from "@/lib/actions/user.actions";
 import PatreonProvider from "next-auth/providers/patreon";
+import { userTier } from "@/constants/user.options";
+import { toTitleCase } from "../util/stringFormats";
+import { PatreonMember } from "@/interfaces/user.interface";
 
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise!),
@@ -66,16 +69,52 @@ export const authOptions: AuthOptions = {
         token.theme = user.theme;
       }
 
-      if (account && account.provider === "patreon") {
-        token.patreon = {
-          ...(token.patreon ?? {}),
-          accessToken: account.access_token,
-          refreshToken: account.refresh_token,
-        };
-        token.expires = account.expires_at ? account.expires_at * 1000 : undefined;
+      if (account?.provider === "patreon") {
+        const accessToken = account.access_token;
+
+        try {
+          const res = await fetch(
+            "https://www.patreon.com/api/oauth2/v2/identity?include=memberships",
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          );
+          const data = await res.json();
+          // console.log("Patreon API response:", data);
+
+          const CAMPAIGN_ID = process.env.PATREON_CAMPAIGN_ID;
+
+          // Find the membership that matches campaign ID
+          const membership = (data.included as PatreonMember[] | undefined)?.find(
+            (i) =>
+              i.type === "member" &&
+              i.relationships?.campaign?.data?.id === CAMPAIGN_ID
+          );
+
+          let tier = toTitleCase(userTier[0]); // default for non-paying members
+
+          if (membership?.attributes?.patron_status === "active_patron") {
+            tier = membership.attributes.patron_title ?? "Paid";
+          }
+
+          token.patreon = {
+            ...(token.patreon ?? {}),
+            accessToken,
+            refreshToken: account.refresh_token,
+            tier,
+          };
+        } catch (err) {
+          console.error("Error fetching Patreon tier:", err);
+          token.patreon = {
+            ...(token.patreon ?? {}),
+            accessToken,
+            refreshToken: account.refresh_token,
+            tier: toTitleCase(userTier[0]),
+          };
+        }
       }
 
-      // Refresh Patreon access token if expired
+      // Refresh Patreon token if expired
       if (token.expires && Date.now() > token.expires && token.patreon?.refreshToken) {
         try {
           const url = "https://www.patreon.com/api/oauth2/token";
@@ -109,6 +148,7 @@ export const authOptions: AuthOptions = {
       return token;
     },
 
+
     // Session callback: expose JWT fields safely in session
     async session({ session, token }) {
       if (session.user) {
@@ -120,6 +160,7 @@ export const authOptions: AuthOptions = {
         if (token.patreon) {
           session.user.patreon = {
             ...(session.user.patreon ?? {}),
+            tier: token.patreon.tier,
             accessToken: token.patreon.accessToken,
             refreshToken: token.patreon.refreshToken,
           };

@@ -30,5 +30,6 @@ export async function requireUser(): Promise<UserInterface> {
     email,
     tier: resolvedTier,
     theme: theme ?? UI_THEMES[0],
+    patreon
   };
 }

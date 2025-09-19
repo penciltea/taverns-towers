@@ -27,7 +27,8 @@ export default function AuthSync() {
         username,
         email: session.user.email,
         tier,
-        theme: session.user.theme || "light"
+        theme: session.user.theme || "light",
+        patreon: session.user.patreon
       });
     } else if (status === "unauthenticated" && session === null) {
       clearUser();

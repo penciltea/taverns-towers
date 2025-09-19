@@ -5,11 +5,9 @@ import { useAuthStore } from '@/store/authStore';
 import DashboardSection from "@/components/Dashboard/DashboardSection";
 import { Avatar, Box, Button, Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link"
-import { userTier } from '@/constants/user.options';
-import { toTitleCase } from '@/lib/util/stringFormats';
-import ThemedButton from '@/components/Common/ThemedButton';
 import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import MembershipPanel from '@/components/Dashboard/Memberships';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
@@ -49,12 +47,9 @@ export default function AccountDashboard(){
                     <DashboardSection 
                         titleComponent="h3" 
                         titleText="Membership"
-                        footer={
-                            <ThemedButton href="account/membership" text="manage membership" />
-                        }
+                        footer={<></>}
                     >
-                        <Typography>Membership Tier: { toTitleCase(user?.tier ?? userTier[0]) } </Typography>
-                        <Typography>Benefits: TBD</Typography>
+                        <MembershipPanel user={user!} /> {/* User is non-null because of AuthGate wrapper only displaying content if user is logged in */}
                     </DashboardSection>
                 </Stack>
                 
