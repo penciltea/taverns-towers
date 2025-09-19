@@ -13,6 +13,7 @@ declare module "next-auth" {
       patreon?: {
         tier?: string;
         accessToken?: string;
+        refreshToken?: string;
       };
     };
   }
@@ -27,6 +28,7 @@ declare module "next-auth" {
     patreon?: {
       tier?: string;
       accessToken?: string;
+      refreshToken?: string;
     };
   }
 }
@@ -39,9 +41,17 @@ declare module "next-auth/jwt" {
     name?: string;
     tier?: string;
     theme?: string;
+
+    /** Expiry timestamp in ms */
+    expires?: number;
+
+    /** Error message if token refresh failed */
+    error?: string;
+
     patreon?: {
       tier?: string;
       accessToken?: string;
+      refreshToken?: string;
     };
   }
 }

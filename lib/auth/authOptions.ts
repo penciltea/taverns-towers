@@ -4,19 +4,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db/mongoClient";
 import { loginUser } from "@/lib/actions/user.actions";
 import PatreonProvider from "next-auth/providers/patreon";
-import { JWT } from "next-auth/jwt";
-
-interface MyJWT extends JWT {
-  id: string;
-  username?: string;
-  tier?: string;
-  theme?: string;
-  accessToken?: string;
-  refreshToken?: string;
-  expires?: number;
-  error?: string;
-}
-
 
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise!),
@@ -72,28 +59,29 @@ export const authOptions: AuthOptions = {
   callbacks: {
     // JWT callback: handle credentials + Patreon tokens + refresh logic
     async jwt({ token, user, account }) {
-      const t = token as MyJWT;
-
       if (user) {
-        t.id = user.id;
-        t.username = user.username;
-        t.tier = user.tier;
-        t.theme = user.theme;
+        token.id = user.id;
+        token.username = user.username;
+        token.tier = user.tier;
+        token.theme = user.theme;
       }
 
       if (account && account.provider === "patreon") {
-        t.accessToken = account.access_token;
-        t.refreshToken = account.refresh_token;
-        t.expires = account.expires_at ? account.expires_at * 1000 : undefined;
+        token.patreon = {
+          ...(token.patreon ?? {}),
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
+        };
+        token.expires = account.expires_at ? account.expires_at * 1000 : undefined;
       }
 
       // Refresh Patreon access token if expired
-      if (t.expires && Date.now() > t.expires && t.refreshToken) {
+      if (token.expires && Date.now() > token.expires && token.patreon?.refreshToken) {
         try {
           const url = "https://www.patreon.com/api/oauth2/token";
           const params = new URLSearchParams();
           params.append("grant_type", "refresh_token");
-          params.append("refresh_token", t.refreshToken);
+          params.append("refresh_token", token.patreon.refreshToken);
           params.append("client_id", process.env.PATREON_CLIENT_ID!);
           params.append("client_secret", process.env.PATREON_CLIENT_SECRET!);
 
@@ -105,32 +93,36 @@ export const authOptions: AuthOptions = {
 
           const refreshedTokens = await response.json();
 
-          t.accessToken = refreshedTokens.access_token;
-          t.refreshToken = refreshedTokens.refresh_token ?? t.refreshToken;
-          t.expires = Date.now() + refreshedTokens.expires_in * 1000;
+          token.patreon = {
+            ...(token.patreon ?? {}),
+            accessToken: refreshedTokens.access_token,
+            refreshToken: refreshedTokens.refresh_token ?? token.patreon.refreshToken,
+          };
+
+          token.expires = Date.now() + refreshedTokens.expires_in * 1000;
         } catch (error) {
           console.error("Error refreshing Patreon access token:", error);
-          t.error = "RefreshAccessTokenError";
+          token.error = "RefreshAccessTokenError";
         }
       }
 
-      return t;
+      return token;
     },
 
     // Session callback: expose JWT fields safely in session
     async session({ session, token }) {
       if (session.user) {
-        const t = token as MyJWT;
+        session.user.id = token.id;
+        session.user.username = token.username ?? session.user.username;
+        session.user.tier = token.tier ?? session.user.tier;
+        session.user.theme = token.theme ?? session.user.theme;
 
-        session.user.id = t.id;
-        session.user.username = t.username ?? session.user.username;
-        session.user.tier = t.tier ?? session.user.tier;
-        session.user.theme = t.theme ?? session.user.theme;
-
-        if (t.accessToken || t.refreshToken) {
-          session.user.patreon = session.user.patreon ?? {};
-          if (t.accessToken) session.user.patreon.accessToken = t.accessToken;
-          if (t.refreshToken) session.user.patreon.refreshToken = t.refreshToken;
+        if (token.patreon) {
+          session.user.patreon = {
+            ...(session.user.patreon ?? {}),
+            accessToken: token.patreon.accessToken,
+            refreshToken: token.patreon.refreshToken,
+          };
         }
       }
 
