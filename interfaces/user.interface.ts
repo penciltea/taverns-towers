@@ -4,7 +4,7 @@ export interface UserInterface {
   username: string;
   tier: string;
   theme: string;
-  passwordHash: string;
+  passwordHash?: string;
   passwordResetToken?: string;
   passwordResetExpires?: Date;
 }

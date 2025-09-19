@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useAuthStore } from "@/store/authStore";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
+import { userTier } from "@/constants/user.options";
 
 export default function AuthSync() {
   const { data: session, status } = useSession();
@@ -15,12 +16,18 @@ export default function AuthSync() {
     if (status === "loading") return;
 
     if (status === "authenticated" && session?.user) {
+      const username = session.user.username || session.user.name || "Unknown";
+      const tierString =
+        session.user.tier || session.user.patreon?.tier || userTier[0];
+
+      const tier = capitalizeFirstLetter(tierString);
+
       setUser({
         id: session.user.id,
-        username: session.user.username,
+        username,
         email: session.user.email,
-        tier: capitalizeFirstLetter(session.user.tier),
-        theme: session.user.theme
+        tier,
+        theme: session.user.theme || "light"
       });
     } else if (status === "unauthenticated" && session === null) {
       clearUser();

@@ -23,6 +23,11 @@ export default function Header() {
     return null; 
   }
 
+  const displayName = session?.user.username || session?.user.name || "Traveler";
+  const displayTier = capitalizeFirstLetter(
+    session?.user.tier ?? session?.user.patreon?.tier ?? "Free"
+  );
+
   const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -74,7 +79,7 @@ export default function Header() {
               <Avatar sx={{ width: 26, height: 26, mr: 1 }}>
                 <PersonOutlineIcon />
               </Avatar>
-              Hi, {session.user.username}!
+              Hi, {displayName}!
             </Button>
             <Menu
               id="user-menu"
@@ -82,7 +87,7 @@ export default function Header() {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem disabled>Tier: {capitalizeFirstLetter(session.user.tier)}</MenuItem>
+              <MenuItem disabled>Tier: {capitalizeFirstLetter(displayTier)}</MenuItem>
               <Divider />
               <MenuItem onClick={() => handleNavigate('/account/dashboard')}>Account Dashboard</MenuItem>
               <MenuItem onClick={handleSignOut}>Logout</MenuItem>

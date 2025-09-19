@@ -1,7 +1,8 @@
 'use client';
 
 import LoginForm from "@/components/Auth/LoginForm";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   return (
@@ -22,6 +23,18 @@ export default function LoginPage() {
         </Typography>
 
         <LoginForm />
+
+        <Divider sx={{ my: 3 }}>or</Divider>
+
+        {/* Patreon login button */}
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          onClick={() => signIn("patreon", { callbackUrl: "/" })}
+        >
+          Continue with Patreon
+        </Button>
       </Paper>
     </Box>
   );

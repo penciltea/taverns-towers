@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./authOptions";
 import { UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
+import { userTier } from "@/constants/user.options";
 
 export async function auth() {
   return getServerSession(authOptions);
@@ -13,17 +14,21 @@ export async function requireUser(): Promise<UserInterface> {
   const session = await auth();
   if (!session?.user) throw new Error("Unauthorized");
 
-  const { id, username, email, tier, theme } = session.user;
+  const { id, username, name, email, tier, theme, patreon } = session.user;
 
-  if (!id || !username || !email) {
-    throw new Error("Incomplete user session data");
-  }
+  if (!id || !email) throw new Error("Incomplete user session data");
+
+  // Use Patreon name as fallback for username
+  const resolvedUsername = username || name || "Traveler";
+
+  // Resolve tier from native tier or Patreon tier
+  const resolvedTier = tier ?? patreon?.tier ?? userTier[0];
 
   return {
     id,
-    username,
+    username: resolvedUsername,
     email,
-    tier: tier ?? "traveler", // fallback just in case
-    theme: theme ?? UI_THEMES[0] // fallback just in case
+    tier: resolvedTier,
+    theme: theme ?? UI_THEMES[0],
   };
 }
