@@ -1,6 +1,6 @@
 // Membership tiers
 export const userTier = [
-    "traveler",
+    "Apprentice",
     "tier1",
     "tier2"
 ]

@@ -50,22 +50,3 @@ export type RecentItem = {
   type: string;
   [key: string]: any;
 };
-
-// For Patreon users
-export interface PatreonMember {
-  id: string;
-  type: "member";
-  attributes: {
-    patron_status?: string;
-    patron_title?: string;
-    // add other attributes if needed
-  };
-  relationships?: {
-    campaign?: {
-      data?: {
-        id: string;
-      };
-    };
-    // add other relationships if needed
-  };
-}

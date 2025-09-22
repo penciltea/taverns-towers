@@ -6,7 +6,7 @@ import { loginUser } from "@/lib/actions/user.actions";
 import PatreonProvider from "next-auth/providers/patreon";
 import { userTier } from "@/constants/user.options";
 import { toTitleCase } from "../util/stringFormats";
-import { PatreonMember } from "@/interfaces/user.interface";
+import { PatreonIdentityResponse, PatreonMember, PatreonTier } from "@/interfaces/patreon.interface";
 
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise!),
@@ -74,27 +74,38 @@ export const authOptions: AuthOptions = {
 
         try {
           const res = await fetch(
-            "https://www.patreon.com/api/oauth2/v2/identity?include=memberships",
+            "https://www.patreon.com/api/oauth2/v2/identity" +
+              "?include=memberships,memberships.currently_entitled_tiers" +
+              "&fields[member]=patron_status,pledge_relationship_start,last_charge_date,last_charge_status" +
+              "&fields[tier]=title,amount_cents",
             {
               headers: { Authorization: `Bearer ${accessToken}` },
             }
           );
-          const data = await res.json();
-          // console.log("Patreon API response:", data);
 
-          const CAMPAIGN_ID = process.env.PATREON_CAMPAIGN_ID;
+          const data: PatreonIdentityResponse  = await res.json();
+          // console.dir(data, { depth: null });
 
-          // Find the membership that matches campaign ID
-          const membership = (data.included as PatreonMember[] | undefined)?.find(
-            (i) =>
-              i.type === "member" &&
-              i.relationships?.campaign?.data?.id === CAMPAIGN_ID
+          // Find membership for this campaign
+          const membership = data.included?.find(
+            (i): i is PatreonMember =>
+              i.type === "member" && i.attributes?.patron_status === "active_patron"
           );
 
           let tier = toTitleCase(userTier[0]); // default for non-paying members
 
-          if (membership?.attributes?.patron_status === "active_patron") {
-            tier = membership.attributes.patron_title ?? "Paid";
+          if (membership) {
+            const tierIds = membership.relationships?.currently_entitled_tiers?.data || [];
+            if (tierIds.length > 0) {
+              const tierId = tierIds[0].id;
+              const tierObj = data.included?.find(
+                (i): i is PatreonTier => i.type === "tier" && i.id === tierId
+              );
+
+              if (tierObj?.attributes?.title) {
+                tier = tierObj.attributes.title;
+              }
+            }
           }
 
           token.patreon = {
