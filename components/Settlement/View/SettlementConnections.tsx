@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
 import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
 import { ConnectionProps } from "@/interfaces/connection.interface";

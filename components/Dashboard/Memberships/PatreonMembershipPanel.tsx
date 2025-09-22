@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import MembershipBenefits from "./MembershipBenefits";
 import { userTier } from "@/constants/user.options";
 import MembershipTier from "./MembershipTier";
