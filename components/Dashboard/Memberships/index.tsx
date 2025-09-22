@@ -11,7 +11,7 @@ interface MembershipPanelProps {
 export default function MembershipPanel({ user }: MembershipPanelProps) {
   // Future providers can be added here
   if (user.patreon) {
-    return <PatreonMembershipPanel patreon={user.patreon} />;
+    return <PatreonMembershipPanel tier={user.tier} patreon={user.patreon} />;
   }
 
   return <DefaultMembershipPanel user={user} />;

@@ -1,21 +1,26 @@
 'use client';
 
 import { Box, Typography, Button, Stack } from "@mui/material";
+import MembershipBenefits from "./MembershipBenefits";
+import { userTier } from "@/constants/user.options";
+import MembershipTier from "./MembershipTier";
 
 interface PatreonProps {
   patreon: {
     tier?: string;
     accessToken?: string;
     refreshToken?: string;
-  };
+  }, 
+  tier: string;
 }
 
-export default function PatreonMembershipPanel({ patreon }: PatreonProps) {
+export default function PatreonMembershipPanel({ patreon, tier }: PatreonProps) {
   return (
     <Box>
       <Stack spacing={1}>
-        <Typography variant="subtitle1">Patreon Membership Tier: {patreon.tier ?? "Unknown"}</Typography>
-        <Typography variant="body2">Patreon-connected account.</Typography>
+        <MembershipTier tier={ tier ?? userTier[0]} />
+        <MembershipBenefits tier={ tier ?? userTier[0]} />
+
         { patreon.accessToken ? 
           (
             <Button

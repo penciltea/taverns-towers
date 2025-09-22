@@ -10,19 +10,19 @@ export default function SettlementConnections({ connections }: ConnectionProps) 
 
     if (isLoading) {
         return (
-        <Box sx={{ mt: 4 }}>
+       <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
             <Typography variant="h5">Connections</Typography>
             <Typography variant="body2" color="text.secondary">Loading connections...</Typography>
-        </Box>
+        </Paper>
         );
     }
 
     if (!resolvedConnections || resolvedConnections.length === 0) {
         return (
-        <Box sx={{ mt: 4 }}>
+        <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
             <Typography variant="h5">Connections</Typography>
             <Typography variant="body2" color="text.secondary">No connections available.</Typography>
-        </Box>
+        </Paper>
         );
     }
 

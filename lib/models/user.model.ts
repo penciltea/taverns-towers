@@ -12,28 +12,23 @@ export interface UserModel {
     passwordHash: string;
     passwordResetToken?: string;
     passwordResetExpires?: Date;
+    oauthProvider?: string;
 }
 
 const userSchema = new Schema<UserModel>({
-    username: { type: String, required: true, unique: true },
+    username: { type: String, unique: true, sparse: true }, // display name
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    tier: {
-        type: String,
-        enum: userTier,
-        default: userTier[0], // "free"/"traveler"
-        required: true,
-    },
-    theme: { 
+    password: { 
         type: String, 
-        enum: UI_THEMES, 
-        required: true, 
-        default: UI_THEMES[0] // "dark"
+        required: function() { return !this.oauthProvider } // only required for local users
     },
+    tier: { type: String, enum: userTier, default: userTier[0], required: true },
+    theme: { type: String, enum: UI_THEMES, default: UI_THEMES[0], required: true },
     passwordHash: String,
     passwordResetToken: String,
-    passwordResetExpires: Date
-})
+    passwordResetExpires: Date,
+    oauthProvider: String // "patreon", "google", etc.
+});
 
 export const User = 
     (models?.User as mongoose.Model<UserModel>) ||

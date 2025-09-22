@@ -9,7 +9,11 @@ import { toTitleCase } from "../util/stringFormats";
 import { PatreonIdentityResponse, PatreonMember, PatreonTier } from "@/interfaces/patreon.interface";
 
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(clientPromise!),
+  adapter: MongoDBAdapter(clientPromise!, {
+    collections: {
+      Users: "user" // use the "user" collection in the DB instead of defaulted "users"
+    }
+  }),
 
   providers: [
     CredentialsProvider({

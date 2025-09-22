@@ -9,6 +9,8 @@ import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/fabButton";
 import SettlementConnections from "./SettlementConnections";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { canEdit } from "@/lib/auth/authPermissions";
 
 interface Props {
   settlement: Settlement;
@@ -16,6 +18,11 @@ interface Props {
 
 export default function ViewSettlement({ settlement }: Props) {
   const { setOpenDialog } = useUIStore();
+  const { data: session } = useSession();
+  const user = session?.user ? { id: session.user.id } : null;
+  
+  const editable = canEdit(user, { userId: settlement.userId, editors: settlement.editors });
+
 
   return (
     <>
@@ -74,13 +81,15 @@ export default function ViewSettlement({ settlement }: Props) {
       </Grid>
 
 
-
-      <FabButton label="Add Site" 
-        onClick={() => setOpenDialog('siteTypeDialog', { 
-          dialogMode: 'direct', 
-          settlementId: settlement._id, 
-        })} 
-      />
+      { editable &&
+        <FabButton 
+          label="Add Site" 
+          onClick={() => setOpenDialog('siteTypeDialog', { 
+            dialogMode: 'direct', 
+            settlementId: settlement._id, 
+          })} 
+        />
+      }
     </>
   );
 }
