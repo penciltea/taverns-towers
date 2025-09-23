@@ -45,7 +45,7 @@ export default function NpcsPage() {
           titleComponent="h1"
           description="NPCs are the personalities that inhabit your world. From eccentric shopkeepers and wandering sages to rival adventurers, they bring voice, drama, and surprise to every encounter."
           content="NPCs"
-          searchVariant="h4"
+          searchVariant="h5"
           searchComponent="h2"
           countVariant="subtitle1"
           countComponent="h3"

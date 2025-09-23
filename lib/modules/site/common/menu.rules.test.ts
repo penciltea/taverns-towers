@@ -6,7 +6,6 @@ import { MenuItemMappingByClimate } from "@/lib/models/generator/site/menu/menuI
 import { MenuItemMappingByMagic } from "@/lib/models/generator/site/menu/menuItemMappingByMagic.model";
 import { MenuItemMappingByTag } from "@/lib/models/generator/site/menu/menuItemMappingByTag.model";
 import { MenuItemMappingByTerrain } from "@/lib/models/generator/site/menu/menuItemMappingByTerrain.model";
-import { applyQuantityRule } from "@/lib/modules/site/common/menu.rules";
 
 jest.mock("@/lib/models/generator/site/menu.model", () => ({
     GeneratorSiteMenu: { find: jest.fn() },

@@ -3,8 +3,7 @@
 import AuthGate from '@/components/Auth/AuthGuard';
 import { useAuthStore } from '@/store/authStore';
 import DashboardSection from "@/components/Dashboard/DashboardSection";
-import { Button, Paper, Stack, Typography } from "@mui/material";
-import Link from "next/link"
+import { Paper, Stack, Typography } from "@mui/material";
 import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 
 import MembershipPanel from '@/components/Dashboard/Memberships';
@@ -30,7 +29,7 @@ export default function AccountDashboard(){
                         titleComponent="h3"
                         titleText="Featured Items"
                     >
-                        <Typography>A placeholder for creator's favorites</Typography>
+                        <Typography>A placeholder for creator&apos;s favorites</Typography>
                     </DashboardSection>
                     
                     <DashboardSection 

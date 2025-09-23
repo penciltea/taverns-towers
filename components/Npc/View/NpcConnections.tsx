@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
 import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
 import { ConnectionProps } from "@/interfaces/connection.interface";
@@ -6,27 +6,30 @@ import { ConnectionProps } from "@/interfaces/connection.interface";
 export default function NpcConnections({ connections }: ConnectionProps) {
     const { data: resolvedConnections, isLoading } = useResolvedConnections(connections);
 
-    if (isLoading) {
-        return (
-        <Box sx={{ mt: 4 }}>
-            <Typography variant="h5">Connections</Typography>
-            <Typography variant="body2" color="text.secondary">Loading connections...</Typography>
-        </Box>
-        );
-    }
+    let content;
 
-    if (!resolvedConnections || resolvedConnections.length === 0) {
-        return (
-        <Box sx={{ mt: 4 }}>
-            <Typography variant="h5">Connections</Typography>
-            <Typography variant="body2" color="text.secondary">No connections available.</Typography>
-        </Box>
+    if (isLoading) {
+        content = (
+            <Typography variant="body2">Loading connections...</Typography>
         );
+    } else if (!resolvedConnections || resolvedConnections.length === 0) {
+        content = (
+            <Typography variant="body1">No connections yet! Who does this character know? Where do they belong? Add a connection to weave them into the tapestry of your world.</Typography>
+        );
+    } else {
+        content = (
+            <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
+                <EntityLinkList connections={resolvedConnections} showType={true} />
+            </Grid>
+        )
     }
 
     return (
-        <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
-            <EntityLinkList connections={resolvedConnections} showType={true} />
-        </Grid>
+        <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
+            <Typography variant="h5">Connections</Typography>
+            <Box sx={{ mt: 4 }}>
+                { content }
+            </Box>
+        </Paper>
     );
 }

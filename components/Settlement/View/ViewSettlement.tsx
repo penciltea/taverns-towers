@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Grid, Stack, Typography, Divider } from "@mui/material";
+import { Box, Grid, Stack, Typography, Divider, Paper } from "@mui/material";
 import { useUIStore } from '@/store/uiStore';
 import { Settlement } from '@/interfaces/settlement.interface';
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
@@ -36,35 +36,37 @@ export default function ViewSettlement({ settlement }: Props) {
 
       <Divider sx={{ my: 2 }} />
 
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="stretch">
         {/* Settlement Details */}
-        <Grid size={{ xs: 12, md: 4 }}>
-          <SettlementDetails settlement={settlement} />
+        <Grid size={{ xs: 12, md: 5 }} sx={{ display: "flex" }}>
+          <Paper elevation={3} sx={{ p: 3, borderRadius: 2, flexGrow: 1 }}>
+            <SettlementDetails settlement={settlement} />
+          </Paper>
         </Grid>
 
-        <Grid size={{ xs: 12, md: 8 }}>
-          <Typography variant="h4" component="h3" sx={{ paddingBottom: 2, marginTop: 1 }}>
-            Map
-          </Typography>
-           <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>
-            {settlement.map ? (
-              <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
-                <Image
-                  priority
-                  src={settlement.map}
-                  alt={`Map of ${settlement.name}`}
-                  fill
-                  style={{
-                    borderRadius: '16px',
-                    objectFit: 'cover',
-                    boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
-                  }}
-                />
-              </Box>
-            ) : (
-              <Typography variant="body1">No map image uploaded.</Typography>
-            )}
-          </Box>
+        <Grid size={{ xs: 12, md: 7 }} sx={{ display: "flex" }}>
+          <Paper elevation={3} sx={{ p: 3, borderRadius: 2, flexGrow: 1 }}>
+            <Typography variant="h4" component="h3" sx={{ paddingBottom: 2, marginTop: 1 }}>Map</Typography>
+            <Box sx={{ width: '100%', maxWidth: { xs: '100%', md: '50%' }, display: 'flex', alignItems: 'center' }}>
+              {settlement.map ? (
+                <Box sx={{ width: '100%', position: 'relative', height: '300px' }}>
+                  <Image
+                    priority
+                    src={settlement.map}
+                    alt={`Map of ${settlement.name}`}
+                    fill
+                    style={{
+                      borderRadius: '16px',
+                      objectFit: 'cover',
+                      boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
+                    }}
+                  />
+                </Box>
+              ) : (
+                <Typography variant="body1">No map image uploaded.</Typography>
+              )}
+            </Box>
+          </Paper>
         </Grid>
 
         {/* Site List */}
