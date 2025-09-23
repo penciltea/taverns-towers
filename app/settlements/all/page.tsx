@@ -36,12 +36,13 @@ export default function SettlementsPage() {
       {!params || isLoading ? (
         <Spinner />
       ) : error || !data?.success ? (
-        <Typography>Failed to load settlements.</Typography>
+        <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
       ) : (
         <FilteredGridView
           title="My Settlements"
           titleVariant="h3"
           titleComponent="h1"
+          description="Settlements are the beating hearts of your world: from bustling cities to sleepy villages tucked between hills. They&apos;re the places where adventurers trade stories, meet allies, and stir up a little trouble."
           content="settlements"
           searchVariant="h4"
           searchComponent="h2"

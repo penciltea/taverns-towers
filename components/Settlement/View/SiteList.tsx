@@ -60,12 +60,14 @@ export default function SiteList({ settlementId }: SiteListProps) {
       title="Sites"
       titleVariant="h4"
       titleComponent="h4"
+      description="Sites are the landmarks within your settlements: the taverns, temples, guild halls, and shadowy hideouts that give each place its charm (or danger). Think of them as the stage sets where your stories come alive."
       content="sites"
       searchVariant="h5"
       searchComponent="h5"
       countVariant="h6"
       countComponent="h6"
       items={sites}
+      emptyText="This settlement doesn&apos;t have any sites yet. Add one to bring it to life; even the smallest village has a gathering spot or two."
       renderItem={(site) => (
         <GridItem
           key={site._id}

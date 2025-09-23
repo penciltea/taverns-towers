@@ -37,12 +37,13 @@ export default function NpcsPage() {
       {!params || isLoading ? (
         <Spinner />
       ) : error || !data?.success ? (
-        <Typography>Failed to load NPCs.</Typography>
+        <Typography>Looks like your world is still a bit quiet. Create an NPC to populate your story — every bustling market or haunted forest needs someone to talk to (or run from).</Typography>
       ) : (
         <FilteredGridView
           title="My NPCs"
           titleVariant="h3"
           titleComponent="h1"
+          description="NPCs are the personalities that inhabit your world. From eccentric shopkeepers and wandering sages to rival adventurers, they bring voice, drama, and surprise to every encounter."
           content="NPCs"
           searchVariant="h4"
           searchComponent="h2"

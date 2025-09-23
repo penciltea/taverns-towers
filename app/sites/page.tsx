@@ -14,6 +14,7 @@ import FilterBar from '@/components/Grid/FilterBar';
 import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { deleteSite } from '@/lib/actions/site.actions';
 import { siteListKey } from '@/lib/util/queryKeys';
+import AuthGate from '@/components/Auth/AuthGuard';
 
 export default function AllSitesPage() {
   const { closeDialog, setOpenDialog, showErrorDialog } = useUIStore();
@@ -59,56 +60,59 @@ export default function AllSitesPage() {
   }
 
   return (
-    <FilteredGridView<SiteType>
-      title="Sites"
-      titleVariant="h4"
-      titleComponent="h4"
-      content="sites"
-      searchVariant="h5"
-      searchComponent="h5"
-      countVariant="h6"
-      countComponent="h6"
-      items={sites}
-      renderItem={(site: SiteType) => (
-        <GridItem
-          key={site._id}
-          title={site.name}
-          image={site.image}
-          subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
-          onClick={() => {
-            useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
-              siteData: site,
-              onDelete: () => handleDeleteSite(site._id),
-            });
-          }}
-        />
-      )}
-      filterComponent={
-        <FilterBar
-          filters={filters}
-          setFilters={(newFilters) =>
-            setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
-          }
-          clearFilters={() => setFilters({ ...DefaultSiteQueryParams })}
-          chipFilters={[
-            {
-              title: 'Filter by Category',
-              key: 'type',
-              options: SITE_CATEGORIES,
-            },
-          ]}
-        />
-      }
-      currentPage={filters.page}
-      onPageChange={(newPage) =>
-        setFilters((prev) => ({ ...prev, page: newPage }))
-      }
-      totalCount={totalCount}
-      pageSize={filters.limit}
-      fabLabel="Add Site"
-      fabOnClick={() =>
-        setOpenDialog('siteTypeDialog', { dialogMode: 'global' })
-      }
-    />
+    <AuthGate fallbackText="You must be logged in to view your sites.">
+      <FilteredGridView<SiteType>
+        title="Sites"
+        titleVariant="h4"
+        titleComponent="h4"
+        description="Here you&apos;ll find every site you&apos;ve crafted: inns, shrines, guildhalls, and mysterious caverns alike, which can be found across your library of settlements."
+        content="sites"
+        searchVariant="h5"
+        searchComponent="h5"
+        countVariant="h6"
+        countComponent="h6"
+        items={sites}
+        renderItem={(site: SiteType) => (
+          <GridItem
+            key={site._id}
+            title={site.name}
+            image={site.image}
+            subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
+            onClick={() => {
+              useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
+                siteData: site,
+                onDelete: () => handleDeleteSite(site._id),
+              });
+            }}
+          />
+        )}
+        filterComponent={
+          <FilterBar
+            filters={filters}
+            setFilters={(newFilters) =>
+              setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
+            }
+            clearFilters={() => setFilters({ ...DefaultSiteQueryParams })}
+            chipFilters={[
+              {
+                title: 'Filter by Category',
+                key: 'type',
+                options: SITE_CATEGORIES,
+              },
+            ]}
+          />
+        }
+        currentPage={filters.page}
+        onPageChange={(newPage) =>
+          setFilters((prev) => ({ ...prev, page: newPage }))
+        }
+        totalCount={totalCount}
+        pageSize={filters.limit}
+        fabLabel="Add Site"
+        fabOnClick={() =>
+          setOpenDialog('siteTypeDialog', { dialogMode: 'global' })
+        }
+      />
+    </AuthGate>
   );
 }
