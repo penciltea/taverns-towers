@@ -24,25 +24,37 @@ export default function AuthSync() {
 
     async function fetchLatestUser() {
       try {
-        const latestUser = await getUser();
-        if (!latestUser) {
-          clearUser();
+        const dbUser = await getUser(); // fetch from your DB
+        const sessionUser = session?.user;
+        if (!sessionUser) return;
+
+        if (!dbUser) {
+          // fallback to session data if DB fetch fails
+          setUser({
+            id: sessionUser.id,
+            username: sessionUser.username || "Traveler",
+            email: sessionUser.email,
+            tier: capitalizeFirstLetter(sessionUser.tier || sessionUser.patreon?.tier || userTier[0]),
+            theme: sessionUser.theme || "dark",
+            patreon: sessionUser.patreon,
+          });
           return;
         }
 
-        const username = latestUser.username || "Traveler";
-        const avatar = latestUser.avatar || "";
-        const tierString = latestUser.tier || latestUser.patreon?.tier || userTier[0];
-        const tier = capitalizeFirstLetter(tierString);
+        // merge DB data with session data, preserving Patreon info
+        const username = dbUser.username || sessionUser.username || "Traveler";
+        const avatar = dbUser.avatar ||  "";
+        const email = dbUser.email || sessionUser.email;
+        const tierString = dbUser.tier || sessionUser.tier || sessionUser.patreon?.tier || userTier[0];
 
         setUser({
-          id: latestUser.id,
+          id: dbUser.id,
           username,
-          email: latestUser.email,
+          email,
           avatar,
-          tier,
-          theme: latestUser.theme || "dark",
-          patreon: latestUser.patreon,
+          tier: capitalizeFirstLetter(tierString),
+          theme: dbUser.theme || sessionUser.theme || "dark",
+          patreon: sessionUser.patreon,
         });
       } catch (err) {
         console.error("Failed to fetch latest user:", err);

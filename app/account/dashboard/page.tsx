@@ -11,20 +11,23 @@ import DashboardProfile from '@/components/Dashboard/DashboardProfile';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
+
+    console.log("user: ", user);
     
     return (
         <AuthGate fallbackText="You must be logged in to view your account.">
             <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
                 <Typography variant="h4" component="h1" gutterBottom>Account Dashboard</Typography>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, alignItems: 'stretch', justifyItems: 'flex-start' }}>
-
-                    <DashboardSection 
-                        titleComponent="h2" 
-                        titleText="User Profile"
-                    >
-                        <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} />
-                    </DashboardSection>
-
+                    {/* Displaying user profile section for non-patreon users*/}
+                    {!user?.patreon?.tier && 
+                        <DashboardSection 
+                            titleComponent="h2" 
+                            titleText="User Profile"
+                        >
+                            <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} />
+                        </DashboardSection>
+                    }
                     <DashboardSection
                         titleComponent="h3"
                         titleText="Featured Items"
