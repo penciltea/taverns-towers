@@ -62,8 +62,8 @@ export default function NewSitePage() {
     const wrappedOnSubmit = async (data: SiteFormData) => {
         try {
             if (!user) {
-            setDraftItem(data);
-            setOpenDialog("LoginDialog", {});
+                setDraftItem(data);
+                setOpenDialog("LoginDialog", {});
             return;
             }
             await handleSubmit(data);

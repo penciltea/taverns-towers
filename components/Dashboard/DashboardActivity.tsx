@@ -1,6 +1,6 @@
 'use client'
 
-import { useRecentActivityQuery } from "@/hooks/user.query";
+import { useRecentActivityQuery } from "@/hooks/user/user.query";
 import { RecentItem } from "@/interfaces/user.interface";
 import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import NextMuiLink from "../Common/NextMuiLink";

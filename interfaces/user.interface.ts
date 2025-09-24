@@ -2,6 +2,7 @@ export interface UserInterface {
   id: string;
   email: string;
   username: string;
+  avatar?: string;
   tier: string;
   theme: string;
   passwordHash?: string;
@@ -33,7 +34,7 @@ export interface LoginPayload {
 
 export interface LoginSuccess {
   success: true;
-  user: { id: string; email: string; username: string; tier: string, theme: string };
+  user: { id: string; email: string; username: string; avatar?: string; tier: string, theme: string };
 }
 
 export interface LoginFailure {
@@ -41,6 +42,12 @@ export interface LoginFailure {
   error?: string;
 }
 
+export interface UpdateUserPayload {
+  username?: string;
+  email?: string;
+  password?: string;
+  avatar?: string;
+}
 
 // for the "recent activity" section of the account dashboard
 

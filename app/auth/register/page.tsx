@@ -48,7 +48,7 @@ export default function RegisterPage(){
                         p: 3,
                     }}
                 >
-                    <Typography variant="h3" component="h1" sx={{ marginBottom: 2 }}>Sign Up</Typography>
+                    <Typography variant="h4" component="h1" sx={{ marginBottom: 2 }}>Sign Up</Typography>
                     <Typography variant="body1" component="h2" gutterBottom>Ready your quill and map tools — your worldbuilding journey begins now. From hamlets to high halls, conjure what you need with a tap or craft your world yourself!</Typography>
                     <Typography variant="body1" component="p">Getting started is free -- no gold required.</Typography>
 

@@ -72,6 +72,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           passwordValue={password}
           isTouched={isTouched}
           displayRequirements={false}
+          displayKeepCurrent={false}
         />
 
         <Box sx={{ display: "flex", justifyContent: "end", my: 2, flexDirection: "column", alignItems: "center" }}>

@@ -3,7 +3,7 @@
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.model";
-import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UserInterface } from "@/interfaces/user.interface";
+import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UpdateUserPayload, UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
 import mongoose from "mongoose";
 import { requireUser } from "@/lib/auth/authHelpers";
@@ -20,6 +20,7 @@ function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInte
     id: obj._id.toString(),
     email: obj.email,
     username: obj.username,
+    avatar: obj.avatar,
     tier: obj.tier,
     theme: obj.theme,
     passwordHash: obj.passwordHash
@@ -52,7 +53,7 @@ export async function registerUser(data: RegisterPayload): Promise<{
     await User.create({
       username: data.username.toLowerCase(),
       email: data.email.toLowerCase(),
-      password: hashedPassword,
+      passwordHash: hashedPassword,
       theme: UI_THEMES[0] // default theme
     });
 
@@ -86,7 +87,7 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
     }
 
     // Verify password using bcrypt
-    const isMatch = await bcrypt.compare(data.password, user.password);
+    const isMatch = await bcrypt.compare(data.password, user.passwordHash);
     if (!isMatch) {
         return { success: false, error: "Invalid username/email or password." };
     }
@@ -94,13 +95,14 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
     // Serialize user before returning
     const serializedUser = serializeUser(user);
 
-    // Return fields to the cleint
+    // Return fields to the client
     return {
         success: true,
         user: {
             id: serializedUser.id,
             email: serializedUser.email,
             username: serializedUser.username,
+            avatar: serializedUser.avatar,
             tier: serializedUser.tier,
             theme: serializedUser.theme
         },
@@ -128,6 +130,67 @@ export async function updateUserTheme(userId: string, theme: "light" | "dark"): 
   } catch (err) {
     console.error("Error updating theme:", err);
     return { success: false, error: "Could not update theme preference." };
+  }
+}
+
+export async function updateUser(
+  data: UpdateUserPayload
+): Promise<{ success: true; user: UserInterface } | { success: false; error?: string }> {
+  try {
+    const user = await requireUser(); // ensures the user is authenticated
+    await connectToDatabase();
+
+    const updateData: Partial<Pick<UserModel, "username" | "email" | "passwordHash" | "avatar">> = {};
+
+    if (data.username) {
+      // Check for duplicate username
+      const existing = await User.findOne({ username: data.username.toLowerCase(), _id: { $ne: user.id } });
+      if (existing) {
+        return { success: false, error: "Username is already taken." };
+      }
+      updateData.username = data.username.toLowerCase();
+    }
+
+    if (data.email) {
+      // Check for duplicate username
+      const existing = await User.findOne({ email: data.email.toLowerCase(), _id: { $ne: user.id } });
+      if (existing) {
+        return { success: false, error: "Email address is already in use." };
+      }
+      updateData.email = data.email.toLowerCase();
+    }
+
+    if (data.password) {
+      // Hash the new password
+      updateData.passwordHash = await bcrypt.hash(data.password, 12);
+    }
+
+    if (data.avatar) {
+      updateData.avatar = data.avatar;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(user.id, updateData, { new: true }).lean<UserModel>();
+
+    if (!updatedUser) {
+      return { success: false, error: "User not found." };
+    }
+
+    return {
+      success: true,
+      user: {
+        id: updatedUser._id.toString(),
+        username: updatedUser.username,
+        email: updatedUser.email,
+        avatar: updatedUser.avatar,
+        tier: updatedUser.tier,
+        theme: updatedUser.theme,
+        passwordHash: updatedUser.passwordHash,
+        patreon: updatedUser.patreon,
+      },
+    };
+  } catch (err) {
+    console.error("Error updating user:", err);
+    return { success: false, error: "Failed to update user." };
   }
 }
 

@@ -28,7 +28,6 @@ export default function DashboardProfile({ username, email }: { username: string
                     variant="outlined"
                     component={Link}
                     href="/account/edit"
-                    disabled
                 >
                     edit profile
                 </Button>

@@ -7,9 +7,39 @@ export const userSchema = z.object({
     .string()
     .min(8, "Password must be at least 8 characters")
     .regex(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+  avatar: z
+    .any()
+    .refine(
+      (val) =>
+        val === undefined ||
+        typeof val === "string" ||
+        (typeof FileList !== "undefined" && val instanceof FileList),
+      {
+        message: "Avatar must be a URL or FileList",
+      }
+    )
+    .optional(),
 });
 
 export type UserSchema = z.infer<typeof userSchema>;
+
+
+// Update Profile schema
+export const userUpdateSchema = z.object({
+  username: z.string().min(2, "Username is too short"),
+  email: z.string().email("Invalid email address"),
+  password: z
+  .string()
+  .transform((val) => val === "" ? undefined : val)  // transform happens after initial string coercion
+  .optional()
+  .refine((val) => !val || val.length >= 8, "Password must be at least 8 characters")
+  .refine((val) => !val || /[!@#$%^&*(),.?":{}|<>]/.test(val), "Password must contain at least one special character"),
+
+
+  avatar: z.any().optional(),
+});
+
+export type UserUpdateSchema = z.infer<typeof userUpdateSchema>;
 
 
 // Login schema

@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
+import { APP_VERSION } from "@/version";
 
 
 export const Sidebar = () => {
@@ -141,6 +142,9 @@ export const Sidebar = () => {
             
             <Box sx={{ mt: "auto", p: 2 }}>
                 <ThemeSwitch />
+            </Box>
+            <Box sx={{ px: 2, paddingBottom: 0.5 }}>
+                <Typography variant="caption">Version: { APP_VERSION }</Typography>
             </Box>
         </Box>
     );
