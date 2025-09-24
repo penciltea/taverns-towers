@@ -102,7 +102,7 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
             </FormControl>
 
             {displayKeepCurrent &&
-                <Typography variant="caption">Leave blank to keep your current password.</Typography>
+                <Typography variant="caption" gutterBottom>Leave blank to keep your current password.</Typography>
             }
             
             {/* Password Requirements */}

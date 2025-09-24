@@ -94,6 +94,7 @@ export default function RegisterPage(){
                             passwordValue={password}
                             isTouched={isTouched}
                             displayRequirements={true}
+                            displayKeepCurrent={false}
                         />
 
                         <Box sx={{ display: 'flex', justifyContent: 'end' }}>

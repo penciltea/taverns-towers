@@ -1,10 +1,11 @@
 'use client'
 
+import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { UpdateUserPayload } from "@/interfaces/user.interface";
-import { updateUser } from "@/lib/actions/user.actions";
+import { refreshUserSession, updateUser } from "@/lib/actions/user.actions";
 import { UserUpdateSchema } from "@/schemas/user.schema";
 import { useAuthStore } from "@/store/authStore";
 
@@ -17,7 +18,6 @@ export function useUserProfileMutation() {
         setSubmitting(true);
 
         try {
-            // Only include password if user actually typed one
             const payload: UpdateUserPayload = {
                 username: data.username,
                 email: data.email,
@@ -29,10 +29,11 @@ export function useUserProfileMutation() {
 
             if (!res.success) throw new Error(res.error || "Failed to update profile");
 
-            // Update AuthStore so UI reflects changes immediately
-            setUser({
-                ...res.user, // returned updated user object from backend
-            });
+            // Refetch the latest user from the server to ensure UI & Zustand are fully up-to-date
+            const latestUser = await refreshUserSession(res.user.id);
+            if (latestUser) {
+                setUser(latestUser);
+            }
 
             showSnackbar("Profile updated successfully!", "success");
             router.push('/account/dashboard');

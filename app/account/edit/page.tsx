@@ -28,6 +28,7 @@ export default function UpdateProfilePage() {
       if (isLoading) return;
       
       if (user) {
+        console.log("user: ", user);
         setSelectedItem(user); // update the store
         methods.reset(user);   // reset the form with the loaded data
       } else if(!isLoading){

@@ -22,7 +22,7 @@ export default function AccountDashboard(){
                         titleComponent="h2" 
                         titleText="User Profile"
                     >
-                        <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } />
+                        <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} />
                     </DashboardSection>
 
                     <DashboardSection

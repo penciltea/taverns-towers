@@ -10,7 +10,7 @@ import { requireUser } from "@/lib/auth/authHelpers";
 import Site from "@/lib/models/site.model";
 import NpcModel from "@/lib/models/npc.model";
 import SettlementModel from "@/lib/models/settlement.model";
-import { serializeNpc, serializeSettlement, serializeSite } from "../util/serializers";
+import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/serializers";
 
 // Serialize for client compatibility
 function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
@@ -109,6 +109,24 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
     };
 }
 
+export async function getUser() {
+  const user = await requireUser(); // ensures authenticated user
+  await connectToDatabase();
+
+  const dbUser = await User.findById(user.id).lean<UserModel>();
+  if (!dbUser) return null;
+
+  return {
+    id: dbUser._id.toString(),
+    username: dbUser.username,
+    email: dbUser.email,
+    avatar: dbUser.avatar,
+    tier: dbUser.tier,
+    theme: dbUser.theme,
+    patreon: dbUser.patreon,
+  };
+}
+
 export async function updateUserTheme(userId: string, theme: "light" | "dark"): Promise<{
   success: boolean;
   error?: string;
@@ -194,6 +212,22 @@ export async function updateUser(
   }
 }
 
+export async function refreshUserSession(userId: string) {
+  await connectToDatabase();
+
+  const user = await User.findById(userId).lean();
+  if (!user) return null;
+
+  return {
+    id: user._id.toString(),
+    username: user.username,
+    email: user.email,
+    tier: user.tier,
+    theme: user.theme,
+    avatar: user.avatar,
+    patreon: user.patreon,
+  };
+}
 
 // For use on the account dashboard "recent activity" section
 export async function getRecentActivity(limit = 5) {

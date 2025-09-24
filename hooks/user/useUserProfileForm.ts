@@ -2,13 +2,13 @@
 
 import { useEffect } from "react";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { userSchema } from "@/schemas/user.schema";
+import { userUpdateSchema } from "@/schemas/user.schema";
 import { useUserContentStore } from "@/store/userStore";
 
 export function useUserProfileForm() {
   const { mode, draftItem } = useUserContentStore();
 
-  const methods = useFormWithSchema(userSchema);
+  const methods = useFormWithSchema(userUpdateSchema);
 
 
   useEffect(() => {

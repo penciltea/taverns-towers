@@ -17,7 +17,6 @@ interface ProfileFormProps {
 export default function ProfileForm({ onSubmit }: ProfileFormProps) {
     const methods = useFormContext<UserUpdateSchema>();
     const { handleSubmit, watch, register, formState: { errors } } = methods;
-    const password = watch("password", "");
     const { isSubmitting } = useUIStore();
 
     const [formError, setFormError] = useState<string | null>(null);
@@ -25,7 +24,7 @@ export default function ProfileForm({ onSubmit }: ProfileFormProps) {
     useEffect(() => {
         if (Object.keys(errors).length > 0) {
         const messages = Object.values(errors)
-            .map((error: any) => error?.message || "Invalid field")
+            .map((error) => error?.message || "Invalid field")
             .filter(msg => !!msg);
         setFormError(messages.join(" • "));
         } else {

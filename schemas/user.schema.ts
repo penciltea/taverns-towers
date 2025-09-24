@@ -28,14 +28,14 @@ export type UserSchema = z.infer<typeof userSchema>;
 export const userUpdateSchema = z.object({
   username: z.string().min(2, "Username is too short"),
   email: z.string().email("Invalid email address"),
-  password: z
-  .string()
-  .transform((val) => val === "" ? undefined : val)  // transform happens after initial string coercion
-  .optional()
-  .refine((val) => !val || val.length >= 8, "Password must be at least 8 characters")
-  .refine((val) => !val || /[!@#$%^&*(),.?":{}|<>]/.test(val), "Password must contain at least one special character"),
-
-
+  password: z.preprocess(
+    (val) => (val === "" ? undefined : val),
+    z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character")
+      .optional()
+  ),
   avatar: z.any().optional(),
 });
 

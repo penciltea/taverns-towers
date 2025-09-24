@@ -1,15 +1,13 @@
-import { Stack, Box, Avatar, Typography, Button } from "@mui/material";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import Link from "next/link"
+import { Stack, Box, Typography, Button } from "@mui/material";
+import Link from "next/link";
+import UserAvatar from "../Common/UserAvatar";
 
-export default function DashboardProfile({ username, email }: { username: string; email: string}){
+export default function DashboardProfile({ username, email, avatar }: { username: string; email: string, avatar?: string}){
     return (
         <>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, alignItems: 'center', justifyItems: 'center' }}>
                 <Box>
-                    <Avatar sx={{ width: 70, height: 70, mr: 1 }}>
-                        <PersonOutlineIcon sx={{ width: 50, height: 50}} />
-                    </Avatar>
+                    <UserAvatar username={ username } avatar={ avatar ?? "" } width={70} height={70} />
                 </Box>
                 <Box>
                     <Typography>Username: { username }</Typography>

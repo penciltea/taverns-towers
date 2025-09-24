@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
 import { useAuthStore } from '@/store/authStore';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box, useTheme } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Divider, IconButton, Box, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Link from 'next/link';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
 import { userTier } from '@/constants/user.options';
+import UserAvatar from '../Common/UserAvatar';
 
 export default function Header() {
   const router = useRouter();
@@ -68,9 +68,7 @@ export default function Header() {
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
               sx={{ color: headerTextColor }}
             >
-              <Avatar sx={{ width: 26, height: 26, mr: 1 }}>
-                <PersonOutlineIcon />
-              </Avatar>
+              <UserAvatar username={ user.username } avatar={ user.avatar ?? "" } width={26} height={26} />
               Hi, {displayName}!
             </Button>
             <Menu
