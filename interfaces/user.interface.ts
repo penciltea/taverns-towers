@@ -1,6 +1,6 @@
 export interface UserInterface {
   id: string;
-  email: string;
+  email?: string;
   username: string;
   avatar?: string;
   tier: string;
@@ -12,6 +12,7 @@ export interface UserInterface {
     tier?: string;          // optional Patreon tier
     accessToken?: string;   // Patreon API access token
     refreshToken?: string;  // Patreon refresh token
+    providerAccountId?: string;
   };
 }
 
@@ -34,7 +35,14 @@ export interface LoginPayload {
 
 export interface LoginSuccess {
   success: true;
-  user: { id: string; email: string; username: string; avatar?: string; tier: string, theme: string };
+  user: { 
+    id: string; 
+    email?: string; 
+    username: string; 
+    avatar?: string; 
+    tier: string, 
+    theme: string 
+  };
 }
 
 export interface LoginFailure {

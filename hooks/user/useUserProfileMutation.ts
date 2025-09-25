@@ -1,6 +1,5 @@
 'use client'
 
-import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";

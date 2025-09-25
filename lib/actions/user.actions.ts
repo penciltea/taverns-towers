@@ -5,12 +5,14 @@ import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.model";
 import { LoginFailure, LoginPayload, LoginSuccess, RegisterPayload, UpdateUserPayload, UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { requireUser } from "@/lib/auth/authHelpers";
 import Site from "@/lib/models/site.model";
 import NpcModel from "@/lib/models/npc.model";
 import SettlementModel from "@/lib/models/settlement.model";
 import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/serializers";
+import { userTier } from "@/constants/user.options";
+import Account from "../models/account.model";
 
 // Serialize for client compatibility
 function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
@@ -22,8 +24,7 @@ function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInte
     username: obj.username,
     avatar: obj.avatar,
     tier: obj.tier,
-    theme: obj.theme,
-    passwordHash: obj.passwordHash
+    theme: obj.theme
   };
 }
 
@@ -54,7 +55,10 @@ export async function registerUser(data: RegisterPayload): Promise<{
       username: data.username.toLowerCase(),
       email: data.email.toLowerCase(),
       passwordHash: hashedPassword,
-      theme: UI_THEMES[0] // default theme
+      theme: UI_THEMES[0], // default theme
+      tier: userTier[0],
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     return { success: true };
@@ -86,26 +90,20 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
         return { success: false, error: "Invalid username/email or password." };
     }
 
+    if (!user.passwordHash) {
+      return { success: false, error: "This account does not have a password set." };
+    }
+
     // Verify password using bcrypt
     const isMatch = await bcrypt.compare(data.password, user.passwordHash);
     if (!isMatch) {
         return { success: false, error: "Invalid username/email or password." };
     }
 
-    // Serialize user before returning
-    const serializedUser = serializeUser(user);
-
     // Return fields to the client
     return {
         success: true,
-        user: {
-            id: serializedUser.id,
-            email: serializedUser.email,
-            username: serializedUser.username,
-            avatar: serializedUser.avatar,
-            tier: serializedUser.tier,
-            theme: serializedUser.theme
-        },
+        user: serializeUser(user)
     };
 }
 
@@ -116,6 +114,12 @@ export async function getUser() {
   const dbUser = await User.findById(user.id).lean<UserModel>();
   if (!dbUser) return null;
 
+  // Fetch linked Patreon account, if any
+  const patreonAccount = await Account.findOne({
+    userId: dbUser._id,
+    provider: "patreon",
+  }).lean();
+
   return {
     id: dbUser._id.toString(),
     username: dbUser.username,
@@ -123,7 +127,14 @@ export async function getUser() {
     avatar: dbUser.avatar,
     tier: dbUser.tier,
     theme: dbUser.theme,
-    patreon: dbUser.patreon,
+    patreon: patreonAccount
+      ? {
+          tier: "Patron",
+          accessToken: patreonAccount.accessToken,
+          refreshToken: patreonAccount.refreshToken,
+          providerAccountId: patreonAccount.providerAccountId,
+        }
+      : undefined,
   };
 }
 
@@ -187,7 +198,11 @@ export async function updateUser(
       updateData.avatar = data.avatar;
     }
 
-    const updatedUser = await User.findByIdAndUpdate(user.id, updateData, { new: true }).lean<UserModel>();
+    const updatedUser = await User.findByIdAndUpdate(
+      user.id,
+      { ...updateData, updatedAt: new Date() },
+      { new: true }
+    ).lean<UserModel>();
 
     if (!updatedUser) {
       return { success: false, error: "User not found." };
@@ -202,8 +217,7 @@ export async function updateUser(
         avatar: updatedUser.avatar,
         tier: updatedUser.tier,
         theme: updatedUser.theme,
-        passwordHash: updatedUser.passwordHash,
-        patreon: updatedUser.patreon,
+        passwordHash: updatedUser.passwordHash
       },
     };
   } catch (err) {
@@ -218,6 +232,11 @@ export async function refreshUserSession(userId: string) {
   const user = await User.findById(userId).lean();
   if (!user) return null;
 
+  const patreonAccount = await Account.findOne({
+    userId: user._id,
+    provider: "patreon",
+  }).lean();
+
   return {
     id: user._id.toString(),
     username: user.username,
@@ -225,7 +244,14 @@ export async function refreshUserSession(userId: string) {
     tier: user.tier,
     theme: user.theme,
     avatar: user.avatar,
-    patreon: user.patreon,
+    patreon: patreonAccount
+      ? {
+          tier: "Patron",
+          accessToken: patreonAccount.accessToken,
+          refreshToken: patreonAccount.refreshToken,
+          providerAccountId: patreonAccount.providerAccountId,
+        }
+      : undefined,
   };
 }
 
@@ -250,4 +276,49 @@ export async function getRecentActivity(limit = 5) {
   return tagged
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, limit);
+}
+
+
+// For linking Patreon accounts to native/RealmFoundry accounts
+export async function linkPatreonAccount(userId: string, patreonId: string, accessToken: string, refreshToken: string) {
+  await connectToDatabase();
+
+  const existing = await Account.findOne({ provider: "patreon", providerAccountId: patreonId });
+  if (existing) {
+    throw new Error("Patreon account already linked to another user.");
+  }
+
+  await Account.create({
+    userId: new mongoose.Types.ObjectId(userId),
+    provider: "patreon",
+    providerAccountId: patreonId,
+    accessToken,
+    refreshToken,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+}
+
+export async function unlinkPatreonAccount(
+  userId: string,
+  patreonAccountId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await connectToDatabase();
+
+    const result = await Account.findOneAndDelete({
+      userId: new Types.ObjectId(userId),
+      provider: "patreon",
+      providerAccountId: patreonAccountId,
+    });
+
+    if (!result) {
+      return { success: false, error: "No linked Patreon account found for this user." };
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error("Error unlinking Patreon account:", err);
+    return { success: false, error: "Failed to unlink Patreon account." };
+  }
 }

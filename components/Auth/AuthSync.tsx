@@ -24,38 +24,24 @@ export default function AuthSync() {
 
     async function fetchLatestUser() {
       try {
-        const dbUser = await getUser(); // fetch from your DB
-        const sessionUser = session?.user;
+        const dbUser = await getUser();
+        const sessionUser = session!.user;
         if (!sessionUser) return;
 
-        if (!dbUser) {
-          // fallback to session data if DB fetch fails
-          setUser({
-            id: sessionUser.id,
-            username: sessionUser.username || "Traveler",
-            email: sessionUser.email,
-            tier: capitalizeFirstLetter(sessionUser.tier || sessionUser.patreon?.tier || userTier[0]),
-            theme: sessionUser.theme || "dark",
-            patreon: sessionUser.patreon,
-          });
-          return;
-        }
+        // Merge DB and session data
+        const mergedUser = {
+          id: dbUser?.id || sessionUser.id,
+          username: dbUser?.username || sessionUser.username || "Traveler",
+          email: dbUser?.email || sessionUser.email || undefined,
+          avatar: dbUser?.avatar || "",
+          tier: capitalizeFirstLetter(
+            dbUser?.tier || sessionUser.tier || sessionUser.patreon?.tier || userTier[0]
+          ),
+          theme: dbUser?.theme || sessionUser.theme || "dark",
+          patreon: sessionUser.patreon || undefined,
+        };
 
-        // merge DB data with session data, preserving Patreon info
-        const username = dbUser.username || sessionUser.username || "Traveler";
-        const avatar = dbUser.avatar ||  "";
-        const email = dbUser.email || sessionUser.email;
-        const tierString = dbUser.tier || sessionUser.tier || sessionUser.patreon?.tier || userTier[0];
-
-        setUser({
-          id: dbUser.id,
-          username,
-          email,
-          avatar,
-          tier: capitalizeFirstLetter(tierString),
-          theme: dbUser.theme || sessionUser.theme || "dark",
-          patreon: sessionUser.patreon,
-        });
+        setUser(mergedUser);
       } catch (err) {
         console.error("Failed to fetch latest user:", err);
         clearUser();

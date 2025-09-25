@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   await user.save();
 
   const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
-  await sendPasswordResetEmail(user.email, resetUrl);
+  await sendPasswordResetEmail(user.email!, resetUrl);
 
   return NextResponse.json({ ok: true });
 }
