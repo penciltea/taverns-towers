@@ -12,9 +12,6 @@ import DashboardProfile from '@/components/Dashboard/DashboardProfile';
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
     const hasNativeAccount = Boolean(user?.username || user?.email);
-
-    console.log("user: ", user?.patreon);
-
     
     return (
         <AuthGate fallbackText="You must be logged in to view your account.">

@@ -13,7 +13,7 @@ interface DefaultProps {
 }
 
 export default function DefaultMembershipPanel({ user }: DefaultProps) {
-  const { startPatreonLink } = usePatreonLink();
+  const { linkPatreon } = usePatreonLink();
   const { isLoading } = useUIStore();
 
   const tier = user.tier ?? userTier[0];
@@ -37,7 +37,7 @@ export default function DefaultMembershipPanel({ user }: DefaultProps) {
         {!user.patreon?.accessToken && (
           <Button 
             variant="outlined" 
-            onClick={ () => startPatreonLink() } 
+            onClick={ () => linkPatreon() } 
             disabled={isLoading}
           >
             {isLoading ? "Linking Patreon..." : "Link Patreon Account"}

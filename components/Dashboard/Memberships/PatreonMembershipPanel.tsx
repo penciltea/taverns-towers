@@ -26,7 +26,7 @@ export default function PatreonMembershipPanel({ patreon, tier }: PatreonProps) 
         <MembershipTier tier={effectiveTier} />
         <MembershipBenefits tier={effectiveTier} />
 
-        {patreon.accessToken && patreon.providerAccountId && (
+        {patreon.providerAccountId && (
           <>
             <Button
               variant="outlined"

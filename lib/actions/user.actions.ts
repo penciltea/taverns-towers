@@ -208,6 +208,11 @@ export async function updateUser(
       return { success: false, error: "User not found." };
     }
 
+    const patreonAccount = await Account.findOne({
+      userId: updatedUser._id,
+      provider: "patreon",
+    }).lean();
+
     return {
       success: true,
       user: {
@@ -217,7 +222,15 @@ export async function updateUser(
         avatar: updatedUser.avatar,
         tier: updatedUser.tier,
         theme: updatedUser.theme,
-        passwordHash: updatedUser.passwordHash
+        passwordHash: updatedUser.passwordHash,
+        patreon: patreonAccount
+          ? {
+              tier: "Patron",
+              accessToken: patreonAccount.accessToken,
+              refreshToken: patreonAccount.refreshToken,
+              providerAccountId: patreonAccount.providerAccountId,
+            }
+          : undefined,
       },
     };
   } catch (err) {

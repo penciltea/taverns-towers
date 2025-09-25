@@ -1,4 +1,3 @@
-import { linkPatreonAccount, unlinkPatreonAccount } from "@/lib/actions/user.actions";
 import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
 import { signIn } from "next-auth/react";
@@ -8,50 +7,35 @@ export function usePatreonLink() {
   const setUser = useAuthStore((state) => state.setUser);
   const { showSnackbar, showErrorDialog, setSubmitting } = useUIStore();
 
-  function startPatreonLink() {
+  /**
+   * Initiates Patreon linking.
+   */
+  function linkPatreon() {
     if (!user) return showErrorDialog("No user session found.");
 
-    signIn("patreon");
+    signIn("patreon", {
+      callbackUrl: `/account/dashboard?linkUserId=${user.id}`
+    });
   }
 
-  async function completePatreonLink(patreonId: string, accessToken: string, refreshToken: string) {
-    if (!user) return showErrorDialog("No user session found.");
-
-    setSubmitting(true);
-    try {
-      await linkPatreonAccount(user.id, patreonId, accessToken, refreshToken);
-
-      setUser({
-        ...user,
-        patreon: {
-          tier: "Patron",
-          accessToken,
-          refreshToken,
-          providerAccountId: patreonId,
-        },
-      });
-
-      showSnackbar("Patreon account linked successfully!", "success");
-    } catch (err) {
-      showErrorDialog(err instanceof Error ? err.message : "Failed to link Patreon account.");
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
+  /**
+   * Unlinks the currently linked Patreon account via your API.
+   */
   async function unlinkPatreon(patreonAccountId: string) {
     if (!user) return showErrorDialog("No user session found.");
 
     setSubmitting(true);
     try {
-      const res = await unlinkPatreonAccount(user.id, patreonAccountId);
-      if (!res.success) throw new Error(res.error);
-
-      setUser({
-        ...user,
-        patreon: undefined,
+      const res = await fetch("/api/user/unlink-patreon", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id, patreonAccountId }),
       });
 
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error ?? "Failed to unlink Patreon account.");
+
+      setUser({ ...user, patreon: undefined });
       showSnackbar("Patreon account unlinked successfully.", "success");
     } catch (err) {
       showErrorDialog(err instanceof Error ? err.message : "Failed to unlink Patreon account.");
@@ -60,5 +44,5 @@ export function usePatreonLink() {
     }
   }
 
-  return { startPatreonLink, completePatreonLink, unlinkPatreon };
+  return { linkPatreon, unlinkPatreon };
 }

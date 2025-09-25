@@ -7,9 +7,13 @@ import { loginUser } from "@/lib/actions/user.actions";
 import { userTier } from "@/constants/user.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
 import { PatreonIdentityResponse, PatreonMember, PatreonTier } from "@/interfaces/patreon.interface";
+import { Adapter } from "next-auth/adapters";
+
+
+const adapter: Adapter = MongoDBAdapter(clientPromise!) as Adapter;
 
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(clientPromise!),
+  adapter,
 
   providers: [
     CredentialsProvider({
@@ -57,6 +61,38 @@ export const authOptions: AuthOptions = {
   pages: { signIn: "/login" },
 
   callbacks: {
+    async signIn({ account }) {
+      if (!account) return false;
+
+      // Extract linking userId from the callback URL
+      const callbackUrl = (account.callbackUrl ?? "") as string;
+      const url = new URL(callbackUrl || "http://localhost");
+      const linkingUserId = url.searchParams.get("userId");
+
+      if (account.provider === "patreon" && linkingUserId) {
+        const nativeUser = await adapter.getUser!(linkingUserId);
+        if (!nativeUser) return false;
+
+        await adapter.linkAccount({
+          userId: nativeUser.id,
+          type: "oauth",
+          provider: account.provider,
+          providerAccountId: account.providerAccountId!,
+          access_token: account.access_token,
+          refresh_token: account.refresh_token,
+          token_type: account.token_type,
+          scope: account.scope,
+          expires_at: account.expires_at,
+        });
+
+        return true;
+      }
+
+      // Otherwise, allow normal Patreon login
+      return true;
+    },
+
+
     // JWT callback: add user info and handle Patreon tokens
     async jwt({ token, user, account }) {
       // When user first logs in
@@ -145,6 +181,7 @@ export const authOptions: AuthOptions = {
 
       return token;
     },
+    
 
     // Session callback: expose only safe fields to client
     async session({ session, token }) {
