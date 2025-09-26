@@ -17,7 +17,7 @@ export default function ViewNpc({ npc }: NpcProps){
 
   return (
     <EntityViewLayout
-      title={npc.name}
+      title={ npc.name }
       actions={ <NpcActions {...npc} /> }
       leftContent={ <NpcDetails npc={npc} /> }
       rightContent={

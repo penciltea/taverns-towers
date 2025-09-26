@@ -16,6 +16,7 @@ export default function NpcDescriptions({ npc, userId }: NpcDescriptionsProps) {
 
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+            <Typography variant="h4" component="p" sx={{ mb: 2 }}>Descriptions</Typography>
             <Box sx={{my: 2}}>
               <Typography variant="h5" component="h3">Description</Typography>
               <Divider sx={{mb: 2}} />

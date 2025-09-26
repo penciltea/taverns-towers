@@ -21,12 +21,10 @@ export default function EntityViewLayout({
 }: EntityViewLayoutProps) {
   return (
     <>
-      <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 2, justifyContent: "space-between" }}>
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 2, justifyContent: "space-between", alignItems: "center" }}>
         <Typography variant="h3" component="h1">{title}</Typography>
         {actions}
       </Stack>
-
-      <Divider sx={{ my: 2 }} />
 
       <Grid container spacing={2} alignItems="stretch">
         <Grid size={{ xs: 12, md: 5 }} sx={{ display: "flex" }}>
