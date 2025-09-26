@@ -24,9 +24,6 @@ export default function DashboardActivity(){
     return (
         <Box
             sx={{
-                border: "1px solid",
-                borderColor: "divider",
-                borderRadius: 2,
                 mb: 2,
                 flex: 1,
                 minHeight: 200,

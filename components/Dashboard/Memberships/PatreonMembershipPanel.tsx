@@ -12,13 +12,12 @@ interface PatreonProps {
     accessToken?: string;
     refreshToken?: string;
     providerAccountId?: string;
-  }, 
-  tier: string;
+  }
 }
 
-export default function PatreonMembershipPanel({ patreon, tier }: PatreonProps) {
+export default function PatreonMembershipPanel({ patreon }: PatreonProps) {
   const { unlinkPatreon } = usePatreonLink();
-  const effectiveTier = tier ?? userTier[0];
+  const effectiveTier = patreon.tier ?? userTier[0];
 
   return (
     <Box>
@@ -29,7 +28,8 @@ export default function PatreonMembershipPanel({ patreon, tier }: PatreonProps) 
         {patreon.providerAccountId && (
           <>
             <Button
-              variant="outlined"
+              variant="contained"
+              size="large"
               href="https://www.patreon.com/c/RealmFoundry"
               target="_blank"
               rel="noopener noreferrer"

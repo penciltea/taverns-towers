@@ -312,6 +312,7 @@ export async function linkPatreonAccount(userId: string, patreonId: string, acce
   });
 }
 
+// For unlinking patreon accounts
 export async function unlinkPatreonAccount(
   userId: string,
   patreonAccountId: string

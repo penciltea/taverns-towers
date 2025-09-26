@@ -3,7 +3,7 @@
 import AuthGate from '@/components/Auth/AuthGuard';
 import { useAuthStore } from '@/store/authStore';
 import DashboardSection from "@/components/Dashboard/DashboardSection";
-import { Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography, Box } from "@mui/material";
 import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 
 import MembershipPanel from '@/components/Dashboard/Memberships';
@@ -15,9 +15,9 @@ export default function AccountDashboard(){
     
     return (
         <AuthGate fallbackText="You must be logged in to view your account.">
-            <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+            <Box>
                 <Typography variant="h4" component="h1" gutterBottom>Account Dashboard</Typography>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, alignItems: 'stretch', justifyItems: 'flex-start' }}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2}}>
                     {/* Displaying user profile section for non-patreon users*/}
                     {hasNativeAccount && 
                         <DashboardSection 
@@ -27,13 +27,14 @@ export default function AccountDashboard(){
                             <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} />
                         </DashboardSection>
                     }
+
                     <DashboardSection
                         titleComponent="h3"
                         titleText="Featured Items"
                     >
                         <Typography>A placeholder for creator&apos;s favorites</Typography>
                     </DashboardSection>
-                    
+
                     <DashboardSection 
                         titleComponent="h4" 
                         titleText="Membership"
@@ -42,8 +43,10 @@ export default function AccountDashboard(){
                     </DashboardSection>
                 </Stack>
                 
-                <DashboardActivity />
-            </Paper>
+                <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+                    <DashboardActivity />
+                </Paper>
+            </Box>
         </AuthGate>
     )
 }

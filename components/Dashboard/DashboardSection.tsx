@@ -1,4 +1,4 @@
-import { Box, Typography, TypographyProps } from "@mui/material";
+import { Box, Paper, Typography, TypographyProps } from "@mui/material";
 
 interface DashboardSectionProps {
     children: React.ReactNode;
@@ -8,15 +8,7 @@ interface DashboardSectionProps {
 
 export default function DashboardSection({ children, titleComponent, titleText }: DashboardSectionProps){
     return (
-        <Box
-            sx={{
-                border: "1px solid",
-                borderColor: "divider",
-                borderRadius: 2,
-                mb: 2,
-                flex: 1
-            }}
-        >
+        <Paper elevation={3} sx={{ p: 3, borderRadius: 2, flex: 1 }}>
             {/* Title */}
             <Box sx={{ padding: 2 }} >
                 <Typography variant="h5" component={ titleComponent }>{ titleText }</Typography>
@@ -26,6 +18,6 @@ export default function DashboardSection({ children, titleComponent, titleText }
             <Box sx={{ p: 2 }}>
                 { children }
             </Box>
-        </Box>
+        </Paper>
     )
 }

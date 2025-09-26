@@ -24,15 +24,6 @@ export default function DefaultMembershipPanel({ user }: DefaultProps) {
         <MembershipTier tier={tier} />
         <MembershipBenefits tier={tier} />
 
-        {/* Stripe / site-managed membership */}
-        <Button 
-          variant="contained" 
-          href="/account/membership" 
-          disabled
-        >
-          Manage Membership
-        </Button>
-
         {/* Patreon linking */}
         {!user.patreon?.accessToken && (
           <Button 

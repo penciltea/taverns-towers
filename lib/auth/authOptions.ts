@@ -196,6 +196,7 @@ export const authOptions: AuthOptions = {
         if (token.patreon) {
           session.user.patreon = {
             tier: token.patreon.tier,
+            providerAccountId: token.patreon.providerAccountId,
           };
         }
 

@@ -1,3 +1,4 @@
+import { unlinkPatreonAccount } from "@/lib/actions/user.actions";
 import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
 import { signIn } from "next-auth/react";
@@ -26,14 +27,9 @@ export function usePatreonLink() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/user/unlink-patreon", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: user.id, patreonAccountId }),
-      });
+      const result = await unlinkPatreonAccount(user.id, patreonAccountId);
 
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error ?? "Failed to unlink Patreon account.");
+      if (!result.success) throw new Error(result.error ?? "Failed to unlink Patreon account.");
 
       setUser({ ...user, patreon: undefined });
       showSnackbar("Patreon account unlinked successfully.", "success");
