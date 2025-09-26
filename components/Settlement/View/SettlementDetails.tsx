@@ -25,11 +25,11 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
       <Box sx={{marginTop: 1}}>
         <Typography variant="h4" component="h2">Details</Typography>
         
-        <List>
+        <Box>
           {fields.map((field) => (
             <InfoListItem key={ field.label } label={ field.label } value={ field.value } />
           ))}
-        </List>
+        </Box>
         <Button variant="outlined" color="secondary" onClick={() => setOpenDialog('SettlementDetailsDialog', { settlement: settlement })}>Additional Details</Button>
       </Box>
     </>

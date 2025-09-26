@@ -7,7 +7,7 @@ export default function DashboardProfile({ username, email, avatar }: { username
         <>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, alignItems: 'center', justifyItems: 'center' }}>
                 <Box>
-                    <UserAvatar username={ username } avatar={ avatar ?? "" } width={70} height={70} />
+                    <UserAvatar username={ username } avatar={ avatar ?? "" } width={100} height={100} />
                 </Box>
                 <Box>
                     <Typography>Username: { username }</Typography>

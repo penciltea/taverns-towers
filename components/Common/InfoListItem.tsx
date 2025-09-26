@@ -7,7 +7,7 @@ type InfoListItemProps = {
 
 export default function InfoListItem({ label, value }: InfoListItemProps) {
   return (
-    <Box component="div" sx={{ display: 'flex', gap: 1, mb: 1 }}>
+    <Box component="dl" sx={{ display: 'flex', gap: 1, mb: 1 }}>
       <Typography component="dt" fontWeight="bold" minWidth={200}>
         {label}
       </Typography>
