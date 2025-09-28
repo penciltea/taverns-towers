@@ -1,6 +1,6 @@
 import { Flatten } from "./commonOptions";
 
-export const NPC_TABS = ["Basics", "Connections"];
+export const NPC_TABS = ["Basics", "NPC Connections"];
 
 export const NPC_AGE = [
   "Child",

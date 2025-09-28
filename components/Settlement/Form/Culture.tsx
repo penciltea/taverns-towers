@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
-import {CRIMINAL_ACTIVITY_TYPES, DOMAINS  } from "@/constants/settlementOptions";
+import { DOMAINS  } from "@/constants/settlementOptions";
 import { FormTextField, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
@@ -13,14 +13,7 @@ export default function SettlementFormCulture(){
 
     return (
         <Box>
-            <FormChipSelect
-                name="crime"
-                label="Criminal Activity"
-                control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(CRIMINAL_ACTIVITY_TYPES)]}
-                fieldError={errors.crime}
-            />
-
+            
             <FormChipSelect
                 name="domains"
                 label="Commonly-Worshipped Domain(s)"

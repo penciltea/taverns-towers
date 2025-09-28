@@ -7,11 +7,17 @@
 */
 
 
-import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants/site/site.options";
+import { ENTERTAINMENT_VENUE_TYPES, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteFormData } from "@/schemas/site.schema";
 import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteGenerationContext, SiteGenerationInput, SiteType, TavernSite, TempleSite } from "@/interfaces/site.interface";
+import { getLabelFromValue } from "./getLabelFromValue";
+import { isEntertainmentSite } from "../modules/site/entertainment/entertainment.rules";
+import { isGovernmentSite } from "../modules/site/government/government.rules";
+import { isGuildSite } from "../modules/site/guild/guild.rules";
+import { isShopSite } from "../modules/site/shop/shop.rules";
+import { getShopTypeLabel } from "@/components/Site/Dialog/ShopDetails";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -243,7 +249,22 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
         connections: miscellaneousSite.connections ?? [],
       };
     default:
-      console.warn("Unknown site type", site.type);
       return null;
   }
 }
+
+
+export function handleSiteLabel(site: SiteType){
+    const baseLabel = getLabelFromValue(SITE_CATEGORIES, site.type);
+
+    if(site.type === 'shop') {
+      return `${baseLabel} (${getShopTypeLabel(site.shopType)})`;
+    } else if(site.type === 'guild') {
+      return `${baseLabel} (getGuildypeLabel(site.guildType)})`;
+    } else if(site.type === 'government' && site.function){
+      return `${baseLabel} (getGovernmentTypeLabel(site.function)})`;
+    } else if(site.type === 'entertainment'){
+      return `${baseLabel} (${getLabelFromValue(ENTERTAINMENT_VENUE_TYPES, site.venueType ?? "")})`;
+    }
+    return baseLabel;
+  }

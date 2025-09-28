@@ -18,6 +18,8 @@ import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
 import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { useAuthStore } from "@/store/authStore";
+import { canCreateContent } from "@/lib/actions/user.actions";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
@@ -25,8 +27,9 @@ export function useSettlementFormSetup(
   mode: "add" | "edit"
 ) {
   const router = useRouter();
+  const { user } = useAuthStore();
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
-  const { clearSelectedItem, clearMode } = useSettlementContentStore();
+  const { clearSelectedItem, clearDraftItem, clearMode } = useSettlementContentStore();
   const queryClient = useQueryClient();
 
   const { generatePartial, generateFull } = useSettlementGeneratorActions();
@@ -63,6 +66,13 @@ export function useSettlementFormSetup(
     setSubmitting(true);
 
     try {
+      if (!user?.id) throw new Error("User is not logged in");
+      
+      if (!(await canCreateContent(user.id, "settlement"))) {
+        showErrorDialog("You have reached the maximum number of settlements for your membership tier. Please either upgrade your membership tier or delete an existing site to continue.");
+        return;
+      }
+
       const saved = await saveSettlement(data);
 
       if (data.connections?.length) {
@@ -100,6 +110,7 @@ export function useSettlementFormSetup(
       queryClient.invalidateQueries({ queryKey: ["ownedSettlements"] });
 
       if (saved?._id) {
+        clearDraftItem();
         router.push(`/settlements/${saved._id}`);
       }
     } catch (error) {

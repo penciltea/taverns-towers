@@ -15,6 +15,7 @@ import { getLabelFromValue } from '@/lib/util/getLabelFromValue';
 import { deleteSite } from '@/lib/actions/site.actions';
 import { siteListKey } from '@/lib/util/queryKeys';
 import AuthGate from '@/components/Auth/AuthGuard';
+import { handleSiteLabel } from '@/lib/util/siteHelpers';
 
 export default function AllSitesPage() {
   const { closeDialog, setOpenDialog, showErrorDialog } = useUIStore();
@@ -77,7 +78,7 @@ export default function AllSitesPage() {
             key={site._id}
             title={site.name}
             image={site.image}
-            subtitle={getLabelFromValue(SITE_CATEGORIES, site.type)}
+            subtitle={handleSiteLabel(site)}
             onClick={() => {
               useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
                 siteData: site,

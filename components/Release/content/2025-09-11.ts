@@ -7,9 +7,13 @@ export const release20250911 = {
     "Added support to allow users to login with Patreon accounts",
     "Added user dashboard page with user account information and recent activity"
   ],
+  improvements: [
+    
+  ],
   bugFixes: [
     "Fixed issue with tavern generation data",
     "Fixed bug in 'site creation' dialog that showed improper settlement names",
-    "Added check to view all sites page to check if user is logged in first"
+    "Added check to view all sites page to check if user is logged in first",
+    "Settlements: Removed unnecessary 'leadership' field from form"
   ],
 };

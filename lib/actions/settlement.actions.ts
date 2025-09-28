@@ -104,7 +104,7 @@ export async function createSettlement(data: Partial<Settlement>) {
   const user = await requireUser();
 
   // Normalize connection ids
-      const normalizedConnections = normalizeConnections(data.connections);
+  const normalizedConnections = normalizeConnections(data.connections);
   
 
   const newSettlement = await SettlementModel.create({

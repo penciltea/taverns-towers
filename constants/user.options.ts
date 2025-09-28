@@ -3,7 +3,7 @@ export const userTier = [
     "Apprentice",
     "Artisan",
     "Architect"
-]
+];
 
 export const membershipBenefits = [
     {
@@ -45,5 +45,32 @@ export const membershipBenefits = [
             "Rare fragment packs and special UI badges",
             "Advanced multi-settlement templates and bundles"
         ]
+    }
+ ];
+
+ export const tierLimits = [
+    {
+        "tier": userTier[0],
+        "settlementLimit": 5,
+        "siteLimit": 15,
+        "npcLimit": 5
+    },
+    {
+        "tier": userTier[1],
+        "settlementLimit": -1,
+        "siteLimit": -1,
+        "npcLimit": -1
+    },
+    {
+        "tier": userTier[2],
+        "settlementLimit": -1,
+        "siteLimit": -1,
+        "npcLimit": -1
+    },
+    {
+        "tier": userTier[3],
+        "settlementLimit": -1,
+        "siteLimit": -1,
+        "npcLimit": -1
     }
  ];

@@ -18,7 +18,7 @@ export default function NewSettlementPage() {
   const safeId = getSingleParam(id);
 
   useFormMode(safeId, useSettlementContentStore);
-  const { mode, draftItem, clearDraftItem, setDraftItem } = useSettlementContentStore();
+  const { mode, draftItem, clearDraftItem, setDraftItem, submittingDraft, setSubmittingDraft } = useSettlementContentStore();
   const { setOpenDialog } = useUIStore();
   const user = useAuthStore(state => state.user);
 
@@ -29,18 +29,25 @@ export default function NewSettlementPage() {
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
 
    useEffect(() => {
-    if (user && draftItem) {
-      (async () => {
+  if (user && draftItem && !submittingDraft) {
+    setSubmittingDraft(true);
+    (async () => {
+      try {
         await onSubmit(draftItem as SettlementFormData);
+      } finally {
         clearDraftItem();
-      })();
-    }
-  }, [user, onSubmit, clearDraftItem, draftItem]); // Only runs when user logs in
+        setSubmittingDraft(false);
+      }
+    })();
+  }
+}, [user, draftItem, submittingDraft, onSubmit, clearDraftItem, setSubmittingDraft]); // Only runs when user logs in
 
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {
       setDraftItem(data);
-      setOpenDialog("LoginDialog", {});
+      setOpenDialog("LoginDialog", {
+        onSocialLoginStart: () => setDraftItem(data)
+      });
       return;
     }
 

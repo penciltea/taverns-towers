@@ -16,12 +16,16 @@ export default function Header() {
   const router = useRouter();
   const theme = useTheme();
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const anchorEl = useUIStore(state => state.userMenuAnchor);
+  const setAnchorEl = useUIStore(state => state.setUserMenuAnchor);
+  const closeUserMenu = useUIStore(state => state.closeUserMenu);
 
   const user = useAuthStore((state) => state.user);
 
   const displayName = user?.username || "Traveler";
   const displayTier = capitalizeFirstLetter(user?.tier ?? userTier[0]);
+
+  
 
   const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -62,25 +66,25 @@ export default function Header() {
           <>
             <Button
               color="inherit"
-              onClick={handleUserMenuClick}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
               aria-controls={anchorEl ? 'user-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
-              sx={{ color: headerTextColor }}
             >
               <UserAvatar username={ user.username } avatar={ user.avatar ?? "" } width={26} height={26} />
               Hi, {displayName}!
             </Button>
+
             <Menu
               id="user-menu"
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+              onClose={closeUserMenu}
             >
               <MenuItem disabled>Tier: {displayTier}</MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleNavigate('/account/dashboard')}>Account Dashboard</MenuItem>
-              <MenuItem onClick={handleSignOut}>Logout</MenuItem>
+              <MenuItem onClick={() => { handleNavigate('/account/dashboard'); closeUserMenu(); }}>Account Dashboard</MenuItem>
+              <MenuItem onClick={() => { handleSignOut(); closeUserMenu(); }}>Logout</MenuItem>
             </Menu>
           </>
         ) : (

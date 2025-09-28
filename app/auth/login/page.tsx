@@ -19,7 +19,7 @@ export default function LoginPage() {
           Log In
         </Typography>
         <Typography variant="body1" gutterBottom>
-          Step through the gate — enter your username or email and password to continue your adventure.
+          Step through the gate - enter your username or email and password to continue your adventure.
         </Typography>
 
         <LoginForm />

@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUIStore } from "@/store/uiStore";
-import DeleteConfirmationDialog from "@/components/Common/DeleteConfirmationDialog";
+import DeleteConfirmationDialog from "@/components/Common/Dialog/DeleteConfirmationDialog";
 
 interface DeleteButtonProps<T = unknown> {
     id: string;

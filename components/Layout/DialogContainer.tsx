@@ -4,7 +4,7 @@ import { useUIStore } from "@/store/uiStore";
 import SiteTypeDialog from "../Site/Dialog/SiteTypeDialog";
 import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
 import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
-import TypeChangeDialog from "../Common/typeChangeDialog";
+import TypeChangeDialog from "../Common/Dialog/typeChangeDialog";
 import LoginDialog from "../Auth/LoginDialog";
 import DeleteConnectionDialog from "../Common/EntityLink/DeleteConnectionDialog";
 

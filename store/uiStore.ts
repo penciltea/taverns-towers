@@ -8,6 +8,11 @@ interface UIState {
   closeDrawer: () => void;
   openDrawer: () => void;
 
+  // Header
+  userMenuAnchor: HTMLElement | null;
+  setUserMenuAnchor: (el: HTMLElement | null) => void;
+  closeUserMenu: () => void;
+
   // Dialog state
   openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'DeleteConnectionDialog';
   dialogProps: Record<string, any>;
@@ -49,6 +54,10 @@ export const useUIStore = create<UIState>((set) => {
     toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
     closeDrawer: () => set({ isDrawerOpen: false }),
     openDrawer: () => set({ isDrawerOpen: true }),
+
+    userMenuAnchor: null,
+    setUserMenuAnchor: (el) => set({ userMenuAnchor: el }),
+    closeUserMenu: () => set({ userMenuAnchor: null }),
 
     openDialog: null,
     dialogProps: {},

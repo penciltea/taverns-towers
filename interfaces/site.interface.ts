@@ -193,7 +193,7 @@ export interface SiteGenerationInput extends SiteGenerationContext {
 }
 
 
-export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite | BaseSite;
+export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite;
 
 export type SiteSize = (typeof SITE_SIZE)[number]['value'];
 export type SiteCondition = (typeof SITE_CONDITION)[number]['value'];

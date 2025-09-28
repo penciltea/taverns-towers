@@ -11,7 +11,7 @@ import Site from "@/lib/models/site.model";
 import NpcModel from "@/lib/models/npc.model";
 import SettlementModel from "@/lib/models/settlement.model";
 import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/serializers";
-import { userTier } from "@/constants/user.options";
+import { tierLimits, userTier } from "@/constants/user.options";
 import Account from "../models/account.model";
 
 // Serialize for client compatibility
@@ -291,6 +291,40 @@ export async function getRecentActivity(limit = 5) {
     .slice(0, limit);
 }
 
+
+// For checking to see if user can create more content based on their tier
+export async function canCreateContent(userId: string, contentType: "settlement" | "site" | "npc"): Promise<boolean> {
+  await connectToDatabase();
+  const user = await User.findById(userId).lean();
+  if (!user) return false;
+
+  const limits = tierLimits.find((t) => t.tier === user.tier);
+  if (!limits) return false; // should not happen
+
+  if (limits.settlementLimit === -1 && limits.siteLimit === -1 && limits.npcLimit === -1) {
+    return true; // unlimited content
+  } else {
+    let currentCount = 0;
+    let limit = 0;
+    switch (contentType) {
+      case "settlement":
+        currentCount = await SettlementModel.countDocuments({ userId: userId });
+        limit = limits.settlementLimit;
+        break;
+      case "site":
+        currentCount = await Site.countDocuments({ userId: userId });
+        limit = limits.siteLimit;
+        break;
+      case "npc":
+        currentCount = await NpcModel.countDocuments({ userId: userId });
+        limit = limits.npcLimit;
+        break;
+      default:
+        return false;
+    }
+    return currentCount < limit;
+  }
+}
 
 // For linking Patreon accounts to native/RealmFoundry accounts
 export async function linkPatreonAccount(userId: string, patreonId: string, accessToken: string, refreshToken: string) {

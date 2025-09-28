@@ -21,7 +21,7 @@ import { SettlementFormData } from "@/schemas/settlement.schema";
 
 export function useSaveSettlement(mode: "add" | "edit", id?: string) {
   const { user } = useAuthStore();
-
+  
   return async function saveSettlement(data: SettlementFormData) {
     if (!user?.id) throw new Error("User is not logged in");
 
