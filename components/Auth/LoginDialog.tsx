@@ -8,14 +8,27 @@ type LoginDialogProps = {
   open: boolean;
   onClose: () => void;
   onLoginSuccess?: () => void;
-  onSocialLoginStart?: () => void;  
+  draftKey?: string; // key for storing draft in sessionStorage
+  draftItem?: any;   // optional draft data
 };
 
-export default function LoginDialog({ open, onClose, onLoginSuccess, onSocialLoginStart }: LoginDialogProps) {
+export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, draftItem }: LoginDialogProps) {
   const handleSuccess = () => {
-    onClose();
+    // Optional: persist draft in sessionStorage (for OAuth fallback)
+    if (draftKey && draftItem) {
+      sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
+    }
     onLoginSuccess?.();
-    onSocialLoginStart?.();
+    onClose();
+  };
+
+  const handlePatreonLogin = () => {
+    if (draftKey && draftItem) {
+      sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
+    }
+
+    const currentPath = window.location.pathname; // remember where the user is
+    signIn("patreon", { callbackUrl: currentPath });
   };
 
   return (
@@ -31,10 +44,7 @@ export default function LoginDialog({ open, onClose, onLoginSuccess, onSocialLog
           fullWidth
           variant="contained"
           color="secondary"
-          onClick={() => {
-            onSocialLoginStart?.(); // parent stores draft
-            signIn("patreon", { callbackUrl: "/" });
-          }}
+          onClick={handlePatreonLogin}
         >
           Continue with Patreon
         </Button>

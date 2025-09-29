@@ -37,6 +37,7 @@ export const DefaultSiteQueryParams: SiteQueryParams = {
 }
 
 export interface SiteResponse {
+  success: boolean;
   sites: SiteType[];
   total: number;
   totalPages: number;
@@ -193,7 +194,7 @@ export interface SiteGenerationInput extends SiteGenerationContext {
 }
 
 
-export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite;
+export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | GovernmentSite | EntertainmentSite | HiddenSite | ResidenceSite | MiscellaneousSite | BaseSite;
 
 export type SiteSize = (typeof SITE_SIZE)[number]['value'];
 export type SiteCondition = (typeof SITE_CONDITION)[number]['value'];

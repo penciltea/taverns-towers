@@ -2,11 +2,30 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { applyShopTypeRule, isShopSite } from "@/lib/modules/site/shop/shop.rules";
 import { SHOP_TYPE_CATEGORIES, SiteShopType } from "@/constants/site/site.options";
 import { getRandom } from "@/lib/util/randomValues";
-import { ShopSite } from "@/interfaces/site.interface";
+import { ShopSite, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 
 jest.mock("@/lib/util/randomValues", () => ({
-    getRandom: jest.fn(),
+    getRandomSubset: (arr: string[], opts: { count?: number; min?: number; max?: number }) =>
+        arr.slice(0, opts.count ?? opts.max ?? arr.length),
+    getRandom: <T>(arr: T[]): T => arr[0] 
 }));
+
+jest.mock("@/lib/util/siteHelpers", () => ({
+    createSiteGenerator: (type: string, rules: Array<(data: Partial<SiteFormData>, context: SiteGenerationContext) => Promise<Partial<SiteFormData>>>) => async (input: SiteGenerationInput) => {
+        let result = { type, ...input } as Partial<SiteFormData>;
+        for (const rule of rules) {
+            result = await rule(result, input);
+        }
+        return result;
+    },
+}));
+
+jest.mock("../common/rules", () => ({
+  commonRules: [
+    async (data: Partial<SiteFormData>) => ({ ...data, commonApplied: true }),
+  ],
+}));
+
 
 describe("Shop Site Generation Rules", () => {
     const mockedGetRandom = getRandom as jest.MockedFunction<typeof getRandom>;

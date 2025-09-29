@@ -14,6 +14,7 @@ export const release20250911 = {
     "Fixed issue with tavern generation data",
     "Fixed bug in 'site creation' dialog that showed improper settlement names",
     "Added check to view all sites page to check if user is logged in first",
-    "Settlements: Removed unnecessary 'leadership' field from form"
+    "Settlements: Removed unnecessary 'leadership' field from form",
+    "Fixed an issue on the View All Sites page where all sites were being displayed, even if not created by the user"
   ],
 };

@@ -13,11 +13,9 @@ import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteFormData } from "@/schemas/site.schema";
 import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteGenerationContext, SiteGenerationInput, SiteType, TavernSite, TempleSite } from "@/interfaces/site.interface";
 import { getLabelFromValue } from "./getLabelFromValue";
-import { isEntertainmentSite } from "../modules/site/entertainment/entertainment.rules";
-import { isGovernmentSite } from "../modules/site/government/government.rules";
-import { isGuildSite } from "../modules/site/guild/guild.rules";
-import { isShopSite } from "../modules/site/shop/shop.rules";
 import { getShopTypeLabel } from "@/components/Site/Dialog/ShopDetails";
+import { getGovernmentTypeLabel } from "@/components/Site/Dialog/GovernmentDetails";
+import { getGuildypeLabel } from "@/components/Site/Dialog/GuildDetails";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -254,17 +252,37 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
 }
 
 
-export function handleSiteLabel(site: SiteType){
-    const baseLabel = getLabelFromValue(SITE_CATEGORIES, site.type);
+function isShopSite(site: SiteType): site is ShopSite {
+  return site.type === 'shop';
+}
 
-    if(site.type === 'shop') {
-      return `${baseLabel} (${getShopTypeLabel(site.shopType)})`;
-    } else if(site.type === 'guild') {
-      return `${baseLabel} (getGuildypeLabel(site.guildType)})`;
-    } else if(site.type === 'government' && site.function){
-      return `${baseLabel} (getGovernmentTypeLabel(site.function)})`;
-    } else if(site.type === 'entertainment'){
-      return `${baseLabel} (${getLabelFromValue(ENTERTAINMENT_VENUE_TYPES, site.venueType ?? "")})`;
-    }
-    return baseLabel;
+function isGuildSite(site: SiteType): site is GuildSite {
+  return site.type === 'guild';
+}
+
+function isGovernmentSite(site: SiteType): site is GovernmentSite {
+  return site.type === 'government';
+}
+
+function isEntertainmentSite(site: SiteType): site is EntertainmentSite {
+  return site.type === 'entertainment';
+}
+
+export function handleSiteLabel(site: SiteType) {
+  const baseLabel = getLabelFromValue(SITE_CATEGORIES, site.type);
+
+  if (isShopSite(site)) {
+    return `${baseLabel} (${getShopTypeLabel(site.shopType)})`;
+  } else if (isGuildSite(site)) {
+    return `${baseLabel} (${getGuildypeLabel(site.guildType)})`;
+  } else if (isGovernmentSite(site) && site.function) {
+    return `${baseLabel} (${getGovernmentTypeLabel(site.function)})`;
+  } else if (isEntertainmentSite(site) && site.venueType) {
+    return `${baseLabel} (${getLabelFromValue(
+      ENTERTAINMENT_VENUE_TYPES,
+      site.venueType ?? ''
+    )})`;
   }
+
+  return baseLabel;
+}

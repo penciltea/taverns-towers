@@ -44,7 +44,7 @@ export async function getSitesPaginated(
   await connectToDatabase();
 
   const query: Record<string, unknown> = {};
-
+  
   if (settlementId === 'wilderness') {
     query.settlementId = null; // Query for wilderness sites
   } else if (settlementId && ObjectId.isValid(settlementId)) {
@@ -74,6 +74,7 @@ export async function getSitesPaginated(
   const totalPages = Math.ceil(total / limit);
 
   return {
+    success: true,
     sites: sites.map(serializeSite),
     total,
     totalPages,

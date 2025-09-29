@@ -11,7 +11,9 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
-import { useEffect } from "react";
+import { useDraftForm } from "@/hooks/useDraftForm";
+
+const DRAFT_KEY = "draftSettlement";
 
 export default function NewSettlementPage() {
   const { id } = useParams();
@@ -22,36 +24,41 @@ export default function NewSettlementPage() {
   const { setOpenDialog } = useUIStore();
   const user = useAuthStore(state => state.user);
 
+
   const methods = useFormWithSchema(settlementSchema, {
-    defaultValues: defaultSettlementValues,
+    defaultValues: draftItem || defaultSettlementValues,
   });
 
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
+  
+  const openLoginDialog = (props?: any) =>
+    setOpenDialog("LoginDialog", props);
 
-   useEffect(() => {
-  if (user && draftItem && !submittingDraft) {
-    setSubmittingDraft(true);
-    (async () => {
-      try {
-        await onSubmit(draftItem as SettlementFormData);
-      } finally {
-        clearDraftItem();
-        setSubmittingDraft(false);
-      }
-    })();
-  }
-}, [user, draftItem, submittingDraft, onSubmit, clearDraftItem, setSubmittingDraft]); // Only runs when user logs in
+  const { saveDraftAndPromptLogin } = useDraftForm<SettlementFormData>({
+    user,
+    draftItem,
+    setDraftItem,
+    clearDraftItem,
+    submittingDraft,
+    setSubmittingDraft,
+    onSubmit,
+    draftKey: DRAFT_KEY,
+  });
 
+  // Wrapped submit handler for the form
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {
-      setDraftItem(data);
-      setOpenDialog("LoginDialog", {
-        onSocialLoginStart: () => setDraftItem(data)
-      });
+      // Save draft and open login
+      saveDraftAndPromptLogin(data, openLoginDialog);
       return;
     }
 
+    // User is logged in → submit normally
     await onSubmit(data);
+
+    // Clean up draft after successful submission
+    clearDraftItem();
+    sessionStorage.removeItem(DRAFT_KEY);
   };
 
 
