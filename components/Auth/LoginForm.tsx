@@ -6,14 +6,11 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { loginSchema, LoginSchema } from "@/schemas/user.schema";
 import { Box, Button, Typography } from "@mui/material";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { Spinner } from "../Common/Spinner";
-import NextMuiLink from "../Common/NextMuiLink";
+import { Spinner } from "@/components/Common/Spinner";
+import NextMuiLink from "@/components/Common/NextMuiLink";
+import { AuthFormProps } from "@/interfaces/ui.interface";
 
-type LoginFormProps = {
-  onSuccess?: () => void;
-};
-
-export default function LoginForm({ onSuccess }: LoginFormProps) {
+export default function LoginForm({ onSuccess }: AuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -26,10 +23,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
   const password = watch("password", "");
   const isTouched = !!touchedFields.password;
 
-  const { submit, loading, error } = useAuthForm({
-    type: "login",
-    onSuccess,
-  });
+  const { submit, loading, error } = useAuthForm({ type: "login", onSuccess });
 
   const onSubmit = (data: LoginSchema) => submit(data);
 

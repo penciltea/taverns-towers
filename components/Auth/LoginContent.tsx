@@ -2,29 +2,16 @@
 
 import { Box, Button, Divider, Typography } from "@mui/material";
 import LoginForm from "./LoginForm";
-
-type OAuthProvider = {
-  name: string;
-  icon?: React.ReactNode;
-  signInFunction: () => void;
-};
-
-type LoginContentProps = {
-  onNativeSuccess?: () => void;
-  onOAuthSuccess?: (provider: string) => void;
-  oauthProviders?: OAuthProvider[];
-};
+import { AuthContentProps } from "@/interfaces/ui.interface";
 
 export default function LoginContent({
   onNativeSuccess,
   onOAuthSuccess,
   oauthProviders = [],
-}: LoginContentProps) {
+}: AuthContentProps) {
   return (
     <Box>
-      <Typography variant="body1" gutterBottom>
-        Step through the gate! Enter your username/password or sign in through a trusted partner to continue your adventure.
-      </Typography>
+      <Typography variant="body1" gutterBottom>Step through the gate! Enter your username/password or sign in through a trusted partner to continue your adventure.</Typography>
 
       <LoginForm onSuccess={onNativeSuccess} />
 
