@@ -12,8 +12,13 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
+import { DialogProps } from "@/interfaces/dialogProps.interface";
+import { useEffect } from "react";
 
-const DRAFT_KEY = "draftSettlement";
+interface LoginDialogProps extends DialogProps {
+  draftKey?: string;
+  draftItem?: Partial<SettlementFormData>;
+}
 
 export default function NewSettlementPage() {
   const { id } = useParams();
@@ -21,18 +26,30 @@ export default function NewSettlementPage() {
 
   useFormMode(safeId, useSettlementContentStore);
   const { mode, draftItem, clearDraftItem, setDraftItem, submittingDraft, setSubmittingDraft } = useSettlementContentStore();
+  const draftKey = "draftSettlement";
   const { setOpenDialog } = useUIStore();
   const user = useAuthStore(state => state.user);
 
+  let initialDraft: Partial<SettlementFormData> | null = null;
+  if (typeof window !== "undefined") {
+      const raw = sessionStorage.getItem(draftKey);
+      if (raw) initialDraft = JSON.parse(raw) as Partial<SettlementFormData>;
+  }
 
   const methods = useFormWithSchema(settlementSchema, {
-    defaultValues: draftItem || defaultSettlementValues,
+    defaultValues: draftItem || initialDraft || defaultSettlementValues,
   });
+  
+  // Populate Zustand store synchronously if empty
+  useEffect(() => {
+    if (!draftItem && initialDraft) {
+      setDraftItem(initialDraft);
+    }
+  }, [draftItem, initialDraft, setDraftItem]);
 
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
   
-  const openLoginDialog = (props?: any) =>
-    setOpenDialog("LoginDialog", props);
+  const openLoginDialog = (props?: LoginDialogProps) => setOpenDialog("LoginDialog", props);
 
   const { saveDraftAndPromptLogin } = useDraftForm<SettlementFormData>({
     user,
@@ -42,7 +59,7 @@ export default function NewSettlementPage() {
     submittingDraft,
     setSubmittingDraft,
     onSubmit,
-    draftKey: DRAFT_KEY,
+    draftKey,
   });
 
   // Wrapped submit handler for the form
@@ -58,7 +75,7 @@ export default function NewSettlementPage() {
 
     // Clean up draft after successful submission
     clearDraftItem();
-    sessionStorage.removeItem(DRAFT_KEY);
+    sessionStorage.removeItem(draftKey);
   };
 
 

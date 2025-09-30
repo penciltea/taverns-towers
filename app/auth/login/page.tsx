@@ -1,40 +1,32 @@
 'use client';
 
-import LoginForm from "@/components/Auth/LoginForm";
-import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
+import LoginContent from "@/components/Auth/LoginContent";
 import { signIn } from "next-auth/react";
+import NextMuiLink from "@/components/Common/NextMuiLink";
 
 export default function LoginPage() {
+  const oauthProviders = [
+    {
+      name: "patreon",
+      icon: <img src="/icons/patreon.svg" alt="Patreon" width={15} height={15} style={{ display: "block" }} />,
+      signInFunction: () => signIn("patreon", { callbackUrl: "/account/dashboard" }),
+    },
+  ];
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
       <Paper
         elevation={3}
-        sx={{
-          width: { xs: "90%", sm: 400, md: 500, lg: 600 },
-          maxWidth: "100%",
-          p: 3,
-        }}
+        sx={{ width: { xs: "90%", sm: 400, md: 500, lg: 600 }, maxWidth: "100%", p: 3 }}
       >
-        <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
-          Log In
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          Step through the gate - enter your username or email and password to continue your adventure.
+        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+          Welcome Back
         </Typography>
 
-        <LoginForm />
+        <LoginContent oauthProviders={oauthProviders} />
 
-        <Divider sx={{ my: 3 }}>or</Divider>
-
-        {/* Patreon login button */}
-        <Button
-          fullWidth
-          variant="contained"
-          color="secondary"
-          onClick={() => signIn("patreon", { callbackUrl: "/" })}
-        >
-          Continue with Patreon
-        </Button>
+        <Typography variant="body2" align="center" sx={{ mt: 4 }}>No account? <NextMuiLink href="/auth/register" underline="always">Sign up</NextMuiLink>.</Typography>
       </Paper>
     </Box>
   );

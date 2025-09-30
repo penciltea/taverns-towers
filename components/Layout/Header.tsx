@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
@@ -24,12 +23,6 @@ export default function Header() {
 
   const displayName = user?.username || "Traveler";
   const displayTier = capitalizeFirstLetter(user?.tier ?? userTier[0]);
-
-  
-
-  const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMenuClose = () => {
     setAnchorEl(null);

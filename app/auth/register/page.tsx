@@ -1,5 +1,6 @@
 'use client'
 
+import NextMuiLink from "@/components/Common/NextMuiLink";
 import { Spinner } from "@/components/Common/Spinner";
 import { FormTextField } from "@/components/Form";
 import FormPasswordField from "@/components/Form/FormPasswordField";
@@ -108,7 +109,7 @@ export default function RegisterPage(){
                                 Sign Up
                             </Button>
                         </Box>
-                        
+                        <Typography variant="body2" align="center" sx={{ mt: 4 }}>Have an account? <NextMuiLink href="/auth/login" underline="always">Log in here!</NextMuiLink></Typography>
                     </Box>
                 </Paper>
             </Box>

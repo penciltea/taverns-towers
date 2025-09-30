@@ -10,6 +10,8 @@ import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { createSite, updateSite } from "@/lib/actions/site.actions";
 import { SiteType } from "@/interfaces/site.interface";
+import { canCreateContent } from "@/lib/actions/user.actions";
+import { useAuthStore } from "@/store/authStore";
 
 
 interface UseSiteMutationsProps {
@@ -20,12 +22,20 @@ interface UseSiteMutationsProps {
 
 export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutationsProps){
     const router = useRouter();
+    const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
 
     async function handleSubmit(data: SiteFormData){
         setSubmitting(true);
         try{
+            if (!user?.id) throw new Error("User is not logged in");
+                  
+            if (!(await canCreateContent(user.id, "site"))) {
+                showErrorDialog("You have reached the maximum number of sites for your membership tier. Please either upgrade your membership tier or delete an existing site to continue.");
+                return;
+            }
+
             // Upload image if needed
             const cleanImage = await handleDynamicFileUpload(data, "image");
 

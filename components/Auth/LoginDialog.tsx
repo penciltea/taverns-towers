@@ -1,20 +1,33 @@
 'use client';
 
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Divider } from "@mui/material";
-import LoginForm from "@/components/Auth/LoginForm";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import LoginContent from "@/components/Auth/LoginContent";
 import { signIn } from "next-auth/react";
 
-type LoginDialogProps = {
+type LoginDialogProps<T = unknown> = {
   open: boolean;
   onClose: () => void;
   onLoginSuccess?: () => void;
-  draftKey?: string; // key for storing draft in sessionStorage
-  draftItem?: any;   // optional draft data
+  draftKey?: string;
+  draftItem?: T;
 };
 
 export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, draftItem }: LoginDialogProps) {
-  const handleSuccess = () => {
-    // Optional: persist draft in sessionStorage (for OAuth fallback)
+  const oauthProviders = [
+    {
+      name: "patreon",
+      icon: <img src="/icons/patreon.svg" alt="Patreon" width={15} height={15} style={{ display: "block" }} />,
+      signInFunction: () => {
+        if (draftKey && draftItem) {
+          sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
+        }
+        const currentPath = window.location.pathname + window.location.search;
+        signIn("patreon", { callbackUrl: currentPath });
+      },
+    },
+  ];
+
+  const handleNativeSuccess = () => {
     if (draftKey && draftItem) {
       sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
     }
@@ -22,32 +35,14 @@ export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, d
     onClose();
   };
 
-  const handlePatreonLogin = () => {
-    if (draftKey && draftItem) {
-      sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
-    }
-
-    const currentPath = window.location.pathname; // remember where the user is
-    signIn("patreon", { callbackUrl: currentPath });
-  };
-
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>Welcome Back</DialogTitle>
       <DialogContent>
-        <Typography variant="body1" gutterBottom>Step through the gate - enter your username or email and password to continue your adventure.</Typography>
-        <LoginForm onSuccess={handleSuccess} />
-
-        <Divider sx={{ my: 3 }}>or</Divider>
-
-        <Button
-          fullWidth
-          variant="contained"
-          color="secondary"
-          onClick={handlePatreonLogin}
-        >
-          Continue with Patreon
-        </Button>
+        <LoginContent
+          onNativeSuccess={handleNativeSuccess}
+          oauthProviders={oauthProviders}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>

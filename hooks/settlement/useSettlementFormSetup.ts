@@ -69,7 +69,7 @@ export function useSettlementFormSetup(
       if (!user?.id) throw new Error("User is not logged in");
       
       if (!(await canCreateContent(user.id, "settlement"))) {
-        showErrorDialog("You have reached the maximum number of settlements for your membership tier. Please either upgrade your membership tier or delete an existing site to continue.");
+        showErrorDialog("You have reached the maximum number of settlements for your membership tier. Please either upgrade your membership tier or delete an existing settlement to continue.");
         return;
       }
 

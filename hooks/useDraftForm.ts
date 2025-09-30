@@ -30,13 +30,6 @@ export function useDraftForm<T>({
     if (raw) initialDraft = JSON.parse(raw) as Partial<T>;
   }
 
-  // Populate Zustand store if empty
-  useEffect(() => {
-    if (!draftItem && initialDraft) {
-      setDraftItem(initialDraft);
-    }
-  }, [draftItem, initialDraft, setDraftItem]);
-
   // Auto-submit draft after login
   useEffect(() => {
     if (!user || !draftItem || submittingDraft || hasSubmittedDraftRef.current) return;

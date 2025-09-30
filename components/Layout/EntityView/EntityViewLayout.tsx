@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography, Divider, Paper } from "@mui/material";
+import { Grid, Stack, Typography, Paper } from "@mui/material";
 
 interface EntityViewLayoutProps {
   title: string;

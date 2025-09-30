@@ -9,6 +9,8 @@ import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
 import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { useAuthStore } from "@/store/authStore";
+import { canCreateContent } from "@/lib/actions/user.actions";
 
 
 interface UseNpcMutationsProps {
@@ -18,12 +20,20 @@ interface UseNpcMutationsProps {
 
 export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     const router = useRouter();
+    const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
 
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
         try {
+            if (!user?.id) throw new Error("User is not logged in");
+                  
+            if (!(await canCreateContent(user.id, "npc"))) {
+            showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
+            return;
+            }
+
             // Upload image if needed
             const cleanImage = await handleDynamicFileUpload(data, "image");
 

@@ -1,4 +1,4 @@
-import { Box, Typography, List, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { useUIStore } from "@/store/uiStore";
 import InfoListItem from "@/components/Common/InfoListItem";

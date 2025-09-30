@@ -34,8 +34,8 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
     // For checking if the password matches validation requirements
     const checklistId = `${id}-requirements`;
     const isMinLength = passwordValue?.length >= 8;
-    const hasSpecialChar = passwordValue ? /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue) : true; 
-    const isValidPassword = passwordValue ? isMinLength && hasSpecialChar : true;
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue);
+    const isValidPassword = isMinLength && hasSpecialChar;
 
     const srOnly = {
         position: "absolute",
