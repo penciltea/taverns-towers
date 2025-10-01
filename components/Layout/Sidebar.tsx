@@ -76,11 +76,6 @@ export const Sidebar = () => {
                     enabled: true
                 },
                 {
-                    label: "Alpha Release Notes",
-                    path: "/releases/alpha-25-09-03",
-                    enabled: true
-                },
-                {
                     label: "Roadmap",
                     path: "/roadmap",
                     enabled: true

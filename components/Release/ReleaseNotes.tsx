@@ -1,4 +1,4 @@
-import { Box, Typography, Divider, List, ListItem, ListItemText } from "@mui/material";
+import { Typography, Divider, List, ListItem, ListItemText, Paper } from "@mui/material";
 
 export interface Release {
   title: string;
@@ -15,7 +15,7 @@ interface ReleaseNotesProps {
 
 export default function ReleaseNotes({ release }: ReleaseNotesProps) {
   return (
-    <Box sx={{ p: 3, maxWidth: 800, mx: "auto" }}>
+    <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
       {/* Header */}
       <Typography variant="h4" component="h1" gutterBottom>{ release.title }</Typography>
       <Typography variant="subtitle1" color="textSecondary" gutterBottom>{ release.date }</Typography>
@@ -75,6 +75,6 @@ export default function ReleaseNotes({ release }: ReleaseNotesProps) {
           </List>
         </>
       )}
-    </Box>
+    </Paper>
   );
 }

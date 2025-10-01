@@ -22,12 +22,17 @@ export default function ReleasesIndexPage() {
         Release Notes
       </Typography>
       <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} href={'/releases/alpha-25-09-03'}>
+            Version 0.1.0-alpha (Initial Alpha Release)
+          </ListItemButton>
+        </ListItem>
         {releaseKeys.map((key) => {
           const release = (releases as ReleasesMap)[key];
           return (
             <ListItem key={key} disablePadding>
               <ListItemButton component={Link} href={`/releases/${release.date}`}>
-                {release.date} — {release.title}
+                { release.title }
               </ListItemButton>
             </ListItem>
           );

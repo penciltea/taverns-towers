@@ -1,5 +1,5 @@
 export const release20250911 = {
-  title: "Alpha Release – September 11, 2025",
+  title: "Version 0.2.0-alpha",
   date: "2025-09-11",
   features: [
     "Hidden site type: Updated the following fields to be a multi-select list of options for improved UX: Known To, Defense(s), Purpose",
@@ -9,7 +9,9 @@ export const release20250911 = {
     "Added limits to creating the number of NPCs, Sites, and Settlements a user can create based on their account membership tier",
   ],
   improvements: [
-    
+    "Improved initial page loading speed",
+    "Updated &apos; create site&apos; dialog so that users who are not logged in don't see an empty settlement list",
+    "Improved login and register UI/UX and added ability to reset password and user profile/account information",
   ],
   bugFixes: [
     "Fixed issue with tavern generation data",

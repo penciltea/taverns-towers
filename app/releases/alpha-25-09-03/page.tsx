@@ -1,6 +1,6 @@
 import NextMuiLink from "@/components/Common/NextMuiLink";
 import PatreonCta from "@/components/Common/PatreonCta";
-import { Box, Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
+import { Box, Typography, List, ListItem, ListItemText, Paper, Divider } from "@mui/material";
 
 export const metadata = {
     title: "RealmFoundry Alpha Release - Sept. 03, 2025",
@@ -11,14 +11,17 @@ export default function AlphaRelease() {
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
             {/* Header */}
-            <Typography variant="h3" component="h1" gutterBottom>RealmFoundry Alpha Release - September 03, 2025</Typography>
+            <Typography variant="h4" component="h1" gutterBottom>Version 0.1.0-alpha (Initial Alpha Release)</Typography>
+            <Typography variant="subtitle1" color="textSecondary" gutterBottom>2025-09-03</Typography>
+            <Divider sx={{ my: 2 }} />
+
             <Typography variant="body1" gutterBottom>
                 Welcome to the limited alpha of RealmFoundry! This release is an early look at the tools we&apos;re building for GMs, writers, and world-builders. Features are still in development, so expect some rough edges. Your feedback is invaluable as we shape the project.
             </Typography>
 
             {/* What's Available */}
             <Box sx={{ mt: 6 }}>
-                <Typography variant="h4" component="h2" gutterBottom>What&apos;s Available</Typography>
+                <Typography variant="h6" component="h2" gutterBottom>What&apos;s Available</Typography>
                 <List sx={{ listStyleType: 'disc', pl: 4 }}>
                     <ListItem disablePadding>
                         <ListItemText 
@@ -99,7 +102,7 @@ export default function AlphaRelease() {
 
             {/* Known Limitations */}
             <Box sx={{ mt: 6 }}>
-                <Typography variant="h4" component="h3" gutterBottom>Known Limitations</Typography>
+                <Typography variant="h6" component="h3" gutterBottom>Known Limitations</Typography>
                 <List sx={{ listStyleType: 'disc', pl: 4 }}>
                     <ListItem disablePadding>
                         <ListItemText
@@ -147,7 +150,7 @@ export default function AlphaRelease() {
             </Box>
 
             <Box sx={{ mt: 6 }}>
-                <Typography variant="h4" component="h4" gutterBottom>Looking Ahead</Typography>
+                <Typography variant="h6" component="h6" gutterBottom>Looking Ahead</Typography>
                 <Typography variant="body1">For a full view of planned features and updates, check out our <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.</Typography>
             </Box>
 
