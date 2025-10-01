@@ -1,31 +1,16 @@
 'use client';
 
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from "@mui/material";
 import LoginContent from "@/components/Auth/LoginContent";
-import { signIn } from "next-auth/react";
+import { AuthDialogProps } from "@/interfaces/dialogProps.interface";
+import { buildOAuthProviders } from "@/lib/util/authHelpers";
+import { useUIStore } from "@/store/uiStore";
+import MuiLink from "@mui/material/Link";
 
-type LoginDialogProps<T = unknown> = {
-  open: boolean;
-  onClose: () => void;
-  onLoginSuccess?: () => void;
-  draftKey?: string;
-  draftItem?: T;
-};
-
-export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, draftItem }: LoginDialogProps) {
-  const oauthProviders = [
-    {
-      name: "patreon",
-      icon: <img src="/icons/patreon.svg" alt="Patreon" width={15} height={15} style={{ display: "block" }} />,
-      signInFunction: () => {
-        if (draftKey && draftItem) {
-          sessionStorage.setItem(draftKey, JSON.stringify(draftItem));
-        }
-        const currentPath = window.location.pathname + window.location.search;
-        signIn("patreon", { callbackUrl: currentPath });
-      },
-    },
-  ];
+export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, draftItem }: AuthDialogProps) {
+  const currentPath = window.location.pathname + window.location.search;
+  const oauthProviders = buildOAuthProviders(currentPath);
+  const { setOpenDialog } = useUIStore();
 
   const handleNativeSuccess = () => {
     if (draftKey && draftItem) {
@@ -43,6 +28,22 @@ export default function LoginDialog({ open, onClose, onLoginSuccess, draftKey, d
           onNativeSuccess={handleNativeSuccess}
           oauthProviders={oauthProviders}
         />
+
+        <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+          No account? { " "}
+          <MuiLink
+            component="button"
+            type="button"
+            underline="always"
+            sx={{ cursor: "pointer" }}
+            onClick={() => {
+              onClose();
+              setOpenDialog("RegisterDialog", { draftKey, draftItem });
+            }}
+          >
+            Sign up
+          </MuiLink>
+        </Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>

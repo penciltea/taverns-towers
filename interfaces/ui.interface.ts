@@ -21,9 +21,11 @@ export interface AuthContentProps {
   onNativeSuccess?: () => void;
   onOAuthSuccess?: (provider: string) => void;
   oauthProviders?: OAuthProvider[];
+  skipRedirect?: boolean;
 };
 
 
 export interface AuthFormProps {
   onSuccess?: () => void;
+  skipRedirect?: boolean; // New prop to control redirection
 };

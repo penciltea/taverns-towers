@@ -12,13 +12,9 @@ import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
-import { DialogProps } from "@/interfaces/dialogProps.interface";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
 
-interface LoginDialogProps extends DialogProps {
-  draftKey?: string;
-  draftItem?: Partial<SettlementFormData>;
-}
 
 export default function NewSettlementPage() {
   const { id } = useParams();
@@ -49,7 +45,23 @@ export default function NewSettlementPage() {
 
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
   
-  const openLoginDialog = (props?: LoginDialogProps) => setOpenDialog("LoginDialog", props);
+  const openLoginDialog = (props?: AuthDialogInput<Partial<SettlementFormData>>) =>
+      setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+  
+    const openRegisterDialog = (props?: AuthDialogInput<Partial<SettlementFormData>>) =>
+      setOpenDialog("RegisterDialog", {
+        ...props,
+        onRegisterSuccess: () => {
+          openLoginDialog({
+            draftKey,
+            draftItem: draftItem || initialDraft || undefined,
+            onLoginSuccess: () => {
+              clearDraftItem();
+              sessionStorage.removeItem(draftKey);
+            },
+          });
+        },
+      });
 
   const { saveDraftAndPromptLogin } = useDraftForm<SettlementFormData>({
     user,

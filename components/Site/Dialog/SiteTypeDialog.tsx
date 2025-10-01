@@ -8,6 +8,7 @@ import { DialogProps } from "@/interfaces/dialogProps.interface";
 import { useUIStore } from "@/store/uiStore";
 import { useOwnedSettlementsQuery } from "@/hooks/settlement/settlement.query";
 import { DefaultSettlementQueryParams } from "@/interfaces/settlement.interface";
+import { useAuthStore } from "@/store/authStore";
 
 export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettlementId }: DialogProps) {
   const [siteType, setSiteType] = useState("");
@@ -16,28 +17,39 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
   const router = useRouter();
   const params = useParams();
   const { closeDialog } = useUIStore();
+  const { user } = useAuthStore();
   const [settlementParams] = useState(DefaultSettlementQueryParams);
-  const { data } = useOwnedSettlementsQuery(settlementParams);
+  const { data } = useOwnedSettlementsQuery(settlementParams, {
+    isEnabled: !!user
+  });
 
   const handleCreateSite = () => {
-    if(dialogMode === 'direct'){
-      if(!siteType){
+    let settlementToUse = selectedSettlement;
+
+    if (dialogMode === 'direct') {
+      if (!siteType) {
         setError(true);
         return;
       }
-      setSelectedSettlement(params.id as string);
-      
+      settlementToUse = params.id as string;
     }
 
-    if (dialogMode === 'global'){
-      if(!siteType || !selectedSettlement) {
+    if (dialogMode === 'global') {
+      if (!siteType) {
+        setError(true);
+        return;
+      }
+
+      if (!user) {
+        settlementToUse = 'wilderness'; // default for anonymous
+      } else if (!selectedSettlement) {
         setError(true);
         return;
       }
     }
 
     setError(false);
-    router.push(`/settlements/${selectedSettlement}/sites/new/?type=${siteType}`);
+    router.push(`/settlements/${settlementToUse}/sites/new/?type=${siteType}`);
     closeDialog();
   };
 
@@ -47,7 +59,7 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
       <DialogContent>
         <Typography variant="body2" color="textSecondary" gutterBottom> Decide what kind of site you would like to forge before getting started! </Typography>
 
-        {dialogMode === 'global' && (
+        {dialogMode === 'global' && user && (
           <FormControl fullWidth error={error} sx={{ mt: 1 }}>
             <InputLabel id="settlement-location-label">Create Site In...</InputLabel>
             <Select
@@ -65,6 +77,13 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
             </Select>
             {error && <FormHelperText>Please select where this site is being saved to.</FormHelperText>}
           </FormControl>
+        )}
+
+        { dialogMode === 'global' && !user && (
+          <>
+            <Typography variant="body2" color="textSecondary" gutterBottom sx={{ mt: 1 }}>To choose a settlement, please log in.</Typography>
+            <Typography variant="body2" color="textSecondary" gutterBottom>Otherwise, your site will be created in the wilderness.</Typography>
+          </>
         )}
 
         <FormControl fullWidth error={error} sx={{ mt: 1 }}>

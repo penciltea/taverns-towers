@@ -4,13 +4,13 @@ import { Box, Button, Divider, Typography } from "@mui/material";
 import RegisterForm from "./RegisterForm";
 import { AuthContentProps } from "@/interfaces/ui.interface";
 
-export default function RegisterContent({ onNativeSuccess, onOAuthSuccess, oauthProviders = [] }: AuthContentProps) {
+export default function RegisterContent({ onNativeSuccess, onOAuthSuccess, skipRedirect, oauthProviders = [] }: AuthContentProps) {
     return (
         <Box>
             <Typography variant="body1" component="h2" gutterBottom>Ready your quill and map tools — your worldbuilding journey begins now. From hamlets to high halls, conjure what you need with a tap or craft your world yourself!</Typography>
             <Typography variant="body1" component="p">Getting started is free -- no gold required.</Typography>
 
-            <RegisterForm onSuccess={onNativeSuccess} />
+            <RegisterForm onSuccess={onNativeSuccess} skipRedirect={skipRedirect} />
 
             {oauthProviders.length > 0 && <Divider sx={{ my: 3 }}>or</Divider>}
 

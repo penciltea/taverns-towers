@@ -13,14 +13,8 @@ import { useSiteMutations } from "@/hooks/site/useSiteMutations";
 import { useAuthStore } from "@/store/authStore";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
-import { DialogProps } from "@/interfaces/dialogProps.interface";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
-
-interface LoginDialogProps extends DialogProps {
-  draftKey?: string;
-  draftItem?: Partial<SiteFormData>;
-}
-
 
 export default function NewSitePage() {
     const params = useParams();
@@ -69,8 +63,23 @@ export default function NewSitePage() {
         rawSiteType: rawTypeParam,
     });
 
-    const openLoginDialog = (props?: LoginDialogProps) => setOpenDialog("LoginDialog", props);
-
+    const openLoginDialog = (props?: AuthDialogInput<Partial<SiteFormData>>) =>
+        setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+    
+    const openRegisterDialog = (props?: AuthDialogInput<Partial<SiteFormData>>) =>
+        setOpenDialog("RegisterDialog", {
+            ...props,
+            onRegisterSuccess: () => {
+                openLoginDialog({
+                draftKey,
+                draftItem: (draftItem || initialDraft) as Partial<SiteFormData> | undefined,
+                onLoginSuccess: () => {
+                    clearDraftItem();
+                    sessionStorage.removeItem(draftKey);
+                },
+                });
+            },
+        });
 
     const { saveDraftAndPromptLogin } = useDraftForm<SiteFormData>({
         user,

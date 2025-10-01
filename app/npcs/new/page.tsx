@@ -14,14 +14,8 @@ import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 import { Paper } from "@mui/material";
 import { useDraftForm } from "@/hooks/useDraftForm";
-import { DialogProps } from "@/interfaces/dialogProps.interface";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
-
-interface LoginDialogProps extends DialogProps {
-  draftKey?: string;
-  draftItem?: Partial<NpcFormData>;
-}
-
 
 export default function NewNpcPage() {
   const { id } = useParams();
@@ -55,7 +49,23 @@ export default function NewNpcPage() {
 
   const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
 
-  const openLoginDialog = (props?: LoginDialogProps) => setOpenDialog("LoginDialog", props);
+  const openLoginDialog = (props?: AuthDialogInput<Partial<NpcFormData>>) =>
+    setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+
+  const openRegisterDialog = (props?: AuthDialogInput<Partial<NpcFormData>>) =>
+    setOpenDialog("RegisterDialog", {
+      ...props,
+      onRegisterSuccess: () => {
+        openLoginDialog({
+          draftKey,
+          draftItem: draftItem || initialDraft || undefined,
+          onLoginSuccess: () => {
+            clearDraftItem();
+            sessionStorage.removeItem(draftKey);
+          },
+        });
+      },
+    });
 
   const generator = {
     name: generateName,

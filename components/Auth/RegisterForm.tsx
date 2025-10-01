@@ -10,7 +10,7 @@ import FormPasswordField from "@/components/Form/FormPasswordField";
 import { AuthFormProps } from "@/interfaces/ui.interface";
 
 
-export default function RegisterForm({ onSuccess}: AuthFormProps) {
+export default function RegisterForm({ onSuccess, skipRedirect}: AuthFormProps) {
     const {
         register,
         handleSubmit,
@@ -23,7 +23,7 @@ export default function RegisterForm({ onSuccess}: AuthFormProps) {
     const password = watch("password", "");
     const isTouched = !!touchedFields.password;
 
-    const { submit, error } = useAuthForm({ type: "register", onSuccess });
+    const { submit, error } = useAuthForm({ type: "register", onSuccess, skipRedirect });
 
     const onSubmit = (data: UserSchema) => submit(data);
 

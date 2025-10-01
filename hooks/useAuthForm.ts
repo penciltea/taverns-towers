@@ -16,6 +16,7 @@ interface AuthFormOptions<T extends AuthFormType> {
   redirectTo?: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
+  skipRedirect?: boolean;
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -48,7 +49,10 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
         if (result.success) {
           showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
           onSuccess?.();
-          router.push(finalRedirect);
+          
+          if (!options.skipRedirect) {
+            router.push(finalRedirect);
+          }
         } else {
           const message = result.error ?? "Something went wrong.";
           setError(message);
