@@ -23,7 +23,6 @@ export const release20250911 = {
     "Guild site type: Fixed an issue where 'Probationary Period' as a randomly generated value wasn't accepted"
   ],
   knownIssues: [
-    "The 'View Wilderness Sites' page is currently missing content.",
     "Generators that have 'Random' in the option list will still sometimes choose 'random', which isn't a valid option.",
     "When creating a site in the wilderness, pressing 'Generate Missing Fields' does not generate environmental fields"
   ]
