@@ -4,26 +4,27 @@ export const release20250911 = {
   features: [
     "Hidden site type: Updated the following fields to be a multi-select list of options for improved UX: Known To, Defense(s), Purpose",
     "Hidden site type: Fleshed out generator logic for the following fields: Secrecy level, Known To, Defense(s), Purpose",
-    "Added support to allow users to login with Patreon accounts",
+    "Added support to allow users to register and login with Patreon accounts",
     "Added user dashboard page with user account information and recent activity",
     "Added limits to creating the number of NPCs, Sites, and Settlements a user can create based on their account membership tier",
   ],
   improvements: [
     "Improved initial page loading speed",
-    "Updated &apos; create site&apos; dialog so that users who are not logged in don't see an empty settlement list",
     "Improved login and register UI/UX and added ability to reset password and user profile/account information",
   ],
   bugFixes: [
     "Fixed issue with tavern generation data",
-    "Fixed bug in &apos;site creation&apos; dialog that showed improper settlement names",
-    "Added check to view all sites page to check if user is logged in first",
-    "Settlements: Removed unnecessary &apos;leadership&apos; field from form",
-    "Fixed an issue on the View All Sites page where all sites were being displayed, even if not created by the user",
+    "Fixed bug in 'create site' dialog that showed improper settlement names",    
+    "Updated ' create site' dialog so that users who are not logged in don't see an empty settlement list",
+    "Added check to 'view all sites' page to check if user is logged in first",
+    "Settlements: Removed unnecessary 'leadership' field from form",
+    "Fixed an issue on the 'view all sites' page where all sites were being displayed, even if not created by the user",
     "User creation/update: Fixed issue where password wasn't being validated correctly",
+    "Guild site type: Fixed an issue where 'Probationary Period' as a randomly generated value wasn't accepted"
   ],
   knownIssues: [
-    "The &apos;View Wilderness Sites&apos; page is currently missing content.",
-    "Generators that have &apos;Random&apos; in the option list will still sometimes choose &apos;random&apos;, which isn&apos;t a valid option.",
-    "When creating a site in the wilderness, pressing &apos;Generate Missing Fields&apos; does not generate environmental fields"
+    "The 'View Wilderness Sites' page is currently missing content.",
+    "Generators that have 'Random' in the option list will still sometimes choose 'random', which isn't a valid option.",
+    "When creating a site in the wilderness, pressing 'Generate Missing Fields' does not generate environmental fields"
   ]
 };

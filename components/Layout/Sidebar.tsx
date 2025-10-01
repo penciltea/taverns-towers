@@ -28,6 +28,11 @@ export const Sidebar = () => {
                     enabled: true
                 },
                 {
+                    label: "View wilderness",
+                    path: "/settlements/wilderness",
+                    enabled: true
+                },
+                {
                     label: "Create settlement",
                     enabled: true,
                     path: "/settlements/new"
