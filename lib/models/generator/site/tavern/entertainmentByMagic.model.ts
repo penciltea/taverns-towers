@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
+import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlement.options";
 import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 

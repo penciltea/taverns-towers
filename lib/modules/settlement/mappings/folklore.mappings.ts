@@ -1,5 +1,5 @@
-import { DomainTypes, MagicLevel } from "@/constants/settlementOptions";
-import { TagTypes, TerrainTypes, ClimateTypes } from "@/constants/environmentOptions";
+import { DomainTypes, MagicLevel } from "@/constants/settlement.options";
+import { TagTypes, TerrainTypes, ClimateTypes } from "@/constants/environment.options";
 
 export const FolkloreByTagMapping: Record<TagTypes, string[]> = {
   "Ancient Ruins": [

@@ -1,4 +1,4 @@
-import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
+import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environment.options";
 
 export const DomainsByClimateMapping: Partial<Record<ClimateTypes, string[]>> = {
   Polar: ["Cold", "Nature", "Moon", "Protection"],

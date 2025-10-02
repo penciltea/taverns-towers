@@ -1,4 +1,4 @@
-import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
+import { TAG_TYPES, TagTypes } from "@/constants/environment.options";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 

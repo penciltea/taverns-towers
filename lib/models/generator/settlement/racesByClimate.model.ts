@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ClimateTypes, CLIMATE_TYPES } from "@/constants/environmentOptions";
+import { ClimateTypes, CLIMATE_TYPES } from "@/constants/environment.options";
 const { Schema, model, models } = mongoose;
 
 export interface RacesByClimateModel {

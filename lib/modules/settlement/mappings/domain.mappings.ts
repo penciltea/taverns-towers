@@ -1,4 +1,4 @@
-import { SizeTypes } from "@/constants/settlementOptions";
+import { SizeTypes } from "@/constants/settlement.options";
 
 export const domainCountBySize: Record<SizeTypes, [number, number]> = {
   Encampment: [1, 1],

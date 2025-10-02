@@ -7,7 +7,7 @@ import { ContentFilters } from "@/store/contentStore";
 import SelectInput from "@/components/Common/SelectInput";
 import SearchInput from "./SearchInput";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
-import { pageSizeOptions } from "@/constants/commonOptions";
+import { pageSizeOptions } from "@/constants/common.options";
 import { ChipFilterConfig, ChipFilters} from "./ChipFilters";
 
 

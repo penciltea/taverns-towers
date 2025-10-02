@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES } from "@/constants/settlementOptions";
+import { CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES } from "@/constants/settlement.options";
 const { Schema, model, models } = mongoose;
 
 export interface ClienteleByCrimeModel {

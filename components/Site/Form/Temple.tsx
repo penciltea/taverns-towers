@@ -1,7 +1,7 @@
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { DOMAINS } from "@/constants/settlementOptions";
+import { DOMAINS } from "@/constants/common.options";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";

@@ -54,57 +54,30 @@ export const CRIMINAL_ACTIVITY_TYPES = [
     "Slavery & Trafficking",
     "Cult Activity",
     "Widespread Lawlessness",
-  ];
-
-export const DOMAINS = [
-  "Arts",
-  "Beauty",
-  "Chaos",
-  "Cold",
-  "Commerce",
-  "Community",
-  "Death",
-  "Decay",
-  "Dreams",
-  "Earth",
-  "Fate",
-  "Fertility",
-  "Forge",
-  "Freedom",
-  "Glory",
-  "Grave",
-  "Harvest",
-  "Hunt",
-  "Invention",
-  "Judgment",
-  "Knowledge",
-  "Law",
-  "Life",
-  "Light",
-  "Luck",
-  "Magic",
-  "Moon",
-  "Nature",
-  "Order",
-  "Peace",
-  "Protection",
-  "Sea",
-  "Secrets",
-  "Shadow",
-  "Storms",
-  "Sun",
-  "Time",
-  "Travel",
-  "Trickery",
-  "Twilight",
-  "Water",
-  "War",
-  "Other"
 ];
+
+export const MILITARY_PRESENCE_TYPES = [
+    "None",
+    "Border Patrol",
+    "Cavalry Detachment",
+    "Fortified Outpost",
+    "Garrisoned Soldiers",
+    "City Watch",
+    "Knightly Order",
+    "Local Militia",
+    "Magical Defenders",
+    "Mercenary Company",
+    "Private Retainers",
+    "Royal Troops",
+    "Siege Engineers",
+    "Town Guard",
+    "Watchtowers",
+]
+
 
 export type SizeTypes = (typeof SIZE_TYPES)[number]
 export type WealthLevel = (typeof WEALTH_LEVELS)[number]
 export type MagicLevel = (typeof MAGIC_LEVELS)[number]
 export type RulingType = (typeof RULING_TYPES)[number]
 export type CriminalActivityTypes = (typeof CRIMINAL_ACTIVITY_TYPES)[number]
-export type DomainTypes = (typeof DOMAINS)[number]
+export type MilitaryPresenceTypes = (typeof MILITARY_PRESENCE_TYPES)[number]

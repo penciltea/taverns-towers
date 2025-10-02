@@ -1,4 +1,4 @@
-import { DomainTypes } from "@/constants/settlementOptions"
+import { DomainTypes } from "@/constants/settlement.options"
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {

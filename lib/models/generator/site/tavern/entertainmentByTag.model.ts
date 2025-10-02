@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
+import { TAG_TYPES, TagTypes } from "@/constants/environment.options";
 import { TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 const { Schema, model, models } = mongoose;
 

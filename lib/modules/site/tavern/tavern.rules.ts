@@ -13,7 +13,7 @@ import { ClienteleByCondition, ClienteleByConditionModel } from "@/lib/models/ge
 import { BaseClienteleBySettlementSizeMapping, CLIENTELE_ALIASES, CLIENTELE_COUNT_BY_SETTLEMENT_SIZE, ClienteleByConditionMapping, ClienteleByCrimeMapping, ClienteleByMagicMapping, ClienteleBySiteSizeMapping, ClienteleByTagMapping, ClienteleByWealthMapping } from "./mappings/clientele.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
-import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
+import { MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlement.options";
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 import { EntertainmentBySize, EntertainmentBySizeModel } from "@/lib/models/generator/site/tavern/entertainmentBySize.model";

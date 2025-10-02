@@ -1,4 +1,4 @@
-import { SIZE_TYPES, SizeTypes, WEALTH_LEVELS, WealthLevel } from "@/constants/settlementOptions";
+import { SIZE_TYPES, SizeTypes, WEALTH_LEVELS, WealthLevel } from "@/constants/settlement.options";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 

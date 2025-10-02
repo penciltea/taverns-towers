@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
-import { DOMAINS  } from "@/constants/settlementOptions";
+import { DOMAINS  } from "@/constants/common.options";
 import { FormTextField, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 

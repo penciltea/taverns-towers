@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
+import { DOMAINS, DomainTypes } from "@/constants/common.options";
 const { Schema, model, models } = mongoose;
 
 export interface FolkloreByDomainModel {

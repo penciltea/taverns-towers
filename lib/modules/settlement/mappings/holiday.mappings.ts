@@ -1,5 +1,5 @@
-import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environmentOptions";
-import { DomainTypes, MagicLevel } from "@/constants/settlementOptions";
+import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environment.options";
+import { DomainTypes, MagicLevel } from "@/constants/settlement.options";
 
 export const HolidaysByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Ancient Ruins": [

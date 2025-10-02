@@ -1,5 +1,5 @@
-import { TerrainTypes, TERRAIN_TYPES } from "@/constants/environmentOptions";
-import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
+import { TerrainTypes, TERRAIN_TYPES } from "@/constants/environment.options";
+import { DOMAINS, DomainTypes } from "@/constants/common.options";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 

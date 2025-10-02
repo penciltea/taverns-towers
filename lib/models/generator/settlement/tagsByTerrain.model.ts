@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { TAG_TYPES, TagTypes, TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+import { TAG_TYPES, TagTypes, TERRAIN_TYPES, TerrainTypes } from "@/constants/environment.options";
 const { Schema, model, models } = mongoose;
 
 interface TagsByTerrainModel {

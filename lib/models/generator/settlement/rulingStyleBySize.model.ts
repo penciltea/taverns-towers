@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { RULING_TYPES, RulingType, SIZE_TYPES, SizeTypes } from "@/constants/settlementOptions";
+import { RULING_TYPES, RulingType, SIZE_TYPES, SizeTypes } from "@/constants/settlement.options";
 const { Schema, model, models } = mongoose;
 
 export interface RulingStyleBySizeModel {

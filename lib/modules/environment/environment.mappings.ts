@@ -1,4 +1,4 @@
-import { TerrainTypes, ClimateTypes, TagTypes } from "@/constants/environmentOptions";
+import { TerrainTypes, ClimateTypes, TagTypes } from "@/constants/environment.options";
 
  export const TerrainBlacklistMapping: Record<ClimateTypes, TerrainTypes[]> = {
   Polar: ["Jungle", "Desert"],
@@ -20,5 +20,6 @@ export const TagsByTerrainMapping: Record<TerrainTypes, TagTypes[]> = {
   Swamp: ["Overgrown", "Isolated", "Infested", "Hidden"],
   Tundra: ["Isolated", "Border Post", "Garrison", "Fortress", "Ancient Ruins"],
   Underground: ["Mining Camp", "Prison Settlement", "Ancient Ruins", "Hidden"],
-  Urban: ["Capital", "Criminal Hideout", "Border Post", "Trade Hub", "Military Outpost"]
+  Urban: ["Capital", "Criminal Hideout", "Border Post", "Trade Hub", "Military Outpost"],
+  Volcanic: ["Ancient Ruins", "Arcane Nexus", "Hidden", "Remote", "Sacred Site"]
 };

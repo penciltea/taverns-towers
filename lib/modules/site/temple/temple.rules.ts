@@ -11,7 +11,7 @@ import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { getDomainsByEnvironment } from "../../common/domains/getDomainsByEnvironment.rules";
 import { domainCountBySiteSize } from "./mappings/domains.mappings";
-import { DOMAINS } from "@/constants/settlementOptions";
+import { DOMAINS } from "@/constants/common.options";
 
 export function isTempleSite(data: Partial<SiteFormData>): data is Partial<TempleSite> {
   return data.type === "temple";

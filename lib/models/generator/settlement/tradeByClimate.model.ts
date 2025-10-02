@@ -1,4 +1,4 @@
-import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environmentOptions";
+import { CLIMATE_TYPES, ClimateTypes } from "@/constants/environment.options";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 

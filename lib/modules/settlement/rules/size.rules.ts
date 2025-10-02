@@ -1,4 +1,4 @@
-import { SIZE_TYPES } from "@/constants/settlementOptions";
+import { SIZE_TYPES } from "@/constants/settlement.options";
 import { getRandom } from "@/lib/util/randomValues";
 import { normalizeSettlementInput, NormalizedSettlementInput } from "./normalize";
 

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
-import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environmentOptions";
+import { ClimateTypes, TerrainTypes, TagTypes } from "@/constants/environment.options";
 import { QUALITY_OPTIONS, QualityType, RARITY_OPTIONS, RarityType } from "@/constants/site/menu.options";
-import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlementOptions";
+import { MAGIC_LEVELS, MagicLevel } from "@/constants/settlement.options";
 
 export interface GeneratorSiteMenuPlain {
   name: string;

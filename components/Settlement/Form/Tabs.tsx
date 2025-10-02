@@ -1,5 +1,5 @@
 import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
-import { SETTLEMENT_TABS } from "@/constants/settlementOptions";
+import { SETTLEMENT_TABS } from "@/constants/settlement.options";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 

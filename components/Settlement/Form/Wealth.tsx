@@ -2,7 +2,7 @@
 
 import { FieldError, useFormContext } from "react-hook-form";
 import { Box } from "@mui/material";
-import { CRIMINAL_ACTIVITY_TYPES, RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlementOptions";
+import { CRIMINAL_ACTIVITY_TYPES, MILITARY_PRESENCE_TYPES, RULING_TYPES, WEALTH_LEVELS  } from "@/constants/settlement.options";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
@@ -21,6 +21,13 @@ export default function SettlementFormWealth(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle as FieldError | undefined}
+            />
+
+            <FormChipSelect
+                name="military"
+                label="Military Presence"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(MILITARY_PRESENCE_TYPES)]}
             />
 
             <FormChipSelect

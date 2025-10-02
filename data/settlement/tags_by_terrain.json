@@ -46,5 +46,9 @@
   {
     "terrain": "Urban",
     "tags": ["Capital", "Criminal Hideout", "Border Post", "Trade Hub", "Military Outpost"]
+  },
+  {
+    "terrain": "Volcanic",
+    "tags":  ["Ancient Ruins", "Arcane Nexus", "Hidden", "Remote", "Sacred Site"]
   }
 ]

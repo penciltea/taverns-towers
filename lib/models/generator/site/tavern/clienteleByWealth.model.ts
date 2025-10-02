@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { WealthLevel, WEALTH_LEVELS } from "@/constants/settlementOptions";
+import { WealthLevel, WEALTH_LEVELS } from "@/constants/settlement.options";
 const { Schema, model, models } = mongoose;
 
 export interface ClienteleByWealthModel {

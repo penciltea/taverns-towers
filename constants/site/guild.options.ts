@@ -1,4 +1,4 @@
-import { Flatten } from "../commonOptions";
+import { Flatten } from "../common.options";
 
 export const GUILD_TYPES = [
   {

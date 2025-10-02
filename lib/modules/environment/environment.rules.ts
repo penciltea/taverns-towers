@@ -1,5 +1,5 @@
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
-import { CLIMATE_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
+import { CLIMATE_TYPES, TERRAIN_TYPES } from "@/constants/environment.options";
 import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
 import { TerrainBlacklist, TerrainBlacklistByClimate } from "@/lib/models/generator/settlement/terrainBlacklists.model";
 import { TagsByTerrain } from "@/lib/models/generator/settlement/tagsByTerrain.model";
@@ -71,40 +71,54 @@ export async function applyTerrainBlacklistRule(input: EnvironmentInterface): Pr
 export async function applyTagsByTerrainRule(input: EnvironmentInterface): Promise<EnvironmentInterface> {
   const { tags, terrain } = input;
 
-  if (!tags || !terrain || !tags.includes("random")) {
-    return input;
+  // If missing, just return input but remove "random" from tags
+  if (!tags || !terrain) {
+    return { ...input, tags: tags?.filter(t => t.trim().toLowerCase() !== "random") ?? [] };
   }
 
   const derivedTags = new Set<string>();
 
+  // If user selected "random", derive tags from terrain
+  const hasRandom = tags.some(t => t.trim().toLowerCase() === "random");
+  if (!hasRandom) return input; // preserve user-selected tags
+
   for (const t of terrain) {
-    let possibleTags: string[] | undefined;
+    let possibleTags: string[] = [];
 
     try {
-      const entry = await TagsByTerrain.findOne({ terrain: t }).lean();
-      possibleTags = entry?.tags ?? TagsByTerrainMapping[t];
-    } catch (err) {
-      console.warn(`applyTagsByTerrainRule failed for terrain "${t}", using fallback.`, err);
-      possibleTags = TagsByTerrainMapping[t];
+      possibleTags = (await TagsByTerrain.findOne({ terrain: t }).lean())?.tags ?? TagsByTerrainMapping[t] ?? [];
+    } catch {
+      possibleTags = TagsByTerrainMapping[t] ?? [];
     }
 
-    if (possibleTags && possibleTags.length > 0) {
-      const subset = getRandomSubset(possibleTags, { min: 1, max: 3 });
+    // Filter out "random" tags and trim
+    const validTags = possibleTags
+      .map(tag => tag.trim())
+      .filter(tag => tag.toLowerCase() !== "random");
+
+    if (validTags.length > 0) {
+      const subset = getRandomSubset(validTags, { min: 1, max: 3 });
       subset.forEach(tag => derivedTags.add(tag));
     }
   }
 
-  return {
-    ...input,
-    tags: Array.from(derivedTags),
-  };
+  // Return derived tags (may be empty)
+  return { ...input, tags: Array.from(derivedTags) };
 }
 
 // remove "random"
 export async function removeRandomMarkers(input: EnvironmentInterface): Promise<EnvironmentInterface> {
-  return {
-    climate: input.climate === "random" ? getRandom(CLIMATE_TYPES) : input.climate,
-    terrain: input.terrain.filter(t => t !== "random"),
-    tags: input.tags.filter(t => t !== "random"),
-  };
+  const climate = !input.climate || input.climate.trim().toLowerCase() === "random"
+    ? getRandom(CLIMATE_TYPES)
+    : input.climate;
+
+  const terrainNeedsReplacement = input.terrain.some(t => t.trim().toLowerCase() === "random");
+  const terrain = (!input.terrain.length || terrainNeedsReplacement)
+    ? [getRandom(TERRAIN_TYPES)]
+    : input.terrain.filter(t => t.trim().toLowerCase() !== "random");
+
+  const tags = input.tags
+    .filter(t => t.trim().toLowerCase() !== "random");
+
+  return { climate, terrain, tags };
 }

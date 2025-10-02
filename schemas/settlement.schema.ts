@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { defaultEnvironmentValues, environmentSchema } from "./environment.schema";
 import { optionalEnum } from "@/lib/util/zodHelpers";
-import { MAGIC_LEVELS, RULING_TYPES, SIZE_TYPES, WEALTH_LEVELS } from "@/constants/settlementOptions";
+import { MAGIC_LEVELS, MILITARY_PRESENCE_TYPES, RULING_TYPES, SIZE_TYPES, WEALTH_LEVELS } from "@/constants/settlement.options";
 import { npcConnectionItemSchema } from "./connection.schema";
 const fileSizeLimit = 5 * 1024 * 1024;
 
@@ -14,6 +14,7 @@ export const settlementSchema = z.object({
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   rulingStyle: optionalEnum(RULING_TYPES as [string, ...string[]], "Invalid ruling style"),
+  military: optionalEnum(MILITARY_PRESENCE_TYPES as [string, ...string[]], "Invalid military presence"),
   wealth: optionalEnum(WEALTH_LEVELS as [string, ...string[]], "Invalid wealth level"),
   tradeNotes: z.string().optional(),
   guilds: z.string().optional(),
@@ -56,6 +57,7 @@ export const defaultSettlementValues =  {
   publicNotes: "",
   gmNotes: "",
   rulingStyle: undefined,
+  military: [],
   wealth: undefined,
   tradeNotes: "",
   guilds: "",

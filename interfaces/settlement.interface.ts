@@ -40,6 +40,7 @@ export interface Settlement extends CommonInterface {
   magic?: string;
   races?: string;
   rulingStyle?: string;
+  military?: string[];
   wealth?: string;
   tradeNotes?: string;
   domains?: string[];

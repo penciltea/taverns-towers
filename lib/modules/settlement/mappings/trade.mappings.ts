@@ -1,4 +1,4 @@
-import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environmentOptions";
+import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environment.options";
 
 export const TradeNotesByTagMapping: Partial<Record<TagTypes, string[]>> = {
   "Ancient Ruins": [

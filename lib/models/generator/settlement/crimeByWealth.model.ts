@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CRIMINAL_ACTIVITY_TYPES, CriminalActivityTypes, WEALTH_LEVELS, WealthLevel } from "@/constants/settlementOptions";
+import { CRIMINAL_ACTIVITY_TYPES, CriminalActivityTypes, WEALTH_LEVELS, WealthLevel } from "@/constants/settlement.options";
 const { Schema, model, models } = mongoose;
 
 export interface CrimeByWealthModel {

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environmentOptions";
+import { TERRAIN_TYPES, TerrainTypes } from "@/constants/environment.options";
 const { Schema, model, models } = mongoose;
 
 export interface HolidaysByTerrainModel {

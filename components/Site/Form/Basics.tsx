@@ -1,6 +1,6 @@
 import { FormSelect, FormChipSelect } from "@/components/Form"
 import FormImageUpload from "@/components/Form/FormImageUpload"
-import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environmentOptions"
+import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environment.options"
 import { toSelectOptions } from "@/lib/util/formatSelectOptions"
 import { SiteFormData } from "@/schemas/site.schema"
 import { useSiteContentStore } from "@/store/siteStore"

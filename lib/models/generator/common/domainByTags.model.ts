@@ -1,5 +1,5 @@
-import { TAG_TYPES, TagTypes } from "@/constants/environmentOptions";
-import { DOMAINS, DomainTypes } from "@/constants/settlementOptions";
+import { TAG_TYPES, TagTypes } from "@/constants/environment.options";
+import { DOMAINS, DomainTypes } from "@/constants/common.options";
 import mongoose from "mongoose";
 const { Schema, model, models } = mongoose;
 
