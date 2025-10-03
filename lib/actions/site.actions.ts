@@ -40,6 +40,7 @@ export async function getSitesPaginated(
   name: string,
   types?: string[],
   userId?: string,
+  tone?: string[]
 ) {
   await connectToDatabase();
 
@@ -62,6 +63,10 @@ export async function getSitesPaginated(
 
   if (userId) {
     query.userId = new ObjectId(userId);
+  }
+
+  if (tone && tone.length > 0) {
+    query.tone = { $all: tone };
   }
 
   const skip = (page - 1) * limit;
@@ -90,6 +95,7 @@ export async function getSites({
   limit = 12,
   name,
   types = [],
+  tone = []
 }: {
   userId?: string;
   isPublic?: boolean;
@@ -98,6 +104,7 @@ export async function getSites({
   limit?: number;
   name?: string;
   types?: string[];
+  tone?: string[];
 }) {
   await connectToDatabase();
 
@@ -118,6 +125,10 @@ export async function getSites({
 
   if (types.length > 0) {
     query.type = { $in: types };
+  }
+
+  if (tone && tone.length > 0) {
+    query.tone = { $all: tone };
   }
 
   const skip = (page - 1) * limit;

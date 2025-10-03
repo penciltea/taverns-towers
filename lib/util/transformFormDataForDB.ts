@@ -13,6 +13,8 @@ export function transformSettlementFormData(data: SettlementFormData) {
     tags: data.tags ?? [],
     terrain: data.terrain ?? [],
     crime: data.crime ?? [],
+    military: data.military ?? [],
+    tone: data.tone ?? [],
     map:
       typeof data.map === "string" && data.map.startsWith("http")
         ? data.map

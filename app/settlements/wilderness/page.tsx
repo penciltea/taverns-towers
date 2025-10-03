@@ -30,6 +30,7 @@ export default function WildernessPage() {
         filters.limit,
         filters.search,
         filters.type,
+        filters.tone
     );
 
     async function handleDeleteSite(id: string) {
@@ -74,6 +75,7 @@ export default function WildernessPage() {
                     title={site.name}
                     image={site.image}
                     subtitle={handleSiteLabel(site)}
+                    tone={site.tone}
                     onClick={() => {
                         setOpenDialog('SiteDetailsDialog', {  
                         siteData: site, 

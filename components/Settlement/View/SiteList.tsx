@@ -31,6 +31,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
     filters.limit,
     filters.search,
     filters.type,
+    filters.tone
   );
 
   async function handleDeleteSite(id: string) {

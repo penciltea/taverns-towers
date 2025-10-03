@@ -1,15 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import {
-  Typography,
-  Box,
-  Chip,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-} from '@mui/material';
+import { Typography, Box, Chip, Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
 import { GridItemProps } from '@/interfaces/gridProps';
 import { optimizeCloudinaryImage } from '@/lib/util/optimizeCloudinaryImage';
 
@@ -20,11 +12,16 @@ export default function GridItem({
   image,
   onClick,
   tags = [],
+  tone = []
 }: GridItemProps) {
   const router = useRouter();
   const filteredTags = tags.filter((tag) => tag.trim() !== '');
   const visibleTags = filteredTags.slice(0, 3);
   const extraCount = filteredTags.length - visibleTags.length;
+
+  const filteredTones = tone.filter((tone) => tone.trim() !== '');
+  const visibleTones = filteredTones.slice(0, 3);
+  const extraToneCount = filteredTones.length - visibleTones.length;
 
   const handleClick = () => {
     if (onClick) {
@@ -37,11 +34,16 @@ export default function GridItem({
   const ariaLabel = [
     title,
     subtitle ? `${subtitle}` : null,
-    filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
-    extraCount > 0
-      ? `and ${extraCount} more tag${extraCount > 1 ? 's' : ''}`
+    filteredTones.length > 0 ? `tone: ${visibleTones.join(', ')}` : null,
+    extraToneCount > 0
+      ? `and ${extraToneCount} more tone${extraToneCount > 1 ? 's' : ''}`
       : null,
-  ]
+    filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
+      filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
+      extraCount > 0
+        ? `and ${extraCount} more tag${extraCount > 1 ? 's' : ''}`
+        : null,
+    ]
     .filter(Boolean)
     .join(', ');
 
@@ -90,6 +92,14 @@ export default function GridItem({
                 <Chip key={tag} label={tag} size="small" />
               ))}
               {extraCount > 0 && <Chip label={`+${extraCount}`} size="small" />}
+            </Box>
+          )}
+          {tone.length > 0 && (
+            <Box mt={1} display="flex" gap={1} flexWrap="wrap">
+              {visibleTones.map((tag) => (
+                <Chip key={tag} label={tag} size="small" />
+              ))}
+              {extraToneCount > 0 && <Chip label={`+${extraToneCount}`} size="small" />}
             </Box>
           )}
         </CardContent>

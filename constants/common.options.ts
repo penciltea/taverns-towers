@@ -54,9 +54,14 @@ export const DOMAINS = [
 ];
 
 
+export const TONE = [
+  "Test"
+];
+
 
 export type Flatten<T> = T extends Array<{ options: readonly any[] }>
   ? T[number]["options"][number]
   : never;
 
 export type DomainTypes = (typeof DOMAINS)[number]
+export type ToneTypes = (typeof TONE)[number]

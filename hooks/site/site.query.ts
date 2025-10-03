@@ -1,7 +1,16 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { getOwnedSites, getPublicSites, getSiteById, getSites, getSitesPaginated } from '@/lib/actions/site.actions';
-import { siteListKey } from '@/lib/util/queryKeys';
 import { SiteResponse } from '@/interfaces/site.interface';
+
+export const siteListKey = (
+  settlementId: string,
+  page: number,
+  limit: number,
+  name: string,  
+  types: string[],
+  tone: string[]
+) => ['sites', settlementId, page, limit, name, types, tone];
+
 
 export function useGetSiteById(id: string) {
   return useQuery({
@@ -17,10 +26,11 @@ export const usePaginatedSites = (
   limit: number,
   name: string,
   types: string[],
+  tone: string[]
 ) => {
   return useQuery<SiteResponse>({
-    queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types),
-    queryFn: () => getSitesPaginated(settlementId, page, limit, name, types),
+    queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types, tone),
+    queryFn: () => getSitesPaginated(settlementId, page, limit, name, types, undefined, tone),
     staleTime: 1000 * 60 * 5,
   });
 };

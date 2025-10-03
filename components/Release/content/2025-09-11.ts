@@ -11,7 +11,9 @@ export const release20250911 = {
   improvements: [
     "Improved initial page loading speed",
     "Improved login and register UI/UX and added ability to reset password and user profile/account information",
-    "Added a page to view all wilderness / no settlements sites"
+    "Added a page to view all wilderness / no settlements sites",
+    "Added Military Presence field to settlements and settlement generator logic",
+    "Added a Tone field to settlements and sites and their respective generators"
   ],
   bugFixes: [
     "Fixed issue with tavern generation data",
@@ -22,7 +24,8 @@ export const release20250911 = {
     "Fixed an issue on the 'view all sites' page where all sites were being displayed, even if not created by the user",
     "User creation/update: Fixed issue where password wasn't being validated correctly",
     "Guild site type: Fixed an issue where 'Probationary Period' as a randomly generated value wasn't accepted",
-    "Fixed an issue where sometimes the generators would pick 'Random' as the value for a field instead of a proper value"
+    "Fixed an issue where sometimes the generators would pick 'Random' as the value for a field instead of a proper value",
+    "Fixed an issue with settlement advanced filtering where users couldn't select tags or terrain"
   ],
   knownIssues: [
     "When creating a site in the wilderness, pressing 'Generate Missing Fields' does not generate environmental fields"

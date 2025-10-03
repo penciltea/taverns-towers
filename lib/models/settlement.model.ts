@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
 import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, WEALTH_LEVELS, MilitaryPresenceTypes, MILITARY_PRESENCE_TYPES} from '@/constants/settlement.options';
-import { DOMAINS, DomainTypes } from '@/constants/common.options';
+import { DOMAINS, DomainTypes, TONE, ToneTypes } from '@/constants/common.options';
 import { ClimateTypes, TerrainTypes, TagTypes, TAG_TYPES, TERRAIN_TYPES, CLIMATE_TYPES } from '@/constants/environment.options';
 import { NpcConnection } from '@/interfaces/connection.interface';
 import { connectionSchema } from './connection.model';
@@ -20,7 +20,6 @@ export interface ISettlement extends Document {
   description: string;
   publicNotes: string;
   gmNotes: string;
-  leader?: Types.ObjectId[];
   rulingStyle: RulingType;
   military: MilitaryPresenceTypes[];
   wealth: WealthLevel;
@@ -30,6 +29,7 @@ export interface ISettlement extends Document {
   holidays: string;
   folklore: string;
   crime: CriminalActivityTypes[];
+  tone: ToneTypes[];
   createdBy: Types.ObjectId;
   isPublic: boolean;
   userId: Types.ObjectId;
@@ -52,7 +52,6 @@ const SettlementSchema = new Schema<ISettlement>(
     description: { type: String, required: false },
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
-    leader: [{ type: Schema.Types.ObjectId, ref: "NPC" }],
     rulingStyle: { type: String, enum: RULING_TYPES, required: false },
     military: [{ type: String, enum: MILITARY_PRESENCE_TYPES, required: false}],
     wealth: { type: String, enum: WEALTH_LEVELS, required: false },
@@ -61,6 +60,7 @@ const SettlementSchema = new Schema<ISettlement>(
     domains: [{ type: String,enum: DOMAINS, required: false }],
     holidays: { type: String, required: false },
     folklore: { type: String, required: false },
+    tone: [{type: String, enum: TONE, required: false}],
     connections: [connectionSchema],
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -72,11 +72,6 @@ const SettlementSchema = new Schema<ISettlement>(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
-
-export interface SettlementDbData extends Document {
-  name: string;
-  leader?: Types.ObjectId[];
-}
 
 
 SettlementSchema.virtual('id').get(function () {

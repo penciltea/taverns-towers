@@ -14,6 +14,7 @@ export const baseSettlementInput: NormalizedSettlementInput = {
   domains: [],
   folklore: "",
   tradeNotes: "",
+  tone: [],
   connections: [],
   userId: "user1",
   editors: [],

@@ -47,6 +47,7 @@ export interface Settlement extends CommonInterface {
   holidays?: string;
   folklore?: string;
   crime?: string[];
+  tone?: string[];
   connections: NpcConnection[];
 }
 
@@ -59,7 +60,8 @@ export const DefaultSettlementQueryParams: SettlementQueryParams = {
   magic: '',
   wealth: '',
   tags: [],
-  terrain: []
+  terrain: [],
+  tone: []
 }
 
 export interface SettlementQueryParams {
@@ -72,4 +74,5 @@ export interface SettlementQueryParams {
   wealth: string;
   tags: string[];
   terrain: string[];
+  tone: string[];
 }

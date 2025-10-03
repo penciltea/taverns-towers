@@ -57,6 +57,7 @@ export default function SettlementsPage() {
               subtitle={`Size: ${settlement.size || 'N/A'}`}
               image={settlement.map || defaultImage}
               tags={settlement.tags}
+              tone={settlement.tone}
             />
           )}
           filterComponent={

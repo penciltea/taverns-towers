@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
-import { useOwnedSitesQuery } from '@/hooks/site/site.query';
+import { siteListKey, useOwnedSitesQuery } from '@/hooks/site/site.query';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { SiteQueryParams } from '@/interfaces/site.interface';
@@ -12,7 +12,6 @@ import GridItem from '@/components/Grid/GridItem';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import FilterBar from '@/components/Grid/FilterBar';
 import { deleteSite } from '@/lib/actions/site.actions';
-import { siteListKey } from '@/lib/util/queryKeys';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
@@ -55,7 +54,8 @@ export default function AllSitesPage() {
           filters.page,
           filters.limit,
           filters.search,
-          filters.type
+          filters.type,
+          filters.tone
         ),
       });
 
@@ -92,6 +92,7 @@ export default function AllSitesPage() {
               title={site.name}
               image={site.image}
               subtitle={handleSiteLabel(site)}
+              tone={site.tone}
               onClick={() => {
                 useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
                   siteData: site,

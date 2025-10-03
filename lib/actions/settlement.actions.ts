@@ -21,6 +21,7 @@ export async function getSettlements({
   wealth,
   tags = [],
   terrain = [],
+  tone = []
 }: {
   userId?: string;
   isPublic?: boolean;
@@ -33,6 +34,7 @@ export async function getSettlements({
   wealth?: string;
   tags?: string[];
   terrain?: string[];
+  tone?: string[];
 }) {
   await connectToDatabase();
 
@@ -48,6 +50,7 @@ export async function getSettlements({
   if (wealth) query.wealth = wealth;
   if (tags.length > 0) query.tags = { $all: tags };
   if (terrain.length > 0) query.terrain = { $all: terrain };
+  if (tone.length > 0) query.tone = { $all: tone };
 
   const total = await SettlementModel.countDocuments(query);
   const settlements = await SettlementModel.find(query)

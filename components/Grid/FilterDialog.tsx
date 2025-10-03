@@ -1,10 +1,9 @@
 "use client";
 
-import { useId } from "react";
+import { useId, ReactNode } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, Control } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactNode } from "react";
 import * as z from "zod";
 
 interface FilterDialogProps<T extends z.ZodTypeAny> {
@@ -13,7 +12,7 @@ interface FilterDialogProps<T extends z.ZodTypeAny> {
   onSubmit: (data: z.infer<T>) => void;
   schema: T;
   defaultValues: Partial<z.infer<T>>;
-  children: ReactNode;
+  children: (control: Control<z.infer<T>>) => ReactNode; 
   title?: string;
 }
 
@@ -46,8 +45,8 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" aria-labelledby={titleId}>
       <DialogTitle id={titleId}>{title}</DialogTitle>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogContent dividers>{children}</DialogContent>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <DialogContent dividers>{children(methods.control)}</DialogContent>
           <DialogActions>
             <Button variant="text" size="small" onClick={handleClose}>Cancel</Button>
             <Button type="submit" variant="contained">Apply</Button>

@@ -22,6 +22,7 @@ export const settlementSchema = z.object({
   holidays: z.string().optional(),
   folklore: z.string().optional(),
   crime: z.array(z.string()).optional(),
+  tone: z.array(z.string()).optional(),
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema).default([]),
@@ -46,6 +47,7 @@ export const settlementFilterSchema = z.object({
   size: z.string().optional(),
   magic: z.string().optional(),
   wealth: z.string().optional(),
+  tone: z.array(z.string()).optional()
 })
 .merge(environmentSchema); // added for climate, terrain, and tag fields
 
@@ -65,6 +67,7 @@ export const defaultSettlementValues =  {
   holidays: "",
   folklore: "",
   crime: [],
+  tone: [],
   map: undefined,
   isPublic: false,
   editors: [],

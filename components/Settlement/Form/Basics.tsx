@@ -8,6 +8,7 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+import { TONE } from "@/constants/common.options";
 
 export default function SettlementFormBasics(){
     const {
@@ -59,6 +60,14 @@ export default function SettlementFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
                     fieldError={errors.tags}
+                />
+
+                <FormChipSelect
+                    name="tone"
+                    label="Tone"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(TONE)]}
+                    fieldError={errors.tone}
                 />
 
                 <Accordion slotProps={{ heading: { component: 'h2' } }}>

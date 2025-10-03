@@ -8,5 +8,6 @@ export interface GridItemProps {
   subtitle?: string;
   image?: string;
   tags?: string[];
+  tone?: string[];
   onClick?: () => void;
 }

@@ -322,7 +322,7 @@ export async function canCreateContent(userId: string, contentType: "settlement"
       default:
         return false;
     }
-    return currentCount < limit;
+    return currentCount <= limit;
   }
 }
 
