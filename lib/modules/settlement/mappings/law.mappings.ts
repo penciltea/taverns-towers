@@ -96,3 +96,11 @@ export const MilitaryByRulingMapping: Record<RulingType, MilitaryPresenceTypes[]
   "Theocracy": ["Magical Defenders", "Town Guard", "Local Militia"],
   "Tyranny": ["Garrisoned Soldiers", "Town Guard", "Knightly Order", "Military Outpost"]
 };
+
+export const MilitaryCountBySiteWealth: Record<WealthLevel, [number, number]> = {
+  impoverished: [1, 1],
+  struggling: [1, 1],
+  modest: [1, 2],
+  wealthy: [2, 4],
+  affluent: [3, 4]
+};

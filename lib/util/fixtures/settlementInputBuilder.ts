@@ -10,6 +10,7 @@ export const baseSettlementInput: NormalizedSettlementInput = {
   wealth: "random",
   crime: ["random"],
   rulingStyle: "random",
+  military: [],
   domains: [],
   folklore: "",
   tradeNotes: "",

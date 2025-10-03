@@ -30,6 +30,11 @@ export function isValidSiteCategory(value: string | null): value is SiteCategory
   return SITE_CATEGORIES.some((category) => category.value === value);
 }
 
+type SiteRule<T extends SiteFormData["type"]> =
+  | ((data: Extract<SiteFormData, { type: T }>, context: SiteGenerationContext) => Partial<Extract<SiteFormData, { type: T }>>)
+  | ((data: Extract<SiteFormData, { type: T }>, context: SiteGenerationContext) => Promise<Partial<Extract<SiteFormData, { type: T }>>>);
+
+
 /**
  * Creates a site generator function for a given site type.
  * The generator applies a series of asynchronous rules to the input data and context,
@@ -43,29 +48,15 @@ export function isValidSiteCategory(value: string | null): value is SiteCategory
 
 export function createSiteGenerator<T extends SiteFormData["type"]>(
   type: T,
-  rules: ((
-    data: Extract<SiteFormData, { type: T }>, 
-    context: SiteGenerationContext
-  ) => Promise<Partial<Extract<SiteFormData, { type: T }>>>)[]
+  rules: SiteRule<T>[]
 ): (input: SiteGenerationInput) => Promise<Extract<SiteFormData, { type: T }>> {
   return async (input) => {
-    // Separate overrides (pre-set fields) from the rest of the generation context
     const { overrides = {}, ...context } = input;
+    let result: Extract<SiteFormData, { type: T }> = { type, ...overrides } as any;
 
-    // Initialize base site data with the specified type and any overrides passed
-    const base: Extract<SiteFormData, { type: T }> = {
-      type,
-      ...overrides,
-    } as Extract<SiteFormData, { type: T }>;
-
-    let result = base;
-
-    // Apply each async rule sequentially to enrich/modify the site data
     for (const rule of rules) {
-      result = {
-        ...result,
-        ...(await rule(result, context)),
-      };
+      const update = rule(result, context);
+      result = { ...result, ...(update instanceof Promise ? await update : update) };
     }
 
     return result;

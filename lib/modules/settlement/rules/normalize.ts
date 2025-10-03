@@ -13,6 +13,7 @@ export type NormalizedSettlementInput =
     wealth: string;
     crime: string[];
     domains: string[];
+    military: string[];
 };
 
 
@@ -26,6 +27,7 @@ export function normalizeSettlementInput(data: Partial<Settlement>): NormalizedS
     size: data.size?.trim() || "random",
     magic: data.magic?.trim() || "random",
     rulingStyle: data.rulingStyle?.trim() || "random",
+    military: data.military?.length ? data.military : ["random"],
     wealth: data.wealth?.trim() || "random",
     crime: data.crime?.length ? data.crime : ["random"],
     domains: data.domains?.length ? data.domains : ["random"],

@@ -14,7 +14,7 @@ export const settlementSchema = z.object({
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   rulingStyle: optionalEnum(RULING_TYPES as [string, ...string[]], "Invalid ruling style"),
-  military: optionalEnum(MILITARY_PRESENCE_TYPES as [string, ...string[]], "Invalid military presence"),
+  military: z.array(z.string()).optional(),
   wealth: optionalEnum(WEALTH_LEVELS as [string, ...string[]], "Invalid wealth level"),
   tradeNotes: z.string().optional(),
   guilds: z.string().optional(),

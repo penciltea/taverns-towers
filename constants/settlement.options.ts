@@ -1,4 +1,4 @@
-export const SETTLEMENT_TABS = ["Basics", "Leadership & Economics", "Culture & Society", "NPC Connections"];
+export const SETTLEMENT_TABS = ["Basics", "Law & Economics", "Culture & Society", "NPC Connections"];
 
 export const SIZE_TYPES = [
     "Encampment",
@@ -59,20 +59,16 @@ export const CRIMINAL_ACTIVITY_TYPES = [
 export const MILITARY_PRESENCE_TYPES = [
     "None",
     "Border Patrol",
-    "Cavalry Detachment",
-    "Fortified Outpost",
     "Garrisoned Soldiers",
-    "City Watch",
     "Knightly Order",
     "Local Militia",
     "Magical Defenders",
     "Mercenary Company",
-    "Private Retainers",
+    "Military Outpost",
+    "Mounted Forces",
     "Royal Troops",
-    "Siege Engineers",
     "Town Guard",
-    "Watchtowers",
-]
+];
 
 
 export type SizeTypes = (typeof SIZE_TYPES)[number]

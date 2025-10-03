@@ -22,6 +22,14 @@ export default function SettlementFormWealth(){
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle as FieldError | undefined}
             />
+            
+            <FormSelect
+                name="wealth"
+                label="Wealth"
+                control={control}
+                options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
+                fieldError={errors.wealth as FieldError | undefined}
+            />
 
             <FormChipSelect
                 name="military"
@@ -36,15 +44,6 @@ export default function SettlementFormWealth(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(CRIMINAL_ACTIVITY_TYPES)]}
                 fieldError={errors.crime}
-            />
-            
-
-            <FormSelect
-                name="wealth"
-                label="Wealth"
-                control={control}
-                options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
-                fieldError={errors.wealth as FieldError | undefined}
             />
 
             <FormTextField

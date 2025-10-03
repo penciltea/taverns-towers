@@ -2,14 +2,10 @@ import { SiteFormData } from "@/schemas/site.schema";
 import { commonRules } from "../common/rules";
 import { createSiteGenerator } from "@/lib/util/siteHelpers";
 import { TempleSite, SiteGenerationInput, SiteGenerationContext } from "@/interfaces/site.interface";
-import { RelicByDomain, RelicByDomainModel } from "@/lib/models/generator/site/temple/relicsByDomain.model";
-import { RelicBySize, RelicBySizeModel } from "@/lib/models/generator/site/temple/relicBySize.model";
-import { RelicByCondition, RelicByConditionModel } from "@/lib/models/generator/site/temple/relicsByCondition.model";
-import { extractArrayFromResult } from "@/lib/util/extractArrayFromResult";
 import { RELICS_BY_CONDITION_MAPPING, RELICS_BY_DOMAIN_MAPPING, RELICS_BY_SIZE_MAPPING } from "./mappings/relics.mappings";
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 import { getRandomSubset } from "@/lib/util/randomValues";
-import { getDomainsByEnvironment } from "../../common/domains/getDomainsByEnvironment.rules";
+import { getDomainsByEnvironment } from "@/lib/modules/common/domains/getDomainsByEnvironment.rules";
 import { domainCountBySiteSize } from "./mappings/domains.mappings";
 import { DOMAINS } from "@/constants/common.options";
 
@@ -17,15 +13,15 @@ export function isTempleSite(data: Partial<SiteFormData>): data is Partial<Templ
   return data.type === "temple";
 }
 
-export async function applyTempleDomainsByConditions(
+export function applyTempleDomainsByConditions(
   data: Partial<SiteFormData>,
   context: SiteGenerationContext
-): Promise<Partial<SiteFormData>>{
+) {
   if(!isTempleSite(data)) return data; // If type is somehow not "temple", return early
 
   const settlementDomains = context.domains ?? [];
   
-  const domainPool = await getDomainsByEnvironment({
+  const domainPool = getDomainsByEnvironment({
     tags: context.tags,
     terrain: context.terrain,
     climate: context.climate,
@@ -51,10 +47,10 @@ export async function applyTempleDomainsByConditions(
   return data;
 }
 
-export async function applyRelicsByConditions(
+export function applyRelicsByConditions(
   data: Partial<SiteFormData>,
   context: SiteGenerationContext
-): Promise<Partial<SiteFormData>>{
+) {
 
   if(!isTempleSite(data)) return data; // If type is somehow not "temple", return early
 
@@ -67,32 +63,9 @@ export async function applyRelicsByConditions(
     condition: siteCondition
   } = data;
 
-  // Make async DB calls for populating arrays
-
-  const results = await Promise.allSettled([
-    RelicByDomain.find({ domain: domains }).lean<RelicByDomainModel[]>(),
-    siteSize ? RelicBySize.findOne({ size: siteSize }).lean<RelicBySizeModel | null>() : Promise.resolve(null),
-    siteCondition ? RelicByCondition.findOne({ condition: siteCondition }).lean<RelicByConditionModel | null>() : Promise.resolve(null)
-  ]);
-
-
-  // Get results from above DB calls, extract them in that order, and use fallback mappings if any fail
-  const settlementDomainsRelic = extractArrayFromResult(
-    results[0], 
-    (doc) => doc.relics,
-    domains.flatMap((domain) => RELICS_BY_DOMAIN_MAPPING[domain] ?? [])
-  );
-
-  const siteSizeRelic =
-    results[1].status === "fulfilled" && results[1].value !== null && results[1].value.relics.length > 0
-      ? results[1].value.relics
-      : RELICS_BY_SIZE_MAPPING[siteSize as SiteSize] ?? [];
-
-  const siteConditionRelic =
-    results[2].status === "fulfilled" && results[2].value !== null && results[2].value.relics.length > 0
-      ? results[2].value.relics
-      : RELICS_BY_CONDITION_MAPPING[siteCondition as SiteCondition] ?? [];
-
+  const settlementDomainsRelic = domains.flatMap((domain) => RELICS_BY_DOMAIN_MAPPING[domain] ?? []);
+  const siteSizeRelic = RELICS_BY_SIZE_MAPPING[siteSize as SiteSize] ?? [];
+  const siteConditionRelic = RELICS_BY_CONDITION_MAPPING[siteCondition as SiteCondition] ?? [];
 
   // Combining results into one array to pull final results from
   const combined = [

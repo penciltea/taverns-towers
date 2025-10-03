@@ -1,0 +1,46 @@
+import { SiteGuildType } from "@/constants/site/guild.options";
+
+export const GuildMembershipByTypeMapping: Record<SiteGuildType, string[]> = {
+  adventurer: ["monthlyDues", "experience", "testPass", "recommendation", "sponsorship", "openMembership", "probationaryPeriod", "duelChallenge"],
+  assassin: ["probationaryPeriod", "skillTest", "trialTask", "secret", "monthlyDues", "recommendation", "duelChallenge"],
+  beastTamer: ["monthlyDues", "recommendation", "testPass", "trialTask", "skillTest"],
+  hunter: ["monthlyDues", "recommendation", "testPass", "trialTask", "skillTest", "duelChallenge"],
+  monsterHunter: ["monthlyDues", "recommendation", "testPass", "trialTask", "skillTest", "duelChallenge"],
+  spy: ["recommendation", "probationaryPeriod", "monthlyDues", "skillTest", "testPass", "trialTask", "politicalAllegiance", "secret"],
+  thief: ["recommendation", "probationaryPeriod", "monthlyDues", "skillTest", "testPass", "trialTask", "secret"],
+
+  alchemist: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  cartographer: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  fletcher: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "experience", "testPass", "skillTest"],
+  glassblower: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  jeweler: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  leatherworker: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "experience", "testPass", "skillTest"],
+  scribe: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  smith: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  stoneCutter: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "experience", "testPass", "skillTest"],
+  tailor: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  tinker: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+  woodworker: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "experience", "testPass", "skillTest"],
+  artisan: ["sponsorship", "entranceFee", "monthlyDues", "recommendation", "probationaryPeriod", "experience", "testPass", "skillTest"],
+
+  druid: ["monthlyDues", "divineCalling", "testPass", "skillTest", "recommendation", "experience", "probationaryPeriod"],
+  mage: ["monthlyDues", "arcaneAptitude", "testPass", "skillTest", "recommendation", "experience", "probationaryPeriod"],
+  healer: ["monthlyDues", "divineCalling", "testPass", "skillTest", "recommendation", "experience", "probationaryPeriod"],
+  scholar: ["entranceFee", "monthlyDues", "recommendation", "skillTest", "sponsorship", "trialTask"],
+
+  courier: ["openMembership", "entranceFee", "monthlyDues", "probationaryPeriod", "trialTask"],
+  dockworker: ["openMembership", "entranceFee", "monthlyDues", "probationaryPeriod", "trialTask"],
+  forester: ["experience", "recommendation", "trialTask"],
+  laborer: ["openMembership", "entranceFee", "monthlyDues", "probationaryPeriod", "trialTask"],
+  miner: ["experience", "probationaryPeriod", "entranceFee"],
+  seafarer: ["experience", "trialTask"],
+  explorer: ["trialTask", "testPass", "recommendation"],
+
+  artist: ["skillTest", "recommendation", "entranceFee"],
+  auctioneer: ["testPass", "monthlyDues", "sponsorship"],
+  banker: ["nobleLineage", "politicalAllegiance", "recommendation", "entranceFee"],
+  courtier: ["politicalAllegiance", "recommendation", "entranceFee"],
+  entertainer: ["skillTest", "probationaryPeriod", "monthlyDues"],
+  broker: ["recommendation", "testPass", "secret"],
+  merchant: ["entranceFee", "monthlyDues", "recommendation", "trialTask"],
+};

@@ -4,11 +4,11 @@ import { getDomainsByEnvironment } from "@/lib/modules/common/domains/getDomains
 import { domainCountBySize } from "../mappings/domain.mappings";
 import { DOMAINS, DomainTypes } from "@/constants/common.options";
 
-export async function applyDomainsByConditions(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+export function applyDomainsByConditions(data: NormalizedSettlementInput) {
   const shouldGenerate = !data.domains || data.domains.includes("random")
   if (!shouldGenerate) return data; 
   
-  const domainPool = await getDomainsByEnvironment({
+  const domainPool = getDomainsByEnvironment({
     tags: data.tags,
     terrain: data.terrain,
     climate: data.climate,
