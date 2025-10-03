@@ -34,7 +34,7 @@ export default function FilterDialog<T extends z.ZodTypeAny>({
 
   const titleId = useId(); // for accessibility/screen readers
 
-  const { handleSubmit, reset } = methods;
+  const { reset } = methods;
 
   const handleClose = () => {
     reset(defaultValues);

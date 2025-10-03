@@ -56,28 +56,34 @@ export default function NpcFilters({ filters, setFilters }: NpcFiltersProps) {
           schema={npcFilterSchema}
           defaultValues={{ ...filters }}
         >
-          <Box display="flex" flexDirection="column" gap={2}>
-            <FormSelect
-              name="age"
-              label="Age"
-              options={toSelectOptions(NPC_AGE)}
-            />
-            <FormSelect
-              name="alignment"
-              label="Alignment"
-              options={toSelectOptions(NPC_ALIGNMENT)}
-            />
-            <FormSelect
-              name="pronouns"
-              label="Pronouns"
-              options={toSelectOptions(NPC_PRONOUNS)}
-            />
-            <FormSelect
-              name="status"
-              label="Status"
-              options={toSelectOptions(NPC_STATUS)}
-            />
-          </Box>
+          {(control) => (
+            <Box display="flex" flexDirection="column" gap={2}>
+              <FormSelect
+                name="age"
+                label="Age"
+                control={control}
+                options={toSelectOptions(NPC_AGE)}
+              />
+              <FormSelect
+                name="alignment"
+                label="Alignment"
+                control={control}
+                options={toSelectOptions(NPC_ALIGNMENT)}
+              />
+              <FormSelect
+                name="pronouns"
+                label="Pronouns"
+                control={control}
+                options={toSelectOptions(NPC_PRONOUNS)}
+              />
+              <FormSelect
+                name="status"
+                label="Status"
+                control={control}
+                options={toSelectOptions(NPC_STATUS)}
+              />
+            </Box>
+          )}
         </FilterDialog>
       )}
     </>

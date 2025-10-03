@@ -30,7 +30,7 @@ export function useSettlementLoader(settlementId: string | null) {
 
   // Fetch settlement data (null when wilderness)
   const { data: settlementData, isLoading: settlementLoading } = useSettlementQuery(isWilderness ? null : settlementId);
-  const { data: siteData, isFetching: sitesLoading } = usePaginatedSites(isWilderness ? null : (settlementId as string), page, limit, "", []);
+  const { data: siteData, isFetching: sitesLoading } = usePaginatedSites(isWilderness ? null : (settlementId as string), page, limit, "", [], []);
 
   // Generate wilderness environment context once on mount if in wilderness mode
   const [wildernessContext] = useState(() => (isWilderness ? generateWildernessContext() : null));

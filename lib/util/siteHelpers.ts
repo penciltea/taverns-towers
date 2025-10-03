@@ -52,7 +52,13 @@ export function createSiteGenerator<T extends SiteFormData["type"]>(
 ): (input: SiteGenerationInput) => Promise<Extract<SiteFormData, { type: T }>> {
   return async (input) => {
     const { overrides = {}, ...context } = input;
-    let result: Extract<SiteFormData, { type: T }> = { type, ...overrides } as any;
+
+    const base: Extract<SiteFormData, { type: T }> = {
+      type,
+      ...overrides,
+    } as Extract<SiteFormData, { type: T }>;
+
+    let result = base;
 
     for (const rule of rules) {
       const update = rule(result, context);

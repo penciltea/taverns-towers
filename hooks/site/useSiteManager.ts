@@ -13,7 +13,7 @@ export function useSiteManager(settlementId: string | null) {
   const isWilderness = settlementId === "wilderness";
   const { setItems, allItems } = useSiteContentStore();
   const { showErrorDialog } = useUIStore();
-  const { refetch } = usePaginatedSites(settlementId, 1, 12, "", []);
+  const { refetch } = usePaginatedSites(settlementId, 1, 12, "", [], []);
 
   /**
    * Adds a new site, updates store, and refetches if applicable

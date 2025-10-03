@@ -1,4 +1,4 @@
-import { DomainTypes } from "@/constants/settlement.options"
+import { DomainTypes } from "@/constants/common.options"
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
@@ -20,7 +20,7 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     "Commerce": [
       "Scales of Honest Trade: A tiny, well-worn balance scale that always detects cheating.",
       "Coin Purse of the Wandering Merchant: This stitched leather pouch always has exactly enough for bread and shelter—for one night.",
-      "Ledger of Binding Deals: An ancient merchant’s book that records promises written in blood, ink, or intent."
+      "Ledger of Binding Deals: An ancient merchant's book that records promises written in blood, ink, or intent."
     ],
     "Community": [
       "Cup of Shared Waters: A simple clay mug from which no one ever leaves thirsty.",
@@ -34,17 +34,17 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Decay": [
       "Rotwood Idol: A carved totem of soft, blackened wood that crumbles only when not watched.",
-      "Fly-Catcher’s Bell: A tarnished bell that draws insects but also dispels minor blight when rung at dusk.",
+      "Fly-Catcher's Bell: A tarnished bell that draws insects but also dispels minor blight when rung at dusk.",
       "Veil of the Corpse Queen: A funeral veil said to dissolve anything pure it touches—unless kissed by moonlight."
     ],
     "Dreams": [
-      "Feather of the Sleepwalker: Taken from a bird seen only in dreams, it’s said to bring prophetic visions if placed under one's pillow.",
+      "Feather of the Sleepwalker: Taken from a bird seen only in dreams, it's said to bring prophetic visions if placed under one's pillow.",
       "Bottle of Moonlight Whispers: This sealed flask emits a faint sound only audible when dreaming nearby.",
       "Blank Mask of Reverie: A porcelain mask worn by ancient seers to walk the dreamscape between lives."
     ],
     "Fate": [
       "Thread of the Unspun Life: A single silver strand sealed in a glass bead, uncut and unbroken.",
-      "The Looper’s Needle: An ancient bone needle said to mend more than fabric—it weaves destinies together.",
+      "The Looper's Needle: An ancient bone needle said to mend more than fabric—it weaves destinies together.",
       "Candle of the Crossroads: Its flame leans in the direction of life-changing decisions."
     ],
     "Forge": [
@@ -54,12 +54,12 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Freedom": [
       "Shackle Key of the Unbound: A broken iron key once used to free a temple full of political prisoners.",
-      "Songbird’s Feather: Said to be from the last bird to escape a cage forged by tyrants.",
+      "Songbird's Feather: Said to be from the last bird to escape a cage forged by tyrants.",
       "Chain Link of Liberation: Just one link, but warm to the touch when injustice is near."
     ],
     "Grave": [
       "Coin for the Ferryman: Worn smooth and silver-gray, this coin is placed under the tongue of the honored dead.",
-      "Vial of Mourner’s Tears: Collected over generations by one family, used in rites to ease restless spirits.",
+      "Vial of Mourner's Tears: Collected over generations by one family, used in rites to ease restless spirits.",
       "Funerary Reed Flute: A hollow, cracked instrument whose notes can only be heard at sunset."
     ],
     "Harvest": [
@@ -69,13 +69,13 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Hunt": [
       "Fang of the Moon Wolf: A large, silver-stained fang taken from a beast said to hunt during eclipses.",
-      "Tracker’s Bone Charm: Worn smooth by generations of rangers, it always turns toward fresh prey.",
+      "Tracker's Bone Charm: Worn smooth by generations of rangers, it always turns toward fresh prey.",
       "The Last Arrow: A black-feathered arrow that has never been loosed, kept for a hunt that never came."
     ],
     "Invention": [
-      "Gear of the Impossible Engine: A finely-toothed cog that doesn’t seem to fit any known mechanism.",
+      "Gear of the Impossible Engine: A finely-toothed cog that doesn't seem to fit any known mechanism.",
       "Smokestack Charm: A brass trinket shaped like a tiny chimney, always faintly warm and humming.",
-      "The Unwritten Blueprint: A scroll that reveals different designs every time it’s unrolled."
+      "The Unwritten Blueprint: A scroll that reveals different designs every time it's unrolled."
     ],
     "Judgment": [
       "Scales of the Fair Arbiter: Small silver scales that never tip unfairly, used in ancient trials.",
@@ -89,7 +89,7 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Life": [
       "Heartstone Amulet: A smooth green stone reputed to pulse with the heartbeat of the first life.",
-      "Vial of Eternal Spring Water: Said to heal wounds when sprinkled, but only during dawn’s first light.",
+      "Vial of Eternal Spring Water: Said to heal wounds when sprinkled, but only during dawn's first light.",
       "Leaf of the Evergreen Tree: Preserved with holy oils, it never withers and symbolizes unending life."
     ],
     "Light": [
@@ -107,11 +107,11 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Moon": [
       "Silver Crescent Pendant: A delicate moon-shaped pendant said to wax and wane with the lunar phases.",
-      "Moonlit Chalice: A cup that fills with water only under the full moon’s light.",
-      "Sleeping Wolf’s Pelt: A soft fur rumored to grant visions in dreams when draped across the shoulders."
+      "Moonlit Chalice: A cup that fills with water only under the full moon's light.",
+      "Sleeping Wolf's Pelt: A soft fur rumored to grant visions in dreams when draped across the shoulders."
     ],
     "Nature": [
-      "Twig of the World Tree: A brittle branch said to have sprouted from the tree at the world’s dawn.",
+      "Twig of the World Tree: A brittle branch said to have sprouted from the tree at the world's dawn.",
       "Stone of the Verdant Grove: A moss-covered rock that glows faintly when near wild animals.",
       "Horn of the Elder Stag: Used in ancient rites to call the spirits of the forest."
     ],
@@ -121,12 +121,12 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
       "Ledger of Unyielding Records: An untearable book that records all transactions and judgments."
     ],
     "Peace": [
-      "Dove’s Feather Token: A white feather kept in a crystal vial, believed to calm tempers and soothe anger.",
+      "Dove's Feather Token: A white feather kept in a crystal vial, believed to calm tempers and soothe anger.",
       "Olive Branch Staff: A simple wooden staff carried by envoys to declare truce.",
       "Bell of Silent Accord: When rung, it hushes arguments and invites compromise."
     ],
     "Protection": [
-      "The Guardian’s Sigil: A bronze amulet said to shield its bearer from harm when invoked.",
+      "The Guardian's Sigil: A bronze amulet said to shield its bearer from harm when invoked.",
       "Blessed Chainmail Fragment: A small piece of mail worn by a saint, rumored to ward off evil spirits.",
       "Shield of the Watchful Eye: An ancient buckler carved with a never-blinking eye.",
       "The First Shield-Splinter: A wooden shard taken from the shield that saved a town from invasion.",
@@ -141,10 +141,10 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     "Secrets": [
       "Whispering Locket: A silver locket that murmurs forgotten truths when opened at midnight.",
       "Shadowed Grimoire: A dark leather book with pages that only reveal themselves to the worthy.",
-      "Veil of Silent Words: A sheer veil that grants silence and invisibility to the wearer’s whispered speech."
+      "Veil of Silent Words: A sheer veil that grants silence and invisibility to the wearer's whispered speech."
     ],
     "Shadow": [
-      "Shade’s Cloak: A dark, whisper-thin garment that seems to absorb all light around it.",
+      "Shade's Cloak: A dark, whisper-thin garment that seems to absorb all light around it.",
       "Phantom Chain: A rusted chain said to bind spirits wandering between worlds.",
       "Mirror of the Veiled Self: A smoky glass mirror that reveals the hidden fears and secrets of anyone who gazes into it.",
       "Dagger of the Silent Step: A blade that leaves no mark on the air or sound when drawn.",
@@ -152,23 +152,23 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     ],
     "Storms": [
       "Shard of the Thunderheart: A jagged piece of stormglass said to summon distant thunder.",
-      "Stormcaller’s Horn: A weathered horn that can call forth a brief gust or heavy rain.",
+      "Stormcaller's Horn: A weathered horn that can call forth a brief gust or heavy rain.",
       "Cape of Rolling Clouds: A cloak woven from storm-swept fibers that crackle faintly with static."
     ],
     "Sun": [
       "Flame of the First Dawn: A preserved ember said to glow brighter with the rising sun.",
-      "Golden Circlet of the Solar King: A radiant crown worn by a long-lost sun deity’s champion.",
+      "Golden Circlet of the Solar King: A radiant crown worn by a long-lost sun deity's champion.",
       "Sunblessed Sand: Grains of sand that warm the hand and never lose their glow."
     ],
     "Time": [
-      "Hourglass of Endless Moments: Its sands run slow or fast, seemingly at the bearer’s will.",
+      "Hourglass of Endless Moments: Its sands run slow or fast, seemingly at the bearer's will.",
       "Chronicle of Forgotten Years: A tome that records events yet to occur.",
-      "Clockwork Pendant: A tiny mechanism that ticks in tune with the world’s heartbeat."
+      "Clockwork Pendant: A tiny mechanism that ticks in tune with the world's heartbeat."
     ],
     "Travel": [
       "Boots of the Wandering Star: These worn leather boots never tire on the longest journeys.",
       "Map of the Everchanging Paths: A scroll that redraws itself daily to show safest routes.",
-      "Traveler’s Compass: An ancient compass that points to what the bearer most desires."
+      "Traveler's Compass: An ancient compass that points to what the bearer most desires."
     ],
     "Trickery": [
       "Mask of the Mirthful Shadow: A painted mask that lets its wearer slip unseen through crowds.",
@@ -176,7 +176,7 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
       "Pouch of Endless Coins: A small leather pouch that seems to produce a coin when needed—but never enough.",
       "Coin of the Laughing Thief: A dented copper piece that reappears in the pockets of the overly prideful.",
       "Glove of Vanished Hands: This old glove makes sleight-of-hand more subtle—if the wearer knows a good joke.",
-      "Jester’s Cracked Bell: When rung, it causes mirth—or mayhem—depending on who hears it."
+      "Jester's Cracked Bell: When rung, it causes mirth—or mayhem—depending on who hears it."
     ],
     "Twilight": [
       "Mirror of Dusk and Dawn: A polished obsidian mirror that shows two reflections—one for each twilight.",
@@ -186,7 +186,7 @@ export const RELICS_BY_DOMAIN_MAPPING: Record<DomainTypes, string[]> = {
     "War": [
       "Sword of the Fallen Champion: A battle-worn blade said to thirst for justice and vengeance.",
       "Banner of the Bloodied Fields: A tattered war banner that inspires courage in the desperate.",
-      "Helmet of Silent Resolve: A battered helm said to shield the wearer’s mind from fear and doubt."
+      "Helmet of Silent Resolve: A battered helm said to shield the wearer's mind from fear and doubt."
     ]
 };
 
@@ -209,7 +209,7 @@ export const RELICS_BY_CONDITION_MAPPING: Record<SiteCondition, string[]> = {
       "A bound prayer book passed down through generations."
     ],
     "wealthy": [
-      "An ornate gold reliquary containing a saint’s relic.",
+      "An ornate gold reliquary containing a saint's relic.",
       "A finely embroidered altar cloth with sacred symbols.",
       "A jewel-encrusted holy chalice used in grand ceremonies."
     ],
