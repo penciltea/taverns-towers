@@ -122,7 +122,7 @@ describe("Menu Generation Rules", () => {
             };
 
             const result = await fetchMenuItemsByCondition([], context);
-            console.log("Result:", result);
+            //console.log("Result:", result);
 
             expect(GeneratorSiteMenu.find).toHaveBeenCalled();
             expect(result.some((i) => i.name === "Ale")).toBe(true);

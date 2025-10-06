@@ -18,9 +18,9 @@ export async function generateEnvironment(
   }
 
   data = applyClimateRule(data);
-  data = await applyTerrainBlacklistRule(data);
-  data = await applyTagsByTerrainRule(data);
-  data = await removeRandomMarkers(data);
+  data = applyTerrainBlacklistRule(data);
+  data = applyTagsByTerrainRule(data);
+  data = removeRandomMarkers(data);
 
   return data;
 }

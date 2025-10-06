@@ -1,0 +1,35 @@
+[
+  { "type": "descriptor", "value": "Old" },
+  { "type": "descriptor", "value": "New" },
+  { "type": "descriptor", "value": "Bright" },
+  { "type": "descriptor", "value": "Shady" },
+  { "type": "descriptor", "value": "Silent" },
+  { "type": "descriptor", "value": "Hidden", "tags": ["Hidden"] },
+  { "type": "descriptor", "value": "Quiet" },
+
+  { "type": "descriptor", "value": "Golden", "wealth": ["Wealthy", "Affluent"] },
+  { "type": "descriptor", "value": "Silver", "wealth": ["Wealthy", "Affluent"] },
+
+  { "type": "descriptor", "value": "Arcane", "magic": ["High", "Mythic"] },
+  { "type": "descriptor", "value": "Mystic", "magic": ["Moderate", "High"] },
+  { "type": "descriptor", "value": "Enchanted", "magic": ["High", "Mythic"] },
+  { "type": "descriptor", "value": "Ethereal", "magic": ["High", "Mythic"] },
+  { "type": "descriptor", "value": "Runed", "magic": ["High"] },
+
+  { "type": "descriptor", "value": "Cursed", "tags": ["Infested", "Ancient Ruins"] },
+  { "type": "descriptor", "value": "Forsaken", "tags": ["Remote", "Ancient Ruins"] },
+  { "type": "descriptor", "value": "Shattered", "tags": ["Ancient Ruins"] },
+  { "type": "descriptor", "value": "Dark", "tags": ["Infested", "Criminal Hideout"] },
+
+  { "type": "descriptor", "value": "Frosty", "climate": ["Polar"] },
+  { "type": "descriptor", "value": "Sunny", "climate": ["Dry", "Tropical"] },
+  { "type": "descriptor", "value": "Windy", "climate": ["Continental"] },
+  { "type": "descriptor", "value": "Misty", "terrain": ["Mountains", "Forest"] },
+  { "type": "descriptor", "value": "Overgrown", "tags": ["Overgrown"] },
+
+  { "type": "descriptor", "value": "Blessed", "tags": ["Sacred Site", "Druidic"] },
+  { "type": "descriptor", "value": "Holy", "tags": ["Sacred Site"] },
+  { "type": "descriptor", "value": "Ancient", "tags": ["Ancient Ruins"] },
+  { "type": "descriptor", "value": "Royal", "wealth": ["Affluent", "Wealthy"], "tags": ["Capital"] },
+  { "type": "descriptor", "value": "Nomadic", "tags": ["Nomadic"] }
+]

@@ -1,0 +1,13 @@
+[
+  { "type": "size", "value": "Encampment", "size": ["Encampment"] },
+  { "type": "size", "value": "Thorp", "size": ["Thorp"] },
+  { "type": "size", "value": "Hamlet", "size": ["Hamlet"] },
+  { "type": "size", "value": "Village", "size": ["Village"] },
+  { "type": "size", "value": "Town", "size": ["Town"] },
+  { "type": "size", "value": "City", "size": ["City"] },
+  { "type": "size", "value": "Metropolis", "size": ["Metropolis"] },
+  { "type": "size", "value": "Outpost", "tags": ["Border Post", "Military Outpost"], "size": ["Encampment", "Thorp"] },
+  { "type": "size", "value": "Settlement", "size": ["Hamlet", "Village", "Town"] },
+  { "type": "size", "value": "Stronghold", "tags": ["Fortress", "Garrison"], "size": ["Town", "City", "Metropolis"] },
+  { "type": "size", "value": "Port", "tags": ["Port", "Trade Hub"], "size": ["Village", "Town", "City"] }
+]

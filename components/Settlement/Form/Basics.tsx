@@ -23,10 +23,16 @@ export default function SettlementFormBasics(){
         const terrain = watch("terrain");
         const tags = watch("tags");
         const climate = watch("climate");
+        const magic = watch("magic");
+        const wealth = watch("wealth");
+        const size = watch("size");
         const generatedName = await generateSettlementName({
             climate: climate,
             terrain: Array.isArray(terrain) ? terrain : [terrain],
             tags: Array.isArray(tags) ? tags : [tags],
+            magic: magic,
+            wealth: wealth,
+            size: size
         });
         setValue("name", generatedName, { shouldValidate: true });
     };

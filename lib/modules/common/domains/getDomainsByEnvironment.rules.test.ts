@@ -1,166 +1,70 @@
-import { getDomainsByEnvironment } from "@/lib/modules/common/domains/getDomainsByEnvironment.rules";
-import { DomainsByTag } from "@/lib/models/generator/common/domainByTags.model";
-import { DomainsByTerrain } from "@/lib/models/generator/common/domainByTerrain.model";
-import { DomainsByClimate } from "@/lib/models/generator/common/domainByClimate.model";
+/**
+ * @jest-environment node
+ */
 
-// Use real mappings for fallback tests
-import * as realMappings from "./domains.mappings";
+import { getDomainsByEnvironment } from "./getDomainsByEnvironment.rules";
+import {
+  DomainsByClimateMapping,
+  DomainsByTerrainMapping,
+  DomainsByTagMapping,
+} from "./domains.mappings";
 
-// Mock DB models globally
-jest.mock("@/lib/models/generator/common/domainByTags.model");
-jest.mock("@/lib/models/generator/common/domainByTerrain.model");
-jest.mock("@/lib/models/generator/common/domainByClimate.model");
-
-// Helper to mock `.lean()` calls
-function createLeanMock<T>(data: T | T[] | null) {
-  return { lean: jest.fn().mockResolvedValue(data) };
-}
+jest.mock("./domains.mappings", () => ({
+  DomainsByTagMapping: {
+    "tag1": ["domainA", "domainB"],
+    "tag2": ["domainC"],
+  },
+  DomainsByTerrainMapping: {
+    "mountain": ["domainX"],
+    "forest": ["domainY", "domainZ"],
+  },
+  DomainsByClimateMapping: {
+    "tropical": ["domainHot"],
+    "arctic": ["domainCold"],
+  },
+}));
 
 describe("getDomainsByEnvironment", () => {
-  const mockTagData = [{ tag: "Port", domains: ["Travel", "Water", "Storms", "Luck", "Trade"] }];
-  const mockTerrainData = [{ terrain: "Forest", domains: ["Nature", "Dreams", "Moon", "Life", "Twilight"] }];
-  const mockClimateData = { climate: "Temperate", domains: ["Life", "Harvest", "Nature", "Glory"] };
-
-  beforeEach(() => {
-    jest.clearAllMocks();
+  it("returns domains from tags", () => {
+    const result = getDomainsByEnvironment({ tags: ["tag1"] });
+    expect(result).toEqual(["domainA", "domainB"]);
   });
 
-  describe("normal DB responses", () => {
-    it("returns domains based on tags only", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock(mockTagData));
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock([]));
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock(null));
-
-      const result = await getDomainsByEnvironment({ tags: ["Port"] });
-
-      const expectedDomains = Array.from(new Set([
-        ...mockTagData[0].domains,
-        ...(realMappings.DomainsByTagMapping["Port"] ?? []),
-      ]));
-
-      expect(result).toEqual(expect.arrayContaining(expectedDomains));
-    });
-
-    it("returns domains based on terrain only", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock([]));
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock(mockTerrainData));
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock(null));
-
-      const result = await getDomainsByEnvironment({ terrain: ["Forest"] });
-
-      const expectedDomains = Array.from(new Set([
-        ...mockTerrainData[0].domains,
-        ...(realMappings.DomainsByTerrainMapping["Forest"] ?? []),
-      ]));
-
-      expect(result).toEqual(expect.arrayContaining(expectedDomains));
-    });
-
-    it("returns domains based on climate only", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock([]));
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock([]));
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock(mockClimateData));
-
-      const result = await getDomainsByEnvironment({ climate: "Temperate" });
-
-      const expectedDomains = Array.from(new Set([
-        ...mockClimateData.domains,
-        ...(realMappings.DomainsByClimateMapping["Temperate"] ?? []),
-      ]));
-
-      expect(result).toEqual(expect.arrayContaining(expectedDomains));
-    });
-
-    it("combines tags, terrain, and climate domains", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock(mockTagData));
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock(mockTerrainData));
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock(mockClimateData));
-
-      const result = await getDomainsByEnvironment({
-        tags: ["Port"],
-        terrain: ["Forest"],
-        climate: "Temperate",
-      });
-
-      const expectedDomains = Array.from(new Set([
-        ...mockTagData[0].domains,
-        ...(realMappings.DomainsByTagMapping["Port"] ?? []),
-        ...mockTerrainData[0].domains,
-        ...(realMappings.DomainsByTerrainMapping["Forest"] ?? []),
-        ...mockClimateData.domains,
-        ...(realMappings.DomainsByClimateMapping["Temperate"] ?? []),
-      ]));
-
-      expect(result).toEqual(expect.arrayContaining(expectedDomains));
-    });
+  it("returns domains from terrain", () => {
+    const result = getDomainsByEnvironment({ terrain: ["forest"] });
+    expect(result).toEqual(["domainY", "domainZ"]);
   });
 
-  /** ----------------------------
-   * Fallback logic coverage
-   * ---------------------------- */
-  describe("fallback logic coverage", () => {
-    const fallbackTagMapping = { Port: ["FallbackTagDomain"] };
-    const fallbackTerrainMapping = { Forest: ["FallbackTerrainDomain"] };
-    const fallbackClimateMapping = { Temperate: ["FallbackClimateDomain"] };
-
-    beforeAll(() => {
-      Object.assign(realMappings.DomainsByTagMapping, fallbackTagMapping);
-      Object.assign(realMappings.DomainsByTerrainMapping, fallbackTerrainMapping);
-      Object.assign(realMappings.DomainsByClimateMapping, fallbackClimateMapping);
-    });
-
-    afterAll(() => {
-      Object.keys(fallbackTagMapping).forEach(k => delete realMappings.DomainsByTagMapping[k]);
-      Object.keys(fallbackTerrainMapping).forEach(k => delete realMappings.DomainsByTerrainMapping[k]);
-      Object.keys(fallbackClimateMapping).forEach(k => delete realMappings.DomainsByClimateMapping[k]);
-    });
-
-    it("uses fallback when tag DB call fails", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue({ lean: () => Promise.reject(new Error("fail")) });
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue({ lean: () => Promise.resolve([]) });
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue({ lean: () => Promise.resolve(null) });
-
-      const result = await getDomainsByEnvironment({ tags: ["Port"] });
-      expect(result).toEqual(expect.arrayContaining(["FallbackTagDomain"]));
-    });
-
-    it("uses fallback when terrain DB call fails", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue({ lean: () => Promise.resolve([]) });
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue({ lean: () => Promise.reject(new Error("fail")) });
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue({ lean: () => Promise.resolve(null) });
-
-      const result = await getDomainsByEnvironment({ terrain: ["Forest"] });
-      expect(result).toEqual(expect.arrayContaining(["FallbackTerrainDomain"]));
-    });
-
-    it("uses fallback when climate DB call fails", async () => {
-      (DomainsByTag.find as jest.Mock).mockReturnValue({ lean: () => Promise.resolve([]) });
-      (DomainsByTerrain.find as jest.Mock).mockReturnValue({ lean: () => Promise.resolve([]) });
-      (DomainsByClimate.findOne as jest.Mock).mockReturnValue({ lean: () => Promise.reject(new Error("fail")) });
-
-      const result = await getDomainsByEnvironment({ climate: "Temperate" });
-      expect(result).toEqual(expect.arrayContaining(["FallbackClimateDomain"]));
-    });
+  it("returns domains from climate", () => {
+    const result = getDomainsByEnvironment({ climate: "tropical" });
+    expect(result).toEqual(["domainHot"]);
   });
 
-  /** ----------------------------
-   * Misc coverage
-   * ---------------------------- */
-  it("removes duplicates across sources", async () => {
-    (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock([{ tag: "Port", domains: ["Magic"] }]));
-    (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock([{ terrain: "Forest", domains: ["Magic"] }]));
-    (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock({ climate: "Temperate", domains: ["Magic"] }));
-
-    const result = await getDomainsByEnvironment({ tags: ["Port"], terrain: ["Forest"], climate: "Temperate" });
-    expect(result).toEqual(Array.from(new Set(result)));
+  it("merges and deduplicates domains from multiple sources", () => {
+    const result = getDomainsByEnvironment({
+      tags: ["tag1"],
+      terrain: ["mountain"],
+      climate: "arctic",
+    });
+    expect(result).toEqual(["domainA", "domainB", "domainX", "domainCold"]);
   });
 
-  it("returns empty array if no input provided", async () => {
-    (DomainsByTag.find as jest.Mock).mockReturnValue(createLeanMock([]));
-    (DomainsByTerrain.find as jest.Mock).mockReturnValue(createLeanMock([]));
-    (DomainsByClimate.findOne as jest.Mock).mockReturnValue(createLeanMock(null));
-
-    const result = await getDomainsByEnvironment({});
+  it("handles unknown tags/terrain/climate gracefully", () => {
+    const result = getDomainsByEnvironment({
+      tags: ["unknownTag"],
+      terrain: ["unknownTerrain"],
+      climate: "unknownClimate",
+    });
     expect(result).toEqual([]);
+  });
+
+  it("removes duplicate domains across sources", () => {
+    // mock overlap: tag1 shares "domainX" with mountain
+    (DomainsByTagMapping as any)["tagWithOverlap"] = ["domainX", "domainExtra"];
+    const result = getDomainsByEnvironment({
+      tags: ["tagWithOverlap"],
+      terrain: ["mountain"],
+    });
+    expect(result).toEqual(["domainX", "domainExtra"]);
   });
 });

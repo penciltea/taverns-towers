@@ -76,3 +76,36 @@ export interface SettlementQueryParams {
   terrain: string[];
   tone: string[];
 }
+
+
+export interface SettlementFragment {
+  type: 'prefix' | 'suffix';
+  value: string;
+  terrain?: string[];
+  tags?: string[];
+  climate?: string[];
+  size?: string[];
+  magic?: string[];
+  wealth?: string[];
+  weight?: number;
+}
+
+// For name generation fragments
+export type SettlementGroupKey =
+  | "prefix"
+  | "suffix"
+  | "noun"
+  | "descriptor"
+  | "connector"
+  | "size"
+  | "format"
+  ;
+
+export interface GenerateSettlementNameOptions {
+  tags?: string[];
+  terrain?: string[];
+  climate?: string;
+  magic?: string;
+  wealth?: string;
+  size?: string;
+}

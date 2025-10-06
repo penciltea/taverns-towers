@@ -73,8 +73,6 @@ export function applyMilitaryByConditions(data: NormalizedSettlementInput) {
     ...militaryByWealth,
     ...militaryByRuling
   ];
-
-  console.log("result: ", results);
     
   if(results.length > 0 ){
     const unique = Array.from(new Set(results));

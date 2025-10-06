@@ -1,0 +1,21 @@
+[
+  { "type": "connector", "value": "a" },
+  { "type": "connector", "value": "e" },
+  { "type": "connector", "value": "i" },
+  { "type": "connector", "value": "o" },
+  { "type": "connector", "value": "u" },
+  { "type": "connector", "value": "en" },
+  { "type": "connector", "value": "er" },
+  { "type": "connector", "value": "el" },
+  { "type": "connector", "value": "ar" },
+  { "type": "connector", "value": "or" },
+  { "type": "connector", "value": "il" },
+  { "type": "connector", "value": "an" },
+  { "type": "connector", "value": "un" },
+
+  { "type": "connector", "value": "ith", "magic": ["High", "Mythic"] },
+  { "type": "connector", "value": "ir", "magic": ["Moderate", "High"] },
+  { "type": "connector", "value": "el", "magic": ["Moderate", "High"] },
+  { "type": "connector", "value": "ae", "magic": ["High", "Mythic"] },
+  { "type": "connector", "value": "on", "magic": ["High", "Mythic"] }
+]

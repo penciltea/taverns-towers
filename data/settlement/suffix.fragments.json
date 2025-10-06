@@ -1,0 +1,41 @@
+[
+  { "type": "suffix", "value": "haven" },
+  { "type": "suffix", "value": "ford" },
+  { "type": "suffix", "value": "ton" },
+  { "type": "suffix", "value": "stead", "size": ["Town", "Hamlet", "Village"] },
+  { "type": "suffix", "value": "burg" },
+  { "type": "suffix", "value": "ville", "size": ["Town", "Hamlet", "Village"] },
+  { "type": "suffix", "value": "shire", "size": ["Town", "Hamlet", "Village"] },
+  { "type": "suffix", "value": "borough", "size": ["Town", "Hamlet", "Village"] },
+  { "type": "suffix", "value": "gate" },
+  { "type": "suffix", "value": "hall", "size": ["Town", "City", "Metropolis"] },
+
+  { "type": "suffix", "value": "port", "tags": ["Port", "Fishing"], "terrain": ["Coast", "River"] },
+  { "type": "suffix", "value": "harbor", "tags": ["Port"], "terrain": ["Coast"] },
+  { "type": "suffix", "value": "dock", "tags": ["Fishing", "Trade Hub"], "terrain": ["Coast", "River"] },
+  { "type": "suffix", "value": "beach", "terrain": ["Coast"] },
+  { "type": "suffix", "value": "reef", "terrain": ["Coast"], "climate": ["Tropical"] },
+
+  { "type": "suffix", "value": "hill", "terrain": ["Hills", "Plains"] },
+  { "type": "suffix", "value": "peak", "terrain": ["Mountains"], "climate": ["Polar", "Continental"] },
+  { "type": "suffix", "value": "rock", "terrain": ["Mountains", "Hills"] },
+  { "type": "suffix", "value": "vale", "terrain": ["Hills", "Plains", "Forest"], "climate": ["Temperate"] },
+  { "type": "suffix", "value": "glen", "terrain": ["Forest", "Hills"] },
+  { "type": "suffix", "value": "grove", "terrain": ["Forest", "Jungle"] },
+  { "type": "suffix", "value": "marsh", "terrain": ["Swamp"] },
+  { "type": "suffix", "value": "fen", "terrain": ["Swamp"] },
+
+  { "type": "suffix", "value": "spire", "magic": ["High", "Mythic"], "terrain": ["Mountains", "Urban"] },
+  { "type": "suffix", "value": "crag", "terrain": ["Mountains"], "tags": ["Fortress", "Garrison"] },
+  
+  { "type": "suffix", "value": "keep", "tags": ["Fortress", "Military Outpost"] },
+  { "type": "suffix", "value": "fort", "tags": ["Fortress", "Military Outpost", "Garrison"] },
+  { "type": "suffix", "value": "bastion", "tags": ["Fortress", "Garrison"], "size": ["Town", "City", "Metropolis"] },
+  { "type": "suffix", "value": "watch", "tags": ["Border Post", "Military Outpost"] },
+  { "type": "suffix", "value": "wall", "tags": ["Military Outpost", "Capital"] },
+
+  { "type": "suffix", "value": "crossing", "tags": ["Trade Hub", "Border Post", "Capital"], "terrain": ["River", "Plains"] },
+  { "type": "suffix", "value": "bridge", "terrain": ["River"] },
+  { "type": "suffix", "value": "ford", "terrain": ["River", "Plains"] },
+  { "type": "suffix", "value": "mill", "tags": ["Agricultural"], "terrain": ["Plains", "River"] }
+]
