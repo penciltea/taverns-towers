@@ -21,5 +21,30 @@
   { "type": "noun", "value": "Barrow", "tags": ["Ancient Ruins"] },
   { "type": "noun", "value": "Cave", "terrain": ["Underground", "Mountains"] },
   { "type": "noun", "value": "Camp", "tags": ["Nomadic"], "size": ["Encampment", "Thorp", "Hamlet"] },
-  { "type": "noun", "value": "Outpost", "tags": ["Border Post", "Military Outpost"], "size": ["Encampment", "Hamlet", "Thorp"] }
+  { "type": "noun", "value": "Outpost", "tags": ["Border Post", "Military Outpost"], "size": ["Encampment", "Hamlet", "Thorp"] },
+
+
+  { "type": "noun", "value": "Rihla", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Saif", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Qamar", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Nur", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Sahra", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Zahra", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Fajr", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Hajar", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Rimal", "theme": ["Arabic-inspired"] },
+  { "type": "noun", "value": "Amal", "theme": ["Arabic-inspired"] },
+
+  { "type": "noun", "value": "Nimloth", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Lorien", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Eryndor", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Aerendyl", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Galadhrim", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Silvaris", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Thalorien", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Ithilmar", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Faerondor", "theme": ["Elven-inspired"] },
+  { "type": "noun", "value": "Althiriel", "theme": ["Elven-inspired"] }
+
+
 ]

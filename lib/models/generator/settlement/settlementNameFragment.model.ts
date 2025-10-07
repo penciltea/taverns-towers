@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface GeneratorSettlementFragmentPlain {
-  type: "prefix" | "suffix" | "noun" | "descriptor" | "connector" | "size" | "format";
+  type: "prefix" | "suffix" | "noun" | "descriptor" | "connector" | "size" | "theme" | "format";
   value: string;
   terrain?: string[];
   climate?: string[];
@@ -13,7 +13,7 @@ export interface GeneratorSettlementFragmentPlain {
 }
 
 const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
-  type: { type: String, enum: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "format"], required: true },
+  type: { type: String, enum: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "theme", "format"], required: true },
   value: { type: String, required: true },
   terrain: [String],
   climate: [String],

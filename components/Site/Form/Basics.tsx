@@ -49,12 +49,14 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
                         label="Climate"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
                     <FormChipSelect
                         name="terrain"
                         label="Terrain Type"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
 
                     <FormChipSelect
@@ -62,6 +64,7 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
                         label="Tags"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
                     
                     </Box>

@@ -20,6 +20,7 @@ export default function SettlementFormCulture(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
                 fieldError={errors.domains}
+                tooltip="This field influences the following fields: holidays, folklore & superstitions"
             />
 
             <FormTextField
@@ -28,6 +29,7 @@ export default function SettlementFormCulture(){
                 rows={6}
                 registration={register("holidays")}
                 fieldError={errors.holidays}
+                tooltip="This field is purely descriptive and doesn't influence other fields."
             />
             
             <FormTextField
@@ -36,6 +38,7 @@ export default function SettlementFormCulture(){
                 rows={6}
                 registration={register("folklore")}
                 fieldError={errors.folklore}
+                tooltip="This field is purely descriptive and doesn't influence other fields."
             />
         </Box>
     );

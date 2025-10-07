@@ -29,7 +29,17 @@
 
   { "type": "descriptor", "value": "Blessed", "tags": ["Sacred Site", "Druidic"] },
   { "type": "descriptor", "value": "Holy", "tags": ["Sacred Site"] },
-  { "type": "descriptor", "value": "Ancient", "tags": ["Ancient Ruins"] },
+  { "type": "descriptor", "value": "Ancient", "tags": ["Ancient Ruins"], "theme": ["Arabic-inspired"] },
   { "type": "descriptor", "value": "Royal", "wealth": ["Affluent", "Wealthy"], "tags": ["Capital"] },
-  { "type": "descriptor", "value": "Nomadic", "tags": ["Nomadic"] }
+  { "type": "descriptor", "value": "Nomadic", "tags": ["Nomadic"] },
+
+  { "type": "descriptor", "value": "Sacred" },
+  { "type": "descriptor", "value": "High" },
+  { "type": "descriptor", "value": "Shining" },
+  { "type": "descriptor", "value": "Fortified" },
+  { "type": "descriptor", "value": "Moonlit" },
+  { "type": "descriptor", "value": "Whispering" },
+  { "type": "descriptor", "value": "Shimmering" },
+  { "type": "descriptor", "value": "Gleaming" },
+  { "type": "descriptor", "value": "Starry" }
 ]

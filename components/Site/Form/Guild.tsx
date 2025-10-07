@@ -24,6 +24,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...GUILD_TYPES]}
                 fieldError={errors.guildTypes as FieldError | undefined}
+                tooltip="This field influences the following fields: name, membership type, services item generation"
             />
 
             <FormFieldWithGenerate
@@ -50,6 +51,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
+                tooltip="This field influences services item generation"
             />
 
             <FormSelect
@@ -58,6 +60,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
+                tooltip="This field influences services item generation"
             />
 
             <FormChipSelect
@@ -72,12 +75,14 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                     ...GUILD_MEMBERSHIP_REQUIREMENTS
                 ]}
                 fieldError={errors.membershipRequirements}
+                tooltip="This field is purely descriptive"
             />
 
             <FormTextField
                 label="Known Rivals"
                 registration={register("knownRivals")}
                 fieldError={errors.knownRivals}
+                tooltip="This field is purely descriptive"
             />
 
             <FormTextField
@@ -86,6 +91,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
+                tooltip="This field is purely descriptive"
             />
 
             <FormTextField
@@ -94,6 +100,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
+                tooltip="This field is purely descriptive"
             />
 
             <Box sx={{mt: 4}}>

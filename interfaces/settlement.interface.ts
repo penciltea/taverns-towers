@@ -98,6 +98,7 @@ export type SettlementGroupKey =
   | "descriptor"
   | "connector"
   | "size"
+  | "theme"
   | "format"
   ;
 

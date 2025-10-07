@@ -13,7 +13,8 @@ export const release20250911 = {
     "Improved login and register UI/UX and added ability to reset password and user profile/account information",
     "Added a page to view all wilderness / no settlements sites",
     "Added Military Presence field to settlements and settlement generator logic",
-    "Added a Tone field to settlements and sites and their respective generators"
+    "Added a Tone field to settlements and sites and their respective generators",
+    "Added tooltips to form fields to describe what each field influences in the generation logic, if anything"
   ],
   bugFixes: [
     "Fixed issue with tavern generation data",

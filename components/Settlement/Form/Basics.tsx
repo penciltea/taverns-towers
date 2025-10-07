@@ -58,7 +58,26 @@ export default function SettlementFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(SIZE_TYPES)]}
                     fieldError={errors.size as FieldError | undefined}
+                    tooltip="Influences the following fields: name, ruling style, wealth levels, military presence, common races, and potential site fields."
                 />
+
+                <FormSelect
+                    name="climate"
+                    label="Climate"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
+                    fieldError={errors.climate as FieldError | undefined}
+                    tooltip="Influences the following fields: name, terrain, tags, common races, trade notes, holidays, folklore & superstitions, commonly-worshipped domains, and potential site fields."
+                />
+
+                <FormChipSelect
+                    name="terrain"
+                    label="Terrain Type"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
+                    fieldError={errors.terrain}
+                    tooltip="Influences the following fields: name, tags, common races, trade notes, holidays, folklore & superstitions, commonly-worshipped domains, and potential site fields."
+                />                
 
                 <FormChipSelect
                     name="tags"
@@ -66,7 +85,24 @@ export default function SettlementFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
                     fieldError={errors.tags}
+                    tooltip="Influences the following fields: name, common races, trade notes, holidays, folklore & superstitions, commonly-worshipped domains, and potential site fields."
                 />
+
+                <FormSelect
+                    name="magic"
+                    label="Magic Level / Use"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
+                    fieldError={errors.magic as FieldError | undefined}
+                    tooltip="Influences the following fields: name, common races, military presence, holidays, folklore & superstitions, and potential site fields."
+                />
+
+                <FormTextField
+                    label="Common Races"
+                    registration={register("races")}
+                    fieldError={errors.races}
+                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                />     
 
                 <FormChipSelect
                     name="tone"
@@ -74,69 +110,35 @@ export default function SettlementFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(TONE)]}
                     fieldError={errors.tone}
+                    tooltip="This field is currently not influencing other fields just yet, but will soon!" // ToDo: Update 
                 />
 
-                <Accordion slotProps={{ heading: { component: 'h2' } }}>
-                    <AccordionSummary id="extra-details" aria-controls="panel-content" expandIcon={<ExpandMoreIcon />} sx={{mt: 2}}>
-                        <Typography variant="h6" component="h2">Extra Details</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
+                <FormTextField
+                    label="Description"
+                    multiline
+                    rows={4}
+                    registration={register("description")}
+                    fieldError={errors.description}
+                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                />
 
-                    <FormChipSelect
-                        name="terrain"
-                        label="Terrain Type"
-                        control={control}
-                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
-                        fieldError={errors.terrain}
-                    />
+                <FormTextField
+                    label="Public Notes"
+                    multiline
+                    rows={4}
+                    registration={register("publicNotes")}
+                    fieldError={errors.publicNotes}
+                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                />
 
-                    <FormSelect
-                        name="climate"
-                        label="Climate"
-                        control={control}
-                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
-                        fieldError={errors.climate as FieldError | undefined}
-                    />
-
-                    <FormSelect
-                        name="magic"
-                        label="Magic Level / Use"
-                        control={control}
-                        options={[{ label: "Random", value: "random" }, ...toSelectOptions(MAGIC_LEVELS)]}
-                        fieldError={errors.magic as FieldError | undefined}
-                    />
-
-                    <FormTextField
-                        label="Common Races"
-                        registration={register("races")}
-                        fieldError={errors.races}
-                    />
-
-                    <FormTextField
-                        label="Description"
-                        multiline
-                        rows={4}
-                        registration={register("description")}
-                        fieldError={errors.description}
-                    />
-
-                    <FormTextField
-                        label="Public Notes"
-                        multiline
-                        rows={4}
-                        registration={register("publicNotes")}
-                        fieldError={errors.publicNotes}
-                    />
-
-                    <FormTextField
-                        label="GM Notes"
-                        multiline
-                        rows={4}
-                        registration={register("gmNotes")}
-                        fieldError={errors.gmNotes}
-                    />
-                    </AccordionDetails>
-                </Accordion>
+                <FormTextField
+                    label="GM Notes"
+                    multiline
+                    rows={4}
+                    registration={register("gmNotes")}
+                    fieldError={errors.gmNotes}
+                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                />
             </Box>
             <Box sx={{paddingTop: 4}}>
                 <FormImageUpload name="map" label="Upload Settlement Map" />

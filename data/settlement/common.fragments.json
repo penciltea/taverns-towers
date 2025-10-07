@@ -7,12 +7,12 @@
     {
         "type": "format",
         "value": "{{prefix}}{{connector}}{{suffix}}",
-        "weight": 2
+        "weight": 1
     },
     {
         "type": "format",
         "value": "{{prefix}}{{suffix}} {{noun}}",
-        "weight": 2
+        "weight": 1
     },
     {
         "type": "format",
@@ -22,8 +22,8 @@
     {
         "type": "format",
         "value": "{{prefix}} {{noun}}",
-        "weight": 2
-    },    
+        "weight": 1
+    },
     {
         "type": "format",
         "value": "{{descriptor}} {{noun}}",
@@ -32,7 +32,7 @@
     {
         "type": "format",
         "value": "{{prefix}}{{suffix}} {{size}}",
-        "weight": 2,
+        "weight": 1,
         "size": ["Village", "Town", "City", "Metropolis"]
     },
     {
@@ -50,7 +50,7 @@
     {
         "type": "format",
         "value": "The {{descriptor}} {{prefix}}{{suffix}}",
-        "weight": 2,
+        "weight": 1,
         "wealth": ["Wealthy", "Affluent"]
     }   
 ]

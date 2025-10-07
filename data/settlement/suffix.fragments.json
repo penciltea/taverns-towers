@@ -37,5 +37,24 @@
   { "type": "suffix", "value": "crossing", "tags": ["Trade Hub", "Border Post", "Capital"], "terrain": ["River", "Plains"] },
   { "type": "suffix", "value": "bridge", "terrain": ["River"] },
   { "type": "suffix", "value": "ford", "terrain": ["River", "Plains"] },
-  { "type": "suffix", "value": "mill", "tags": ["Agricultural"], "terrain": ["Plains", "River"] }
+  { "type": "suffix", "value": "mill", "tags": ["Agricultural"], "terrain": ["Plains", "River"] },
+
+
+  { "type": "suffix", "value": "abad", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "stan", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "dun", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "iyya", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "qah", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "pur", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "kar", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "bar", "theme": ["Arabic-inspired"] },
+
+  { "type": "suffix", "value": "thalas", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "dell", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "wen", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "lor", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "ryn", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "mir", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "thir", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "sil", "theme": ["Elven-inspired"] }
 ]

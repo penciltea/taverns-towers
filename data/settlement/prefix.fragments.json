@@ -43,5 +43,27 @@
     { "type": "prefix", "value": "Trade", "tags": ["Trade Hub"] },
     { "type": "prefix", "value": "Nomad", "tags": ["Nomadic"], "size": ["Encampment", "Thorp", "Hamlet"] },
     { "type": "prefix", "value": "Prison", "tags": ["Prison Settlement"] },
-    { "type": "prefix", "value": "Grave", "tags": ["Ancient Ruins", "Infested"] }
+    { "type": "prefix", "value": "Grave", "tags": ["Ancient Ruins", "Infested"] },
+
+    { "type": "prefix", "value": "Al", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Dar", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Qal", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Masr", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Jabal", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Ras", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Bait", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Wadi", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Sidi", "theme": ["Arabic-inspired"] },
+    { "type": "prefix", "value": "Qasr", "theme": ["Arabic-inspired"] },
+
+    { "type": "prefix", "value": "Elen", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Faer", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Lúth", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Ael", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Syl", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Thal", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Ithil", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Gal", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Ar", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Ery", "theme": ["Elven-inspired"] }
 ]

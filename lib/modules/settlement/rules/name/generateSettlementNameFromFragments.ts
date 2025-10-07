@@ -8,7 +8,7 @@ export function generateSettlementNameFromFragments({
   fragments,
   filters,
   fallbackFormats,
-  allowedKeys = ["prefix", "suffix", "connector", "descriptor", "size", "noun", "format"],
+  allowedKeys = ["prefix", "suffix", "connector", "descriptor", "size", "noun", "theme", "format"],
 }: {
   fragments: GeneratorSettlementFragmentPlain[];
   filters: GenerateSettlementNameOptions;
@@ -67,6 +67,7 @@ export function generateSettlementNameFromFragments({
     descriptor: [],
     connector: [],
     size: [],
+    theme: [],
     format: []
   };
 
@@ -78,11 +79,10 @@ export function generateSettlementNameFromFragments({
     // Step 5a: filtered pool first
     let pool: GeneratorSettlementFragmentPlain[] = grouped[typedKey] ?? [];
 
-    // Step 5b: fallback to unfiltered only for non-size keys
-    if (typedKey !== "size" && pool.length === 0) {
+    // Fallback: if no filtered fragments, try unfiltered (universal)
+    if (pool.length === 0) {
       pool = unfilteredGrouped[typedKey] ?? [];
     }
-
     const used = usedFragments[typedKey] ?? (usedFragments[typedKey] = []);
     const remaining = pool.filter(f => !used.includes(f.value));
     const selectionPool = remaining.length > 0 ? remaining : pool;

@@ -21,6 +21,7 @@ export default function SettlementFormWealth(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(RULING_TYPES)]}
                 fieldError={errors.rulingStyle as FieldError | undefined}
+                tooltip="This field influences the following fields: military presence"
             />
             
             <FormSelect
@@ -29,6 +30,7 @@ export default function SettlementFormWealth(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(WEALTH_LEVELS)]}
                 fieldError={errors.wealth as FieldError | undefined}
+                tooltip="This field influences the following fields: name, common races, magic level/use, military presence, criminal activity"
             />
 
             <FormChipSelect
@@ -36,6 +38,7 @@ export default function SettlementFormWealth(){
                 label="Military Presence"
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(MILITARY_PRESENCE_TYPES)]}
+                tooltip="This field is purely descriptive and doesn't influence other fields."
             />
 
             <FormChipSelect
@@ -44,6 +47,7 @@ export default function SettlementFormWealth(){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(CRIMINAL_ACTIVITY_TYPES)]}
                 fieldError={errors.crime}
+                tooltip="This field is purely descriptive and doesn't influence other fields."
             />
 
             <FormTextField
@@ -55,6 +59,7 @@ export default function SettlementFormWealth(){
                 error={!!errors.tradeNotes}
                 helperText={typeof errors.tradeNotes?.message === "string" ? errors.tradeNotes.message : ""}
                 margin="normal"
+                tooltip="This field is purely descriptive and doesn't influence other fields."
             />
         </Box>
     );

@@ -9,5 +9,24 @@
   { "type": "size", "value": "Outpost", "tags": ["Border Post", "Military Outpost"], "size": ["Encampment", "Thorp"] },
   { "type": "size", "value": "Settlement", "size": ["Hamlet", "Village", "Town"] },
   { "type": "size", "value": "Stronghold", "tags": ["Fortress", "Garrison"], "size": ["Town", "City", "Metropolis"] },
-  { "type": "size", "value": "Port", "tags": ["Port", "Trade Hub"], "size": ["Village", "Town", "City"] }
+  { "type": "size", "value": "Port", "tags": ["Port", "Trade Hub"], "size": ["Village", "Town", "City"] },
+
+  { "type": "size", "value": "Kasbah", "theme": ["Arabic-inspired"], "size": ["Town", "City"] },
+  { "type": "size", "value": "Ribat", "theme": ["Arabic-inspired"], "size": ["Encampment", "Thorp"] },
+  { "type": "size", "value": "Medina", "theme": ["Arabic-inspired"], "size": ["Town", "City"] },
+  { "type": "size", "value": "Qasr", "theme": ["Arabic-inspired"], "size": ["Stronghold", "Town"] },
+  { "type": "size", "value": "Souq", "theme": ["Arabic-inspired"], "size": ["Village", "Town"] },
+  { "type": "size", "value": "Kasr", "theme": ["Arabic-inspired"], "size": ["Town", "City"] },
+  { "type": "size", "value": "Funduq", "theme": ["Arabic-inspired"], "size": ["Village", "Hamlet"] },
+  { "type": "size", "value": "Caravanserai", "theme": ["Arabic-inspired"], "size": ["Encampment", "Village"] },
+  { "type": "size", "value": "Minaret", "theme": ["Arabic-inspired"], "size": ["Village", "Town"] },
+  { "type": "size", "value": "Kasr al-", "theme": ["Arabic-inspired"], "size": ["Town", "City"] },
+
+  { "type": "size", "value": "Glade", "theme": ["Elven-inspired"], "size": ["Hamlet", "Village"] },
+  { "type": "size", "value": "Eyrie", "theme": ["Elven-inspired"], "size": ["Thorp", "Village"] },
+  { "type": "size", "value": "Thalas", "theme": ["Elven-inspired"], "size": ["Town", "City"] },
+  { "type": "size", "value": "Aerie", "theme": ["Elven-inspired"], "size": ["Hamlet", "Village"] },
+  { "type": "size", "value": "Vale", "theme": ["Elven-inspired"], "size": ["Village", "Town"] },  
+  { "type": "size", "value": "Elandor", "theme": ["Elven-inspired"], "size": ["Town", "City"] }
+
 ]

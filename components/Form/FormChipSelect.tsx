@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useId } from 'react';
-import { Box, Chip, FormControl, FormHelperText, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField } from '@mui/material';
+import { useState, useId, JSX } from 'react';
+import { Box, Chip, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField, Tooltip } from '@mui/material';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export interface Option {
   value: string;
@@ -24,6 +25,7 @@ interface FormChipSelectProps<TFieldValues extends FieldValues>
   required?: boolean;
   allowCustomValues?: boolean;
   disabledOptions?: string[];
+  tooltip?: string | JSX.Element;
 }
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
@@ -41,6 +43,7 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
   required = false,
   allowCustomValues = false,
   disabledOptions = [],
+  tooltip,
   ...rest
 }: FormChipSelectProps<TFieldValues>) {
   const [customInput, setCustomInput] = useState('');
@@ -99,6 +102,17 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
                       })}
                     </Box>
                   )}
+                  endAdornment={
+                    tooltip ? (
+                      <InputAdornment position="end" sx={{marginRight: 2.5}}>
+                        <Tooltip title={tooltip} arrow>
+                          <IconButton size="small" edge="end">
+                            <InfoOutlinedIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      </InputAdornment>
+                    ) : undefined
+                  }
                   {...rest}
                 >
                   <MenuItem disabled value="">

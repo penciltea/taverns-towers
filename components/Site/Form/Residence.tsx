@@ -29,6 +29,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
+                tooltip="This field is purely descriptive"
             />
 
             <FormSelect
@@ -37,12 +38,14 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
+                tooltip="This field is purely descriptive"
             />
             
             <FormTextField
                 label="Notable Features"
                 registration={register("notableFeatures")}
                 fieldError={errors.notableFeatures}
+                tooltip="This field is purely descriptive"
             />
 
             <FormTextField
@@ -51,6 +54,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
+                tooltip="This field is purely descriptive"
             />
 
             <FormTextField
@@ -59,6 +63,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
+                tooltip="This field is purely descriptive"
             />
         </>
     )
