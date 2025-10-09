@@ -1,6 +1,5 @@
 import { FieldError, useFormContext } from "react-hook-form";
-import { Box, Typography, Accordion, AccordionDetails, AccordionSummary, Stack } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Box, Stack } from "@mui/material";
 import { MAGIC_LEVELS, SIZE_TYPES } from "@/constants/settlement.options";
 import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environment.options";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
@@ -60,7 +59,7 @@ export default function SettlementFormBasics(){
                     control={control}
                     options={THEME}
                     fieldError={errors.tone}
-                    tooltip="This field influences name generation. Leave blank for medieval fantasy-themed names or pick specific themes for more unique combinations!"
+                    tooltip="This field influences name generation."
                 />
 
 

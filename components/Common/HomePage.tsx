@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Typography, Container, List, ListItem, ListItemText, Paper, Card, Stack } from "@mui/material"
+import { Box, Typography, List, ListItem, ListItemText, Paper, Card, Stack } from "@mui/material"
 import PatreonCta from "./PatreonCta"
 import NextMuiLink from "./NextMuiLink";
 import ThemedButton from "./ThemedButton";
@@ -177,7 +177,7 @@ export default function HomeContent(){
                             <ListItem>Advanced templates & bundles</ListItem>
                             <ListItem>Early access to new generators & themes</ListItem>
                             <ListItem>Exclusive content & community perks</ListItem>
-                            <ListItem>Shape RealmFoundry's development with exclusive polls</ListItem>
+                            <ListItem>Shape RealmFoundry&apos;s development with exclusive polls</ListItem>
                         </List>
                         <Typography variant="body2" sx={{ mt: 2 }}>Get ready for the ultimate RealmFoundry experience.</Typography>
                     </Card>
@@ -189,7 +189,7 @@ export default function HomeContent(){
             </Box>
 
             <Box sx={{ textAlign: "center", marginTop: 6, marginBottom: 1 }}>
-                <Typography variant="h4" component="h5" gutterBottom textAlign="center">What's Available & What's Coming Next</Typography>
+                <Typography variant="h4" component="h5" gutterBottom textAlign="center">What&apos;s Available & What&apos;s Coming Next</Typography>
                 <Typography variant="body1" sx={{ mt: 2 }}>See what&apos;s live in the <NextMuiLink href="/releases/" underline="always">Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.</Typography>
             </Box>
 

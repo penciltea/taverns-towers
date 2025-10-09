@@ -16,7 +16,7 @@ export function generateSettlementNameFromFragments({
   allowedKeys?: string[];
 }): string {
   //console.log("=== START GENERATE SETTLEMENT NAME ===");
-  console.log("Filters:", filters);
+  //console.log("Filters:", filters);
 
   // Step 1: Filter fragments by attributes
   const filtered = filterSettlementByAttributes(fragments, filters);

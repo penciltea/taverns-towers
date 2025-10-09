@@ -85,7 +85,7 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-            Some fields influence others: your selections can guide the generator toward outcomes that fit the settlement naturally. For example, choosing a coastal terrain or a “Port” tag may affect the settlement's name, holidays, and folklore that appear.
+            Some fields influence others: your selections can guide the generator toward outcomes that fit the settlement naturally. For example, choosing a coastal terrain or a “Port” tag may affect the settlement&apos;s name, holidays, and folklore that appear.
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>

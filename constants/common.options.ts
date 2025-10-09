@@ -82,6 +82,7 @@ export const THEME = [
       { label: "Dark Elven-Inspired", value: "Dark Elven-Inspired"},
       { label: "Dwarven-Inspired", value: "Dwarven-Inspired" },
       { label: "Elven-Inspired", value: "Elven-Inspired" },
+      { label: "Medieval Fantasy", value: "Medieval Fantasy"},
     ]
   }
 ]
