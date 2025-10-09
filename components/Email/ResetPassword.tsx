@@ -38,6 +38,11 @@ export default function PasswordResetEmail({ resetUrl }: { resetUrl: string }) {
                   Reset Password
                 </a>
               </p>
+              <p style={{ fontSize: "12px", color: "#6b7280", wordBreak: "break-all" }}>
+                Or copy and paste this URL into your browser: <br />
+                <a href={resetUrl}>{resetUrl}</a>
+              </p>
+
               <p style={{ fontSize: "12px", color: "#6b7280" }}>If you didn&apos;t request this, you can safely ignore this email.</p>
             </td>
           </tr>
