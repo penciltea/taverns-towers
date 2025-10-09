@@ -1,29 +1,15 @@
-import { getRandom } from "@/lib/util/randomValues";
-import { WealthBySizeMapping, CrimeByWealthMapping, RulingBySizeMapping } from "../mappings/law.mappings";
+import { getRandom, getRandomSubset } from "@/lib/util/randomValues";
+import { WealthBySizeMapping, CrimeByWealthMapping, RulingBySizeMapping, MilitarybySizeMapping, MilitaryByTagMapping, MilitaryByMagicMapping, MilitaryByWealthMapping, MilitaryByRulingMapping, MilitaryCountBySiteWealth } from "../mappings/law.mappings";
 import { NormalizedSettlementInput } from "./normalize";
-import { RulingStyleBySize, RulingStyleBySizeModel } from "@/lib/models/generator/settlement/rulingStyleBySize.model";
-import { WealthBySize, WealthBySizeModel } from "@/lib/models/generator/settlement/wealthByRule.model";
-import { CrimeByWealth, CrimeByWealthModel } from "@/lib/models/generator/settlement/crimeByWealth.model";
 
 
-export async function applyWealthBySizeRule(
-  data: NormalizedSettlementInput
-): Promise<NormalizedSettlementInput> {
+export function applyWealthBySizeRule(data: NormalizedSettlementInput) {
   if (
     data.size &&
     data.size !== "random" &&
     data.wealth === "random"
   ) {
-    const entry = await WealthBySize
-      .findOne({ size: data.size })
-      .lean<WealthBySizeModel>()
-      .catch((err) => {
-        console.warn("applyWealthBySizeRule failed, using local fallback:", err);
-        return null;
-      });
-
-    const results =
-      entry?.wealth ?? WealthBySizeMapping[data.size] ?? [];
+    const results = WealthBySizeMapping[data.size] ?? [];
 
     data.wealth = getRandom(results);
   }
@@ -31,24 +17,13 @@ export async function applyWealthBySizeRule(
   return data;
 }
 
-export async function applyCrimeByWealthRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+export function applyCrimeByWealthRule(data: NormalizedSettlementInput) {
   if(
     data.crime &&
     data.crime.includes("random") &&
     typeof data.wealth === "string"
   ){
-    const entry = await CrimeByWealth
-      .findOne({ wealth: data.wealth })
-      .lean<CrimeByWealthModel>()
-      .catch((err) => {
-        console.warn("applyCrimeByWealthRule failed, using local fallback:", err);
-        return null;
-    });
-
-    const results = 
-      entry?.crime
-      ?? CrimeByWealthMapping[data.wealth]
-      ?? [];
+    const results = CrimeByWealthMapping[data.wealth] ?? [];
 
     data.crime = data.crime.flatMap((c) => 
       c === "random" ? [getRandom(results)] : [c]
@@ -59,26 +34,59 @@ export async function applyCrimeByWealthRule(data: NormalizedSettlementInput): P
 }
 
 // Logic for applying ruling style by settlement size
-export async function applyRulingStyleBySizeRule(data: NormalizedSettlementInput): Promise<NormalizedSettlementInput> {
+export function applyRulingStyleBySizeRule(data: NormalizedSettlementInput) {
   if(
     data.size && 
     data.size !== "random" &&
     data.rulingStyle === "random"
   ){
-    const entry = await RulingStyleBySize
-      .findOne({ size: data.size })
-      .lean<RulingStyleBySizeModel>()
-      .catch((err) => {
-        console.warn("applyRulingStyleBySizeRule failed, using local fallback:", err);
-        return null;
-      });
-
-    const results = 
-      entry?.rulingStyle 
-      ?? RulingBySizeMapping[data.size] 
-      ?? [];
+    const results = RulingBySizeMapping[data.size] ?? [];
 
     data.rulingStyle = getRandom(results);
+  }
+
+  return data;
+}
+
+export function applyMilitaryByConditions(data: NormalizedSettlementInput) {
+  const { military } = data;
+
+  // If missing, just return input but remove "random" from tags
+  if (!data.military) {
+    return { ...data, military: military?.filter(m => m.trim().toLowerCase() !== "random") ?? [] };
+  }
+
+  // If user selected "random", derive military presence from conditions
+  const hasRandom = military.some(m => m.trim().toLowerCase() === "random");
+  if (!hasRandom) return data; // preserve user-selected tags
+  
+  const militaryBySize = MilitarybySizeMapping[data.size] ?? [];
+  const militaryByTags = data.tags.flatMap((t) => MilitaryByTagMapping[t] ?? []);
+  const militaryByMagic = MilitaryByMagicMapping[data.magic] ?? [];
+  const militaryByWealth = MilitaryByWealthMapping[data.wealth] ?? [];
+  const militaryByRuling = MilitaryByRulingMapping[data.rulingStyle] ?? [];
+
+  const results = [
+    ...militaryBySize,
+    ...militaryByTags,
+    ...militaryByMagic,
+    ...militaryByWealth,
+    ...militaryByRuling
+  ];
+    
+  if(results.length > 0 ){
+    const unique = Array.from(new Set(results));
+
+    const [min, max] = MilitaryCountBySiteWealth[data.wealth ?? "modest"] ?? [3, 4];
+    const subset = getRandomSubset(unique, { min, max} );
+
+    // If "None" is present, exclude other options from array
+    if(subset.includes("None")){
+      data.military = ["None"];
+      return data;
+    }
+
+    data.military = subset;
   }
 
   return data;

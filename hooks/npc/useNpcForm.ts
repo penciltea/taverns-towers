@@ -10,25 +10,26 @@
 
 import { useEffect } from "react";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { npcSchema, defaultNpcValues } from "@/schemas/npc.schema";
+import { npcSchema, defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
 import { useNpcContentStore } from "@/store/npc.store";
 
-export function useNpcForm() {
+export function useNpcForm(initialData?: Partial<NpcFormData>) {
   const { mode, draftItem } = useNpcContentStore();
 
   const methods = useFormWithSchema(npcSchema, {
-    defaultValues: defaultNpcValues,
+    defaultValues: initialData || defaultNpcValues,
   });
 
 
   useEffect(() => {
-  if (mode === "edit" && draftItem) {
-    methods.reset({
-      ...draftItem,
-      connections: draftItem.connections || []
-    });
-  }
-}, [mode, draftItem, methods.reset]);
+    const dataToLoad = draftItem || initialData;
+    if (dataToLoad) {
+      methods.reset({
+        ...dataToLoad,
+        connections: dataToLoad.connections || [],
+      });
+    }
+  }, [draftItem, initialData, methods.reset]);
 
   return methods;
 }

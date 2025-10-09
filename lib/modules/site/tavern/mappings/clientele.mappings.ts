@@ -1,5 +1,5 @@
-import { TagTypes } from "@/constants/environmentOptions";
-import { CriminalActivityTypes, MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlementOptions";
+import { TagTypes } from "@/constants/environment.options";
+import { CriminalActivityTypes, MagicLevel, SizeTypes, WealthLevel } from "@/constants/settlement.options";
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const CLIENTELE_ALIASES: Record<string, string> = {

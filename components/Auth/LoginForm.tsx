@@ -6,13 +6,11 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { loginSchema, LoginSchema } from "@/schemas/user.schema";
 import { Box, Button, Typography } from "@mui/material";
 import { useAuthForm } from "@/hooks/useAuthForm";
-import { Spinner } from "../Common/Spinner";
+import { Spinner } from "@/components/Common/Spinner";
+import NextMuiLink from "@/components/Common/NextMuiLink";
+import { AuthFormProps } from "@/interfaces/ui.interface";
 
-type LoginFormProps = {
-  onSuccess?: () => void;
-};
-
-export default function LoginForm({ onSuccess }: LoginFormProps) {
+export default function LoginForm({ onSuccess }: AuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -25,10 +23,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
   const password = watch("password", "");
   const isTouched = !!touchedFields.password;
 
-  const { submit, loading, error } = useAuthForm({
-    type: "login",
-    onSuccess,
-  });
+  const { submit, loading, error } = useAuthForm({ type: "login", onSuccess });
 
   const onSubmit = (data: LoginSchema) => submit(data);
 
@@ -71,18 +66,21 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           passwordValue={password}
           isTouched={isTouched}
           displayRequirements={false}
+          displayKeepCurrent={false}
         />
 
-        <Box sx={{ display: "flex", justifyContent: "end", my: 2 }}>
+        <Box sx={{ display: "flex", justifyContent: "end", my: 2, flexDirection: "column", alignItems: "center" }}>
           <Button
             size="large"
             type="submit"
             variant="contained"
+            fullWidth
             disabled={isSubmitting || loading}
             sx={{ px: 8 }}
           >
             Log In
           </Button>
+          <Typography variant="body1" sx={{py: 2}} >Forgot your password? <NextMuiLink href="/forgot-password" underline="always">Reset it here!</NextMuiLink>.</Typography>
         </Box>
       </Box>
     </>

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useId } from 'react';
-import { Box, Chip, FormControl, FormHelperText, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField } from '@mui/material';
+import { JSX, useState, useId } from 'react';
+import { Box, Chip, FormControl, FormHelperText, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField, Typography } from '@mui/material';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 export interface Option {
@@ -24,6 +24,7 @@ interface FormChipSelectProps<TFieldValues extends FieldValues>
   required?: boolean;
   allowCustomValues?: boolean;
   disabledOptions?: string[];
+  tooltip?: string | JSX.Element;
 }
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
@@ -41,6 +42,7 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
   required = false,
   allowCustomValues = false,
   disabledOptions = [],
+  tooltip,
   ...rest
 }: FormChipSelectProps<TFieldValues>) {
   const [customInput, setCustomInput] = useState('');
@@ -148,6 +150,11 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
             );
           }}
         />
+      )}
+      {tooltip && (
+        <Typography variant="caption">
+          {tooltip}
+        </Typography>
       )}
 
       {fieldError?.message && <FormHelperText>{fieldError.message}</FormHelperText>}

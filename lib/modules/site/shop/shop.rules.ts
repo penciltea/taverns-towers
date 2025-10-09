@@ -9,7 +9,7 @@ export function isShopSite(data: Partial<SiteFormData>): data is Partial<ShopSit
   return data.type === "shop";
 }
 
-export async function applyShopTypeRule(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyShopTypeRule(data: Partial<SiteFormData>){
   if (!isShopSite(data)) return data;
 
   if (!data.shopType || data.shopType === "random") {

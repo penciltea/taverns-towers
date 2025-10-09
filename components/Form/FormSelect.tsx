@@ -1,8 +1,9 @@
 "use client";
 
-import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader} from "@mui/material";
+import { JSX, useId } from "react";
+import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader, Typography} from "@mui/material";
 import { Control, Controller, FieldError, FieldValues, Path } from "react-hook-form";
-import { useId } from "react";
+
 
 export interface Option {
   label: string;
@@ -24,6 +25,7 @@ export interface FormSelectProps<
   options: ReadonlyArray<Option | OptionGroup>;
   fieldError?: FieldError;
   required?: boolean;
+  tooltip?: string | JSX.Element;
 }
 
 function FormSelect<
@@ -36,6 +38,7 @@ function FormSelect<
   options,
   fieldError,
   required = false,
+  tooltip,
   ...rest
 }: FormSelectProps<TFieldValues, TName>) {
   const id = useId();
@@ -92,6 +95,11 @@ function FormSelect<
           </Select>
         )}
       />
+      {tooltip && (
+        <Typography variant="caption">
+          {tooltip}
+        </Typography>
+      )}
       {hasError && (
         <FormHelperText id={errorId}>{errorMessage}</FormHelperText>
       )}

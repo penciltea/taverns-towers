@@ -1,6 +1,6 @@
-import { Flatten } from "../commonOptions";
+import { Flatten } from "../common.options";
 
-export const SITE_TABS = ["Basics", "Connections"]
+export const SITE_TABS = ["Basics", "NPC Connections"]
 
 export const SITE_CATEGORIES = [
     { value: "tavern", label: "Taverns & Inns"},

@@ -1,4 +1,4 @@
-import { SizeTypes, WealthLevel } from "@/constants/settlementOptions";
+import { SizeTypes, WealthLevel } from "@/constants/settlement.options";
 import { SiteCondition, SiteSize } from "@/constants/site/site.options";
 
 export const RARITY_BOOST_BY_CONDITION: Record<SiteCondition, number> = {

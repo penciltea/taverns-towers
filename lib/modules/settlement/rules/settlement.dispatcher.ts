@@ -13,7 +13,7 @@
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import { NormalizedSettlementInput } from "./normalize";
 import { applyDomainsByConditions } from "./domain.rules";
-import { applyCrimeByWealthRule, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
+import { applyCrimeByWealthRule, applyMilitaryByConditions, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
 import { applyRacesByConditions } from "./race.rules";
 import { applySizeRule } from "./size.rules";
@@ -29,6 +29,7 @@ const ruleFns = [
   applyWealthBySizeRule,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,
+  applyMilitaryByConditions,
   applyMagicByWealthRule,
   applyRacesByConditions,
   applyTradeNotesRule,
@@ -45,11 +46,11 @@ const ruleFns = [
  * @returns The enriched settlement data after applying all rules
 */
 
-export const generateSettlementValues = async (input: NormalizedSettlementInput) => {
+export const generateSettlementValues = (input: NormalizedSettlementInput) => {
   let data = input;
 
   for (const fn of ruleFns) {
-    data = await fn(data); // handles both sync and async rules
+    data = fn(data); // handles both sync and async rules
   }
 
   return data;
@@ -66,7 +67,7 @@ export const generateSettlementValues = async (input: NormalizedSettlementInput)
 
 export const generateSettlementWithName = async (input: NormalizedSettlementInput) => {
   // First run all generation rules to get full settlement data
-  const coreData = await generateSettlementValues(input);
+  const coreData = generateSettlementValues(input);
 
   // Generate a thematic name based on environmental context
   const name = await generateSettlementName({

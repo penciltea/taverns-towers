@@ -1,31 +1,28 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Avatar, Divider, IconButton, Box, useTheme } from '@mui/material';
+import { useAuthStore } from '@/store/authStore';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Divider, IconButton, Box, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Link from 'next/link';
+import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
+import { userTier } from '@/constants/user.options';
+import UserAvatar from '../Common/UserAvatar';
 
 export default function Header() {
   const router = useRouter();
-  const { data: session, status } = useSession();
   const theme = useTheme();
-  
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const anchorEl = useUIStore(state => state.userMenuAnchor);
+  const setAnchorEl = useUIStore(state => state.setUserMenuAnchor);
+  const closeUserMenu = useUIStore(state => state.closeUserMenu);
 
-  if (status === "loading") {
-    // Avoid rendering until session is ready
-    return null; 
-  }
+  const user = useAuthStore((state) => state.user);
 
-  const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const displayName = user?.username || "Traveler";
+  const displayTier = capitalizeFirstLetter(user?.tier ?? userTier[0]);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -41,10 +38,7 @@ export default function Header() {
     router.push('/');
   };
 
-  // Conditional color: darkSlate when light mode, otherwise inherit
-  const headerTextColor =
-    theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
-  
+  const headerTextColor = theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -61,31 +55,29 @@ export default function Header() {
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>RealmFoundry</Link>
         </Typography>
 
-        {status === "authenticated" && session.user ? (
+        {user ? (
           <>
             <Button
               color="inherit"
-              onClick={handleUserMenuClick}
+              onClick={(e) => setAnchorEl(e.currentTarget)}
               aria-controls={anchorEl ? 'user-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
-              sx={{ color: headerTextColor }}
             >
-              <Avatar sx={{ width: 26, height: 26, mr: 1 }}>
-                <PersonOutlineIcon />
-              </Avatar>
-              Hi, {session.user.username}!
+              <UserAvatar username={ user.username } avatar={ user.avatar ?? "" } width={26} height={26} />
+              Hi, {displayName}!
             </Button>
+
             <Menu
               id="user-menu"
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+              onClose={closeUserMenu}
             >
-              <MenuItem disabled>Tier: {capitalizeFirstLetter(session.user.tier)}</MenuItem>
+              <MenuItem disabled>Tier: {displayTier}</MenuItem>
               <Divider />
-              <MenuItem onClick={() => handleNavigate('/account/settings')}>Account Settings</MenuItem>
-              <MenuItem onClick={handleSignOut}>Logout</MenuItem>
+              <MenuItem onClick={() => { handleNavigate('/account/dashboard'); closeUserMenu(); }}>Account Dashboard</MenuItem>
+              <MenuItem onClick={() => { handleSignOut(); closeUserMenu(); }}>Logout</MenuItem>
             </Menu>
           </>
         ) : (

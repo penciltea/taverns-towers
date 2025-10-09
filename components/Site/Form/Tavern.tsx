@@ -18,7 +18,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
         <>
             <FormFieldWithGenerate
                 name="name"
-                label="Site Name"
+                label="Tavern Name"
                 required
                 registration={register("name")}
                 fieldError={errors.name}
@@ -31,6 +31,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
+                tooltip="This field influences the following fields: clientele, entertainment offerings, room cost, menu item generation."
             />
 
             <FormSelect
@@ -39,12 +40,14 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
+                tooltip="This field influences the following fields: clientele, entertainment offerings, room cost, menu item generation."
             />
             
             <FormTextField
                 label="Clientele"
                 registration={register("clientele")}
                 fieldError={errors.clientele}
+                tooltip="This field is purely descriptive."
             />
 
             <FormChipSelect
@@ -53,12 +56,14 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAVERN_ENTERTAINMENT_OFFERINGS)]}
                 fieldError={errors.entertainment}
+                tooltip="This field is purely descriptive."
             />
 
             <FormTextField
                 label="Room Cost per Night"
                 registration={register("cost")}
                 fieldError={errors.cost}
+                tooltip="This field is purely descriptive."
             />
 
             <FormTextField
@@ -67,6 +72,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
+                tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
             />
 
             <FormTextField
@@ -75,6 +81,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
+                tooltip="This field is purely descriptive and is only visible to you."
             />
 
             <Box sx={{mt: 4}}>

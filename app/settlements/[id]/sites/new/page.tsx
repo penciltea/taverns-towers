@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
@@ -13,33 +12,47 @@ import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
 import { useAuthStore } from "@/store/authStore";
 import { useFormMode } from "@/hooks/useFormMode";
-
+import { useDraftForm } from "@/hooks/useDraftForm";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
+import { useEffect } from "react";
 
 export default function NewSitePage() {
     const params = useParams();
     const searchParams = useSearchParams();
     const settlementId = params.id as string;
     const rawTypeParam = searchParams?.get("type");
+    const { setOpenDialog, showErrorDialog } = useUIStore();
+    const user = useAuthStore((state) => state.user);
+    const draftKey = "draftSite";
 
     // Set default form values only if typeParam is valid
-    const defaultValues = isValidSiteCategory(rawTypeParam)
+    const loadedDefaultSiteValues = isValidSiteCategory(rawTypeParam)
         ? defaultSiteValues[rawTypeParam as SiteFormData["type"]]
         : undefined;
 
+    let initialDraft: Partial<SiteFormData> | null = null;
+    if (typeof window !== "undefined") {
+        const raw = sessionStorage.getItem(draftKey);
+        if (raw) initialDraft = JSON.parse(raw) as Partial<SiteFormData>;
+    }
+
     const methods = useFormWithSchema(siteSchema, {
-        defaultValues,
+        defaultValues: initialDraft || loadedDefaultSiteValues,
     });
-    const { mode, draftItem, clearDraftItem, setDraftItem, selectedItem } = useSiteContentStore();
+    const { mode, draftItem, clearDraftItem, setDraftItem, selectedItem, submittingDraft, setSubmittingDraft } = useSiteContentStore();
+
+    // Populate Zustand store synchronously if empty
+    useEffect(() => {
+        if (!draftItem && initialDraft) {
+          setDraftItem(initialDraft);
+        }
+    }, [draftItem, initialDraft, setDraftItem]);
 
     // Use the site ID (if editing) or undefined (if creating new)
     const siteId = selectedItem?._id; 
     useFormMode(siteId, useSiteContentStore);
 
-    const { setOpenDialog, showErrorDialog } = useUIStore();
-    
-    const user = useAuthStore((state) => state.user);
-
-    const { handleSubmit } = useSiteMutations({
+    const { handleSubmit: onSubmit } = useSiteMutations({
         mode,
         settlementId
     })
@@ -50,23 +63,46 @@ export default function NewSitePage() {
         rawSiteType: rawTypeParam,
     });
 
-    useEffect(() => {
-        if (user && draftItem) {
-          (async () => {
-            await handleSubmit(draftItem as SiteFormData);
-            clearDraftItem();
-          })();
-        }
-      }, [user, draftItem, handleSubmit, clearDraftItem]);
+    const openLoginDialog = (props?: AuthDialogInput<Partial<SiteFormData>>) =>
+        setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+    
+    const openRegisterDialog = (props?: AuthDialogInput<Partial<SiteFormData>>) =>
+        setOpenDialog("RegisterDialog", {
+            ...props,
+            onRegisterSuccess: () => {
+                openLoginDialog({
+                draftKey,
+                draftItem: (draftItem || initialDraft) as Partial<SiteFormData> | undefined,
+                onLoginSuccess: () => {
+                    clearDraftItem();
+                    sessionStorage.removeItem(draftKey);
+                },
+                });
+            },
+        });
+
+    const { saveDraftAndPromptLogin } = useDraftForm<SiteFormData>({
+        user,
+        draftItem: draftItem as Partial<SiteFormData> | null,
+        setDraftItem: setDraftItem as (draft: Partial<SiteFormData>) => void,
+        clearDraftItem,
+        submittingDraft,
+        setSubmittingDraft,
+        onSubmit,
+        draftKey,
+    });
 
     const wrappedOnSubmit = async (data: SiteFormData) => {
         try {
             if (!user) {
-            setDraftItem(data);
-            setOpenDialog("LoginDialog", {});
-            return;
+                saveDraftAndPromptLogin(data, openLoginDialog);
+                return;
             }
-            await handleSubmit(data);
+            await onSubmit(data);
+
+            // Clean up draft after successful submission
+            clearDraftItem();
+            sessionStorage.removeItem(draftKey);
         } catch (err) {
             showErrorDialog(`Sorry, there was a problem: ${err}`);
             console.error("Error during site submission:", err);

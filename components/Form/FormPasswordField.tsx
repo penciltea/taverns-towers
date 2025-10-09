@@ -14,6 +14,7 @@ interface FormPasswordFieldProps<TFieldValues extends FieldValues> {
     passwordValue: string;
     isTouched: boolean;
     displayRequirements: boolean;
+    displayKeepCurrent: boolean;
 }
 
 const FormPasswordField = <TFieldValues extends FieldValues>({
@@ -23,7 +24,8 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
     required = false,
     passwordValue,
     isTouched,
-    displayRequirements = false
+    displayRequirements = false,
+    displayKeepCurrent = false
 }: FormPasswordFieldProps<TFieldValues>) => {
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => setShowPassword((prev) => !prev);
@@ -31,7 +33,7 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
 
     // For checking if the password matches validation requirements
     const checklistId = `${id}-requirements`;
-    const isMinLength = passwordValue.length >= 8;
+    const isMinLength = passwordValue?.length >= 8;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue);
     const isValidPassword = isMinLength && hasSpecialChar;
 
@@ -98,6 +100,10 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
                     {...registration}
                 />
             </FormControl>
+
+            {displayKeepCurrent &&
+                <Typography variant="caption" gutterBottom>Leave blank to keep your current password.</Typography>
+            }
             
             {/* Password Requirements */}
             {displayRequirements &&

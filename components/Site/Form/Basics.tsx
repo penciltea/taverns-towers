@@ -1,6 +1,6 @@
 import { FormSelect, FormChipSelect } from "@/components/Form"
 import FormImageUpload from "@/components/Form/FormImageUpload"
-import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environmentOptions"
+import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environment.options"
 import { toSelectOptions } from "@/lib/util/formatSelectOptions"
 import { SiteFormData } from "@/schemas/site.schema"
 import { useSiteContentStore } from "@/store/siteStore"
@@ -49,12 +49,14 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
                         label="Climate"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(CLIMATE_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
                     <FormChipSelect
                         name="terrain"
                         label="Terrain Type"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(TERRAIN_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
 
                     <FormChipSelect
@@ -62,6 +64,7 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
                         label="Tags"
                         control={control}
                         options={[{ label: "Random", value: "random" }, ...toSelectOptions(TAG_TYPES)]}
+                        tooltip="This field influences the site's name and menu items (if available)"
                     />
                     
                     </Box>

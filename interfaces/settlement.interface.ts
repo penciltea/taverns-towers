@@ -40,12 +40,15 @@ export interface Settlement extends CommonInterface {
   magic?: string;
   races?: string;
   rulingStyle?: string;
+  military?: string[];
   wealth?: string;
   tradeNotes?: string;
   domains?: string[];
   holidays?: string;
   folklore?: string;
   crime?: string[];
+  tone?: string[];
+  theme?: string[];
   connections: NpcConnection[];
 }
 
@@ -58,7 +61,9 @@ export const DefaultSettlementQueryParams: SettlementQueryParams = {
   magic: '',
   wealth: '',
   tags: [],
-  terrain: []
+  terrain: [],
+  tone: [],
+  theme: []
 }
 
 export interface SettlementQueryParams {
@@ -71,4 +76,42 @@ export interface SettlementQueryParams {
   wealth: string;
   tags: string[];
   terrain: string[];
+  tone: string[];
+  theme?: string[];
+}
+
+
+export interface SettlementFragment {
+  type: 'prefix' | 'suffix';
+  value: string;
+  terrain?: string[];
+  tags?: string[];
+  climate?: string[];
+  size?: string[];
+  magic?: string[];
+  wealth?: string[];
+  weight?: number;
+  theme?: string[];
+}
+
+// For name generation fragments
+export type SettlementGroupKey =
+  | "prefix"
+  | "suffix"
+  | "noun"
+  | "descriptor"
+  | "connector"
+  | "size"
+  | "theme"
+  | "format"
+  ;
+
+export interface GenerateSettlementNameOptions {
+  tags?: string[];
+  terrain?: string[];
+  climate?: string;
+  magic?: string;
+  wealth?: string;
+  size?: string;
+  theme?: string[];
 }

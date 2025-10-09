@@ -30,6 +30,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
+                tooltip="This field influences the following fields: secrecy levels, defenses."
             />
 
             <FormSelect
@@ -38,6 +39,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
+                tooltip="This field influences the secrecy level field."
             />
             <FormChipSelect
                 name="secrecy"
@@ -45,6 +47,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SECRECY_LEVELS]}
                 fieldError={errors.secrecy}
+                tooltip="This field influences the following fields: known to, defenses, purpose."
             />
             
             <FormChipSelect
@@ -53,6 +56,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...KNOWN_TO]}
                 fieldError={errors.knownTo}
+                tooltip="This field is purely descriptive."
             />
 
             <FormChipSelect
@@ -61,6 +65,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...DEFENSE]}
                 fieldError={errors.defenses}
+                tooltip="This field is purely descriptive."
             />
 
             <FormChipSelect
@@ -69,6 +74,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...PURPOSE]}
                 fieldError={errors.purpose}
+                tooltip="This field influences the known to field."
             />
 
             <FormTextField
@@ -77,6 +83,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
+                tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
             />
 
             <FormTextField
@@ -85,6 +92,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
+                tooltip="This field is purely descriptive and is only visible to you."
             />
         </>
     )

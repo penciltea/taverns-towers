@@ -5,126 +5,8 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { BaseSite, SiteType, GuildSite, generatorMenuItem, TavernSite, TempleSite, ShopSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
-import { NpcConnection } from "@/interfaces/connection.interface";
-import { serializeFromDb } from "@/lib/util/serializeFromDb";
-
-function serializeSite(site: Parameters<typeof serializeFromDb>[0]): BaseSite | SiteType {
-  const serialized = serializeFromDb(site);
-
-  // Ensure the result is an object and has a 'type' property
-  if (
-    !serialized ||
-    typeof serialized !== "object" ||
-    Array.isArray(serialized) ||
-    !("type" in serialized)
-  ) {
-    throw new Error("Invalid serialized site data");
-  }
-
-  // Map connections
-  const baseData = {
-    ...serialized,
-    connections: Array.isArray((serialized as { connections?: NpcConnection[] }).connections)
-      ? ((serialized as unknown as { connections: NpcConnection[] }).connections).map((conn: NpcConnection) => ({
-          ...conn,
-          id: conn.id?.toString() ?? conn.id,
-        }))
-      : [],
-  } as BaseSite;
-
-  // Handle type-specific fields
-  switch (serialized.type) {
-    case "tavern":
-      return {
-        ...baseData,
-        type: "tavern",
-        clientele: serialized.clientele as TavernSite["clientele"],
-        entertainment: serialized.entertainment as TavernSite["entertainment"],
-        cost: serialized.cost as TavernSite["cost"],
-        menu: Array.isArray((serialized as { menu?: generatorMenuItem[] }).menu)
-          ? ((serialized as unknown as { menu: generatorMenuItem[] }).menu).map((item: generatorMenuItem) => ({
-            name: item.name,
-            category: item.category,
-            description: item.description,
-            price: item.price,
-          }))
-          : [],
-      };
-    case "temple":
-      return {
-        ...baseData,
-        type: "temple",
-        domains: Array.isArray(serialized.domains as TempleSite["domains"]) ? serialized.domains as TempleSite["domains"] : [],
-        relics: serialized.relics as TempleSite["relics"],
-      };
-    case "shop":
-      return {
-        ...baseData,
-        type: "shop",
-        shopType: serialized.shopType as ShopSite["shopType"],
-        menu: Array.isArray((serialized as { menu?: generatorMenuItem[] }).menu)
-          ? ((serialized as unknown as { menu: generatorMenuItem[] }).menu).map((item: generatorMenuItem) => ({
-            name: item.name,
-            category: item.category,
-            description: item.description,
-            price: item.price,
-          }))
-          : [],
-      };
-    case "guild":
-      return {
-        ...baseData,
-        type: "guild",
-        guildName: serialized.guildName as GuildSite["guildName"],
-        guildType: serialized.guildType as GuildSite["guildType"],
-        membershipRequirements: Array.isArray(serialized.membershipRequirements)
-          ? (serialized.membershipRequirements.map((req: unknown): string => String(req)) as GuildSite["membershipRequirements"])
-          : ([] as GuildSite["membershipRequirements"]),
-        knownRivals: serialized.knownRivals as GuildSite["knownRivals"],
-      } as GuildSite;
-    case "government":
-      return {
-        ...baseData,
-        type: "government",
-        function: serialized.function as GovernmentSite["function"],
-        security: serialized.security as GovernmentSite["security"],
-      };
-    case "entertainment":
-      return {
-        ...baseData,
-        type: "entertainment",
-        venueType: serialized.venueType as EntertainmentSite["venueType"],
-        cost: serialized.cost as EntertainmentSite["cost"],
-      };
-    case "hidden":
-      return {
-        ...baseData,
-        type: "hidden",
-        secrecy: Array.isArray(serialized.secrecy)
-          ? (serialized.secrecy as unknown[]).map((s: unknown): string => String(s)) as HiddenSite["secrecy"]
-          : ([] as HiddenSite["secrecy"]),
-        knownTo: serialized.knownTo as HiddenSite["knownTo"],
-        defenses: serialized.defenses as HiddenSite["defenses"],
-        purpose: serialized.purpose as HiddenSite["purpose"],
-      };
-    case "residence":
-      return {
-        ...baseData,
-        type: "residence",
-        notableFeatures: serialized.notableFeatures as ResidenceSite["notableFeatures"],
-      };
-    case "miscellaneous":
-      return {
-        ...baseData,
-        type: "miscellaneous",
-        features: serialized.features as MiscellaneousSite["features"],
-        use: serialized.use as MiscellaneousSite["use"],
-      };
-    default:
-      return baseData;
-  }
-}
+import { SiteType } from "@/interfaces/site.interface";
+import { serializeSite } from "../util/serializers";
 
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
@@ -158,11 +40,12 @@ export async function getSitesPaginated(
   name: string,
   types?: string[],
   userId?: string,
+  tone?: string[]
 ) {
   await connectToDatabase();
 
   const query: Record<string, unknown> = {};
-
+  
   if (settlementId === 'wilderness') {
     query.settlementId = null; // Query for wilderness sites
   } else if (settlementId && ObjectId.isValid(settlementId)) {
@@ -182,6 +65,10 @@ export async function getSitesPaginated(
     query.userId = new ObjectId(userId);
   }
 
+  if (tone && tone.length > 0) {
+    query.tone = { $all: tone };
+  }
+
   const skip = (page - 1) * limit;
 
   const [sites, total] = await Promise.all([
@@ -192,6 +79,7 @@ export async function getSitesPaginated(
   const totalPages = Math.ceil(total / limit);
 
   return {
+    success: true,
     sites: sites.map(serializeSite),
     total,
     totalPages,
@@ -207,6 +95,7 @@ export async function getSites({
   limit = 12,
   name,
   types = [],
+  tone = []
 }: {
   userId?: string;
   isPublic?: boolean;
@@ -215,6 +104,7 @@ export async function getSites({
   limit?: number;
   name?: string;
   types?: string[];
+  tone?: string[];
 }) {
   await connectToDatabase();
 
@@ -235,6 +125,10 @@ export async function getSites({
 
   if (types.length > 0) {
     query.type = { $in: types };
+  }
+
+  if (tone && tone.length > 0) {
+    query.tone = { $all: tone };
   }
 
   const skip = (page - 1) * limit;

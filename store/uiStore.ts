@@ -8,8 +8,13 @@ interface UIState {
   closeDrawer: () => void;
   openDrawer: () => void;
 
+  // Header
+  userMenuAnchor: HTMLElement | null;
+  setUserMenuAnchor: (el: HTMLElement | null) => void;
+  closeUserMenu: () => void;
+
   // Dialog state
-  openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'DeleteConnectionDialog';
+  openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'RegisterDialog' | 'DeleteConnectionDialog';
   dialogProps: Record<string, any>;
   setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
   closeDialog: () => void;
@@ -49,6 +54,10 @@ export const useUIStore = create<UIState>((set) => {
     toggleDrawer: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
     closeDrawer: () => set({ isDrawerOpen: false }),
     openDrawer: () => set({ isDrawerOpen: true }),
+
+    userMenuAnchor: null,
+    setUserMenuAnchor: (el) => set({ userMenuAnchor: el }),
+    closeUserMenu: () => set({ userMenuAnchor: null }),
 
     openDialog: null,
     dialogProps: {},

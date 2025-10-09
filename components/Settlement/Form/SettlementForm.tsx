@@ -75,19 +75,22 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           <Typography variant="h3" component="h1" gutterBottom>
             {mode === "edit" ? `Edit ${selectedItem?.name}` : "Forge a Settlement"}
           </Typography>
-          
+
           <Typography variant="subtitle1" component="p" gutterBottom>
-            Whether you prefer to craft every detail or need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
+            Whether you prefer to craft every detail or just need a spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them automatically.
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-            The generator fills in all settlement details—like terrain, climate, crime, and ruling style. Fields set to &quot;random&quot; will be chosen based on your other selections.
+            The generator can fill in all settlement details, including terrain, climate, crime, ruling style, and more. Fields set to &quot;random&quot; will be updated based on your other choices to create results that make sense together.
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-            Use the buttons to either fill missing/random fields or to fully reroll all fields. You can always adjust results afterward!
+            Some fields influence others: your selections can guide the generator toward outcomes that fit the settlement naturally. For example, choosing a coastal terrain or a “Port” tag may affect the settlement&apos;s name, holidays, and folklore that appear.
           </Typography>
 
+          <Typography variant="subtitle1" component="p" gutterBottom>
+            Don&apos;t be afraid to experiment! Small changes to size, tags, climate, or tone can produce surprising and interesting results. You can always tweak the generated settlement afterward, so feel free to explore different combinations.
+          </Typography>
 
           <Box 
             sx={{

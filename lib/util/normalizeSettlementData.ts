@@ -8,4 +8,6 @@ export const normalizeSettlementData = (settlement: Partial<SettlementFormData>)
   terrain: normalizeArray(settlement.terrain),
   crime: normalizeArray(settlement.crime),
   domains: normalizeArray(settlement.domains),
+  military: normalizeArray(settlement.military),
+  tone: normalizeArray(settlement.tone)
 });

@@ -16,6 +16,7 @@ interface AuthFormOptions<T extends AuthFormType> {
   redirectTo?: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
+  skipRedirect?: boolean;
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -48,7 +49,10 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
         if (result.success) {
           showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
           onSuccess?.();
-          router.push(finalRedirect);
+          
+          if (!options.skipRedirect) {
+            router.push(finalRedirect);
+          }
         } else {
           const message = result.error ?? "Something went wrong.";
           setError(message);
@@ -56,11 +60,12 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
         }
       } else if (type === "login") {
         finalRedirect ??= "/account/dashboard";
+        const loginData = data as LoginPayload;
         const result = await signIn("credentials", {
           redirect: false,
           callbackUrl: finalRedirect,
-          credential: (data as LoginPayload).credential,
-          password: (data as LoginPayload).password,
+          credential: loginData.credential,
+          password: loginData.password,
         });
 
         if (result?.ok) {

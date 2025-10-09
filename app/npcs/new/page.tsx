@@ -10,28 +10,62 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import NpcForm from "@/components/Npc/Form/NpcForm";
 import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
-import { useEffect } from "react";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
 import { Paper } from "@mui/material";
+import { useDraftForm } from "@/hooks/useDraftForm";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
+import { useEffect } from "react";
 
 export default function NewNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
 
   useFormMode(safeId, useNpcContentStore);
-  const { mode, draftItem, clearDraftItem, setDraftItem } = useNpcContentStore();
+  const { mode, draftItem, clearDraftItem, setDraftItem, submittingDraft, setSubmittingDraft } = useNpcContentStore();
+  const draftKey = "draftNpc";
   const { setOpenDialog, showErrorDialog } = useUIStore();
   const user = useAuthStore((state) => state.user);
 
-  const methods = useNpcForm();
+  let initialDraft: Partial<NpcFormData> | null = null;
+  if (typeof window !== "undefined") {
+      const raw = sessionStorage.getItem(draftKey);
+      if (raw) initialDraft = JSON.parse(raw) as Partial<NpcFormData>;
+  }
 
-  const { handleSubmit } = useNpcMutations({
+  const methods = useNpcForm(draftItem || initialDraft || undefined);
+
+  // Populate Zustand store synchronously if empty
+  useEffect(() => {
+    if (!draftItem && initialDraft) {
+      setDraftItem(initialDraft);
+    }
+  }, [draftItem, initialDraft, setDraftItem]);
+
+  const { handleSubmit: onSubmit } = useNpcMutations({
     mode,
     npcId: safeId,
   });
 
   const { name: generateName, missing: generateMissing, reroll: rerollAll } = useNpcGeneratorActions(methods);
+
+  const openLoginDialog = (props?: AuthDialogInput<Partial<NpcFormData>>) =>
+    setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+
+  const openRegisterDialog = (props?: AuthDialogInput<Partial<NpcFormData>>) =>
+    setOpenDialog("RegisterDialog", {
+      ...props,
+      onRegisterSuccess: () => {
+        openLoginDialog({
+          draftKey,
+          draftItem: draftItem || initialDraft || undefined,
+          onLoginSuccess: () => {
+            clearDraftItem();
+            sessionStorage.removeItem(draftKey);
+          },
+        });
+      },
+    });
 
   const generator = {
     name: generateName,
@@ -39,23 +73,29 @@ export default function NewNpcPage() {
     reroll: rerollAll,
   };
 
-  useEffect(() => {
-    if (user && draftItem) {
-      (async () => {
-        await handleSubmit(draftItem as NpcFormData);
-        clearDraftItem();
-      })();
-    }
-  }, [user, draftItem, handleSubmit, clearDraftItem]);
+  const { saveDraftAndPromptLogin } = useDraftForm<NpcFormData>({
+      user,
+      draftItem,
+      setDraftItem,
+      clearDraftItem,
+      submittingDraft,
+      setSubmittingDraft,
+      onSubmit,
+      draftKey,
+    });
+
 
   const wrappedOnSubmit = async (data: NpcFormData) => {
     try {
       if (!user) {
-        setDraftItem(data);
-        setOpenDialog("LoginDialog", {});
+       saveDraftAndPromptLogin(data, openLoginDialog);
         return;
       }
-      await handleSubmit(data);
+      await onSubmit(data);
+
+      // Clean up draft after successful submission
+      clearDraftItem();
+      sessionStorage.removeItem(draftKey);
     } catch (err) {
       showErrorDialog(`Sorry, there was a problem: ${err}`);
       console.error("Error during NPC submission:", err);

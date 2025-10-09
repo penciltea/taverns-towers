@@ -25,6 +25,7 @@ export const lightTheme = createTheme({
     },
   },
   palette: {
+    contrastThreshold: 4.5,
     mode: "light",
     background: {
       default: parchment,
@@ -57,6 +58,7 @@ export const darkTheme = createTheme({
   },
   palette: {
     mode: "dark",
+    contrastThreshold: 4.5,
     background: {
       default: darkSlate,
       paper: "#2B2B3F", // a slightly lighter dark surface

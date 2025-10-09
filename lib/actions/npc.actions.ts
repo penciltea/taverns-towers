@@ -10,25 +10,8 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
 import { normalizeConnections } from "../util/connectionHelpers";
-import { serializeFromDb } from "@/lib/util/serializeFromDb";
+import { serializeNpc } from "../util/serializers";
 
-
-// serialize for client compatibility
-function serializeNpc(npc: Parameters<typeof serializeFromDb>[0]): Npc {
-  const serialized = serializeFromDb(npc) as Npc | null;
-
-  if (!serialized || !Array.isArray(serialized.connections)) {
-    throw new Error("Invalid NPC data for serialization");
-  }
-
-  return {
-    ...serialized,
-    connections: serialized.connections.map((conn) => ({
-      ...conn,
-      id: conn.id.toString(),
-    })),
-  };
-}
 
 export async function getNpcs({
   userId,

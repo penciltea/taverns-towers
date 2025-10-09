@@ -11,7 +11,7 @@ export function isEntertainmentSite(data: Partial<SiteFormData>): data is Partia
   return data.type === "entertainment";
 }
 
-export async function applyEntertainmentVenueRule(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyEntertainmentVenueRule(data: Partial<SiteFormData>) {
   if (!isEntertainmentSite(data)) return data;  // Return early if not "entertainment" type
 
   if (!data.venueType || data.venueType === "random") {
@@ -21,9 +21,7 @@ export async function applyEntertainmentVenueRule(data: Partial<SiteFormData>): 
   return data;
 }
 
-export async function applyEntryCostRule(
-  data: Partial<SiteFormData>
-): Promise<Partial<SiteFormData>> {
+export function applyEntryCostRule(data: Partial<SiteFormData>) {
   if (
     data.type !== "entertainment" ||
     !data.size ||
@@ -60,5 +58,5 @@ const entertainmentRules = [
 
 export async function generateEntertainmentData(input: SiteGenerationInput): Promise<SiteFormData> {
   // Call the createSiteGenerator with the input object
-  return await createSiteGenerator("entertainment", entertainmentRules)(input);
+  return createSiteGenerator("entertainment", entertainmentRules)(input);
 }

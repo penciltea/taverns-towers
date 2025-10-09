@@ -4,8 +4,24 @@ import HomeContent from "@/components/Common/HomePage";
 
 export const metadata: Metadata = {
   title: "RealmFoundry - Build Worlds, Craft Stories, Play Better",
-  description: "Generate towns, NPCs, and locations with powerful tools for GMs, writers, and world-builders. Currently in limited alpha.",
-  keywords: ["TTRPG", "worldbuilding", "settlement generator", "NPC generator", "DnD tools", "D&D tools"],
+  description: "RealmFoundry helps GMs and writers generate towns, NPCs, and adventures with powerful worldbuilding tools for D&D, Pathfinder, and other RPGs.",
+  keywords: [
+    "TTRPG tools",
+    "worldbuilding",
+    "fantasy generator",
+    "settlement generator",
+    "city generator",
+    "village generator",
+    "NPC generator",
+    "RPG generator",
+    "GM tools",
+    "DM tools",
+    "D&D tools",
+    "Pathfinder tools",
+    "storytelling tools",
+    "creative writing tools",
+    "adventure generator"
+  ],
   authors: [{ name: "RealmFoundry" }],
   openGraph: {
     title: "RealmFoundry",
@@ -24,12 +40,7 @@ export const metadata: Metadata = {
     */
     locale: "en_US",
     type: "website",
-  },
-  // temporary for alpha testing
-  robots: {
-    index: false,
-    follow: false,
-  },
+  }
 };
 
 

@@ -1,12 +1,13 @@
 'use client'
 
 import { useUIStore } from "@/store/uiStore";
-import SiteTypeDialog from "../Site/Dialog/SiteTypeDialog";
-import SiteDetailsDialog from "../Site/Dialog/SiteDetailsDialog";
-import SettlementDetailsDialog from "../Settlement/View/SettlementDetailsDialog";
-import TypeChangeDialog from "../Common/typeChangeDialog";
-import LoginDialog from "../Auth/LoginDialog";
-import DeleteConnectionDialog from "../Common/EntityLink/DeleteConnectionDialog";
+import SiteTypeDialog from "@/components/Site/Dialog/SiteTypeDialog";
+import SiteDetailsDialog from "@/components/Site/Dialog/SiteDetailsDialog";
+import SettlementDetailsDialog from "@/components/Settlement/View/SettlementDetailsDialog";
+import TypeChangeDialog from "@/components/Common/Dialog/typeChangeDialog";
+import LoginDialog from "@/components/Auth/LoginDialog";
+import DeleteConnectionDialog from "@/components/Common/EntityLink/DeleteConnectionDialog";
+import RegisterDialog from "@/components/Auth/RegisterDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
@@ -55,6 +56,21 @@ export default function DialogContainer() {
           onLoginSuccess={dialogProps?.onLoginSuccess}
         />
       )
+    case 'RegisterDialog':
+      return (
+        <RegisterDialog
+          open
+          onClose={closeDialog}
+          onRegisterSuccess={() => {
+            // close register and open login
+            closeDialog();
+            setTimeout(() => {
+              useUIStore.getState().setOpenDialog("LoginDialog");
+            }, 0);
+          }}
+        />
+      );
+
     case 'DeleteConnectionDialog':
       return (
         <DeleteConnectionDialog

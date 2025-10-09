@@ -7,7 +7,7 @@ import { SiteGuildMembershipType } from '@/constants/site/guild.options';
 import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
 import { CommonInterface } from './common.interface';
 import { NpcConnection } from './connection.interface';
-import { KNOWN_TO, SECRECY_LEVELS, PURPOSE, DEFENSE, SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
+import { SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
 
  
 export interface SiteDialogProps extends DialogProps {
@@ -26,6 +26,7 @@ export interface SiteQueryParams {
   settlementId: string;
   type: string[];
   search: string;
+  tone: string[]
 }
 
 export const DefaultSiteQueryParams: SiteQueryParams = {
@@ -33,10 +34,12 @@ export const DefaultSiteQueryParams: SiteQueryParams = {
   limit: 12,
   settlementId: '',
   type: [],
-  search: ''
+  search: '',
+  tone: []
 }
 
 export interface SiteResponse {
+  success: boolean;
   sites: SiteType[];
   total: number;
   totalPages: number;
@@ -50,6 +53,7 @@ export interface BaseSite extends CommonInterface {
   size?: SiteSize;
   condition?: SiteCondition;
   image?: string;
+  tone?: string[];
   connections: NpcConnection[];
 }
 

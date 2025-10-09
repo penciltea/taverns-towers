@@ -22,6 +22,16 @@ const guildTypes = GUILD_TYPES.flatMap(group =>
 );
 const venueTypes = ENTERTAINMENT_VENUE_TYPES.map(option => option.value);
 
+
+export interface IBaseSite {
+  _id: mongoose.Types.ObjectId;
+  type: string;
+  updatedAt: Date;
+  userId: string;
+  name: string;
+  [key: string]: unknown; // allows extra fields from discriminators
+}
+
 const BaseSiteSchema = new Schema(
   {
     settlementId: { type: Schema.Types.ObjectId, ref: "Settlement" },

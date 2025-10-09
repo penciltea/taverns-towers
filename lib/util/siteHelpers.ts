@@ -7,11 +7,15 @@
 */
 
 
-import { SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants/site/site.options";
+import { ENTERTAINMENT_VENUE_TYPES, SHOP_TYPE_CATEGORIES, SITE_CATEGORIES, SiteCategory } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteFormData } from "@/schemas/site.schema";
 import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteGenerationContext, SiteGenerationInput, SiteType, TavernSite, TempleSite } from "@/interfaces/site.interface";
+import { getLabelFromValue } from "./getLabelFromValue";
+import { getShopTypeLabel } from "@/components/Site/Dialog/ShopDetails";
+import { getGovernmentTypeLabel } from "@/components/Site/Dialog/GovernmentDetails";
+import { getGuildypeLabel } from "@/components/Site/Dialog/GuildDetails";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -26,6 +30,11 @@ export function isValidSiteCategory(value: string | null): value is SiteCategory
   return SITE_CATEGORIES.some((category) => category.value === value);
 }
 
+type SiteRule<T extends SiteFormData["type"]> =
+  | ((data: Extract<SiteFormData, { type: T }>, context: SiteGenerationContext) => Partial<Extract<SiteFormData, { type: T }>>)
+  | ((data: Extract<SiteFormData, { type: T }>, context: SiteGenerationContext) => Promise<Partial<Extract<SiteFormData, { type: T }>>>);
+
+
 /**
  * Creates a site generator function for a given site type.
  * The generator applies a series of asynchronous rules to the input data and context,
@@ -39,16 +48,11 @@ export function isValidSiteCategory(value: string | null): value is SiteCategory
 
 export function createSiteGenerator<T extends SiteFormData["type"]>(
   type: T,
-  rules: ((
-    data: Extract<SiteFormData, { type: T }>, 
-    context: SiteGenerationContext
-  ) => Promise<Partial<Extract<SiteFormData, { type: T }>>>)[]
+  rules: SiteRule<T>[]
 ): (input: SiteGenerationInput) => Promise<Extract<SiteFormData, { type: T }>> {
   return async (input) => {
-    // Separate overrides (pre-set fields) from the rest of the generation context
     const { overrides = {}, ...context } = input;
 
-    // Initialize base site data with the specified type and any overrides passed
     const base: Extract<SiteFormData, { type: T }> = {
       type,
       ...overrides,
@@ -56,12 +60,9 @@ export function createSiteGenerator<T extends SiteFormData["type"]>(
 
     let result = base;
 
-    // Apply each async rule sequentially to enrich/modify the site data
     for (const rule of rules) {
-      result = {
-        ...result,
-        ...(await rule(result, context)),
-      };
+      const update = rule(result, context);
+      result = { ...result, ...(update instanceof Promise ? await update : update) };
     }
 
     return result;
@@ -243,7 +244,42 @@ export function mapSiteToForm(site: SiteType): SiteFormData | null {
         connections: miscellaneousSite.connections ?? [],
       };
     default:
-      console.warn("Unknown site type", site.type);
       return null;
   }
+}
+
+
+function isShopSite(site: SiteType): site is ShopSite {
+  return site.type === 'shop';
+}
+
+function isGuildSite(site: SiteType): site is GuildSite {
+  return site.type === 'guild';
+}
+
+function isGovernmentSite(site: SiteType): site is GovernmentSite {
+  return site.type === 'government';
+}
+
+function isEntertainmentSite(site: SiteType): site is EntertainmentSite {
+  return site.type === 'entertainment';
+}
+
+export function handleSiteLabel(site: SiteType) {
+  const baseLabel = getLabelFromValue(SITE_CATEGORIES, site.type);
+
+  if (isShopSite(site)) {
+    return `${baseLabel} (${getShopTypeLabel(site.shopType)})`;
+  } else if (isGuildSite(site)) {
+    return `${baseLabel} (${getGuildypeLabel(site.guildType)})`;
+  } else if (isGovernmentSite(site) && site.function) {
+    return `${baseLabel} (${getGovernmentTypeLabel(site.function)})`;
+  } else if (isEntertainmentSite(site) && site.venueType) {
+    return `${baseLabel} (${getLabelFromValue(
+      ENTERTAINMENT_VENUE_TYPES,
+      site.venueType ?? ''
+    )})`;
+  }
+
+  return baseLabel;
 }

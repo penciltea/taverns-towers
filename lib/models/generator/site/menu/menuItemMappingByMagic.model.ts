@@ -1,4 +1,4 @@
-import { MagicLevel, MAGIC_LEVELS } from "@/constants/settlementOptions";
+import { MagicLevel, MAGIC_LEVELS } from "@/constants/settlement.options";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { Schema, model, models } from "mongoose";
 import { Types } from "mongoose";

@@ -1,0 +1,42 @@
+[
+  { "type": "connector", "value": "a" },
+  { "type": "connector", "value": "e" },
+  { "type": "connector", "value": "i" },
+  { "type": "connector", "value": "o" },
+  { "type": "connector", "value": "u" },
+  { "type": "connector", "value": "en" },
+  { "type": "connector", "value": "er" },
+  { "type": "connector", "value": "el" },
+  { "type": "connector", "value": "ar" },
+  { "type": "connector", "value": "or" },
+  { "type": "connector", "value": "il" },
+  { "type": "connector", "value": "an" },
+  { "type": "connector", "value": "un" },
+
+  { "type": "connector", "value": "ith", "magic": ["High", "Mythic"] },
+  { "type": "connector", "value": "ir", "magic": ["Moderate", "High"] },
+  { "type": "connector", "value": "el", "magic": ["Moderate", "High"] },
+  { "type": "connector", "value": "ae", "magic": ["High", "Mythic"] },
+  { "type": "connector", "value": "on", "magic": ["High", "Mythic"] },
+
+  { "type": "connector", "value": "-at-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-fi-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-min-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-sur-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-wa-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-al-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-maqam-", "theme": ["Arabic-inspired"] },
+  { "type": "connector", "value": "-dar-", "theme": ["Arabic-inspired"] },
+
+  { "type": "connector", "value": "iel", "theme": ["Elven-inspired"] },
+  { "type": "connector", "value": "ith", "theme": ["Elven-inspired"] },
+  { "type": "connector", "value": "an", "theme": ["Elven-inspired"] },
+  { "type": "connector", "value": "or", "theme": ["Elven-inspired"] },
+  { "type": "connector", "value": "ae", "theme": ["Elven-inspired"] },
+
+  { "type": "connector", "value": "–", "theme": ["Dwarven-inspired"] },
+  { "type": "connector", "value": "-an-", "theme": ["Dwarven-inspired"] }
+
+  
+]

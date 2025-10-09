@@ -1,5 +1,5 @@
 import Snackbar from '@/components/Common/Snackbar';
-import ErrorDialog from "@/components/Common/ErrorDialog";
+import ErrorDialog from "@/components/Common/Dialog/ErrorDialog";
 import DialogContainer from "@/components/Layout/DialogContainer";
 import AppProviderWrapper from "@/components/Layout/AppProviderWrapper";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper";

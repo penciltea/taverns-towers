@@ -10,7 +10,7 @@ export function isGovernmentSite(data: Partial<SiteFormData>): data is Partial<G
   return data.type === "government";
 }
 
-export async function applyGovernmentFunctionRule(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyGovernmentFunctionRule(data: Partial<SiteFormData>) {
   if (!isGovernmentSite(data)) return data;  // Return early if not "government" type
 
   if (!data.function || data.function === "random") {
@@ -25,7 +25,7 @@ export async function applyGovernmentFunctionRule(data: Partial<SiteFormData>): 
   return data;
 }
 
-export async function applySecurityByConditions(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>>{
+export function applySecurityByConditions(data: Partial<SiteFormData>){
     if(!isGovernmentSite(data)) return data; // Return early if not "government" type
 
     const { size, condition, function: siteFunction } = data;

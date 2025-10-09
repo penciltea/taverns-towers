@@ -91,15 +91,15 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-              Whether you prefer to craft every detail or need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
+              Whether you like to craft every detail or just need a quick spark of inspiration, you can manually fill in the fields below or use the <strong>Generate</strong> buttons to populate them.
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-              The generator fills in all site details—like size, condition, and more. Fields set to &quot;random&quot; will be chosen based on your other selections.
+              The generator fills in all site details like size, condition, and other characteristics. Fields set to &quot;random&quot; will be updated based on your other selections, so some options may influence others.
           </Typography>
 
           <Typography variant="subtitle1" component="p" gutterBottom>
-              Use the buttons to either fill missing/random fields or to fully reroll all fields. You can always adjust results afterward!
+              Experiment! Use the buttons to fill missing or random fields, or to fully reroll all details. You can always adjust results afterward to fine-tune your site.
           </Typography>
 
           <Box sx={{

@@ -1,13 +1,13 @@
-import { TagTypes } from "@/constants/environmentOptions";
-import { MagicLevel } from "@/constants/settlementOptions";
+import { TagTypes } from "@/constants/environment.options";
+import { MagicLevel } from "@/constants/settlement.options";
 import { SiteSize, SiteCondition } from "@/constants/site/site.options";
 
 export const ENTERTAINMENT_COUNT_BY_SITE_CONDITION: Record<SiteCondition, [number, number]> = {
-  squalid: [1, 1],
-  poor: [1, 1],
-  average: [2, 3],
+  impoverished: [1, 1],
+  struggling: [1, 1],
+  modest: [2, 3],
   wealthy: [2, 4],
-  aristocratic: [3, 4]
+  affluent: [3, 4]
 };
 
 export const EntertainmentBySiteSizeMapping: Record<SiteSize, string[]> = {

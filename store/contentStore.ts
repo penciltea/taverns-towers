@@ -37,6 +37,8 @@ type ContentStore<T> = {
   draftItem: Partial<T> | null;
   setDraftItem: (item: Partial<T>) => void;
   clearDraftItem: () => void;
+  submittingDraft: boolean;
+  setSubmittingDraft: (submitting: boolean) => void;
 };
 
 export function createContentStore<T>() {
@@ -94,5 +96,7 @@ export function createContentStore<T>() {
     draftItem: null,
     setDraftItem: (item: Partial<T>) => set({ draftItem: item }),
     clearDraftItem: () => set({ draftItem: null }),
+    submittingDraft: false,
+    setSubmittingDraft: (submitting: boolean) => set({ submittingDraft: submitting }),
   })); 
 }

@@ -7,7 +7,7 @@ import {
   normalizeClientele 
 } from "./tavern.rules";
 import { SiteFormData } from "@/schemas/site.schema";
-import { SizeTypes, WealthLevel, MagicLevel } from "@/constants/settlementOptions";
+import { SizeTypes, WealthLevel, MagicLevel } from "@/constants/settlement.options";
 import { SiteGenerationContext, SiteGenerationInput, TavernSite } from "@/interfaces/site.interface";
 
 // Mock Mongoose models and utility functions

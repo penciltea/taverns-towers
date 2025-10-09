@@ -1,5 +1,5 @@
-import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environmentOptions";
-import { SizeTypes, WealthLevel } from "@/constants/settlementOptions";
+import { ClimateTypes, TagTypes, TerrainTypes } from "@/constants/environment.options";
+import { SizeTypes, WealthLevel } from "@/constants/settlement.options";
 
 export const CommonRacesByTerrainMapping: Record<TerrainTypes, string[]> = {
   Coast: ["Humans", "Half-Elves", "Halflings", "Sea Elves", "Tritons"],

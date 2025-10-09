@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { optionalEnum, optionalEnumArray } from "@/lib/util/zodHelpers";
-import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/environmentOptions";
+import { CLIMATE_TYPES, TAG_TYPES, TERRAIN_TYPES } from "@/constants/environment.options";
 
 export const environmentSchema = z.object({
   terrain: optionalEnumArray(TERRAIN_TYPES, "Invalid terrain type(s)"),

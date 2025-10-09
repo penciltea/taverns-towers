@@ -10,6 +10,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
   title: string;
   titleVariant: TypographyProps["variant"];
   titleComponent: NonNullable<TypographyProps["component"]>;
+  description?: string;
   content: string;
   countVariant: TypographyProps["variant"];
   countComponent: NonNullable<TypographyProps["component"]>;
@@ -32,6 +33,7 @@ export default function FilteredGridView<T extends CommonInterface>({
   title,
   titleVariant,
   titleComponent,
+  description,
   content,
   countVariant,
   countComponent,
@@ -53,7 +55,9 @@ export default function FilteredGridView<T extends CommonInterface>({
 
   return (
     <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-      <Typography variant={titleVariant} component={titleComponent}>{title}</Typography>
+      <Typography variant={titleVariant} component={titleComponent} gutterBottom>{title}</Typography>
+
+      <Typography>{ description }</Typography>
 
       <Box sx={{ my: 3 }}>
         <Typography variant={searchVariant} component={searchComponent}>Search & Filter</Typography>

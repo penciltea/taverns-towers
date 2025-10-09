@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useAuthStore } from "@/store/authStore";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
+import { userTier } from "@/constants/user.options";
+import { getUser } from "@/lib/actions/user.actions";
 
 export default function AuthSync() {
   const { data: session, status } = useSession();
@@ -14,19 +16,41 @@ export default function AuthSync() {
   useEffect(() => {
     if (status === "loading") return;
 
-    if (status === "authenticated" && session?.user) {
-      setUser({
-        id: session.user.id,
-        username: session.user.username,
-        email: session.user.email,
-        tier: capitalizeFirstLetter(session.user.tier),
-        theme: session.user.theme
-      });
-    } else if (status === "unauthenticated" && session === null) {
+    if (status === "unauthenticated" || !session?.user) {
       clearUser();
+      setHasHydrated();
+      return;
     }
 
-    setHasHydrated();
+    async function fetchLatestUser() {
+      try {
+        const dbUser = await getUser();
+        const sessionUser = session!.user;
+        if (!sessionUser) return;
+
+        // Merge DB and session data
+        const mergedUser = {
+          id: dbUser?.id || sessionUser.id,
+          username: dbUser?.username || sessionUser.username || "Traveler",
+          email: dbUser?.email || sessionUser.email || undefined,
+          avatar: dbUser?.avatar || "",
+          tier: capitalizeFirstLetter(
+            dbUser?.tier || sessionUser.tier || sessionUser.patreon?.tier || userTier[0]
+          ),
+          theme: dbUser?.theme || sessionUser.theme || "dark",
+          patreon: sessionUser.patreon || undefined,
+        };
+
+        setUser(mergedUser);
+      } catch (err) {
+        console.error("Failed to fetch latest user:", err);
+        clearUser();
+      } finally {
+        setHasHydrated();
+      }
+    }
+
+    fetchLatestUser();
   }, [status, session, setUser, clearUser, setHasHydrated]);
 
   return null;

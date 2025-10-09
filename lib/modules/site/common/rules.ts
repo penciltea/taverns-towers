@@ -3,7 +3,7 @@ import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormData } from "@/schemas/site.schema";
 
 
-export async function applySiteSizeRule(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applySiteSizeRule(data: Partial<SiteFormData>) {
   if (!data.size || data.size === "random") {
     data.size = getRandom(SITE_SIZE).value;
   }
@@ -11,7 +11,7 @@ export async function applySiteSizeRule(data: Partial<SiteFormData>): Promise<Pa
   return data;
 }
 
-export async function applySiteConditionRule(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applySiteConditionRule(data: Partial<SiteFormData>) {
   if (!data.condition || data.condition === "random") {
     data.condition = getRandom(SITE_CONDITION).value;
   }

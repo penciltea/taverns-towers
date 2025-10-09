@@ -1,4 +1,4 @@
-import { Flatten } from "../commonOptions";
+import { Flatten } from "../common.options";
 
 export const GUILD_TYPES = [
   {
@@ -79,7 +79,7 @@ export const GUILD_MEMBERSHIP_REQUIREMENTS = [
       { label: "Monthly Dues", value: "monthlyDues" },
       { label: "Entrance Fee", value: "entranceFee" },
       { label: "Recommendation from Member", value: "recommendation" },
-      { label: "Probationary Period", value: "probationPeriod" },
+      { label: "Probationary Period", value: "probationaryPeriod" },
     ],
   },
   {

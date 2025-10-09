@@ -11,40 +11,83 @@ import { getSingleParam } from "@/lib/util/getSingleParam";
 import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
+import { useDraftForm } from "@/hooks/useDraftForm";
+import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
+
 
 export default function NewSettlementPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
 
   useFormMode(safeId, useSettlementContentStore);
-  const { mode, draftItem, clearDraftItem, setDraftItem } = useSettlementContentStore();
+  const { mode, draftItem, clearDraftItem, setDraftItem, submittingDraft, setSubmittingDraft } = useSettlementContentStore();
+  const draftKey = "draftSettlement";
   const { setOpenDialog } = useUIStore();
   const user = useAuthStore(state => state.user);
 
+  let initialDraft: Partial<SettlementFormData> | null = null;
+  if (typeof window !== "undefined") {
+      const raw = sessionStorage.getItem(draftKey);
+      if (raw) initialDraft = JSON.parse(raw) as Partial<SettlementFormData>;
+  }
+
   const methods = useFormWithSchema(settlementSchema, {
-    defaultValues: defaultSettlementValues,
+    defaultValues: draftItem || initialDraft || defaultSettlementValues,
   });
+  
+  // Populate Zustand store synchronously if empty
+  useEffect(() => {
+    if (!draftItem && initialDraft) {
+      setDraftItem(initialDraft);
+    }
+  }, [draftItem, initialDraft, setDraftItem]);
 
   const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
+  
+  const openLoginDialog = (props?: AuthDialogInput<Partial<SettlementFormData>>) =>
+      setOpenDialog("LoginDialog", { ...props, openRegisterDialog });
+  
+    const openRegisterDialog = (props?: AuthDialogInput<Partial<SettlementFormData>>) =>
+      setOpenDialog("RegisterDialog", {
+        ...props,
+        onRegisterSuccess: () => {
+          openLoginDialog({
+            draftKey,
+            draftItem: draftItem || initialDraft || undefined,
+            onLoginSuccess: () => {
+              clearDraftItem();
+              sessionStorage.removeItem(draftKey);
+            },
+          });
+        },
+      });
 
-   useEffect(() => {
-    if (user && draftItem) {
-      (async () => {
-        await onSubmit(draftItem as SettlementFormData);
-        clearDraftItem();
-      })();
-    }
-  }, [user, onSubmit, clearDraftItem, draftItem]); // Only runs when user logs in
+  const { saveDraftAndPromptLogin } = useDraftForm<SettlementFormData>({
+    user,
+    draftItem,
+    setDraftItem,
+    clearDraftItem,
+    submittingDraft,
+    setSubmittingDraft,
+    onSubmit,
+    draftKey,
+  });
 
+  // Wrapped submit handler for the form
   const wrappedOnSubmit = async (data: SettlementFormData) => {
     if (!user) {
-      setDraftItem(data);
-      setOpenDialog("LoginDialog", {});
+      // Save draft and open login
+      saveDraftAndPromptLogin(data, openLoginDialog);
       return;
     }
 
+    // User is logged in → submit normally
     await onSubmit(data);
+
+    // Clean up draft after successful submission
+    clearDraftItem();
+    sessionStorage.removeItem(draftKey);
   };
 
 

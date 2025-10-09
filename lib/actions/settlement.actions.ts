@@ -7,25 +7,7 @@ import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "../util/connectionHelpers";
-import { serializeFromDb } from "@/lib/util/serializeFromDb";
-
-// Serialize for client compatibility
-function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
-  const serialized = serializeFromDb(settlement) as Settlement | null;
-
-  if (!serialized || !Array.isArray(serialized.connections)) {
-    throw new Error("Invalid settlement data for serialization");
-  }
-
-  return {
-    ...serialized,
-    connections: serialized.connections.map((conn) => ({
-      ...conn,
-      id: conn.id.toString(),
-    })),
-  };
-}
-
+import { serializeSettlement } from "../util/serializers";
 
 export async function getSettlements({
   userId,
@@ -39,6 +21,7 @@ export async function getSettlements({
   wealth,
   tags = [],
   terrain = [],
+  tone = []
 }: {
   userId?: string;
   isPublic?: boolean;
@@ -51,6 +34,7 @@ export async function getSettlements({
   wealth?: string;
   tags?: string[];
   terrain?: string[];
+  tone?: string[];
 }) {
   await connectToDatabase();
 
@@ -66,6 +50,7 @@ export async function getSettlements({
   if (wealth) query.wealth = wealth;
   if (tags.length > 0) query.tags = { $all: tags };
   if (terrain.length > 0) query.terrain = { $all: terrain };
+  if (tone.length > 0) query.tone = { $all: tone };
 
   const total = await SettlementModel.countDocuments(query);
   const settlements = await SettlementModel.find(query)
@@ -122,7 +107,7 @@ export async function createSettlement(data: Partial<Settlement>) {
   const user = await requireUser();
 
   // Normalize connection ids
-      const normalizedConnections = normalizeConnections(data.connections);
+  const normalizedConnections = normalizeConnections(data.connections);
   
 
   const newSettlement = await SettlementModel.create({

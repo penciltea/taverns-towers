@@ -54,18 +54,26 @@ export function weightedRandom<T extends { value: string; weight?: number }>(ite
  */
 
 export function shouldReplace(value: unknown): boolean {
-  if (value === undefined || value === null || value === "") return true;
-
-  if (Array.isArray(value)) {
-    // Replace if array is empty or includes "random"
-    return (
-      value.length === 0 ||
-      value.some(v => typeof v === "string" && v.toLowerCase() === "random")
-    );
-  }
+  if (value === undefined || value === null) return true;
 
   if (typeof value === "string") {
-    return value.toLowerCase() === "random";
+    // Empty string or "random" placeholder
+    return value.trim() === "" || value.toLowerCase() === "random";
+  }
+
+  if (Array.isArray(value)) {
+    // Empty array or includes "random"
+    return value.length === 0 || value.some(v => typeof v === "string" && v.toLowerCase() === "random");
+  }
+
+  if (typeof value === "number") {
+    // Replace if NaN (optional) or zero depending on your logic
+    return isNaN(value);
+  }
+
+  if (typeof value === "object") {
+    // Empty object
+    return Object.keys(value).length === 0;
   }
 
   return false;

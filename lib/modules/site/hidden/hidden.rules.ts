@@ -12,9 +12,7 @@ export function isHiddenSite(data: Partial<SiteFormData>): data is Partial<Hidde
 /**
  * Apply secrecy based on size, condition, and current knownTo / defenses
  */
-export async function applySecrecyByConditions(
-  data: Partial<SiteFormData>
-): Promise<Partial<SiteFormData>> {
+export function applySecrecyByConditions(data: Partial<SiteFormData>) {
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.secrecy)) {
@@ -50,7 +48,7 @@ export async function applySecrecyByConditions(
 /**
  * Populate Known To influenced by secrecy and purpose
  */
-export async function applyKnownTo(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyKnownTo(data: Partial<SiteFormData>) {
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.knownTo)) {
@@ -76,7 +74,7 @@ export async function applyKnownTo(data: Partial<SiteFormData>): Promise<Partial
 /**
  * Populate Defenses influenced by secrecy, size, and purpose
  */
-export async function applyDefenses(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyDefenses(data: Partial<SiteFormData>) {
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.defenses)) {
@@ -101,7 +99,7 @@ export async function applyDefenses(data: Partial<SiteFormData>): Promise<Partia
 /**
  * Populate Purpose influenced by secrecy and knownTo
  */
-export async function applyPurpose(data: Partial<SiteFormData>): Promise<Partial<SiteFormData>> {
+export function applyPurpose(data: Partial<SiteFormData>) {
   if (!isHiddenSite(data)) return data;
 
   if (shouldReplace(data.purpose)) {

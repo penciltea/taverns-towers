@@ -1,6 +1,6 @@
-import { Flatten } from "./commonOptions";
+import { Flatten } from "./common.options";
 
-export const NPC_TABS = ["Basics", "Connections"];
+export const NPC_TABS = ["Basics", "NPC Connections"];
 
 export const NPC_AGE = [
   "Child",

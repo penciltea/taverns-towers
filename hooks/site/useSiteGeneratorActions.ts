@@ -35,6 +35,16 @@ type UseSiteGeneratorActionsReturn = {
   reroll: () => void;
 };
 
+function getUserOverrides(values: SiteFormData): Partial<SiteFormData> {
+  const overrides: Partial<SiteFormData> = {};
+  Object.entries(values).forEach(([key, value]) => {
+    if (!shouldReplace(value)) {
+      overrides[key as keyof SiteFormData] = value as any;
+    }
+  });
+  return overrides;
+}
+
 export function useSiteGeneratorActions(
   methods: UseFormReturn<SiteFormData>,
   context: GeneratorContext,
@@ -248,7 +258,10 @@ export function useSiteGeneratorActions(
 
     const env = await regenerateEnvironment(false);
     const currentValues = methods.getValues();
-    const overrides = { ...currentValues };
+    const overrides = getUserOverrides(currentValues);
+
+
+    console.log("overrides: ", overrides);
 
     // Generate site data based on whether wilderness or settlement context
     const result = await generateSiteData(
@@ -258,13 +271,13 @@ export function useSiteGeneratorActions(
             terrain: env.terrain,
             climate: env.climate,
             tags: env.tags,
-            overrides,
+            overrides, // preserve user values
           }
         : {
             settlementId,
             overrides,
           },
-      false
+      false // partial generation
     );
 
     // Only update fields that are empty or missing in the current form
