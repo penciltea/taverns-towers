@@ -7,12 +7,12 @@ export async function POST(req: Request) {
   await connectToDatabase();
 
   try {
-    const { token, newPassword } = (await req.json()) as {
+    const { token, password } = (await req.json()) as {
       token: string;
-      newPassword: string;
+      password: string;
     };
 
-    if (!token || !newPassword) {
+    if (!token || !password) {
       return NextResponse.json(
         { error: "Token and new password are required" },
         { status: 400 }
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       );
     }
 
-    user.passwordHash = await bcrypt.hash(newPassword, 10);
+    user.passwordHash = await bcrypt.hash(password, 10);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
 

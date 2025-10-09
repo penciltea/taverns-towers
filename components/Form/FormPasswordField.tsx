@@ -4,6 +4,7 @@ import { useState, useId } from "react";
 import { FieldError, Merge, FieldErrorsImpl, UseFormRegisterReturn, FieldValues } from "react-hook-form";
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, Box, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { SPECIAL_CHARACTERS, validatePassword } from "@/lib/util/passwordValidation";
 
 
 interface FormPasswordFieldProps<TFieldValues extends FieldValues> {
@@ -33,9 +34,7 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
 
     // For checking if the password matches validation requirements
     const checklistId = `${id}-requirements`;
-    const isMinLength = passwordValue?.length >= 8;
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue);
-    const isValidPassword = isMinLength && hasSpecialChar;
+    const { isMinLength, hasSpecialChar, isValid: isValidPassword } = validatePassword(passwordValue);
 
     const srOnly = {
         position: "absolute",
@@ -111,7 +110,7 @@ const FormPasswordField = <TFieldValues extends FieldValues>({
                     <Typography variant="body2">Password Requirements</Typography>
                     <Box component="ul" id={checklistId} aria-live="polite" sx={{ pl: 2, mt: 1, mb: 2 }}>
                         <Requirement passed={isMinLength} text="At least 8 characters" />
-                        <Requirement passed={hasSpecialChar} text="At least one special character" />
+                        <Requirement passed={hasSpecialChar} text={`At least one special character: (${SPECIAL_CHARACTERS})`} />
                     </Box>
                 </>
             }
