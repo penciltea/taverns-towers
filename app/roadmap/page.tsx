@@ -14,15 +14,7 @@ export default function Roadmap(){
                         sx={{ display: 'list-item' }}
                         disableTypography
                         primary={<strong>More robust settlement names:</strong>}
-                        secondary={<span> Current names are basic; upcoming updates will match the detail of NPC and site names.</span>}
-                    />
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>More site and NPC names:</strong>}
-                        secondary={<span> Expanding the pool of options to provide more flavorful and unique options.</span>}
+                        secondary={<span> Adding more themed names for unique and flavorful generations</span>}
                     />
                 </ListItem>
                 <ListItem disablePadding>
@@ -31,23 +23,6 @@ export default function Roadmap(){
                         disableTypography
                         primary={<strong>Automatic site generation:</strong>}
                         secondary={<span> Optionally generate appropriate sites when creating a new settlement, previewing types and quantities before submission.</span>}
-                    />
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>New Field - &#34;Tone&#34;:</strong>}
-                        secondary={<span> A new field for both settlements and sites, to help guide roleplay flavor and generator choices.</span>}
-                    />
-                </ListItem>
-                
-                <ListItem disablePadding>
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>New Field - &#34;Military Presence&#34;:</strong>}
-                        secondary={<span> A new field for settlements, to provide better storytelling and influence generator choices.</span>}
                     />
                 </ListItem>
             </List>
@@ -115,20 +90,6 @@ export default function Roadmap(){
             {/* Account & Sharing */}
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Account & Sharing</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary="Account dashboard with recently modified content and settings."
-                    />
-                </ListItem>                
-                <ListItem disablePadding>
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary="Integration with Patreon for account creation, exclusive features, and perks."
-                    />
-                </ListItem>
                 <ListItem disablePadding>
                     <ListItemText
                         sx={{ display: 'list-item' }}
