@@ -1,3 +1,5 @@
+
+import { JSX } from "react";
 import { Stack, Button } from "@mui/material";
 import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormRegisterReturn } from "react-hook-form";
 import { FormTextField } from "@/components/Form";
@@ -10,6 +12,7 @@ type FormFieldWithGenerateProps<TFieldValues extends FieldValues> = {
   registration: UseFormRegisterReturn; 
   fieldError?: FieldError | Merge<FieldError, FieldErrorsImpl<TFieldValues>>;
   buttonLabel?: string;
+  tooltip?: string | JSX.Element;
 };
 
 export default function FormFieldWithGenerate<
@@ -22,6 +25,7 @@ export default function FormFieldWithGenerate<
   registration,
   fieldError,
   buttonLabel = "Generate",
+  tooltip
 }: FormFieldWithGenerateProps<TFieldValues>) {
   return (
     <Stack direction="row" spacing={1} alignItems="flex-start" sx={{ mt: 1.5 }}>
@@ -30,6 +34,7 @@ export default function FormFieldWithGenerate<
         registration={registration}
         fieldError={fieldError}
         required={required}
+        tooltip={tooltip}
       />
       {onGenerate && (
         <Button

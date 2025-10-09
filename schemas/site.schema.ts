@@ -84,13 +84,21 @@ export const templeSchema = baseSiteSchema.extend({
 
 export const shopSchema = baseSiteSchema.extend({
   type: z.literal("shop"),
-  shopType: z.enum(shopTypeEnumValues),
+  shopType: z.string().refine(val => val !== "", {
+    message: "Shop type is required",
+  }).refine(val => shopTypeEnumValues.includes(val), {
+    message: "Invalid shop type",
+  }),
   menu: z.array(menuItemSchema).optional(),
 });
 
 export const guildSchema = baseSiteSchema.extend({
   type: z.literal("guild"),
-  guildType: z.enum(guildTypeEnumValues),
+  guildType: z.string().refine(val => val !== "", {
+    message: "Guild type is required",
+  }).refine(val => guildTypeEnumValues.includes(val), {
+    message: "Invalid guild type",
+  }),
   guildName: z.string().optional(),
   name: z.string().optional(),
   membershipRequirements: z.array(z.enum(guildMembershipEnumValues)).optional().default([]),

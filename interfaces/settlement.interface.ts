@@ -48,6 +48,7 @@ export interface Settlement extends CommonInterface {
   folklore?: string;
   crime?: string[];
   tone?: string[];
+  theme?: string[];
   connections: NpcConnection[];
 }
 
@@ -61,7 +62,8 @@ export const DefaultSettlementQueryParams: SettlementQueryParams = {
   wealth: '',
   tags: [],
   terrain: [],
-  tone: []
+  tone: [],
+  theme: []
 }
 
 export interface SettlementQueryParams {
@@ -75,6 +77,7 @@ export interface SettlementQueryParams {
   tags: string[];
   terrain: string[];
   tone: string[];
+  theme?: string[];
 }
 
 
@@ -88,6 +91,7 @@ export interface SettlementFragment {
   magic?: string[];
   wealth?: string[];
   weight?: number;
+  theme?: string[];
 }
 
 // For name generation fragments
@@ -109,4 +113,5 @@ export interface GenerateSettlementNameOptions {
   magic?: string;
   wealth?: string;
   size?: string;
+  theme?: string[];
 }

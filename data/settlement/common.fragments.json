@@ -31,13 +31,18 @@
     },
     {
         "type": "format",
+        "value": "{{descriptor}} {{noun}}{{size|lower}}",
+        "weight": 1
+    },
+    {
+        "type": "format",
         "value": "{{prefix}}{{suffix}} {{size}}",
         "weight": 1,
         "size": ["Village", "Town", "City", "Metropolis"]
     },
     {
         "type": "format",
-        "value": "The {{descriptor}} {{size}} of {{prefix}}{{suffix}}",
+        "value": "The {{descriptor}} {{size}} of {{prefix}}{{suffix|lower}}",
         "weight": 1,
         "size": ["City", "Metropolis"]
     },
@@ -49,7 +54,7 @@
     },
     {
         "type": "format",
-        "value": "The {{descriptor}} {{prefix}}{{suffix}}",
+        "value": "The {{descriptor}} {{prefix}}{{suffix|lower}}",
         "weight": 1,
         "wealth": ["Wealthy", "Affluent"]
     }   

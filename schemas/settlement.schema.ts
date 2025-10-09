@@ -23,6 +23,7 @@ export const settlementSchema = z.object({
   folklore: z.string().optional(),
   crime: z.array(z.string()).optional(),
   tone: z.array(z.string()).optional(),
+  theme: z.array(z.string()).optional(),
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema).default([]),

@@ -1,9 +1,10 @@
 'use client'
 
-import { Box, Typography, Container, List, ListItem, ListItemText, Paper } from "@mui/material"
+import { Box, Typography, Container, List, ListItem, ListItemText, Paper, Card, Stack } from "@mui/material"
 import PatreonCta from "./PatreonCta"
 import NextMuiLink from "./NextMuiLink";
 import ThemedButton from "./ThemedButton";
+import HighlightCard from "./HighlightCard";
 
 export default function HomeContent(){
     return (
@@ -42,52 +43,155 @@ export default function HomeContent(){
             </Box>
 
             {/* Pain Points Section */}
-            <Container sx={{ py: 8 }}>
-            <Typography variant="h4" component="h2" gutterBottom>
-                Why RealmFoundry
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-                World-building is fun, but it can quickly become daunting. Every GM knows the moments of hesitation:
-            </Typography>
-            <List sx={{ listStyleType: 'disc', pl: 4 }} >
-                <ListItem disablePadding sx={{ display: 'list-item' }}>
-                    <ListItemText primary="“What does this shop sell?”" />
-                </ListItem>
-                <ListItem disablePadding sx={{ display: 'list-item' }}>
-                    <ListItemText primary="“Is there a magic shop here?”" />
-                </ListItem>
-                <ListItem disablePadding sx={{ display: 'list-item' }}>
-                    <ListItemText primary="“What's the barkeep's name?”" />
-                </ListItem>
-            </List>
-            <Typography variant="body1" sx={{ mt: 2 }}>
-                RealmFoundry conjures information instantly using procedural generation, keeping your gameplay smooth and effortless. Prefer to craft your world by hand? Enter as much detail as you like.
-            </Typography>
-            </Container>
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "stretch", justifyContent: "center", py: 8, mx: 2 }}>
+                <Box sx={{ flex: 1 }}>
+                    <Typography variant="h4" component="h2" gutterBottom>Why RealmFoundry</Typography>
+                    <Typography variant="body1" gutterBottom>World-building is fun, but it can quickly become daunting. Every GM knows the moments of hesitation:</Typography>
+                    <List sx={{ listStyleType: 'disc', pl: 4 }} >
+                        <ListItem disablePadding sx={{ display: 'list-item' }}>
+                            <ListItemText primary="“What does this shop sell?”" />
+                        </ListItem>
+                        <ListItem disablePadding sx={{ display: 'list-item' }}>
+                            <ListItemText primary="“Is there a magic shop here?”" />
+                        </ListItem>
+                        <ListItem disablePadding sx={{ display: 'list-item' }}>
+                            <ListItemText primary="“What's the barkeep's name?”" />
+                        </ListItem>
+                    </List>
+                    <Typography variant="body1" sx={{ mt: 2 }}>
+                        RealmFoundry conjures information instantly using procedural generation, keeping your gameplay smooth and effortless. Prefer to craft your world by hand? Enter as much detail as you like.
+                    </Typography>
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                    <video autoPlay loop muted playsInline style={{ maxWidth: "100%" }}>
+                        <source src="/demo.webm" type="video/webm" />
+                        <source src="/demo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </Box>
+            </Stack>
 
             {/* Features Section */}
             <Paper sx={{ px: 2, py: 4, borderRadius: 2 }}>
-                <Typography variant="h4" component="h2" gutterBottom>
-                    What You Can Do Right Now
-                </Typography>
-                <List>
-                    <ListItem disablePadding>
-                        <ListItemText primary="🏘️ Create settlements and sites with procedural generators" />
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemText primary="👤 Build NPCs with names, traits, and relationships" />
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemText primary="💾 Save and manage your world in a mobile-friendly interface" />
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemText primary="🛠️ More tools coming soon!" />
-                    </ListItem>
-                </List>
-                <Typography variant="body1" sx={{ mt: 2 }}>
-                    See what&apos;s live in the <NextMuiLink href="/releases/alpha-25-09-03" underline="always">Alpha Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.
-                </Typography>
+                <Typography variant="h4" component="h3" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
+
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "stretch", justifyContent: "center" }}>
+                    <HighlightCard
+                        icon="&#x1F3F0;"
+                        title="Create settlements & sites"
+                        description="Generate towns, villages, and unique locations in seconds. Customize size, terrain, and special features to fit your world."
+                    />
+                    <HighlightCard
+                        icon="&#x1F4DC;"
+                        title="Menus made easy"
+                        description="Quickly craft menus for shops, taverns, and more. Include meals, drinks, and magical items with a few clicks."
+                    />
+                    <HighlightCard
+                        icon="&#x1F9DD;"
+                        title="Build NPCs"
+                        description="Generate names, personalities, traits, and relationships instantly. Bring your towns to life with memorable characters."
+                    />
+                    <HighlightCard
+                        icon="&#x1F528;"
+                        title="More tools coming"
+                        description="New features are added regularly, including guilds & factions, pantheons, and more ways to bring your world to life."
+                    />
+                </Stack>
             </Paper>
+
+            <Box 
+                sx={{
+                    my: 2,
+                    py: 8,
+                    px: { xs: 2, sm: 4 },
+                    background: (theme) =>
+                    theme.palette.mode === "light"
+                        ? "linear-gradient(180deg, #f8f4e9 0%, #faf3e0 50%, #f8f4e9 100%)"
+                        : "linear-gradient(180deg, #2B2B3F 0%, #1d2a3b 50%, #2B2B3F 100%)",
+                }}
+            >
+                <Typography variant="h4" component="h4" gutterBottom textAlign="center">Membership Tiers</Typography>
+                <Typography variant="body1" sx={{ mb: 4, textAlign: "center" }}>Choose a plan that fits your world-building needs.</Typography>
+
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={2}
+                    sx={{ alignItems: "stretch", justifyContent: "center" }}
+                >
+                    {/* Free Tier */}
+                    <Card variant="outlined" sx={{ flex: 1, p: 3, textAlign: "center" }}>
+                        <Typography variant="h6" component="p" gutterBottom>Free</Typography>
+                        <Typography variant="subtitle1" gutterBottom>$0</Typography>
+                        <List dense>
+                            <ListItem>Make up to 5 settlements</ListItem>
+                            <ListItem>Create up to 15 sites total</ListItem>
+                            <ListItem>Make up to 5 NPCs</ListItem>
+                            <ListItem>Access to medieval fantasy themed dropdown options</ListItem>
+                        </List>
+                        <Typography variant="body2" sx={{ mt: 2 }}>Perfect for getting started with RealmFoundry.</Typography>
+                    </Card>
+
+                    {/* Premium Tier */}
+                    <Card variant="outlined" sx={{ flex: 1, p: 3, textAlign: "center" }}>
+                        <Typography variant="h6" component="p" gutterBottom>Premium</Typography>
+                        <Typography variant="subtitle1" gutterBottom>$5/mo</Typography>
+                        <List dense>
+                            <ListItem>Unlimited settlements, sites, and NPCs</ListItem>
+                            <ListItem>Multiple themed dropdown options</ListItem>
+                            <ListItem>Access to exclusive content</ListItem>
+                            <ListItem>Batch generation & custom options&nbsp;<Typography variant="caption">(coming soon!)</Typography></ListItem>
+                        </List>
+                        <Typography variant="body2" sx={{ mt: 2 }}>Unlock the full potential of RealmFoundry.</Typography>
+                    </Card>
+
+                    {/* Premium+ Tier (Coming Soon) */}
+                    <Card
+                        variant="outlined"
+                        sx={{
+                            flex: 1,
+                            p: 3,
+                            textAlign: "center",
+                            opacity: 0.7, // visually show it's not active yet
+                            position: "relative",
+                        }}
+                    >
+                        <Box
+                            sx={{
+                            position: "absolute",
+                            top: 8,
+                            right: 8,
+                            backgroundColor: "warning.light",
+                            color: "black",
+                            px: 1.5,
+                            py: 0.5,
+                            borderRadius: 1,
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            }}
+                        >
+                            Coming Soon!
+                        </Box>
+                        <Typography variant="h6" component="p" gutterBottom>Premium+</Typography>
+                        <Typography variant="subtitle1" gutterBottom>$10/mo</Typography>
+                        <List dense>
+                            <ListItem>Advanced templates & bundles</ListItem>
+                            <ListItem>Early access to new generators & themes</ListItem>
+                            <ListItem>Exclusive content & community perks</ListItem>
+                            <ListItem>Shape RealmFoundry's development with exclusive polls</ListItem>
+                        </List>
+                        <Typography variant="body2" sx={{ mt: 2 }}>Get ready for the ultimate RealmFoundry experience.</Typography>
+                    </Card>
+                </Stack>
+
+                <Box sx={{ textAlign: "center", mt: 4 }}>
+                    <NextMuiLink href="/membership" underline="always">See full comparison →</NextMuiLink>
+                </Box>
+            </Box>
+
+            <Box sx={{ textAlign: "center", marginTop: 6, marginBottom: 1 }}>
+                <Typography variant="h4" component="h5" gutterBottom textAlign="center">What's Available & What's Coming Next</Typography>
+                <Typography variant="body1" sx={{ mt: 2 }}>See what&apos;s live in the <NextMuiLink href="/releases/" underline="always">Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.</Typography>
+            </Box>
 
             <PatreonCta />
         </Box>

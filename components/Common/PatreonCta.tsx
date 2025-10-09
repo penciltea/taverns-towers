@@ -1,10 +1,10 @@
 'use client'
 
-import { Container, Typography, Button, Link } from "@mui/material"
+import { Paper, Typography, Button, Link } from "@mui/material"
 
 export default function PatreonCta(){
     return (
-        <Container sx={{ py: 8, textAlign: "center" }}>
+        <Paper sx={{ padding: 3, mt: 4, borderRadius: 2, textAlign: "center" }}>
             <Typography variant="h5" gutterBottom>Keep the furnace hot!</Typography>
             <Typography variant="body1" gutterBottom>
                 Become an Alpha Adventurer on <Link target="_blank" rel="noopener noreferrer" href="https://www.patreon.com/RealmFoundry">Patreon</Link> and help shape RealmFoundry.
@@ -19,6 +19,6 @@ export default function PatreonCta(){
             > 
                 Join as Alpha Adventurer 
             </Button>
-        </Container>
+        </Paper>
     )
 }

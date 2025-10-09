@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
 import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, WEALTH_LEVELS, MilitaryPresenceTypes, MILITARY_PRESENCE_TYPES} from '@/constants/settlement.options';
-import { DOMAINS, DomainTypes, TONE, ToneTypes } from '@/constants/common.options';
+import { DOMAINS, DomainTypes, THEME, ThemeTypes, TONE, ToneTypes } from '@/constants/common.options';
 import { ClimateTypes, TerrainTypes, TagTypes, TAG_TYPES, TERRAIN_TYPES, CLIMATE_TYPES } from '@/constants/environment.options';
-import { NpcConnection } from '@/interfaces/connection.interface';
 import { connectionSchema } from './connection.model';
+import { NpcConnection } from '@/interfaces/connection.interface';
 const { Schema } = mongoose;
+
+const THEME_TYPES = THEME.flatMap(group =>
+  group.options.map(option => option.value)
+);
 
 export interface ISettlement extends Document {
   _id: Types.ObjectId;
@@ -30,6 +34,7 @@ export interface ISettlement extends Document {
   folklore: string;
   crime: CriminalActivityTypes[];
   tone: ToneTypes[];
+  theme: ThemeTypes[];
   createdBy: Types.ObjectId;
   isPublic: boolean;
   userId: Types.ObjectId;
@@ -60,7 +65,8 @@ const SettlementSchema = new Schema<ISettlement>(
     domains: [{ type: String,enum: DOMAINS, required: false }],
     holidays: { type: String, required: false },
     folklore: { type: String, required: false },
-    tone: [{type: String, enum: TONE, required: false}],
+    tone: [{ type: String, enum: TONE, required: false}],
+    theme: [{ type: String, enum: THEME_TYPES, required: false }],
     connections: [connectionSchema],
     userId: {
       type: mongoose.Schema.Types.ObjectId,

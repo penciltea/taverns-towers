@@ -1,20 +1,22 @@
 export const release20250911 = {
   title: "Version 0.2.0-alpha",
-  date: "2025-09-11",
+  date: "2025-10-09",
   features: [
     "Hidden site type: Updated the following fields to be a multi-select list of options for improved UX: Known To, Defense(s), Purpose",
     "Hidden site type: Fleshed out generator logic for the following fields: Secrecy level, Known To, Defense(s), Purpose",
     "Added support to allow users to register and login with Patreon accounts",
     "Added user dashboard page with user account information and recent activity",
-    "Added limits to creating the number of NPCs, Sites, and Settlements a user can create based on their account membership tier",
+    "Added limits to creating the number of NPCs, sites, and settlements a user can create based on their account membership tier",
+    "Added Military Presence field to settlements and settlement generator logic",
+    "Added a Tone field to settlements and sites",
+    "Added a Theme field to settlements to help generate more flavorful settlement names",
+    "Added a page to view all wilderness / no settlements sites",
   ],
   improvements: [
     "Improved initial page loading speed",
     "Improved login and register UI/UX and added ability to reset password and user profile/account information",
-    "Added a page to view all wilderness / no settlements sites",
-    "Added Military Presence field to settlements and settlement generator logic",
-    "Added a Tone field to settlements and sites and their respective generators",
-    "Added tooltips to form fields to describe what each field influences in the generation logic, if anything"
+    "Overhauled settlement name generation to provide more robust names",
+    "Added caption text below fields that tells the user if the field influences other fields"
   ],
   bugFixes: [
     "Fixed issue with tavern generation data",

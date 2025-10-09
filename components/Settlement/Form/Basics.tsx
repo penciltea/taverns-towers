@@ -8,7 +8,7 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { TONE } from "@/constants/common.options";
+import { THEME, TONE } from "@/constants/common.options";
 
 export default function SettlementFormBasics(){
     const {
@@ -26,13 +26,15 @@ export default function SettlementFormBasics(){
         const magic = watch("magic");
         const wealth = watch("wealth");
         const size = watch("size");
+        const theme = watch("theme");
         const generatedName = await generateSettlementName({
             climate: climate,
             terrain: Array.isArray(terrain) ? terrain : [terrain],
             tags: Array.isArray(tags) ? tags : [tags],
             magic: magic,
             wealth: wealth,
-            size: size
+            size: size,
+            theme: Array.isArray(theme) ? theme : [theme],
         });
         setValue("name", generatedName, { shouldValidate: true });
     };
@@ -51,6 +53,25 @@ export default function SettlementFormBasics(){
                     fieldError={errors.name}
                     onGenerate={handleGenerateName}
                 />       
+
+                <FormChipSelect
+                    name="theme"
+                    label="Theme"
+                    control={control}
+                    options={THEME}
+                    fieldError={errors.tone}
+                    tooltip="This field influences name generation. Leave blank for medieval fantasy-themed names or pick specific themes for more unique combinations!"
+                />
+
+
+                <FormChipSelect
+                    name="tone"
+                    label="Tone"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(TONE)]}
+                    fieldError={errors.tone}
+                    tooltip="This field is currently not influencing other fields just yet, but will soon!" // ToDo: Update 
+                />
                 
                 <FormSelect
                     name="size"
@@ -104,15 +125,6 @@ export default function SettlementFormBasics(){
                     tooltip="This field is purely descriptive and doesn't influence other fields."
                 />     
 
-                <FormChipSelect
-                    name="tone"
-                    label="Tone"
-                    control={control}
-                    options={[{ label: "Random", value: "random" }, ...toSelectOptions(TONE)]}
-                    fieldError={errors.tone}
-                    tooltip="This field is currently not influencing other fields just yet, but will soon!" // ToDo: Update 
-                />
-
                 <FormTextField
                     label="Description"
                     multiline
@@ -128,7 +140,7 @@ export default function SettlementFormBasics(){
                     rows={4}
                     registration={register("publicNotes")}
                     fieldError={errors.publicNotes}
-                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                    tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
                 />
 
                 <FormTextField
@@ -137,7 +149,7 @@ export default function SettlementFormBasics(){
                     rows={4}
                     registration={register("gmNotes")}
                     fieldError={errors.gmNotes}
-                    tooltip="This field is purely descriptive and doesn't influence other fields."
+                    tooltip="This field is purely descriptive and is only visible to you."
                 />
             </Box>
             <Box sx={{paddingTop: 4}}>

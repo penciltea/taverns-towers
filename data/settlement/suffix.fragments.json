@@ -42,7 +42,7 @@
 
   { "type": "suffix", "value": "abad", "theme": ["Arabic-inspired"] },
   { "type": "suffix", "value": "stan", "theme": ["Arabic-inspired"] },
-  { "type": "suffix", "value": "dun", "theme": ["Arabic-inspired"] },
+  { "type": "suffix", "value": "dun", "theme": ["Arabic-inspired", "Dwarven-inspired"] },
   { "type": "suffix", "value": "iyya", "theme": ["Arabic-inspired"] },
   { "type": "suffix", "value": "qah", "theme": ["Arabic-inspired"] },
   { "type": "suffix", "value": "pur", "theme": ["Arabic-inspired"] },
@@ -54,7 +54,37 @@
   { "type": "suffix", "value": "wen", "theme": ["Elven-inspired"] },
   { "type": "suffix", "value": "lor", "theme": ["Elven-inspired"] },
   { "type": "suffix", "value": "ryn", "theme": ["Elven-inspired"] },
-  { "type": "suffix", "value": "mir", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "mir", "theme": ["Elven-inspired", "Dwarven-inspired"] },
   { "type": "suffix", "value": "thir", "theme": ["Elven-inspired"] },
-  { "type": "suffix", "value": "sil", "theme": ["Elven-inspired"] }
+  { "type": "suffix", "value": "sil", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "lith", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "riel", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "anor", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "ien", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "thal", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "quess", "theme": ["Elven-inspired"] },
+  { "type": "suffix", "value": "las", "theme": ["Elven-inspired"] },
+
+  { "type": "suffix", "value": "khal", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "grum", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "thor", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "grud", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "drum", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "gathol", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "farn", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "bryn", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "drak", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "grund", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "vak", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "bard", "theme": ["Dwarven-inspired"] },
+  { "type": "suffix", "value": "helm", "theme": ["Dwarven-inspired"] },
+
+  { "type": "suffix", "value": "dra", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "zzar", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "vrae", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "raen", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "xil", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "thel", "theme": ["Dark Elven-inspired"] },
+  { "type": "suffix", "value": "ssyn", "theme": ["Dark Elven-inspired"] }
+
 ]

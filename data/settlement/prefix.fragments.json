@@ -65,5 +65,31 @@
     { "type": "prefix", "value": "Ithil", "theme": ["Elven-inspired"] },
     { "type": "prefix", "value": "Gal", "theme": ["Elven-inspired"] },
     { "type": "prefix", "value": "Ar", "theme": ["Elven-inspired"] },
-    { "type": "prefix", "value": "Ery", "theme": ["Elven-inspired"] }
+    { "type": "prefix", "value": "Ery", "theme": ["Elven-inspired"] },
+    { "type": "prefix", "value": "Galad", "theme": ["Elven-inspired"] }, 
+    { "type": "prefix", "value": "Aer", "theme": ["Elven-inspired"] },
+
+    { "type": "prefix", "value": "Kar", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Dur", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Balin", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Thra", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Ghim", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Khaz", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Tol", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Badur", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Kan", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Thrun", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Ton", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Tor", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Bord", "theme": ["Dwarven-inspired"] },
+    { "type": "prefix", "value": "Gor", "theme": ["Dwarven-inspired"] },
+
+    { "type": "prefix", "value": "Zar", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Vel", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Xil", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Dru", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Nal", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Vhae", "theme": ["Dark Elven-inspired"] },
+    { "type": "prefix", "value": "Lil", "theme": ["Dark Elven-inspired"] }
+
 ]

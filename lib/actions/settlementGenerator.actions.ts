@@ -16,7 +16,8 @@ export async function generateSettlementName({
   tags,
   magic,
   wealth,
-  size
+  size,
+  theme
 }: {
   climate?: string;
   terrain?: string[];
@@ -24,6 +25,7 @@ export async function generateSettlementName({
   magic?: string;
   wealth?: string;
   size?: string;
+  theme?: string[];
 }): Promise<string> {
   await connectToDatabase();
 
@@ -51,7 +53,7 @@ export async function generateSettlementName({
   }
 
   return dispatchSettlementName(fragments, {
-    climate, terrain, tags, magic, wealth, size
+    climate, terrain, tags, magic, wealth, size, theme
   });
 }
 
@@ -84,7 +86,8 @@ export async function generateSettlementData(
     tags: data.tags,
     magic: data.magic,
     wealth: data.wealth,
-    size: data.size
+    size: data.size,
+    theme: data.theme
   });
 
   return {

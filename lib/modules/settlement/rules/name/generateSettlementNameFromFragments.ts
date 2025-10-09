@@ -16,7 +16,7 @@ export function generateSettlementNameFromFragments({
   allowedKeys?: string[];
 }): string {
   //console.log("=== START GENERATE SETTLEMENT NAME ===");
-  //console.log("Filters:", filters);
+  console.log("Filters:", filters);
 
   // Step 1: Filter fragments by attributes
   const filtered = filterSettlementByAttributes(fragments, filters);
@@ -76,7 +76,7 @@ export function generateSettlementNameFromFragments({
 
     const typedKey = key as SettlementGroupKey;
 
-    // Step 5a: filtered pool first
+    // Step 5: filtered pool first
     let pool: GeneratorSettlementFragmentPlain[] = grouped[typedKey] ?? [];
 
     // Fallback: if no filtered fragments, try unfiltered (universal)
@@ -98,7 +98,22 @@ export function generateSettlementNameFromFragments({
   };
 
   // Step 6: Replace placeholders in the format
-  const result = formatTemplate.replace(/\{\{\s*(.*?)\s*\}\}/g, (_: string, key: string) => getReplacement(key));
+  const result = formatTemplate.replace(/\{\{\s*(\w+)(\|[a-z]+)?\s*\}\}/g, (_: string, rawKey: string, modifier?: string) => {
+    const replacement = getReplacement(rawKey);
+
+    if (!replacement) return "";
+
+    switch (modifier) {
+      case "|lower":
+        return replacement.toLowerCase();
+      case "|upper":
+        return replacement.toUpperCase();
+      case "|capitalize":
+        return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+      default:
+        return replacement;
+    }
+  });
   //console.log("=== GENERATED SETTLEMENT NAME ===", result);
 
   return result;

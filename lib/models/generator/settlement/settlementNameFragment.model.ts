@@ -10,6 +10,7 @@ export interface GeneratorSettlementFragmentPlain {
   wealth?: string[];
   weight?: number;
   tags?: string[];
+  theme?: string[];
 }
 
 const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
@@ -21,7 +22,8 @@ const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
   magic: [String],
   wealth: [String],
   weight: { type: Number, default: 1 },
-  tags: [String]
+  tags: [String],
+  theme: [String]
 });
 
 export default mongoose.models.GeneratorFragment ||

@@ -50,12 +50,12 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 ]}
                 fieldError={errors.shopType as FieldError | undefined}
                 onChange={(e) => handleTypeChange("shopType", e.target.value as string)}
-                tooltip="This field influences name and menu item generation"
+                tooltip="This field influences name and menu item generation."
             />
 
             <FormFieldWithGenerate
                 name="name"
-                label="Site Name"
+                label="Shop Name"
                 required
                 registration={register("name")}
                 fieldError={errors.name}
@@ -68,7 +68,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
-                tooltip="This field influences menu item generation"
+                tooltip="This field influences menu item generation."
             />
 
             <FormSelect
@@ -77,7 +77,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
-                tooltip="This field influences menu item generation"
+                tooltip="This field influences menu item generation."
             />
 
             <FormTextField
@@ -86,7 +86,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive."
             />
 
             <FormTextField
@@ -95,7 +95,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive."
             />
 
             <Box sx={{mt: 4}}>

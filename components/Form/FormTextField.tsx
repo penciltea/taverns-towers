@@ -1,9 +1,8 @@
 "use client";
 
 import { JSX } from "react";
-import { IconButton, InputAdornment, TextField, TextFieldProps, Tooltip } from "@mui/material";
+import { FormControl, FormHelperText, TextField, TextFieldProps, Typography } from "@mui/material";
 import { FieldError, UseFormRegisterReturn, Merge, FieldErrorsImpl } from "react-hook-form";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { FieldValues } from "react-hook-form";
 
@@ -28,37 +27,32 @@ const FormTextField = <TFieldValues extends FieldValues>({
   tooltip,
   ...rest
 }: FormTextFieldProps<TFieldValues>) => {
+  const hasError = !!fieldError;
+
   const errorMessage = typeof fieldError?.message === "string" ? fieldError.message : "";
 
   return (
-    <TextField
-      fullWidth
-      label={label}
-      {...registration}
-      error={!!fieldError}
-      helperText={errorMessage}
-      margin="normal"
-      required={required}
-      multiline={multiline}
-      rows={multiline ? rows : undefined}
-      slotProps={{ 
-        inputLabel: { shrink: true },
-        input: tooltip
-          ? {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Tooltip title={tooltip} arrow>
-                    <IconButton size="small" edge="end">
-                      <InfoOutlinedIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </InputAdornment>
-              ),
-            }
-          : undefined,
-       }}
-      {...rest}
-    />
+    <FormControl fullWidth margin="normal" error={hasError} required={required}>
+      <TextField
+        label={label}
+        {...registration}
+        error={!!fieldError}
+        required={required}
+        multiline={multiline}
+        rows={multiline ? rows : undefined}
+        slotProps={{ inputLabel: { shrink: true } }}
+        {...rest}
+      />
+      
+      {tooltip && (
+        <Typography variant="caption" sx={{ mt: 0.25 }}>
+          {tooltip}
+        </Typography>
+      )}
+      {hasError && (
+        <FormHelperText id={`${label}-id`}>{errorMessage}</FormHelperText>
+      )}
+    </FormControl>
   );
 };
 

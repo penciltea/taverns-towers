@@ -1,9 +1,9 @@
 "use client";
 
 import { JSX, useId } from "react";
-import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader, IconButton, InputAdornment, Tooltip} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader, Typography} from "@mui/material";
 import { Control, Controller, FieldError, FieldValues, Path } from "react-hook-form";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+
 
 export interface Option {
   label: string;
@@ -69,17 +69,6 @@ function FormSelect<
             aria-describedby={hasError ? errorId : undefined}
             value={field.value ?? ""}
             label={label}
-            endAdornment={
-              tooltip ? (
-                <InputAdornment position="end" sx={{marginRight: 2.5}}>
-                  <Tooltip title={tooltip} arrow>
-                    <IconButton size="small" edge="end">
-                      <InfoOutlinedIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </InputAdornment>
-              ) : undefined
-            }
             {...rest}
           >
             <MenuItem value="" disabled>
@@ -106,6 +95,11 @@ function FormSelect<
           </Select>
         )}
       />
+      {tooltip && (
+        <Typography variant="caption">
+          {tooltip}
+        </Typography>
+      )}
       {hasError && (
         <FormHelperText id={errorId}>{errorMessage}</FormHelperText>
       )}

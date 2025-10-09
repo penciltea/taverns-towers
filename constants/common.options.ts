@@ -55,13 +55,42 @@ export const DOMAINS = [
 
 
 export const TONE = [
-  "Test"
+  "Chaotic",
+  "Corrupt",
+  "Dark / Gritty",
+  "Decadent",
+  "Dystopian",
+  "Eerie",
+  "Fantastical",
+  "Festive",
+  "Hopeful",
+  "Melancholy",
+  "Mystical",
+  "Noble / Regal",
+  "Oppressive",
+  "Rustic",
+  "Sacred / Reverent",
+  "Somber",
+  "Whimsical",
+  "Other"
 ];
+
+export const THEME = [
+  {
+    label: "Fantasy Inspired",
+    options: [
+      { label: "Dark Elven-Inspired", value: "Dark Elven-Inspired"},
+      { label: "Dwarven-Inspired", value: "Dwarven-Inspired" },
+      { label: "Elven-Inspired", value: "Elven-Inspired" },
+    ]
+  }
+]
 
 
 export type Flatten<T> = T extends Array<{ options: readonly any[] }>
   ? T[number]["options"][number]
   : never;
 
-export type DomainTypes = (typeof DOMAINS)[number]
-export type ToneTypes = (typeof TONE)[number]
+export type DomainTypes = (typeof DOMAINS)[number];
+export type ToneTypes = (typeof TONE)[number];
+export type ThemeTypes = Flatten<typeof THEME>["value"];

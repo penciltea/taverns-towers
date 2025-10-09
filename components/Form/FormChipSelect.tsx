@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useId, JSX } from 'react';
-import { Box, Chip, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField, Tooltip } from '@mui/material';
+import { JSX, useState, useId } from 'react';
+import { Box, Chip, FormControl, FormHelperText, InputLabel, ListSubheader, MenuItem, OutlinedInput, Select, SelectProps, TextField, Typography } from '@mui/material';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export interface Option {
   value: string;
@@ -102,17 +101,6 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
                       })}
                     </Box>
                   )}
-                  endAdornment={
-                    tooltip ? (
-                      <InputAdornment position="end" sx={{marginRight: 2.5}}>
-                        <Tooltip title={tooltip} arrow>
-                          <IconButton size="small" edge="end">
-                            <InfoOutlinedIcon fontSize="small" />
-                          </IconButton>
-                        </Tooltip>
-                      </InputAdornment>
-                    ) : undefined
-                  }
                   {...rest}
                 >
                   <MenuItem disabled value="">
@@ -162,6 +150,11 @@ export default function FormChipSelect<TFieldValues extends FieldValues>({
             );
           }}
         />
+      )}
+      {tooltip && (
+        <Typography variant="caption">
+          {tooltip}
+        </Typography>
       )}
 
       {fieldError?.message && <FormHelperText>{fieldError.message}</FormHelperText>}

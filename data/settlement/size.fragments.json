@@ -6,6 +6,7 @@
   { "type": "size", "value": "Town", "size": ["Town"] },
   { "type": "size", "value": "City", "size": ["City"] },
   { "type": "size", "value": "Metropolis", "size": ["Metropolis"] },
+  { "type": "size", "value": "Citadel", "size": ["City", "Metropolis"] },
   { "type": "size", "value": "Outpost", "tags": ["Border Post", "Military Outpost"], "size": ["Encampment", "Thorp"] },
   { "type": "size", "value": "Settlement", "size": ["Hamlet", "Village", "Town"] },
   { "type": "size", "value": "Stronghold", "tags": ["Fortress", "Garrison"], "size": ["Town", "City", "Metropolis"] },
@@ -26,7 +27,12 @@
   { "type": "size", "value": "Eyrie", "theme": ["Elven-inspired"], "size": ["Thorp", "Village"] },
   { "type": "size", "value": "Thalas", "theme": ["Elven-inspired"], "size": ["Town", "City"] },
   { "type": "size", "value": "Aerie", "theme": ["Elven-inspired"], "size": ["Hamlet", "Village"] },
-  { "type": "size", "value": "Vale", "theme": ["Elven-inspired"], "size": ["Village", "Town"] },  
-  { "type": "size", "value": "Elandor", "theme": ["Elven-inspired"], "size": ["Town", "City"] }
+  { "type": "size", "value": "Vale", "size": ["Village", "Town"] },  
+  { "type": "size", "value": "Elandor", "theme": ["Elven-inspired"], "size": ["Town", "City"] },
+  { "type": "size", "value": "Retreat", "theme": ["Elven-inspired"], "tags": ["Hidden", "Sacred Site"], "size": ["Thorp", "Hamlet", "Village"] },
+
+  { "type": "size", "value": "Enclave", "theme": ["Elven-inspired", "Dark Elven-inspired"], "tags": ["Hidden", "Remote"], "size": ["Village", "Town"] },
+  { "type": "size", "value": "Dominion", "theme": ["Dark Elven-inspired"], "tags": ["Capital"], "size": ["City", "Metropolis"] },
+  { "type": "size", "value": "Sepulcher-Court", "theme": ["Dark Elven-inspired"], "tags": ["Sacred Site"], "size": ["Town", "City"] }
 
 ]

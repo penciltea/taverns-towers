@@ -28,7 +28,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
-                tooltip="This field influences entry cost calculations"
+                tooltip="This field influences entry cost calculations."
             />
 
             <FormSelect
@@ -37,7 +37,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
-                tooltip="This field influences entry cost calculations"
+                tooltip="This field influences entry cost calculations."
             />
             <FormSelect
                 name="venueType"
@@ -45,14 +45,14 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...ENTERTAINMENT_VENUE_TYPES]}
                 fieldError={errors.venueType as FieldError | undefined}
-                tooltip="This field influences name generation"
+                tooltip="This field influences name generation."
             />
 
             <FormTextField
                 label="Entry / Ticket Cost"
                 registration={register("cost")}
                 fieldError={errors.cost}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive."
             />
 
             <FormTextField
@@ -61,7 +61,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
             />
 
             <FormTextField
@@ -70,7 +70,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is only visible to you."
             />
         </>
     )

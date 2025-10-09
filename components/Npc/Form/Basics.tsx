@@ -46,7 +46,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_PRONOUNS)]}
                     fieldError={errors.pronouns}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
                 
                 <FormSelect
@@ -55,7 +55,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_AGE)]}
                     fieldError={errors.age}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
                 
                 <FormSelect
@@ -64,7 +64,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_RACES]}
                     fieldError={errors.race}
-                    tooltip="This field influences name generation"
+                    tooltip="This field influences name generation."
                 />
 
                 <FormSelect
@@ -73,7 +73,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_ALIGNMENT)]}
                     fieldError={errors.alignment}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
 
                 <FormChipSelect
@@ -82,7 +82,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_TRAITS]}
                     fieldError={errors.traits}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
 
                 <FormSelect
@@ -91,7 +91,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_STATUS)]}
                     fieldError={errors.status}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
 
                 <FormTextField
@@ -100,7 +100,7 @@ export default function NpcFormBasics(){
                     rows={4}
                     registration={register("description")}
                     fieldError={errors.description}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive."
                 />
 
                 <FormTextField
@@ -109,7 +109,7 @@ export default function NpcFormBasics(){
                     rows={4}
                     registration={register("publicNotes")}
                     fieldError={errors.publicNotes}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
                 />
 
                 <FormTextField
@@ -118,7 +118,7 @@ export default function NpcFormBasics(){
                     rows={4}
                     registration={register("gmNotes")}
                     fieldError={errors.gmNotes}
-                    tooltip="This field is purely descriptive"
+                    tooltip="This field is purely descriptive and is only visible to you."
                 />
 
 

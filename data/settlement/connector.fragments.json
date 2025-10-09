@@ -33,6 +33,10 @@
   { "type": "connector", "value": "ith", "theme": ["Elven-inspired"] },
   { "type": "connector", "value": "an", "theme": ["Elven-inspired"] },
   { "type": "connector", "value": "or", "theme": ["Elven-inspired"] },
-  { "type": "connector", "value": "ae", "theme": ["Elven-inspired"] }
+  { "type": "connector", "value": "ae", "theme": ["Elven-inspired"] },
+
+  { "type": "connector", "value": "–", "theme": ["Dwarven-inspired"] },
+  { "type": "connector", "value": "-an-", "theme": ["Dwarven-inspired"] }
+
   
 ]

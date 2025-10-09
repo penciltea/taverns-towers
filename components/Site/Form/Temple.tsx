@@ -33,7 +33,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
                 fieldError={errors.domains}
-                tooltip="This field influences the following fields: relics, services item generation"
+                tooltip="This field influences the following fields: relics, services item generation."
             />
 
             <FormSelect
@@ -42,7 +42,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
-                tooltip="This field influences the following fields: relics, services item generation"
+                tooltip="This field influences the following fields: relics, services item generation."
             />
 
             <FormSelect
@@ -51,7 +51,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
-                tooltip="This field influences the following fields: relics, services item generation"
+                tooltip="This field influences the following fields: relics, services item generation."
             />
 
             <FormTextField
@@ -60,7 +60,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("relics")}
                 fieldError={errors.relics}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive."
             />
 
             <FormTextField
@@ -69,7 +69,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
             />
 
             <FormTextField
@@ -78,7 +78,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is only visible to you."
             />
 
             <Box sx={{mt: 4}}>

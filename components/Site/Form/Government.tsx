@@ -29,7 +29,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_SIZE]}
                 fieldError={errors.size as FieldError | undefined}
-                tooltip="This field influences security level"
+                tooltip="This field influences security level."
             />
 
             <FormSelect
@@ -38,7 +38,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SITE_CONDITION]}
                 fieldError={errors.condition as FieldError | undefined}
-                tooltip="This field influences security level"
+                tooltip="This field influences security level."
             />
 
             <FormSelect
@@ -50,7 +50,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                     ...GOVERNMENT_FUNCTIONS,
                 ]}
                 fieldError={errors.function as FieldError | undefined}
-                tooltip="This field influences the following fields: name, security level"
+                tooltip="This field influences the following fields: name, security level."
             />
 
             <FormSelect
@@ -59,7 +59,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 control={control}
                 options={[{ label: "Random", value: "random" }, ...SECURITY_LEVELS]}
                 fieldError={errors.security as FieldError | undefined}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive."
             />           
 
             <FormTextField
@@ -68,7 +68,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("publicNotes")}
                 fieldError={errors.publicNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
             />
 
             <FormTextField
@@ -77,7 +77,7 @@ export default function GovernmentFields({generator}: SiteFormFieldProps){
                 rows={4}
                 registration={register("gmNotes")}
                 fieldError={errors.gmNotes}
-                tooltip="This field is purely descriptive"
+                tooltip="This field is purely descriptive and is only visible to you."
             />
         </>
     )
