@@ -27,6 +27,7 @@ export const settlementSchema = z.object({
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema).default([]),
+  idempotencyKey: z.string().optional(),
   map: z
     .any()
     .refine(

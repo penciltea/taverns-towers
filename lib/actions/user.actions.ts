@@ -35,6 +35,17 @@ export async function registerUser(data: RegisterPayload): Promise<{
   try {
     await connectToDatabase();
 
+    if (!data.idempotencyKey) {
+      throw new Error("Missing idempotency key for registration");
+    }
+
+    // Check for existing user with this key
+    const existingByKey = await User.findOne({ idempotencyKey: data.idempotencyKey });
+    if (existingByKey) {
+      // User already registered with this key — return success to prevent duplicate
+      return { success: true };
+    }
+
     // Check for duplicate user
     const existingUser = await User.findOne({
       $or: [{ email: data.email }, { username: data.username }],

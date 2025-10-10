@@ -18,6 +18,7 @@ import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSettlementFormData } from "@/lib/util/transformFormDataForDB";
 import { createSettlement, updateSettlement } from "@/lib/actions/settlement.actions";
 import { SettlementFormData } from "@/schemas/settlement.schema";
+import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 
 export function useSaveSettlement(mode: "add" | "edit", id?: string) {
   const { user } = useAuthStore();
@@ -26,6 +27,7 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
     if (!user?.id) throw new Error("User is not logged in");
 
     try {
+      const idempotencyKey = generateIdempotencyKey();
       const cleanMap = await handleDynamicFileUpload(data, "map");
 
       if (Array.isArray(data.tags)) {
@@ -37,6 +39,7 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
         ...transformSettlementFormData(data),
         map: cleanMap,
         userId: user.id,
+        idempotencyKey,
       };
 
       const savedSettlement =

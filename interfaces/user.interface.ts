@@ -26,6 +26,7 @@ export interface RegisterPayload {
   username: string;
   email: string;
   password: string;
+  idempotencyKey?: string;
 }
 
 export interface LoginPayload {

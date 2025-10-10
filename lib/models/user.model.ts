@@ -13,6 +13,7 @@ export interface UserModel {
   theme: string;
   createdAt: Date;
   updatedAt: Date;
+  idempotencyKey: string;
 
   passwordHash?: string;
   passwordResetToken?: string;
@@ -26,6 +27,7 @@ const userSchema = new Schema<UserModel>({
   avatar: { type: String, required: false },
   tier: { type: String, enum: userTier, default: userTier[0], required: true },
   theme: { type: String, enum: UI_THEMES, default: UI_THEMES[0], required: true },
+  idempotencyKey: { type: String, unique: true, sparse: true },
   passwordResetToken: String,
   passwordResetExpires: Date,
 });

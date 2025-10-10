@@ -40,6 +40,7 @@ export interface ISettlement extends Document {
   userId: Types.ObjectId;
   editors: string[];
   connections: NpcConnection[];
+  idempotencyKey: string;
 }
 
 
@@ -74,7 +75,8 @@ const SettlementSchema = new Schema<ISettlement>(
       required: true,
     },
     isPublic: { type: Boolean, default: false },
-    editors: [{type: String, required: false}]
+    editors: [{type: String, required: false}],
+    idempotencyKey: { type: String, unique: true, sparse: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

@@ -57,7 +57,8 @@ const BaseSiteSchema = new Schema(
       required: true,
     },
     isPublic: { type: Boolean, default: false },
-    editors: [{type: String, required: false}] //editors: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    editors: [{type: String, required: false}], //editors: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    idempotencyKey: { type: String, unique: true, sparse: true },
   },
   { discriminatorKey: "type", timestamps: true }
 );
