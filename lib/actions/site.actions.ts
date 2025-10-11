@@ -15,6 +15,16 @@ export async function createSite(data: SiteType, settlementId: string) {
 
   const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
+  if (!data.idempotencyKey) {
+    throw new Error("Missing idempotency key for idempotent creation");
+  }
+
+  // Check if an settlement with this key already exists
+  const existing = await model.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+  if (existing) {
+    return serializeSite(existing); // Return existing settlement instead of creating duplicate
+  }
+
   const newSite = await model.create({
     ...data,
     settlementId: dbSettlementId,

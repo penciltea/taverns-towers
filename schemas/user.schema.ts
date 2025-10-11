@@ -19,6 +19,7 @@ export const userSchema = z.object({
       }
     )
     .optional(),
+  idempotencyKey: z.string().optional()
 });
 
 export type UserSchema = z.infer<typeof userSchema>;

@@ -12,6 +12,7 @@ export interface AccountModel extends Document {
   scope?: string;                // optional, OAuth scopes
   createdAt: Date;
   updatedAt: Date;
+  idempotencyKey: string;
 }
 
 // Mongoose schema
@@ -25,6 +26,7 @@ const accountSchema = new Schema<AccountModel>(
     expiresAt: { type: Date },
     tokenType: { type: String },
     scope: { type: String },
+    idempotencyKey: { type: String, unique: true, sparse: true },
   },
   {
     timestamps: true,

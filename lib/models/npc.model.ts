@@ -27,6 +27,7 @@ export interface INpc extends Document {
   editors?: mongoose.Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
+  idempotencyKey: string;
 }
 
 const npcSchema = new Schema<INpc>(
@@ -46,6 +47,7 @@ const npcSchema = new Schema<INpc>(
     image: { type: String },
     isPublic: { type: Boolean, default: false },
     editors: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    idempotencyKey: { type: String, unique: true, sparse: true },
   },
   { timestamps: true }
 );

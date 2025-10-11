@@ -39,6 +39,7 @@ export const baseSiteSchema = z.object({
   isPublic: z.boolean().optional(),
   userId: z.string().optional(),
   editors: z.array(z.string()).optional(),
+  idempotencyKey: z.string().optional(),
   image: z
     .any()
     .refine(

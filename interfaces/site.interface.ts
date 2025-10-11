@@ -54,6 +54,7 @@ export interface BaseSite extends CommonInterface {
   condition?: SiteCondition;
   image?: string;
   tone?: string[];
+  idempotencyKey?: string;
   connections: NpcConnection[];
 }
 

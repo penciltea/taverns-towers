@@ -106,6 +106,16 @@ export async function createSettlement(data: Partial<Settlement>) {
   await connectToDatabase();
   const user = await requireUser();
 
+  if (!data.idempotencyKey) {
+    throw new Error("Missing idempotency key for idempotent creation");
+  }
+
+  // Check if an settlement with this key already exists
+  const existing = await SettlementModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+  if (existing) {
+    return serializeSettlement(existing); // Return existing settlement instead of creating duplicate
+  }
+
   // Normalize connection ids
   const normalizedConnections = normalizeConnections(data.connections);
   

@@ -1,4 +1,4 @@
-export const release20250911 = {
+export const release20251009 = {
   title: "Version 0.2.0-alpha",
   date: "2025-10-09",
   features: [

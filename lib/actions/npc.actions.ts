@@ -157,6 +157,16 @@ export async function createNpc(data: NpcFormData): Promise<Npc> {
     await connectToDatabase();
     const user = await requireUser();
 
+    if (!data.idempotencyKey) {
+        throw new Error("Missing idempotency key for idempotent creation");
+    }
+
+    // Check if an NPC with this key already exists
+    const existing = await NpcModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+    if (existing) {
+        return serializeNpc(existing); // Return existing NPC instead of creating duplicate
+    }
+
     // Normalize connection ids
     const normalizedConnections = normalizeConnections(data.connections);
 

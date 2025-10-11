@@ -14,6 +14,7 @@ export interface Npc extends CommonInterface {
   image?: string;
   description?: string;
   connections: NpcConnection[];
+  idempotencyKey?: string;
 }
 
 

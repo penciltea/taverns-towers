@@ -12,6 +12,7 @@ import { createSite, updateSite } from "@/lib/actions/site.actions";
 import { SiteType } from "@/interfaces/site.interface";
 import { canCreateContent } from "@/lib/actions/user.actions";
 import { useAuthStore } from "@/store/authStore";
+import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 
 
 interface UseSiteMutationsProps {
@@ -36,6 +37,8 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
                 return;
             }
 
+            const idempotencyKey = generateIdempotencyKey();
+
             // Upload image if needed
             const cleanImage = await handleDynamicFileUpload(data, "image");
 
@@ -43,6 +46,7 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
             const siteData = {
                 ...transformSiteFormData(data),
                 image: cleanImage,
+                idempotencyKey
             } as SiteType;
  
             let saved;

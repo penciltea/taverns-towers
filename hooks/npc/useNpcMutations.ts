@@ -11,7 +11,7 @@ import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { canCreateContent } from "@/lib/actions/user.actions";
-
+import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
@@ -30,17 +30,20 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             if (!user?.id) throw new Error("User is not logged in");
                   
             if (!(await canCreateContent(user.id, "npc"))) {
-            showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
-            return;
+                showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
+                return;
             }
+
+            const idempotencyKey = generateIdempotencyKey();
 
             // Upload image if needed
             const cleanImage = await handleDynamicFileUpload(data, "image");
 
-            // Transform form data for DB and attach the image
+            // Transform form data for DB and attach the image & idempotencyKey
             const transformed = {
                 ...transformNpcFormData(data),
                 image: cleanImage,
+                idempotencyKey,
             };
 
             let saved;
