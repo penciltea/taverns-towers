@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { FieldErrors, useFormContext } from "react-hook-form";
 import { Paper, Typography, Box, Button } from "@mui/material";
@@ -9,11 +10,15 @@ import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
 import SiteFormTabs from "./Tabs";
 import SiteFormBasics from "./Basics";
-import SiteFormConnections from "./Connections";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { useSearchParams } from "next/navigation";
 import { Spinner } from "@/components/Common/Spinner";
+
+const SiteFormConnections = dynamic(() => import("./Connections"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
@@ -149,10 +154,10 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           )}
 
           <TabPanel value={tab} index={0}>
-            <SiteFormBasics generator={generator} isWilderness={isWilderness} mode={mode} />
+            { tab === 0 && <SiteFormBasics generator={generator} isWilderness={isWilderness} mode={mode} /> }
           </TabPanel>
           <TabPanel value={tab} index={1}>
-            <SiteFormConnections mode={mode} />
+            { tab === 1 && <SiteFormConnections mode={mode} /> }
           </TabPanel>
 
           <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />

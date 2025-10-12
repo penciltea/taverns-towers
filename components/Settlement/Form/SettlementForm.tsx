@@ -1,18 +1,34 @@
+'use client'
+
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Typography, Paper, Box, Button } from "@mui/material";
 import SettlementFormTabs from "./Tabs";
 import SettlementFormBasics from "./Basics";
-import SettlementFormWealth from "./Wealth";
-import SettlementFormCulture from "./Culture";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
-import SettlementFormConnections from "./Connections";
 import { FieldErrors } from "react-hook-form";
 import { Spinner } from "@/components/Common/Spinner";
+
+const SettlementFormWealth = dynamic(() => import("./Wealth"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+const SettlementFormCulture = dynamic(() => import("./Culture"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+const SettlementFormConnections = dynamic(() => import("./Connections"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;
@@ -141,16 +157,16 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           )}
 
           <TabPanel value={tab} index={0}>
-            <SettlementFormBasics />
+            { tab === 0 && <SettlementFormBasics /> }
           </TabPanel>
           <TabPanel value={tab} index={1}>
-            <SettlementFormWealth />
+            { tab === 1 && <SettlementFormWealth /> }
           </TabPanel>
           <TabPanel value={tab} index={2}>
-            <SettlementFormCulture />
+            { tab === 2 && <SettlementFormCulture /> }
           </TabPanel>
           <TabPanel value={tab} index={3}>
-            <SettlementFormConnections />
+            { tab === 3 && <SettlementFormConnections /> }
           </TabPanel>
 
           <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} onCancel={handleCancel} />
