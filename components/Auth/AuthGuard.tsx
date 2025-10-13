@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import { useAuthStore } from "@/store/authStore";
 import { useSession } from "next-auth/react";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { Spinner } from "@/components/Common/Spinner";
 
 interface AuthGateProps {

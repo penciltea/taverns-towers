@@ -1,6 +1,8 @@
 'use client';
 
-import { Box, Paper, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import LoginContent from "@/components/Auth/LoginContent";
 import NextMuiLink from "@/components/Common/NextMuiLink";
 import { buildOAuthProviders } from "@/lib/util/authHelpers";

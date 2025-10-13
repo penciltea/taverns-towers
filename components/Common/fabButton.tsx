@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation";
-import { Fab } from "@mui/material";
+import Fab  from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
 type FabButtonProps = {

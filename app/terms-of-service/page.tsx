@@ -1,4 +1,6 @@
-import { Box, Paper, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function TermsOfService(){
     return (

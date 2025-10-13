@@ -1,7 +1,9 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 import { AccordionWrapper } from "@/components/Common/AccordionWrapper";
 import { NPC_CONNECTION_NPC_ROLE, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NpcConnectionType } from "@/constants/npc.options";
 import { useOwnedSettlementsQuery } from "@/hooks/settlement/settlement.query";

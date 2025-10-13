@@ -3,7 +3,10 @@
 import AuthGate from '@/components/Auth/AuthGuard';
 import { useAuthStore } from '@/store/authStore';
 import DashboardSection from "@/components/Dashboard/DashboardSection";
-import { Paper, Stack, Typography, Box } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 
 import MembershipPanel from '@/components/Dashboard/Memberships';

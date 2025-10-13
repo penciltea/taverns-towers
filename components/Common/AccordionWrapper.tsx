@@ -1,6 +1,10 @@
 "use client";
 
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface AccordionWrapperProps {

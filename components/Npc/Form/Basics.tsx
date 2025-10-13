@@ -1,5 +1,8 @@
+'use client';
+
 import { useFormContext } from "react-hook-form";
-import { Box, Stack } from "@mui/material";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";

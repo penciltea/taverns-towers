@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Box, Typography, List, ListItem, ListItemButton, Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import * as releases from "@/components/Release/content";
 
 // Define type for a single release

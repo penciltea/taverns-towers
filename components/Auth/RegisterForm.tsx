@@ -3,7 +3,9 @@
 import { useAuthForm } from "@/hooks/useAuthForm";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { userSchema, UserSchema } from "@/schemas/user.schema";
-import { Typography, Box, Button } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { Spinner } from "@/components/Common/Spinner";
 import { FormTextField } from "@/components/Form";
 import FormPasswordField from "@/components/Form/FormPasswordField";

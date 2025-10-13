@@ -1,6 +1,9 @@
 'use client'
 
-import { Paper, Typography, Button, Link } from "@mui/material"
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 export default function PatreonCta(){
     return (

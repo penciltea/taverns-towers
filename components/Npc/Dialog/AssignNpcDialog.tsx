@@ -5,7 +5,7 @@ import { DefaultNpcQueryParams } from "@/interfaces/npc.interface";
 import EntityLinkDialog from "@/components/Common/EntityLink/EntityLinkDialog";
 import { Npc } from "@/interfaces/npc.interface";
 import { Spinner } from "@/components/Common/Spinner";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 interface AssignNpcDialogProps {
   open: boolean;

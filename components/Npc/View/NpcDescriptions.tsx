@@ -1,3 +1,5 @@
+'use client';
+
 import { Paper, Box, Typography, Divider } from "@mui/material";
 import { useSession } from 'next-auth/react';
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { FormProvider } from "react-hook-form";
-import { Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import { useAuthStore } from "@/store/authStore";
 import { useUserProfileForm } from "@/hooks/user/useUserProfileForm"; // form hook (react-hook-form setup)
 import { useUserProfileMutation } from "@/hooks/user/useUserProfileMutation";

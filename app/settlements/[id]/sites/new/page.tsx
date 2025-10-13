@@ -1,12 +1,12 @@
 'use client'
 
+import dynamic from "next/dynamic";
 import { useParams, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { siteSchema, defaultSiteValues, SiteFormData } from "@/schemas/site.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
-import SiteForm from "@/components/Site/Form/SiteForm";
 import { isValidSiteCategory } from "@/lib/util/siteHelpers";
 import { useSiteFormSetup } from "@/hooks/site/useSiteFormSetup";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
@@ -15,6 +15,13 @@ import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
 import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
+import { Spinner } from "@/components/Common/Spinner";
+
+const SiteForm = dynamic(() => import("@/components/Site/Form/SiteForm"), {
+    ssr: false,
+    loading: () => <Spinner />,
+});
+
 
 export default function NewSitePage() {
     const params = useParams();
