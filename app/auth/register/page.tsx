@@ -3,7 +3,9 @@
 import RegisterContent from "@/components/Auth/RegisterContent";
 import NextMuiLink from "@/components/Common/NextMuiLink";
 import { buildOAuthProviders } from "@/lib/util/authHelpers";
-import { Box, Paper, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function RegisterPage(){
     const oauthProviders = buildOAuthProviders("/account/dashboard");

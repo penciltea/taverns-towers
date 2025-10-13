@@ -1,7 +1,13 @@
 'use client';
 
-import React from "react";
-import { Box, List, ListItem, ListItemText, Typography, Chip, Stack, TypographyProps } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import { TypographyProps } from "@mui/material/Typography";
 import { toTitleCase } from "@/lib/util/stringFormats";
 import { Option } from "@/components/Form/FormSelect";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_NPC_ROLE } from "@/constants/npc.options";

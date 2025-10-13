@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 

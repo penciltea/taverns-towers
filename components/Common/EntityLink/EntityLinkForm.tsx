@@ -1,7 +1,10 @@
 "use client";
 
 import { useMemo } from "react";
-import { Box, Stack, Typography, IconButton } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Control, FieldValues, Path } from "react-hook-form";
 import FormSelect, { Option } from "@/components/Form/FormSelect";

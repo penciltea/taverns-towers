@@ -15,7 +15,7 @@ import { deleteSite } from '@/lib/actions/site.actions';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { useAuthStore } from '@/store/authStore';
 
 export default function AllSitesPage() {

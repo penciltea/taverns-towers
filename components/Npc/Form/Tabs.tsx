@@ -1,4 +1,13 @@
-import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
+'use client';
+
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import { SelectChangeEvent } from "@mui/material/Select";
 import { NPC_TABS } from "@/constants/npc.options";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";

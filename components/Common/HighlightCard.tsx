@@ -1,4 +1,5 @@
-import { Card, Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 
 export default function HighlightCard({ icon, title, description }: { icon: string, title: string, description: string }){
     return (

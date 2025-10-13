@@ -1,3 +1,8 @@
+'use client';
+
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
 import { Grid, Stack, Typography, Paper } from "@mui/material";
 
 interface EntityViewLayoutProps {
@@ -9,6 +14,11 @@ interface EntityViewLayoutProps {
   connections?: React.ReactNode;
   fab?: React.ReactNode;
 }
+
+// Lazy-wrappers for below-the-fold content
+const LazyExtraContent = dynamic(() => Promise.resolve(({ children }: { children: React.ReactNode }) => <>{children}</>), { ssr: false });
+const LazyConnections = dynamic(() => Promise.resolve(({ children }: { children: React.ReactNode }) => <>{children}</>), { ssr: false });
+
 
 export default function EntityViewLayout({
   title,
@@ -43,13 +53,17 @@ export default function EntityViewLayout({
 
         {extraContent && (
           <Grid size={{ xs: 12 }}>
-            {extraContent}
+            <Suspense fallback={<div>Loading extra content...</div>}>
+              <LazyExtraContent>{extraContent}</LazyExtraContent>
+            </Suspense>
           </Grid>
         )}
 
         {connections && (
           <Grid size={{ xs: 12 }}>
-            {connections}
+            <Suspense fallback={<div>Loading connections...</div>}>
+              <LazyConnections>{connections}</LazyConnections>
+            </Suspense>
           </Grid>
         )}
       </Grid>

@@ -12,7 +12,7 @@ import { useNpcForm } from "@/hooks/npc/useNpcForm";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useNpcMutations } from "@/hooks/npc/useNpcMutations";
 import { useNpcGeneratorActions } from "@/hooks/npc/useNpcGeneratorActions";
-import { Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import { useDraftForm } from "@/hooks/useDraftForm";
 import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";

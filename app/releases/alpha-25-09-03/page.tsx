@@ -1,6 +1,12 @@
 import NextMuiLink from "@/components/Common/NextMuiLink";
 import PatreonCta from "@/components/Common/PatreonCta";
-import { Box, Typography, List, ListItem, ListItemText, Paper, Divider } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 
 export const metadata = {
     title: "RealmFoundry Alpha Release - Sept. 03, 2025",

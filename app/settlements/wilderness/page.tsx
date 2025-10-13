@@ -2,7 +2,7 @@
 
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import GridItem from '@/components/Grid/GridItem';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { usePaginatedSites } from '@/hooks/site/site.query';

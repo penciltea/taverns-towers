@@ -1,5 +1,9 @@
 import PatreonCta from "@/components/Common/PatreonCta";
-import { Typography, List, ListItem, ListItemText, Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 export default function Roadmap(){
     return (

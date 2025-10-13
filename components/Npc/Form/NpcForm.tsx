@@ -3,7 +3,9 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Typography, Box, Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { NpcFormData } from "@/schemas/npc.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useNpcContentStore } from "@/store/npc.store";

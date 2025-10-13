@@ -1,13 +1,14 @@
 import { oauthProvidersConfig } from "@/constants/ui.options";
 import { OAuthProvider } from "@/interfaces/ui.interface";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 
 export function buildOAuthProviders(callbackUrl?: string): OAuthProvider[] {
   return oauthProvidersConfig.map((provider) => ({
     name: provider.name,
     icon: (
-      <img
+      <Image
         src={provider.iconSrc}
         alt={provider.name}
         width={15}

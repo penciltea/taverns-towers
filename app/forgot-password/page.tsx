@@ -1,8 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Typography, TextField, Button, Paper, Box } from '@mui/material';
 import { useUIStore } from '@/store/uiStore';
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from '@mui/material/TextField';
 
 export default function ForgotPasswordPage() {
   const { showSnackbar, setLoading, isLoading } = useUIStore();

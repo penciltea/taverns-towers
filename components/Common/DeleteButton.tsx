@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition } from "react";
-import { Button } from "@mui/material";
+import  Button  from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUIStore } from "@/store/uiStore";
 import DeleteConfirmationDialog from "@/components/Common/Dialog/DeleteConfirmationDialog";

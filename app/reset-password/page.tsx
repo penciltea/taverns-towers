@@ -1,7 +1,11 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Container, Typography, Button, Box, Paper } from '@mui/material';
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from '@mui/material/Container';
 import { useUIStore } from '@/store/uiStore';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';

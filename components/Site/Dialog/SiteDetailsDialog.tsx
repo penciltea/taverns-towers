@@ -1,6 +1,7 @@
 'use client'
 
 import { JSX } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Dialog, DialogTitle, DialogContent, Box, Button, Typography, Stack, DialogActions, } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,17 +11,53 @@ import { deleteSite } from '@/lib/actions/site.actions';
 import DeleteButton from '@/components/Common/DeleteButton';
 import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteDialogProps, TavernSite, TempleSite } from '@/interfaces/site.interface';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
-import { TavernDetails } from './TavernDetails';
-import { TempleDetails } from './TempleDetails';
-import { ShopDetails } from './ShopDetails';
-import { GuildDetails } from './GuildDetails';
-import { GovernmentDetails } from './GovernmentDetails';
-import { EntertainmentDetails } from './EntertainmentDetails';
-import { HiddenDetails } from './HiddenDetails';
-import { ResidenceDetails } from './ResidenceDetails';
-import { MiscellaneousDetails } from './MiscellaneousDetails';
 import { useSession } from 'next-auth/react';
 import { canDelete, canEdit } from '@/lib/auth/authPermissions';
+
+export const TavernDetails = dynamic<{ site: TavernSite }>(
+  () => import('./TavernDetails').then(mod => mod.TavernDetails),
+  { ssr: false }
+);
+
+export const TempleDetails = dynamic<{ site: TempleSite }>(
+  () => import('./TempleDetails').then(mod => mod.TempleDetails),
+  { ssr: false }
+);
+
+export const ShopDetails = dynamic<{ site: ShopSite }>(
+  () => import('./ShopDetails').then(mod => mod.ShopDetails),
+  { ssr: false }
+);
+
+export const GuildDetails = dynamic<{ site: GuildSite }>(
+  () => import('./GuildDetails').then(mod => mod.GuildDetails),
+  { ssr: false }
+);
+
+export const GovernmentDetails = dynamic<{ site: GovernmentSite }>(
+  () => import('./GovernmentDetails').then(mod => mod.GovernmentDetails),
+  { ssr: false }
+);
+
+export const EntertainmentDetails = dynamic<{ site: EntertainmentSite }>(
+  () => import('./EntertainmentDetails').then(mod => mod.EntertainmentDetails),
+  { ssr: false }
+);
+
+export const HiddenDetails = dynamic<{ site: HiddenSite }>(
+  () => import('./HiddenDetails').then(mod => mod.HiddenDetails),
+  { ssr: false }
+);
+
+export const ResidenceDetails = dynamic<{ site: ResidenceSite }>(
+  () => import('./ResidenceDetails').then(mod => mod.ResidenceDetails),
+  { ssr: false }
+);
+
+export const MiscellaneousDetails = dynamic<{ site: MiscellaneousSite }>(
+  () => import('./MiscellaneousDetails').then(mod => mod.MiscellaneousDetails),
+  { ssr: false }
+);
 
 const getSiteLabel = (type: string) => {
   const category = SITE_CATEGORIES.find(cat => cat.value === type);

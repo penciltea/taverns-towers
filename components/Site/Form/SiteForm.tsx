@@ -3,17 +3,24 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { FieldErrors, useFormContext } from "react-hook-form";
-import { Paper, Typography, Box, Button } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { SiteFormData } from "@/schemas/site.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
 import SiteFormTabs from "./Tabs";
-import SiteFormBasics from "./Basics";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { useSearchParams } from "next/navigation";
 import { Spinner } from "@/components/Common/Spinner";
+
+const SiteFormBasics = dynamic(() => import("./Basics"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 const SiteFormConnections = dynamic(() => import("./Connections"), {
   ssr: false,
