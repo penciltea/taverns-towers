@@ -14,8 +14,10 @@ import { NormalizedNpcInput } from "./normalize";
 import {
   applyAgeRule,
   applyAlignmentRule,
+  applyArchetypeByAgeRule,
   applyPronounsRule,
   applyRaceRule,
+  applyReputationByArchetypeRule,
   applyStatusRule,
   applyTraitsRule,
 } from "./applyRules";
@@ -28,6 +30,8 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyAlignmentRule(data),
   async (data) => applyStatusRule(data),
   async (data) => applyTraitsRule(data),
+  async (data) => applyArchetypeByAgeRule(data),
+  async (data) => applyReputationByArchetypeRule(data)
 ];
 
 /**

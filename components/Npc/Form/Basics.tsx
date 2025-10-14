@@ -58,7 +58,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_AGE)]}
                     fieldError={errors.age}
-                    tooltip="This field is purely descriptive."
+                    tooltip="This field influences archetype."
                 />
                 
                 <FormSelect

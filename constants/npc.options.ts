@@ -133,7 +133,9 @@ export const NPC_TRAITS = [
 ];
 
 export const NPC_REPUTATION = [
+  { label: "Annoying / Troublemaker", value: "annoying" },
   { label: "Beloved", value: "beloved" },
+  { label: "Disliked / Irritable", value: "disliked" },
   { label: "Feared", value: "feared" },
   { label: "Infamous", value: "infamous" },
   { label: "Mysterious", value: "mysterious" },
@@ -185,9 +187,12 @@ export const NPC_ARCHETYPE = [
     options: [
       { label: "Child / Youth", value: "child" },
       { label: "Entertainer / Performer", value: "entertainer" },
+      { label: "Farmer / Peasant", value: "peasant" },
+      { label: "Fisher / Seafarer", value: "fisher" },
       { label: "Hermit / Outcast", value: "hermit" },
       { label: "Researcher / Inventor", value: "inventor" },
       { label: "Scholar / Sage", value: "scholar" },
+      { label: "Urchin", value: "urchin" },
       { label: "Other", value: "other" }
     ]
   }
@@ -411,7 +416,7 @@ export type NpcRace = typeof NPC_RACES[number]["value"];
 export type NpcStatus = typeof NPC_STATUS[number];
 export type NpcTrait = Flatten<typeof NPC_TRAITS>["value"];
 export type NpcReputation = typeof NPC_REPUTATION[number];
-export type NpcArchetype = typeof NPC_ARCHETYPE[number];
+export type NpcArchetype = Flatten<typeof NPC_ARCHETYPE>["value"];
 export type NpcOccupation = Flatten<typeof NPC_OCCUPATION>["value"];
 export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];

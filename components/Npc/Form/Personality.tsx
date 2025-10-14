@@ -36,7 +36,7 @@ export default function NpcFormPersonality(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_ARCHETYPE]}
                     fieldError={errors.archetype as FieldError | undefined}
-                    tooltip="This field is purely descriptive." // ToDo: Verify
+                    tooltip="This field influences the following fields: reputation, occupation."
                 />
                 
                 <FormChipSelect
@@ -45,7 +45,7 @@ export default function NpcFormPersonality(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_OCCUPATION]}
                     fieldError={errors.occupation}
-                    tooltip="This field influences name generation." // ToDo: Verify
+                    tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 
                 <FormChipSelect
@@ -54,7 +54,7 @@ export default function NpcFormPersonality(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_PERSUASION]}
                     fieldError={errors.alignment}
-                    tooltip="This field is purely descriptive."
+                    tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 
             </Box>

@@ -11,10 +11,10 @@ export interface Npc extends CommonInterface {
   status?: NpcStatus;
   alignment?: NpcAlignment;
   traits?: NpcTrait[];
-  reputation?: NpcReputation;
-  archetype?: NpcArchetype;
-  occupation?: NpcOccupation[];
-  persuasion?: NpcPersuasion[];
+  reputation?: string;
+  archetype?: string;
+  occupation?: string[];
+  persuasion?: string[];
   image?: string;
   description?: string;
   connections: NpcConnection[];

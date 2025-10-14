@@ -1,6 +1,7 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
-import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
+import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS, NPC_ARCHETYPE } from "@/constants/npc.options";
+import { archetypeByAgeMapping, reputationByArchetypeMapping } from "../mappings/npc.mappings";
 
 // Logic for setting Age if set to "random" or missing
 export function applyAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
@@ -50,9 +51,7 @@ export function applyStatusRule(data: ReturnType<typeof normalizeNpcInput>): Nor
 
 
 // Logic for setting Traits if set to "random" or missing
-export function applyTraitsRule(
-  data: ReturnType<typeof normalizeNpcInput>
-): ReturnType<typeof normalizeNpcInput> {
+export function applyTraitsRule( data: ReturnType<typeof normalizeNpcInput> ): ReturnType<typeof normalizeNpcInput> {
   if (shouldReplace(data.traits)) {
     const allTraits = NPC_TRAITS.flatMap(group =>
       group.options.map(opt => opt.value)
@@ -62,4 +61,21 @@ export function applyTraitsRule(
   }
 
   return data;
+}
+
+
+
+export function applyArchetypeByAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
+    if(shouldReplace(data.archetype) && (data.age || data.age != "random")) {
+        data.archetype = getRandom(archetypeByAgeMapping[data.age]);
+    }
+
+    return data;
+}
+
+export function applyReputationByArchetypeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
+    if(shouldReplace(data.reputation) && (data.archetype || data.archetype != "random")) {
+        data.reputation = getRandom(reputationByArchetypeMapping[data.archetype])
+    }
+    return data;
 }
