@@ -12,14 +12,11 @@ import { useUIStore } from "@/store/uiStore";
 import { useSettlementContentStore } from "@/store/settlementStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSaveSettlement } from "./useSaveSettlement";
-import { useSettlementGeneratorActions } from "./useSettlementGeneratorActions";
 import { shouldReplace } from "@/lib/util/randomValues";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
-import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
-import { canCreateContent } from "@/lib/actions/user.actions";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
@@ -31,14 +28,14 @@ export function useSettlementFormSetup(
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const { clearSelectedItem, clearDraftItem, clearMode } = useSettlementContentStore();
   const queryClient = useQueryClient();
-
-  const { generatePartial, generateFull } = useSettlementGeneratorActions();
   const saveSettlement = useSaveSettlement(mode, id ?? undefined);
 
   /**
    * Generate missing or random values only, preserving existing form data.
    */
   const onGenerate = async () => {
+    const { generatePartial } = await import("./useSettlementGeneratorActions").then(m => m.useSettlementGeneratorActions());
+
     const currentValues = methods.watch();
     const generated = await generatePartial(currentValues);
 
@@ -54,6 +51,7 @@ export function useSettlementFormSetup(
    * Replaces all form values with newly generated data.
    */
   const onReroll = async () => {
+    const { generateFull } = await import("./useSettlementGeneratorActions").then(m => m.useSettlementGeneratorActions());
     const generated = await generateFull();
     methods.reset(generated);
   };
@@ -67,7 +65,7 @@ export function useSettlementFormSetup(
 
     try {
       if (!user?.id) throw new Error("User is not logged in");
-      
+      const { canCreateContent } = await import('@/lib/actions/user.actions');
       if (!(await canCreateContent(user.id, "settlement"))) {
         showErrorDialog("You have reached the maximum number of settlements for your membership tier. Please either upgrade your membership tier or delete an existing settlement to continue.");
         return;
@@ -77,6 +75,7 @@ export function useSettlementFormSetup(
 
       if (data.connections?.length) {
         for (const conn of data.connections) {
+          const { addConnection } = await import('@/lib/actions/connections.actions');
           await addConnection({
               sourceType: "settlement",
               sourceId: saved._id,

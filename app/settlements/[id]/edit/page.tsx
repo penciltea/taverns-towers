@@ -9,7 +9,7 @@ import { useSettlementContentStore } from "@/store/settlementStore";
 import { settlementSchema, SettlementFormData, defaultSettlementValues } from "@/schemas/settlement.schema";
 import { getSingleParam } from "@/lib/util/getSingleParam";
 import SettlementForm from "@/components/Settlement/Form/SettlementForm";
-import { normalizeSettlementData } from "@/lib/util/normalizeSettlementData";
+import { normalizeSettlementData } from "@/lib/util/normalize";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { useSettlementQuery } from "@/hooks/settlement/settlement.query";

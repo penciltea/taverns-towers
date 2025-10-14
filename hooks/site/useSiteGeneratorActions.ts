@@ -14,8 +14,6 @@
 import { useCallback, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { generateSiteName, generateSiteData, generateMenuData } from "@/lib/actions/siteGenerator.actions";
-import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
 import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
 import { shouldReplace } from "@/lib/util/randomValues";
 
@@ -97,6 +95,7 @@ export function useSiteGeneratorActions(
       }
 
       // Otherwise, generate a new environment
+      const { generateEnvironment } = await import('@/lib/actions/environmentGenerator.actions');
       const newEnv = await generateEnvironment({ climate, terrain, tags }, force);
 
       // Only update form fields if force=true or current values are empty/random
@@ -133,6 +132,8 @@ export function useSiteGeneratorActions(
             return val && val.length > 0 ? val : undefined;
           })()
         : undefined;
+
+      const { generateSiteName } = await import('@/lib/actions/siteGenerator.actions');
 
       const name = await generateSiteName({
         siteType: [siteType],
@@ -221,6 +222,7 @@ export function useSiteGeneratorActions(
         singleItem = true;
       }
       
+      const { generateMenuData } = await import('@/lib/actions/siteGenerator.actions');
       let items = await generateMenuData({...generationContext, singleItem: singleItem});
 
       if (!Array.isArray(items) || items.length === 0) return;
@@ -264,6 +266,7 @@ export function useSiteGeneratorActions(
     console.log("overrides: ", overrides);
 
     // Generate site data based on whether wilderness or settlement context
+    const { generateSiteData } = await import('@/lib/actions/siteGenerator.actions');
     const result = await generateSiteData(
       siteType,
       isWilderness
@@ -326,6 +329,7 @@ export function useSiteGeneratorActions(
     const env = await regenerateEnvironment(true);
     const emptyOverrides: Partial<SiteFormData> = {};
 
+    const { generateSiteData } = await import('@/lib/actions/siteGenerator.actions');
     const result = await generateSiteData(
       siteType,
       isWilderness

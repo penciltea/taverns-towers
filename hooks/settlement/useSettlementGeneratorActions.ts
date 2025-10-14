@@ -8,7 +8,6 @@
  * This hook does not modify form state—it returns data to be applied externally.
  */
 
-import { generateSettlementData } from "@/lib/actions/settlementGenerator.actions";
 import { normalizeSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { SettlementFormData, defaultSettlementValues } from "@/schemas/settlement.schema";
 
@@ -19,6 +18,7 @@ export function useSettlementGeneratorActions() {
    */
   const generatePartial = async (currentValues: SettlementFormData) => {
     const normalizedInput = normalizeSettlementInput(currentValues);
+    const { generateSettlementData } = await import('@/lib/actions/settlementGenerator.actions');
     const generated = await generateSettlementData(normalizedInput, false);
     return generated;
   };
@@ -27,6 +27,7 @@ export function useSettlementGeneratorActions() {
    * Generates a full new settlement from scratch (replaces all fields).
    */
   const generateFull = async () => {
+    const { generateSettlementData } = await import('@/lib/actions/settlementGenerator.actions');
     const generated = await generateSettlementData(defaultSettlementValues, true);
     return generated;
   };

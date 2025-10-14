@@ -6,7 +6,7 @@ import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
-import { normalizeConnections } from "../util/connectionHelpers";
+import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeSettlement } from "../util/serializers";
 
 export async function getSettlements({

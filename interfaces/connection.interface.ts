@@ -1,5 +1,4 @@
 import { NpcConnectionType } from "@/constants/npc.options";
-import mongoose from "mongoose";
 import { Npc } from "./npc.interface";
 import { TypographyProps } from "@mui/material";
 
@@ -17,6 +16,6 @@ export interface NpcConnection {
 
 export interface Connection {
   type: string; // "npc" | "settlement" | "site", etc.
-  id: mongoose.Types.ObjectId;
+  id: string;
   role: string;
 }

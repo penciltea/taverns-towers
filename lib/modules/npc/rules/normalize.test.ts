@@ -1,5 +1,5 @@
 import { normalizeNpcInput } from "./normalize";
-import { normalizeCommonInput } from "@/lib/util/normalizeData";
+import { normalizeCommonInput } from "@/lib/actions/normalizeConnections.server";
 import { Npc } from "@/interfaces/npc.interface";
 
 jest.mock("@/lib/util/normalizeData");

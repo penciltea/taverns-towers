@@ -9,7 +9,7 @@ import { Npc } from "@/interfaces/npc.interface";
 import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
-import { normalizeConnections } from "../util/connectionHelpers";
+import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeNpc } from "../util/serializers";
 
 

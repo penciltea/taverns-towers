@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
@@ -8,13 +9,16 @@ import { useUIStore } from "@/store/uiStore";
 import { useAuthStore } from "@/store/authStore";
 import { settlementSchema, defaultSettlementValues, SettlementFormData } from "@/schemas/settlement.schema";
 import { getSingleParam } from "@/lib/util/getSingleParam";
-import SettlementForm from "@/components/Settlement/Form/SettlementForm";
 import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
 import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
 
+const LazySettlementForm = dynamic(
+  () => import("@/components/Settlement/Form/SettlementForm"),
+  { ssr: false, loading: () => <p>Loading form...</p> }
+);
 
 export default function NewSettlementPage() {
   const { id } = useParams();
@@ -93,7 +97,7 @@ export default function NewSettlementPage() {
 
   return (
     <FormProvider {...methods}>
-      <SettlementForm onSubmit={wrappedOnSubmit} mode={mode} onGenerate={onGenerate} onReroll={onReroll} />
+      <LazySettlementForm onSubmit={wrappedOnSubmit} mode={mode} onGenerate={onGenerate} onReroll={onReroll} />
     </FormProvider>
   );
 }

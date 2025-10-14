@@ -1,11 +1,9 @@
 import { useCallback } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { defaultNpcValues, NpcFormData } from "@/schemas/npc.schema";
-import { generateNpcData, generateNpcName } from "@/lib/actions/npcGenerator.actions";
 import { shouldReplace } from "@/lib/util/randomValues";
-import { generateNpcWithName } from "@/lib/modules/npc/rules/npc.dispatcher";
 import { normalizeNpcInput } from "@/lib/modules/npc/rules/normalize";
-import { defaultCommonFields } from "@/lib/util/normalizeData";
+import { defaultCommonFields } from "@/lib/modules/npc/rules/normalize";
 
 type UseNpcGeneratorActionsReturn = {
   name: () => void;
@@ -27,6 +25,7 @@ export function useNpcGeneratorActions(
     const formData = getValues();
     const raceArray = formData.race ? [formData.race] : undefined;
 
+    const { generateNpcName } = await import('@/lib/actions/npcGenerator.actions');
     const name = await generateNpcName({ ...formData, race: raceArray });
     setValue("name", name);
   }, [getValues, setValue]);
@@ -36,6 +35,7 @@ export function useNpcGeneratorActions(
     const overrides = { ...currentValues };
 
     // Generate NPC data
+    const { generateNpcData } = await import('@/lib/actions/npcGenerator.actions');
     const result = await generateNpcData(overrides, false);
 
     // Only update fields that are empty or missing in the current form
@@ -61,18 +61,21 @@ export function useNpcGeneratorActions(
    * Force full reroll of all NPC fields.
    */
   const rerollAll = useCallback(async () => {
-  const result = await generateNpcWithName(
-    normalizeNpcInput({
-      ...defaultCommonFields,
-      ...defaultNpcValues
-    })
-  );
+    const { generateNpcWithName } = await import(
+      "@/lib/modules/npc/rules/npc.dispatcher"
+    );
+    const result = await generateNpcWithName(
+      normalizeNpcInput({
+        ...defaultCommonFields,
+        ...defaultNpcValues
+      })
+    );
 
   // Overwrite all values
-  Object.entries(result).forEach(([key, value]) => {
-    methods.setValue(key as keyof NpcFormData, value);
-  });
-}, [methods]);
+    Object.entries(result).forEach(([key, value]) => {
+      methods.setValue(key as keyof NpcFormData, value);
+    });
+  }, [methods]);
 
 
 

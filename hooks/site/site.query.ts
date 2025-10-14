@@ -1,7 +1,19 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getOwnedSites, getPublicSites, getSiteById, getSites, getSitesPaginated } from '@/lib/actions/site.actions';
-import { SiteResponse } from '@/interfaces/site.interface';
+'use client';
 
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import type { getOwnedSites, getPublicSites, getSiteById, getSitesPaginated } from '@/lib/actions/site.actions';
+
+// -------------------------
+// Types for server functions
+// -------------------------
+type GetSiteByIdFn = typeof getSiteById;
+type GetOwnedSitesFn = typeof getOwnedSites;
+type GetPublicSitesFn = typeof getPublicSites;
+type GetSitesPaginatedFn = typeof getSitesPaginated;
+
+// -------------------------
+// Query key helper
+// -------------------------
 export const siteListKey = (
   settlementId: string,
   page: number,
@@ -11,62 +23,72 @@ export const siteListKey = (
   tone: string[]
 ) => ['sites', settlementId, page, limit, name, types, tone];
 
-
-export function useGetSiteById(id: string) {
-  return useQuery({
+// -------------------------
+// Single site query
+// -------------------------
+export function useGetSiteById(id: Parameters<GetSiteByIdFn>[0] | null) {
+  return useQuery<Awaited<ReturnType<GetSiteByIdFn>>, Error>({
     queryKey: ['site', id],
-    queryFn: () => getSiteById(id),
+    queryFn: async () => {
+      if (!id) throw new Error('No site ID provided');
+      const { getSiteById } = await import('@/lib/actions/site.actions');
+      return await getSiteById(id);
+    },
     enabled: !!id,
   });
 }
 
-export const usePaginatedSites = (
+// -------------------------
+// Paginated sites query
+// -------------------------
+export function usePaginatedSites(
   settlementId: string | null,
   page: number,
   limit: number,
   name: string,
   types: string[],
   tone: string[]
-) => {
-  return useQuery<SiteResponse>({
+): UseQueryResult<Awaited<ReturnType<GetSitesPaginatedFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetSitesPaginatedFn>>, Error>({
     queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types, tone),
-    queryFn: () => getSitesPaginated(settlementId, page, limit, name, types, undefined, tone),
-    staleTime: 1000 * 60 * 5,
-  });
-};
-
-export const useSiteQuery = (id: string | undefined) => {
-  return useQuery({
-    queryKey: ['site', id],
-    queryFn: () => {
-      if (!id) throw new Error('No site ID provided');
-      return getSiteById(id);
+    queryFn: async () => {
+      const { getSitesPaginated } = await import('@/lib/actions/site.actions');
+      return await getSitesPaginated(settlementId, page, limit, name, types, undefined, tone);
     },
-    enabled: Boolean(id),
     staleTime: 1000 * 60 * 5,
   });
-};
+}
 
-export const usePublicSitesQuery = (
-  params: Omit<Parameters<typeof getSites>[0], 'isPublic' | 'userId'>
-): UseQueryResult<SiteResponse> => {
-  return useQuery<SiteResponse, Error, SiteResponse, [string, typeof params]>({
+// -------------------------
+// Public sites query
+// -------------------------
+export function usePublicSitesQuery(
+  params: Omit<Parameters<GetPublicSitesFn>[0], 'isPublic' | 'userId'>
+): UseQueryResult<Awaited<ReturnType<GetPublicSitesFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetPublicSitesFn>>, Error>({
     queryKey: ['publicSites', params],
-    queryFn: () => getPublicSites(params),
+    queryFn: async () => {
+      const { getPublicSites } = await import('@/lib/actions/site.actions');
+      return await getPublicSites(params);
+    },
     staleTime: 1000 * 60 * 5,
   });
-};
+}
 
-export const useOwnedSitesQuery = (
-  params: Omit<Parameters<typeof getSites>[0], 'isPublic'>,
-  options?: {
-    isEnabled: boolean;
-  }
-): UseQueryResult<SiteResponse> => {
-  return useQuery<SiteResponse, Error>({
+// -------------------------
+// Owned sites query
+// -------------------------
+export function useOwnedSitesQuery(
+  params: Omit<Parameters<GetOwnedSitesFn>[0], 'isPublic'>,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<Awaited<ReturnType<GetOwnedSitesFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetOwnedSitesFn>>, Error>({
     queryKey: ['ownedSites', params],
-    queryFn: () => getOwnedSites(params),
+    queryFn: async () => {
+      const { getOwnedSites } = await import('@/lib/actions/site.actions');
+      return await getOwnedSites(params);
+    },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
   });
-};
+}

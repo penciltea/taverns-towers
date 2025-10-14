@@ -1,46 +1,79 @@
+'use client';
+
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getSettlements, getSettlementById, getPublicSettlements, getOwnedSettlements } from '@/lib/actions/settlement.actions';
-import { SettlementResponse } from '@/interfaces/settlement.interface';
-import { Settlement } from '@/interfaces/settlement.interface';
+import type { getSettlements, getSettlementById, getOwnedSettlements, getPublicSettlements } from '@/lib/actions/settlement.actions';
 
-export const useSettlementsQuery = (
-  params: Parameters<typeof getSettlements>[0]
-): UseQueryResult<SettlementResponse> => {
-  return useQuery<SettlementResponse, Error, SettlementResponse, [string, typeof params]>({
+// -------------------------
+// Types for server functions
+// -------------------------
+type GetSettlementsFn = typeof getSettlements;
+type GetSettlementByIdFn = typeof getSettlementById;
+type GetOwnedSettlementsFn = typeof getOwnedSettlements;
+type GetPublicSettlementsFn = typeof getPublicSettlements;
+
+// -------------------------
+// Settlements list query
+// -------------------------
+export function useSettlementsQuery(
+  params: Parameters<GetSettlementsFn>[0]
+): UseQueryResult<Awaited<ReturnType<GetSettlementsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetSettlementsFn>>, Error>({
     queryKey: ['settlements', params],
-    queryFn: () => getSettlements(params),
+    queryFn: async () => {
+      const { getSettlements } = await import('@/lib/actions/settlement.actions');
+      return await getSettlements(params);
+    },
     staleTime: 1000 * 60 * 5,
   });
-};
+}
 
-export const useSettlementQuery = (settlementId: string | null) => {
-  return useQuery<Settlement, Error>({
+// -------------------------
+// Single settlement query
+// -------------------------
+export function useSettlementQuery(
+  settlementId: Parameters<GetSettlementByIdFn>[0] | null
+): UseQueryResult<Awaited<ReturnType<GetSettlementByIdFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetSettlementByIdFn>>, Error>({
     queryKey: ['settlement', settlementId],
-    queryFn: () => getSettlementById(settlementId as string),
-    enabled: !!settlementId, // Only fetch if settlementId is available
+    queryFn: async () => {
+      if (!settlementId) throw new Error('No settlement ID provided');
+      const { getSettlementById } = await import('@/lib/actions/settlement.actions');
+      return await getSettlementById(settlementId);
+    },
+    enabled: !!settlementId,
   });
-};
+}
 
-export const usePublicSettlementsQuery = (
-  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic' | 'userId'>
-): UseQueryResult<SettlementResponse> => {
-  return useQuery<SettlementResponse, Error, SettlementResponse, [string, typeof params]>({
+// -------------------------
+// Public settlements query
+// -------------------------
+export function usePublicSettlementsQuery(
+  params: Omit<Parameters<GetSettlementsFn>[0], 'isPublic' | 'userId'>
+): UseQueryResult<Awaited<ReturnType<GetPublicSettlementsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetPublicSettlementsFn>>, Error>({
     queryKey: ['publicSettlements', params],
-    queryFn: () => getPublicSettlements(params),
+    queryFn: async () => {
+      const { getPublicSettlements } = await import('@/lib/actions/settlement.actions');
+      return await getPublicSettlements(params);
+    },
     staleTime: 1000 * 60 * 5,
   });
-};
+}
 
-export const useOwnedSettlementsQuery = (
-  params: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>,
-  options?: {
-    isEnabled: boolean;
-  }
-): UseQueryResult<SettlementResponse> => {
-  return useQuery<SettlementResponse, Error>({
+// -------------------------
+// Owned settlements query
+// -------------------------
+export function useOwnedSettlementsQuery(
+  params: Omit<Parameters<GetSettlementsFn>[0], 'isPublic'>,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error>({
     queryKey: ['ownedSettlements', params],
-    queryFn: () => getOwnedSettlements(params),
+    queryFn: async () => {
+      const { getOwnedSettlements } = await import('@/lib/actions/settlement.actions');
+      return await getOwnedSettlements(params);
+    },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
   });
-};
+}

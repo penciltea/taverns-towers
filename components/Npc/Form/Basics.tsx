@@ -8,7 +8,6 @@ import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
-import { generateNpcName } from "@/lib/actions/npcGenerator.actions";
 import { Npc } from "@/interfaces/npc.interface";
 
 export default function NpcFormBasics(){
@@ -22,6 +21,7 @@ export default function NpcFormBasics(){
 
     const handleGenerateName = async () => {
         const race = watch("race"); // string | undefined
+        const { generateNpcName } = await import('@/lib/actions/npcGenerator.actions');
         const generatedName = await generateNpcName({ 
             race: race ? [race] : undefined
         });
