@@ -3,7 +3,6 @@
  * ToDo: Add Auth Layer permissions
  */
 
-import { createSite } from "@/lib/actions/site.actions";
 import { useSiteContentStore } from "@/store/siteStore";
 import { useUIStore } from "@/store/uiStore";
 import { usePaginatedSites } from "@/hooks/site/site.query";
@@ -20,6 +19,7 @@ export function useSiteManager(settlementId: string | null) {
    */
   async function addSite(newSite: SiteType) {
     try {
+      const { createSite } = await import('@/lib/actions/site.actions');
       const saved = await createSite(newSite, isWilderness ? "wilderness" : settlementId!);
       setItems([...allItems, saved]);
 

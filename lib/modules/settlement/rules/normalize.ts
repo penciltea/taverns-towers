@@ -1,7 +1,7 @@
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeEnvironmentInput } from "@/lib/modules/environment/environment.rules";
 import { EnvironmentInterface } from "@/interfaces/environment.interface";
-import { normalizeCommonInput } from "@/lib/util/normalizeData";
+import { normalizeCommonInput } from "@/lib/modules/npc/rules/normalize";
 
 // All required fields after normalization
 export type NormalizedSettlementInput = 

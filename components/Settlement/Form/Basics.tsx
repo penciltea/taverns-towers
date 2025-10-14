@@ -5,7 +5,6 @@ import { CLIMATE_TYPES, TERRAIN_TYPES, TAG_TYPES } from "@/constants/environment
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
-import { generateSettlementName } from "@/lib/actions/settlementGenerator.actions";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { THEME, TONE } from "@/constants/common.options";
 
@@ -26,6 +25,7 @@ export default function SettlementFormBasics(){
         const wealth = watch("wealth");
         const size = watch("size");
         const theme = watch("theme");
+        const { generateSettlementName } = await import('@/lib/actions/settlementGenerator.actions');
         const generatedName = await generateSettlementName({
             climate: climate,
             terrain: Array.isArray(terrain) ? terrain : [terrain],

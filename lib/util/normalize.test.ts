@@ -1,4 +1,4 @@
-import { normalizeSettlementData } from "./normalizeSettlementData";
+import { normalizeSettlementData } from "./normalize";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 
 describe("normalizeSettlementData", () => {

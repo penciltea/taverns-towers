@@ -5,10 +5,8 @@ import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { SiteFormData } from "@/schemas/site.schema";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
-import { createSite, updateSite } from "@/lib/actions/site.actions";
 import { SiteType } from "@/interfaces/site.interface";
 import { canCreateContent } from "@/lib/actions/user.actions";
 import { useAuthStore } from "@/store/authStore";
@@ -51,6 +49,7 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
  
             let saved;
             
+            const { createSite, updateSite } = await import('@/lib/actions/site.actions')
             if (mode === "add") {
                 saved = await createSite(siteData, settlementId);
             } else if (mode === "edit") {
@@ -66,6 +65,7 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
 
             if (data.connections?.length) {
                 for (const conn of data.connections) {
+                    const { addConnection } = await import('@/lib/actions/connections.actions');
                     await addConnection({
                         sourceType: "site",
                         sourceId: saved._id,

@@ -1,6 +1,6 @@
 import { NormalizedSettlementInput, normalizeSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { normalizeEnvironmentInput } from "@/lib/modules/environment/environment.rules";
-import { normalizeCommonInput } from "@/lib/util/normalizeData";
+import { normalizeCommonInput } from "@/lib/actions/normalizeConnections.server";
 import { Settlement } from "@/interfaces/settlement.interface";
 
 jest.mock("@/lib/modules/environment/environment.rules");

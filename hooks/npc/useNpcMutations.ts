@@ -2,15 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { NpcFormData } from "@/schemas/npc.schema";
-import { createNpc, updateNpc } from "@/lib/actions/npc.actions";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
-import { addConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
-import { canCreateContent } from "@/lib/actions/user.actions";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 
 interface UseNpcMutationsProps {
@@ -28,7 +25,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         setSubmitting(true);
         try {
             if (!user?.id) throw new Error("User is not logged in");
-                  
+            const { canCreateContent } = await import('@/lib/actions/user.actions');
             if (!(await canCreateContent(user.id, "npc"))) {
                 showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
                 return;
@@ -49,9 +46,11 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             let saved;
             
             if (mode === "add") {
+                const { createNpc } = await import('@/lib/actions/npc.actions');
                 saved = await createNpc(transformed);
             } else if (mode === "edit") {
             if (!npcId) throw new Error("NPC ID is required for edit mode");
+                const { updateNpc } = await import('@/lib/actions/npc.actions');
                 saved = await updateNpc(npcId, transformed);
             } else {
                 throw new Error("Invalid mutation mode");
@@ -63,6 +62,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
 
             if (data.connections?.length) {
                 for (const conn of data.connections) {
+                    const { addConnection } = await import('@/lib/actions/connections.actions');
                     await addConnection({
                         sourceType: "npc",
                         sourceId: saved._id,

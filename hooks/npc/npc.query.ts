@@ -1,44 +1,76 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { Npc } from '@/interfaces/npc.interface';
-import { NpcResponse } from '@/interfaces/npc.interface';
-import { getNpcs, getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
+'use client';
 
-export function useGetNpcById(id: string) {
-  return useQuery({
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import type { Npc } from '@/interfaces/npc.interface';
+import type { getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
+
+// -------------------------
+// Types for server functions
+// -------------------------
+type GetNpcByIdFn = typeof getNpcById;
+type GetOwnedNpcsFn = typeof getOwnedNpcs;
+type GetPublicNpcsFn = typeof getPublicNpcs;
+type ResolveConnectionNamesFn = typeof resolveConnectionNames;
+
+// -------------------------
+// Single NPC query
+// -------------------------
+export function useGetNpcById(id: Parameters<GetNpcByIdFn>[0] | null) {
+  return useQuery<Awaited<ReturnType<GetNpcByIdFn>>, Error>({
     queryKey: ['npc', id],
-    queryFn: () => getNpcById(id),
+    queryFn: async () => {
+      if (!id) throw new Error('No NPC ID provided');
+      const { getNpcById } = await import('@/lib/actions/npc.actions');
+      return await getNpcById(id);
+    },
     enabled: !!id,
   });
 }
 
-export const useOwnedNpcsQuery = (
-  params: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>,
-  options?: {
-    isEnabled: boolean;
-  }
-): UseQueryResult<NpcResponse> => {
-  return useQuery<NpcResponse, Error>({
+// -------------------------
+// Owned NPCs query
+// -------------------------
+export function useOwnedNpcsQuery(
+  params: Omit<Parameters<GetOwnedNpcsFn>[0], 'isPublic'>,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<Awaited<ReturnType<GetOwnedNpcsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetOwnedNpcsFn>>, Error>({
     queryKey: ['ownedNpcs', params],
-    queryFn: () => getOwnedNpcs(params),
+    queryFn: async () => {
+      const { getOwnedNpcs } = await import('@/lib/actions/npc.actions');
+      return await getOwnedNpcs(params);
+    },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
   });
-};
+}
 
-export const usePublicNpcsQuery = (
-  params: Omit<Parameters<typeof getNpcs>[0], 'isPublic' | 'userId'>
-): UseQueryResult<NpcResponse> => {
-  return useQuery<NpcResponse, Error, NpcResponse, [string, typeof params]>({
+// -------------------------
+// Public NPCs query
+// -------------------------
+export function usePublicNpcsQuery(
+  params: Omit<Parameters<GetPublicNpcsFn>[0], 'isPublic' | 'userId'>
+): UseQueryResult<Awaited<ReturnType<GetPublicNpcsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetPublicNpcsFn>>, Error>({
     queryKey: ['publicNpcs', params],
-    queryFn: () => getPublicNpcs(params),
+    queryFn: async () => {
+      const { getPublicNpcs } = await import('@/lib/actions/npc.actions');
+      return await getPublicNpcs(params);
+    },
     staleTime: 1000 * 60 * 5,
   });
-};
+}
 
+// -------------------------
+// Resolved connections query
+// -------------------------
 export function useResolvedConnections(connections: Npc['connections']) {
-  return useQuery({
+  return useQuery<Awaited<ReturnType<ResolveConnectionNamesFn>>, Error>({
     queryKey: ['resolvedConnections', connections],
-    queryFn: () => resolveConnectionNames(connections),
+    queryFn: async () => {
+      const { resolveConnectionNames } = await import('@/lib/actions/npc.actions');
+      return await resolveConnectionNames(connections);
+    },
     enabled: connections.length > 0,
   });
 }

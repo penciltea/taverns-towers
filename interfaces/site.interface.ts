@@ -4,7 +4,6 @@ import { DialogProps } from "./dialogProps.interface";
 import { SiteFormData } from '@/schemas/site.schema';
 import { SiteGovernmentFunctionType, SiteSecurityLevel } from '@/constants/site/government.options';
 import { SiteGuildMembershipType } from '@/constants/site/guild.options';
-import { GeneratorSiteFragmentPlain } from '@/lib/models/generator/site/siteNameFragment.model';
 import { CommonInterface } from './common.interface';
 import { NpcConnection } from './connection.interface';
 import { SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
@@ -150,13 +149,6 @@ export interface GenerateSiteNameOptions {
   functionType?: string[];
   domains?: string[];
   data?: Partial<SiteFormData>;
-}
-
-export interface SiteNameGenerator {
-  generateName(
-    fragments: GeneratorSiteFragmentPlain[],
-    options: GenerateSiteNameOptions
-  ): string;
 }
 
 // For site name generation fragments
