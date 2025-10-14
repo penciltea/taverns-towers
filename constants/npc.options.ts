@@ -1,6 +1,6 @@
 import { Flatten } from "./common.options";
 
-export const NPC_TABS = ["Basics", "NPC Connections"];
+export const NPC_TABS = ["Basics", "Personality", "NPC Connections"];
 
 export const NPC_AGE = [
   "Child",
@@ -129,18 +129,162 @@ export const NPC_TRAITS = [
       { label: "Scheming", value: "scheming" },
       { label: "Secretive", value: "secretive" },
     ]
+  }
+];
+
+export const NPC_REPUTATION = [
+  { label: "Beloved", value: "beloved" },
+  { label: "Feared", value: "feared" },
+  { label: "Infamous", value: "infamous" },
+  { label: "Mysterious", value: "mysterious" },
+  { label: "Notorious", value: "notorious" },
+  { label: "Respected", value: "respected" },
+  { label: "Trusted", value: "trusted" }
+];
+
+export const NPC_ARCHETYPE = [
+  {
+    label: "Magical",
+    options: [
+      { label: "Apprentice Wizard", value: "apprentice wizard" },
+      { label: "Elder Wizard", value: "elder wizard" },
+      { label: "Occult Caster", value: "occult caster" },
+      { label: "Priest / Cleric", value: "cleric" },
+      { label: "Druid / Shaman", value: "druid" }
+    ]
   },
   {
-    label: "Reputation",
+    label: "Martial",
     options: [
-      { label: "Feared", value: "feared" },
-      { label: "Infamous", value: "infamous" },
-      { label: "Mysterious", value: "mysterious" },
-      { label: "Notorious", value: "notorious" },
-      { label: "Respected", value: "respected" },
-      { label: "Trusted", value: "trusted" },
+      { label: "Veteran Soldier", value: "veteran soldier" },
+      { label: "Squire", value: "squire" },
+      { label: "Ruffian / Thug", value: "ruffian" },
+      { label: "Mercenary", value: "mercenary" }
+    ]
+  },
+  {
+    label: "Social / Political",
+    options: [
+      { label: "Aristocrat / Noble", value: "aristocrat" },
+      { label: "Courtier / Diplomat", value: "courtier" },
+      { label: "Official / Bureaucrat", value: "official" },
+      { label: "Revolutionary / Agitator", value: "revolutionary" }
+    ]
+  },
+  {
+    label: "Underworld / Intrigue",
+    options: [
+      { label: "Thief / Pickpocket", value: "thief" },
+      { label: "Spy / Informant", value: "spy" },
+      { label: "Assassin", value: "assassin" },
+      { label: "Crime Boss / Gang Leader", value: "crime boss" }
+    ]
+  },
+  {
+    label: "Miscellaneous",
+    options: [
+      { label: "Child / Youth", value: "child" },
+      { label: "Entertainer / Performer", value: "entertainer" },
+      { label: "Hermit / Outcast", value: "hermit" },
+      { label: "Researcher / Inventor", value: "inventor" },
+      { label: "Scholar / Sage", value: "scholar" },
+      { label: "Other", value: "other" }
     ]
   }
+];
+
+export const NPC_OCCUPATION = [
+  {
+    label: "Agricultural",
+    options: [
+      { label: "Animal Husbandry", value: "animal husbandry" },
+      { label: "Farmer", value: "farmer" },
+      { label: "Fisher", value: "fisher" },
+      { label: "Hunter / Trapper", value: "hunter" },
+      { label: "Lumberjack / Woodsman", value: "lumberjack" },
+      { label: "Miller", value: "miller" },
+    ]
+  },
+  {
+    label: "Crafts & Services",
+    options: [
+      { label: "Apprentice Artisan", value: "apprentice artisan" },
+      { label: "Artisan", value: "artisan" },
+      { label: "Auctioneer", value: "auctioneer" },
+      { label: "Banker", value: "banker" },
+      { label: "Healer / Herbalist", value: "healer" },
+      { label: "Innkeeper / Tavernkeeper", value: "innkeeper" },
+      { label: "Laborer", value: "laborer" },
+      { label: "Merchant", value: "merchant" },
+      { label: "Scribe / Clerk", value: "scribe" },
+      { label: "Shopkeeper", value: "shopkeeper" },
+      { label: "Teacher / Tutor", value: "teacher" },
+    ]
+  },
+  {
+    label: "Exploration & Travel", 
+    options: [
+      { label: "Boatman / Ferryman", value: "boatman" },
+      { label: "Caravaneer", value: "caravaneer" },
+      { label: "Cartographer / Explorer", value: "cartographer" },
+      { label: "Courier / Messenger", value: "courier" },
+      { label: "Sailor", value: "sailor" },
+    ]
+  },
+  {
+    label: "Magical & Religious",
+    options: [
+      { label: "Apprentice Wizard", value: "apprentice wizard" },
+      { label: "Druid / Shaman", value: "druid" },
+      { label: "Priest / Cleric", value: "priest" },
+      { label: "Wizard / Mage", value: "wizard" },
+    ]
+  },
+  {
+    label: "Martial",
+    options: [
+      { label: "Archer", value: "archer" },
+      { label: "Guard", value: "guard" },
+      { label: "Knight", value: "knight" },
+      { label: "Mercenary", value: "mercenary" },
+      { label: "Soldier", value: "soldier" },
+      { label: "Militia Member", value: "militia" },
+      { label: "Squire", value: "squire" },
+    ]
+  },
+  {
+    label: "Underworld / Criminal",
+    options: [
+      { label: "Assassin", value: "assassin" },
+      { label: "Fence / Black Market Dealer", value: "fence" },
+      { label: "Ruffian / Thug", value: "ruffian" },
+      { label: "Smuggler", value: "smuggler" },
+      { label: "Spy / Informant", value: "spy" },
+      { label: "Thief / Pickpocket", value: "thief" },
+    ]
+  }, 
+  {
+    label: "Miscellaneous",
+    options: [
+      { label: "Aristocrat / Noble", value: "aristocrat" },
+      { label: "Beggar / Drifter", value: "beggar" },
+      { label: "Entertainer", value: "entertainer" },
+      { label: "Servant / Retainer", value: "servant" },
+      { label: "Steward / Chamberlain", value: "steward" },
+      { label: "Student", value: "student" },
+      { label: "Other", value: "other" },
+    ]
+  }
+];
+
+export const NPC_PERSUASION = [
+  { label: "Appeal to Reason / Logic", value: "reason" },
+  { label: "Bribery", value: "bribery" },
+  { label: "Flattery", value: "flattery" },
+  { label: "Force / Threats", value: "threats" },
+  { label: "Goading", value: "goading" },
+  { label: "Emotional Manipulation", value: "manipulation" },
+  { label: "None (Stubborn)", value: "none" },
 ]
 
 export const NPC_CONNECTION_TYPE = [
@@ -266,4 +410,8 @@ export type NpcAlignment = typeof NPC_ALIGNMENT[number];
 export type NpcRace = typeof NPC_RACES[number]["value"];
 export type NpcStatus = typeof NPC_STATUS[number];
 export type NpcTrait = Flatten<typeof NPC_TRAITS>["value"];
+export type NpcReputation = typeof NPC_REPUTATION[number];
+export type NpcArchetype = typeof NPC_ARCHETYPE[number];
+export type NpcOccupation = Flatten<typeof NPC_OCCUPATION>["value"];
+export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];

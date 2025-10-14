@@ -1,4 +1,4 @@
-import { NpcAge, NpcAlignment, NpcPronounSet, NpcRace, NpcStatus, NpcTrait } from "@/constants/npc.options";
+import { NpcAge, NpcAlignment, NpcArchetype, NpcOccupation, NpcPersuasion, NpcPronounSet, NpcRace, NpcReputation, NpcStatus, NpcTrait } from "@/constants/npc.options";
 import { CommonInterface } from "./common.interface";
 import { DialogProps } from "@mui/material";
 import { NpcFormData } from "@/schemas/npc.schema";
@@ -11,6 +11,10 @@ export interface Npc extends CommonInterface {
   status?: NpcStatus;
   alignment?: NpcAlignment;
   traits?: NpcTrait[];
+  reputation?: NpcReputation;
+  archetype?: NpcArchetype;
+  occupation?: NpcOccupation[];
+  persuasion?: NpcPersuasion[];
   image?: string;
   description?: string;
   connections: NpcConnection[];

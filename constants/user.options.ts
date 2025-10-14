@@ -12,7 +12,7 @@ export const membershipBenefits = [
             "Create up to 5 Settlements",
             "Create up to 15 Sites total",
             "Create up to 5 NPCs",
-            "Explore generic medieval fantasy content"
+            "Explore medieval fantasy content"
         ]
     },
     // Temporary testing tier

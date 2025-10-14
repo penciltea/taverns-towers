@@ -18,6 +18,10 @@ export interface INpc extends Document {
   status?: string;
   race?: NpcRace;
   traits?: NpcTrait[];
+  reputation?: string;
+  archetype?: string;
+  occupation?: string[];
+  persuasion?: string[];
   description?: string;
   gmNotes?: string;
   publicNotes?: string;
