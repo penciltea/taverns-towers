@@ -1,7 +1,7 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
 import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS, NPC_ARCHETYPE } from "@/constants/npc.options";
-import { archetypeByAgeMapping, reputationByArchetypeMapping } from "../mappings/npc.mappings";
+import { archetypeByAgeMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
 
 // Logic for setting Age if set to "random" or missing
 export function applyAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
@@ -66,7 +66,7 @@ export function applyTraitsRule( data: ReturnType<typeof normalizeNpcInput> ): R
 
 
 export function applyArchetypeByAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
-    if(shouldReplace(data.archetype) && (data.age || data.age != "random")) {
+    if(shouldReplace(data.archetype) && (data.age || data.age !== "random")) {
         data.archetype = getRandom(archetypeByAgeMapping[data.age]);
     }
 
@@ -74,8 +74,18 @@ export function applyArchetypeByAgeRule(data: ReturnType<typeof normalizeNpcInpu
 }
 
 export function applyReputationByArchetypeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
-    if(shouldReplace(data.reputation) && (data.archetype || data.archetype != "random")) {
+    if(shouldReplace(data.reputation) && (data.archetype && data.archetype !== "random")) {
         data.reputation = getRandom(reputationByArchetypeMapping[data.archetype])
+    }
+    return data;
+}
+
+export function applyOccupationByConditionsRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput{
+    if(shouldReplace(data.occupation) && (data.age && data.age !== "random") && (data.archetype && data.archetype !== "random")){
+        const occupationResults = occupationByArchetypeMapping[data.archetype];
+        const [min, max] = occupationCountByArchetype[data.archetype ?? "other"];
+
+        data.occupation = getRandomSubset(occupationResults, { min, max });
     }
     return data;
 }

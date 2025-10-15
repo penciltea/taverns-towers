@@ -183,12 +183,19 @@ export const NPC_ARCHETYPE = [
     ]
   },
   {
-    label: "Miscellaneous",
+    label: "Crafts & Trades",
     options: [
-      { label: "Child / Youth", value: "child" },
+      { label: "Artisan", value: "artisan" },
       { label: "Entertainer / Performer", value: "entertainer" },
       { label: "Farmer / Peasant", value: "peasant" },
       { label: "Fisher / Seafarer", value: "fisher" },
+      { label: "Laborer", value: "laborer" }
+    ]
+  },
+  {
+    label: "Miscellaneous",
+    options: [
+      { label: "Child / Youth", value: "child" },
       { label: "Hermit / Outcast", value: "hermit" },
       { label: "Researcher / Inventor", value: "inventor" },
       { label: "Scholar / Sage", value: "scholar" },
@@ -217,6 +224,7 @@ export const NPC_OCCUPATION = [
       { label: "Artisan", value: "artisan" },
       { label: "Auctioneer", value: "auctioneer" },
       { label: "Banker", value: "banker" },
+      { label: "Guildmaster", value: "guildmaster" },
       { label: "Healer / Herbalist", value: "healer" },
       { label: "Innkeeper / Tavernkeeper", value: "innkeeper" },
       { label: "Laborer", value: "laborer" },
@@ -253,6 +261,7 @@ export const NPC_OCCUPATION = [
       { label: "Knight", value: "knight" },
       { label: "Mercenary", value: "mercenary" },
       { label: "Soldier", value: "soldier" },
+      { label: "Military Leader", value: "military leader" },
       { label: "Militia Member", value: "militia" },
       { label: "Squire", value: "squire" },
     ]
@@ -273,7 +282,9 @@ export const NPC_OCCUPATION = [
     options: [
       { label: "Aristocrat / Noble", value: "aristocrat" },
       { label: "Beggar / Drifter", value: "beggar" },
+      { label: "Councilor / Advisor", value: "advisor" },
       { label: "Entertainer", value: "entertainer" },
+      { label: "Government Official", value: "official" },
       { label: "Servant / Retainer", value: "servant" },
       { label: "Steward / Chamberlain", value: "steward" },
       { label: "Student", value: "student" },
@@ -283,12 +294,17 @@ export const NPC_OCCUPATION = [
 ];
 
 export const NPC_PERSUASION = [
+  { label: "Appeal to Authority / Tradition", value: "authority" },
+  { label: "Appeal to Emotion / Empathy", value: "empathy" },
   { label: "Appeal to Reason / Logic", value: "reason" },
   { label: "Bribery", value: "bribery" },
+  { label: "Charm / Seduction", value: "charm" },
+  { label: "Deception", value: "deception" },
+  { label: "Emotional Manipulation", value: "manipulation" },
   { label: "Flattery", value: "flattery" },
   { label: "Force / Threats", value: "threats" },
   { label: "Goading", value: "goading" },
-  { label: "Emotional Manipulation", value: "manipulation" },
+  { label: "Negotiation / Compromise", value: "negotiation" },
   { label: "None (Stubborn)", value: "none" },
 ]
 
