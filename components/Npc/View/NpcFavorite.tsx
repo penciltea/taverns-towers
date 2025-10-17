@@ -7,13 +7,15 @@ import { Npc } from "@/interfaces/npc.interface";
 import ToggleFieldButton from "@/components/Common/ToggleFieldButton";
 
 export default function NpcFavorite({ npc }: { npc: Npc }){
-    const { handleSubmit } = useNpcMutations({ mode: "edit", npcId: npc._id });
+    const { handlePartialUpdate } = useNpcMutations({ mode: "edit", npcId: npc._id });
 
     return (
         <ToggleFieldButton<Npc, "favorite">
             item={npc}
             field="favorite"
-            onToggle={handleSubmit}
+            onToggle={async (updated) => {
+                await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
+            }}
             TrueIcon={Favorite}
             FalseIcon={FavoriteBorder}
             iconProps={{ sx: { marginRight: 1 }, color: "secondary" }}

@@ -7,13 +7,15 @@ import { Settlement } from "@/interfaces/settlement.interface";
 import { useSaveSettlement } from "@/hooks/settlement/useSaveSettlement";
 
 export default function SettlementFavorite({ settlement }: { settlement: Settlement }){
-    const updateSettlement = useSaveSettlement("edit", settlement._id);
+    const { handlePartialUpdate } = useSaveSettlement("edit", settlement._id);
 
     return (
         <ToggleFieldButton<Settlement, "favorite">
             item={settlement}
             field="favorite"
-            onToggle={async (updated) => { await updateSettlement(updated); }}
+            onToggle={async (updated) => {
+                await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
+            }}
             TrueIcon={Favorite}
             FalseIcon={FavoriteBorder}
             iconProps={{ sx: { marginRight: 1 }, color: "secondary" }}

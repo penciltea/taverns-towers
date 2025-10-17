@@ -28,7 +28,7 @@ export function useSettlementFormSetup(
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const { clearSelectedItem, clearDraftItem, clearMode } = useSettlementContentStore();
   const queryClient = useQueryClient();
-  const saveSettlement = useSaveSettlement(mode, id ?? undefined);
+  const { saveSettlement } = useSaveSettlement(mode, id ?? undefined);
 
   /**
    * Generate missing or random values only, preserving existing form data.

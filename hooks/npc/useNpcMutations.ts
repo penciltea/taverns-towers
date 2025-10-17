@@ -9,11 +9,18 @@ import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
+import { Npc } from "@/interfaces/npc.interface";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
     npcId?: string; // Required in edit mode
 }
+
+interface PartialNpcUpdate {
+    _id: string;
+    [key: string]: unknown;
+}
+
 
 export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     const router = useRouter();
@@ -109,7 +116,50 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         }
     }
 
+    /**
+     * Lightweight partial update — e.g. toggling "favorite"
+     */
+    async function handlePartialUpdate<T extends PartialNpcUpdate>(update: T) {
+        if (!user?.id) throw new Error("User is not logged in");
+
+        const { updateNpcPartial } = await import("@/lib/actions/npc.actions");
+        const idempotencyKey = generateIdempotencyKey();
+        const payload = { ...update, idempotencyKey };
+
+        queryClient.setQueriesData({ queryKey: ["ownedNpcs"] }, (old: any) => {
+            if (!old?.npcs) return old;
+            return {
+                ...old,
+                npcs: old.npcs.map((n: Npc) =>
+                    n._id === update._id ? { ...n, ...update } : n
+                ),
+            };
+        });
+
+        try {
+            const updatedNpc = await updateNpcPartial(update._id, payload);
+
+            queryClient.setQueriesData({ queryKey: ["ownedNpcs"] }, (old: any) => {
+                if (!old?.npcs) return old;
+                return {
+                    ...old,
+                    npcs: old.npcs.map((n: Npc) =>
+                        n._id === updatedNpc._id ? updatedNpc : n
+                    ),
+                };
+            });
+
+            showSnackbar("NPC updated successfully!", "success");
+        } catch (error) {
+            queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
+            console.error("Failed to update NPC:", error);
+            showErrorDialog("Failed to update NPC. Please try again.");
+            throw error;
+        }
+    }
+
     return {
-        handleSubmit
+        handleSubmit,
+        handlePartialUpdate
     };
 }

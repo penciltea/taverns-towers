@@ -8,6 +8,8 @@ import { requireUser } from "../auth/authHelpers";
 import { SiteType } from "@/interfaces/site.interface";
 import { serializeSite } from "../util/serializers";
 
+type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
+
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
   const user = await requireUser();
@@ -211,6 +213,37 @@ export async function updateSite(data: SiteUpdateData, id: string) {
   }
 
   return serializeSite(updated);
+}
+
+export async function updateSitePartial(id: string, data: PartialSiteUpdate) {
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid site ID");
+
+  const user = await requireUser();
+  const existing = await Site.findById(id);
+
+  if (!existing) throw new Error("Site not found");
+  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  const model = Site.discriminators?.[existing.type] || Site;
+
+  // Remove _id if it somehow got included in the data
+  const { _id, ...updateData } = data;
+
+  const updatedSite = await model.findByIdAndUpdate(
+    id,
+    { ...updateData },
+    { new: true }
+  );
+
+  if (!updatedSite) throw new Error("Failed to update site");
+
+  // Revalidate the settlement page if needed
+  if (updatedSite.settlementId) {
+    revalidatePath(`/settlement/${updatedSite.settlementId}`);
+  }
+
+  return serializeSite(updatedSite);
 }
 
 

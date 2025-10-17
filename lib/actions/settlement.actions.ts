@@ -161,6 +161,31 @@ export async function updateSettlement(id: string, data: Partial<Settlement>) {
   return serializeSettlement(updatedSettlement);
 }
 
+export async function updateSettlementPartial(
+  id: string,
+  update: Partial<Settlement>
+): Promise<Settlement> {
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+
+  const user = await requireUser();
+  const existing = await SettlementModel.findById(id);
+  if (!existing) throw new Error("Settlement not found");
+  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  // Only normalize connections if provided
+  const updatedData = {
+    ...update,
+    connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
+  };
+
+  const updatedSettlement = await SettlementModel.findByIdAndUpdate(id, updatedData, { new: true });
+  if (!updatedSettlement) throw new Error("Settlement not found");
+
+  revalidatePath("/settlements");
+  return serializeSettlement(updatedSettlement);
+}
+
 
 
 export async function deleteSettlement(id: string) {

@@ -19,7 +19,7 @@ export default function ViewSite({ site }: ViewSiteProps) {
     <EntityViewLayout
       title={ site.name }
       actions={ <SiteActions site={typedSite} /> }
-      leftContent={ <SiteDetails site={site} /> }
+      leftContent={ <SiteDetails site={typedSite} /> }
       rightContent={
           <EntityViewImage
             title="Map"

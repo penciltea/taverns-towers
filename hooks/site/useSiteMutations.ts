@@ -125,46 +125,75 @@ export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutation
     /**
      * Lightweight partial update — e.g. toggling "favorite"
      */
-    async function handlePartialUpdate<T extends PartialSiteUpdate>(
-        update: T
-    ): Promise<void> {
+    async function handlePartialUpdate<T extends PartialSiteUpdate>(update: T): Promise<void> {
         if (!user?.id) throw new Error("User is not logged in");
 
-        const { updateSite } = await import("@/lib/actions/site.actions");
+        const { updateSitePartial } = await import("@/lib/actions/site.actions");
         const idempotencyKey = generateIdempotencyKey();
         const payload = { ...update, idempotencyKey };
 
-        // Update the query cache immediately so UI re-renders
-        queryClient.setQueryData(['ownedSites'], (old: any) => {
-            if (!old?.sites) return old;
-            return {
-            ...old,
-            sites: old.sites.map((s: SiteType) =>
-                s._id === update._id ? { ...s, ...update } : s
-            ),
-            };
+        // Get all queries in the cache
+        const allQueries = queryClient.getQueryCache().getAll();
+
+        // Optimistically update ownedSites lists and individual site queries
+        allQueries.forEach((query) => {
+            const key = query.queryKey;
+            if (!Array.isArray(key)) return;
+
+            // Owned sites lists (any params)
+            if (key[0] === "ownedSites") {
+                queryClient.setQueryData(key, (old: any) => {
+                    if (!old?.sites) return old;
+                    return {
+                        ...old,
+                        sites: old.sites.map((s: SiteType) =>
+                            s._id === update._id ? { ...s, ...update } : s
+                        ),
+                    };
+                });
+            }
+
+            // Individual site queries
+            if (key[0] === "site" && key[1] === update._id) {
+                queryClient.setQueryData(key, (old: SiteType | undefined) => {
+                    if (!old) return old;
+                    return { ...old, ...update };
+                });
+            }
         });
 
         try {
-            // Call server
-            const updatedSite = await updateSite(payload, update._id);
+            // Call server to persist changes
+            const updatedSite = await updateSitePartial(update._id, payload);
 
-            // Make sure cache matches server response
-            queryClient.setQueryData(['ownedSites'], (old: any) => {
-            if (!old?.sites) return old;
-            return {
-                ...old,
-                sites: old.sites.map((s: SiteType) =>
-                s._id === updatedSite._id ? updatedSite : s
-                ),
-            };
+            // Ensure caches match server response
+            allQueries.forEach((query) => {
+                const key = query.queryKey;
+                if (!Array.isArray(key)) return;
+
+                if (key[0] === "ownedSites") {
+                    queryClient.setQueryData(key, (old: any) => {
+                        if (!old?.sites) return old;
+                        return {
+                            ...old,
+                            sites: old.sites.map((s: SiteType) =>
+                                s._id === updatedSite._id ? updatedSite : s
+                            ),
+                        };
+                    });
+                }
+
+                if (key[0] === "site" && key[1] === updatedSite._id) {
+                    queryClient.setQueryData(key, updatedSite);
+                }
             });
 
             showSnackbar("Site updated successfully!", "success");
         } catch (error) {
-            // Rollback if server fails
-            queryClient.invalidateQueries(['ownedSites']);
             console.error("Failed to update site:", error);
+
+            // Rollback by invalidating queries
+            queryClient.invalidateQueries({ queryKey: ["ownedSites"], exact: false });
             throw error;
         }
     }

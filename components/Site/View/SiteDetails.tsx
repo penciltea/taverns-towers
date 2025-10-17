@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Typography, Button, Chip, Stack } from "@mui/material";
 import { useUIStore } from "@/store/uiStore";
 import InfoListItem from "@/components/Common/InfoListItem";
@@ -11,7 +13,7 @@ import { getEntertainmentSiteDetails } from "@/lib/util/Fields/EntertainmentFiel
 import { getHiddenSiteDetails } from "@/lib/util/Fields/HiddenFields";
 import { getResidenceSiteDetails } from "@/lib/util/Fields/ResidenceFields";
 import { getMiscellaneousSiteDetails } from "@/lib/util/Fields/MiscellaneousFields";
-import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
+import { siteTypeHasMenuType } from "@/lib/util/siteHelpers";
 
 const getSiteDetailsMap = {
   tavern: getTavernSiteDetails,
@@ -74,7 +76,7 @@ export default function SiteDetails<T extends keyof SiteTypeMap>({ site }: SiteD
             }
           })}
         </Box>
-        {siteTypeHasMenu(site.type) && 
+        {siteTypeHasMenuType(site.type) && 
           (
             <Button variant="outlined" color="secondary" onClick={() => setOpenDialog('siteMenuDialog', { site: site })}>View Menu</Button>
           ) 

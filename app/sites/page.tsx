@@ -94,12 +94,7 @@ export default function AllSitesPage() {
               image={site.image}
               subtitle={handleSiteLabel(site)}
               tone={site.tone}
-              onClick={() => {
-                useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
-                  siteData: site,
-                  onDelete: () => handleDeleteSite(site._id),
-                });
-              }}
+              link={`/sites/${site._id}`}
             />
           )}
           filterComponent={
