@@ -2,7 +2,6 @@
 
 import { useSession } from "next-auth/react";
 import { UIState } from "@/interfaces/ui.interface";
-import { updateUserTheme } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
 
 export default function useThemeActions(){
@@ -15,6 +14,7 @@ export default function useThemeActions(){
     setTheme(theme);
 
     if (user) {
+      const { updateUserTheme } = await import("@/lib/actions/user.actions");
       await updateUserTheme(user.id, theme);
     }
   };

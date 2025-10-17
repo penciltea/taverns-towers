@@ -36,6 +36,7 @@ export const baseSiteSchema = z.object({
   gmNotes: z.string().optional(),
   tone: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema),
+  favorite: z.boolean().optional(),
   isPublic: z.boolean().optional(),
   userId: z.string().optional(),
   editors: z.array(z.string()).optional(),

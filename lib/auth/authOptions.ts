@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import PatreonProvider from "next-auth/providers/patreon";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db/mongoClient";
-import { loginUser } from "@/lib/actions/user.actions";
 import { userTier } from "@/constants/user.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
 import { PatreonIdentityResponse, PatreonMember, PatreonTier } from "@/interfaces/patreon.interface";
@@ -25,6 +24,7 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         if (!credentials?.credential || !credentials?.password) return null;
 
+        const { loginUser } = await import("@/lib/actions/user.actions");
         const result = await loginUser({
           credential: credentials.credential,
           password: credentials.password,

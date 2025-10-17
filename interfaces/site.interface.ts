@@ -8,7 +8,10 @@ import { CommonInterface } from './common.interface';
 import { NpcConnection } from './connection.interface';
 import { SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
 
- 
+export interface SiteMenuDialogProps extends DialogProps{
+  site: SiteType
+}
+
 export interface SiteDialogProps extends DialogProps {
   settlementId: string;
   siteData: SiteType;
@@ -25,7 +28,8 @@ export interface SiteQueryParams {
   settlementId: string;
   type: string[];
   search: string;
-  tone: string[]
+  tone: string[],
+  favorite: boolean;
 }
 
 export const DefaultSiteQueryParams: SiteQueryParams = {
@@ -34,7 +38,8 @@ export const DefaultSiteQueryParams: SiteQueryParams = {
   settlementId: '',
   type: [],
   search: '',
-  tone: []
+  tone: [],
+  favorite: false
 }
 
 export interface SiteResponse {
@@ -194,3 +199,16 @@ export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | Governme
 
 export type SiteSize = (typeof SITE_SIZE)[number]['value'];
 export type SiteCondition = (typeof SITE_CONDITION)[number]['value'];
+
+ // Map each site type to its specific interface
+export type SiteTypeMap = {
+  tavern: TavernSite;
+  temple: TempleSite;
+  shop: ShopSite;
+  guild: GuildSite;
+  government: GovernmentSite;
+  entertainment: EntertainmentSite;
+  hidden: HiddenSite;
+  residence: ResidenceSite;
+  miscellaneous: MiscellaneousSite;
+};

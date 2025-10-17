@@ -16,6 +16,7 @@ import {
   applyAlignmentRule,
   applyArchetypeByAgeRule,
   applyOccupationByConditionsRule,
+  applyPersuasionByConditionsRule,
   applyPronounsRule,
   applyRaceRule,
   applyReputationByArchetypeRule,
@@ -33,7 +34,8 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyTraitsRule(data),
   async (data) => applyArchetypeByAgeRule(data),
   async (data) => applyReputationByArchetypeRule(data),
-  async (data) => applyOccupationByConditionsRule(data)
+  async (data) => applyOccupationByConditionsRule(data),
+  async (data) => applyPersuasionByConditionsRule(data),
 ];
 
 /**

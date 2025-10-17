@@ -1,7 +1,8 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
-import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS, NPC_ARCHETYPE } from "@/constants/npc.options";
+import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
 import { archetypeByAgeMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
+import { persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
 
 // Logic for setting Age if set to "random" or missing
 export function applyAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
@@ -87,5 +88,34 @@ export function applyOccupationByConditionsRule(data: ReturnType<typeof normaliz
 
         data.occupation = getRandomSubset(occupationResults, { min, max });
     }
+    return data;
+}
+
+export function applyPersuasionByConditionsRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput{
+    if(
+        shouldReplace(data.persuasion) && 
+        (data.archetype && data.archetype !== "random") && 
+        (data.traits.length > 0 && !data.traits.includes("random")) &&
+        (data.alignment && data.alignment !== "random") 
+    ){
+        const persuasionByArchetype = persuasionByArchetypeMapping[data.archetype] || [];
+        const persuasionByAlignment = persuasionByAlignmentMapping[data.alignment] || [];
+        const persuationByTraits = data.traits.flatMap(t => persuasionByTraitsMapping[t] || []);
+
+        const combined = Array.from(new Set([
+            ...persuasionByArchetype,
+            ...persuasionByAlignment,
+            ...persuationByTraits
+        ]));
+
+        const results = getRandomSubset(combined, {min: 1, max: 3});
+
+        if(results.includes("none")){
+            data.persuasion = ["none"]; // if "none" is selected, prevent other choices from being selected
+        } else {
+            data.persuasion = results;
+        }
+    }
+
     return data;
 }

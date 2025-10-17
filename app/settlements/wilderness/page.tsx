@@ -12,7 +12,6 @@ import FilterBar from '@/components/Grid/FilterBar';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
-import { deleteSite } from '@/lib/actions/site.actions';
 
 export default function WildernessPage() {
     const settlementId = 'wilderness';
@@ -35,6 +34,7 @@ export default function WildernessPage() {
 
     async function handleDeleteSite(id: string) {
         try {
+        const { deleteSite } = await import("@/lib/actions/site.actions");
           await deleteSite(id);
     
           queryClient.invalidateQueries({ queryKey: ["sites"] });

@@ -15,10 +15,16 @@ export interface Npc extends CommonInterface {
   archetype?: string;
   occupation?: string[];
   persuasion?: string[];
+  likes?: string;
+  dislikes?: string;
   image?: string;
   description?: string;
   connections: NpcConnection[];
   idempotencyKey?: string;
+}
+
+export interface NpcProps {
+  npc: Npc;
 }
 
 
@@ -38,7 +44,8 @@ export const DefaultNpcQueryParams: NpcQueryParams = {
   race: '',
   pronouns: '',
   status: '',
-  alignment: ''
+  alignment: '',
+  favorite: false
 }
 
 export interface NpcQueryParams {
@@ -50,6 +57,7 @@ export interface NpcQueryParams {
   pronouns: string;
   status: string;
   alignment: string;
+  favorite: boolean;
 }
 
 export interface NpcDialogProps extends DialogProps {

@@ -19,6 +19,7 @@ export const baseSettlementInput: NormalizedSettlementInput = {
   connections: [],
   userId: "user1",
   editors: [],
+  favorite: false,
   isPublic: true,
 };
 

@@ -11,7 +11,6 @@ import { SiteQueryParams } from '@/interfaces/site.interface';
 import GridItem from '@/components/Grid/GridItem';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import FilterBar from '@/components/Grid/FilterBar';
-import { deleteSite } from '@/lib/actions/site.actions';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
@@ -46,6 +45,7 @@ export default function AllSitesPage() {
   // Safe delete handler
   async function handleDeleteSite(id: string) {
     try {
+      const { deleteSite } = await import("@/lib/actions/site.actions");
       await deleteSite(id);
 
       queryClient.invalidateQueries({
@@ -55,7 +55,8 @@ export default function AllSitesPage() {
           filters.limit,
           filters.search,
           filters.type,
-          filters.tone
+          filters.tone,
+          filters.favorite
         ),
       });
 

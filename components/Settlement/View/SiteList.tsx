@@ -13,7 +13,6 @@ import GridItem from "@/components/Grid/GridItem";
 import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
 import { queryClient } from "@/components/Layout/QueryProviderWrapper";
-import { deleteSite } from "@/lib/actions/site.actions";
 import { handleSiteLabel } from "@/lib/util/siteHelpers";
 
 export default function SiteList({ settlementId }: SiteListProps) {
@@ -31,11 +30,13 @@ export default function SiteList({ settlementId }: SiteListProps) {
     filters.limit,
     filters.search,
     filters.type,
-    filters.tone
+    filters.tone,
+    filters.favorite
   );
 
   async function handleDeleteSite(id: string) {
     try {
+      const { deleteSite } = await import("@/lib/actions/site.actions");
       await deleteSite(id);
 
       queryClient.invalidateQueries({ queryKey: ["sites"] });

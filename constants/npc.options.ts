@@ -10,7 +10,7 @@ export const NPC_AGE = [
   "Middle-aged",
   "Elderly",
   "Ageless",
-]
+];
 
 export const NPC_PRONOUNS = [
   "He/Him",
@@ -22,7 +22,7 @@ export const NPC_PRONOUNS = [
   "Xe/Xem",
   "Ze/Hir",
   "Other",
-]
+];
 
 export const NPC_ALIGNMENT = [
   "Lawful Good",
@@ -35,14 +35,14 @@ export const NPC_ALIGNMENT = [
   "Neutral Evil",
   "Chaotic Evil",
   "Unaligned"
-]
+];
 
 export const NPC_STATUS = [
   "Alive",
   "Dead",
   "Missing",
   "Unknown",
-]
+];
 
 export const NPC_RACES = [
   { label: "Aasimar", value: "aasimar" },
@@ -306,7 +306,7 @@ export const NPC_PERSUASION = [
   { label: "Goading", value: "goading" },
   { label: "Negotiation / Compromise", value: "negotiation" },
   { label: "None (Stubborn)", value: "none" },
-]
+];
 
 export const NPC_CONNECTION_TYPE = [
     "settlement",

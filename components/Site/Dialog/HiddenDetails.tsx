@@ -2,32 +2,20 @@
 
 import { useSession } from 'next-auth/react';
 import { HiddenSite } from '@/interfaces/site.interface';
-import { Box } from '@mui/material';
-import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
-import InfoListItem from '@/components/Common/InfoListItem';
-import { SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
-import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from '@/constants/site/hidden.options';
 import { ConnectionsList } from './ConnectionsList';
+import { getHiddenSiteDescriptions, getHiddenSiteDetails } from '@/lib/util/Fields/HiddenFields';
+import SiteDetailsDescription from './DetailsDescriptions';
 
 export const HiddenDetails = ({ site }: { site: HiddenSite }) => {
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
+  const details = getHiddenSiteDetails(site);
+  const descriptions = getHiddenSiteDescriptions(site).filter(f => !f.restricted || user?.id === site.userId);
 
   
   return (
     <>
-      <Box component="dl" sx={{ mt: 1, px: 3 }}>
-        <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
-        <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />
-        <InfoListItem label="Security" value={site.secrecy?.length ? site.secrecy.map((value) => getLabelFromValue(SECRECY_LEVELS, value)).join(", ") : "N/A"} />
-        <InfoListItem label="Known To" value={site.knownTo?.length ? site.knownTo.map((value) => getLabelFromValue(KNOWN_TO, value)).join(", ") : "N/A"} />
-        <InfoListItem label="Defense(s)" value={site.defenses?.length ? site.defenses.map((value) => getLabelFromValue(DEFENSE, value)).join(", ") : "N/A"} />
-        <InfoListItem label="Purpose" value={site.purpose?.length ? site.purpose.map((value) => getLabelFromValue(PURPOSE, value)).join(", ") : "N/A"} />
-        <InfoListItem label="Public Notes" value={site.publicNotes} />
-        { user?.id === site.userId &&  (
-          <InfoListItem label="GM Notes" value={site.gmNotes} />
-        ) }   
-      </Box>
+      <SiteDetailsDescription details={details} descriptions={descriptions} />
       
       <ConnectionsList connections={site.connections} variant="h6" pageSiteType="hidden" />
     </>

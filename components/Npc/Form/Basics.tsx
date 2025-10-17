@@ -1,13 +1,13 @@
 'use client';
 
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { NPC_AGE, NPC_ALIGNMENT, NPC_PRONOUNS, NPC_RACES, NPC_STATUS, NPC_TRAITS } from "@/constants/npc.options";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_ARCHETYPE, NPC_OCCUPATION, NPC_PRONOUNS, NPC_RACES, NPC_STATUS } from "@/constants/npc.options";
 import { Npc } from "@/interfaces/npc.interface";
 
 export default function NpcFormBasics(){
@@ -33,7 +33,7 @@ export default function NpcFormBasics(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box>         
+            <Box sx={{ flexGrow: 1}}>         
                 <FormFieldWithGenerate
                     name="name"
                     label="NPC Name"
@@ -76,16 +76,25 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_ALIGNMENT)]}
                     fieldError={errors.alignment}
-                    tooltip="This field is purely descriptive."
+                    tooltip="This field influences the persuaded by field."
                 />
 
-                <FormChipSelect
-                    name="traits"
-                    label="Traits"
+                <FormSelect
+                    name="archetype"
+                    label="Archetype"
                     control={control}
-                    options={[{ label: "Random", value: "random" }, ...NPC_TRAITS]}
-                    fieldError={errors.traits}
-                    tooltip="This field is purely descriptive."
+                    options={[{ label: "Random", value: "random" }, ...NPC_ARCHETYPE]}
+                    fieldError={errors.archetype as FieldError | undefined}
+                    tooltip="This field influences the following fields: reputation, persuaded by, occupation."
+                />
+                
+                <FormChipSelect
+                    name="occupation"
+                    label="Occupation"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...NPC_OCCUPATION]}
+                    fieldError={errors.occupation}
+                    tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 
                 <FormSelect

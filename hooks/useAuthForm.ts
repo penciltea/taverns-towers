@@ -1,6 +1,5 @@
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
-import { registerUser } from "@/lib/actions/user.actions";
 import { useUIStore } from "@/store/uiStore";
 import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
 import { signIn } from "next-auth/react";
@@ -43,6 +42,7 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
       let finalRedirect = redirectTo;
 
       if (type === "register") {
+        const { registerUser } = await import("@/lib/actions/user.actions");
         const result = await registerUser(data as RegisterPayload);
         finalRedirect ??= "/auth/login";
 

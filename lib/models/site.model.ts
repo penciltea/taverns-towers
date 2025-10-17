@@ -56,6 +56,7 @@ const BaseSiteSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    favorite: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{type: String, required: false}], //editors: [{ type: Schema.Types.ObjectId, ref: 'User' }]
     idempotencyKey: { type: String, unique: true, sparse: true },

@@ -8,34 +8,43 @@ import TypeChangeDialog from "@/components/Common/Dialog/typeChangeDialog";
 import LoginDialog from "@/components/Auth/LoginDialog";
 import DeleteConnectionDialog from "@/components/Common/EntityLink/DeleteConnectionDialog";
 import RegisterDialog from "@/components/Auth/RegisterDialog";
+import SiteMenuDialog from "../Site/Dialog/MenuDialog";
 
 export default function DialogContainer() {
   const { openDialog, dialogProps, closeDialog } = useUIStore();
 
   switch (openDialog) {
     case 'SiteDetailsDialog':
-        if (!dialogProps?.siteData) return null;
-          return (
-            <SiteDetailsDialog
-              open
-              onClose={closeDialog}
-              siteData={dialogProps.siteData}
-              settlementId={dialogProps.siteData.settlementId}
-              onDelete={() =>
-                dialogProps.siteData &&
-                dialogProps.onDelete?.() // fallback if passed via props
-              }
-            />
-        );
+      if (!dialogProps?.siteData) return null;
+      return (
+        <SiteDetailsDialog
+          open
+          onClose={closeDialog}
+          siteData={dialogProps.siteData}
+          settlementId={dialogProps.siteData.settlementId}
+          onDelete={() =>
+            dialogProps.siteData &&
+            dialogProps.onDelete?.() // fallback if passed via props
+          }
+        />
+      );
     case 'siteTypeDialog' :
-        return (
-            <SiteTypeDialog
-                open={openDialog === 'siteTypeDialog'}
-                onClose={closeDialog}
-                dialogMode={dialogProps.dialogMode}
-                defaultSettlementId={dialogProps.settlementId}
-            />
-        )
+      return (
+          <SiteTypeDialog
+              open={openDialog === 'siteTypeDialog'}
+              onClose={closeDialog}
+              dialogMode={dialogProps.dialogMode}
+              defaultSettlementId={dialogProps.settlementId}
+          />
+      )
+    case 'siteMenuDialog' :
+      return (
+        <SiteMenuDialog
+          open={openDialog === 'siteMenuDialog'}
+          onClose={closeDialog}
+          site={dialogProps.site}
+        />
+      )
     case 'SettlementDetailsDialog' :
       return (
         <SettlementDetailsDialog 

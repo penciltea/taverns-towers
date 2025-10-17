@@ -30,11 +30,14 @@ export interface INpc extends Document {
   archetype?: string;
   occupation?: string[];
   persuasion?: string[];
+  likes?: string;
+  dislikes: string;
   description?: string;
   gmNotes?: string;
   publicNotes?: string;
   connections: NpcConnection[];
   image?: string;
+  favorite?: boolean;
   isPublic?: boolean;
   editors?: mongoose.Types.ObjectId[];
   createdAt?: Date;
@@ -56,11 +59,14 @@ const npcSchema = new Schema<INpc>(
     archetype: { type: String, enum: npcArchetypeValues },
     occupation: [{ type: String, enum: npcOccupationValues }],
     persuasion: [{ type: String, enum: persuasionValues }],
+    likes: String,
+    dislikes: String,
     description: { type: String },
     gmNotes: { type: String },
     publicNotes: { type: String },
     connections: [connectionSchema],
     image: { type: String },
+    favorite: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{ type: Schema.Types.ObjectId, ref: "User" }],
     idempotencyKey: { type: String, unique: true, sparse: true },

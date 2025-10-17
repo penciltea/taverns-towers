@@ -66,7 +66,7 @@ export function applyTavernClienteleByConditions(
     ...siteConditionClientele,
   ];
 
-  console.log("combined: ", combined);
+  //console.log("combined: ", combined);
 
   const unique = normalizeClientele(combined);
 

@@ -3,15 +3,14 @@
 import { FieldError, useFormContext } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { FormSelect, FormChipSelect } from "@/components/Form";
-import FormImageUpload from "@/components/Form/FormImageUpload";
-import { NPC_PERSUASION, NPC_REPUTATION, NPC_ARCHETYPE, NPC_OCCUPATION } from "@/constants/npc.options";
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
+import { NPC_PERSUASION, NPC_REPUTATION, NPC_TRAITS } from "@/constants/npc.options";
 import { Npc } from "@/interfaces/npc.interface";
 
 export default function NpcFormPersonality(){
     const {
-        register,
         control,
+        register,
         formState: { errors },
     } = useFormContext<Npc>();
 
@@ -20,7 +19,16 @@ export default function NpcFormPersonality(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box>         
+            <Box sx={{ flexGrow: 1 }}>                
+                <FormChipSelect
+                    name="traits"
+                    label="Traits"
+                    control={control}
+                    options={[{ label: "Random", value: "random" }, ...NPC_TRAITS]}
+                    fieldError={errors.traits}
+                    tooltip="This field influences the persuaded by field."
+                />
+
                 <FormSelect
                     name="reputation"
                     label="Reputation"
@@ -29,37 +37,30 @@ export default function NpcFormPersonality(){
                     fieldError={errors.reputation as FieldError | undefined}
                     tooltip="This field is purely descriptive." // ToDo: Verify
                 />
-                
-                <FormSelect
-                    name="archetype"
-                    label="Archetype"
-                    control={control}
-                    options={[{ label: "Random", value: "random" }, ...NPC_ARCHETYPE]}
-                    fieldError={errors.archetype as FieldError | undefined}
-                    tooltip="This field influences the following fields: reputation, occupation."
-                />
-                
-                <FormChipSelect
-                    name="occupation"
-                    label="Occupation"
-                    control={control}
-                    options={[{ label: "Random", value: "random" }, ...NPC_OCCUPATION]}
-                    fieldError={errors.occupation}
-                    tooltip="This field is purely descriptive." // ToDo: Verify
-                />
+                                
 
                 <FormChipSelect
                     name="persuasion"
-                    label="Persuasion Tactics"
+                    label="Persuased by"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_PERSUASION]}
                     fieldError={errors.alignment}
                     tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 
-            </Box>
-            <Box sx={{paddingTop: 4}}>
-                <FormImageUpload name="image" label="Upload NPC Image" />
+                <FormTextField
+                    label="Likes"
+                    registration={register("likes")}
+                    fieldError={errors.likes}
+                    tooltip="This field is purely descriptive."
+                />
+
+                <FormTextField
+                    label="Dislikes"
+                    registration={register("dislikes")}
+                    fieldError={errors.dislikes}
+                    tooltip="This field is purely descriptive."
+                />
             </Box>
         </Stack>
     );

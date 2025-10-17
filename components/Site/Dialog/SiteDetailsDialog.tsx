@@ -9,10 +9,11 @@ import { useRouter } from 'next/navigation';
 import { useUIStore } from "@/store/uiStore";
 import { deleteSite } from '@/lib/actions/site.actions';
 import DeleteButton from '@/components/Common/DeleteButton';
-import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteDialogProps, TavernSite, TempleSite } from '@/interfaces/site.interface';
+import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteDialogProps, SiteTypeMap, TavernSite, TempleSite } from '@/interfaces/site.interface';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { useSession } from 'next-auth/react';
 import { canDelete, canEdit } from '@/lib/auth/authPermissions';
+import SiteFavorite from './SiteFavorite';
 
 export const TavernDetails = dynamic<{ site: TavernSite }>(
   () => import('./TavernDetails').then(mod => mod.TavernDetails),
@@ -64,18 +65,7 @@ const getSiteLabel = (type: string) => {
   return category ? category.label : type;
 };
 
-// Map each site type to its specific interface
-type SiteTypeMap = {
-  tavern: TavernSite;
-  temple: TempleSite;
-  shop: ShopSite;
-  guild: GuildSite;
-  government: GovernmentSite;
-  entertainment: EntertainmentSite;
-  hidden: HiddenSite;
-  residence: ResidenceSite;
-  miscellaneous: MiscellaneousSite;
-};
+
 
 const SiteTypeComponents = {
   tavern: TavernDetails,
@@ -143,11 +133,16 @@ export default function SiteDetailsDialog({ open, onClose, onDelete, settlementI
         </Stack>
 
         <DialogActions>
-          {editable && (
-            <Button variant="contained" sx={{ mx: 1, color: "#1d2a3b" }} startIcon={<EditIcon />} onClick={handleEdit}>
-              Edit
-            </Button>
-          )}
+          {editable && 
+            (
+              <>
+                <SiteFavorite settlementId={settlementId} site={siteData} />
+                <Button variant="contained" sx={{ mx: 1, color: "#1d2a3b" }} startIcon={<EditIcon />} onClick={handleEdit}>
+                  Edit
+                </Button>
+              </>
+            )
+          }
           {deletable && (
             <DeleteButton
               id={siteData._id!}

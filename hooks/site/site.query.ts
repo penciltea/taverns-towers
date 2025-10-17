@@ -20,8 +20,9 @@ export const siteListKey = (
   limit: number,
   name: string,  
   types: string[],
-  tone: string[]
-) => ['sites', settlementId, page, limit, name, types, tone];
+  tone: string[],
+  favorite: boolean
+) => ['sites', settlementId, page, limit, name, types, tone, favorite];
 
 // -------------------------
 // Single site query
@@ -47,13 +48,14 @@ export function usePaginatedSites(
   limit: number,
   name: string,
   types: string[],
-  tone: string[]
+  tone: string[],
+  favorite: boolean
 ): UseQueryResult<Awaited<ReturnType<GetSitesPaginatedFn>>, Error> {
   return useQuery<Awaited<ReturnType<GetSitesPaginatedFn>>, Error>({
-    queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types, tone),
+    queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types, tone, favorite),
     queryFn: async () => {
       const { getSitesPaginated } = await import('@/lib/actions/site.actions');
-      return await getSitesPaginated(settlementId, page, limit, name, types, undefined, tone);
+      return await getSitesPaginated(settlementId, page, limit, name, types, undefined, tone, favorite);
     },
     staleTime: 1000 * 60 * 5,
   });

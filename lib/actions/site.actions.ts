@@ -50,7 +50,8 @@ export async function getSitesPaginated(
   name: string,
   types?: string[],
   userId?: string,
-  tone?: string[]
+  tone?: string[], 
+  favorite?: boolean
 ) {
   await connectToDatabase();
 
@@ -77,6 +78,10 @@ export async function getSitesPaginated(
 
   if (tone && tone.length > 0) {
     query.tone = { $all: tone };
+  }
+
+  if(favorite){
+    query.favorite = favorite
   }
 
   const skip = (page - 1) * limit;
