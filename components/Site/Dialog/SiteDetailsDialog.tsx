@@ -136,7 +136,7 @@ export default function SiteDetailsDialog({ open, onClose, onDelete, settlementI
           {editable && 
             (
               <>
-                <SiteFavorite settlementId={settlementId} site={siteData} />
+                <SiteFavorite site={siteData} />
                 <Button variant="contained" sx={{ mx: 1, color: "#1d2a3b" }} startIcon={<EditIcon />} onClick={handleEdit}>
                   Edit
                 </Button>

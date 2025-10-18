@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { UI_THEMES, UITheme } from '@/constants/ui.options';
+import { UITheme } from '@/constants/ui.options';
 
 interface UIState {
   // Side drawer

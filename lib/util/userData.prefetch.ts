@@ -2,7 +2,7 @@
 
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
 import { getOwnedSettlements } from '@/lib/actions/settlement.actions';
-import { getOwnedSites } from '@/lib/actions/site.actions';
+import { getOwnedSitesPaginated } from '@/lib/actions/site.actions';
 import { getOwnedNpcs } from '@/lib/actions/npc.actions';
 import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
@@ -16,7 +16,7 @@ export async function prefetchUserData() {
     }),
     queryClient.prefetchQuery({
       queryKey: ['ownedSites', DefaultSiteQueryParams],
-      queryFn: () => getOwnedSites(DefaultSiteQueryParams),
+      queryFn: () => getOwnedSitesPaginated(DefaultSiteQueryParams),
     }),
     queryClient.prefetchQuery({
       queryKey: ['ownedNpcs', DefaultNpcQueryParams],

@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
 import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
-import { siteListKey, useOwnedSitesQuery } from '@/hooks/site/site.query';
+import { useOwnedSitesQuery } from '@/hooks/site/site.query';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { SiteQueryParams } from '@/interfaces/site.interface';
@@ -18,8 +17,7 @@ import Typography from '@mui/material/Typography';
 import { useAuthStore } from '@/store/authStore';
 
 export default function AllSitesPage() {
-  const { closeDialog, setOpenDialog, showErrorDialog } = useUIStore();
-  const queryClient = useQueryClient();
+  const { setOpenDialog } = useUIStore();
 
   const user = useAuthStore(state => state.user);
   
@@ -42,32 +40,6 @@ export default function AllSitesPage() {
     isEnabled: !!params
   });
 
-  // Safe delete handler
-  async function handleDeleteSite(id: string) {
-    try {
-      const { deleteSite } = await import("@/lib/actions/site.actions");
-      await deleteSite(id);
-
-      queryClient.invalidateQueries({
-        queryKey: siteListKey(
-          filters.settlementId ?? 'all',
-          filters.page,
-          filters.limit,
-          filters.search,
-          filters.type,
-          filters.tone,
-          filters.favorite
-        ),
-      });
-
-      closeDialog();
-    } catch (error) {
-      showErrorDialog(
-        'There was a problem deleting the site, please try again later'
-      );
-      console.error('Error deleting site:', error);
-    }
-  }
 
   return (
     <AuthGate fallbackText="You must be logged in to view your sites.">

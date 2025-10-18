@@ -5,27 +5,35 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ToggleFieldButton from "@/components/Common/ToggleFieldButton";
 import { SiteType } from "@/interfaces/site.interface";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
+import { useQueryClient } from "@tanstack/react-query";
+import { siteKeys } from "@/hooks/site/site.query";
 
-interface SiteFavoriteButtonProps {
-  site: SiteType;
-  settlementId: string;
-}
+export default function SiteFavorite({ site }: { site: SiteType }) {
+  const { handlePartialUpdate } = useSiteMutations({
+    mode: "edit",
+    settlementId: site.settlementId ?? "wilderness",
+    siteId: site._id,
+  });
 
-export default function SiteFavorite({ site, settlementId }: SiteFavoriteButtonProps) {
-    const { handlePartialUpdate } = useSiteMutations({
-        mode: "edit",
-        settlementId,
-        siteId: site._id,
-    });
+  const queryClient = useQueryClient();
 
-    return (
-        <ToggleFieldButton<SiteType, "favorite">
-            item={site}
-            field="favorite"
-            onToggle={handlePartialUpdate}
-            TrueIcon={Favorite}
-            FalseIcon={FavoriteBorder}
-            iconProps={{ sx: { marginRight: 1 }, color: "secondary" }}
-        />
-    );
+  // Always get the latest site object from the cache
+  const cachedSite = queryClient.getQueryData<SiteType>(["site", site._id]) ?? site;
+
+  return (
+    <ToggleFieldButton<SiteType, "favorite">
+      item={cachedSite}
+      field="favorite"
+      onToggle={async (updated) => {
+        await handlePartialUpdate({
+          _id: cachedSite._id,
+          favorite: !cachedSite.favorite,
+          settlementId: site.settlementId ?? "wilderness",
+        });
+      }}
+      TrueIcon={Favorite}
+      FalseIcon={FavoriteBorder}
+      iconProps={{ sx: { marginRight: 1 }, color: "secondary" }}
+    />
+  );
 }
