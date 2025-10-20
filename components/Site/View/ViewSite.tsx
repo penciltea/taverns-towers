@@ -1,7 +1,7 @@
 import EntityViewLayout from "@/components/Layout/EntityView/EntityViewLayout";
 import EntityViewImage from "@/components/Layout/EntityView/EntityViewImage";
 import SiteActions from './SiteActions';
-import { SiteType, SiteTypeMap } from '@/interfaces/site.interface';
+import type { SiteType, SiteTypeMap } from '@/interfaces/site.interface';
 import SiteDetails from './SiteDetails';
 import SiteConnections from './SiteConnections';
 import SiteDescriptions from './SiteDescriptions';
@@ -11,9 +11,7 @@ interface ViewSiteProps {
 }
 
 export default function ViewSite({ site }: ViewSiteProps) {
-  const siteType = site.type as keyof SiteTypeMap;
-  const typedSite = site as SiteTypeMap[typeof siteType];
-
+  const typedSite = site as SiteTypeMap[keyof SiteTypeMap];
 
   return (
     <EntityViewLayout

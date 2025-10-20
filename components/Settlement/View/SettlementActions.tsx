@@ -6,7 +6,6 @@ import { useUIStore } from "@/store/uiStore";
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
-import { deleteSettlement } from "@/lib/actions/settlement.actions";
 import DeleteButton from "@/components/Common/DeleteButton";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
@@ -45,7 +44,10 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
           <DeleteButton
             id={settlement._id}
             entity="settlement"
-            deleteAction={deleteSettlement}
+            deleteAction={async (id) => {
+              const { deleteSettlement } = await import('@/lib/actions/settlement.actions');
+              return deleteSettlement(id);
+            }}
             onSuccess={() => {
               queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
               queryClient.removeQueries({ queryKey: ['settlement', settlement._id] }); // remove single settlement cache

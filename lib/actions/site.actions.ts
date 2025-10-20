@@ -5,10 +5,179 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { SiteType } from "@/interfaces/site.interface";
+import { PaginatedQueryParams, PaginatedQueryResponse, SiteType } from "@/interfaces/site.interface";
 import { serializeSite } from "../util/serializers";
 
 type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
+
+function getPagination(page?: number, limit?: number) {
+  const safePage = Math.max(Number(page) || 1, 1);
+  const safeLimit = Math.min(Math.max(Number(limit) || 12, 1), 100);
+  return { skip: (safePage - 1) * safeLimit, limit: safeLimit, page: safePage };
+}
+
+export async function getPublicSitesPaginated({
+  page,
+  limit,
+  name,
+  types,
+  tone,
+}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
+  await connectToDatabase();
+
+  try {
+    const query: Record<string, unknown> = { isPublic: true };
+    if (name) query.name = new RegExp(name, "i");
+    if (types?.length) query.type = { $in: types };
+    if (tone?.length) query.tone = { $all: tone };
+
+    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
+
+    const [sites, total] = await Promise.all([
+      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
+      Site.countDocuments(query),
+    ]);
+
+    return {
+      success: true,
+      sites: sites.map(serializeSite),
+      total,
+      currentPage: safePage,
+      totalPages: Math.ceil(total / safeLimit),
+    };
+  } catch (error) {
+    return {
+      success: false,
+      sites: [],
+      total: 0,
+      currentPage: 1,
+      totalPages: 1,
+      error: (error as Error).message,
+    };
+  }
+}
+
+export async function getOwnedSitesPaginated({
+  page,
+  limit,
+  name,
+  types,
+  tone,
+  favorite,
+}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
+  await connectToDatabase();
+
+  try {
+    const user = await requireUser();
+    const query: Record<string, unknown> = { userId: new ObjectId(user.id) };
+
+    if (name) query.name = new RegExp(name, "i");
+    if (types?.length) query.type = { $in: types };
+    if (tone?.length) query.tone = { $all: tone };
+    if (favorite) query.favorite = true;
+
+    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
+
+    const [sites, total] = await Promise.all([
+      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
+      Site.countDocuments(query),
+    ]);
+
+    return {
+      success: true,
+      sites: sites.map(serializeSite),
+      total,
+      currentPage: safePage,
+      totalPages: Math.ceil(total / safeLimit),
+    };
+  } catch (error) {
+    return {
+      success: false,
+      sites: [],
+      total: 0,
+      currentPage: 1,
+      totalPages: 1,
+      error: (error as Error).message,
+    };
+  }
+}
+
+export async function getSitesBySettlementPaginated({
+  settlementId,
+  page,
+  limit,
+  name,
+  types,
+  tone,
+  favorite,
+}: PaginatedQueryParams & { settlementId: string | null }): Promise<PaginatedQueryResponse<SiteType>> {
+  await connectToDatabase();
+
+  try {
+    const query: Record<string, unknown> = {};
+
+    if (settlementId === "wilderness") {
+      query.settlementId = null;
+    } else if (settlementId && ObjectId.isValid(settlementId)) {
+      query.settlementId = new ObjectId(settlementId);
+    } else {
+      return {
+        success: false,
+        sites: [],
+        total: 0,
+        currentPage: 1,
+        totalPages: 1,
+        error: "Invalid settlementId provided",
+      };
+    }
+
+    if (name) query.name = new RegExp(name, "i");
+    if (types?.length) query.type = { $in: types };
+    if (tone?.length) query.tone = { $all: tone };
+    if (favorite) query.favorite = true;
+
+    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
+
+    const [sites, total] = await Promise.all([
+      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
+      Site.countDocuments(query),
+    ]);
+
+    return {
+      success: true,
+      sites: sites.map(serializeSite),
+      total,
+      currentPage: safePage,
+      totalPages: Math.ceil(total / safeLimit),
+    };
+  } catch (error) {
+    return {
+      success: false,
+      sites: [],
+      total: 0,
+      currentPage: 1,
+      totalPages: 1,
+      error: (error as Error).message,
+    };
+  }
+}
+
+export async function getSiteById(id: string) {
+  await connectToDatabase();
+
+  if (!ObjectId.isValid(id)) {
+    return { success: false, error: "Invalid site ID" };
+  }
+
+  const site = await Site.findById(id);
+  if (!site) {
+    return { success: false, error: "Site not found" };
+  }
+
+  return { success: true, site: serializeSite(site) };
+}
+
+
 
 export async function createSite(data: SiteType, settlementId: string) {
   await connectToDatabase();
@@ -79,12 +248,9 @@ export async function updateSitePartial(id: string, data: PartialSiteUpdate) {
 
   const model = Site.discriminators?.[existing.type] || Site;
 
-  // Remove _id if it somehow got included in the data
-  const { _id, ...updateData } = data;
-
   const updatedSite = await model.findByIdAndUpdate(
     id,
-    { ...updateData },
+    { ...data },
     { new: true }
   );
 
@@ -121,139 +287,6 @@ export async function deleteSite(id: string) {
 
   if (deletedSite?.settlementId) revalidatePath(`/settlement/${deletedSite.settlementId}`);
   return { success: true };
-}
-
-export async function getPublicSitesPaginated({
-  page = 1,
-  limit = 12,
-  name,
-  types,
-  tone,
-}: {
-  page?: number;
-  limit?: number;
-  name?: string;
-  types?: string[];
-  tone?: string[];
-}) {
-  await connectToDatabase();
-
-  const query: Record<string, unknown> = { isPublic: true };
-
-  if (name) query.name = new RegExp(name, "i");
-  if (types?.length) query.type = { $in: types };
-  if (tone?.length) query.tone = { $all: tone };
-
-  const skip = (page - 1) * limit;
-  const [sites, total] = await Promise.all([
-    Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
-    Site.countDocuments(query),
-  ]);
-
-  return {
-    success: true,
-    sites: sites.map(serializeSite),
-    total,
-    currentPage: page,
-    totalPages: Math.ceil(total / limit),
-  };
-}
-
-export async function getOwnedSitesPaginated({
-  page = 1,
-  limit = 12,
-  name,
-  types,
-  tone,
-  favorite,
-}: {
-  page?: number;
-  limit?: number;
-  name?: string;
-  types?: string[];
-  tone?: string[];
-  favorite?: boolean;
-}) {
-  await connectToDatabase();
-  const user = await requireUser();
-
-  const query: Record<string, unknown> = { userId: new ObjectId(user.id) };
-  if (name) query.name = new RegExp(name, "i");
-  if (types?.length) query.type = { $in: types };
-  if (tone?.length) query.tone = { $all: tone };
-  if (favorite) query.favorite = true;
-
-  const skip = (page - 1) * limit;
-  const [sites, total] = await Promise.all([
-    Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
-    Site.countDocuments(query),
-  ]);
-
-  return {
-    success: true,
-    sites: sites.map(serializeSite),
-    total,
-    currentPage: page,
-    totalPages: Math.ceil(total / limit),
-  };
-}
-
-export async function getSitesBySettlementPaginated({
-  settlementId,
-  page = 1,
-  limit = 12,
-  name,
-  types,
-  tone,
-  favorite,
-}: {
-  settlementId: string | null;
-  page?: number;
-  limit?: number;
-  name?: string;
-  types?: string[];
-  tone?: string[];
-  favorite?: boolean;
-}) {
-  await connectToDatabase();
-
-  const query: Record<string, unknown> = {};
-
-  if (settlementId === "wilderness") {
-    query.settlementId = null;
-  } else if (settlementId && ObjectId.isValid(settlementId)) {
-    query.settlementId = new ObjectId(settlementId);
-  } else {
-    throw new Error("Invalid settlementId provided");
-  }
-
-  if (name) query.name = new RegExp(name, "i");
-  if (types?.length) query.type = { $in: types };
-  if (tone?.length) query.tone = { $all: tone };
-  if (favorite) query.favorite = true;
-
-  const skip = (page - 1) * limit;
-  const [sites, total] = await Promise.all([
-    Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
-    Site.countDocuments(query),
-  ]);
-
-  return {
-    success: true,
-    sites: sites.map(serializeSite),
-    total,
-    currentPage: page,
-    totalPages: Math.ceil(total / limit),
-  };
-}
-
-export async function getSiteById(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid site ID");
-
-  const site = await Site.findById(id);
-  if (!site) throw new Error("Site not found");
-  return serializeSite(site);
 }
 
 type SiteUpdateData = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>>;

@@ -6,7 +6,6 @@ import { useUIStore } from "@/store/uiStore";
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
-import { deleteSite } from "@/lib/actions/site.actions";
 import DeleteButton from "@/components/Common/DeleteButton";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 import SiteFavorite from "./SiteFavorite";
@@ -50,11 +49,14 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
           <DeleteButton
             id={site._id}
             entity="site"
-            deleteAction={deleteSite}
+            deleteAction={async (id) => {
+              const { deleteSite } = await import('@/lib/actions/site.actions');
+              return deleteSite(id);
+            }}
             onSuccess={() => {
-              queryClient.invalidateQueries({ queryKey: ['ownedSites'] });
-              queryClient.removeQueries({ queryKey: ['site', site._id] }); // remove single settlement cache
-              router.push("/sites/all");
+              router.push("/sites");
+              queryClient.invalidateQueries({ queryKey: ['sites', 'owned'], exact: false });
+              queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', site.settlementId], exact: false });
               showSnackbar('Site deleted successfully!', 'success');
             }}
           />

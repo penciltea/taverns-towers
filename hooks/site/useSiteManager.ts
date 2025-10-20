@@ -5,14 +5,17 @@
 
 import { useSiteContentStore } from "@/store/siteStore";
 import { useUIStore } from "@/store/uiStore";
-import { usePaginatedSites } from "@/hooks/site/site.query";
+import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import { SiteType } from "@/interfaces/site.interface";
 
 export function useSiteManager(settlementId: string | null) {
   const isWilderness = settlementId === "wilderness";
   const { setItems, allItems } = useSiteContentStore();
   const { showErrorDialog } = useUIStore();
-  const { refetch } = usePaginatedSites(settlementId, 1, 12, "", [], [], false);
+  const { refetch } = useOwnedSitesQuery(
+    { page: 1, limit: 12, types: [], tone: [], favorite: false },
+    { isEnabled: !isWilderness } // only fetch for non-wilderness settlements
+  );
 
   /**
    * Adds a new site, updates store, and refetches if applicable

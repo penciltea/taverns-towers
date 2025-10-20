@@ -7,15 +7,19 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListI
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
 import { APP_VERSION } from "@/version";
+import { useAuthStore } from "@/store/authStore";
 
 
 export const Sidebar = () => {
     const router = useRouter();
     const isMobile = useIsMobile();
+    const user = useAuthStore(state => state.user);
 
     const { setOpenDialog } = useUIStore();
     const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
     const closeDrawer = useUIStore((state) => state.closeDrawer);
+
+    const isLoggedIn = (user ? true : false);
 
     const drawerWidth = 250;
     const navItems = [
@@ -23,19 +27,22 @@ export const Sidebar = () => {
             label: "Settlements",
             children: [
                 {
-                    label: "View all settlements",
+                    label: "View my settlements",
                     path: "/settlements/all",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
-                    label: "View wilderness",
+                    label: "View my wilderness",
                     path: "/settlements/wilderness",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create settlement",
                     enabled: true,
-                    path: "/settlements/new"
+                    path: "/settlements/new",
+                    visible: true
                 }
             ]
         },
@@ -43,13 +50,15 @@ export const Sidebar = () => {
             label: "Sites",
             children: [
                 {
-                    label: "View all sites",
+                    label: "View my sites",
                     path: "/sites",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create site",
                     enabled: true,
+                    visible: true,
                     onClick: () =>
                     setOpenDialog("siteTypeDialog", {
                         dialogMode: "global"
@@ -61,14 +70,16 @@ export const Sidebar = () => {
             label: "NPCs",
             children: [
                 {
-                    label: "View all NPCs",
+                    label: "View my NPCs",
                     path: "/npcs/all",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create NPC",
                     enabled: true,
-                    path: "/npcs/new"
+                    path: "/npcs/new",
+                    visible: true
                 }
             ]
         },
@@ -78,12 +89,14 @@ export const Sidebar = () => {
                 {
                     label: "All Releases",
                     path: "/releases/",
-                    enabled: true
+                    enabled: true,
+                    visible: true
                 },
                 {
                     label: "Roadmap",
                     path: "/roadmap",
-                    enabled: true
+                    enabled: true,
+                    visible: true
                 }
             ]
         }
@@ -118,7 +131,9 @@ export const Sidebar = () => {
               <Typography variant="subtitle1">{item.label}</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ py: 0 }}>
-              {item.children.map((child) => (
+              {item.children
+              .filter((child) => child.visible)
+              .map((child) => (
                 <ListItemButton
                   key={child.label}
                   onClick={() => handleNavigation(child.path, child.enabled, child.onClick)}

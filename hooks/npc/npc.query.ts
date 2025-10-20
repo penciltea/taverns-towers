@@ -71,6 +71,6 @@ export function useResolvedConnections(connections: Npc['connections']) {
       const { resolveConnectionNames } = await import('@/lib/actions/npc.actions');
       return await resolveConnectionNames(connections);
     },
-    enabled: connections.length > 0,
+    enabled: Array.isArray(connections) && connections.length > 0,
   });
 }

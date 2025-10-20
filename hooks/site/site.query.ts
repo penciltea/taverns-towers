@@ -9,7 +9,6 @@ import type { getOwnedSitesPaginated, getPublicSitesPaginated, getSiteById, getS
 type GetSiteByIdFn = typeof getSiteById;
 type GetOwnedSitesPaginatedFn = typeof getOwnedSitesPaginated;
 type GetPublicSitesPaginatedFn = typeof getPublicSitesPaginated;
-type GetSitesBySettlementPaginatedFn = typeof getSitesBySettlementPaginated;
 
 // -------------------------
 // Query key helper
@@ -46,7 +45,7 @@ export function usePublicSitesQuery(
   params: Parameters<GetPublicSitesPaginatedFn>[0]
 ): UseQueryResult<Awaited<ReturnType<GetPublicSitesPaginatedFn>>, Error> {
   return useQuery<Awaited<ReturnType<GetPublicSitesPaginatedFn>>, Error>({
-    queryKey: siteKeys.public(params),
+    queryKey: siteKeys.public(params as Record<string, unknown>),
     queryFn: async () => {
       const { getPublicSitesPaginated } = await import('@/lib/actions/site.actions');
       return await getPublicSitesPaginated(params);
@@ -63,7 +62,7 @@ export function useOwnedSitesQuery(
   options?: { isEnabled?: boolean }
 ): UseQueryResult<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error> {
   return useQuery<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error>({
-    queryKey: siteKeys.owned(params),
+    queryKey: ['sites', 'owned', JSON.stringify(params)],
     queryFn: async () => {
       const { getOwnedSitesPaginated } = await import('@/lib/actions/site.actions');
       return await getOwnedSitesPaginated(params);

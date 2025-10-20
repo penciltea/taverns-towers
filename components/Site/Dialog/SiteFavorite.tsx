@@ -6,7 +6,6 @@ import ToggleFieldButton from "@/components/Common/ToggleFieldButton";
 import { SiteType } from "@/interfaces/site.interface";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
 import { useQueryClient } from "@tanstack/react-query";
-import { siteKeys } from "@/hooks/site/site.query";
 
 export default function SiteFavorite({ site }: { site: SiteType }) {
   const { handlePartialUpdate } = useSiteMutations({
@@ -24,7 +23,7 @@ export default function SiteFavorite({ site }: { site: SiteType }) {
     <ToggleFieldButton<SiteType, "favorite">
       item={cachedSite}
       field="favorite"
-      onToggle={async (updated) => {
+      onToggle={async () => {
         await handlePartialUpdate({
           _id: cachedSite._id,
           favorite: !cachedSite.favorite,

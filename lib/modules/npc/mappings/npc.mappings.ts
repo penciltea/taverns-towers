@@ -1,4 +1,4 @@
-import { NpcAge, NpcAlignment, NpcArchetype } from "@/constants/npc.options";
+import { NpcAge, NpcArchetype } from "@/constants/npc.options";
 
 export const archetypeByAgeMapping: Record<NpcAge, string[]> = {
     "Child": [

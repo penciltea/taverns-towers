@@ -1,14 +1,18 @@
 'use client';
 
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
-import { getOwnedSettlements } from '@/lib/actions/settlement.actions';
-import { getOwnedSitesPaginated } from '@/lib/actions/site.actions';
-import { getOwnedNpcs } from '@/lib/actions/npc.actions';
 import { DefaultSettlementQueryParams } from '@/interfaces/settlement.interface';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import { DefaultNpcQueryParams } from '@/interfaces/npc.interface';
 
 export async function prefetchUserData() {
+  const [{ getOwnedSettlements }, { getOwnedSitesPaginated }, { getOwnedNpcs }] =
+    await Promise.all([
+      import('@/lib/actions/settlement.actions'),
+      import('@/lib/actions/site.actions'),
+      import('@/lib/actions/npc.actions'),
+    ]);
+
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: ['ownedSettlements', DefaultSettlementQueryParams],

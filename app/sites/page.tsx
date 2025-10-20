@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
 import { useOwnedSitesQuery } from '@/hooks/site/site.query';
@@ -21,29 +21,18 @@ export default function AllSitesPage() {
 
   const user = useAuthStore(state => state.user);
   
-  const [params, setParams] = useState<SiteQueryParams>({
-    ...DefaultSiteQueryParams
-  });
-
   const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
   });
 
-  useEffect(() => {
-    if (user) {
-      setParams({ ...DefaultSiteQueryParams });
-    }
-  }, [user]);
-
-  
-  const { data, isLoading, error } = useOwnedSitesQuery(params!, {
-    isEnabled: !!params
+  // Query using filters
+  const { data, isLoading, error } = useOwnedSitesQuery(filters, {
+    isEnabled: !!user,
   });
-
-
+  
   return (
     <AuthGate fallbackText="You must be logged in to view your sites.">
-      {!params || isLoading ? (
+      {isLoading ? (
         <Spinner />
       ) : error || !data?.success ? (
         <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
@@ -79,7 +68,7 @@ export default function AllSitesPage() {
               chipFilters={[
                 {
                   title: 'Filter by Category',
-                  key: 'type',
+                  key: 'types',
                   options: SITE_CATEGORIES,
                 },
               ]}

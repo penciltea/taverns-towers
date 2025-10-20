@@ -30,6 +30,8 @@ export default function FilterBar({
 }: FilterBarProps) {
   const isMobile = useIsMobile();
 
+  console.log("filters: ", filters);
+
   // Handle search changes at the FilterBar level
   const handleSearchChange = (searchValue: string) => {
     const updatedFilters = { ...filters, search: searchValue };

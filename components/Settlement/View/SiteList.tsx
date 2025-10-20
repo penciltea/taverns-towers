@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Typography } from "@mui/material";
 import { SiteListProps, SiteQueryParams, SiteType, DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import { useUIStore } from "@/store/uiStore";
-import { siteKeys, useSitesBySettlementQuery } from "@/hooks/site/site.query";
+import { useSitesBySettlementQuery } from "@/hooks/site/site.query";
 import FilteredGridView from "@/components/Grid/FilteredGridView";
 import GridItem from "@/components/Grid/GridItem";
 import FilterBar from "@/components/Grid/FilterBar";
@@ -26,7 +26,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
       page: filters.page,
       limit: filters.limit,
       name: filters.search,
-      types: filters.type,
+      types: filters.types,
       tone: filters.tone,
       favorite: filters.favorite,
     },
@@ -39,7 +39,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
       await deleteSite(id);
 
       // Invalidate queries for this settlement
-      queryClient.invalidateQueries({ queryKey: ['sites', settlementId], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', settlementId], exact: false });
 
       closeDialog();
     } catch (error) {

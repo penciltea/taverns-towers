@@ -26,7 +26,7 @@ export interface SiteQueryParams {
   page: number;
   limit: number;
   settlementId: string;
-  type: string[];
+  types: string[];
   search: string;
   tone: string[],
   favorite: boolean;
@@ -36,10 +36,28 @@ export const DefaultSiteQueryParams: SiteQueryParams = {
   page: 1,
   limit: 12,
   settlementId: '',
-  type: [],
+  types: [],
   search: '',
   tone: [],
   favorite: false
+}
+
+export interface PaginatedQueryParams {
+  page?: number;
+  limit?: number;
+  name?: string;
+  types?: string[];
+  tone?: string[];
+  favorite?: boolean;
+}
+
+export interface PaginatedQueryResponse<T> {
+  success: boolean;
+  sites: T[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  error?: string;
 }
 
 export interface SiteResponse {

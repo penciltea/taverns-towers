@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
-import { deleteNpc } from "@/lib/actions/npc.actions";
 import DeleteButton from "@/components/Common/DeleteButton";
 import { Npc } from "@/interfaces/npc.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
@@ -46,7 +45,10 @@ export default function NpcActions({ npc }: { npc: Npc }) {
           <DeleteButton
             id={npc._id}
             entity="npc"
-            deleteAction={deleteNpc}
+            deleteAction={async (id) => {
+              const { deleteNpc } = await import('@/lib/actions/npc.actions');
+              return deleteNpc(id);
+            }}
             onSuccess={() => {
               queryClient.invalidateQueries({ queryKey: ['ownedNpcs'] });
               router.push("/npcs/all");

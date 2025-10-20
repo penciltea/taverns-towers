@@ -192,7 +192,10 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
         });
       });
 
-      queryClient.setQueryData<SiteData>(["site", updatedSite._id], updatedSite);
+      queryClient.setQueryData<SiteData>(["site", updatedSite._id], {
+        success: true,
+        site: updatedSite,
+      });
     } catch (error) {
       console.error("Failed to update site:", error);
       throw error;
