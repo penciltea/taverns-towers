@@ -213,7 +213,30 @@ export async function updateNpc(id: string, data: NpcFormData): Promise<Npc> {
     return serializeNpc(updatedNpc);
 }
 
+export async function updateNpcPartial(
+  id: string,
+  update: Partial<NpcFormData>
+): Promise<Npc> {
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
 
+  const user = await requireUser();
+  const existing = await NpcModel.findById(id);
+  if (!existing) throw new Error("NPC not found");
+  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  // Only normalize connections if provided
+  const updatedData = {
+    ...update,
+    connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
+  };
+
+  const updatedNpc = await NpcModel.findByIdAndUpdate(id, updatedData, { new: true });
+  if (!updatedNpc) throw new Error("NPC not found");
+
+  revalidatePath("/npcs");
+  return serializeNpc(updatedNpc);
+}
 
 export async function deleteNpc(id: string) {
   await connectToDatabase();

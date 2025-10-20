@@ -4,7 +4,7 @@ export const npcNameGeneratorConfigs: Record<string, {
 }> = {
   human: {
     fallbackFormats: ["{{first}} {{last}}"],
-    allowedKeys: ["prefix", "suffix", "first", "last", "fullName", "format"],
+    allowedKeys: ["prefix", "suffix", "first", "last", "fullName", "nickname", "format"],
   },
   gnome: {
     fallbackFormats: ["{{first}} '{{nickname}}' {{last}}", "{{first}} {{last}}"],
@@ -12,7 +12,7 @@ export const npcNameGeneratorConfigs: Record<string, {
   },
   tiefling: {
     fallbackFormats: ["{{fullName}}", "{{first}}"],
-    allowedKeys: ["prefix", "suffix", "fullName", "first", "format"],
+    allowedKeys: ["prefix", "suffix", "fullName", "first", "last", "nickname", "format"],
   },
   default: {
     fallbackFormats: ["{{first}} {{last}}", "{{fullName}}"],

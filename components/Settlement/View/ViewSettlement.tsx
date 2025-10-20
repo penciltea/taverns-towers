@@ -27,7 +27,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
   return (
     <EntityViewLayout
       title={ settlement.name }
-      actions={ <SettlementActions {...settlement} /> }
+      actions={ <SettlementActions settlement={settlement} /> }
       leftContent={ <SettlementDetails settlement={settlement} /> }
       rightContent={
           <EntityViewImage

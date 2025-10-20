@@ -4,7 +4,6 @@ import connectToDatabase from "@/lib/db/connect";
 import GeneratorSettlementFragment, { GeneratorSettlementFragmentPlain } from "@/lib/models/generator/settlement/settlementNameFragment.model";
 import { normalizeSettlementInput, NormalizedSettlementInput } from "@/lib/modules/settlement/rules/normalize";
 import { Settlement, SettlementGroupKey } from "@/interfaces/settlement.interface";
-import { generateEnvironment } from "./environmentGenerator.actions";
 import { generateSettlementValues } from "@/lib/modules/settlement/rules/settlement.dispatcher";
 import { SETTLEMENT_NAME_FRAGMENT_MAP_BY_TYPE } from "@/lib/modules/settlement/mappings/name.fragment.mappings";
 import { dispatchSettlementName } from "@/lib/modules/settlement/rules/name/settlementName.dispatcher";
@@ -71,6 +70,7 @@ export async function generateSettlementData(
       }
     : input;
 
+  const { generateEnvironment } = await import( "./environmentGenerator.actions");
   const environment = await generateEnvironment(baseInput);
 
   const normalized = normalizeSettlementInput({

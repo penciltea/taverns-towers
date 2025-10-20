@@ -13,6 +13,7 @@ export function normalizeCommonInput(data: Partial<CommonInterface>): Normalized
     isPublic: data.isPublic ?? false,
     publicNotes: data.publicNotes?.trim() || "",
     gmNotes: data.gmNotes?.trim() || "",
+    favorite: data.favorite ?? false
   };
 }
 
@@ -23,6 +24,7 @@ export const defaultCommonFields: NormalizedCommonInput = {
   isPublic: false,
   publicNotes: "",
   gmNotes: "",
+  favorite: false
 };
 
 // All required fields after normalization

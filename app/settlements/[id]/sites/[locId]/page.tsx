@@ -51,17 +51,15 @@ export default function EditSitePage() {
   useEffect(() => {
     if (isLoading) return;
 
-    if (site) {
-      setSelectedItem(site); // keep full DB object in store
-      setInitialConnections(site.connections);
+    if (site?.success && site.site) {
+      setSelectedItem(site.site);
+      setInitialConnections(site.site.connections);
       methods.reset({
-        ...(mapSiteToForm(site) as SiteFormData) // cast here
+        ...(mapSiteToForm(site.site) as SiteFormData)
       });
-    } else if(safeId && !isLoading){
-      // If no settlement, clear selection
+    } else if (safeId && !isLoading) {
       clearSelectedItem();
-      showErrorDialog("Site could not be found, please try again later!")
-
+      showErrorDialog("Site could not be found, please try again later!");
     }
   }, [site, isLoading, safeId, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
 

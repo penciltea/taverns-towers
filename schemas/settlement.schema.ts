@@ -24,6 +24,7 @@ export const settlementSchema = z.object({
   crime: z.array(z.string()).optional(),
   tone: z.array(z.string()).optional(),
   theme: z.array(z.string()).optional(),
+  favorite: z.boolean().optional(),
   isPublic: z.boolean().optional(),
   editors: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema).default([]),

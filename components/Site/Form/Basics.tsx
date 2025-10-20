@@ -74,17 +74,17 @@ export default function SiteFormBasics( { mode, isWilderness, generator }: Props
                 )}
 
                 {SpecificFieldsComponent ? (
-                <SpecificFieldsComponent generator={generator} />
+                    <SpecificFieldsComponent generator={generator} />
                 ) : (
-                <Typography variant="body2">
-                    {typeParam ? `Unknown site type: ${typeParam}` : "No site type selected."}
-                </Typography>
+                    <Typography variant="body2">
+                        {typeParam ? `Unknown site type: ${typeParam}` : "No site type selected."}
+                    </Typography>
                 )}
             </Box>
 
             {typeParam && (
                 <Box sx={{ paddingTop: 4 }}>
-                <FormImageUpload name="image" label="Upload Site Image" />
+                    <FormImageUpload name="image" label="Upload Site Image" />
                 </Box>
             )}
         </Stack>

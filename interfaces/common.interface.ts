@@ -3,6 +3,7 @@ export interface CommonInterface {
     name: string;
     userId: string;
     editors: string[];
+    favorite: boolean;
     isPublic: boolean;
     publicNotes?: string;
     gmNotes?: string;  

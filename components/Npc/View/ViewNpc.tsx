@@ -1,6 +1,6 @@
 'use client';
 
-import { Npc } from "@/interfaces/npc.interface";
+import { NpcProps } from "@/interfaces/npc.interface";
 import NpcActions from './NpcActions';
 import NpcDetails from './NpcDetails';
 import NpcConnections from './NpcConnections';
@@ -8,17 +8,12 @@ import EntityViewLayout from '@/components/Layout/EntityView/EntityViewLayout';
 import EntityViewImage from '@/components/Layout/EntityView/EntityViewImage';
 import NpcDescriptions from './NpcDescriptions';
 
-interface NpcProps {
-  npc: Npc;
-}
-
-
 export default function ViewNpc({ npc }: NpcProps){
 
   return (
     <EntityViewLayout
       title={ npc.name }
-      actions={ <NpcActions {...npc} /> }
+      actions={ <NpcActions npc={npc} /> }
       leftContent={ <NpcDetails npc={npc} /> }
       rightContent={
           <EntityViewImage

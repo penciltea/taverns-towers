@@ -2,30 +2,20 @@
 
 import { useSession } from 'next-auth/react';
 import { EntertainmentSite } from '@/interfaces/site.interface';
-import { Box } from '@mui/material';
-import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
-import InfoListItem from '@/components/Common/InfoListItem';
-import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from '@/constants/site/site.options';
 import { ConnectionsList } from './ConnectionsList';
-
+import { getEntertainmentDescriptions, getEntertainmentSiteDetails } from '@/lib/util/Fields/EntertainmentFields';
+import SiteDetailsDescription from './DetailsDescriptions';
 
 export const EntertainmentDetails = ({ site }: { site: EntertainmentSite }) => {
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
+  const details = getEntertainmentSiteDetails(site);
+  const descriptions = getEntertainmentDescriptions(site).filter(f => !f.restricted || user?.id === site.userId);
+
   
   return (
     <>
-      <Box component="dl" sx={{ mt: 1, px: 3 }}>
-        <InfoListItem label="Venue Type" value={getLabelFromValue(ENTERTAINMENT_VENUE_TYPES, site.venueType)} />
-        <InfoListItem label="Size" value={getLabelFromValue(SITE_SIZE, site.size)} />
-        <InfoListItem label="Condition" value={getLabelFromValue(SITE_CONDITION, site.condition)} />        
-        <InfoListItem label="Cost" value={site.cost} />
-        <InfoListItem label="Public Notes" value={site.publicNotes} />
-
-        { user?.id === site.userId &&  (
-          <InfoListItem label="GM Notes" value={site.gmNotes} />
-        ) }
-      </Box>
+      <SiteDetailsDescription details={details} descriptions={descriptions} />
       
       <ConnectionsList connections={site.connections} pageSiteType="entertainment" />
     </>

@@ -7,15 +7,19 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListI
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
 import { APP_VERSION } from "@/version";
+import { useAuthStore } from "@/store/authStore";
 
 
 export const Sidebar = () => {
     const router = useRouter();
     const isMobile = useIsMobile();
+    const user = useAuthStore(state => state.user);
 
     const { setOpenDialog } = useUIStore();
     const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
     const closeDrawer = useUIStore((state) => state.closeDrawer);
+
+    const isLoggedIn = (user ? true : false);
 
     const drawerWidth = 250;
     const navItems = [
@@ -23,19 +27,22 @@ export const Sidebar = () => {
             label: "Settlements",
             children: [
                 {
-                    label: "View all settlements",
+                    label: "View my settlements",
                     path: "/settlements/all",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
-                    label: "View wilderness",
+                    label: "View my wilderness",
                     path: "/settlements/wilderness",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create settlement",
                     enabled: true,
-                    path: "/settlements/new"
+                    path: "/settlements/new",
+                    visible: true
                 }
             ]
         },
@@ -43,13 +50,15 @@ export const Sidebar = () => {
             label: "Sites",
             children: [
                 {
-                    label: "View all sites",
+                    label: "View my sites",
                     path: "/sites",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create site",
                     enabled: true,
+                    visible: true,
                     onClick: () =>
                     setOpenDialog("siteTypeDialog", {
                         dialogMode: "global"
@@ -61,14 +70,16 @@ export const Sidebar = () => {
             label: "NPCs",
             children: [
                 {
-                    label: "View all NPCs",
+                    label: "View my NPCs",
                     path: "/npcs/all",
-                    enabled: true
+                    enabled: true,
+                    visible: isLoggedIn
                 },
                 {
                     label: "Create NPC",
                     enabled: true,
-                    path: "/npcs/new"
+                    path: "/npcs/new",
+                    visible: true
                 }
             ]
         },
@@ -78,107 +89,90 @@ export const Sidebar = () => {
                 {
                     label: "All Releases",
                     path: "/releases/",
-                    enabled: true
+                    enabled: true,
+                    visible: true
                 },
                 {
                     label: "Roadmap",
                     path: "/roadmap",
-                    enabled: true
+                    enabled: true,
+                    visible: true
                 }
             ]
         }
     ];
 
-    const handleNavigation = (
-        path?: string,
-        enabled?: boolean,
-        onClick?: () => void
-    ) => {
-        if (!enabled) return;
-        if (onClick) {
-            onClick();
-        } else if (path) {
-            router.push(path);
-            if (isMobile) closeDrawer();
-        }
-    };
+    const handleNavigation = (path?: string, enabled?: boolean, onClick?: () => void) => {
+    if (!enabled) return;
+    if (onClick) onClick();
+    else if (path) router.push(path);
+    if (isMobile) closeDrawer(); // automatically close on mobile
+  };
 
-    const drawerContent = (
-        <Box 
-            sx={{
-                width: drawerWidth,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                paddingTop: { xs: '7vh', sm: '40px', md: '60px' }
-            }}
-            role="presentation"
-        >
-            <Box display="flex" alignItems="center" p={2}>
-                <Typography variant="h6">Navigation</Typography>
-            </Box>
-            <List disablePadding>
-                {navItems.map((item) => (
-                <Accordion key={item.label} disableGutters elevation={0} square>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="subtitle1">{item.label}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={{ py: 0 }}>
-                    {item.children.map((child) => (
-                        <ListItemButton
-                            key={child.label}
-                            onClick={() =>
-                                handleNavigation(child.path, child.enabled, child.onClick)
-                            }
-                            disabled={!child.enabled}
-                        >
-                            <ListItemText primary={child.label} />
-                        </ListItemButton>
-                    ))}
-                    </AccordionDetails>
-                </Accordion>
-                ))}
-            </List>
-            
-            <Box sx={{ mt: "auto", p: 2 }}>
-                <ThemeSwitch />
-            </Box>
-            <Box sx={{ px: 2, paddingBottom: 0.5 }}>
-                <Typography variant="caption">Version: { APP_VERSION }</Typography>
-            </Box>
-        </Box>
-    );
+  const drawerContent = (
+    <Box
+      sx={{
+        width: drawerWidth,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: '60px'
+      }}
+      role="presentation"
+    >
+      <Box display="flex" alignItems="center" p={2}>
+        <Typography variant="h6">Navigation</Typography>
+      </Box>
 
-    return (
-        <Box
-            component="nav"
-            sx={{ width: { sm: isDrawerOpen ? drawerWidth : 0 }, flexShrink: { sm: 0 } }}
-        >
-            {/* Mobile Drawer */}
-            <Drawer
-                variant="temporary"
-                open={isDrawerOpen && isMobile}
-                onClose={closeDrawer}
-                ModalProps={{ keepMounted: true }}
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    "& .MuiDrawer-paper": { width: drawerWidth, overflowX: 'hidden' }
-                }}
-            >
-                {drawerContent}
-            </Drawer>
+      <List disablePadding>
+        {navItems.map((item) => (
+          <Accordion key={item.label} disableGutters elevation={0} square>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="subtitle1">{item.label}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ py: 0 }}>
+              {item.children
+              .filter((child) => child.visible)
+              .map((child) => (
+                <ListItemButton
+                  key={child.label}
+                  onClick={() => handleNavigation(child.path, child.enabled, child.onClick)}
+                  disabled={!child.enabled}
+                >
+                  <ListItemText primary={child.label} />
+                </ListItemButton>
+              ))}
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </List>
 
-            {/* Desktop Drawer */}
-            <Drawer
-                variant="persistent"
-                open={isDrawerOpen && !isMobile}
-                sx={{
-                    display: { xs: "none", sm: "block" },
-                    "& .MuiDrawer-paper": { width: drawerWidth, boxSizing: "border-box", overflowX: 'hidden' }
-                }}
-            >
-                {drawerContent}
-            </Drawer>
-        </Box>
-    );
+      <Box sx={{ mt: "auto", p: 2 }}>
+        <ThemeSwitch />
+      </Box>
+      <Box sx={{ px: 2, paddingBottom: 0.5 }}>
+        <Typography variant="caption">Version: {APP_VERSION}</Typography>
+      </Box>
+    </Box>
+  );
+
+  return (
+    <Box component="nav" sx={{ width: drawerWidth, flexShrink: 0 }}>
+      <Drawer
+        variant={isMobile ? "temporary" : "persistent"}
+        open={isDrawerOpen}
+        onClose={closeDrawer}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            overflowX: "hidden",
+          }
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+    </Box>
+  );
 };

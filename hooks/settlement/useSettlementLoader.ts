@@ -5,13 +5,16 @@ import { useSettlementQuery } from "@/hooks/settlement/settlement.query";
 import { useSiteContentStore } from "@/store/siteStore";
 import { useUIStore } from "@/store/uiStore";
 import { useSettlementContentStore } from "@/store/settlementStore";
-import { usePaginatedSites } from "@/hooks/site/site.query";
+import { useOwnedSitesQuery } from "@/hooks/site/site.query";
+import { SiteQueryParams, DefaultSiteQueryParams } from "@/interfaces/site.interface";
+import { useAuthStore } from "@/store/authStore";
 
 export function useSettlementLoader(settlementId: string | null) {
   // Store setters
   const { setSelectedItem } = useSettlementContentStore();
   const { setItems: setSiteItems } = useSiteContentStore();
   const { setSettlementId } = useUIStore();
+  const user = useAuthStore(state => state.user);
 
   // Local state
   const [loading, setLoading] = useState(true);
@@ -20,19 +23,23 @@ export function useSettlementLoader(settlementId: string | null) {
   const [wildernessContext, setWildernessContext] = useState<any>(null);
 
   const isWilderness = settlementId === "wilderness";
+  const [params, setParams] = useState<SiteQueryParams>({
+    ...DefaultSiteQueryParams
+  });
+  
+  useEffect(() => {
+    if (user) {
+      setParams({ ...DefaultSiteQueryParams });
+    }
+  }, [user]);
 
   // Fetch settlement and sites
   const { data: settlementData, isLoading: settlementLoading } = useSettlementQuery(
     isWilderness ? null : settlementId
   );
-  const { data: siteData, isFetching: sitesLoading } = usePaginatedSites(
-    isWilderness ? null : (settlementId as string),
-    page,
-    limit,
-    "",
-    [],
-    []
-  );
+  const { data: siteData, isFetching: sitesLoading } = useOwnedSitesQuery(params!, {
+    isEnabled: !!params
+  });
 
   // Lazy-load wilderness context only if needed
   useEffect(() => {

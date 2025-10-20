@@ -8,7 +8,10 @@ import { CommonInterface } from './common.interface';
 import { NpcConnection } from './connection.interface';
 import { SiteSecrecyLevel, SiteKnownTo, SiteDefense, SitePurpose } from '@/constants/site/hidden.options';
 
- 
+export interface SiteMenuDialogProps extends DialogProps{
+  site: SiteType
+}
+
 export interface SiteDialogProps extends DialogProps {
   settlementId: string;
   siteData: SiteType;
@@ -23,18 +26,38 @@ export interface SiteQueryParams {
   page: number;
   limit: number;
   settlementId: string;
-  type: string[];
+  types: string[];
   search: string;
-  tone: string[]
+  tone: string[],
+  favorite: boolean;
 }
 
 export const DefaultSiteQueryParams: SiteQueryParams = {
   page: 1,
   limit: 12,
   settlementId: '',
-  type: [],
+  types: [],
   search: '',
-  tone: []
+  tone: [],
+  favorite: false
+}
+
+export interface PaginatedQueryParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  types?: string[];
+  tone?: string[];
+  favorite?: boolean;
+}
+
+export interface PaginatedQueryResponse<T> {
+  success: boolean;
+  sites: T[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  error?: string;
 }
 
 export interface SiteResponse {
@@ -194,3 +217,16 @@ export type SiteType = TavernSite | TempleSite | ShopSite | GuildSite | Governme
 
 export type SiteSize = (typeof SITE_SIZE)[number]['value'];
 export type SiteCondition = (typeof SITE_CONDITION)[number]['value'];
+
+ // Map each site type to its specific interface
+export type SiteTypeMap = {
+  tavern: TavernSite;
+  temple: TempleSite;
+  shop: ShopSite;
+  guild: GuildSite;
+  government: GovernmentSite;
+  entertainment: EntertainmentSite;
+  hidden: HiddenSite;
+  residence: ResidenceSite;
+  miscellaneous: MiscellaneousSite;
+};

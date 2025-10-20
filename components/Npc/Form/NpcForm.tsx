@@ -11,9 +11,18 @@ import FormActions from "@/components/Form/FormActions";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useUIStore } from "@/store/uiStore";
 import NpcFormTabs from "./Tabs";
-import NpcFormBasics from "./Basics";
 import { FieldErrors } from "react-hook-form";
 import { Spinner } from "@/components/Common/Spinner";
+
+const NpcFormBasics = dynamic(() => import("./Basics"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+const NpcFormPersonality = dynamic(() => import("./Personality"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 const NpcFormConnections = dynamic(() => import("./Connections"), {
   ssr: false,
@@ -149,7 +158,10 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
           { tab === 0 && <NpcFormBasics /> }
         </TabPanel>
         <TabPanel value={tab} index={1}>
-          { tab === 1 && <NpcFormConnections /> }
+          { tab === 1 && <NpcFormPersonality /> }
+        </TabPanel>
+        <TabPanel value={tab} index={2}>
+          { tab === 2 && <NpcFormConnections /> }
         </TabPanel>
 
         <FormActions mode={mode} entityName="Npc" isSubmitting={isSubmitting} onCancel={handleCancel} />

@@ -14,7 +14,7 @@
 import { useCallback, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
-import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
+import { siteTypeHasMenuType } from "@/lib/util/siteHelpers";
 import { shouldReplace } from "@/lib/util/randomValues";
 
 type GeneratorContext = {
@@ -181,10 +181,11 @@ export function useSiteGeneratorActions(
     async (index?: number) => {
       if (!siteType) return;
 
-      const shopType = getSubType("shopType");
-      const guildType = getSubType("guildType");
-      const venueType = getSubType("venueType");
-      const functionType = getSubType("function");
+      const shopType = siteType === "shop" ? getSubType("shopType") : undefined;
+      const guildType = siteType === "guild" ? getSubType("guildType") : undefined;
+      const venueType = siteType === "entertainment" ? getSubType("venueType") : undefined;
+      const functionType = siteType === "government" ? getSubType("function") : undefined;
+
       const formData = methods.getValues();
       const siteSize = formData.size;
       const siteCondition = formData.condition;
@@ -198,10 +199,10 @@ export function useSiteGeneratorActions(
 
       const generationContext = {
         siteType,
-        shopType: siteType === "shop" ? shopType : undefined,
-        guildType: siteType === "guild" ? guildType : undefined,
-        venueType: siteType === "entertainment" ? venueType : undefined,
-        functionType: siteType === "government" ? functionType : undefined,
+        shopType,
+        guildType,
+        venueType,
+        functionType,
         domains: selectedDomains,
         climate: context.climate,
         terrain: context.terrain,
@@ -209,7 +210,7 @@ export function useSiteGeneratorActions(
         magic,
         wealth,
         siteSize,
-        siteCondition
+        siteCondition,
       };
 
       // Clear the full menu before regenerating all items
@@ -263,7 +264,7 @@ export function useSiteGeneratorActions(
     const overrides = getUserOverrides(currentValues);
 
 
-    console.log("overrides: ", overrides);
+    //console.log("overrides: ", overrides);
 
     // Generate site data based on whether wilderness or settlement context
     const { generateSiteData } = await import('@/lib/actions/siteGenerator.actions');
@@ -304,7 +305,7 @@ export function useSiteGeneratorActions(
     }
 
     // Check if site type has menu and menu is empty
-    if (siteTypeHasMenu(siteType)) {
+    if (siteTypeHasMenuType(siteType)) {
       const currentMenu = methods.getValues("menu");
       const isMenuEmpty = !Array.isArray(currentMenu) || currentMenu.length === 0;
 
@@ -353,7 +354,7 @@ export function useSiteGeneratorActions(
 
     // Check if site type has menu
     // If so, regenerate the menu with the new environment
-    if (siteTypeHasMenu(siteType)) {
+    if (siteTypeHasMenuType(siteType)) {
       await generateMenuItems();
     }
   }, [siteType, methods, generateMenuItems, regenerateEnvironment]);

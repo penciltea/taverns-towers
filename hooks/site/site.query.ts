@@ -1,94 +1,96 @@
 'use client';
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import type { getOwnedSites, getPublicSites, getSiteById, getSitesPaginated } from '@/lib/actions/site.actions';
+import type { getOwnedSitesPaginated, getPublicSitesPaginated, getSiteById, getSitesBySettlementPaginated } from '@/lib/actions/site.actions';
 
 // -------------------------
 // Types for server functions
 // -------------------------
 type GetSiteByIdFn = typeof getSiteById;
-type GetOwnedSitesFn = typeof getOwnedSites;
-type GetPublicSitesFn = typeof getPublicSites;
-type GetSitesPaginatedFn = typeof getSitesPaginated;
+type GetOwnedSitesPaginatedFn = typeof getOwnedSitesPaginated;
+type GetPublicSitesPaginatedFn = typeof getPublicSitesPaginated;
 
 // -------------------------
 // Query key helper
 // -------------------------
-export const siteListKey = (
-  settlementId: string,
-  page: number,
-  limit: number,
-  name: string,  
-  types: string[],
-  tone: string[]
-) => ['sites', settlementId, page, limit, name, types, tone];
+export const siteKeys = {
+  all: ['sites'] as const,
+  public: (params: Record<string, unknown>) => ['sites', 'public', params] as const,
+  owned: (params: Record<string, unknown>) => ['sites', 'owned', params] as const,
+  settlement: (settlementId: string | null, params: Record<string, unknown>) =>
+    ['sites', 'settlement', settlementId ?? 'wilderness', params] as const,
+  single: (id: string | null) => ['site', id] as const,
+};
 
 // -------------------------
 // Single site query
 // -------------------------
 export function useGetSiteById(id: Parameters<GetSiteByIdFn>[0] | null) {
   return useQuery<Awaited<ReturnType<GetSiteByIdFn>>, Error>({
-    queryKey: ['site', id],
+    queryKey: siteKeys.single(id),
     queryFn: async () => {
       if (!id) throw new Error('No site ID provided');
       const { getSiteById } = await import('@/lib/actions/site.actions');
       return await getSiteById(id);
     },
     enabled: !!id,
-  });
-}
-
-// -------------------------
-// Paginated sites query
-// -------------------------
-export function usePaginatedSites(
-  settlementId: string | null,
-  page: number,
-  limit: number,
-  name: string,
-  types: string[],
-  tone: string[]
-): UseQueryResult<Awaited<ReturnType<GetSitesPaginatedFn>>, Error> {
-  return useQuery<Awaited<ReturnType<GetSitesPaginatedFn>>, Error>({
-    queryKey: siteListKey(settlementId ?? 'all', page, limit, name, types, tone),
-    queryFn: async () => {
-      const { getSitesPaginated } = await import('@/lib/actions/site.actions');
-      return await getSitesPaginated(settlementId, page, limit, name, types, undefined, tone);
-    },
     staleTime: 1000 * 60 * 5,
   });
 }
 
 // -------------------------
-// Public sites query
+// Public Sites (Paginated)
 // -------------------------
 export function usePublicSitesQuery(
-  params: Omit<Parameters<GetPublicSitesFn>[0], 'isPublic' | 'userId'>
-): UseQueryResult<Awaited<ReturnType<GetPublicSitesFn>>, Error> {
-  return useQuery<Awaited<ReturnType<GetPublicSitesFn>>, Error>({
-    queryKey: ['publicSites', params],
+  params: Parameters<GetPublicSitesPaginatedFn>[0]
+): UseQueryResult<Awaited<ReturnType<GetPublicSitesPaginatedFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetPublicSitesPaginatedFn>>, Error>({
+    queryKey: siteKeys.public(params as Record<string, unknown>),
     queryFn: async () => {
-      const { getPublicSites } = await import('@/lib/actions/site.actions');
-      return await getPublicSites(params);
+      const { getPublicSitesPaginated } = await import('@/lib/actions/site.actions');
+      return await getPublicSitesPaginated(params);
     },
     staleTime: 1000 * 60 * 5,
   });
 }
 
 // -------------------------
-// Owned sites query
+// Owned Sites (Paginated)
 // -------------------------
 export function useOwnedSitesQuery(
-  params: Omit<Parameters<GetOwnedSitesFn>[0], 'isPublic'>,
+  params: Parameters<GetOwnedSitesPaginatedFn>[0],
   options?: { isEnabled?: boolean }
-): UseQueryResult<Awaited<ReturnType<GetOwnedSitesFn>>, Error> {
-  return useQuery<Awaited<ReturnType<GetOwnedSitesFn>>, Error>({
-    queryKey: ['ownedSites', params],
+): UseQueryResult<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error>({
+    queryKey: ['sites', 'owned', JSON.stringify(params)],
     queryFn: async () => {
-      const { getOwnedSites } = await import('@/lib/actions/site.actions');
-      return await getOwnedSites(params);
+      const { getOwnedSitesPaginated } = await import('@/lib/actions/site.actions');
+      return await getOwnedSitesPaginated(params);
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
+  });
+}
+
+// -------------------------
+// Settlement Sites (Paginated)
+// -------------------------
+export function useSitesBySettlementQuery(
+  settlementId: string | null,
+  params: Omit<Parameters<typeof getSitesBySettlementPaginated>[0], 'settlementId'>,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<Awaited<ReturnType<typeof getSitesBySettlementPaginated>>, Error> {
+  // Build the query key using the canonical siteKeys helper
+  const queryKey = siteKeys.settlement(settlementId, params);
+
+  return useQuery<Awaited<ReturnType<typeof getSitesBySettlementPaginated>>, Error>({
+    queryKey,
+    queryFn: async () => {
+      if (!settlementId) throw new Error('No settlement ID provided');
+      const { getSitesBySettlementPaginated } = await import('@/lib/actions/site.actions');
+      return await getSitesBySettlementPaginated({ ...params, settlementId });
+    },
+    staleTime: 1000 * 60 * 5,
+    enabled: options?.isEnabled ?? !!settlementId,
   });
 }

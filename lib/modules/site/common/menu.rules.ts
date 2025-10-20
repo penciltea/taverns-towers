@@ -8,7 +8,7 @@ import { MenuItemMappingByMagic, MenuItemMappingByMagicModel } from "@/lib/model
 import { FALLBACK_CLIMATE_ITEMS, FALLBACK_TERRAIN_ITEMS, FALLBACK_TAG_ITEMS, FALLBACK_MAGIC_ITEMS, FALLBACK_UNIVERSAL_ITEMS } from "./mappings/menu.mappings";
 import { getRandomSubset } from "@/lib/util/randomValues";
 import { SETTLEMENT_SIZE_MULTIPLIERS, SETTLEMENT_WEALTH_BONUSES, SITE_SIZE_BASE, SITE_CONDITION_PENALTIES } from "./mappings/mappings";
-import { siteTypeHasMenu } from "@/lib/util/siteHelpers";
+import { siteTypeHasMenuType } from "@/lib/util/siteHelpers";
 
 export type MenuRuleFn = (
   items: GeneratorSiteMenuPlain[],
@@ -41,7 +41,7 @@ export function normalizeFallbackItems(items: FallbackItem[]): GeneratorSiteMenu
 export const fetchMenuItemsByCondition: MenuRuleFn = async (_items, context) => {
   const { climate, terrain, tags, magic, siteType, shopType, guildType } = context;
 
-  if (!siteType || !siteTypeHasMenu(siteType)) return [];
+  if (!siteType || !siteTypeHasMenuType(siteType)) return [];
 
   // Build queries
   const climateQuery = climate ? { climate } : null;

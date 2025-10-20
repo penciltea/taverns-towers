@@ -64,7 +64,8 @@ export const DefaultSettlementQueryParams: SettlementQueryParams = {
   tags: [],
   terrain: [],
   tone: [],
-  theme: []
+  theme: [],
+  favorite: false
 }
 
 export interface SettlementQueryParams {
@@ -79,6 +80,7 @@ export interface SettlementQueryParams {
   terrain: string[];
   tone: string[];
   theme?: string[];
+  favorite?: boolean;
 }
 
 

@@ -8,9 +8,9 @@ import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { SiteType } from "@/interfaces/site.interface";
-import { canCreateContent } from "@/lib/actions/user.actions";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
+import { siteKeys } from "./site.query";
 
 
 interface UseSiteMutationsProps {
@@ -19,105 +19,191 @@ interface UseSiteMutationsProps {
     siteId?: string; // Required in edit mode
 }
 
-export function useSiteMutations({ mode, settlementId, siteId} : UseSiteMutationsProps){
-    const router = useRouter();
-    const { user } = useAuthStore();
-    const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
-    const queryClient = useQueryClient();
+interface PartialSiteUpdate {
+  _id: string;
+  [key: string]: unknown;
+}
 
-    async function handleSubmit(data: SiteFormData){
-        setSubmitting(true);
-        try{
-            if (!user?.id) throw new Error("User is not logged in");
-                  
-            if (!(await canCreateContent(user.id, "site"))) {
-                showErrorDialog("You have reached the maximum number of sites for your membership tier. Please either upgrade your membership tier or delete an existing site to continue.");
-                return;
-            }
+export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutationsProps) {
+  const router = useRouter();
+  const { user } = useAuthStore();
+  const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
+  const queryClient = useQueryClient();
 
-            const idempotencyKey = generateIdempotencyKey();
+  // -----------------------------
+  // Full form submit (create/edit)
+  // -----------------------------
+  async function handleSubmit(data: SiteFormData) {
+    setSubmitting(true);
+    try {
+      if (!user?.id) throw new Error("User is not logged in");
 
-            // Upload image if needed
-            const cleanImage = await handleDynamicFileUpload(data, "image");
+      const { canCreateContent } = await import("@/lib/actions/user.actions");
+      if (!(await canCreateContent(user.id, "site"))) {
+        showErrorDialog(
+          "You have reached the maximum number of sites for your membership tier. Please either upgrade your membership tier or delete an existing site to continue."
+        );
+        return;
+      }
 
-            // Transform form data for DB and attach the image
-            const siteData = {
-                ...transformSiteFormData(data),
-                image: cleanImage,
-                idempotencyKey
-            } as SiteType;
- 
-            let saved;
-            
-            const { createSite, updateSite } = await import('@/lib/actions/site.actions')
-            if (mode === "add") {
-                saved = await createSite(siteData, settlementId);
-            } else if (mode === "edit") {
-            if (!siteId) throw new Error("Site ID is required for edit mode");
-                saved = await updateSite(siteData, siteId);
-            } else {
-                throw new Error("Invalid mutation mode");
-            }
+      const idempotencyKey = generateIdempotencyKey();
 
-            if (!saved || !saved._id) {
-                throw new Error("There was a problem saving the site, please try again later!");
-            }
+      // Upload image if needed
+      const cleanImage = await handleDynamicFileUpload(data, "image");
 
-            if (data.connections?.length) {
-                for (const conn of data.connections) {
-                    const { addConnection } = await import('@/lib/actions/connections.actions');
-                    await addConnection({
-                        sourceType: "site",
-                        sourceId: saved._id,
-                        targetType: conn.type,
-                        targetId: conn.id,
-                        role: conn.role,
-                    });
+      // Transform form data for DB and attach the image
+      const siteData = {
+        ...transformSiteFormData(data),
+        image: cleanImage,
+        idempotencyKey,
+      } as SiteType;
 
-                    queryClient.setQueryData([conn.type, conn.id], (old: any) => {
-                        if (!old) return old;
-                        return {
-                            ...old,
-                            connections: [
-                            ...old.connections,
-                            { type: conn.type, refId: saved._id, role: conn.role },
-                            ],
-                        };
-                    });
-                }
-                
-                invalidateConnections(queryClient, data.connections);
-            }
+      const { createSite, updateSite } = await import("@/lib/actions/site.actions");
 
-            showSnackbar(
-                mode === "edit" ? "Site updated successfully!" : "Site created successfully!",
-                "success"
-            );
+      const saved =
+        mode === "add"
+          ? await createSite(siteData, settlementId)
+          : mode === "edit" && siteId
+          ? await updateSite(siteData, siteId)
+          : (() => {
+              throw new Error("Invalid mutation mode");
+            })();
 
-            queryClient.invalidateQueries({
-                queryKey: ['sites', settlementId],
-                exact: false
-            });
+      if (!saved || !saved._id) {
+        throw new Error("There was a problem saving the site, please try again later!");
+      }
 
-            router.push(`/settlements/${settlementId}`);
+      // Handle connections
+      if (data.connections?.length) {
+        for (const conn of data.connections) {
+          const { addConnection } = await import("@/lib/actions/connections.actions");
+          await addConnection({
+            sourceType: "site",
+            sourceId: saved._id,
+            targetType: conn.type,
+            targetId: conn.id,
+            role: conn.role,
+          });
 
-        } catch (error) {
-            let message = "Something went wrong saving the site. Please try again later.";
-
-            if (error instanceof Error) {
-                message = error.message;
-            } else if (typeof error === "string") {
-                message = error;
-            }
-
-            showErrorDialog(message);
-            console.error("Site mutation error:", error);
-        } finally {
-            setSubmitting(false);
+          queryClient.setQueryData([conn.type, conn.id], (old: unknown) => {
+            if (!old || typeof old !== "object") return old;
+            const prev = old as { connections?: unknown[] };
+            return {
+              ...prev,
+              connections: [
+                ...(prev.connections ?? []),
+                { type: conn.type, refId: saved._id, role: conn.role },
+              ],
+            };
+          });
         }
-    }
 
-    return {
-        handleSubmit
-    };
+        invalidateConnections(queryClient, data.connections);
+      }
+
+      showSnackbar(
+        mode === "edit" ? "Site updated successfully!" : "Site created successfully!",
+        "success"
+      );
+
+      // Invalidate all relevant site lists
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: siteKeys.owned({}), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.settlement(settlementId, {}), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.public({}), exact: false }),
+      ]);
+
+      router.push(`/settlements/${settlementId}`);
+    } catch (error) {
+      let message = "Something went wrong saving the site. Please try again later.";
+      if (error instanceof Error) message = error.message;
+      showErrorDialog(message);
+      console.error("Site mutation error:", error);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // -----------------------------
+  // Lightweight Partial Update
+  // -----------------------------
+  async function handlePartialUpdate<T extends PartialSiteUpdate>(update: T): Promise<void> {
+    if (!user?.id) throw new Error("User is not logged in");
+
+    const { updateSitePartial } = await import("@/lib/actions/site.actions");
+    const idempotencyKey = generateIdempotencyKey();
+    const payload = { ...update, idempotencyKey };
+
+    // Known query data types
+    type OwnedSitesData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getOwnedSitesPaginated>>;
+    type SiteData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getSiteById>>;
+    type SitesBySettlementData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getSitesBySettlementPaginated>>;
+
+    const settlementQueries = queryClient
+    .getQueryCache()
+    .getAll()
+    .filter(
+      (q) =>
+        Array.isArray(q.queryKey) &&
+        q.queryKey[0] === "sites" &&
+        q.queryKey[1] === "settlement" &&
+        q.queryKey[2] === update.settlementId
+    );
+
+    //console.log("=== ALL CACHED QUERIES BEFORE OPTIMISTIC UPDATE ===");
+    queryClient.getQueryCache().getAll().forEach(q => console.log(q.queryKey));
+    //console.log("=== SETTLEMENT QUERIES TO UPDATE ===", settlementQueries.map(q => q.queryKey));
+    //console.log("=== OPTIMISTIC UPDATE PAYLOAD ===", update);
+
+    settlementQueries.forEach((query) => {
+      queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
+        //console.log("Old data for query", query.queryKey, old);
+        if (!old?.sites) return old;
+        const updated = {
+          ...old,
+          sites: old.sites.map((s) => (s._id === update._id ? { ...s, ...update } : s)),
+        };
+        ///console.log("Updated data for query", query.queryKey, updated);
+        return updated;
+      });
+    });
+
+    // Update individual site cache
+    //console.log("=== UPDATING INDIVIDUAL SITE CACHE ===", update._id, update);
+    queryClient.setQueryData<SiteData>(["site", update._id], (old) => {
+      //console.log("Old site data:", old); // 6️⃣
+      return old ? { ...old, ...update } : old;
+    });
+
+    try {
+      const updatedSite = await updateSitePartial(update._id, payload);
+      //console.log("=== SERVER RESPONSE ===", updatedSite);
+
+      // Apply server response to caches
+      settlementQueries.forEach((query) => {
+        queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
+          if (!old?.sites) return old;
+          const updated = {
+            ...old,
+            sites: old.sites.map((s) => (s._id === updatedSite._id ? updatedSite : s)),
+          };
+          //console.log("Updated data after server response:", query.queryKey, updated);
+          return updated;
+        });
+      });
+
+      queryClient.setQueryData<SiteData>(["site", updatedSite._id], {
+        success: true,
+        site: updatedSite,
+      });
+    } catch (error) {
+      console.error("Failed to update site:", error);
+      throw error;
+    }
+  }
+
+  return {
+    handleSubmit,
+    handlePartialUpdate,
+  };
 }

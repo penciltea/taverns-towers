@@ -1,5 +1,11 @@
 "use server"
 
+
+if (typeof window !== "undefined") {
+  throw new Error("Mongoose imported in client! Stack trace:\n" + new Error().stack);
+}
+
+
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.model";

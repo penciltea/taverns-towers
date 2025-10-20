@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { useAuthStore } from "@/store/authStore";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { userTier } from "@/constants/user.options";
-import { getUser } from "@/lib/actions/user.actions";
 
 export default function AuthSync() {
   const { data: session, status } = useSession();
@@ -24,6 +23,7 @@ export default function AuthSync() {
 
     async function fetchLatestUser() {
       try {
+        const { getUser } = await import("@/lib/actions/user.actions");
         const dbUser = await getUser();
         const sessionUser = session!.user;
         if (!sessionUser) return;

@@ -38,7 +38,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
     };
 
     return (
-        <>
+        <Box sx={{ flexGrow: 1 }}>
             <FormSelect
                 name="shopType"
                 label="Shop Type"
@@ -108,6 +108,6 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                     menuWarning="Please select a shop type to access the Wares & Services table"
                 />
             </Box>
-        </>
+        </Box>
     )
 }

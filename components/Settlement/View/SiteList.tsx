@@ -2,43 +2,44 @@
 
 import { useState } from "react";
 import { Typography } from "@mui/material";
-import { SiteListProps } from "@/interfaces/site.interface";
+import { SiteListProps, SiteQueryParams, SiteType, DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import { useUIStore } from "@/store/uiStore";
-import { SiteType } from '@/interfaces/site.interface';
-import { usePaginatedSites } from "@/hooks/site/site.query";
+import { useSitesBySettlementQuery } from "@/hooks/site/site.query";
 import FilteredGridView from "@/components/Grid/FilteredGridView";
-import { SITE_CATEGORIES } from "@/constants/site/site.options";
-import { SiteQueryParams } from "@/interfaces/site.interface";
 import GridItem from "@/components/Grid/GridItem";
-import { DefaultSiteQueryParams } from "@/interfaces/site.interface";
 import FilterBar from "@/components/Grid/FilterBar";
+import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { queryClient } from "@/components/Layout/QueryProviderWrapper";
-import { deleteSite } from "@/lib/actions/site.actions";
 import { handleSiteLabel } from "@/lib/util/siteHelpers";
 
 export default function SiteList({ settlementId }: SiteListProps) {
-
   const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
 
-  const [ filters, setFilters ] = useState<SiteQueryParams>({
+  const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
     settlementId,
   });
 
-  const { data } = usePaginatedSites(
-    filters.settlementId,
-    filters.page,
-    filters.limit,
-    filters.search,
-    filters.type,
-    filters.tone
+  const { data } = useSitesBySettlementQuery(
+    settlementId,
+    {
+      page: filters.page,
+      limit: filters.limit,
+      search: filters.search,
+      types: filters.types,
+      tone: filters.tone,
+      favorite: filters.favorite,
+    },
+    { isEnabled: !!settlementId }
   );
 
   async function handleDeleteSite(id: string) {
     try {
+      const { deleteSite } = await import("@/lib/actions/site.actions");
       await deleteSite(id);
 
-      queryClient.invalidateQueries({ queryKey: ["sites"] });
+      // Invalidate queries for this settlement
+      queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', settlementId], exact: false });
 
       closeDialog();
     } catch (error) {
@@ -49,16 +50,13 @@ export default function SiteList({ settlementId }: SiteListProps) {
     }
   }
 
-  
-
-
   if (!settlementId) {
     return <Typography color="error">Invalid settlement ID</Typography>;
   }
-  
+
   const sites = data?.sites || [];
   const totalCount = data?.total || 0;
-  
+
   return (
     <FilteredGridView<SiteType>
       title="Sites"
@@ -81,9 +79,9 @@ export default function SiteList({ settlementId }: SiteListProps) {
           onClick={() => {
             setOpenDialog('SiteDetailsDialog', {  
               siteData: site, 
-              settlementId: settlementId,
+              settlementId,
               onDelete: () => handleDeleteSite(site._id),
-            })
+            });
           }}
         />
       )}
@@ -93,9 +91,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
           setFilters={(newFilters) =>
             setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }))
           }
-          clearFilters={() => {
-            setFilters({ ...DefaultSiteQueryParams, settlementId }); // reset to default + settlement
-          }}
+          clearFilters={() => setFilters({ ...DefaultSiteQueryParams, settlementId })}
           chipFilters={[
             {
               title: "Filter by Category",
@@ -103,7 +99,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
               options: SITE_CATEGORIES,
             },
           ]}
-        > </FilterBar>
+        />
       }
       currentPage={filters.page}
       onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}

@@ -1,11 +1,6 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { NpcFormData } from "@/schemas/npc.schema";
-import { Types } from "mongoose";
-
-export function toObjectIdArray(ids?: string[]): Types.ObjectId[] | undefined {
-  return ids?.map((id) => new Types.ObjectId(id));
-}
 
 export function transformSettlementFormData(data: SettlementFormData) {
   return {
@@ -21,7 +16,6 @@ export function transformSettlementFormData(data: SettlementFormData) {
         : undefined,
   };
 }
-
 
 export function transformSiteFormData(data: SiteFormData) {
   return {

@@ -13,9 +13,9 @@ import { MENU_CATEGORY_OPTIONS_BY_SITE } from "@/constants/site/menu.options";
 import { SiteFormData } from "@/schemas/site.schema";
 import { EntertainmentSite, GovernmentSite, GuildSite, HiddenSite, MiscellaneousSite, ResidenceSite, ShopSite, SiteGenerationContext, SiteGenerationInput, SiteType, TavernSite, TempleSite } from "@/interfaces/site.interface";
 import { getLabelFromValue } from "./getLabelFromValue";
-import { getShopTypeLabel } from "@/components/Site/Dialog/ShopDetails";
-import { getGovernmentTypeLabel } from "@/components/Site/Dialog/GovernmentDetails";
-import { getGuildypeLabel } from "@/components/Site/Dialog/GuildDetails";
+import { getShopTypeLabel } from "./Fields/ShopFields";
+import { getGovernmentTypeLabel } from "./Fields/GovernmentFields";
+import { getGuildypeLabel } from "./Fields/GuildFields";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -127,11 +127,15 @@ export function getCategoryOptions(
  * A util function for determining if a site type has a menu or not
  */
 
-export function siteTypeHasMenu(siteType: string | undefined): boolean {
-  const MENU_SUPPORTED_TYPES = ["shop", "tavern", "guild", "temple"]; // add more if needed
+export function siteTypeHasMenuType(siteType: string | undefined): boolean {
+  const MENU_SUPPORTED_TYPES = ["shop", "tavern", "guild", "temple"];
   return !!siteType && MENU_SUPPORTED_TYPES.includes(siteType);
 }
 
+
+export function siteTypeHasMenu(site: SiteType): site is TavernSite | TempleSite | ShopSite | GuildSite {
+  return ["shop", "tavern", "guild", "temple"].includes(site.type);
+}
 
 export function mapSiteToForm(site: SiteType): SiteFormData | null {
   switch (site.type) {

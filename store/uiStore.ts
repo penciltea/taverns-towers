@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { UI_THEMES, UITheme } from '@/constants/ui.options';
+import { UITheme } from '@/constants/ui.options';
 
 interface UIState {
   // Side drawer
@@ -14,7 +14,7 @@ interface UIState {
   closeUserMenu: () => void;
 
   // Dialog state
-  openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'RegisterDialog' | 'DeleteConnectionDialog';
+  openDialog: null | 'SettlementDetailsDialog' | 'deleteConfirmationDialog' | 'siteTypeDialog' | 'filterDialog' | 'SiteDetailsDialog' | 'siteMenuDialog' | 'deleteSiteDialog' | 'typeChangeDialog' | 'LoginDialog' | 'RegisterDialog' | 'DeleteConnectionDialog';
   dialogProps: Record<string, any>;
   setOpenDialog: (dialog: UIState['openDialog'], props?: Record<string, any>) => void;
   closeDialog: () => void;

@@ -1,17 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useUIStore } from '@/store/uiStore';
 import { SiteType } from '@/interfaces/site.interface';
-import { siteListKey, useOwnedSitesQuery } from '@/hooks/site/site.query';
+import { useOwnedSitesQuery } from '@/hooks/site/site.query';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { SiteQueryParams } from '@/interfaces/site.interface';
 import GridItem from '@/components/Grid/GridItem';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import FilterBar from '@/components/Grid/FilterBar';
-import { deleteSite } from '@/lib/actions/site.actions';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
@@ -19,58 +17,22 @@ import Typography from '@mui/material/Typography';
 import { useAuthStore } from '@/store/authStore';
 
 export default function AllSitesPage() {
-  const { closeDialog, setOpenDialog, showErrorDialog } = useUIStore();
-  const queryClient = useQueryClient();
+  const { setOpenDialog } = useUIStore();
 
   const user = useAuthStore(state => state.user);
   
-  const [params, setParams] = useState<SiteQueryParams>({
-    ...DefaultSiteQueryParams
-  });
-
   const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
   });
 
-  useEffect(() => {
-    if (user) {
-      setParams({ ...DefaultSiteQueryParams });
-    }
-  }, [user]);
-
-  
-  const { data, isLoading, error } = useOwnedSitesQuery(params!, {
-    isEnabled: !!params
+  // Query using filters
+  const { data, isLoading, error } = useOwnedSitesQuery(filters, {
+    isEnabled: !!user,
   });
-
-  // Safe delete handler
-  async function handleDeleteSite(id: string) {
-    try {
-      await deleteSite(id);
-
-      queryClient.invalidateQueries({
-        queryKey: siteListKey(
-          filters.settlementId ?? 'all',
-          filters.page,
-          filters.limit,
-          filters.search,
-          filters.type,
-          filters.tone
-        ),
-      });
-
-      closeDialog();
-    } catch (error) {
-      showErrorDialog(
-        'There was a problem deleting the site, please try again later'
-      );
-      console.error('Error deleting site:', error);
-    }
-  }
-
+  
   return (
     <AuthGate fallbackText="You must be logged in to view your sites.">
-      {!params || isLoading ? (
+      {isLoading ? (
         <Spinner />
       ) : error || !data?.success ? (
         <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
@@ -93,12 +55,7 @@ export default function AllSitesPage() {
               image={site.image}
               subtitle={handleSiteLabel(site)}
               tone={site.tone}
-              onClick={() => {
-                useUIStore.getState().setOpenDialog('SiteDetailsDialog', {
-                  siteData: site,
-                  onDelete: () => handleDeleteSite(site._id),
-                });
-              }}
+              link={`/sites/${site._id}`}
             />
           )}
           filterComponent={
@@ -111,7 +68,7 @@ export default function AllSitesPage() {
               chipFilters={[
                 {
                   title: 'Filter by Category',
-                  key: 'type',
+                  key: 'types',
                   options: SITE_CATEGORIES,
                 },
               ]}
