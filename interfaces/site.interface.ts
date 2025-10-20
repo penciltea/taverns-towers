@@ -45,7 +45,7 @@ export const DefaultSiteQueryParams: SiteQueryParams = {
 export interface PaginatedQueryParams {
   page?: number;
   limit?: number;
-  name?: string;
+  search?: string;
   types?: string[];
   tone?: string[];
   favorite?: boolean;

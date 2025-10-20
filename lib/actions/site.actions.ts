@@ -19,7 +19,7 @@ function getPagination(page?: number, limit?: number) {
 export async function getPublicSitesPaginated({
   page,
   limit,
-  name,
+  search,
   types,
   tone,
 }: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
@@ -27,7 +27,9 @@ export async function getPublicSitesPaginated({
 
   try {
     const query: Record<string, unknown> = { isPublic: true };
-    if (name) query.name = new RegExp(name, "i");
+    if (typeof search === "string" && search.trim()) {
+      query.name = { $regex: search.trim(), $options: "i" };
+    }
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
 
@@ -60,7 +62,7 @@ export async function getPublicSitesPaginated({
 export async function getOwnedSitesPaginated({
   page,
   limit,
-  name,
+  search,
   types,
   tone,
   favorite,
@@ -71,7 +73,9 @@ export async function getOwnedSitesPaginated({
     const user = await requireUser();
     const query: Record<string, unknown> = { userId: new ObjectId(user.id) };
 
-    if (name) query.name = new RegExp(name, "i");
+    if (typeof search === "string" && search.trim()) {
+      query.name = { $regex: search.trim(), $options: "i" };
+    }
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
     if (favorite) query.favorite = true;
