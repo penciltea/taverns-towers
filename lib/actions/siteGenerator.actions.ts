@@ -1,11 +1,11 @@
 'use server';
 
+
 import connectToDatabase from "@/lib/db/connect";
 import GeneratorSiteFragment, { GeneratorSiteFragmentPlain } from "@/lib/models/generator/site/siteNameFragment.model";
 import { generatorMenuItem, GroupKey, SiteGenerationContext, SiteGenerationInput } from "@/interfaces/site.interface";
 import { SiteFormData } from "@/schemas/site.schema";
 import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } from "../modules/site/site.dispatcher";
-import { getSettlementById } from "./settlement.actions";
 import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
 import { NAME_FRAGMENT_MAP_BY_TYPE } from "../modules/site/name/name.fragment.mappings";
@@ -105,6 +105,7 @@ export async function generateSiteData(
 
   if (input.settlementId) {
     // Fetch the full settlement first
+    const { getSettlementById } = await import("./settlement.actions");
     const settlement = await getSettlementById(input.settlementId);
 
     // Use your helper to generate site data from settlement + overrides

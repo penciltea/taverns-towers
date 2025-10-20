@@ -25,7 +25,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
     {
       page: filters.page,
       limit: filters.limit,
-      name: filters.search,
+      search: filters.search,
       types: filters.types,
       tone: filters.tone,
       favorite: filters.favorite,

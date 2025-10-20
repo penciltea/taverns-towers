@@ -227,6 +227,7 @@ export const NPC_OCCUPATION = [
       { label: "Guildmaster", value: "guildmaster" },
       { label: "Healer / Herbalist", value: "healer" },
       { label: "Innkeeper / Tavernkeeper", value: "innkeeper" },
+      { label: "Inventor", value: "inventor" },
       { label: "Laborer", value: "laborer" },
       { label: "Merchant", value: "merchant" },
       { label: "Scribe / Clerk", value: "scribe" },

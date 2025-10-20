@@ -1,7 +1,6 @@
 import { useUIStore } from "@/store/uiStore";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import findDeletedConnections from "@/lib/util/findDeletedConnections";
-import { deleteConnection } from "@/lib/actions/connections.actions";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useQueryClient } from "@tanstack/react-query";
 import { NpcConnectionType } from "@/constants/npc.options";
@@ -32,6 +31,7 @@ export function useHandleDeletedConnections<T extends { connections: NpcConnecti
         deletedConnections,
         onConfirm: async () => {
           // Bidirectional deletion
+          const { deleteConnection } = await import("@/lib/actions/connections.actions");
           for (const conn of deletedConnections) {
             await deleteConnection({
               sourceType,

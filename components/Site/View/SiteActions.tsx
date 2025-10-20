@@ -28,7 +28,7 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
   const deletable = canDelete(user, { userId: site.userId});
 
   const handleEdit = () => {
-    router.push(`/settlements/${site.settlementId}/sites/${site._id}`);
+    router.push(`/settlements/${site.settlementId ? site.settlementId : 'wilderness'}/sites/${site._id}`);
   };
 
   return (
