@@ -110,7 +110,7 @@ export async function getSitesBySettlementPaginated({
   settlementId,
   page,
   limit,
-  name,
+  search,
   types,
   tone,
   favorite,
@@ -135,7 +135,9 @@ export async function getSitesBySettlementPaginated({
       };
     }
 
-    if (name) query.name = new RegExp(name, "i");
+    if (typeof search === "string" && search.trim()) {
+      query.name = { $regex: search.trim(), $options: "i" };
+    }
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
     if (favorite) query.favorite = true;
