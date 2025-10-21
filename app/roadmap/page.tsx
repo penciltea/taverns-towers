@@ -60,7 +60,7 @@ export default function Roadmap(){
                         sx={{ display: 'list-item' }}
                         disableTypography
                         primary={<strong>Expanded NPC fields:</strong>}
-                        secondary={<span> Occupation, likes/dislikes, and other traits will give NPCs more personality.</span>}
+                        secondary={<span> Adding support for fields such as likes, dislikes, and more.</span>}
                     />
                 </ListItem>
             </List>
@@ -94,6 +94,20 @@ export default function Roadmap(){
             {/* Account & Sharing */}
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Account & Sharing</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
+                <ListItem disablePadding>
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Exclusive dropdown options for Premium-tier members"
+                    />
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Export options for Premium-tier members"
+                    />
+                </ListItem>
                 <ListItem disablePadding>
                     <ListItemText
                         sx={{ display: 'list-item' }}
