@@ -210,7 +210,7 @@ export async function createSite(data: SiteType, settlementId: string) {
 
 
   if (dbSettlementId) {
-    revalidatePath(`/settlement/${dbSettlementId.toString()}`);
+    revalidatePath(`/settlements/${dbSettlementId.toString()}`);
   } else {
     revalidatePath(`/wilderness`);
   }
@@ -236,7 +236,7 @@ export async function updateSite(data: SiteUpdateData, id: string) {
   );
 
   if (updated?.settlementId) {
-    revalidatePath(`/settlement/${updated.settlementId}`);
+    revalidatePath(`/settlements/${updated.settlementId}`);
   }
 
   return serializeSite(updated);
@@ -264,7 +264,7 @@ export async function updateSitePartial(id: string, data: PartialSiteUpdate) {
 
   // Revalidate the settlement page if needed
   if (updatedSite.settlementId) {
-    revalidatePath(`/settlement/${updatedSite.settlementId}`);
+    revalidatePath(`/settlements/${updatedSite.settlementId}`);
   }
 
   return serializeSite(updatedSite);

@@ -1,11 +1,5 @@
 "use server"
 
-
-if (typeof window !== "undefined") {
-  throw new Error("Mongoose imported in client! Stack trace:\n" + new Error().stack);
-}
-
-
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.model";
@@ -306,6 +300,28 @@ export async function getRecentActivity(limit = 5) {
   return tagged
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, limit);
+}
+
+// For checking user's favorites
+export async function getFavorites() {
+  const user = await requireUser();
+  await connectToDatabase();
+
+  const [npcs, settlements, sites] = await Promise.all([
+    NpcModel.find({ userId: user.id, favorite: true }).lean(),
+    SettlementModel.find({ userId: user.id, favorite: true }).lean(),
+    Site.find({ userId: user.id, favorite: true }).lean(),
+  ]);
+
+  const tagged = [
+    ...npcs.map((n) => ({ ...serializeNpc(n), type: "npc" })),
+    ...settlements.map((s) => ({ ...serializeSettlement(s), type: "settlement" })),
+    ...sites.map((s) => ({ ...serializeSite(s), type: "site" })),
+  ];
+
+  // Sort by updatedAt descending
+  return tagged
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
 }
 
 

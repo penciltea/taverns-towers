@@ -6,10 +6,11 @@ import { useUIStore } from "@/store/uiStore";
 import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
-import DeleteButton from "@/components/Common/DeleteButton";
+import DeleteButton from "@/components/Common/Button/DeleteButton";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
-import SettlementFavorite from "./SettlementFavorite";
+import FavoriteButton from "@/components/Common/Button/FavoriteButton";
+import { useSaveSettlement } from "@/hooks/settlement/useSaveSettlement";
 
 export default function SettlementActions({ settlement }: { settlement: Settlement }) {
   const router = useRouter();
@@ -22,6 +23,8 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
   const editable = canEdit(user, { userId: settlement.userId, editors: settlement.editors });
   const deletable = canDelete(user, { userId: settlement.userId});
 
+  const { handlePartialUpdate } = useSaveSettlement("edit", settlement._id);
+
   const handleEdit = () => {
     router.push(`/settlements/${settlement._id}/edit`);
   };
@@ -32,7 +35,13 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
         { editable && 
           (
             <>
-              <SettlementFavorite settlement={settlement} />
+              <FavoriteButton<Settlement>
+                item={settlement}
+                onToggleFavorite={async (updated) => {
+                  await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
+                  queryClient.invalidateQueries({ queryKey: ["favorites"] });
+                }}
+              />
               <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
                 Edit
               </Button>

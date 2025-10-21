@@ -3,7 +3,7 @@
 import { Box, Typography, TypographyProps, Paper, Grid } from '@mui/material';
 import GridContainer from './GridContainer';
 import PaginationControls from '@/components/Common/Pagination';
-import FabButton from '@/components/Common/fabButton';
+import FabButton from '@/components/Common/Button/fabButton';
 import { CommonInterface } from '@/interfaces/common.interface';
 
 type FilteredGridViewProps<T extends CommonInterface> = {

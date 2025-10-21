@@ -2,7 +2,7 @@
 
 import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import ToggleFieldButton from "@/components/Common/ToggleFieldButton";
+import ToggleFieldButton from "@/components/Common/Button/ToggleFieldButton";
 import { SiteType } from "@/interfaces/site.interface";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
 import { useQueryClient } from "@tanstack/react-query";

@@ -11,6 +11,7 @@ import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 
 import MembershipPanel from '@/components/Dashboard/Memberships';
 import DashboardProfile from '@/components/Dashboard/DashboardProfile';
+import DashboardFavorites from '@/components/Dashboard/DashboardFavorites';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
@@ -35,7 +36,7 @@ export default function AccountDashboard(){
                         titleComponent="h3"
                         titleText="Featured Items"
                     >
-                        <Typography>A placeholder for creator&apos;s favorites</Typography>
+                        <DashboardFavorites />
                     </DashboardSection>
 
                     <DashboardSection 

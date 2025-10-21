@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import PatreonCta from "./PatreonCta"
 import NextMuiLink from "./NextMuiLink";
-import ThemedButton from "./ThemedButton";
+import ThemedButton from "./Button/ThemedButton";
 import HighlightCard from "./HighlightCard";
 
 export default function HomeContent(){

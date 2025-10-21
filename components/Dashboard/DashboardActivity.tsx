@@ -14,7 +14,7 @@ export default function DashboardActivity(){
             case 'settlement':
                 return `/${item.type}s/${item._id}/edit`;
             case 'site':
-                if (!item.settlementId) return '/'; // fallback if missing
+                if (!item.settlementId) return `/settlements/wilderness/sites/${item._id}`;
                 return `/settlements/${item.settlementId}/sites/${item._id}`;
             default:
                 return '/';
