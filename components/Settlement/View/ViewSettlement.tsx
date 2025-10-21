@@ -5,7 +5,7 @@ import { Settlement } from '@/interfaces/settlement.interface';
 import SettlementDetails from "@/components/Settlement/View/SettlementDetails";
 import SettlementActions from "@/components/Settlement/View/SettlementActions";
 import SiteList from "@/components/Settlement/View/SiteList";
-import FabButton from "@/components/Common/fabButton";
+import FabButton from "@/components/Common/Button/fabButton";
 import SettlementConnections from "./SettlementConnections";
 import { useSession } from "next-auth/react";
 import { canEdit } from "@/lib/auth/authPermissions";

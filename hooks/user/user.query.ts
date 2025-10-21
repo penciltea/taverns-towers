@@ -1,9 +1,10 @@
 'use client';
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import type { getRecentActivity } from '@/lib/actions/user.actions';
+import { getFavorites, getRecentActivity } from '@/lib/actions/user.actions';
 
 type GetRecentActivityFn = typeof getRecentActivity;
+type GetFavoritesFn = typeof getFavorites;
 
 // -------------------------
 // Recent activity query
@@ -20,3 +21,15 @@ export const useRecentActivityQuery = (
     staleTime: 1000 * 60 * 2,
   });
 };
+
+
+export const useGetFavorites = (): UseQueryResult<Awaited<ReturnType<GetFavoritesFn>>, Error> => {
+  return useQuery<Awaited<ReturnType<GetFavoritesFn>>, Error>({
+    queryKey: ['favorites'],
+    queryFn: async () => {
+      const { getFavorites } = await import('@/lib/actions/user.actions') as { getFavorites: GetFavoritesFn };
+      return await getFavorites();
+    },
+    staleTime: 1000 * 60 * 2,
+  });
+}
