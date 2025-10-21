@@ -7,6 +7,7 @@ export interface GeneratorNpcFragmentPlain {
   weight?: number;
   value: string;
   race?: string[];
+  membership?: string[];
 }
 
 
@@ -15,6 +16,7 @@ const GeneratorNpcFragmentSchema = new mongoose.Schema<GeneratorNpcFragmentPlain
   value: { type: String, required: true },
   weight: { type: Number, default: 1, required: false },
   race: { type: [String], required: false },
+  membership: { type: [String], required: false }
 });
 
 export default mongoose.models.GeneratorNpcFragment ||
