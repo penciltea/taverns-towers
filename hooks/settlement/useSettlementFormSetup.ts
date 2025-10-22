@@ -51,6 +51,7 @@ export function useSettlementFormSetup(
    * Replaces all form values with newly generated data.
    */
   const onReroll = async () => {
+    console.log("user: ", user);
     const { generateFull } = await import("./useSettlementGeneratorActions").then(m => m.useSettlementGeneratorActions());
     const generated = await generateFull();
     methods.reset(generated);

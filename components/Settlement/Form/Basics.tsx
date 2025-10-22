@@ -6,7 +6,8 @@ import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { THEME, TONE } from "@/constants/common.options";
+import { THEME, ARTISAN_THEMES, TONE } from "@/constants/common.options";
+import { useAuthStore } from "@/store/authStore";
 
 export default function SettlementFormBasics(){
     const {
@@ -16,6 +17,20 @@ export default function SettlementFormBasics(){
         setValue,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
+
+    function handleThemesByTier(){
+        const tier = user?.tier;
+        switch (tier) {
+            case "Artisan":
+            case "Architect":
+            return [...ARTISAN_THEMES, ...THEME];
+            case "Apprentice":
+            default:
+            return THEME;
+        }
+    }
 
     const handleGenerateName = async () => {
         const terrain = watch("terrain");
@@ -57,7 +72,7 @@ export default function SettlementFormBasics(){
                     name="theme"
                     label="Theme"
                     control={control}
-                    options={THEME}
+                    options={handleThemesByTier()}
                     fieldError={errors.tone}
                     tooltip="This field influences name generation."
                 />

@@ -1,11 +1,19 @@
 import { Box, Typography, List } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { NPC_TRAITS } from "@/constants/npc.options";
+import { NPC_OCCUPATION, NPC_TRAITS } from "@/constants/npc.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
 
 export function getTraitLabel(value: string): string {
   for (const category of NPC_TRAITS) {
+    const match = category.options.find(option => option.value === value);
+    if (match) return match.label;
+  }
+  return value; // fallback to raw value if not found
+}
+
+export function getOccupationLabel(value: string): string {
+  for (const category of NPC_OCCUPATION) {
     const match = category.options.find(option => option.value === value);
     if (match) return match.label;
   }
@@ -24,6 +32,15 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
         ? npc.traits.map(getTraitLabel).join(", ")
         : "N/A"
     },
+    { label: "Archetype", value: npc.archetype ? toTitleCase(npc.archetype) : "N/A" },
+    { 
+      label: "Occupation(s)", 
+      value: npc.occupation?.length
+        ? npc.occupation.map(getOccupationLabel).join(", ")
+        : "N/A"
+    },
+    { label: "Likes", value: npc.likes ? npc.likes : "N/A" },
+    { label: "Disikes", value: npc.dislikes ? npc.dislikes : "N/A" },
     { label: "Status", value: npc.status }
   ];
 

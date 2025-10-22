@@ -85,6 +85,15 @@ export const THEME = [
       { label: "Medieval Fantasy", value: "Medieval Fantasy"},
     ]
   }
+];
+
+export const ARTISAN_THEMES = [
+  {
+    label: "Premim-tier Exclusives",
+    options: [
+      { label: "Arabic-Inpired", value: "Arabic-Inspired" }
+    ]
+  }
 ]
 
 

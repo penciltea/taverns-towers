@@ -23,7 +23,7 @@ const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
   wealth: [String],
   weight: { type: Number, default: 1 },
   tags: [String],
-  theme: [String]
+  theme: [String],
 });
 
 export default mongoose.models.GeneratorFragment ||

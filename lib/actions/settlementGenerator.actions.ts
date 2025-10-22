@@ -16,7 +16,7 @@ export async function generateSettlementName({
   magic,
   wealth,
   size,
-  theme
+  theme,
 }: {
   climate?: string;
   terrain?: string[];
