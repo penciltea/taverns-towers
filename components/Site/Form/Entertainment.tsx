@@ -1,8 +1,13 @@
-import { FormSelect, FormTextField } from "@/components/Form";
+'use client';
+
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import { FieldError, useFormContext } from "react-hook-form";
 import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+import { useAuthStore } from "@/store/authStore";
+import { userTier } from "@/constants/user.options";
 
 export default function EntertainmentFields({generator}: SiteFormFieldProps){
     const {
@@ -10,6 +15,8 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
 
     return (
         <>
@@ -20,6 +27,15 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
 
             <FormSelect

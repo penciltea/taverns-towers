@@ -11,10 +11,11 @@ export interface GeneratorSettlementFragmentPlain {
   weight?: number;
   tags?: string[];
   theme?: string[];
+  tier?: string[];
 }
 
 const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
-  type: { type: String, enum: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "theme", "format"], required: true },
+  type: { type: String, enum: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "format"], required: true },
   value: { type: String, required: true },
   terrain: [String],
   climate: [String],
@@ -24,6 +25,7 @@ const GeneratorFragmentSchema = new Schema<GeneratorSettlementFragmentPlain>({
   weight: { type: Number, default: 1 },
   tags: [String],
   theme: [String],
+  tier: [String],
 });
 
 export default mongoose.models.GeneratorFragment ||

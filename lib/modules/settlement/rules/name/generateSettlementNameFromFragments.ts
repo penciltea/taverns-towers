@@ -8,7 +8,7 @@ export function generateSettlementNameFromFragments({
   fragments,
   filters,
   fallbackFormats,
-  allowedKeys = ["prefix", "suffix", "connector", "descriptor", "size", "noun", "theme", "format"],
+  allowedKeys = ["prefix", "suffix", "connector", "descriptor", "size", "noun", "format"],
 }: {
   fragments: GeneratorSettlementFragmentPlain[];
   filters: GenerateSettlementNameOptions;
@@ -67,7 +67,6 @@ export function generateSettlementNameFromFragments({
     descriptor: [],
     connector: [],
     size: [],
-    theme: [],
     format: []
   };
 

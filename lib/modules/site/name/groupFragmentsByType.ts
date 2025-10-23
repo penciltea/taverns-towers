@@ -9,6 +9,7 @@ export function groupFragmentsByType(fragments: GeneratorSiteFragmentPlain[]): R
     person: fragments.filter(f => f.type === "person"),
     siteTypeName: fragments.filter(f => f.type === "siteTypeName"),
     fullName: fragments.filter(f => f.type === "fullName"),
+    siteTheme: fragments.filter(f => f.type === "siteTheme"),
     format: fragments.filter(f => f.type === "format"),
   };
 }

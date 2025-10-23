@@ -17,6 +17,7 @@ export async function generateSettlementName({
   wealth,
   size,
   theme,
+  tier
 }: {
   climate?: string;
   terrain?: string[];
@@ -25,11 +26,11 @@ export async function generateSettlementName({
   wealth?: string;
   size?: string;
   theme?: string[];
+  tier?: string;
 }): Promise<string> {
   await connectToDatabase();
 
   let fragments: GeneratorSettlementFragmentPlain[] = [];
-
   try{
     const rawFragments = await GeneratorSettlementFragment.find().lean<GeneratorSettlementFragmentPlain[]>();
 
@@ -52,12 +53,13 @@ export async function generateSettlementName({
   }
 
   return dispatchSettlementName(fragments, {
-    climate, terrain, tags, magic, wealth, size, theme
+    climate, terrain, tags, magic, wealth, size, theme, tier
   });
 }
 
 export async function generateSettlementData(
   input: Partial<Settlement>,
+  tier: string,
   rerollAll = false
 ): Promise<NormalizedSettlementInput & { name: string }> {
   await connectToDatabase();
@@ -87,7 +89,8 @@ export async function generateSettlementData(
     magic: data.magic,
     wealth: data.wealth,
     size: data.size,
-    theme: data.theme
+    theme: data.theme,
+    tier,
   });
 
   return {

@@ -107,7 +107,9 @@ export async function generateSiteValues(
     terrain: input.terrain,
     climate: input.climate,
     tags: input.tags,
-    data: mergedData,
+    siteSize: mergedData.size,
+    siteCondition: mergedData.condition,
+    siteTheme: mergedData.siteTheme
   });
 
   return {

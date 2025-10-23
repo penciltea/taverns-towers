@@ -158,7 +158,7 @@ export default function MembershipPage() {
                                     position: "relative",
                                 }}
                             >
-                                Multiple themes + custom options&nbsp;<Typography variant="caption">(coming soon!)</Typography>
+                                Exclusive themes + custom options&nbsp;<Typography variant="caption">(coming soon!)</Typography>
                             </TableCell>
                             <TableCell align="center">Premium + early access</TableCell>
                         </TableRow>

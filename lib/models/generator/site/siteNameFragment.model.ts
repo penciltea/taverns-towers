@@ -10,6 +10,7 @@ export interface GeneratorSiteFragmentPlain {
   tags?: string[];          // e.g. ["hidden", "trade hub"]
   terrain?: string[];      // e.g. ["forest"]
   climate?: string[];
+  siteTheme?: string[];
   shopType?: string[];        // for shop type sites
   guildType?: string[];       // for guild type sites
   venueType?: string[];       // for entertainment venue type sites
@@ -29,7 +30,8 @@ const GeneratorSiteFragmentSchema = new mongoose.Schema<GeneratorSiteFragmentPla
   shopType: { type: String, required: false },
   guildType: { type: String, required: false },
   venueType: { type: String, required: false },
-  functionType: { type: String, required: false }
+  functionType: { type: String, required: false },
+  siteTheme: [String]
 });
 
 export default mongoose.models.GeneratorSiteFragment ||

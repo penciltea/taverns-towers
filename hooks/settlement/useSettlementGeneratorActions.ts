@@ -16,19 +16,19 @@ export function useSettlementGeneratorActions() {
    * Generates data for only empty or "random" fields.
    * Accepts the current form state to preserve existing values.
    */
-  const generatePartial = async (currentValues: SettlementFormData) => {
+  const generatePartial = async (currentValues: SettlementFormData, tier: string) => {
     const normalizedInput = normalizeSettlementInput(currentValues);
     const { generateSettlementData } = await import('@/lib/actions/settlementGenerator.actions');
-    const generated = await generateSettlementData(normalizedInput, false);
+    const generated = await generateSettlementData(normalizedInput, tier, false);
     return generated;
   };
 
   /**
    * Generates a full new settlement from scratch (replaces all fields).
    */
-  const generateFull = async () => {
+  const generateFull = async (tier: string) => {
     const { generateSettlementData } = await import('@/lib/actions/settlementGenerator.actions');
-    const generated = await generateSettlementData(defaultSettlementValues, true);
+    const generated = await generateSettlementData(defaultSettlementValues, tier, true);
     return generated;
   };
 

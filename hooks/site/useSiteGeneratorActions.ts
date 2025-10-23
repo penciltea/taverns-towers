@@ -24,6 +24,7 @@ type GeneratorContext = {
   tags: string[];
   magic: string;
   wealth: string;
+  siteTheme: string[];
 };
 
 type UseSiteGeneratorActionsReturn = {
@@ -120,8 +121,11 @@ export function useSiteGeneratorActions(
     async (target?: string) => {
       if (!siteType) return;
 
+      const formData = methods.getValues();
+      console.log("formData: ", formData);
+
       const env = await regenerateEnvironment(false);
-      const shopType = getSubType("shopType");
+      const shopType = getSubType("shopType") ;
       const guildType = getSubType("guildType");
       const venueType = getSubType("venueType");
       const functionType = getSubType("function");
@@ -137,6 +141,9 @@ export function useSiteGeneratorActions(
 
       const name = await generateSiteName({
         siteType: [siteType],
+        siteSize: formData.size,
+        siteCondition: formData.condition,
+        siteTheme: formData.siteTheme,
         shopType: siteType === "shop" ? shopType : undefined,
         guildType: siteType === "guild" ? guildType : undefined,
         venueType: siteType === "entertainment" ? venueType : undefined,
@@ -189,6 +196,7 @@ export function useSiteGeneratorActions(
       const formData = methods.getValues();
       const siteSize = formData.size;
       const siteCondition = formData.condition;
+      const siteTheme = formData.siteTheme;
 
       const selectedDomains = siteType === "temple"
         ? (() => {
@@ -199,6 +207,9 @@ export function useSiteGeneratorActions(
 
       const generationContext = {
         siteType,
+        siteTheme,
+        siteSize,
+        siteCondition,
         shopType,
         guildType,
         venueType,
@@ -209,8 +220,6 @@ export function useSiteGeneratorActions(
         tags: context.tags,
         magic,
         wealth,
-        siteSize,
-        siteCondition,
       };
 
       // Clear the full menu before regenerating all items
@@ -264,7 +273,8 @@ export function useSiteGeneratorActions(
     const overrides = getUserOverrides(currentValues);
 
 
-    //console.log("overrides: ", overrides);
+    console.log("currentValues: ", currentValues);
+    console.log("overrides: ", overrides);
 
     // Generate site data based on whether wilderness or settlement context
     const { generateSiteData } = await import('@/lib/actions/siteGenerator.actions');

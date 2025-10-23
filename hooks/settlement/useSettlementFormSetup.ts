@@ -17,6 +17,7 @@ import { SettlementFormData } from "@/schemas/settlement.schema";
 import { UseFormReturn } from "react-hook-form";
 import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
+import { userTier } from "@/constants/user.options";
 
 export function useSettlementFormSetup(
   methods: UseFormReturn<SettlementFormData>,
@@ -37,7 +38,7 @@ export function useSettlementFormSetup(
     const { generatePartial } = await import("./useSettlementGeneratorActions").then(m => m.useSettlementGeneratorActions());
 
     const currentValues = methods.watch();
-    const generated = await generatePartial(currentValues);
+    const generated = await generatePartial(currentValues, user?.tier ?? userTier[0]);
 
     Object.entries(generated).forEach(([key, value]) => {
       const currentVal = currentValues[key as keyof SettlementFormData];
@@ -51,9 +52,8 @@ export function useSettlementFormSetup(
    * Replaces all form values with newly generated data.
    */
   const onReroll = async () => {
-    console.log("user: ", user);
     const { generateFull } = await import("./useSettlementGeneratorActions").then(m => m.useSettlementGeneratorActions());
-    const generated = await generateFull();
+    const generated = await generateFull(user?.tier ?? userTier[0]);
     methods.reset(generated);
   };
 

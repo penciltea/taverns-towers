@@ -16,6 +16,9 @@ export async function generateSiteName({
   guildType,
   venueType,
   functionType,
+  siteSize,
+  siteCondition,
+  siteTheme,
   domains,
   terrain,
   climate,
@@ -28,6 +31,9 @@ export async function generateSiteName({
   functionType?: string;
   domains?: string[];
   siteType?: string[];
+  siteSize?: string;
+  siteCondition?: string;
+  siteTheme?: string[];
   terrain?: string[];
   climate?: string;
   tags?: string[];
@@ -66,6 +72,9 @@ export async function generateSiteName({
     guildType: toArray(guildType),
     venueType: toArray(venueType),
     functionType: toArray(functionType),
+    siteSize: toArray(siteSize),
+    siteCondition: toArray(siteCondition),
+    siteTheme,
     domains: toArray(domains),
     terrain,
     climate,

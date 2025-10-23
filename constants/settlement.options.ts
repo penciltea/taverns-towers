@@ -70,6 +70,30 @@ export const MILITARY_PRESENCE_TYPES = [
     "Town Guard",
 ];
 
+export const THEME = [
+  {
+    label: "Apprentice-tier Options",
+    options: [
+      { label: "Dark Elven-Inspired", value: "Dark Elven-Inspired"},
+      { label: "Dwarven-Inspired", value: "Dwarven-Inspired" },
+      { label: "Elven-Inspired", value: "Elven-Inspired" },
+      { label: "Medieval Fantasy", value: "Medieval Fantasy"},
+    ]
+  }
+];
+
+export const ARTISAN_THEMES = [
+  {
+    label: "Premim-tier Exclusives",
+    options: [
+      { label: "Arabic-Inpired", value: "Arabic-Inspired" }
+    ]
+  }
+];
+
+export type Flatten<T> = T extends Array<{ options: readonly any[] }>
+  ? T[number]["options"][number]
+  : never;
 
 export type SizeTypes = (typeof SIZE_TYPES)[number]
 export type WealthLevel = (typeof WEALTH_LEVELS)[number]

@@ -76,6 +76,7 @@ export interface BaseSite extends CommonInterface {
   condition?: SiteCondition;
   image?: string;
   tone?: string[];
+  siteTheme?: string[];
   idempotencyKey?: string;
   connections: NpcConnection[];
 }
@@ -171,6 +172,9 @@ export interface GenerateSiteNameOptions {
   venueType?: string[];
   functionType?: string[];
   domains?: string[];
+  siteSize?: string[];
+  siteCondition?: string[];
+  siteTheme?: string[];
   data?: Partial<SiteFormData>;
 }
 
@@ -182,6 +186,7 @@ export type GroupKey =
   | "person"
   | "siteTypeName"
   | "fullName"
+  | "siteTheme"
   | "format";
 
 
@@ -200,6 +205,7 @@ export interface SiteGenerationContext {
   settlementId?: string;
   settlementName?: string;
   reroll?: boolean;
+  siteTheme?: string[];
   siteType?: string;
   shopType?: string;
   guildType?: string;

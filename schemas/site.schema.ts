@@ -35,6 +35,7 @@ export const baseSiteSchema = z.object({
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   tone: z.array(z.string()).optional(),
+  siteTheme: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema),
   favorite: z.boolean().optional(),
   isPublic: z.boolean().optional(),
@@ -178,6 +179,7 @@ export const defaultSiteValues: Record<
     clientele: "",
     entertainment: [],
     cost: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
@@ -186,6 +188,7 @@ export const defaultSiteValues: Record<
     type: "temple",
     domains: [],
     relics: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
@@ -193,6 +196,7 @@ export const defaultSiteValues: Record<
     name: "",
     type: "shop",
     shopType: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
@@ -203,6 +207,7 @@ export const defaultSiteValues: Record<
     guildName: "",
     membershipRequirements: [],
     knownRivals: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
@@ -211,6 +216,7 @@ export const defaultSiteValues: Record<
     type: "government",
     function: "",
     security: "",
+    siteTheme: [],
     connections: []
   },
   entertainment: {
@@ -218,6 +224,7 @@ export const defaultSiteValues: Record<
     type: "entertainment",
     venueType: "",
     cost: "",
+    siteTheme: [],
     connections: []
   },
   hidden: {
@@ -227,12 +234,14 @@ export const defaultSiteValues: Record<
     knownTo: [],
     defenses: [],
     purpose: [],
+    siteTheme: [],
     connections: []
   }, 
   residence: {
     name: "",
     type: "residence",
     notableFeatures: "",
+    siteTheme: [],
     connections: []
   },
   miscellaneous: {
@@ -240,6 +249,7 @@ export const defaultSiteValues: Record<
     type: "miscellaneous",
     features: "",
     use: "",
+    siteTheme: [],
     connections: []
   }
 };
