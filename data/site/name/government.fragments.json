@@ -2,128 +2,138 @@
     {
         "type": "prefix",
         "value": "Civic",
-        "weight": 2,
         "siteType": ["government"],
-        "functionType": ["townHall", "mayor", "publicWork"]
+        "functionType": ["townHall", "mayor", "publicWork"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Imperial",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["embassy", "command", "garrison"]
+        "functionType": ["embassy", "command", "garrison"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Royal",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["embassy", "mayor", "townHall"]
+        "functionType": ["embassy", "mayor", "townHall"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Signal",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["watch", "command", "guardhouse"]
+        "functionType": ["watch", "command", "guardhouse"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Granite",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["courthouse", "garrison", "barracks"]
+        "functionType": ["courthouse", "garrison", "barracks"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ledger",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["tax", "archive", "census"]
-    },
-    {
-        "type": "prefix",
-        "value": "Signal",
-        "weight": 1,
-        "siteType": ["government"],
-        "functionType": ["watch", "command", "guardhouse"]
+        "functionType": ["tax", "archive", "census"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Iron",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["barracks", "command", "garrison"]
+        "functionType": ["barracks", "command", "garrison"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Frontline",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["recruit", "barracks", "drillYard"]
+        "functionType": ["recruit", "barracks", "drillYard"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Seal",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["customs", "permit", "embassy"]
+        "functionType": ["customs", "permit", "embassy"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Golden",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["tax", "bank", "mayor"]
+        "functionType": ["tax", "bank", "mayor"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Oathbound",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["courtier", "watch", "bounty"]
+        "functionType": ["courtier", "watch", "bounty"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Swift",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["postOffice", "employment", "recruit"]
+        "functionType": ["postOffice", "employment", "recruit"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Copper",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["tax", "customs", "archive"]
+        "functionType": ["tax", "customs", "archive"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Crown",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["mayor", "townHall", "embassy"]
+        "functionType": ["mayor", "townHall", "embassy"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Unity",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["townHall", "employment", "publicWork"]
+        "functionType": ["townHall", "employment", "publicWork"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Marble",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["courthouse", "townHall", "archive"]
+        "functionType": ["courthouse", "townHall", "archive"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Boundary",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["customs", "postOffice"]
+        "functionType": ["customs", "postOffice"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -131,158 +141,291 @@
     {
         "type": "noun",
         "value": "Station",
-        "weight": 2,
         "siteType": ["government"],
-        "functionType": ["guardhouse", "quartermaster", "recruit", "postOffice"]
+        "functionType": ["guardhouse", "quartermaster", "recruit", "postOffice"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Hall",
-        "weight": 2,
         "siteType": ["government"],
-        "functionType": ["townHall", "mayor", "employment", "archive"]
+        "functionType": ["townHall", "mayor", "employment", "archive"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic", "Clockwork / Steampunk", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Office",
-        "weight": 2,
         "siteType": ["government"],
-        "functionType": ["tax", "census", "permit", "bounty", "employment", "customs"]
+        "functionType": ["tax", "census", "permit", "bounty", "employment", "customs"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Command",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["command", "garrison", "barracks"]
+        "functionType": ["command", "garrison", "barracks"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tower",
-        "weight": 1,
         "siteType": ["government"],
-        "functionType": ["watch", "guardhouse"]
+        "functionType": ["watch", "guardhouse"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Frost",
-        "weight": 1,
         "climate": ["Polar"],
         "terrain": ["Mountains", "Tundra"],
         "tags": ["Military Outpost", "Remote"],
         "siteType": ["government"],
-        "functionType": ["watch", "garrison", "barracks"]
+        "functionType": ["watch", "garrison", "barracks"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Dust",
-        "weight": 1,
         "climate": ["Dry"],
         "terrain": ["Desert", "Hills"],
         "tags": ["Border Post", "Remote"],
         "siteType": ["government"],
-        "functionType": ["customs", "recruit", "watch"]
+        "functionType": ["customs", "recruit", "watch"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Jungle",
-        "weight": 1,
         "climate": ["Tropical"],
         "terrain": ["Jungle", "Swamp"],
         "tags": ["Infested", "Hidden"],
         "siteType": ["government"],
-        "functionType": ["prison", "guardhouse", "drillYard"]
+        "functionType": ["prison", "guardhouse", "drillYard"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Storm",
-        "weight": 1,
         "climate": ["Tropical", "Temperate"],
         "terrain": ["Coast", "River"],
         "tags": ["Port", "Trade Hub"],
         "siteType": ["government"],
-        "functionType": ["postOffice", "customs", "embassy"]
+        "functionType": ["postOffice", "customs", "embassy"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ironroot",
-        "weight": 1,
         "climate": ["Temperate"],
         "terrain": ["Forest", "Hills"],
         "tags": ["Druidic", "Overgrown"],
         "siteType": ["government"],
-        "functionType": ["publicWork", "townHall", "permit"]
+        "functionType": ["publicWork", "townHall", "permit"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Volcanic",
-        "weight": 1,
         "climate": ["Dry"],
         "terrain": ["Volcanic", "Mountains"],
         "tags": ["Military Outpost"],
         "siteType": ["government"],
-        "functionType": ["drillYard", "command", "quartermaster"]
+        "functionType": ["drillYard", "command", "quartermaster"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Mist",
-        "weight": 1,
         "climate": ["Temperate", "Tropical"],
         "terrain": ["River", "Swamp"],
         "tags": ["Hidden", "Remote"],
         "siteType": ["government"],
-        "functionType": ["guardhouse", "bounty", "watch"]
+        "functionType": ["guardhouse", "bounty", "watch"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Granite",
-        "weight": 1,
         "climate": ["Continental", "Dry"],
         "terrain": ["Mountains", "Hills"],
         "tags": ["Fortress", "Garrison"],
         "siteType": ["government"],
-        "functionType": ["barracks", "garrison", "courthouse"]
+        "functionType": ["barracks", "garrison", "courthouse"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Rivergate",
-        "weight": 1,
         "climate": ["Temperate", "Continental"],
         "terrain": ["River", "Urban"],
         "tags": ["Port", "Trade Hub"],
         "siteType": ["government"],
-        "functionType": ["customs", "postOffice", "archive"]
+        "functionType": ["customs", "postOffice", "archive"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ashen",
-        "weight": 1,
         "climate": ["Dry"],
         "terrain": ["Volcanic", "Mountains"],
         "tags": ["Ancient Ruins", "Military Outpost"],
         "siteType": ["government"],
-        "functionType": ["recruit", "command", "quartermaster"]
+        "functionType": ["recruit", "command", "quartermaster"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     
     {
         "type": "prefix",
         "value": "Ember",
-        "weight": 1,
         "climate": ["Dry"],
         "terrain": ["Volcanic", "Desert"],
         "tags": ["Military Outpost"],
         "siteType": ["government"],
-        "functionType": ["drillYard", "command", "quartermaster"]
+        "functionType": ["drillYard", "command", "quartermaster"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk", "Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Marsh",
-        "weight": 1,
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Swamp", "River"],
         "tags": ["Remote", "Infested"],
         "siteType": ["government"],
-        "functionType": ["prison", "guardhouse", "publicWork"]
+        "functionType": ["prison", "guardhouse", "publicWork"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Homestead",
+        "siteType": ["government"],
+        "functionType": ["townHall", "employment", "publicWork"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "climate": ["Temperate"],
+        "terrain": ["Plains"]
+    },
+    {
+        "type": "prefix",
+        "value": "Timber",
+        "siteType": ["government"],
+        "functionType": ["archive", "permit", "townHall"],
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Forest", "Hills"]
+    },
+    {
+        "type": "prefix",
+        "value": "Meadow",
+        "siteType": ["government"],
+        "functionType": ["townHall", "census"],
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "climate": ["Temperate"],
+        "terrain": ["Grassland"]
+    },
+    {
+        "type": "prefix",
+        "value": "Forge",
+        "siteType": ["government"],
+        "functionType": ["tax", "quartermaster", "barracks"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Hills", "Mountains"]
+    },
+    {
+        "type": "prefix",
+        "value": "Outpost",
+        "siteType": ["government"],
+        "functionType": ["watch", "garrison", "guardhouse"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "tags": ["Remote", "Border"]
+    },
+    {
+        "type": "prefix",
+        "value": "Watchman",
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "watch", "postOffice"],
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Hills"],
+        "climate": ["Temperate"]
+    },
+    {
+        "type": "prefix",
+        "value": "Bastion",
+        "siteType": ["government"],
+        "functionType": ["barracks", "garrison", "courthouse"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Mountains", "Hills"]
+    },
+    {
+        "type": "prefix",
+        "value": "Redoubt",
+        "siteType": ["government"],
+        "functionType": ["garrison", "drillYard", "recruit"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Hills", "Plateau"]
+    },
+    {
+        "type": "prefix",
+        "value": "Palisade",
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "watch", "barracks"],
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "terrain": ["Forest", "Hills"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sigil",
+        "siteType": ["government"],
+        "functionType": ["embassy", "archive", "customs"],
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Astral",
+        "siteType": ["government"],
+        "functionType": ["court", "embassy", "postOffice"],
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Rune",
+        "siteType": ["government"],
+        "functionType": ["licensing", "archive", "census"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Celestial",
+        "siteType": ["government"],
+        "functionType": ["townHall", "archives", "employment"],
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -290,232 +433,347 @@
     {
         "type": "noun",
         "value": "Center",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Annex",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Division",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Chamber",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "House",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Office",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Registry",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Station",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Watch",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Hall",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Outpost",
+        "siteType": ["government"],
+        "functionType": ["watch", "garrison", "guardhouse", "recruit"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "tags": ["Remote", "Border"]
+    },
+    {
+        "type": "noun",
+        "value": "Bastion",
+        "siteType": ["government"],
+        "functionType": ["barracks", "garrison", "drillYard"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Redoubt",
+        "siteType": ["government"],
+        "functionType": ["garrison", "barracks", "drillYard"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Palisade",
+        "siteType": ["government"],
+        "functionType": ["guardhouse", "watch", "barracks"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Sigil",
+        "siteType": ["government"],
+        "functionType": ["embassy", "archive", "licensing"],
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Dispatch",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Post",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tribunal",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Dock",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Signal",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
     {
         "type": "siteTypeName",
         "value": "Records",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Command",
-        "siteType": ["government"]
+        "siteType": ["government"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Court",
         "siteType": ["government"],
-        "functionType": ["courthouse", "courtier", "embassy", "other"]
+        "functionType": ["courthouse", "courtier", "embassy", "other"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Archives",
         "siteType": ["government"],
-        "functionType": ["archive"]
+        "functionType": ["archive"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Census",
         "siteType": ["government"],
-        "functionType": ["census"]
+        "functionType": ["census"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Customs",
         "siteType": ["government"],
-        "functionType": ["customs"]
+        "functionType": ["customs"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Mayor's Hall",
         "siteType": ["government"],
-        "functionType": ["mayor"]
+        "functionType": ["mayor"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Licensing",
         "siteType": ["government"],
-        "functionType": ["permit"]
+        "functionType": ["permit"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tax Office",
         "siteType": ["government"],
-        "functionType": ["tax"]
+        "functionType": ["tax"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Town Hall",
         "siteType": ["government"],
-        "functionType": ["townHall"]
+        "functionType": ["townHall"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Barracks",
         "siteType": ["government"],
-        "functionType": ["barracks"]
+        "functionType": ["barracks"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Bounty Board",
         "siteType": ["government"],
-        "functionType": ["bounty"]
-    },
-    {
-        "type": "siteTypeName",
-        "value": "Court",
-        "siteType": ["government"],
-        "functionType": ["courthouse"]
+        "functionType": ["bounty"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Drill Yard",
         "siteType": ["government"],
-        "functionType": ["drillYard"]
+        "functionType": ["drillYard"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Garrison",
         "siteType": ["government"],
-        "functionType": ["garrison"]
+        "functionType": ["garrison"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Guardhouse",
         "siteType": ["government"],
-        "functionType": ["guardhouse"]
+        "functionType": ["guardhouse"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Command",
         "siteType": ["government"],
-        "functionType": ["command"]
+        "functionType": ["command"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Prison",
         "siteType": ["government"],
-        "functionType": ["prison"]
+        "functionType": ["prison"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Recruitment Post",
         "siteType": ["government"],
-        "functionType": ["recruit"]
+        "functionType": ["recruit"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Quartermaster's",
         "siteType": ["government"],
-        "functionType": ["quartermaster"]
+        "functionType": ["quartermaster"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Watchtower",
         "siteType": ["government"],
-        "functionType": ["watch"]
+        "functionType": ["watch"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Embassy",
         "siteType": ["government"],
-        "functionType": ["embassy"]
+        "functionType": ["embassy"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Employment Office",
         "siteType": ["government"],
-        "functionType": ["employment"]
+        "functionType": ["employment"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Post Office",
         "siteType": ["government"],
-        "functionType": ["postOffice"]
+        "functionType": ["postOffice"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Public Works",
         "siteType": ["government"],
-        "functionType": ["publicWork"]
+        "functionType": ["publicWork"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Civic Center",
         "siteType": ["government"],
-        "functionType": ["other"]
+        "functionType": ["other"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     }
 ]
