@@ -2,51 +2,58 @@
     {
         "type": "prefix",
         "value": "Rusty",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "blacksmith", "armory"]
+        "shopType": ["generalStore", "blacksmith", "armory"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Herbal",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["apothecary"]
+        "shopType": ["apothecary"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Gilded",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Sweet",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Mystic",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Bound",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Curious",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop", "trinketShop", "magic", "alchemist", "apothecary", "scrollShop"]
+        "shopType": ["curiosityShop", "trinketShop", "magic", "alchemist", "apothecary", "scrollShop"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
@@ -55,7 +62,9 @@
         "terrain": ["Plains", "Coast"],
         "tags": ["Trade Hub", "Port"],
         "siteType": ["shop"],
-        "shopType": ["generalStore"]
+        "shopType": ["generalStore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
@@ -64,934 +73,1132 @@
         "terrain": ["Plains", "Forest"],
         "tags": ["Trade Hub", "Capital"],
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Iron",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory", "weaponsmith", "toolsmith", "tanner"]
+        "shopType": ["blacksmith", "armory", "weaponsmith", "toolsmith", "tanner"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Steel",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["weaponsmith", "armory", "blacksmith"]
+        "shopType": ["weaponsmith", "armory", "blacksmith"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Bronze",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "carpenter", "glassblower"]
+        "shopType": ["blacksmith", "carpenter", "glassblower"],
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Copper",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["glassblower", "tinker", "toolsmith"]
+        "shopType": ["glassblower", "tinker", "toolsmith"],
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Brass",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["clockmaker", "tinker", "toolsmith"]
+        "shopType": ["clockmaker", "tinker", "toolsmith"],
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Pewter",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["trinketShop", "tinker", "toyMaker"]
+        "shopType": ["trinketShop", "tinker", "toyMaker"],
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Mercury",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["alchemist", "apothecary", "magic"]
+        "shopType": ["alchemist", "apothecary", "magic"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Electrum",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "scrollShop", "enchanter"]
+        "shopType": ["magic", "scrollShop", "enchanter"],
+        "theme": ["Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Mithril",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["weaponsmith", "magic", "armory", "enchanter"]
+        "shopType": ["weaponsmith", "magic", "armory", "enchanter"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Adamant",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["weaponsmith", "armory", "blacksmith"]
+        "shopType": ["weaponsmith", "armory", "blacksmith"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Platinum",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "perfumer", "tailor"]
+        "shopType": ["jeweler", "perfumer", "tailor"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Golden",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "haberdasher", "milliner"]
+        "shopType": ["jeweler", "haberdasher", "milliner"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Silver",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "accessories", "perfumer"]
+        "shopType": ["jeweler", "accessories", "perfumer"],
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Stone",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "weaponsmith", "armory", "carpenter", "generalStore"]
+        "shopType": ["blacksmith", "weaponsmith", "armory", "carpenter", "generalStore"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Marble",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "perfumer", "tailor"]
+        "shopType": ["jeweler", "perfumer", "tailor"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Obsidian",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "enchanter", "scrollShop", "blacksmith"]
+        "shopType": ["magic", "enchanter", "scrollShop", "blacksmith", "weaponsmith", "magic"],
+        "theme": ["Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Granite",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["carpenter", "blacksmith", "tanner", "provisioner"]
-    },
-    {
-        "type": "prefix",
-        "value": "Basalt",
-        "weight": 1,
-        "siteType": ["shop"],
-        "shopType": ["armory", "blacksmith", "tinker"]
+        "shopType": ["carpenter", "blacksmith", "tanner", "provisioner"],
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Quartz",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["enchanter", "apothecary", "alchemist", "herbalist"]
+        "shopType": ["enchanter", "apothecary", "alchemist", "herbalist"],
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Crystal",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "magic", "scrollShop", "bookstore"]
+        "shopType": ["jeweler", "magic", "scrollShop", "bookstore"],
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Flint",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fletcher", "weaponsmith", "tanner"]
+        "shopType": ["fletcher", "weaponsmith", "tanner"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Jade",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "accessories", "curiosityShop"]
+        "shopType": ["jeweler", "accessories", "curiosityShop"],
+        "theme": ["Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Onyx",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "magic", "divination", "scrollShop", "temple"]
+        "shopType": ["jeweler", "magic", "divination", "scrollShop", "temple"],
+        "theme": ["Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Amethyst",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "magic", "perfumer", "apothecary", "herbalist"]
+        "shopType": ["jeweler", "magic", "perfumer", "apothecary", "herbalist"],
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Sapphire",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "enchanter", "scrollShop"]
+        "shopType": ["jeweler", "enchanter", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Topaz",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "enchanter", "curiosityShop", "magic"]
+        "shopType": ["jeweler", "enchanter", "curiosityShop", "magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Carnelian",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["enchanter", "herbalist"]
+        "shopType": ["enchanter", "herbalist"],
+        "theme": ["Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Diamond",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "armory", "weaponsmith"]
+        "shopType": ["jeweler", "armory", "weaponsmith"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Garnet",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "tanner"]
+        "shopType": ["blacksmith", "tanner"],
+        "theme": ["Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Lapis",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bookstore", "magic", "scrollShop"]
+        "shopType": ["bookstore", "magic", "scrollShop"],
+        "theme": ["Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Moonstone",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["divination", "temple", "magic"]
-    },
-    {
-        "type": "prefix",
-        "value": "Obsidian",
-        "weight": 1,
-        "siteType": ["shop"],
-        "shopType": ["weaponsmith", "enchanter", "magic"]
+        "shopType": ["divination", "temple", "magic"],
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Opal",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "perfumer", "divination"]
+        "shopType": ["jeweler", "perfumer", "divination"],
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Peridot",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["herbalist", "produce"]
+        "shopType": ["herbalist", "produce"],
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Zircon",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["clockmaker", "jeweler"]
+        "shopType": ["clockmaker", "jeweler"],
+        "theme": ["Clockwork / Steampunk", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Sooted",
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "armory"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Tempered",
+        "siteType": ["shop"],
+        "shopType": ["blacksmith", "weaponsmith", "toolsmith"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Braided",
+        "siteType": ["shop"],
+        "shopType": ["tailor", "cobbler", "haberdasher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Polished",
+        "siteType": ["shop"],
+        "shopType": ["jeweler", "armory", "accessories"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Waxed",
+        "siteType": ["shop"],
+        "shopType": ["candlemaker", "alchemist"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Cured",
+        "siteType": ["shop"],
+        "shopType": ["butcher", "tanner", "apothecary"],
+        "theme": ["Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mended",
+        "siteType": ["shop"],
+        "shopType": ["tinker", "salvager", "cobbler"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Stitched",
+        "siteType": ["shop"],
+        "shopType": ["tailor", "leatherworker"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Driftwood",
+        "siteType": ["shop"],
+        "shopType": ["carpenter", "tinker", "produce"],
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brambled",
+        "siteType": ["shop"],
+        "shopType": ["herbalist", "teaHouse", "fletcher"],
+        "theme": ["Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Thorned",
+        "siteType": ["shop"],
+        "shopType": ["herbalist", "curiosityShop"],
+        "theme": ["Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Mirrored",
+        "siteType": ["shop"],
+        "shopType": ["magic", "glassblower", "curiosityShop"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Charred",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "weaponsmith", "armory"]
+        "shopType": ["blacksmith", "weaponsmith", "armory"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Carved",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["carpenter", "tinker"]
+        "shopType": ["carpenter", "tinker"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Smoked",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tanner", "butcher"]
+        "shopType": ["tanner", "butcher"],
+        "theme": ["Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ashen",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["glassblower", "armory"]
+        "shopType": ["glassblower", "armory"],
+        "theme": ["Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Feathered",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fletcher", "curiosityShop"]
+        "shopType": ["fletcher", "curiosityShop"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Velvet",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "milliner", "perfumer"]
+        "shopType": ["tailor", "milliner", "perfumer"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Dapper",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["haberdasher", "accessories"]
+        "shopType": ["haberdasher", "accessories"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Frilled",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["milliner", "tailor", "accessories"]
+        "shopType": ["milliner", "tailor", "accessories"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Laced",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["cobbler", "tailor"]
+        "shopType": ["cobbler", "tailor"],
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Golden Crust",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Smoky",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["butcher", "meadery"]
+        "shopType": ["butcher", "meadery"],
+        "theme": ["Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Spiced",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["spiceMerchant", "confectionery"]
+        "shopType": ["spiceMerchant", "confectionery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Crackling",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["butcher", "cheesemonger"]
+        "shopType": ["butcher", "cheesemonger"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Blooming",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["teaHouse", "produce"]
+        "shopType": ["teaHouse", "produce"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Runed",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "scrollShop", "enchanter"]
+        "shopType": ["magic", "scrollShop", "enchanter"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Eldritch",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "divination"]
+        "shopType": ["magic", "divination"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Bound",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bookstore", "scrollShop"]
+        "shopType": ["bookstore", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Sealed",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["alchemist", "magic"]
+        "shopType": ["alchemist", "magic"],
+        "theme": ["Arcane / Mystic", "Clockwork / Steampunk", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Whiskered",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["petShop", "curiosityShop"]
+        "shopType": ["petShop", "curiosityShop"],
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Dented",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["pawnShop", "tinker"]
+        "shopType": ["pawnShop", "tinker"],
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Scrap",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["salvager", "toolsmith"]
+        "shopType": ["salvager", "toolsmith"],
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Worn",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "salvager", "tinker"]
+        "shopType": ["generalStore", "salvager", "tinker"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Bartered",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["pawnShop", "generalStore"]
+        "shopType": ["pawnShop", "generalStore"],
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Veiled",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["divination", "magic", "curiosityShop"]
+        "shopType": ["divination", "magic", "curiosityShop"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Arcane",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "scrollShop", "enchanter"]
+        "shopType": ["magic", "scrollShop", "enchanter"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Wyrm",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "bookstore", "scrollShop"]
+        "shopType": ["magic", "bookstore", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Eclipse",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["divination", "magic", "temple"]
+        "shopType": ["divination", "magic", "temple"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Glimmering",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["enchanter", "jeweler", "scrollShop"]
+        "shopType": ["enchanter", "jeweler", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Knotted",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["carpenter", "rope", "generalStore"]
+        "shopType": ["carpenter", "rope", "generalStore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Forged",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory", "weaponsmith"]
+        "shopType": ["blacksmith", "armory", "weaponsmith"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Hammered",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "tinker"]
+        "shopType": ["blacksmith", "tinker"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Threaded",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "haberdasher", "milliner"]
+        "shopType": ["tailor", "haberdasher", "milliner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Woven",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "accessories", "milliner"]
+        "shopType": ["tailor", "accessories", "milliner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Toasted",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bakery", "confectionery"]
+        "shopType": ["bakery", "confectionery"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Fruited",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["produce", "winery", "teaHouse"]
+        "shopType": ["produce", "winery", "teaHouse"],
+        "theme": ["Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Infused",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["perfumer", "apothecary", "teaHouse"]
+        "shopType": ["perfumer", "apothecary", "teaHouse"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Brined",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fishmonger", "butcher"]
+        "shopType": ["fishmonger", "butcher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Sour",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["brewery", "meadery", "confectionery"]
+        "shopType": ["brewery", "meadery", "confectionery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Rusted",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["salvager", "pawnShop"]
+        "shopType": ["salvager", "pawnShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Forgotten",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["trinketShop", "curiosityShop", "salvager"]
+        "shopType": ["trinketShop", "curiosityShop", "salvager"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Wanderer's",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "provisioner", "curiosityShop"]
+        "shopType": ["generalStore", "provisioner", "curiosityShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Bartered",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["pawnShop", "generalStore"]
+        "shopType": ["pawnShop", "generalStore"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Twined",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["trinketShop", "accessories"]
+        "shopType": ["trinketShop", "accessories"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Frosted",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["apothecary", "alchemist", "magic"],
         "climate": ["Polar"],
         "terrain": ["Tundra"],
-        "tags": ["Isolated"]
+        "tags": ["Isolated"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ember",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["weaponsmith", "blacksmith", "enchanter"],
         "climate": ["Dry"],
         "terrain": ["Volcanic", "Underground"],
-        "tags": ["Fortress"]
+        "tags": ["Fortress"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
-    {
-        "type": "prefix",
-        "value": "Ember",
-        "weight": 1,
-        "siteType": ["shop"],
-        "shopType": ["weaponsmith", "blacksmith", "enchanter"],
-        "climate": ["Dry"],
-        "terrain": ["Volcanic", "Underground"],
-        "tags": ["Fortress"]
-    },
-
 
 
 
     {
         "type": "noun",
         "value": "Wagon",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "carpenter", "provisioner", "sundries"]
+        "shopType": ["generalStore", "carpenter", "provisioner", "sundries"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Forge",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "magic", "armory"]
+        "shopType": ["blacksmith", "magic", "armory"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Stitch",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "tailor", "magic", "accessories", "milliner", "haberdasher"]
+        "shopType": ["generalStore", "tailor", "magic", "accessories", "milliner", "haberdasher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tome",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic", "alchemist", "apothecary", "bookstore", "mapmaker", "scrollShop"]
+        "shopType": ["magic", "alchemist", "apothecary", "bookstore", "mapmaker", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Bulwark",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "blacksmith", "armory", "carpenter"]
+        "shopType": ["generalStore", "blacksmith", "armory", "carpenter"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Cure",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["apothecary"]
+        "shopType": ["apothecary"],
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Distillery",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["alchemist"]
+        "shopType": ["alchemist"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Treasure",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Oven",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Arcana",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Ink",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Bazaar",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "pawnShop", "salvager", "magic", "spiceMerchant", "provisioner"]
+        "shopType": ["generalStore", "pawnShop", "salvager", "magic", "spiceMerchant", "provisioner"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Pantry",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["produce", "spiceMerchant", "provisioner"]
+        "shopType": ["produce", "spiceMerchant", "provisioner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Cask",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["meadery", "brewery", "winery"]
+        "shopType": ["meadery", "brewery", "winery"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Drip",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["perfumer", "teaHouse", "alchemy"]
+        "shopType": ["perfumer", "teaHouse", "alchemy"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Spindle",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "haberdasher", "milliner"]
+        "shopType": ["tailor", "haberdasher", "milliner"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Nest",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["petShop", "toyMaker"]
+        "shopType": ["petShop", "toyMaker"],
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Claw",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fletcher", "petShop", "tanner"]
+        "shopType": ["fletcher", "petShop", "tanner"],
+        "theme": ["Frontier / Rustic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Vault",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "pawnShop", "enchanter"]
+        "shopType": ["jeweler", "pawnShop", "enchanter"],
+        "theme": ["Dark / Gothic", "Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Spire",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["divination", "scrollShop", "magic"]
+        "shopType": ["divination", "scrollShop", "magic"],
+        "theme": ["Dark / Gothic", "Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Workbench",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["toolsmith", "tinker", "clockmaker"]
+        "shopType": ["toolsmith", "tinker", "clockmaker"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Grove",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["herbalist", "apothecary", "alchemist"],
         "climate": ["Temperate"],
         "terrain": ["Forest"],
-        "tags": ["Druidic", "Overgrown"]
+        "tags": ["Druidic", "Overgrown"],
+        "theme": ["Frontier / Rustic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Pick",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["blacksmith", "armory", "toolsmith"],
         "climate": ["Dry"],
         "terrain": ["Mountains"],
-        "tags": ["Mining Camp", "Garrison"]
+        "tags": ["Mining Camp", "Garrison"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Dock",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["fishmonger", "provisioner", "pawnShop"],
         "climate": ["Tropical"],
         "terrain": ["Coast"],
-        "tags": ["Port"]
+        "tags": ["Port"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Script",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["scrollShop", "bookstore", "divination"],
         "climate": ["Temperate"],
         "terrain": ["Hills"],
-        "tags": ["Sacred Site"]
+        "tags": ["Sacred Site"],
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Fang",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["apothecary", "herbalist", "trinketShop"],
         "climate": ["Tropical"],
         "terrain": ["Swamp"],
-        "tags": ["Infested"]
+        "tags": ["Infested"],
+        "theme": ["Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Spool",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["tailor", "milliner", "haberdasher"],
         "climate": ["Continental"],
         "terrain": ["Urban"],
-        "tags": ["Capital", "Trade Hub"]
+        "tags": ["Capital", "Trade Hub"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Anvil",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory", "weaponsmith"]
+        "shopType": ["blacksmith", "armory", "weaponsmith"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Needle",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "magic", "milliner", "haberdasher", "accessories"]
+        "shopType": ["tailor", "magic", "milliner", "haberdasher", "accessories"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Thread",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "tailor", "magic", "milliner", "haberdasher", "accessories"]
+        "shopType": ["generalStore", "tailor", "magic", "milliner", "haberdasher", "accessories"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Quill",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "magic", "bookstore", "mapmaker", "scrollShop"]
+        "shopType": ["generalStore", "magic", "bookstore", "mapmaker", "scrollShop"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Shield",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory", "carpenter"]
+        "shopType": ["blacksmith", "armory", "carpenter"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Crate",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "alchemist", "carpenter", "provisioner", "salvager", "pawnShop"]
+        "shopType": ["generalStore", "alchemist", "carpenter", "provisioner", "salvager", "pawnShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Salve",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["apothecary"]
+        "shopType": ["apothecary"],
+        "theme": ["Frontier / Rustic", "Arcane / Mystic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Remedy",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["apothecary"]
+        "shopType": ["apothecary"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Elixir",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["alchemist"]
+        "shopType": ["alchemist"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Crucible",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["alchemist"]
+        "shopType": ["alchemist"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Gem",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Trinket",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Crust",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Loaf",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Wand",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Sigil",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tome",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Scroll",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Oddity",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop"]
+        "shopType": ["curiosityShop"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Find",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["generalStore", "curiosityShop", "sundries", "pawnShop", "salvager"]
+        "shopType": ["generalStore", "curiosityShop", "sundries", "pawnShop", "salvager"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
@@ -1000,7 +1207,9 @@
         "terrain": ["Coast", "Plains"],
         "tags": ["Port", "Trade Hub"],
         "siteType": ["shop"],
-        "shopType": ["generalStore"]
+        "shopType": ["generalStore"],
+        "theme": ["Arcane / Mystic", "Frontier / Rustic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
@@ -1009,7 +1218,9 @@
         "terrain": ["Mountains", "Hills"],
         "tags": ["Mining Camp", "Garrison"],
         "siteType": ["shop"],
-        "shopType": ["blacksmith"]
+        "shopType": ["blacksmith"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
@@ -1018,108 +1229,124 @@
         "terrain": ["Urban", "Plains"],
         "tags": ["Trade Hub"],
         "siteType": ["shop"],
-        "shopType": ["brewery"]
+        "shopType": ["brewery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Gear",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tinker", "toolsmith", "clockmaker"]
+        "shopType": ["tinker", "toolsmith", "clockmaker"],
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Bell",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["clockmaker", "curiosityShop"]
+        "shopType": ["clockmaker", "curiosityShop"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Cloth",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["tailor", "milliner", "haberdasher"]
+        "shopType": ["tailor", "milliner", "haberdasher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Bite",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["butcher", "fishmonger", "confectionery"]
+        "shopType": ["butcher", "fishmonger", "confectionery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Hook",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fishmonger"]
+        "shopType": ["fishmonger"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     
     {
         "type": "noun",
         "value": "Catch",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["fishmonger"]
+        "shopType": ["fishmonger"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Spice",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["spiceMerchant", "apothecary", "alchemist"]
+        "shopType": ["spiceMerchant", "apothecary", "alchemist"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Bloom",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["herbalist", "perfumer", "teaHouse"]
+        "shopType": ["herbalist", "perfumer", "teaHouse"],
+        "theme": ["Fey / Nature", "Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Cup",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["teaHouse", "brewery", "winery"]
+        "shopType": ["teaHouse", "brewery", "winery"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Draft",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["brewery", "meadery", "winery"]
+        "shopType": ["brewery", "meadery", "winery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Toy",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["toyMaker"]
+        "shopType": ["toyMaker"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Hinge",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["carpenter", "toolsmith"]
+        "shopType": ["carpenter", "toolsmith"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Scale",
-        "weight": 1,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop", "enchanter", "divination"]
+        "shopType": ["curiosityShop", "enchanter", "divination"],
+        "theme": ["Frontier / Rustic", "Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Ripple",
-        "weight": 1,
         "siteType": ["shop"],
         "shopType": ["scrollShop", "magic", "alchemist"],
         "climate": ["Tropical"],
-        "terrain": ["River"]
+        "terrain": ["River"],
+        "theme": ["Frontier / Rustic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -1127,693 +1354,794 @@
     {
         "type": "siteTypeName",
         "value": "Blacksmith",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith"]
+        "shopType": ["blacksmith"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Smith",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory"]
+        "shopType": ["blacksmith", "armory"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Smithery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["blacksmith", "armory"]
+        "shopType": ["blacksmith", "armory"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Armory",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["armory"]
+        "shopType": ["armory"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Arms",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["armory"]
+        "shopType": ["armory"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Carpenter",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["carpenter"]
+        "shopType": ["carpenter"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Glassblower",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["glassblower"]
+        "shopType": ["glassblower"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Glass",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["glassblower"]
+        "shopType": ["glassblower"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Fletcher",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["fletcher"]
+        "shopType": ["fletcher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tannery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tanner"]
+        "shopType": ["tanner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Leatherworker",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tanner"]
+        "shopType": ["tanner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Weaponsmith",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["weaponsmith"]
+        "shopType": ["weaponsmith"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Weapons",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["weaponsmith"]
+        "shopType": ["weaponsmith"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Accessories",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["accessories"]
+        "shopType": ["accessories"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cobbler",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["cobbler"]
+        "shopType": ["cobbler"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Haberdasher",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["haberdasher"]
+        "shopType": ["haberdasher"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Shoes",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["haberdasher"]
+        "shopType": ["haberdasher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Milliner",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["milliner"]
+        "shopType": ["milliner"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Hats",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["milliner"]
+        "shopType": ["milliner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tailor",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tailor"]
+        "shopType": ["tailor"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Clothes",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tailor", "haberdasher"]
+        "shopType": ["tailor", "haberdasher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Jeweler",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Jewels",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["jeweler"]
+        "shopType": ["jeweler"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Finery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["jeweler", "accessories", "perfumer"]
+        "shopType": ["jeweler", "accessories", "perfumer"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Perfumer",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["perfumer"]
+        "shopType": ["perfumer"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Bakery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Baked Goods",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bakery"]
+        "shopType": ["bakery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Brewery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["brewery"]
+        "shopType": ["brewery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Butcher",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["butcher"]
+        "shopType": ["butcher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Meats",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["butcher"]
+        "shopType": ["butcher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Meat",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["butcher"]
+        "shopType": ["butcher"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cheesemonger",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["cheesemonger"]
+        "shopType": ["cheesemonger"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cheese",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["cheesemonger"]
+        "shopType": ["cheesemonger"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cheeses",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["cheesemonger"]
+        "shopType": ["cheesemonger"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Confectionery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["confectionery"]
+        "shopType": ["confectionery"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Sweets",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["confectionery"]
+        "shopType": ["confectionery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Fishmonger",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["fishmonger"]
+        "shopType": ["fishmonger"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Fish",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["fishmonger"]
+        "shopType": ["fishmonger"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Meadery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["meadery"]
+        "shopType": ["meadery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Produce Market",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["produce"]
+        "shopType": ["produce"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Produce",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["produce"]
+        "shopType": ["produce"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Spice Merchant",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["spiceMerchant"]
+        "shopType": ["spiceMerchant"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Spices",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["spiceMerchant"]
+        "shopType": ["spiceMerchant"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tea House",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Teas",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tea",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Coffee Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Coffee",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Coffees",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["teaHouse"]
+        "shopType": ["teaHouse"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Winery",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["winery"]
+        "shopType": ["winery"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Wines",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["winery"]
+        "shopType": ["winery"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Alchemist",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["alchemist"]
+        "shopType": ["alchemist"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Apothecary",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["apothecary"]
+        "shopType": ["apothecary"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Books",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Bookstore",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tomes",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["bookstore"]
+        "shopType": ["bookstore"],
+        "theme": ["Frontier / Rustic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Diviner",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["divination"]
+        "shopType": ["divination"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Divination",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["divination"]
+        "shopType": ["divination"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Divination Parlor",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["divination"]
+        "shopType": ["divination"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Enchanter",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["enchanter"]
+        "shopType": ["enchanter"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Enchantments",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["enchanter"]
+        "shopType": ["enchanter"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Herbalist",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["herbalist"]
+        "shopType": ["herbalist"],
+        "theme": ["Frontier / Rustic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Herbs",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["herbalist"]
+        "shopType": ["herbalist"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Magic Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Arcana",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["magic"]
+        "shopType": ["magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Mapmaker",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["mapmaker"]
+        "shopType": ["mapmaker"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Maps",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["mapmaker"]
+        "shopType": ["mapmaker"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cartography",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["mapmaker"]
+        "shopType": ["mapmaker"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cartographer",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["mapmaker"]
+        "shopType": ["mapmaker"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Scroll Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["scrollShop"]
+        "shopType": ["scrollShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Scrolls",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["scrollShop"]
+        "shopType": ["scrollShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Curiosity Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop"]
+        "shopType": ["curiosityShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Curiosities",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop"]
+        "shopType": ["curiosityShop"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Curios",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop", "trinketShop"]
+        "shopType": ["curiosityShop", "trinketShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Oddities",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop"]
+        "shopType": ["curiosityShop"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Keepsakes",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["curiosityShop", "trinketShop", "generalStore", "pawnShop"]
+        "shopType": ["curiosityShop", "trinketShop", "generalStore", "pawnShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Clockmaker",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["clockmaker"]
+        "shopType": ["clockmaker"],
+        "theme": ["Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Clocks",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["clockmaker"]
+        "shopType": ["clockmaker"],
+        "theme": ["Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Timepieces",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["clockmaker"]
+        "shopType": ["clockmaker"],
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "General Store",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore"]
+        "shopType": ["generalStore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "General Goods",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["generalStore"]
+        "shopType": ["generalStore"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Pawn Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["pawnShop"]
+        "shopType": ["pawnShop"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Pet Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["petShop"]
+        "shopType": ["petShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Pets",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["petShop"]
+        "shopType": ["petShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Companions",
         "siteType": ["shop"],
-        "shopType": ["petShop"]
+        "shopType": ["petShop"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Provisioner",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["provisioner"]
+        "shopType": ["provisioner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Provisions",
         "siteType": ["shop"],
-        "shopType": ["provisioner"]
+        "shopType": ["provisioner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     
     {
         "type": "siteTypeName",
         "value": "Outfitter",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["provisioner"]
+        "shopType": ["provisioner"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },    
     {
         "type": "siteTypeName",
         "value": "Pantry",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["provisioner", "generalStore", "bakery", "butcher", "produce", "cheesemonger", "spiceMerchant"]
+        "shopType": ["provisioner", "generalStore", "bakery", "butcher", "produce", "cheesemonger", "spiceMerchant"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Salvager",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["salvager"]
+        "shopType": ["salvager"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Stable",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["stable"]
+        "shopType": ["stable"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Sundries",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["sundries"]
+        "shopType": ["sundries"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Tinker",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["tinker"]
+        "shopType": ["tinker"],
+        "theme": ["Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Toolsmith",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["toolsmith"]
+        "shopType": ["toolsmith"],
+        "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Toy Maker",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["toyMaker"]
+        "shopType": ["toyMaker"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Toys",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["toyMaker"]
+        "shopType": ["toyMaker"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Trinket Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["trinketShop"]
+        "shopType": ["trinketShop"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Trinkets",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["trinketShop"]
+        "shopType": ["trinketShop"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Shop",
-        "weight": 2,
         "siteType": ["shop"],
-        "shopType": ["other"]
+        "shopType": ["other"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     }
 ]

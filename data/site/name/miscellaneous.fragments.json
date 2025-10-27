@@ -1,93 +1,123 @@
 [
-        {
+    {
         "type": "prefix",
         "value": "Whispering",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Gloomlight",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Echoing",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Rune",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Star",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Clockwork",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Obsidian",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Wyrm",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Painted",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ember",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Forgotten",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Nameless",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Haunted",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ancient",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Silent",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -99,60 +129,80 @@
         "type": "noun",
         "value": "Rock",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Spire",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Vault",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Gate",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Mirror",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Shrine",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Hollow",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Basin",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Garden",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Pillar",
         "weight": 1,
-        "siteType": ["miscellaneous"]
+        "siteType": ["miscellaneous"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     }
 ]

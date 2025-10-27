@@ -15,29 +15,31 @@ import { useUIStore } from "@/store/uiStore";
 
 export default function UpdateProfilePage() {
   const user = useAuthStore((state) => state.user);
+  const hasHydrated = useAuthStore((state) => state.hasHydrated);
   const methods = useUserProfileForm();
   const { handleSubmit: mutateSubmit } = useUserProfileMutation();
-  const { isLoading, showErrorDialog } = useUIStore();
+  const { showErrorDialog } = useUIStore();
    const { setSelectedItem, clearSelectedItem } = useUserContentStore();
 
 
   useFormMode(user?.id, useUserContentStore);
 
-   // Once NPC is fetched, hydrate store
-    useEffect(() => {
-      if (isLoading) return;
-      
-      if (user) {
-        console.log("user: ", user);
-        setSelectedItem(user); // update the store
-        methods.reset(user);   // reset the form with the loaded data
-      } else if(!isLoading){
-        // If no user, clear selection
-        clearSelectedItem();
-        showErrorDialog("User data could not be found, please try again later!");
-      }
-    }, [user, isLoading, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
-  
+  // Once NPC is fetched, hydrate store
+  useEffect(() => {
+    if (!hasHydrated) return;
+
+    if (user) {
+      // user loaded successfully
+      console.log("user: ", user);
+      setSelectedItem(user);
+      methods.reset(user);
+    } else {
+      // user missing after loading
+      clearSelectedItem();
+      showErrorDialog("User data could not be found, please try again later!");
+    }
+  }, [user, hasHydrated, setSelectedItem, clearSelectedItem, methods, showErrorDialog]);
+
 
   const wrappedOnSubmit = async (data: UserUpdateSchema) => {
     if (!user) return;

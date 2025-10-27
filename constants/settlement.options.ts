@@ -43,17 +43,17 @@ export const RULING_TYPES = [
 
 export const CRIMINAL_ACTIVITY_TYPES = [
     "None",
+    "Assassins' Guild",
+    "Corruption",
+    "Cult Activity",
+    "Black Market",
+    "Illegal Gambling",
+    "Organized Crime",
     "Petty Theft",
     "Pickpocketing Rings",
-    "Smuggling",
-    "Illegal Gambling",
-    "Black Market",
-    "Corruption",
-    "Organized Crime",
-    "Assassins' Guild",
     "Slavery & Trafficking",
-    "Cult Activity",
-    "Widespread Lawlessness",
+    "Smuggling",
+    "Widespread Lawlessness"
 ];
 
 export const MILITARY_PRESENCE_TYPES = [

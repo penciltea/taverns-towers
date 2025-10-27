@@ -24,7 +24,7 @@ export interface INpc extends Document {
   pronouns?: string;
   alignment?: string;
   status?: string;
-  race?: NpcRace;
+  race?: string;
   traits?: NpcTrait[];
   reputation?: string;
   archetype?: string;

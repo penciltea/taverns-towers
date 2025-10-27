@@ -2,93 +2,152 @@
     {
     "type": "prefix",
     "value": "Veiled",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Forgotten",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Whispering",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Shrouded",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Silent",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Buried",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Obscured",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic", "Medieval Fantasy", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Nameless",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
-
-
-
+  {
+    "type": "prefix",
+    "value": "Gearsong",
+    "siteType": ["hidden"],
+    "theme": ["Clockwork / Steampunk"],
+    "tier": ["Artisan", "Architect"]
+  },
+  {
+    "type": "prefix",
+    "value": "Dustveiled",
+    "siteType": ["hidden"],
+    "theme": ["Frontier / Rustic", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
+  },
+  {
+    "type": "prefix",
+    "value": "Coppercoil",
+    "siteType": ["hidden"],
+    "theme": ["Clockwork / Steampunk"],
+    "tier": ["Artisan", "Architect"]
+  },
+  {
+    "type": "noun",
+    "value": "Gearworks",
+    "siteType": ["hidden"],
+    "theme": ["Clockwork / Steampunk"],
+    "tier": ["Artisan", "Architect"]
+  },
 
 
   
   {
     "type": "noun",
     "value": "Vault",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Warren",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Fey / Nature", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Chamber",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Hollow",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Fey / Nature", "Dark / Gothic", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Sanctum",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Refuge",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Fey / Nature", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Echo",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Crypt",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Cell",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
 
 
@@ -100,71 +159,110 @@
   {
     "type": "siteTypeName",
     "value": "Hideout",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Den",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Fey / Nature", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Burrow",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Fey / Nature", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Sanctuary",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Safehouse",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Retreat",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Arcane / Mystic", "Fey / Nature", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Strongroom",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Outpost",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Sanctum",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Smuggler's Den",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Bandit Hideaway",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "siteTypeName",
     "value": "Hidden Compound",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
+   {
+    "type": "siteTypeName",
+    "value": "Clockwork Hideaway",
+    "siteType": ["hidden"],
+    "theme": ["Clockwork / Steampunk"],
+    "tier": ["Artisan", "Architect"]
+  },
+
+
+
+
   {
     "type": "fullName",
     "value": "The Lost Place",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "fullName",
     "value": "The Forgotten Refuge",
-    "siteType": ["hidden"]
+    "siteType": ["hidden"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   }
 ]

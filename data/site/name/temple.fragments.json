@@ -2,182 +2,282 @@
     {
         "type": "prefix",
         "value": "Sacred",
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Twilight",
         "siteType": ["temple"],
-        "domain": ["Twilight", "Shadow"]
+        "domain": ["Twilight", "Shadow"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Eclipsed",
         "siteType": ["temple"],
-        "domain": ["Moon", "Shadow", "Secrets"]
+        "domain": ["Moon", "Shadow", "Secrets"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Radiant",
         "siteType": ["temple"],
-        "domain": ["Light", "Sun", "Beauty"]
+        "domain": ["Light", "Sun", "Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Veiled",
         "siteType": ["temple"],
-        "domain": ["Secrets", "Shadow"]
+        "domain": ["Secrets", "Shadow"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Eternal",
         "siteType": ["temple"],
-        "domain": ["Time", "Judgment"]
+        "domain": ["Time", "Judgment"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Stormbound",
         "siteType": ["temple"],
-        "domain": ["Storms", "Sea"]
+        "domain": ["Storms", "Sea"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Crimson",
         "siteType": ["temple"],
-        "domain": ["War", "Death", "Decay", "Chaos"]
+        "domain": ["War", "Death", "Decay", "Chaos"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Silver",
         "siteType": ["temple"],
-        "domain": ["Moon", "Dreams"]
+        "domain": ["Moon", "Dreams"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Mystic",
         "siteType": ["temple"],
-        "domain": ["Magic"]
+        "domain": ["Magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Runed",
         "siteType": ["temple"],
-        "domain": ["Magic"]
+        "domain": ["Magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Eldritch",
         "siteType": ["temple"],
-        "domain": ["Magic"]
+        "domain": ["Magic"],
+        "theme": ["Dark / Gothic"],
+        "tier": ["Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Gilded",
         "siteType": ["temple"],
-        "domain": ["Arts", "Beauty", "Judgment"]
+        "domain": ["Arts", "Beauty", "Judgment"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Harmonious",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Inspired",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Glorious",
         "siteType": ["temple"],
-        "domain": ["Beauty"]
+        "domain": ["Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Shattered",
         "siteType": ["temple"],
-        "domain": ["Chaos"]
+        "domain": ["Chaos"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Wild",
         "siteType": ["temple"],
-        "domain": ["Chaos", "Nature", "Hunt"]
+        "domain": ["Chaos", "Nature", "Hunt"],
+        "theme": ["Fey / Nature", "Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Unbound",
         "siteType": ["temple"],
-        "domain": ["Chaos"]
+        "domain": ["Chaos"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Golden",
         "siteType": ["temple"],
-        "domain": ["Commerce", "Arts", "Beauty", "Judgment", "Life", "Order"]
-    },{
+        "domain": ["Commerce", "Arts", "Beauty", "Judgment", "Life", "Order"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
         "type": "prefix",
         "value": "Tranquil",
         "siteType": ["temple"],
-        "domain": ["Peace"]
+        "domain": ["Peace"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ordered",
         "siteType": ["temple"],
-        "domain": ["Order"]
+        "domain": ["Order"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Shielded",
         "siteType": ["temple"],
-        "domain": ["Protection"]
+        "domain": ["Protection"],
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Cunning",
         "siteType": ["temple"],
-        "domain": ["Trickery"]
+        "domain": ["Trickery"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Withered",
         "siteType": ["temple"],
-        "domain": ["Decay"]
+        "domain": ["Decay"],
+        "theme": ["Dark / Gothic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Feral",
         "siteType": ["temple"],
-        "domain": ["Hunt"]
+        "domain": ["Hunt"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Liberated",
         "siteType": ["temple"],
-        "domain": ["Freedom"]
+        "domain": ["Freedom"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Graven",
         "siteType": ["temple"],
-        "domain": ["Grave"]
+        "domain": ["Grave"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Living",
         "siteType": ["temple"],
-        "domain": ["Life"]
+        "domain": ["Life"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Omniscient",
         "siteType": ["temple"],
-        "domain": ["Knowledge"]
+        "domain": ["Knowledge"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
-
+    {
+        "type": "prefix",
+        "value": "Obsidian",
+        "siteType": ["temple"],
+        "domain": ["Death", "Shadow", "Chaos"],
+        "theme": ["Dark / Gothic"],
+        "tier": ["Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Celestial",
+        "siteType": ["temple"],
+        "domain": ["Stars", "Fate", "Light"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Verdant",
+        "siteType": ["temple"],
+        "domain": ["Nature", "Harvest", "Life"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Thunder",
+        "siteType": ["temple"],
+        "domain": ["Storms", "War", "Glory"],
+        "theme": ["Fey / Nature", "Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Iron",
+        "siteType": ["temple"],
+        "domain": ["Forge", "Invention", "Order"],
+        "theme": ["Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
 
 
 
@@ -186,217 +286,329 @@
         "type": "noun",
         "value": "Waves",
         "siteType": ["temple"],
-        "domain": ["Sea", "Storms"]
+        "domain": ["Sea", "Storms"],
+        "theme": ["Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Flame",
         "siteType": ["temple"],
-        "domain": ["Forge", "War", "Life", "Chaos", "Fire"]
+        "domain": ["Forge", "War", "Life", "Chaos", "Fire"],
+        "theme": ["Fey / Nature", "Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Moon",
         "siteType": ["temple"],
-        "domain": ["Moon", "Dreams"]
+        "domain": ["Moon", "Dreams"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Shadows",
         "siteType": ["temple"],
-        "domain": ["Shadow", "Secrets"]
+        "domain": ["Shadow", "Secrets"],
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Mysteries",
         "siteType": ["temple"],
-        "domain": ["Magic", "Magic"]
+        "domain": ["Magic", "Magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Harvest",
         "siteType": ["temple"],
-        "domain": ["Nature", "Harvest"]
+        "domain": ["Nature", "Harvest"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Sunlight",
         "siteType": ["temple"],
-        "domain": ["Sun", "Light"]
+        "domain": ["Sun", "Light"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Echoes",
         "siteType": ["temple"],
-        "domain": ["Death", "Time", "Grave"]
+        "domain": ["Death", "Time", "Grave"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Stars",
         "siteType": ["temple"],
-        "domain": ["Fate", "Travel", "Magic", "Knowledge"]
+        "domain": ["Fate", "Travel", "Magic", "Knowledge"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Forge",
         "siteType": ["temple"],
-        "domain": ["Forge", "Invention", "Fire", "Order"]
+        "domain": ["Forge", "Invention", "Fire", "Order"],
+        "theme": ["Clockwork / Steampunk", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Sigils",
         "siteType": ["temple"],
-        "domain": ["Magic"]
+        "domain": ["Magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Mysteries",
         "siteType": ["temple"],
-        "domain": ["Magic", "Secrets", "Other"]
+        "domain": ["Magic", "Secrets", "Other"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Leylines",
         "siteType": ["temple"],
-        "domain": ["Magic"]
+        "domain": ["Magic"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Brushstrokes",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Muses",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Reverie",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Grace",
         "siteType": ["temple"],
-        "domain": ["Beauty"]
+        "domain": ["Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Mirrors",
         "siteType": ["temple"],
-        "domain": ["Beauty"]
+        "domain": ["Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Perfection",
         "siteType": ["temple"],
-        "domain": ["Beauty"]
+        "domain": ["Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Creation",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Discord",
         "siteType": ["temple"],
-        "domain": ["Chaos"]
+        "domain": ["Chaos"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Coins",
         "siteType": ["temple"],
-        "domain": ["Commerce"]
+        "domain": ["Commerce"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Trade",
         "siteType": ["temple"],
-        "domain": ["Commerce"]
+        "domain": ["Commerce"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Fortune",
         "siteType": ["temple"],
-        "domain": ["Commerce", "Luck", "Other"]
+        "domain": ["Commerce", "Luck", "Other"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Voices",
         "siteType": ["temple"],
-        "domain": ["Community", "Arts", "Beauty"]
+        "domain": ["Community", "Arts", "Beauty"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Unity",
         "siteType": ["temple"],
-        "domain": ["Community", "Peace", "Other"]
+        "domain": ["Community", "Peace", "Other"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Rot",
         "siteType": ["temple"],
-        "domain": ["Decay"]
+        "domain": ["Decay"],
+        "theme": ["Dark / Gothic", "Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tracks",
         "siteType": ["temple"],
-        "domain": ["Hunt"]
+        "domain": ["Hunt"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Chains",
         "siteType": ["temple"],
-        "domain": ["Freedom"]
+        "domain": ["Freedom"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Tombs",
         "siteType": ["temple"],
-        "domain": ["Grave"]
+        "domain": ["Grave"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Pulse",
         "siteType": ["temple"],
-        "domain": ["Life"]
+        "domain": ["Life"],
+        "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Scrolls",
         "siteType": ["temple"],
-        "domain": ["Knowledge"]
+        "domain": ["Knowledge"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Laws",
         "siteType": ["temple"],
-        "domain": ["Order"]
+        "domain": ["Order"],
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Calm",
         "siteType": ["temple"],
-        "domain": ["Peace"]
+        "domain": ["Peace"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Aegis",
         "siteType": ["temple"],
-        "domain": ["Protection"]
+        "domain": ["Protection"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Lies",
         "siteType": ["temple"],
-        "domain": ["Trickery"]
+        "domain": ["Trickery"],
+        "theme": ["Dark / Gothic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Sanctum",
+        "siteType": ["temple"],
+        "domain": ["Magic", "Knowledge", "Secrets"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Grove",
+        "siteType": ["temple"],
+        "domain": ["Nature", "Harvest", "Fertility"],
+        "theme": ["Fey / Nature", "Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Catacomb",
+        "siteType": ["temple"],
+        "domain": ["Death", "Grave", "Decay"],
+        "theme": ["Dark / Gothic"],
+        "tier": ["Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Observatory",
+        "siteType": ["temple"],
+        "domain": ["Fate", "Knowledge", "Moon"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Haven",
+        "siteType": ["temple"],
+        "domain": ["Peace", "Protection", "Community"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     
     
@@ -408,57 +620,77 @@
         "type": "siteTypeName",
         "value": "Muse's Shrine",
         "siteType": ["temple"],
-        "domain": ["Arts"]
+        "domain": ["Arts"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Temple",
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Shrine",
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Sanctuary",
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Sacred Grove",
         "siteType": ["temple"],
-        "domain": ["Nature", "Harvest"]
+        "domain": ["Nature", "Harvest"],
+        "theme": ["Fey / Nature", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Cathedral",
         "siteType": ["temple"],
-        "domain": ["Light", "Sun", "Order"]
+        "domain": ["Light", "Sun", "Order"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Chapel",
         "siteType": ["temple"],
-        "domain": ["Peace", "Community", "Life"]
+        "domain": ["Peace", "Community", "Life"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Obelisk",
         "siteType": ["temple"],
-        "domain": ["Time", "Fate", "Judgment"]
+        "domain": ["Time", "Fate", "Judgment"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Sepulcher",
         "siteType": ["temple"],
-        "domain": ["Death", "Grave", "Decay"]
+        "domain": ["Death", "Grave", "Decay"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "siteTypeName",
         "value": "Spire",
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -470,12 +702,16 @@
         "type": "format",
         "value": "{{siteTypeName}} of the {{noun}}",
         "weight": 2,
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic", "Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "The {{prefix}} {{siteTypeName}}",
         "weight": 1,
-        "siteType": ["temple"]
+        "siteType": ["temple"],
+        "theme": ["Arcane / Mystic", "Medieval Fantasy", "Dark / Gothic", "Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     }
 ]

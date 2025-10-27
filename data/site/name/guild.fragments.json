@@ -260,6 +260,126 @@
         "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature", "Dark / Gothic"],
         "tier": ["Apprentice", "Artisan", "Architect"]
     },
+    {
+        "type": "prefix",
+        "value": "Emberforge",
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["smith", "tinker", "artisan"]
+    },
+    {
+        "type": "prefix",
+        "value": "Wildbriar",
+        "theme": ["Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["druid", "forester", "healer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Copperwheel",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["artisan", "tinker", "smith"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ironveil",
+        "theme": ["Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["spy", "assassin", "thief"]
+    },
+    {
+        "type": "prefix",
+        "value": "Thornwatch",
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["hunter", "forester", "beastTamer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Runebound",
+        "theme": ["Arcane / Mystic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["mage", "scholar", "scribe"]
+    },
+    {
+        "type": "prefix",
+        "value": "Starforge",
+        "theme": ["Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["smith", "mage", "artisan"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ashen",
+        "theme": ["Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["adventurer", "monsterHunter", "hunter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Whiteroot",
+        "theme": ["Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["druid", "healer", "alchemist"]
+    },
+    {
+        "type": "prefix",
+        "value": "Ironcrest",
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["adventurer", "monsterHunter", "paladin"]
+    },
+    {
+        "type": "prefix",
+        "value": "Stormveil",
+        "theme": ["Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["mage", "assassin", "scholar"]
+    },
+    {
+        "type": "prefix",
+        "value": "Brightcoil",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "prefix",
+        "value": "Grimvale",
+        "theme": ["Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["assassin", "spy", "hunter"]
+    },
+    {
+        "type": "prefix",
+        "value": "Oaken",
+        "theme": ["Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["druid", "forester", "healer"]
+    },
+    {
+        "type": "prefix",
+        "value": "Emberpath",
+        "theme": ["Frontier / Rustic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["adventurer", "mage", "explorer"]
+    },
 
 
 
@@ -291,13 +411,6 @@
         "value": "Council",
         "siteType": ["guild"], 
         "theme": ["Medieval Fantasy", "Arcane / Mystic"],
-        "tier": ["Apprentice", "Artisan", "Architect"]
-    },
-    {
-        "type": "noun",
-        "value": "Hammer",
-        "siteType": ["guild"], 
-        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
         "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
@@ -613,6 +726,118 @@
         "guildType": ["merchant", "seafarer"], 
         "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic"],
         "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "noun",
+        "value": "Foundry",
+        "theme": ["Clockwork / Steampunk", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["smith", "tinker", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Engine",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Colony",
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["explorer", "courier", "merchant"]
+    },
+    {
+        "type": "noun",
+        "value": "Bloom",
+        "theme": ["Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["druid", "healer", "alchemist"]
+    },
+    {
+        "type": "noun",
+        "value": "Ward",
+        "theme": ["Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["mage", "scholar", "scribe"]
+    },
+    {
+        "type": "noun",
+        "value": "Spire",
+        "theme": ["Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["mage", "scholar", "scribe"]
+    },
+    {
+        "type": "noun",
+        "value": "Machina",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Expedition",
+        "theme": ["Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["explorer", "cartographer", "adventurer"]
+    },
+    {
+        "type": "noun",
+        "value": "League",
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["adventurer", "explorer", "merchant"]
+    },
+    {
+        "type": "noun",
+        "value": "Crucible",
+        "theme": ["Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["alchemist", "mage", "smith"]
+    },
+    {
+        "type": "noun",
+        "value": "Vaultworks",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["banker", "smith", "tinker"]
+    },
+    {
+        "type": "noun",
+        "value": "Assembly",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "noun",
+        "value": "Watch",
+        "theme": ["Frontier / Rustic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["hunter", "adventurer", "spy"]
+    },
+    {
+        "type": "noun",
+        "value": "Lodge",
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["hunter", "explorer", "beastTamer"]
     },
 
 
@@ -1023,5 +1248,85 @@
         "guildType": ["other"], 
         "theme": ["Dark / Gothic"],
         "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Inventors' Guild",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Artisans' Guild",
+        "theme": ["Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["artisan", "smith", "tinker"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Healers' Guild",
+        "theme": ["Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["healer", "druid", "alchemist"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Explorers' Guild",
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["explorer", "adventurer", "cartographer"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Rangers' Lodge",
+        "theme": ["Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["hunter", "beastTamer", "forester"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Engineers' Consortium",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "smith", "artisan"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Wardens' Circle",
+        "theme": ["Fey / Nature", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["hunter", "druid", "forester"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Seers' Conclave",
+        "theme": ["Arcane / Mystic", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["mage", "scholar", "scribe"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Masons' Guild",
+        "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["stoneCutter", "smith", "artisan"]
+    },
+    {
+        "type": "siteTypeName",
+        "value": "Inventors' Assembly",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"],
+        "siteType": ["guild"],
+        "functionType": ["tinker", "artisan", "smith"]
     }
 ]
