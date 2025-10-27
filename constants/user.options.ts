@@ -12,7 +12,8 @@ export const membershipBenefits = [
             "Create up to 5 Settlements",
             "Create up to 15 Sites total",
             "Create up to 5 NPCs",
-            "Explore medieval fantasy content"
+            "Explore medieval fantasy content",
+            "Access RealmFoundry's core features"
         ]
     },
     // Temporary testing tier

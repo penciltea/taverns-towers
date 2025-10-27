@@ -7,11 +7,12 @@ export default function DashboardFavorites(){
 
     return (
         <Box>
-            {isLoading && <Typography>Loading featured items...</Typography>}
+            {isLoading && <Typography>Loading favorite items...</Typography>}
             {isError && <Typography color="error">Something went wrong loading your featured items.</Typography>}
 
             {!isLoading && !isError && (
                 <>
+                    <Typography variant="body2" color="text.secondary">Below are your favorite items. Tap or click an item to view them!</Typography>               
                     {data && data.length > 0 ? (
                         <List>
                             {data.map((item) => (

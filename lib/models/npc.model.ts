@@ -4,7 +4,6 @@ import { NpcConnection } from "@/interfaces/connection.interface";
 import { connectionSchema } from "./connection.model";
 
 // Flatten trait values for enum use
-const raceValues = NPC_RACES.map(option => option.value);
 const persuasionValues = NPC_PERSUASION.map(option => option.value);
 const reputationValues = NPC_REPUTATION.map(option => option.value);
 const npcArchetypeValues: string[] = NPC_ARCHETYPE.flatMap((group) =>
@@ -53,7 +52,7 @@ const npcSchema = new Schema<INpc>(
     pronouns: { type: String, enum: NPC_PRONOUNS },
     alignment: { type: String, enum: NPC_ALIGNMENT },
     status: { type: String, enum: NPC_STATUS },
-    race: { type: String, enum: raceValues },
+    race: { type: String },
     traits: [{ type: String, enum: npcTraitValues }],
     reputation: { type: String, enum: reputationValues },
     archetype: { type: String, enum: npcArchetypeValues },

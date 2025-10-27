@@ -70,11 +70,11 @@ export default function MembershipPage() {
                                     >
                                         Recommended
                                     </Typography>
-                                    <Typography variant="subtitle1" fontWeight="bold">Premium</Typography>
+                                    <Typography variant="subtitle1" fontWeight="bold">Artisan</Typography>
                                 </Box>
                             </TableCell>
                             <TableCell align="center">
-                                <strong>Premium+</strong>
+                                <strong>Architect</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
