@@ -1,5 +1,6 @@
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { ConnectionInput } from "../actions/npcConnections";
+import { Player } from "@/interfaces/campaign.interface";
 
 const normalizeArray = (arr?: string[]) => Array.isArray(arr) ? arr.filter(val => val.trim() !== "") : [];
 
@@ -19,5 +20,12 @@ export function normalizeConnections(connections: ConnectionInput[] = []): Conne
     ...conn,
     id: conn.id?.toString() || "",
     role: conn.role ?? ""
+  }));
+}
+
+export function normalizePlayers(players: Player[] = []): Player[] {
+  return players.map(player => ({
+    ...player,
+    userId: player.userId.toString()
   }));
 }

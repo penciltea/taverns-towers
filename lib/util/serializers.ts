@@ -3,6 +3,7 @@ import { serializeFromDb } from "./serializeFromDb";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { BaseSite, SiteType, TavernSite, generatorMenuItem, TempleSite, ShopSite, GuildSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
 import { Npc } from "@/interfaces/npc.interface";
+import { Campaign, Player } from "@/interfaces/campaign.interface";
 
 export function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
   const serialized = serializeFromDb(settlement) as Settlement | null;
@@ -151,6 +152,21 @@ export function serializeNpc(npc: Parameters<typeof serializeFromDb>[0]): Npc {
     connections: serialized.connections.map((conn) => ({
       ...conn,
       id: conn.id.toString(),
+    })),
+  };
+}
+
+export function serializeCampaign(campaign: Parameters<typeof serializeFromDb>[0]): Campaign {
+  const serialized = serializeFromDb(campaign) as Campaign | null;
+  if (!serialized || !Array.isArray(serialized.tone) || !Array.isArray(serialized.players)) {
+    throw new Error("Invalid campaign data for serialization");
+  }
+  return {
+    ...serialized,
+    tone: serialized.tone.map((t) => t),
+    players: serialized.players.map((player: Player) => ({
+      userId: player.userId,
+      role: player.role,
     })),
   };
 }
