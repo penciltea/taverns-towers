@@ -79,7 +79,7 @@ export default function AccountDashboard(){
                                 <Card sx={{ px: 2, mb: 2 }}>
                                     <CardContent>
                                         <Typography variant="h6">Custom Data</Typography>
-                                        <Button variant="contained" color="secondary" sx={{ mt: 1 }}>
+                                        <Button variant="contained" color="secondary" sx={{ mt: 1 }} disabled>
                                             Add Custom Data
                                         </Button>
                                     </CardContent>
@@ -91,7 +91,7 @@ export default function AccountDashboard(){
                                 <Card sx={{ px: 2, mb: 2 }}>
                                     <CardContent>
                                         <Typography variant="h6">Campaign Settings</Typography>
-                                        <Button variant="outlined" sx={{ mt: 1 }}>
+                                        <Button variant="outlined" sx={{ mt: 1 }} disabled>
                                             Manage Editors / Co-GMs
                                         </Button>
                                     </CardContent>

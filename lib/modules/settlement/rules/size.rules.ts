@@ -1,7 +1,6 @@
 import { SIZE_TYPES, THEME } from "@/constants/settlement.options";
 import { getRandom, shouldReplace } from "@/lib/util/randomValues";
 import { normalizeSettlementInput, NormalizedSettlementInput } from "./normalize";
-import { SITE_THEMES } from "@/constants/site/site.options";
 
 // Logic for setting Size if set to "random"
 export function applySizeRule(data: ReturnType<typeof normalizeSettlementInput>): NormalizedSettlementInput {
