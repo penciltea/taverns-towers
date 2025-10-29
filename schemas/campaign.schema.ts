@@ -13,3 +13,13 @@ export const campaignSchema = z.object({
     ).optional(),
     idempotencyKey: z.string().optional(),
 });
+
+export const defaultCampaignValues = {
+    name: "",
+    description: "",
+    tone: [],
+    isPublic: false,
+    players: [],
+};
+
+export type CampaignFormData = z.infer<typeof campaignSchema>;

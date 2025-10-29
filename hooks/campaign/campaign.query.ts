@@ -32,7 +32,7 @@ export function useCampaignsQuery(
 // -------------------------
 // Single campaign query
 // -------------------------
-export function useCampaignQuery(
+export function useGetCampaignById(
   campaignId: Parameters<GetCampaignByIdFn>[0] | null
 ): UseQueryResult<Awaited<ReturnType<GetCampaignByIdFn>>, Error> {
   return useQuery<Awaited<ReturnType<GetCampaignByIdFn>>, Error>({

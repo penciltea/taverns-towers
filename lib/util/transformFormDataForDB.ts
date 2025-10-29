@@ -1,6 +1,7 @@
 import { SiteFormData } from "@/schemas/site.schema";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { NpcFormData } from "@/schemas/npc.schema";
+import { CampaignFormData } from "@/schemas/campaign.schema";
 
 export function transformSettlementFormData(data: SettlementFormData) {
   return {
@@ -34,5 +35,13 @@ export function transformNpcFormData(data: NpcFormData) {
       typeof data.image === "string" && data.image.startsWith("http")
         ? data.image
         : undefined,
+  };
+}
+
+export function transformCampaignFormData(data: CampaignFormData) {
+  return {
+    ...data,
+    players: data.players ?? [],
+    tone: data.tone ?? [],
   };
 }

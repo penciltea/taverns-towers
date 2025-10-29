@@ -109,3 +109,26 @@ export async function createCampaign(data: Partial<Campaign>) {
       revalidatePath("/campaigns"); // ToDo: Update?
       return serializeCampaign(newCampaign);
 }
+
+export async function updateCampaign(id: string, data: Partial<Campaign>) {
+    await connectToDatabase();
+    const user = await requireUser();
+    const campaign = await CampaignModel.findById(id);
+
+    if (!campaign) {
+        throw new Error("Campaign not found");
+    }
+
+    if (campaign.userId.toString() !== user.id) {
+        throw new Error("Unauthorized to update this campaign");
+    }
+
+    // Normalize player ids
+    const normalizedPlayers = normalizePlayers(data.players);
+    Object.assign(campaign, { ...data, players: normalizedPlayers });
+    await campaign.save();
+
+    revalidatePath("/campaigns");
+    return serializeCampaign(campaign);
+}
+
