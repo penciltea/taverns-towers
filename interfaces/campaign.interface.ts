@@ -1,9 +1,15 @@
+import { Types } from "mongoose";
+
 export interface Campaign {
     _id: string;
     userId: string;
     name: string;
     description?: string;
+    genre?: string[];
     tone?: string[];
+    rules?: string;
+    highlights?: string[];
+    links?: string[];
     players: Player[];
     isPublic: boolean;
     createdAt: string;
@@ -12,6 +18,6 @@ export interface Campaign {
 }
 
 export interface Player {
-    userId: string;
-    role: "editor" | "viewer";
+    userId: Types.ObjectId;
+    roles: string[];
 }

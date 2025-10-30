@@ -26,7 +26,7 @@ export default function EditCampaignsPage(){
 
     
     const { handleSubmit: onSubmit } = useSaveCampaign("edit", safeId);
-    const { data: campaign, isLoading, isError } = useGetCampaignById(safeId ?? '');
+    const { data: campaign, isLoading } = useGetCampaignById(safeId ?? '');
     
     const methods = useFormWithSchema(campaignSchema, {
         defaultValues: defaultCampaignValues,

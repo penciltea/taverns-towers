@@ -6,7 +6,6 @@ import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
 import { Campaign } from "@/interfaces/campaign.interface";
-import { normalizePlayers } from "@/lib/util/normalize";
 import { serializeCampaign } from "../util/serializers";
 
 export async function getCampaigns({
@@ -48,8 +47,8 @@ export async function getCampaigns({
         userId: campaign.userId.toString(),
         players: campaign.players.map((player) => ({
             ...player,
-            id: player.userId.toString(),
-        })),
+            name: player.name,
+        }))
     }));
 
     return {
@@ -95,15 +94,10 @@ export async function createCampaign(data: Partial<Campaign>) {
       if (existing) {
         return serializeCampaign(existing); // Return existing campaign instead of creating duplicate
       }
-    
-      // Normalize player ids
-      const normalizedPlayers = normalizePlayers(data.players);
       
-    
       const newCampaign = await CampaignModel.create({
         ...data,
-        userId: new ObjectId(user.id),
-        players: normalizedPlayers,
+        userId: new ObjectId(user.id)
       });
     
       revalidatePath("/campaigns"); // ToDo: Update?
@@ -123,12 +117,28 @@ export async function updateCampaign(id: string, data: Partial<Campaign>) {
         throw new Error("Unauthorized to update this campaign");
     }
 
-    // Normalize player ids
-    const normalizedPlayers = normalizePlayers(data.players);
-    Object.assign(campaign, { ...data, players: normalizedPlayers });
+    Object.assign(campaign, { ...data });
     await campaign.save();
 
     revalidatePath("/campaigns");
     return serializeCampaign(campaign);
 }
 
+export async function deleteCampaign(id: string) {
+    return (async () => {
+        await connectToDatabase();
+        const user = await requireUser();
+        const campaign = await CampaignModel.findById(id);
+
+        if (!campaign) {
+            throw new Error("Campaign not found");
+        }
+        if (campaign.userId.toString() !== user.id) {
+            throw new Error("Unauthorized to delete this campaign");
+        }
+
+        await CampaignModel.deleteOne({ _id: id });
+        revalidatePath("/campaigns");
+        return { success: true };
+    })
+}

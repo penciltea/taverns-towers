@@ -10,8 +10,6 @@ export default async function ViewNpcPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <ViewNpc
-      npc={npc}
-    />
+    <ViewNpc npc={npc} />
   );
 }

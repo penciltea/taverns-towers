@@ -22,7 +22,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
 
             const idempotencyKey = generateIdempotencyKey();
 
-            
+            console.log("data: ", data);
             // Transform form data for DB and attach the idempotencyKey
             const transformed = {
                 ...transformCampaignFormData(data),
@@ -51,7 +51,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 "success"
             );
             queryClient.invalidateQueries({ queryKey: ["ownedCampaigns"] });
-            router.push(`/account/dashboard`);
+            router.push(`/campaigns/${saved._id}`);
 
         } catch (error) {
             let message = "Something went wrong saving the campaign. Please try again later.";

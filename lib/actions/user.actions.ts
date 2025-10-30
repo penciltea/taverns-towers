@@ -123,7 +123,7 @@ export async function getUser() {
   await connectToDatabase();
 
   const dbUser = await User.findById(user.id).lean<UserModel>();
-  if (!dbUser) return null;
+  if (!dbUser) return { success: false, error: "Could not find user." };
 
   // Fetch linked Patreon account, if any
   const patreonAccount = await Account.findOne({
@@ -402,4 +402,16 @@ export async function unlinkPatreonAccount(
     console.error("Error unlinking Patreon account:", err);
     return { success: false, error: "Failed to unlink Patreon account." };
   }
+}
+
+export async function resolveUserId(identifier: string) {
+  const user = await User.findOne({
+    $or: [{ email: identifier }, { username: identifier }]
+  }).select("_id");
+  
+  if (!user) {
+    throw new Error(`User "${identifier}" not found`);
+  }
+
+  return user._id;
 }
