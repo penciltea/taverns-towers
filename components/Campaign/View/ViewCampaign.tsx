@@ -6,13 +6,13 @@ import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Campaign } from "@/interfaces/campaign.interface";
+import { CampaignForClient } from "@/interfaces/campaign.interface";
 import CampaignActions from "./CampaignActions";
 import CampaignDetails from "./CampaignDetails";
 import FabButton from "@/components/Common/Button/fabButton";
 
 
-export default function ViewCampaign({ campaign }: { campaign: Campaign }){
+export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
     const { data: session } = useSession();
     const user = session?.user ? { id: session.user.id } : null;
 

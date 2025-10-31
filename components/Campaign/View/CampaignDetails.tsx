@@ -1,22 +1,17 @@
 import { Box, Typography, Stack, Chip } from "@mui/material";
 import Link from "@mui/material/Link";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { Campaign } from "@/interfaces/campaign.interface";
+import { CampaignForClient } from "@/interfaces/campaign.interface";
 
-export default function CampaignDetails({ campaign }: { campaign: Campaign }) {
-    async function getUserName( id: string ){
-        const { resolveUserId } = await import('@/lib/actions/user.actions');
-        return resolveUserId(id);
-    }
+export default function CampaignDetails({ campaign }: { campaign: CampaignForClient }) {
+    console.log("campaign Players: ", campaign.players);
 
     const fields = [
         { label: "Genre", type: "chip", value: campaign.genre ?? [] },
         { label: "Tone", type: "chip", value: campaign.tone ?? [] },
-        { label: "Players", type: "chip", value: campaign.players.map((player) => getUserName(player.userId).toString()).filter(Boolean) },
+        { label: "Players", type: "chip", value: campaign.players.map(p => p.user.username || p.user.email || "Unknown"), }, // ToDo: Get Players username/email to list here
         { label: "External Links", type: "link", value: campaign.links ?? [] },
     ]
-
-    console.log(campaign.players);
 
     return (
         <>

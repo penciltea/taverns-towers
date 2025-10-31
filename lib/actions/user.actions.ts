@@ -14,6 +14,7 @@ import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/ser
 import { tierLimits, userTier } from "@/constants/user.options";
 import Account from "../models/account.model";
 
+
 // Serialize for client compatibility
 function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
   const obj = 'toObject' in user ? user.toObject() : user;

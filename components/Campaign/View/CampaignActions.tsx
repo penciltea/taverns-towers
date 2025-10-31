@@ -7,10 +7,10 @@ import { Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQueryClient } from '@tanstack/react-query';
 import DeleteButton from "@/components/Common/Button/DeleteButton";
-import { Campaign } from "@/interfaces/campaign.interface";
+import { CampaignForClient, PlayerForClient } from "@/interfaces/campaign.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 
-export default function CampaignActions({ campaign }: { campaign: Campaign }) {
+export default function CampaignActions({ campaign }: { campaign: CampaignForClient }) {
   const router = useRouter();
   const { data: session } = useSession();
   const { showSnackbar } = useUIStore();
@@ -18,7 +18,7 @@ export default function CampaignActions({ campaign }: { campaign: Campaign }) {
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: campaign.userId, editors: campaign.players.filter((player) => player.roles.includes('editor')).map((player) => player.userId.toString()) });
+  const editable = canEdit(user, { userId: campaign.userId, editors: campaign.players.filter((player: PlayerForClient) => player.roles.length > 0 && player.roles.includes('editor')).map((player) => player._id.toString()) });
   const deletable = canDelete(user, { userId: campaign.userId});
 
   const handleEdit = () => {

@@ -16,12 +16,12 @@ import FormChipInput from "@/components/Form/FormChipInput";
 import { GENRES } from "@/constants/campaign.options";
 import FormRoleAssignmentInput from "@/components/Form/FormRoleAssignmentInput";
 
-type CmapgignFormProps = {
+type CampaignFormProps = {
     onSubmit: (data: CampaignFormData) => void;
     mode: "add" | "edit" | null;
 };
 
-export default function CampaignForm({ onSubmit, mode }: CmapgignFormProps) {
+export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
     const { isSubmitting } = useUIStore();
     const router = useRouter();
     const { selectedCampaign, reset } = useCampaignStore();

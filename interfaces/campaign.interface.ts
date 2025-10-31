@@ -21,16 +21,30 @@ export interface PlayerInput {
 }
 
 export interface CampaignInput extends Campaign {
-    players: PlayerInput[]; // form uses identifiers
+    players: PlayerInput[];
 }
 
 // DB-ready types
 export interface PlayerForDB {
-    userId: string;
+    user: string;
     roles: string[];
 }
 
 export interface CampaignForDB extends Campaign {
-    players: PlayerForDB[]; // database uses ObjectIds
+    players: PlayerForDB[];
+}
+
+// For View screens
+export interface PlayerForClient {
+    _id: string;
+    user: {
+        username?: string;
+        email?: string;
+    }
+    roles: string[];
+}
+
+export interface CampaignForClient extends Campaign {
+    players: PlayerForClient[];
 }
 

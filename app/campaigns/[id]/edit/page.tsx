@@ -40,12 +40,22 @@ export default function EditCampaignsPage(){
         if (isLoading) return;
         
         if (campaign) {
-          setSelectedCampaign(campaign); // update the store
-          methods.reset(campaign);   // reset the form with the loaded data
+            console.log("campaign: ", campaign);
+            setSelectedCampaign(campaign); // update the store
+
+            const formData = {
+                ...campaign,
+                players: campaign.players.map(player => ({
+                    identifier: player.user.username ?? player.user.email,
+                    roles: player.roles ?? [],
+                })),
+            };
+
+            methods.reset(formData);   // reset the form with the loaded data
         } else if(safeId && !isLoading){
-          // If no campaign, clear selection
-          clearSelectedCampaign();
-          showErrorDialog("Campaign could not be found, please try again later!");
+            // If no campaign, clear selection
+            clearSelectedCampaign();
+            showErrorDialog("Campaign could not be found, please try again later!");
         }
       }, [campaign, safeId, isLoading, setSelectedCampaign, clearSelectedCampaign, methods, showErrorDialog]);
     

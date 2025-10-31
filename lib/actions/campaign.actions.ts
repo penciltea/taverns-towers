@@ -5,11 +5,10 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
-import { CampaignForDB, PlayerForDB } from "@/interfaces/campaign.interface";
+import { CampaignForClient, CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
 import { serializeCampaign } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";
-import { Types } from "mongoose";
 
 export async function transformCampaignFormData(
   data: CampaignFormData
@@ -28,8 +27,8 @@ export async function transformCampaignFormData(
         data.players.map(async (player) => {
           if (player.identifier) {
             try {
-              const userId = new ObjectId(await resolveUserId(player.identifier)).toString();
-              return { userId, roles: player.roles }; // PlayerForDB type
+              const user = new ObjectId(await resolveUserId(player.identifier)).toString();
+              return { user, roles: player.roles };
             } catch {
               console.warn(`Skipping unresolved player: ${player.identifier}`);
               return null;
@@ -42,7 +41,7 @@ export async function transformCampaignFormData(
 
     base.players = transformedPlayers;
   }
-  console.log("action: " , base);
+
   return base;
 }
 
@@ -85,7 +84,7 @@ export async function getCampaigns({
         userId: campaign.userId.toString(),
         players: campaign.players.map((player) => ({
             ...player,
-            userId: player.userId.toString(),
+            user: player.user.toString(),
         }))
     }));
 
@@ -98,6 +97,7 @@ export async function getCampaigns({
     };
 }
 
+
 export async function getOwnedCampaigns(
     options: Omit<Parameters<typeof getCampaigns>[0], 'userId'>
 ){
@@ -105,19 +105,44 @@ export async function getOwnedCampaigns(
     return getCampaigns({ ...options, userId: user.id });
 }
 
+
+
 export async function getPublicCampaigns(options: Omit<Parameters<typeof getCampaigns>[0], 'isPublic'>) {
   return getCampaigns({ ...options, isPublic: true });
 }
+
+
 
 export async function getCampaignById(id: string) {
     await connectToDatabase();
     if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
 
-    const campaign = await CampaignModel.findById(id);
+    const campaign = await CampaignModel.findById(id)
+      .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[] }[] }>({
+          path: "players.user",
+          select: "username email",
+      })
+      .lean<CampaignForClient>();
+
     if (!campaign) throw new Error("Campaign not found");
 
-    return serializeCampaign(campaign);
+    const serialized = {
+        ...campaign,
+        _id: campaign._id.toString(),
+        userId: campaign.userId.toString(),
+        players: campaign.players.map<PlayerForClient>((player) => ({
+          _id: player._id.toString(),
+          roles: player.roles ?? [],
+          user: player.user && typeof player.user !== "string" 
+            ? { username: player.user.username, email: player.user.email } 
+            : { username: "", email: "" },
+        })),
+    };
+
+    return serialized;
 }
+
+
 
 export async function createCampaign(data: Partial<CampaignForDB>) {
     await connectToDatabase();
@@ -132,12 +157,12 @@ export async function createCampaign(data: Partial<CampaignForDB>) {
       // Check if a campaign with this key already exists
       const existing = await CampaignModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
       if (existing) {
-        return serializeCampaign(existing); // Return existing campaign instead of creating duplicate
+        return serializeCampaign(existing);
       }
 
         const players = (data.players ?? []).map(player => ({
             ...player,
-            userId: new ObjectId(player.userId)
+            user: new ObjectId(player.user)
         }));
       
       const newCampaign = await CampaignModel.create({

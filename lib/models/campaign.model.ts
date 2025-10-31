@@ -18,7 +18,7 @@ export interface ICampaign extends Document {
     tone?: ToneTypes[];
     rules?: string;
     links?: string[];
-    highlights?: Types.ObjectId[];
+    highlights?: string[];
     players: PlayerForDB[];
     isPublic: boolean;
     userId: Types.ObjectId;
@@ -35,15 +35,15 @@ const CampaignSchema = new Schema<ICampaign>(
         tone: [{ type: String, enum: TONE, required: false }],
         rules: { type: String, required: false },
         links: [{ type: String, required: false }],
-        highlights: [{ type: Schema.Types.ObjectId, ref: 'Highlight', required: false }],
+        highlights: [{ String }],
         players: [
             {
-                userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+                user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
                 roles: [{ type: String, required: false }],
             }
         ],
         isPublic: { type: Boolean, default: false },
-        userId: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
+        userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
         idempotencyKey: { type: String, unique: true, sparse: true }
     },
     { timestamps: true, toJSON: { virtuals: true } }

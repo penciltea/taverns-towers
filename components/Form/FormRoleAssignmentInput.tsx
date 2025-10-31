@@ -12,7 +12,6 @@ interface Role {
 
 interface AssignedItem {
   identifier?: string;
-  userId?: string;
   roles: string[];
 }
 
@@ -53,29 +52,29 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
       <Controller
         name={name}
         control={control}
-        render={({ field }) => {
-          const currentItems = (field.value as AssignedItem[] | undefined) ?? [];
+        render={({ field: { value = [], onChange } }) => {
+          const currentItems = value as AssignedItem[];
 
           const addItem = () => {
             const trimmed = inputValue.trim();
             if (trimmed && !currentItems.some((item) => item.identifier === trimmed)) {
-              field.onChange([...currentItems, { identifier: trimmed, roles: [] }]);
+              onChange([...currentItems, { identifier: trimmed, roles: [] }]);
             }
           };
 
-          const removeItem = (idOrIdentifier: string) => {
-            field.onChange(currentItems.filter((item) => (item.userId ?? item.identifier) !== idOrIdentifier));
+          const removeItem = (identifier: string) => {
+            onChange(currentItems.filter(item => item.identifier !== identifier));
           };
 
-          const toggleRole = (idOrIdentifier: string, roleValue: string) => {
+          const toggleRole = (identifier: string, roleValue: string) => {
             const updated = currentItems.map((item) =>
-              (item.userId ?? item.identifier) === idOrIdentifier
+              (item.identifier) === identifier
                 ? { ...item, roles: item.roles.includes(roleValue)
                     ? item.roles.filter(r => r !== roleValue)
                     : [...item.roles, roleValue] }
                 : item
             );
-            field.onChange(updated);
+            onChange(updated);
           };
 
           const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -122,17 +121,17 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {currentItems.map((item) => {
-                        const key = item.userId ?? item.identifier ?? Math.random().toString();
+                      {currentItems.map((item, index) => {
+                        const key = item.identifier ?? index;
                         return (
                         <TableRow key={key}>
-                          <TableCell scope="col">{item.identifier ?? item.userId}</TableCell>
+                          <TableCell scope="col">{item.identifier}</TableCell>
                           {roles.map((role) => (
                             <TableCell key={`${item.identifier}-${role.value}`} align="center">
                               <Checkbox
                                 size="small"
                                 checked={item.roles.includes(role.value)}
-                                onChange={() => toggleRole(item.identifier ? item.identifier : "", role.value)}
+                                onChange={() => toggleRole(item.identifier ?? "", role.value)}
                                 slotProps={{ 
                                     input: {
                                         'aria-label': `${role.label} role for ${item.identifier}`,
@@ -145,7 +144,7 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                             <Tooltip title={`Remove ${itemLabel.toLowerCase()}`}>
                               <IconButton
                                 size="small"
-                                onClick={() => removeItem(key)}
+                                onClick={() => removeItem(item.identifier ?? "")}
                                 aria-label={`Remove ${itemLabel.toLowerCase()} ${item.identifier}`}
                                 color="error"
                               >
