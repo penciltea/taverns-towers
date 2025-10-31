@@ -4,10 +4,15 @@ import InfoListItem from "@/components/Common/InfoListItem";
 import { Campaign } from "@/interfaces/campaign.interface";
 
 export default function CampaignDetails({ campaign }: { campaign: Campaign }) {
+    async function getUserName( id: string ){
+        const { resolveUserId } = await import('@/lib/actions/user.actions');
+        return resolveUserId(id);
+    }
+
     const fields = [
         { label: "Genre", type: "chip", value: campaign.genre ?? [] },
         { label: "Tone", type: "chip", value: campaign.tone ?? [] },
-        { label: "Players", type: "chip", value: campaign.players.map((player) => player.name).filter(Boolean) },
+        { label: "Players", type: "chip", value: campaign.players.map((player) => getUserName(player.userId).toString()).filter(Boolean) },
         { label: "External Links", type: "link", value: campaign.links ?? [] },
     ]
 

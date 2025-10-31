@@ -18,7 +18,7 @@ export default function CampaignActions({ campaign }: { campaign: Campaign }) {
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: campaign.userId, editors: campaign.players.filter((player) => player.roles.includes('editor')).map((player) => player.name) });
+  const editable = canEdit(user, { userId: campaign.userId, editors: campaign.players.filter((player) => player.roles.includes('editor')).map((player) => player.userId.toString()) });
   const deletable = canDelete(user, { userId: campaign.userId});
 
   const handleEdit = () => {

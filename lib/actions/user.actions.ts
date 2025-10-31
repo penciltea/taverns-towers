@@ -413,5 +413,5 @@ export async function resolveUserId(identifier: string) {
     throw new Error(`User "${identifier}" not found`);
   }
 
-  return user._id;
+  return user._id.toString();
 }

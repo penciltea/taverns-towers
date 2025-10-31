@@ -75,6 +75,7 @@ export default function CampaignForm({ onSubmit, mode }: CmapgignFormProps) {
 
                     <FormTextField
                         label="Campaign Name"
+                        required
                         registration={register("name")}
                         fieldError={errors.name}
                     />

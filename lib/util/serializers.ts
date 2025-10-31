@@ -166,7 +166,7 @@ export function serializeCampaign(campaign: Parameters<typeof serializeFromDb>[0
     tone: serialized.tone.map((t) => t),
     genre: serialized.genre?.map((g) => g),
     players: serialized.players.map((player: Player) => ({
-      name: player.name,
+      userId: player.userId.toString(),
       roles: player.roles ?? [],
     })),
   };

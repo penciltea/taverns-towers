@@ -5,8 +5,46 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
-import { Campaign } from "@/interfaces/campaign.interface";
+import { CampaignForDB, PlayerForDB } from "@/interfaces/campaign.interface";
 import { serializeCampaign } from "../util/serializers";
+import { CampaignFormData } from "@/schemas/campaign.schema";
+import { resolveUserId } from "./user.actions";
+import { Types } from "mongoose";
+
+export async function transformCampaignFormData(
+  data: CampaignFormData
+): Promise<Omit<CampaignFormData, "players"> & { players: PlayerForDB[] }> {
+
+  const base: Omit<CampaignFormData, "players"> & { players: PlayerForDB[] } = {
+    ...data,
+    tone: data.tone ?? [],
+    genre: data.genre ?? [],
+    players: [], // explicitly typed
+  };
+
+  if (Array.isArray(data.players)) {
+    const transformedPlayers: PlayerForDB[] = (
+      await Promise.all(
+        data.players.map(async (player) => {
+          if (player.identifier) {
+            try {
+              const userId = new ObjectId(await resolveUserId(player.identifier)).toString();
+              return { userId, roles: player.roles }; // PlayerForDB type
+            } catch {
+              console.warn(`Skipping unresolved player: ${player.identifier}`);
+              return null;
+            }
+          }
+          return null;
+        })
+      )
+    ).filter((p): p is PlayerForDB => p !== null);
+
+    base.players = transformedPlayers;
+  }
+  console.log("action: " , base);
+  return base;
+}
 
 export async function getCampaigns({
     userId,
@@ -39,7 +77,7 @@ export async function getCampaigns({
         .sort({ createdAt: -1 })
         .skip((page - 1) * limit)
         .limit(limit)
-        .lean<Campaign[]>();
+        .lean<CampaignForDB[]>();
 
     const serializedCampaigns = campaigns.map((campaign) => ({
         ...campaign,
@@ -47,7 +85,7 @@ export async function getCampaigns({
         userId: campaign.userId.toString(),
         players: campaign.players.map((player) => ({
             ...player,
-            name: player.name,
+            userId: player.userId.toString(),
         }))
     }));
 
@@ -81,9 +119,11 @@ export async function getCampaignById(id: string) {
     return serializeCampaign(campaign);
 }
 
-export async function createCampaign(data: Partial<Campaign>) {
+export async function createCampaign(data: Partial<CampaignForDB>) {
     await connectToDatabase();
       const user = await requireUser();
+      
+      console.log("action data: " , data);
     
       if (!data.idempotencyKey) {
         throw new Error("Missing idempotency key for idempotent creation");
@@ -94,9 +134,15 @@ export async function createCampaign(data: Partial<Campaign>) {
       if (existing) {
         return serializeCampaign(existing); // Return existing campaign instead of creating duplicate
       }
+
+        const players = (data.players ?? []).map(player => ({
+            ...player,
+            userId: new ObjectId(player.userId)
+        }));
       
       const newCampaign = await CampaignModel.create({
         ...data,
+        players,
         userId: new ObjectId(user.id)
       });
     
@@ -104,7 +150,7 @@ export async function createCampaign(data: Partial<Campaign>) {
       return serializeCampaign(newCampaign);
 }
 
-export async function updateCampaign(id: string, data: Partial<Campaign>) {
+export async function updateCampaign(id: string, data: Partial<CampaignForDB>) {
     await connectToDatabase();
     const user = await requireUser();
     const campaign = await CampaignModel.findById(id);

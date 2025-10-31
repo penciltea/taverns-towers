@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Document, Types } from "mongoose";
 import { TONE, ToneTypes}  from "@/constants/common.options";
-import { Player } from "@/interfaces/campaign.interface";
+import { PlayerForDB } from "@/interfaces/campaign.interface";
 import { GENRES } from "@/constants/campaign.options";
 
 const { Schema } = mongoose;
@@ -19,7 +19,7 @@ export interface ICampaign extends Document {
     rules?: string;
     links?: string[];
     highlights?: Types.ObjectId[];
-    players: Player[];
+    players: PlayerForDB[];
     isPublic: boolean;
     userId: Types.ObjectId;
     createdAt: Date;
@@ -42,7 +42,7 @@ const CampaignSchema = new Schema<ICampaign>(
                 roles: [{ type: String, required: false }],
             }
         ],
-        isPublic: { type: Boolean, required: true, default: false },
+        isPublic: { type: Boolean, default: false },
         userId: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
         idempotencyKey: { type: String, unique: true, sparse: true }
     },

@@ -1,22 +1,7 @@
 'use client';
 
 import { useState, useId, JSX } from 'react';
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  TextField,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  IconButton,
-  Tooltip,
-} from '@mui/material';
+import { Box, Checkbox, FormControl, FormHelperText, InputLabel, TextField, Typography, Table, TableBody, TableCell, TableHead, TableRow, IconButton, Tooltip } from '@mui/material';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 
@@ -26,7 +11,8 @@ interface Role {
 }
 
 interface AssignedItem {
-  name: string;
+  identifier?: string;
+  userId?: string;
   roles: string[];
 }
 
@@ -72,25 +58,21 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
 
           const addItem = () => {
             const trimmed = inputValue.trim();
-            if (trimmed && !currentItems.some((item) => item.name === trimmed)) {
-              field.onChange([...currentItems, { name: trimmed, roles: [] }]);
-              setInputValue('');
+            if (trimmed && !currentItems.some((item) => item.identifier === trimmed)) {
+              field.onChange([...currentItems, { identifier: trimmed, roles: [] }]);
             }
           };
 
-          const removeItem = (name: string) => {
-            field.onChange(currentItems.filter((item) => item.name !== name));
+          const removeItem = (idOrIdentifier: string) => {
+            field.onChange(currentItems.filter((item) => (item.userId ?? item.identifier) !== idOrIdentifier));
           };
 
-          const toggleRole = (name: string, roleValue: string) => {
+          const toggleRole = (idOrIdentifier: string, roleValue: string) => {
             const updated = currentItems.map((item) =>
-              item.name === name
-                ? {
-                    ...item,
-                    roles: item.roles.includes(roleValue)
-                      ? item.roles.filter((r) => r !== roleValue)
-                      : [...item.roles, roleValue],
-                  }
+              (item.userId ?? item.identifier) === idOrIdentifier
+                ? { ...item, roles: item.roles.includes(roleValue)
+                    ? item.roles.filter(r => r !== roleValue)
+                    : [...item.roles, roleValue] }
                 : item
             );
             field.onChange(updated);
@@ -140,18 +122,20 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {currentItems.map((item) => (
-                        <TableRow key={item.name}>
-                          <TableCell scope="col">{item.name}</TableCell>
+                      {currentItems.map((item) => {
+                        const key = item.userId ?? item.identifier ?? Math.random().toString();
+                        return (
+                        <TableRow key={key}>
+                          <TableCell scope="col">{item.identifier ?? item.userId}</TableCell>
                           {roles.map((role) => (
-                            <TableCell key={`${item.name}-${role.value}`} align="center">
+                            <TableCell key={`${item.identifier}-${role.value}`} align="center">
                               <Checkbox
                                 size="small"
                                 checked={item.roles.includes(role.value)}
-                                onChange={() => toggleRole(item.name, role.value)}
+                                onChange={() => toggleRole(item.identifier ? item.identifier : "", role.value)}
                                 slotProps={{ 
                                     input: {
-                                        'aria-label': `${role.label} role for ${item.name}`,
+                                        'aria-label': `${role.label} role for ${item.identifier}`,
                                     }
                                 }}
                               />
@@ -161,8 +145,8 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                             <Tooltip title={`Remove ${itemLabel.toLowerCase()}`}>
                               <IconButton
                                 size="small"
-                                onClick={() => removeItem(item.name)}
-                                aria-label={`Remove ${itemLabel.toLowerCase()} ${item.name}`}
+                                onClick={() => removeItem(key)}
+                                aria-label={`Remove ${itemLabel.toLowerCase()} ${item.identifier}`}
                                 color="error"
                               >
                                 <DeleteIcon fontSize="small" />
@@ -170,7 +154,8 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                             </Tooltip>
                           </TableCell>
                         </TableRow>
-                      ))}
+                        )
+                      })}
                     </TableBody>
                   </Table>
                 </Box>

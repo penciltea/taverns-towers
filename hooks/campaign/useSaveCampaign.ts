@@ -5,7 +5,6 @@ import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
-import { transformCampaignFormData } from "@/lib/util/transformFormDataForDB";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 
 export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
@@ -23,9 +22,11 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
             const idempotencyKey = generateIdempotencyKey();
 
             console.log("data: ", data);
-            // Transform form data for DB and attach the idempotencyKey
+            const { transformCampaignFormData } = await import('@/lib/actions/campaign.actions')
+            const transformedData = transformCampaignFormData(data);
+
             const transformed = {
-                ...transformCampaignFormData(data),
+                ...transformedData,
                 idempotencyKey,
             };
 
