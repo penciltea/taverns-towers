@@ -39,6 +39,7 @@ export interface PlayerForClient {
     _id: string;
     user: {
         username?: string;
+        _id?: string;
         email?: string;
     }
     roles: string[];

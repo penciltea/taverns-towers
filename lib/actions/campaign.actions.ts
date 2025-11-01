@@ -120,7 +120,7 @@ export async function getCampaignById(id: string) {
     const campaign = await CampaignModel.findById(id)
       .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[] }[] }>({
           path: "players.user",
-          select: "username email",
+          select: "username email _id",
       })
       .lean<CampaignForClient>();
 
@@ -134,8 +134,8 @@ export async function getCampaignById(id: string) {
           _id: player._id.toString(),
           roles: player.roles ?? [],
           user: player.user && typeof player.user !== "string" 
-            ? { username: player.user.username, email: player.user.email } 
-            : { username: "", email: "" },
+            ? { username: player.user.username, email: player.user.email, id: player.user._id?.toString() } 
+            : { username: "", email: "", id: "" },
         })),
     };
 
