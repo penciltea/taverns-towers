@@ -12,7 +12,8 @@ export default function GridItem({
   image,
   onClick,
   tags = [],
-  tone = []
+  tone = [],
+  genre = [],
 }: GridItemProps) {
   const router = useRouter();
   const filteredTags = tags.filter((tag) => tag.trim() !== '');
@@ -22,6 +23,10 @@ export default function GridItem({
   const filteredTones = tone.filter((tone) => tone.trim() !== '');
   const visibleTones = filteredTones.slice(0, 3);
   const extraToneCount = filteredTones.length - visibleTones.length;
+
+  const filteredGenres = genre.filter((genre) => genre.trim() !== '');
+  const visibleGenres = filteredGenres.slice(0, 3);
+  const extraGenreCount = filteredGenres.length - visibleGenres.length;
 
   const handleClick = () => {
     if (onClick) {
@@ -37,6 +42,9 @@ export default function GridItem({
     filteredTones.length > 0 ? `tone: ${visibleTones.join(', ')}` : null,
     extraToneCount > 0
       ? `and ${extraToneCount} more tone${extraToneCount > 1 ? 's' : ''}`
+      : null,
+    extraGenreCount > 0
+      ? `and ${extraGenreCount} more tone${extraGenreCount > 1 ? 's' : ''}`
       : null,
     filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
       filteredTags.length > 0 ? `tags: ${visibleTags.join(', ')}` : null,
@@ -95,12 +103,26 @@ export default function GridItem({
             </Box>
           )}
           {tone.length > 0 && (
-            <Box mt={1} display="flex" gap={1} flexWrap="wrap">
-              {visibleTones.map((tag) => (
-                <Chip key={tag} label={tag} size="small" />
+            <>
+              <Typography variant="subtitle2" component="p">Tone(s):</Typography>
+              <Box mt={1} display="flex" gap={1} flexWrap="wrap">
+                {visibleTones.map((tone) => (
+                  <Chip key={tone} label={tone} size="small" />
+                ))}
+                {extraToneCount > 0 && <Chip label={`+${extraToneCount}`} size="small" />}
+              </Box>
+            </>
+          )}
+          {genre.length > 0 && (
+            <>
+              <Typography variant="subtitle2" component="p">Genre(s):</Typography>
+              <Box mt={1} display="flex" gap={1} flexWrap="wrap">
+              {visibleGenres.map((genre) => (
+                <Chip key={genre} label={genre} size="small" />
               ))}
-              {extraToneCount > 0 && <Chip label={`+${extraToneCount}`} size="small" />}
+              {extraGenreCount > 0 && <Chip label={`+${extraGenreCount}`} size="small" />}
             </Box>
+            </>
           )}
         </CardContent>
       </CardActionArea>

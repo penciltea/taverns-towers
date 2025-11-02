@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from "next-auth/react";
+import { useSetActiveCampaign } from "@/hooks/campaign/useSetActiveCampaign";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
@@ -15,6 +16,13 @@ import FabButton from "@/components/Common/Button/fabButton";
 export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
     const { data: session } = useSession();
     const user = session?.user ? { id: session.user.id } : null;
+
+    const { activeCampaign, setActiveCampaign } = useSetActiveCampaign();
+
+    function handleSetActiveCampaign() {
+        setActiveCampaign(campaign);
+        console.log("active campaign: ", activeCampaign);
+    }
 
     return (
         <>
@@ -58,9 +66,10 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
                 </Grid>
             </Grid>
             
-            { user?.id === campaign.userId && 
+            { user?.id === campaign.userId && activeCampaign?._id !== campaign._id &&
                 <FabButton
                     label="Set as Active Campaign"
+                    onClick={handleSetActiveCampaign}
                 />
             }
             

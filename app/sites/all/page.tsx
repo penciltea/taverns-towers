@@ -29,6 +29,14 @@ export default function AllSitesPage() {
   const { data, isLoading, error } = useOwnedSitesQuery(filters, {
     isEnabled: !!user,
   });
+
+  function handleContentTitle(){
+    if( data?.sites && data?.sites.length > 1 ){
+      return "Sites"
+    } else {
+      return "Site"
+    }
+  }
   
   return (
     <AuthGate fallbackText="You must be logged in to view your sites.">
@@ -42,7 +50,7 @@ export default function AllSitesPage() {
           titleVariant="h4"
           titleComponent="h4"
           description="Here you&apos;ll find every site you&apos;ve crafted: inns, shrines, guildhalls, and mysterious caverns alike, which can be found across your library of settlements."
-          content="sites"
+          content={handleContentTitle().toString()}
           searchVariant="h5"
           searchComponent="h5"
           countVariant="h6"

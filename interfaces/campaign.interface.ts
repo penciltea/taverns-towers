@@ -1,17 +1,12 @@
-export interface Campaign {
-    _id: string;
-    userId: string;
-    name: string;
+import { CommonInterface } from "./common.interface";
+
+export interface Campaign extends CommonInterface {
     description?: string;
     genre?: string[];
     tone?: string[];
     rules?: string;
     highlights?: string[];
     links?: string[];
-    isPublic: boolean;
-    createdAt: string;
-    updatedAt: string;
-    idempotencyKey?: string;
 }
 
 // Form input types
@@ -49,3 +44,18 @@ export interface CampaignForClient extends Campaign {
     players: PlayerForClient[];
 }
 
+export interface CampaignQueryParams {
+    page: number;
+    limit: number;
+    search: string;
+    tone: string[];
+    genre: string[];
+}
+
+export const DefaultCampaignQueryParams: CampaignQueryParams = {
+    page: 1,
+    limit: 12,
+    search: '',
+    tone: [],
+    genre: []
+}

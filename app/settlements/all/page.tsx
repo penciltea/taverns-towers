@@ -31,6 +31,14 @@ export default function SettlementsPage() {
     isEnabled: !!params
   });
 
+  function handleContentTitle(){
+    if( data?.settlements && data?.settlements.length > 1 ){
+      return "Settlements"
+    } else {
+      return "Settlement"
+    }
+  }
+
   return (
     <AuthGate fallbackText="You must be logged in to view your settlements.">
       {!params || isLoading ? (
@@ -43,7 +51,7 @@ export default function SettlementsPage() {
           titleVariant="h3"
           titleComponent="h1"
           description="Settlements are the beating hearts of your world. From bustling cities to sleepy villages tucked between hills, they&apos;re the places where adventurers trade stories, meet allies, and stir up a little trouble."
-          content="settlements"
+          content={handleContentTitle().toString()}
           searchVariant="h5"
           searchComponent="h2"
           countVariant="subtitle1"

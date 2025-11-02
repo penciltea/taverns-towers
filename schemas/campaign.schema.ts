@@ -37,6 +37,11 @@ export const campaignSchema = z.object({
     idempotencyKey: z.string().optional(),
 });
 
+export const campaignFilterSchema = z.object({
+  tone: z.string().optional(),
+  genre: z.string().optional()  
+})
+
 export const defaultCampaignValues = {
     name: "",
     description: "",

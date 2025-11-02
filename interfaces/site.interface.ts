@@ -77,7 +77,6 @@ export interface BaseSite extends CommonInterface {
   image?: string;
   tone?: string[];
   siteTheme?: string[];
-  idempotencyKey?: string;
   connections: NpcConnection[];
 }
 

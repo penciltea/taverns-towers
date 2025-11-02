@@ -4,7 +4,6 @@ import InfoListItem from "@/components/Common/InfoListItem";
 import { CampaignForClient } from "@/interfaces/campaign.interface";
 
 export default function CampaignDetails({ campaign }: { campaign: CampaignForClient }) {
-    console.log("campaign Players: ", campaign.players);
 
     const fields = [
         { label: "Genre", type: "chip", value: campaign.genre ?? [] },

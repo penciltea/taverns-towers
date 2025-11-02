@@ -18,7 +18,7 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, campaign);
+  const editable = canEdit(user, { userId: campaign.userId});
   const deletable = canDelete(user, { userId: campaign.userId});
 
   const handleEdit = () => {
@@ -30,10 +30,7 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
       <Box>
         { editable && 
           (
-            
-              <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
-                Edit
-              </Button>
+            <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>Edit</Button>
           )
         }
         {
@@ -42,14 +39,14 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
                 id={campaign._id}
                 entity="campaign"
                 deleteAction={async (id) => {
-                    const { deleteCampaign } = await import('@/lib/actions/campaign.actions');
-                    return deleteCampaign(id);
+                  const { deleteCampaign } = await import('@/lib/actions/campaign.actions');
+                  return deleteCampaign(id);
                 }}
                 onSuccess={() => {
-                    queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'] });
-                    queryClient.removeQueries({ queryKey: ['campaign', campaign._id] }); // remove single campaign cache
-                    router.push("/campaigns/all");
-                    showSnackbar('Campaign deleted successfully!', 'success');
+                  queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'] });
+                  queryClient.removeQueries({ queryKey: ['campaign', campaign._id] }); // remove single campaign cache
+                  router.push("/campaigns/all");
+                  showSnackbar('Campaign deleted successfully!', 'success');
                 }}
             />
           )}

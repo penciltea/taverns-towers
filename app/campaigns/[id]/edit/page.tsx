@@ -66,7 +66,7 @@ export default function EditCampaignsPage(){
 
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign.">
+        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={["Artisan", "Architect"]}>
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />
             </FormProvider>

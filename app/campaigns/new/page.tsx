@@ -25,7 +25,8 @@ export default function NewCampaignsPage(){
     const methods = useFormWithSchema(campaignSchema);
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign.">
+        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={["Artisan", "Architect"]}>
+            { }
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />
             </FormProvider>

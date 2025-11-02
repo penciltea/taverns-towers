@@ -9,5 +9,6 @@ export interface GridItemProps {
   image?: string;
   tags?: string[];
   tone?: string[];
+  genre?: string[];
   onClick?: () => void;
 }

@@ -46,63 +46,67 @@ export async function transformCampaignFormData(
 }
 
 export async function getCampaigns({
-    userId,
-    isPublic,
-    page = 1,
-    limit = 12,
-    search = '',
-    tone = [],
+  userId,
+  isPublic,
+  page = 1,
+  limit = 12,
+  search = '',
+  tone = [],
+  genre = [],
 }: {
-    userId?: string;
-    isPublic?: boolean;
-    page?: number;
-    limit?: number;
-    search?: string;
-    tone?: string[];
+  userId?: string;
+  isPublic?: boolean;
+  page?: number;
+  limit?: number;
+  search?: string;
+  tone?: string[];
+  genre?: string[];
 }) {
-    await connectToDatabase();
-    const query: Record<string, unknown> = {};
+  await connectToDatabase();
+  const query: Record<string, unknown> = {};
 
-    if (userId) query.userId = userId;
+  if (userId) query.userId = userId;
 
-    if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
-    if (search) query.name = { $regex: new RegExp(search, 'i') };
+  if (search) query.name = { $regex: new RegExp(search, 'i') };
 
-    if (tone.length > 0) query.tone = { $all: tone };
+  if (tone.length > 0) query.tone = { $all: tone };
 
-    const total = await CampaignModel.countDocuments(query);
-    const campaigns = await CampaignModel.find(query)
-        .sort({ createdAt: -1 })
-        .skip((page - 1) * limit)
-        .limit(limit)
-        .lean<CampaignForDB[]>();
+  if (genre.length > 0) query.genre = { $all: genre };
 
-    const serializedCampaigns = campaigns.map((campaign) => ({
-        ...campaign,
-        _id: campaign._id.toString(),
-        userId: campaign.userId.toString(),
-        players: campaign.players.map((player) => ({
-            ...player,
-            user: player.user.toString(),
-        }))
-    }));
+  const total = await CampaignModel.countDocuments(query);
+  const campaigns = await CampaignModel.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean<CampaignForDB[]>();
 
-    return {
-        success: true,
-        campaigns: serializedCampaigns,
-        total,
-        currentPage: page,
-        totalPages: Math.ceil(total / limit),
-    };
+  const serializedCampaigns = campaigns.map((campaign) => ({
+      ...campaign,
+      _id: campaign._id.toString(),
+      userId: campaign.userId.toString(),
+      players: campaign.players.map((player) => ({
+          ...player,
+          user: player.user.toString(),
+      }))
+  }));
+
+  return {
+      success: true,
+      campaigns: serializedCampaigns,
+      total,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+  };
 }
 
 
 export async function getOwnedCampaigns(
-    options: Omit<Parameters<typeof getCampaigns>[0], 'userId'>
+  options: Omit<Parameters<typeof getCampaigns>[0], 'userId'>
 ){
-    const user = await requireUser();
-    return getCampaigns({ ...options, userId: user.id });
+  const user = await requireUser();
+  return getCampaigns({ ...options, userId: user.id });
 }
 
 
@@ -114,102 +118,108 @@ export async function getPublicCampaigns(options: Omit<Parameters<typeof getCamp
 
 
 export async function getCampaignById(id: string) {
-    await connectToDatabase();
-    if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
+  await connectToDatabase();
+  if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
 
-    const campaign = await CampaignModel.findById(id)
-      .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[] }[] }>({
-          path: "players.user",
-          select: "username email _id",
-      })
-      .lean<CampaignForClient>();
+  const campaign = await CampaignModel.findById(id)
+    .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[] }[] }>({
+        path: "players.user",
+        select: "username email _id",
+    })
+    .lean<CampaignForClient>();
 
-    if (!campaign) throw new Error("Campaign not found");
+  if (!campaign) throw new Error("Campaign not found");
 
-    const serialized = {
-        ...campaign,
-        _id: campaign._id.toString(),
-        userId: campaign.userId.toString(),
-        players: campaign.players.map<PlayerForClient>((player) => ({
-          _id: player._id.toString(),
-          roles: player.roles ?? [],
-          user: player.user && typeof player.user !== "string" 
-            ? { username: player.user.username, email: player.user.email, id: player.user._id?.toString() } 
-            : { username: "", email: "", id: "" },
-        })),
-    };
+  const serialized = {
+      ...campaign,
+      _id: campaign._id.toString(),
+      userId: campaign.userId.toString(),
+      players: campaign.players.map<PlayerForClient>((player) => ({
+        _id: player._id.toString(),
+        roles: player.roles ?? [],
+        user: player.user && typeof player.user !== "string" 
+          ? { username: player.user.username, email: player.user.email, id: player.user._id?.toString() } 
+          : { username: "", email: "", id: "" },
+      })),
+  };
 
-    return serialized;
+  return serialized;
 }
 
 
 
 export async function createCampaign(data: Partial<CampaignForDB>) {
     await connectToDatabase();
-      const user = await requireUser();
-      
-      console.log("action data: " , data);
+    const user = await requireUser();
     
-      if (!data.idempotencyKey) {
-        throw new Error("Missing idempotency key for idempotent creation");
-      }
-    
-      // Check if a campaign with this key already exists
-      const existing = await CampaignModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
-      if (existing) {
-        return serializeCampaign(existing);
-      }
+    if(user.tier !== "Artisan" && user.tier !== "Architect") {
+      throw new Error("Your membership tier does not have access to create this content. Upgrade your membership today to gain access!");
+    } 
+  
+    if (!data.idempotencyKey) {
+      throw new Error("Missing idempotency key for idempotent creation");
+    }
+  
+    // Check if a campaign with this key already exists
+    const existing = await CampaignModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+    if (existing) {
+      return serializeCampaign(existing);
+    }
 
-        const players = (data.players ?? []).map(player => ({
-            ...player,
-            user: new ObjectId(player.user)
-        }));
-      
-      const newCampaign = await CampaignModel.create({
-        ...data,
-        players,
-        userId: new ObjectId(user.id)
-      });
+      const players = (data.players ?? []).map(player => ({
+          ...player,
+          user: new ObjectId(player.user)
+      }));
     
-      revalidatePath("/campaigns"); // ToDo: Update?
-      return serializeCampaign(newCampaign);
+    const newCampaign = await CampaignModel.create({
+      ...data,
+      players,
+      userId: new ObjectId(user.id)
+    });
+  
+    revalidatePath("/campaigns"); // ToDo: Update?
+    return serializeCampaign(newCampaign);
 }
 
 export async function updateCampaign(id: string, data: Partial<CampaignForDB>) {
+  await connectToDatabase();
+  const user = await requireUser();
+  const campaign = await CampaignModel.findById(id);
+
+  if (!campaign) {
+      throw new Error("Campaign not found");
+  }
+
+  if (campaign.userId.toString() !== user.id) {
+      throw new Error("Unauthorized to update this campaign");
+  }
+
+  Object.assign(campaign, { ...data });
+  await campaign.save();
+
+  revalidatePath("/campaigns");
+  return serializeCampaign(campaign);
+}
+
+export async function deleteCampaign(id: string) {
+  return (async () => {
     await connectToDatabase();
     const user = await requireUser();
     const campaign = await CampaignModel.findById(id);
 
+      if(user.tier !== "Artisan" && user.tier !== "Architect") {
+      throw new Error("Your membership tier does not have access to create this content. Upgrade your membership today to gain access!");
+    } 
+
     if (!campaign) {
         throw new Error("Campaign not found");
     }
-
     if (campaign.userId.toString() !== user.id) {
-        throw new Error("Unauthorized to update this campaign");
+        throw new Error("Unauthorized to delete this campaign");
     }
 
-    Object.assign(campaign, { ...data });
-    await campaign.save();
-
+    await CampaignModel.deleteOne({ _id: id });
     revalidatePath("/campaigns");
-    return serializeCampaign(campaign);
-}
-
-export async function deleteCampaign(id: string) {
-    return (async () => {
-        await connectToDatabase();
-        const user = await requireUser();
-        const campaign = await CampaignModel.findById(id);
-
-        if (!campaign) {
-            throw new Error("Campaign not found");
-        }
-        if (campaign.userId.toString() !== user.id) {
-            throw new Error("Unauthorized to delete this campaign");
-        }
-
-        await CampaignModel.deleteOne({ _id: id });
-        revalidatePath("/campaigns");
-        return { success: true };
-    })
+    return { success: true };
+  })
 }

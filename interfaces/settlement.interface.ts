@@ -49,7 +49,6 @@ export interface Settlement extends CommonInterface {
   crime?: string[];
   tone?: string[];
   theme?: string[];
-  idempotencyKey?: string;
   connections: NpcConnection[];
 }
 

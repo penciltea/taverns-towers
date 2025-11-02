@@ -32,6 +32,14 @@ export default function NpcsPage() {
     isEnabled: !!params
   });
 
+  function handleContentTitle(){
+    if( data?.npcs && data?.npcs.length > 1 ){
+      return "NPCs"
+    } else {
+      return "NPC"
+    }
+  }
+
   return (
     <AuthGate fallbackText="You must be logged in to view your NPCs.">
       {!params || isLoading ? (
@@ -44,7 +52,7 @@ export default function NpcsPage() {
           titleVariant="h3"
           titleComponent="h1"
           description="NPCs are the personalities that inhabit your world. From eccentric shopkeepers and wandering sages to rival adventurers, they bring voice, drama, and surprise to every encounter."
-          content="NPCs"
+          content={handleContentTitle().toString()}
           searchVariant="h5"
           searchComponent="h2"
           countVariant="subtitle1"
@@ -52,11 +60,11 @@ export default function NpcsPage() {
           items={data.npcs}
           renderItem={(npc) => (
             <GridItem
-              key={npc._id}
-              link={`/npcs/${npc._id}`}
-              title={npc.name}
-              subtitle={`Race: ${toTitleCase(npc.race ?? 'N/A') || 'N/A'}`}
-              image={npc.image || defaultImage}
+                key={npc._id}
+                link={`/npcs/${npc._id}`}
+                title={npc.name}
+                subtitle={`Race: ${toTitleCase(npc.race ?? 'N/A') || 'N/A'}`}
+                image={npc.image || defaultImage}
             />
           )}
           filterComponent={
