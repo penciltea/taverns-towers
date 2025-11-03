@@ -82,3 +82,11 @@ export const GENRES = [
     ],
   },
 ];
+
+export const CAMPAIGN_ROLES = [
+  { label: 'Player', value: 'player' },
+  { label: 'Campaign Editor', value: 'editor' },
+  { label: 'Create Settlements', value: 'createSettlements' },
+  { label: 'Create Sites', value: 'createSites' },
+  { label: 'Create NPCs', value: 'createNpcs' }
+]

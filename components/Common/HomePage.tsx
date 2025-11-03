@@ -78,9 +78,17 @@ export default function HomeContent(){
                 </Box>
             </Stack>
 
+            <Box sx={{ py: 6, px: { xs: 2, sm: 4 }, textAlign: "center" }}>
+                <Typography variant="h4" component="h3" gutterBottom> Procedural, Not Predictive</Typography>
+                <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto" }}>
+                    RealmFoundry does not (and never will) use AI to create content. Every result comes from handcrafted, rule-based systems designed for storytellers. From bustling cities to the shadiest shopkeepers, each creation is grounded in logic, lore, and consistency — not randomness.
+                </Typography>
+                <Typography variant="body1" sx={{ mt: 2, maxWidth: 700, mx: "auto" }}> You stay the creator. RealmFoundry just helps bring your imagination to life. </Typography>
+            </Box>
+
             {/* Features Section */}
             <Paper sx={{ px: 2, py: 4, borderRadius: 2 }}>
-                <Typography variant="h4" component="h3" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
+                <Typography variant="h4" component="h4" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
 
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "stretch", justifyContent: "center" }}>
                     <HighlightCard
@@ -117,7 +125,7 @@ export default function HomeContent(){
                         : "linear-gradient(180deg, #2B2B3F 0%, #1d2a3b 50%, #2B2B3F 100%)",
                 }}
             >
-                <Typography variant="h4" component="h4" gutterBottom textAlign="center">Membership Tiers</Typography>
+                <Typography variant="h4" component="h5" gutterBottom textAlign="center">Membership Tiers</Typography>
                 <Typography variant="body1" sx={{ mb: 4, textAlign: "center" }}>Choose a plan that fits your world-building needs.</Typography>
 
                 <Stack

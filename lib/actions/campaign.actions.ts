@@ -13,28 +13,35 @@ import { resolveUserId } from "./user.actions";
 export async function transformCampaignFormData(
   data: CampaignFormData
 ): Promise<Omit<CampaignFormData, "players"> & { players: PlayerForDB[] }> {
-
   const base: Omit<CampaignFormData, "players"> & { players: PlayerForDB[] } = {
     ...data,
     tone: data.tone ?? [],
     genre: data.genre ?? [],
-    players: [], // explicitly typed
+    players: [],
   };
 
   if (Array.isArray(data.players)) {
     const transformedPlayers: PlayerForDB[] = (
       await Promise.all(
-        data.players.map(async (player) => {
-          if (player.identifier) {
-            try {
-              const user = new ObjectId(await resolveUserId(player.identifier)).toString();
-              return { user, roles: player.roles };
-            } catch {
-              console.warn(`Skipping unresolved player: ${player.identifier}`);
-              return null;
-            }
+        data.players.map(async (player): Promise<PlayerForDB | null> => {
+          if (!player.identifier) return null;
+
+          const userId = await resolveUserId(player.identifier);
+
+          if (userId) {
+            return {
+              user: new ObjectId(userId).toString(),
+              roles: player.roles,
+              placeholder: false,
+            };
+          } else {
+            return {
+              user: undefined,
+              identifier: player.identifier,
+              roles: player.roles,
+              placeholder: true,
+            };
           }
-          return null;
         })
       )
     ).filter((p): p is PlayerForDB => p !== null);
@@ -88,7 +95,7 @@ export async function getCampaigns({
       userId: campaign.userId.toString(),
       players: campaign.players.map((player) => ({
           ...player,
-          user: player.user.toString(),
+          user: player.user?.toString(),
       }))
   }));
 
@@ -119,28 +126,53 @@ export async function getPublicCampaigns(options: Omit<Parameters<typeof getCamp
 
 export async function getCampaignById(id: string) {
   await connectToDatabase();
+
   if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
 
   const campaign = await CampaignModel.findById(id)
-    .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[] }[] }>({
-        path: "players.user",
-        select: "username email _id",
+    .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[]; placeholder?: boolean; identifier?: string }[] }>({
+      path: "players.user",
+      select: "username email _id",
     })
     .lean<CampaignForClient>();
 
   if (!campaign) throw new Error("Campaign not found");
 
-  const serialized = {
-      ...campaign,
-      _id: campaign._id.toString(),
-      userId: campaign.userId.toString(),
-      players: campaign.players.map<PlayerForClient>((player) => ({
+  const serialized: CampaignForClient = {
+    ...campaign,
+    _id: campaign._id.toString(),
+    userId: campaign.userId.toString(),
+    players: campaign.players.map<PlayerForClient>((player) => {
+      if (player.placeholder) {
+        // Placeholder user
+        return {
+          _id: player._id.toString(),
+          roles: player.roles ?? [],
+          user: {
+            username: player.identifier ?? "",
+            email: "",
+            id: "",
+          },
+        };
+      }
+
+      // Existing user
+      return {
         _id: player._id.toString(),
         roles: player.roles ?? [],
-        user: player.user && typeof player.user !== "string" 
-          ? { username: player.user.username, email: player.user.email, id: player.user._id?.toString() } 
-          : { username: "", email: "", id: "" },
-      })),
+        user: player.user && typeof player.user !== "string"
+          ? {
+              username: player.user.username,
+              email: player.user.email,
+              id: player.user._id?.toString(),
+            }
+          : {
+              username: "",
+              email: "",
+              id: "",
+            },
+      };
+    }),
   };
 
   return serialized;

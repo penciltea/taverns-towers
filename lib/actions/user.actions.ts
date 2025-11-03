@@ -47,7 +47,29 @@ export async function registerUser(data: RegisterPayload): Promise<{
       return { success: true };
     }
 
-    // Check for duplicate user
+    // Hash password
+    const hashedPassword = await bcrypt.hash(data.password, 12);
+
+    // Look for placeholder user by email or username
+    const placeholderUser = await User.findOne({
+      $or: [{ email: data.email }, { username: data.username }],
+      placeholder: true,
+    });
+
+    if (placeholderUser) {
+      // Convert placeholder into real user
+      placeholderUser.username = data.username.toLowerCase();
+      placeholderUser.email = data.email.toLowerCase();
+      placeholderUser.passwordHash = hashedPassword;
+      placeholderUser.placeholder = false;
+      placeholderUser.idempotencyKey = data.idempotencyKey;
+      placeholderUser.updatedAt = new Date();
+
+      await placeholderUser.save();
+      return { success: true };
+    }
+
+    // Check for duplicate user (non-placeholder)
     const existingUser = await User.findOne({
       $or: [{ email: data.email }, { username: data.username }],
     });
@@ -59,10 +81,7 @@ export async function registerUser(data: RegisterPayload): Promise<{
       };
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(data.password, 12);
-
-    // Create user
+    // Create new user
     await User.create({
       username: data.username.toLowerCase(),
       email: data.email.toLowerCase(),
@@ -71,6 +90,7 @@ export async function registerUser(data: RegisterPayload): Promise<{
       tier: userTier[0],
       createdAt: new Date(),
       updatedAt: new Date(),
+      idempotencyKey: data.idempotencyKey,
     });
 
     return { success: true };
@@ -410,9 +430,5 @@ export async function resolveUserId(identifier: string) {
     $or: [{ email: identifier }, { username: identifier }]
   }).select("_id");
   
-  if (!user) {
-    throw new Error(`User "${identifier}" not found`);
-  }
-
-  return user._id.toString();
+  return user?._id.toString() ?? null;
 }

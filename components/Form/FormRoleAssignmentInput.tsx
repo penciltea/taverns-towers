@@ -4,6 +4,7 @@ import { useState, useId, JSX } from 'react';
 import { Box, Checkbox, FormControl, FormHelperText, InputLabel, TextField, Typography, Table, TableBody, TableCell, TableHead, TableRow, IconButton, Tooltip } from '@mui/material';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { Delete as DeleteIcon } from '@mui/icons-material';
+import { useResolveUser } from '@/hooks/user/useResolveUser';
 
 interface Role {
   label: string;
@@ -13,6 +14,7 @@ interface Role {
 interface AssignedItem {
   identifier?: string;
   roles: string[];
+  placeholder?: boolean;
 }
 
 interface FormRoleAssignmentInputProps<TFieldValues extends FieldValues> {
@@ -43,6 +45,8 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
   const id = useId();
   const [inputValue, setInputValue] = useState('');
 
+  const { resolve } = useResolveUser();
+
   return (
     <FormControl fullWidth margin="normal" error={!!fieldError} required={required}>
       <InputLabel shrink htmlFor={`${id}-input`}>
@@ -55,11 +59,25 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
         render={({ field: { value = [], onChange } }) => {
           const currentItems = value as AssignedItem[];
 
-          const addItem = () => {
-            const trimmed = inputValue.trim();
-            if (trimmed && !currentItems.some((item) => item.identifier === trimmed)) {
-              onChange([...currentItems, { identifier: trimmed, roles: [] }]);
+          const addItem = async () => {
+            const trimmed = inputValue.trim().slice(0, 100);
+            if (!trimmed || currentItems.some((item) => item.identifier === trimmed)) return;
+
+            const result = await resolve(trimmed);
+
+            if (result.userId) { // If existing user
+              onChange([
+                ...currentItems,
+                { identifier: trimmed, roles: [], userId: result.userId, placeholder: false }
+              ]);
+            } else {
+              onChange([
+                ...currentItems,
+                { identifier: trimmed, roles: [], placeholder: true } // placeholder flag
+              ]);
             }
+
+            setInputValue(""); // clear input
           };
 
           const removeItem = (identifier: string) => {
@@ -125,7 +143,14 @@ export default function FormRoleAssignmentInput<TFieldValues extends FieldValues
                         const key = item.identifier ?? index;
                         return (
                         <TableRow key={key}>
-                          <TableCell scope="col">{item.identifier}</TableCell>
+                          <TableCell scope="col">
+                            {item.identifier}
+                            {item.placeholder && (
+                              <Typography variant="caption" color="warning.main" display="block">
+                                This player hasn’t signed up for RealmFoundry yet.
+                              </Typography>
+                            )}
+                          </TableCell>
                           {roles.map((role) => (
                             <TableCell key={`${item.identifier}-${role.value}`} align="center">
                               <Checkbox

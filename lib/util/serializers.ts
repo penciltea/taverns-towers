@@ -169,7 +169,7 @@ export function serializeCampaign(campaign: Parameters<typeof serializeFromDb>[0
     userId: serialized.userId.toString(),
     players: serialized.players.map((player: PlayerForDB) => ({
       _id: serialized._id.toString(),
-      user: player.user.toString(),
+      user: player.user?.toString(),
       roles: player.roles ?? [],
     })),
   };

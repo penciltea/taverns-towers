@@ -46,7 +46,7 @@ export default function EditCampaignsPage(){
             const formData = {
                 ...campaign,
                 players: campaign.players.map(player => ({
-                    identifier: player.user.username ?? player.user.email,
+                    identifier: player.user.username ?? player.user.email ?? player.identifier,
                     roles: player.roles ?? [],
                 })),
             };

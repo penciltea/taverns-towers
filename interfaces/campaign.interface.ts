@@ -21,8 +21,10 @@ export interface CampaignInput extends Campaign {
 
 // DB-ready types
 export interface PlayerForDB {
-    user: string;
+    user?: string;
     roles: string[];
+    placeholder?: boolean;
+    identifier?: string;
 }
 
 export interface CampaignForDB extends Campaign {
@@ -37,6 +39,8 @@ export interface PlayerForClient {
         _id?: string;
         email?: string;
     }
+    placeholder?: boolean;
+    identifier?: string;
     roles: string[];
 }
 

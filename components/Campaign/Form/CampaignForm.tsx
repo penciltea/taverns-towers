@@ -13,7 +13,7 @@ import { FormChipSelect, FormTextField } from "@/components/Form";
 import { TONE } from "@/constants/common.options";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormChipInput from "@/components/Form/FormChipInput";
-import { GENRES } from "@/constants/campaign.options";
+import { CAMPAIGN_ROLES, GENRES } from "@/constants/campaign.options";
 import FormRoleAssignmentInput from "@/components/Form/FormRoleAssignmentInput";
 
 type CampaignFormProps = {
@@ -45,10 +45,7 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
         router.back();
     }
 
-    const roles = [
-        { label: 'Player', value: 'player' },
-        { label: 'Editor', value: 'editor' },
-    ];
+    const roles = CAMPAIGN_ROLES;
 
 
     return (
