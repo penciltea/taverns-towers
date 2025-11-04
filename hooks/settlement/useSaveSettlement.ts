@@ -7,6 +7,7 @@ import { SettlementFormData } from "@/schemas/settlement.schema";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { useQueryClient } from "@tanstack/react-query";
 import { Settlement } from "@/interfaces/settlement.interface";
+import { useCampaignStore } from "@/store/campaignStore";
 
 interface PartialSettlementUpdate {
   _id: string;
@@ -16,6 +17,7 @@ interface PartialSettlementUpdate {
 export function useSaveSettlement(mode: "add" | "edit", id?: string) {
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
 
   /** Full save (create/edit) */
   async function saveSettlement(data: SettlementFormData) {
@@ -34,8 +36,9 @@ export function useSaveSettlement(mode: "add" | "edit", id?: string) {
 
       const settlementData = {
         ...transformSettlementFormData(data),
-        map: cleanMap,
         userId: user.id,
+        campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
+        map: cleanMap,
         idempotencyKey,
       };
 

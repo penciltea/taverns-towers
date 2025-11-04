@@ -10,6 +10,7 @@ const { Schema } = mongoose;
 
 export interface ISettlement extends Document {
   _id: Types.ObjectId;
+  campaignId?: Types.ObjectId;
   name: string;
   size: SizeTypes;
   tags: TagTypes[];
@@ -44,6 +45,7 @@ export interface ISettlement extends Document {
 
 const SettlementSchema = new Schema<ISettlement>(
   {
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     name: { type: String, required: true },
     size: { type: String, required: false },
     map: { type: String, required: false },

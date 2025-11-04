@@ -96,6 +96,7 @@ export async function getCampaigns({
       players: campaign.players.map((player) => ({
           ...player,
           user: player.user?.toString(),
+          _id: player?._id ? player?._id.toString() : ""
       }))
   }));
 

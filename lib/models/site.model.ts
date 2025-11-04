@@ -25,6 +25,7 @@ const venueTypes = ENTERTAINMENT_VENUE_TYPES.map(option => option.value);
 
 export interface IBaseSite {
   _id: mongoose.Types.ObjectId;
+  campaignId?: mongoose.Types.ObjectId;
   type: string;
   updatedAt: Date;
   userId: string;
@@ -35,6 +36,7 @@ export interface IBaseSite {
 
 const BaseSiteSchema = new Schema(
   {
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     settlementId: { type: Schema.Types.ObjectId, ref: "Settlement" },
     name: { type: String, required: true },
     type: { type: String, required: true },

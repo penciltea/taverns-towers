@@ -66,6 +66,7 @@ export async function getOwnedSitesPaginated({
   types,
   tone,
   favorite,
+  campaignId
 }: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
   await connectToDatabase();
 
@@ -76,6 +77,7 @@ export async function getOwnedSitesPaginated({
     if (typeof search === "string" && search.trim()) {
       query.name = { $regex: search.trim(), $options: "i" };
     }
+    if (campaignId) query.campaignId = campaignId;
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
     if (favorite) query.favorite = true;

@@ -10,6 +10,7 @@ import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { Npc } from "@/interfaces/npc.interface";
+import { useCampaignStore } from "@/store/campaignStore";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
@@ -27,6 +28,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
+    const { selectedCampaign } = useCampaignStore();
 
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
@@ -46,9 +48,12 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             // Transform form data for DB and attach the image & idempotencyKey
             const transformed = {
                 ...transformNpcFormData(data),
+                campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
                 image: cleanImage,
                 idempotencyKey,
             };
+
+            console.log("transformed: ", transformed);
 
             let saved;
             

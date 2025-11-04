@@ -25,6 +25,7 @@ export interface PlayerForDB {
     roles: string[];
     placeholder?: boolean;
     identifier?: string;
+    _id?: string;
 }
 
 export interface CampaignForDB extends Campaign {

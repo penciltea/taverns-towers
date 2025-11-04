@@ -11,6 +11,7 @@ import { serializeSettlement } from "../util/serializers";
 
 export async function getSettlements({
   userId,
+  campaignId,
   isPublic,
   page = 1,
   limit = 12,
@@ -24,6 +25,7 @@ export async function getSettlements({
   tone = []
 }: {
   userId?: string;
+  campaignId?: string;
   isPublic?: boolean;
   page?: number;
   limit?: number;
@@ -41,6 +43,7 @@ export async function getSettlements({
   const query: Record<string, unknown> = {};
 
   if (userId) query.userId = userId;
+  if (campaignId) query.campaignId = campaignId;
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
   if (search) query.name = { $regex: new RegExp(search, 'i') };
@@ -63,6 +66,7 @@ export async function getSettlements({
     ...settlement,
     _id: settlement._id.toString(),
     userId: settlement.userId.toString(),
+    campaignId: settlement.campaignId !== null && settlement.campaignId ? settlement.campaignId.toString() : "",
     connections: settlement.connections.map((conn) => ({
       ...conn,
       id: conn.id.toString(),
@@ -84,6 +88,8 @@ export async function getOwnedSettlements(
   const user = await requireUser();
   return getSettlements({ ...options, userId: user.id });
 }
+
+
 
 export async function getPublicSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>) {
   return getSettlements({ ...options, isPublic: true });

@@ -11,6 +11,7 @@ import { SiteType } from "@/interfaces/site.interface";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { siteKeys } from "./site.query";
+import { useCampaignStore } from "@/store/campaignStore";
 
 
 interface UseSiteMutationsProps {
@@ -29,6 +30,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
   const { user } = useAuthStore();
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
 
   // -----------------------------
   // Full form submit (create/edit)
@@ -55,6 +57,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
       const siteData = {
         ...transformSiteFormData(data),
         image: cleanImage,
+        campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
         idempotencyKey,
       } as SiteType;
 

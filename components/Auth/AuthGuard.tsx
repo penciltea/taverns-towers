@@ -5,6 +5,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useSession } from "next-auth/react";
 import Typography from "@mui/material/Typography";
 import { Spinner } from "@/components/Common/Spinner";
+import { userTier } from "@/constants/user.options";
 
 interface AuthGateProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ interface AuthGateProps {
 export default function AuthGate({ 
   children, 
   fallbackText = "You must be logged in to view this content.", 
-  allowedTiers = ["Apprentice", "Artisan", "Architect"],
+  allowedTiers = userTier,
   tiersMessage = "Your membership tier does not have access to this content. Upgrade today to gain access!"
 }: AuthGateProps) {
   const user = useAuthStore(state => state.user);

@@ -2,6 +2,7 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import type { getSettlements, getSettlementById, getOwnedSettlements, getPublicSettlements } from '@/lib/actions/settlement.actions';
+import { useCampaignStore } from '@/store/campaignStore';
 
 // -------------------------
 // Types for server functions
@@ -64,14 +65,23 @@ export function usePublicSettlementsQuery(
 // Owned settlements query
 // -------------------------
 export function useOwnedSettlementsQuery(
-  params: Omit<Parameters<GetSettlementsFn>[0], 'isPublic'>,
+  params: Omit<Parameters<GetOwnedSettlementsFn>[0], 'isPublic'>,
   options?: { isEnabled?: boolean }
 ): UseQueryResult<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error> {
+  const { selectedCampaign } = useCampaignStore();
+  
+  const mergedParams = {
+    ...params,
+    campaignId: selectedCampaign?._id || undefined,
+  };
+
+  console.log("params: ", mergedParams);
+
   return useQuery<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error>({
-    queryKey: ['ownedSettlements', params],
+    queryKey: ['ownedSettlements', mergedParams],
     queryFn: async () => {
       const { getOwnedSettlements } = await import('@/lib/actions/settlement.actions');
-      return await getOwnedSettlements(params);
+      return await getOwnedSettlements(mergedParams);
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,

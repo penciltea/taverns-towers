@@ -15,6 +15,7 @@ import { serializeNpc } from "../util/serializers";
 
 export async function getNpcs({
   userId,
+  campaignId,
   isPublic,
   page = 1,
   limit = 12,
@@ -26,6 +27,7 @@ export async function getNpcs({
   pronouns
 }: {
   userId?: string;
+  campaignId?: string;
   isPublic?: boolean;
   page?: number;
   limit?: number;
@@ -41,6 +43,7 @@ export async function getNpcs({
   const query: Record<string, unknown> = {};
 
   if (userId) query.userId = userId;
+  if (campaignId) query.campaignId = campaignId;
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
   if (search) query.name = { $regex: new RegExp(search, 'i') };
@@ -61,6 +64,7 @@ export async function getNpcs({
     ...npc,
     _id: npc._id.toString(),
     userId: npc.userId.toString(),
+    campaignId: npc.campaignId !== null && npc.campaignId ? npc.campaignId.toString() : "",
     connections: npc.connections.map((conn) => ({
       ...conn,
       id: conn.id.toString(),

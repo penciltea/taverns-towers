@@ -4,6 +4,7 @@ import { useUIStore } from "@/store/uiStore";
 import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
 import { signIn } from "next-auth/react";
 import { prefetchUserData } from "@/lib/util/userData.prefetch";
+import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 
 type AuthFormType = "login" | "register";
 
@@ -43,7 +44,14 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
 
       if (type === "register") {
         const { registerUser } = await import("@/lib/actions/user.actions");
-        const result = await registerUser(data as RegisterPayload);
+        const idempotencyKey = generateIdempotencyKey();
+
+        const transformed = {
+          ...data,
+          idempotencyKey
+        }
+        
+        const result = await registerUser(transformed as RegisterPayload);
         finalRedirect ??= "/auth/login";
 
         if (result.success) {

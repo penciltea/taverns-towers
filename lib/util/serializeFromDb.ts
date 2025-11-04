@@ -51,7 +51,16 @@ export function serializeFromDb<T extends Record<string, unknown>>(obj: T | DbDo
           : typeof value === "object" && value !== null && "_id" in value
           ? String((value as { _id: ObjectId })._id)
           : "";
-    } else if (key === "editors" && Array.isArray(value)) {
+    } else if (key === "campaignId") {
+      result[key] =
+        typeof value === "string"
+          ? value
+          : value instanceof ObjectId
+          ? value.toString()
+          : typeof value === "object" && value !== null && "_id" in value
+          ? String((value as { _id: ObjectId })._id)
+          : "";
+    }else if (key === "editors" && Array.isArray(value)) {
       result[key] = value.map((editor) =>
         typeof editor === "string"
           ? editor

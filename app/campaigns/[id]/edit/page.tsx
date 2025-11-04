@@ -12,6 +12,7 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useGetCampaignById } from "@/hooks/campaign/campaign.query";
 import { useCampaignStore } from "@/store/campaignStore";
 import { useUIStore } from "@/store/uiStore";
+import { isPremiumTier } from "@/constants/user.options";
 
 
 const LazyCampaignForm = dynamic(
@@ -66,7 +67,7 @@ export default function EditCampaignsPage(){
 
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={["Artisan", "Architect"]}>
+        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={isPremiumTier}>
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />
             </FormProvider>

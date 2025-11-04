@@ -6,6 +6,7 @@ import { useSaveCampaign } from "@/hooks/campaign/useSaveCampaign";
 import { CampaignFormData, campaignSchema } from "@/schemas/campaign.schema";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
+import { isPremiumTier } from "@/constants/user.options";
 
 const LazyCampaignForm = dynamic(
     () => import("@/components/Campaign/Form/CampaignForm"),
@@ -25,7 +26,7 @@ export default function NewCampaignsPage(){
     const methods = useFormWithSchema(campaignSchema);
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={["Artisan", "Architect"]}>
+        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={isPremiumTier}>
             { }
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />

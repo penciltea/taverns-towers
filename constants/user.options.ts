@@ -5,6 +5,11 @@ export const userTier = [
     "Architect"
 ];
 
+export const isPremiumTier = [
+    "Artisan", 
+    "Architect",
+]
+
 export const membershipBenefits = [
     {
         "tier": "Apprentice",
@@ -31,6 +36,7 @@ export const membershipBenefits = [
         "tier": "Artisan",
         benefits: [
             "Unlimited Settlements, Sites, and NPCs",
+            "Organize your worlds with Campaigns — manage content and invite players",
             "Multiple themed content options (Sci-Fi, Asian-inspired, etc.)",
             "Optional batch site generation with Settlements",
             "Add custom dropdown options (races, domains, factions)",
@@ -40,7 +46,7 @@ export const membershipBenefits = [
     {
         "tier": "Architect",
         benefits: [
-            "All Premium features included",
+            "All Artisan features included",
             "Early access to new generators and themes",
             "Exclusive polls and feedback channels to shape RealmFoundry",
             "Rare fragment packs and special UI badges",

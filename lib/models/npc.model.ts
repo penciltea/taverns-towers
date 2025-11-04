@@ -18,6 +18,7 @@ const npcTraitValues: string[] = NPC_TRAITS.flatMap((group) =>
 
 export interface INpc extends Document {
   userId: mongoose.Types.ObjectId;
+  campaignId?: mongoose.Types.ObjectId;
   name: string;
   age?: string;
   pronouns?: string;
@@ -47,6 +48,7 @@ export interface INpc extends Document {
 const npcSchema = new Schema<INpc>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     name: { type: String, required: true, trim: true },
     age: { type: String, enum: NPC_AGE },
     pronouns: { type: String, enum: NPC_PRONOUNS },

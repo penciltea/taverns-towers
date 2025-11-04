@@ -2,6 +2,7 @@
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import type { getOwnedSitesPaginated, getPublicSitesPaginated, getSiteById, getSitesBySettlementPaginated } from '@/lib/actions/site.actions';
+import { useCampaignStore } from '@/store/campaignStore';
 
 // -------------------------
 // Types for server functions
@@ -61,11 +62,18 @@ export function useOwnedSitesQuery(
   params: Parameters<GetOwnedSitesPaginatedFn>[0],
   options?: { isEnabled?: boolean }
 ): UseQueryResult<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error> {
+  const { selectedCampaign } = useCampaignStore();
+
+  const mergedParams = {
+    ...params,
+    campaignId: selectedCampaign?._id || undefined,
+  };
+  
   return useQuery<Awaited<ReturnType<GetOwnedSitesPaginatedFn>>, Error>({
-    queryKey: ['sites', 'owned', JSON.stringify(params)],
+    queryKey: ['sites', 'owned', JSON.stringify(mergedParams)],
     queryFn: async () => {
       const { getOwnedSitesPaginated } = await import('@/lib/actions/site.actions');
-      return await getOwnedSitesPaginated(params);
+      return await getOwnedSitesPaginated(mergedParams);
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,

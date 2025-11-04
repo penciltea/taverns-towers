@@ -10,6 +10,7 @@ import FilteredGridView from '@/components/Grid/FilteredGridView';
 import GridItem from '@/components/Grid/GridItem';
 import { Typography } from '@mui/material';
 import CampaignFilters from '@/components/Campaign/View/CampaignFilters';
+import { isPremiumTier } from '@/constants/user.options';
 
 export default function CampaignsPage(){
     const user = useAuthStore(state => state.user);
@@ -39,7 +40,7 @@ export default function CampaignsPage(){
     }
 
     return (
-        <AuthGate fallbackText="You must be logged in to view your campaigns." allowedTiers={["Artisan", "Architect"]}>
+        <AuthGate fallbackText="You must be logged in to view your campaigns." allowedTiers={isPremiumTier}>
             {!params || isLoading ? (
                 <Spinner />
             ) : error || !data?.success ? (
