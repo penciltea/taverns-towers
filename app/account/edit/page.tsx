@@ -15,6 +15,8 @@ import { useUIStore } from "@/store/uiStore";
 
 export default function UpdateProfilePage() {
   const user = useAuthStore((state) => state.user);
+  const isLoggedIn = (user ? true : false);
+
   const hasHydrated = useAuthStore((state) => state.hasHydrated);
   const methods = useUserProfileForm();
   const { handleSubmit: mutateSubmit } = useUserProfileMutation();
@@ -47,7 +49,7 @@ export default function UpdateProfilePage() {
   };
 
   return (
-    <AuthGate fallbackText="Please log in to edit your profile">
+    <AuthGate fallbackText="Please log in to edit your profile" hasAccess={isLoggedIn}>
         <FormProvider {...methods}>
         <Paper
             elevation={3}

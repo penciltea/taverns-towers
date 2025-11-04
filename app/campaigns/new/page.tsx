@@ -6,7 +6,7 @@ import { useSaveCampaign } from "@/hooks/campaign/useSaveCampaign";
 import { CampaignFormData, campaignSchema } from "@/schemas/campaign.schema";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
-import { isPremiumTier } from "@/constants/user.options";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 
 const LazyCampaignForm = dynamic(
     () => import("@/components/Campaign/Form/CampaignForm"),
@@ -14,6 +14,7 @@ const LazyCampaignForm = dynamic(
 );
 
 export default function NewCampaignsPage(){
+    const { canAccessCampaigns } = useCampaignAccess();
     const mode = "add";
 
     const { handleSubmit: onSubmit } = useSaveCampaign("add");
@@ -26,7 +27,7 @@ export default function NewCampaignsPage(){
     const methods = useFormWithSchema(campaignSchema);
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={isPremiumTier}>
+        <AuthGate fallbackText="Please log in to create a new campaign." hasAccess={canAccessCampaigns}>
             { }
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />

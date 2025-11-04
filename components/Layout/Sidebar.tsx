@@ -9,6 +9,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import { APP_VERSION } from "@/version";
 import { useAuthStore } from "@/store/authStore";
 import { useSetActiveCampaign } from "@/hooks/campaign/useSetActiveCampaign";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 
 export const Sidebar = () => {
   const router = useRouter();
@@ -21,15 +22,13 @@ export const Sidebar = () => {
   const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
   const closeDrawer = useUIStore((state) => state.closeDrawer);
 
-  const isLoggedIn = (user ? true : false);
-
-  const isPremium = (isLoggedIn && (user?.tier === "Artisan" || user?.tier === "Architect") ? true : false )
+  const { canAccessCampaigns, isLoggedIn, isPremium } = useCampaignAccess();
 
   const drawerWidth = 250;
   const navItems = [
     {
       label: "Campaigns",
-      visible: isPremium,
+      visible: canAccessCampaigns,
       children: [
         { 
           label: "View my campaigns",
@@ -41,7 +40,7 @@ export const Sidebar = () => {
           label: "Create campaign",
           path: "/campaigns/new",
           enabled: true,
-          visible: true
+          visible: isPremium
         }
       ]
     },

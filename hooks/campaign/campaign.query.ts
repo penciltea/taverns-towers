@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns } from '@/lib/actions/campaign.actions';
+import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns, getAssignedCampaigns } from '@/lib/actions/campaign.actions';
 
 // -------------------------
 // Types for server functions
@@ -10,6 +10,7 @@ type GetCampaignsFn = typeof getCampaigns;
 type GetCampaignByIdFn = typeof getCampaignById;
 type GetOwnedCampaignsFn = typeof getOwnedCampaigns;
 type GetPublicCampaignsFn = typeof getPublicCampaigns;
+type GetAssignedCampaignsFn = typeof getAssignedCampaigns;
 
 
 // -------------------------
@@ -77,5 +78,25 @@ export function useOwnedCampaignsQuery(
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
+  });
+}
+
+
+// -------------------------
+// Assigned campaigns query
+// -------------------------
+export function useAssignedCampaignsQuery(
+  userId?: string,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<Awaited<ReturnType<GetAssignedCampaignsFn>>, Error> {
+  return useQuery<Awaited<ReturnType<GetAssignedCampaignsFn>>, Error>({
+    queryKey: ['assignedCampaigns', userId],
+    queryFn: async () => {
+      if (!userId) return [];
+      const { getAssignedCampaigns } = await import('@/lib/actions/campaign.actions');
+      return await getAssignedCampaigns(userId);
+    },
+    staleTime: 1000 * 60 * 5,
+    enabled: options?.isEnabled ?? !!userId,
   });
 }

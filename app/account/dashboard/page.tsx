@@ -21,6 +21,7 @@ import DashboardFavorites from '@/components/Dashboard/DashboardFavorites';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
+    const isLoggedIn = (user ? true : false);
 
     const [tab, setTab] = useState(0);
 
@@ -30,7 +31,7 @@ export default function AccountDashboard(){
 
     
     return (
-        <AuthGate fallbackText="You must be logged in to view your account.">
+        <AuthGate fallbackText="You must be logged in to view your account." hasAccess={isLoggedIn}>
             <Box p={2}>
                 <Grid container spacing={2}>
                     {/* Left Column */}

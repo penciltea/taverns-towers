@@ -50,7 +50,24 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 mode === "edit" ? "Campaign updated successfully!" : "Campaign created successfully!",
                 "success"
             );
-            queryClient.invalidateQueries({ queryKey: ["ownedCampaigns"] });
+            
+            const savedPlayerIds = saved.players
+            .filter((p) => !p.placeholder)
+            .map((p) => p.user)
+            .filter(Boolean); // remove empty strings
+
+            // Also include the campaign owner
+            const affectedUserIds = [saved.userId, ...savedPlayerIds];
+
+            // Invalidate assigned campaigns for each affected user
+            affectedUserIds.forEach((uid) => {
+                queryClient.invalidateQueries({ queryKey: ['assignedCampaigns', uid] });
+            });
+
+            // Invalidate the campaign itself and owned campaigns for the editor
+            queryClient.invalidateQueries({ queryKey: ['campaign', saved._id] });
+            queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'] });
+
             router.push(`/campaigns/${saved._id}`);
 
         } catch (error) {

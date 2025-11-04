@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuthStore } from "@/store/authStore";
-import { useOwnedCampaignsQuery } from '@/hooks/campaign/campaign.query';
+import { useAssignedCampaignsQuery, useOwnedCampaignsQuery } from '@/hooks/campaign/campaign.query';
 import { DefaultCampaignQueryParams, CampaignQueryParams } from '@/interfaces/campaign.interface';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { Spinner } from '@/components/Common/Spinner';
@@ -10,10 +10,11 @@ import FilteredGridView from '@/components/Grid/FilteredGridView';
 import GridItem from '@/components/Grid/GridItem';
 import { Typography } from '@mui/material';
 import CampaignFilters from '@/components/Campaign/View/CampaignFilters';
-import { isPremiumTier } from '@/constants/user.options';
+import { useCampaignAccess } from '@/hooks/campaign/useCampaignAccess';
 
 export default function CampaignsPage(){
     const user = useAuthStore(state => state.user);
+    const { canAccessCampaigns } = useCampaignAccess();
 
     const [params, setParams] = useState<CampaignQueryParams>({
         ...DefaultCampaignQueryParams
@@ -22,17 +23,33 @@ export default function CampaignsPage(){
     // Set initial params after user loads
     useEffect(() => {
         if (user) {
-        setParams({ ...DefaultCampaignQueryParams });
+            setParams({ ...DefaultCampaignQueryParams });
         }
     }, [user]);
 
     // Prevent query call until params are ready
-    const { data, isLoading, error } = useOwnedCampaignsQuery(params!, {
-        isEnabled: !!params
+    const { data: ownedData, isLoading: ownedLoading } = useOwnedCampaignsQuery(params!, {
+        isEnabled: !!params && !!user?.id,
     });
 
+    const { data: assignedData, isLoading: assignedLoading } = useAssignedCampaignsQuery(user?.id, {
+        isEnabled: !!user?.id,
+    });
+
+    const allCampaigns = [
+        ...(ownedData?.campaigns || []),
+        ...(assignedData || []),
+    ];
+
+    const uniqueCampaigns = Object.values(
+        allCampaigns.reduce((acc, campaign) => {
+            acc[campaign._id] = campaign;
+            return acc;
+        }, {} as Record<string, typeof allCampaigns[0]>)
+    );
+
     function handleContentTitle(){
-        if( data?.campaigns && data?.campaigns.length > 1 ){
+        if( allCampaigns && allCampaigns.length > 1 ){
             return "Campaigns"
         } else {
             return "Campaign"
@@ -40,10 +57,10 @@ export default function CampaignsPage(){
     }
 
     return (
-        <AuthGate fallbackText="You must be logged in to view your campaigns." allowedTiers={isPremiumTier}>
-            {!params || isLoading ? (
+        <AuthGate fallbackText="You must be logged in to view your campaigns." hasAccess={canAccessCampaigns}>
+            {(!params || ownedLoading || assignedLoading) ? (
                 <Spinner />
-            ) : error || !data?.success ? (
+            ) : uniqueCampaigns.length === 0 ? (
                 <Typography>Looks like your world is still a bit quiet. Create an NPC to populate your story — every bustling market or haunted forest needs someone to talk to (or run from).</Typography>
             ) : (
                 <FilteredGridView
@@ -56,7 +73,7 @@ export default function CampaignsPage(){
                     searchComponent="h2"
                     countVariant="subtitle1"
                     countComponent="h3"
-                    items={data.campaigns}
+                    items={uniqueCampaigns}
                     renderItem={(campaign) => (
                         <GridItem
                             key={campaign._id}
@@ -79,7 +96,7 @@ export default function CampaignsPage(){
                     onPageChange={(newPage) =>
                         setParams((prev) => ({ ...prev!, page: newPage }))
                     }
-                    totalCount={data.total}
+                    totalCount={uniqueCampaigns.length}
                     pageSize={params.limit}
                     fabLabel="Create Campaign"
                     fabLink="/campaigns/new"

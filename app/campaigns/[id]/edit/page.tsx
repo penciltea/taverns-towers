@@ -12,7 +12,7 @@ import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useGetCampaignById } from "@/hooks/campaign/campaign.query";
 import { useCampaignStore } from "@/store/campaignStore";
 import { useUIStore } from "@/store/uiStore";
-import { isPremiumTier } from "@/constants/user.options";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 
 
 const LazyCampaignForm = dynamic(
@@ -24,6 +24,7 @@ export default function EditCampaignsPage(){
     const mode = "edit";
     const { id } = useParams();
     const safeId = getSingleParam(id);
+    const { canAccessCampaigns } = useCampaignAccess();
 
     
     const { handleSubmit: onSubmit } = useSaveCampaign("edit", safeId);
@@ -67,7 +68,7 @@ export default function EditCampaignsPage(){
 
 
     return(
-        <AuthGate fallbackText="Please log in to create a new campaign." allowedTiers={isPremiumTier}>
+        <AuthGate fallbackText="Please log in to create a new campaign." hasAccess={canAccessCampaigns}>
             <FormProvider {...methods}>
                 <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />
             </FormProvider>

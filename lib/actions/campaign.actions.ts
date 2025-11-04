@@ -214,6 +214,8 @@ export async function createCampaign(data: Partial<CampaignForDB>) {
     return serializeCampaign(newCampaign);
 }
 
+
+
 export async function updateCampaign(id: string, data: Partial<CampaignForDB>) {
   await connectToDatabase();
   const user = await requireUser();
@@ -234,25 +236,82 @@ export async function updateCampaign(id: string, data: Partial<CampaignForDB>) {
   return serializeCampaign(campaign);
 }
 
+
+
 export async function deleteCampaign(id: string) {
-  return (async () => {
-    await connectToDatabase();
-    const user = await requireUser();
-    const campaign = await CampaignModel.findById(id);
+  await connectToDatabase();
+  
+  if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
 
-      if(user.tier !== "Artisan" && user.tier !== "Architect") {
-      throw new Error("Your membership tier does not have access to create this content. Upgrade your membership today to gain access!");
-    } 
+  const user = await requireUser();
 
-    if (!campaign) {
-        throw new Error("Campaign not found");
-    }
-    if (campaign.userId.toString() !== user.id) {
-        throw new Error("Unauthorized to delete this campaign");
-    }
+  if(user.tier !== "Artisan" && user.tier !== "Architect") {
+    throw new Error("Your membership tier does not have access to create this content. Upgrade your membership today to gain access!");
+  }
 
-    await CampaignModel.deleteOne({ _id: id });
-    revalidatePath("/campaigns");
-    return { success: true };
+  const existing = await CampaignModel.findById(id);
+
+  if (!existing) {
+      throw new Error("Campaign not found");
+  }
+  if (existing.userId.toString() !== user.id) {
+      throw new Error("Unauthorized to delete this campaign");
+  }
+
+  const deletedCampaign = await CampaignModel.findByIdAndDelete(id);
+  if(!deletedCampaign) throw new Error("Campaign not found");
+
+  revalidatePath("/campaigns");
+  return { message: "Campaign deleted successfully" };
+}
+
+
+export async function getAssignedCampaigns(userId: string): Promise<CampaignForClient[]> {
+  await connectToDatabase();
+  
+  // Fetch campaigns where the user is owner or collaborator
+  const campaigns = await CampaignModel.find({
+    $or: [
+      { userId: new ObjectId(userId) },
+      { 'players.user': new ObjectId(userId) },
+    ],
   })
+  .select('_id name userId players')
+  .lean<CampaignForDB[]>(); // Type as DB shape
+
+  // Convert DB campaigns to client-ready shape
+  const serialized: CampaignForClient[] = campaigns.map((campaign) => ({
+    ...campaign,
+    _id: campaign._id.toString(),
+    userId: campaign.userId.toString(),
+    players: campaign.players.map((player: PlayerForDB) => {
+      if (player.placeholder) {
+        // Placeholder user
+        return {
+          _id: player._id?.toString() || '',
+          roles: player.roles ?? [],
+          user: {
+            username: player.identifier ?? '',
+            _id: '',
+            email: '',
+          },
+          placeholder: true,
+          identifier: player.identifier,
+        } as PlayerForClient;
+      }
+
+      // Real user
+      return {
+        _id: player._id?.toString() || '',
+        roles: player.roles ?? [],
+        user: {
+          username: player.user?.toString() || '',
+          _id: player.user?.toString() || '',
+          email: '',
+        },
+      } as PlayerForClient;
+    }),
+  }));
+
+  return serialized;
 }
