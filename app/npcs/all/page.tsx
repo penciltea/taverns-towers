@@ -11,10 +11,12 @@ import { Spinner } from '@/components/Common/Spinner';
 import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { toTitleCase } from '@/lib/util/stringFormats';
+import { useCampaignStore } from '@/store/campaignStore';
 
 export default function NpcsPage() {
   const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
+  const { selectedCampaign } = useCampaignStore();
 
   const [params, setParams] = useState<NpcQueryParams>({
     ...DefaultNpcQueryParams
@@ -40,6 +42,14 @@ export default function NpcsPage() {
     }
   }
 
+  function handlePageTitle(){
+    if(selectedCampaign){
+      return `My NPCs for ${selectedCampaign.name}`
+    } else {
+      return "My NPCs"
+    }
+  }
+
   return (
     <AuthGate fallbackText="You must be logged in to view your NPCs.">
       {!params || isLoading ? (
@@ -48,7 +58,7 @@ export default function NpcsPage() {
         <Typography>Looks like your world is still a bit quiet. Create an NPC to populate your story — every bustling market or haunted forest needs someone to talk to (or run from).</Typography>
       ) : (
         <FilteredGridView
-          title="My NPCs"
+          title={handlePageTitle().toString()}
           titleVariant="h3"
           titleComponent="h1"
           description="NPCs are the personalities that inhabit your world. From eccentric shopkeepers and wandering sages to rival adventurers, they bring voice, drama, and surprise to every encounter."

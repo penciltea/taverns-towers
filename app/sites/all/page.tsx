@@ -15,11 +15,12 @@ import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
 import Typography from '@mui/material/Typography';
 import { useAuthStore } from '@/store/authStore';
+import { useCampaignStore } from '@/store/campaignStore';
 
 export default function AllSitesPage() {
   const { setOpenDialog } = useUIStore();
-
   const user = useAuthStore(state => state.user);
+  const { selectedCampaign } = useCampaignStore();
   
   const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
@@ -37,6 +38,14 @@ export default function AllSitesPage() {
       return "Site"
     }
   }
+
+  function handlePageTitle(){
+    if(selectedCampaign){
+      return `My Sites for ${selectedCampaign.name}`
+    } else {
+      return "My Sites"
+    }
+  }
   
   return (
     <AuthGate fallbackText="You must be logged in to view your sites.">
@@ -46,7 +55,7 @@ export default function AllSitesPage() {
         <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
       ) : (
         <FilteredGridView<SiteType>
-          title="Sites"
+          title={handlePageTitle().toString()}
           titleVariant="h4"
           titleComponent="h4"
           description="Here you&apos;ll find every site you&apos;ve crafted: inns, shrines, guildhalls, and mysterious caverns alike, which can be found across your library of settlements."

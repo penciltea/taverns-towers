@@ -10,10 +10,12 @@ import GridItem from '@/components/Grid/GridItem';
 import { Spinner } from '@/components/Common/Spinner';
 import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';
+import { useCampaignStore } from '@/store/campaignStore';
 
 export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
+  const { selectedCampaign } = useCampaignStore();
 
   const [params, setParams] = useState<SettlementQueryParams>({
     ...DefaultSettlementQueryParams
@@ -39,6 +41,14 @@ export default function SettlementsPage() {
     }
   }
 
+  function handlePageTitle(){
+    if(selectedCampaign){
+      return `My Settlements for ${selectedCampaign.name}`
+    } else {
+      return "My Settlements"
+    }
+  }
+
   return (
     <AuthGate fallbackText="You must be logged in to view your settlements.">
       {!params || isLoading ? (
@@ -47,7 +57,7 @@ export default function SettlementsPage() {
         <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
       ) : (
         <FilteredGridView
-          title="My Settlements"
+          title={handlePageTitle().toString()}
           titleVariant="h3"
           titleComponent="h1"
           description="Settlements are the beating hearts of your world. From bustling cities to sleepy villages tucked between hills, they&apos;re the places where adventurers trade stories, meet allies, and stir up a little trouble."
