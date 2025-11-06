@@ -11,6 +11,7 @@ import { CampaignForClient } from "@/interfaces/campaign.interface";
 import CampaignActions from "./CampaignActions";
 import CampaignDetails from "./CampaignDetails";
 import FabButton from "@/components/Common/Button/fabButton";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 
 
 export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
@@ -18,6 +19,7 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
     const user = session?.user ? { id: session.user.id } : null;
 
     const { activeCampaign, setActiveCampaign } = useSetActiveCampaign();
+    const { isPlayerInCampaign } = useCampaignAccess();
 
     function handleSetActiveCampaign() {
         setActiveCampaign(campaign);
@@ -66,7 +68,7 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
                 </Grid>
             </Grid>
             
-            { user?.id === campaign.userId && activeCampaign?._id !== campaign._id &&
+            { activeCampaign?._id !== campaign._id && isPlayerInCampaign(campaign) && 
                 <FabButton
                     label="Set as Active Campaign"
                     onClick={handleSetActiveCampaign}

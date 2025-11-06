@@ -75,8 +75,6 @@ export function useOwnedSettlementsQuery(
     campaignId: selectedCampaign?._id || undefined,
   };
 
-  console.log("params: ", mergedParams);
-
   return useQuery<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error>({
     queryKey: ['ownedSettlements', mergedParams],
     queryFn: async () => {

@@ -86,7 +86,56 @@ export const GENRES = [
 export const CAMPAIGN_ROLES = [
   { label: 'Player', value: 'player' },
   { label: 'Campaign Editor', value: 'editor' },
-  { label: 'Create Settlements', value: 'createSettlements' },
-  { label: 'Create Sites', value: 'createSites' },
-  { label: 'Create NPCs', value: 'createNpcs' }
-]
+  { label: 'Manage Settlements', value: 'manageSettlements' },
+  { label: 'Manage Sites', value: 'manageSites' },
+  { label: 'Manage NPCs', value: 'manageNpcs' }
+];
+
+export type CampaignRole = typeof CAMPAIGN_ROLES[number]["value"];
+
+export const CAMPAIGN_PERMISSIONS: Record<
+  CampaignRole,
+  {
+    canView: boolean;
+    canEditCampaign: boolean;
+    canManageSettlements: boolean;
+    canManageSites: boolean;
+    canManageNpcs: boolean;
+  }
+> = {
+  player: {
+    canView: true,
+    canEditCampaign: false,
+    canManageSettlements: false,
+    canManageSites: false,
+    canManageNpcs: false,
+  },
+  editor: {
+    canView: true,
+    canEditCampaign: true,
+    canManageSettlements: false,
+    canManageSites: false,
+    canManageNpcs: false,
+  },
+  manageSettlements: {
+    canView: true,
+    canEditCampaign: false,
+    canManageSettlements: true,
+    canManageSites: false,
+    canManageNpcs: false,
+  },
+  manageSites: {
+    canView: true,
+    canEditCampaign: false,
+    canManageSettlements: false,
+    canManageSites: true,
+    canManageNpcs: false,
+  },
+  manageNpcs: {
+    canView: true,
+    canEditCampaign: false,
+    canManageSettlements: false,
+    canManageSites: false,
+    canManageNpcs: true,
+  }
+};

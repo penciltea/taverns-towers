@@ -42,8 +42,12 @@ export async function getSettlements({
 
   const query: Record<string, unknown> = {};
 
-  if (userId) query.userId = userId;
-  if (campaignId) query.campaignId = campaignId;
+  if (campaignId) {
+    query.campaignId = campaignId; // include ALL NPCs in this campaign
+  } else if (userId) {
+    query.userId = userId; // fallback to personal NPCs
+  }
+
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
   if (search) query.name = { $regex: new RegExp(search, 'i') };
@@ -87,6 +91,13 @@ export async function getOwnedSettlements(
 ) {
   const user = await requireUser();
   return getSettlements({ ...options, userId: user.id });
+}
+
+export async function getCampaignSettlements(
+  options: Omit<Parameters<typeof getSettlements>[0], 'userId'>,
+  campaignId: string
+) {
+  return getSettlements({...options, campaignId})
 }
 
 

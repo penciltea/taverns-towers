@@ -14,7 +14,7 @@ import { useCampaignAccess } from '@/hooks/campaign/useCampaignAccess';
 
 export default function CampaignsPage(){
     const user = useAuthStore(state => state.user);
-    const { canAccessCampaigns } = useCampaignAccess();
+    const { canAccessCampaigns, isPremium } = useCampaignAccess();
 
     const [params, setParams] = useState<CampaignQueryParams>({
         ...DefaultCampaignQueryParams
@@ -100,6 +100,7 @@ export default function CampaignsPage(){
                     pageSize={params.limit}
                     fabLabel="Create Campaign"
                     fabLink="/campaigns/new"
+                    fabPermissions={isPremium}
                 />
             )}
         </AuthGate>

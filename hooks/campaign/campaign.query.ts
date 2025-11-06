@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns, getAssignedCampaigns } from '@/lib/actions/campaign.actions';
+import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns, getAssignedCampaigns, getCampaignPermissions } from '@/lib/actions/campaign.actions';
 
 // -------------------------
 // Types for server functions
@@ -11,7 +11,7 @@ type GetCampaignByIdFn = typeof getCampaignById;
 type GetOwnedCampaignsFn = typeof getOwnedCampaigns;
 type GetPublicCampaignsFn = typeof getPublicCampaigns;
 type GetAssignedCampaignsFn = typeof getAssignedCampaigns;
-
+type GetCampaignPermissionsFn = typeof getCampaignPermissions;
 
 // -------------------------
 // Campaigns list query
@@ -98,5 +98,28 @@ export function useAssignedCampaignsQuery(
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? !!userId,
+  });
+}
+
+
+// -------------------------
+// Campaign permissions query
+// -------------------------
+export function useCampaignPermissionsQuery(
+  campaignId?: string,
+  options?: { isEnabled?: boolean }
+): UseQueryResult<
+  Awaited<ReturnType<typeof getCampaignPermissions>>,
+  Error
+> {
+  return useQuery<Awaited<ReturnType<typeof getCampaignPermissions>>, Error>({
+    queryKey: ['campaignPermissions', campaignId],
+    queryFn: async () => {
+      if (!campaignId) return null;
+      const { getCampaignPermissions } = await import('@/lib/actions/campaign.actions');
+      return await getCampaignPermissions(campaignId);
+    },
+    staleTime: 1000 * 60 * 5, // cache for 5 minutes
+    enabled: options?.isEnabled ?? !!campaignId,
   });
 }

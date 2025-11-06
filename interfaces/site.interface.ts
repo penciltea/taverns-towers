@@ -49,6 +49,7 @@ export interface PaginatedQueryParams {
   types?: string[];
   tone?: string[];
   favorite?: boolean;
+  userId?: string;
   campaignId?: string;
 }
 

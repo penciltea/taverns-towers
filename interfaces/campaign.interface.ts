@@ -38,6 +38,7 @@ export interface PlayerForClient {
     user: {
         username?: string;
         _id?: string;
+        id?: string;
         email?: string;
     }
     placeholder?: boolean;

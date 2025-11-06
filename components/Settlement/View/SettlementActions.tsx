@@ -11,16 +11,21 @@ import { Settlement } from "@/interfaces/settlement.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 import FavoriteButton from "@/components/Common/Button/FavoriteButton";
 import { useSaveSettlement } from "@/hooks/settlement/useSaveSettlement";
+import { useCampaignPermissionsQuery } from "@/hooks/campaign/campaign.query";
+import { useCampaignStore } from "@/store/campaignStore";
 
 export default function SettlementActions({ settlement }: { settlement: Settlement }) {
   const router = useRouter();
   const { data: session } = useSession();
   const { showSnackbar } = useUIStore();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: settlement.userId, editors: settlement.editors });
+  const canFavorite = canEdit(user, { userId: settlement.userId});
+  const editable = canEdit(user, {userId: settlement.userId}) || campaignPermissions?.canManageSettlements;
   const deletable = canDelete(user, { userId: settlement.userId});
 
   const { handlePartialUpdate } = useSaveSettlement("edit", settlement._id);
@@ -32,24 +37,22 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
   return (
     <>
       <Box>
+        { canFavorite && 
+          <FavoriteButton<Settlement>
+            item={settlement}
+            onToggleFavorite={async (updated) => {
+              await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
+              queryClient.invalidateQueries({ queryKey: ["favorites"] });
+            }}
+          />
+        }
         { editable && 
-          (
-            <>
-              <FavoriteButton<Settlement>
-                item={settlement}
-                onToggleFavorite={async (updated) => {
-                  await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-                  queryClient.invalidateQueries({ queryKey: ["favorites"] });
-                }}
-              />
-              <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
-                Edit
-              </Button>
-            </>
-          )
+          <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
+            Edit
+          </Button>
         }
         {
-          deletable && (
+          deletable &&
           <DeleteButton
             id={settlement._id}
             entity="settlement"
@@ -64,7 +67,7 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
               showSnackbar('Settlement deleted successfully!', 'success');
             }}
           />
-          )}
+        }
       </Box>
     </>
   );

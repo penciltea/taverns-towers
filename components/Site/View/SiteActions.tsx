@@ -11,6 +11,8 @@ import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 import { SiteType, SiteTypeMap } from "@/interfaces/site.interface";
 import FavoriteButton from "@/components/Common/Button/FavoriteButton";
 import { useSiteMutations } from "@/hooks/site/useSiteMutations";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignPermissionsQuery } from "@/hooks/campaign/campaign.query";
 
 
 interface SiteActionsProps<T extends keyof SiteTypeMap> {
@@ -22,10 +24,13 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
   const { data: session } = useSession();
   const { showSnackbar } = useUIStore();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: site.userId, editors: site.editors });
+  const canFavorite = canEdit(user, { userId: site.userId});
+  const editable = canEdit(user, {userId: site.userId}) || campaignPermissions?.canManageSites;
   const deletable = canDelete(user, { userId: site.userId});
 
   const handleEdit = () => {
@@ -37,24 +42,21 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
   return (
     <>
       <Box>
-        { editable && 
-          (
-            <>
-              <FavoriteButton<SiteType>
-                item={site}
-                onToggleFavorite={async (updated) => {
-                  await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-                  queryClient.invalidateQueries({ queryKey: ["favorites"] });
-                }}
-              />
-              <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
-                Edit
-              </Button>
-            </>
-          )
+        { canFavorite && 
+          <FavoriteButton<SiteType>
+            item={site}
+            onToggleFavorite={async (updated) => {
+              await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
+              queryClient.invalidateQueries({ queryKey: ["favorites"] });
+            }}
+          />
         }
-        {
-          deletable && (
+        { editable &&
+          <Button sx={{ mx: 1 }} variant="outlined" color="secondary" startIcon={<EditIcon />}  onClick={handleEdit}>
+            Edit
+          </Button>
+        }
+        { deletable &&
           <DeleteButton
             id={site._id}
             entity="site"
@@ -69,7 +71,7 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
               showSnackbar('Site deleted successfully!', 'success');
             }}
           />
-          )}
+        }
       </Box>
     </>
   );

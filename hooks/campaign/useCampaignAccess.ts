@@ -1,5 +1,6 @@
 import { useAuthStore } from "@/store/authStore";
 import { useAssignedCampaignsQuery } from "./campaign.query";
+import { CampaignForClient, PlayerForClient } from "@/interfaces/campaign.interface";
 
 export function useCampaignAccess(){
     const user = useAuthStore(state => state.user);
@@ -13,6 +14,15 @@ export function useCampaignAccess(){
     const isPremium = (isLoggedIn && (user?.tier === "Artisan" || user?.tier === "Architect") ? true : false );
     const hasAssignedCampaigns = (assignedCampaigns && assignedCampaigns?.length > 0) ?? false;
 
+    function isPlayerInCampaign(campaign: CampaignForClient): boolean{
+        if (!campaign || (user !== null && !user.id) ) return false;
+    
+        return campaign.players.some((player: PlayerForClient) => {
+            const playerId = player.user.id?.toString();
+            return playerId === user?.id.toString();
+        })
+    }
+
     return {
         user,
         isLoggedIn,
@@ -20,5 +30,6 @@ export function useCampaignAccess(){
         assignedCampaigns,
         hasAssignedCampaigns,
         canAccessCampaigns: isPremium || hasAssignedCampaigns,
+        isPlayerInCampaign
     };
 }

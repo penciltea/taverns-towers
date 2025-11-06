@@ -42,7 +42,6 @@ export default function EditCampaignsPage(){
         if (isLoading) return;
         
         if (campaign) {
-            console.log("campaign: ", campaign);
             setSelectedCampaign(campaign); // update the store
 
             const formData = {

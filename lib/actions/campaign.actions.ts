@@ -9,6 +9,7 @@ import { CampaignForClient, CampaignForDB, PlayerForClient, PlayerForDB } from "
 import { serializeCampaign } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";
+import { CAMPAIGN_PERMISSIONS } from "@/constants/campaign.options";
 
 export async function transformCampaignFormData(
   data: CampaignFormData
@@ -314,4 +315,55 @@ export async function getAssignedCampaigns(userId: string): Promise<CampaignForC
   }));
 
   return serialized;
+}
+
+
+export async function getCampaignPermissions(campaignId: string) {
+  await connectToDatabase();
+  const user = await requireUser();
+
+  if (!ObjectId.isValid(campaignId)) throw new Error("Invalid campaign ID");
+
+  const campaign = await CampaignModel.findById(campaignId).lean<CampaignForClient>();
+  if (!campaign) return null;
+
+  // Campaign creator always has full rights
+  if (campaign.userId.toString() === user.id.toString()) {
+    return {
+      canView: true,
+      canEditCampaign: true,
+      canManageSettlements: true,
+      canManageSites: true,
+      canManageNpcs: true,
+      isOwner: true,
+    };
+  }
+
+  // Find the user in the campaign player list
+  const player = campaign.players.find(
+    (p: any) => p.user?.toString() === user.id.toString()
+  );
+
+  if (!player) return null;
+
+  // Combine permissions from all their roles
+  const combinedPermissions = player.roles.reduce(
+    (acc: any, role: string) => {
+      const rolePerms = CAMPAIGN_PERMISSIONS[role] || {};
+      for (const [key, value] of Object.entries(rolePerms)) {
+        if (value) acc[key] = true;
+      }
+      return acc;
+    },
+    {
+      canView: false,
+      canEditCampaign: false,
+      canManageSettlements: false,
+      canManageSites: false,
+      canManageNpcs: false,
+      isOwner: false,
+    }
+  );
+
+  return combinedPermissions;
 }

@@ -3,22 +3,20 @@
 import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Drawer, List, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Drawer, List, ListItemButton, ListItemText, Stack, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThemeSwitch from "./ThemeSwitch";
 import { APP_VERSION } from "@/version";
-import { useAuthStore } from "@/store/authStore";
-import { useSetActiveCampaign } from "@/hooks/campaign/useSetActiveCampaign";
 import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
+import { useCampaignStore } from "@/store/campaignStore";
 
 export const Sidebar = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
-  const user = useAuthStore(state => state.user);
 
-  const { activeCampaign } = useSetActiveCampaign();
+  const { selectedCampaign, reset: resetCampaign } = useCampaignStore();
 
-  const { setOpenDialog } = useUIStore();
+  const { setOpenDialog, showSnackbar } = useUIStore();
   const isDrawerOpen = useUIStore((state) => state.isDrawerOpen);
   const closeDrawer = useUIStore((state) => state.closeDrawer);
 
@@ -134,6 +132,11 @@ export const Sidebar = () => {
     if (isMobile) closeDrawer(); // automatically close on mobile
   };
 
+  function handleResetCampaign(){
+    resetCampaign();
+    showSnackbar("Your active campaign has been cleared.", "success")
+  }
+
   const drawerContent = (
     <Box
       sx={{
@@ -149,10 +152,18 @@ export const Sidebar = () => {
         <Typography variant="h6">Navigation</Typography>
       </Box>
 
-      { (user?.tier === "Artisan" || user?.tier === "Architect") && activeCampaign && (
-        <Box display="flex" alignItems="center" sx={{ py: 1, px: 2}}>
-          <Typography variant="body2">Active campaign:<br /> {activeCampaign?.name}</Typography>
-        </Box>
+      { canAccessCampaigns && selectedCampaign && (
+        <Stack direction="column" sx={{ paddingTop: 1, paddingBottom: 2, px: 2}}>
+          <Typography variant="body2" gutterBottom>Active campaign:<br /> {selectedCampaign?.name}</Typography>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={() => handleResetCampaign()}
+            fullWidth
+          >
+            Clear Active Campaign
+          </Button>
+        </Stack>
       )}
 
       <List disablePadding>

@@ -53,8 +53,6 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 idempotencyKey,
             };
 
-            console.log("transformed: ", transformed);
-
             let saved;
             
             if (mode === "add") {
@@ -103,6 +101,10 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 "success"
             );
             queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
+            if(selectedCampaign){
+                queryClient.invalidateQueries({ queryKey: ["campaignNpcs", selectedCampaign._id]});
+            }
+
             router.push(`/npcs/${saved._id}`);
 
         } catch (error) {

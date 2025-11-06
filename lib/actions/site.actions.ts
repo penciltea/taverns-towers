@@ -66,18 +66,23 @@ export async function getOwnedSitesPaginated({
   types,
   tone,
   favorite,
+  userId,
   campaignId
 }: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
   await connectToDatabase();
 
   try {
     const user = await requireUser();
-    const query: Record<string, unknown> = { userId: new ObjectId(user.id) };
+    const query: Record<string, unknown> = {};
 
     if (typeof search === "string" && search.trim()) {
       query.name = { $regex: search.trim(), $options: "i" };
     }
-    if (campaignId) query.campaignId = campaignId;
+    if (campaignId) {
+      query.campaignId = campaignId; // include ALL NPCs in this campaign
+    } else if (userId) {
+      query.userId = userId; // fallback to personal NPCs
+    }
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
     if (favorite) query.favorite = true;

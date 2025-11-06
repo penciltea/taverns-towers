@@ -4,6 +4,7 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import type { Npc } from '@/interfaces/npc.interface';
 import type { getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
 import { useCampaignStore } from '@/store/campaignStore';
+import { useAuthStore } from '@/store/authStore';
 
 // -------------------------
 // Types for server functions
@@ -43,10 +44,17 @@ export function useOwnedNpcsQuery(
   };
 
   return useQuery<Awaited<ReturnType<GetOwnedNpcsFn>>, Error>({
-    queryKey: ['ownedNpcs', mergedParams],
+    queryKey: selectedCampaign
+      ? ['campaignNpcs', selectedCampaign._id, mergedParams]
+      : ['ownedNpcs', mergedParams],
     queryFn: async () => {
-      const { getOwnedNpcs } = await import('@/lib/actions/npc.actions');
-      return await getOwnedNpcs(mergedParams);
+      if (selectedCampaign) {
+        const { getCampaignNpcs } = await import('@/lib/actions/npc.actions');
+        return getCampaignNpcs(params, selectedCampaign._id);
+      } else {
+        const { getOwnedNpcs } = await import('@/lib/actions/npc.actions');
+        return getOwnedNpcs(params);
+      }
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,
