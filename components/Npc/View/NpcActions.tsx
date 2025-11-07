@@ -24,11 +24,10 @@ export default function NpcActions({ npc }: { npc: Npc }) {
   const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const user = session?.user ? { id: session.user.id } : null;
-  
 
   const canFavorite = canEdit(user, { userId: npc.userId});
-  const editable = canEdit(user, {userId: npc.userId}) || campaignPermissions?.canManageNpcs;
-  const deletable = canDelete(user, { userId: npc.userId});
+  const editable = canEdit(user, { userId: npc.userId }, campaignPermissions ?? undefined);
+  const deletable = canDelete(user, { userId: npc.userId }, campaignPermissions ?? undefined);
 
   const { handlePartialUpdate } = useNpcMutations({ mode: "edit", npcId: npc._id });
 

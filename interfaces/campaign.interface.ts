@@ -67,10 +67,9 @@ export const DefaultCampaignQueryParams: CampaignQueryParams = {
 }
 
 export interface CampaignPermissions {
-  canView: boolean;
-  canEditCampaign: boolean;
-  canManageSettlements: boolean;
-  canManageSites: boolean;
-  canManageNpcs: boolean;
+  player: boolean;
+  author: boolean;
+  editor: boolean;
+  coGM: boolean;
   isOwner: boolean;
 };

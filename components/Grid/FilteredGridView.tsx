@@ -27,7 +27,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
   fabLabel?: string;
   fabLink?: string;
   fabOnClick?: () => void;
-  fabPermissions?: boolean;
+  fabPermissions?: boolean | (() => boolean);
 };
 
 export default function FilteredGridView<T extends CommonInterface>({

@@ -11,16 +11,18 @@ import CampaignActions from "./CampaignActions";
 import CampaignDetails from "./CampaignDetails";
 import FabButton from "@/components/Common/Button/fabButton";
 import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
+import { useSession } from "next-auth/react";
 
 
 export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
-
+    const { data: session } = useSession();
     const { activeCampaign, setActiveCampaign } = useSetActiveCampaign();
     const { isPlayerInCampaign } = useCampaignAccess();
 
+    const user = session?.user ? { id: session.user.id } : null;
+
     function handleSetActiveCampaign() {
         setActiveCampaign(campaign);
-        console.log("active campaign: ", activeCampaign);
     }
 
     return (
@@ -65,7 +67,7 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
                 </Grid>
             </Grid>
             
-            { activeCampaign?._id !== campaign._id && isPlayerInCampaign(campaign) && 
+            { (activeCampaign?._id !== campaign._id && isPlayerInCampaign(campaign) || (user?.id && campaign.userId === user?.id)) && 
                 <FabButton
                     label="Set as Active Campaign"
                     onClick={handleSetActiveCampaign}

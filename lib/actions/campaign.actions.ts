@@ -9,7 +9,7 @@ import { CampaignForClient, CampaignForDB, CampaignPermissions, PlayerForClient,
 import { serializeCampaign } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";
-import { CAMPAIGN_PERMISSIONS } from "@/constants/campaign.options";
+import { CAMPAIGN_PERMISSIONS, CampaignRole } from "@/constants/campaign.options";
 
 export async function transformCampaignFormData(
   data: CampaignFormData
@@ -331,10 +331,10 @@ export async function getCampaignPermissions(campaignId: string) {
   if (campaign.userId.toString() === user.id.toString()) {
     return {
       canView: true,
-      canEditCampaign: true,
-      canManageSettlements: true,
-      canManageSites: true,
-      canManageNpcs: true,
+      canCreateContent: true,
+      canEditOwnContent: true,
+      canEditAllContent: true,
+      canManageCampaign: true,
       isOwner: true,
     };
   }
@@ -346,27 +346,27 @@ export async function getCampaignPermissions(campaignId: string) {
 
   if (!player) return null;
 
-  // Combine permissions from all their roles
-  const combinedPermissions = player.roles.reduce<CampaignPermissions>(
-    (acc, role) => {
-      const rolePerms = CAMPAIGN_PERMISSIONS[role] || {};
-      for (const [key, value] of Object.entries(rolePerms)) {
-        if (value) {
-          const k = key as keyof CampaignPermissions;
-          acc[k] = true;
-        }
+  // Start with all false
+  const combinedPermissions = {
+    canView: false,
+    canCreateContent: false,
+    canEditOwnContent: false,
+    canEditAllContent: false,
+    canManageCampaign: false,
+    isOwner: false,
+  };
+
+  // Merge permissions from all roles the user has
+  for (const role of player.roles as CampaignRole[]) {
+    const rolePerms = CAMPAIGN_PERMISSIONS[role];
+    if (!rolePerms) continue;
+
+    for (const key of Object.keys(rolePerms) as Array<keyof typeof rolePerms>) {
+      if (rolePerms[key]) {
+        combinedPermissions[key] = true;
       }
-      return acc;
-    },
-    {
-      canView: false,
-      canEditCampaign: false,
-      canManageSettlements: false,
-      canManageSites: false,
-      canManageNpcs: false,
-      isOwner: false,
     }
-  );
+  }
 
   return combinedPermissions;
 }

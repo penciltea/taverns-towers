@@ -11,47 +11,57 @@ interface PlayerPermission {
   roles: string[];  // e.g. ["player", "editor"]
 }
 
-interface CampaignPermissions extends ItemPermissions {
-  players?: PlayerPermission[];
+export function canCreate(
+  campaignPermissions?: {
+    canCreateContent: boolean;
+    isOwner?: boolean;
+  }
+): boolean {
+  if(campaignPermissions){
+    if (campaignPermissions.isOwner) return true; // campaign owner
+    if (campaignPermissions.canCreateContent) return true; // all non-player roles
+  }
+
+  return false
 }
 
 export function canEdit(
   user: UserPermissions | null,
-  item: ItemPermissions | CampaignPermissions
+  item: ItemPermissions,
+  campaignPermissions?: {
+    canEditOwnContent: boolean;
+    canEditAllContent: boolean;
+    isOwner?: boolean;
+  }
 ): boolean {
   if (!user) return false;
 
-  // Owner always can edit
-  if (user.id === item.userId) return true;
-
-  // Explicit editors
-  if (item.editors?.includes(user.id)) return true;
-
-  // Campaign players with "editor" role
-  if ("players" in item && Array.isArray(item.players)) {
-
-    const isEditorPlayer = item.players.some((player) => {
-      const playerUserId =
-        typeof player.user === "string" ? player.user : player.user.id;
-      return (
-        playerUserId.toString() === user.id.toString() &&
-        player.roles.includes("editor")
-      );
-    });
-
-    if (isEditorPlayer) return true;
+  // For content inside of a campaign
+  if (campaignPermissions) {
+    if (campaignPermissions.isOwner) return true; // campaign owner
+    if (campaignPermissions.canEditAllContent) return true; // can edit anyone’s content
+    if (campaignPermissions.canEditOwnContent && user.id === item.userId) return true; // can edit own content
+  } else {
+    // For content outside of a campaign
+    if (user.id === item.userId) return true; // user owns the content
+    if (item.editors?.includes(user.id)) return true; // explicit editors for standalone content
   }
 
-  // Otherwise, no editing rights
   return false;
 }
 
+export function canDelete(
+  user: UserPermissions | null,
+  item: ItemPermissions,
+  campaignPermissions?: { isOwner?: boolean }
+): boolean {
+  if (!user) return false;
 
-export function canDelete( user: UserPermissions | null, item: ItemPermissions ): boolean {
-    if (!user) return false; // not logged in
-
-    // Current simple logic: must be owner
-    if (user.id === item.userId) return true;
-
-    return false;
+  // For campaign content
+  if (campaignPermissions) {
+    return campaignPermissions.isOwner === true; // only campaign owner can delete
+  } else {
+    // For content outside of a campaign
+    return user.id === item.userId; // user can delete their own content
+  }
 }

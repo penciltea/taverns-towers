@@ -85,57 +85,48 @@ export const GENRES = [
 
 export const CAMPAIGN_ROLES = [
   { label: 'Player', value: 'player' },
-  { label: 'Campaign Editor', value: 'editor' },
-  { label: 'Manage Settlements', value: 'manageSettlements' },
-  { label: 'Manage Sites', value: 'manageSites' },
-  { label: 'Manage NPCs', value: 'manageNpcs' }
+  { label: 'Author', value: 'author' },
+  { label: 'Editor', value: 'editor' },
+  { label: 'Co-GM', value: 'coGM' }
 ];
 
 export type CampaignRole = typeof CAMPAIGN_ROLES[number]["value"];
 
-export const CAMPAIGN_PERMISSIONS: Record<
-  CampaignRole,
-  {
-    canView: boolean;
-    canEditCampaign: boolean;
-    canManageSettlements: boolean;
-    canManageSites: boolean;
-    canManageNpcs: boolean;
-  }
-> = {
-  player: {
-    canView: true,
-    canEditCampaign: false,
-    canManageSettlements: false,
-    canManageSites: false,
-    canManageNpcs: false,
+export type RolePermissions = {
+  canView: boolean;
+  canCreateContent: boolean;
+  canEditOwnContent: boolean;
+  canEditAllContent: boolean;
+  canManageCampaign: boolean;
+};
+
+export const CAMPAIGN_PERMISSIONS: Record<CampaignRole, RolePermissions> = {
+  "player": { 
+    canView: true, 
+    canCreateContent: false,
+    canEditOwnContent: false, 
+    canEditAllContent: false, 
+    canManageCampaign: false 
   },
-  editor: {
-    canView: true,
-    canEditCampaign: true,
-    canManageSettlements: false,
-    canManageSites: false,
-    canManageNpcs: false,
+  "author": { 
+    canView: true, 
+    canCreateContent: true,
+    canEditOwnContent: true, 
+    canEditAllContent: false, 
+    canManageCampaign: false 
   },
-  manageSettlements: {
-    canView: true,
-    canEditCampaign: false,
-    canManageSettlements: true,
-    canManageSites: false,
-    canManageNpcs: false,
+  "editor": { 
+    canView: true, 
+    canCreateContent: true,
+    canEditOwnContent: true, 
+    canEditAllContent: true, 
+    canManageCampaign: false 
   },
-  manageSites: {
-    canView: true,
-    canEditCampaign: false,
-    canManageSettlements: false,
-    canManageSites: true,
-    canManageNpcs: false,
-  },
-  manageNpcs: {
-    canView: true,
-    canEditCampaign: false,
-    canManageSettlements: false,
-    canManageSites: false,
-    canManageNpcs: true,
-  }
+  "coGM": { 
+    canView: true, 
+    canCreateContent: true,
+    canEditOwnContent: true, 
+    canEditAllContent: true, 
+    canManageCampaign: true
+   },
 };

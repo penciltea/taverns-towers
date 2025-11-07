@@ -12,11 +12,14 @@ import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { toTitleCase } from '@/lib/util/stringFormats';
 import { useCampaignStore } from '@/store/campaignStore';
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import { canCreate } from '@/lib/auth/authPermissions';
 
 export default function NpcsPage() {
   const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
   const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const [params, setParams] = useState<NpcQueryParams>({
     ...DefaultNpcQueryParams
@@ -48,6 +51,15 @@ export default function NpcsPage() {
     } else {
       return "My NPCs"
     }
+  }
+
+  
+
+  function handleFabPermissions(){
+    if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
+      return true
+    }
+    return false;
   }
 
   return (
@@ -93,6 +105,7 @@ export default function NpcsPage() {
           pageSize={params.limit}
           fabLabel="Add NPC"
           fabLink="/npcs/new"
+          fabPermissions={handleFabPermissions}
         />
       )}
     </AuthGate>

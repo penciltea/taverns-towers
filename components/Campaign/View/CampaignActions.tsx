@@ -9,17 +9,21 @@ import { useQueryClient } from '@tanstack/react-query';
 import DeleteButton from "@/components/Common/Button/DeleteButton";
 import { CampaignForClient } from "@/interfaces/campaign.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
+import { useCampaignPermissionsQuery } from "@/hooks/campaign/campaign.query";
+import { useCampaignStore } from "@/store/campaignStore";
 
 export default function CampaignActions({ campaign }: { campaign: CampaignForClient }) {
   const router = useRouter();
   const { data: session } = useSession();
   const { showSnackbar } = useUIStore();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: campaign.userId});
-  const deletable = canDelete(user, { userId: campaign.userId});
+  const editable = canEdit(user, { userId: campaign.userId }, campaignPermissions ?? undefined);
+  const deletable = canDelete(user, { userId: campaign.userId }, campaignPermissions ?? undefined);
 
   const handleEdit = () => {
     router.push(`/campaigns/${campaign._id}/edit`);
