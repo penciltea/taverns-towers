@@ -5,175 +5,99 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { PaginatedQueryParams, PaginatedQueryResponse, SiteType } from "@/interfaces/site.interface";
+import { SiteType } from "@/interfaces/site.interface";
 import { serializeSite } from "../util/serializers";
 
 type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
 
-function getPagination(page?: number, limit?: number) {
-  const safePage = Math.max(Number(page) || 1, 1);
-  const safeLimit = Math.min(Math.max(Number(limit) || 12, 1), 100);
-  return { skip: (safePage - 1) * safeLimit, limit: safeLimit, page: safePage };
-}
-
-export async function getPublicSitesPaginated({
-  page,
-  limit,
-  search,
-  types,
-  tone,
-}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
-  await connectToDatabase();
-
-  try {
-    const query: Record<string, unknown> = { isPublic: true };
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
-    }
-    if (types?.length) query.type = { $in: types };
-    if (tone?.length) query.tone = { $all: tone };
-
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
-
-    return {
-      success: true,
-      sites: sites.map(serializeSite),
-      total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
-    };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
-  }
-}
-
-export async function getOwnedSitesPaginated({
-  page,
-  limit,
-  search,
-  types,
-  tone,
-  favorite,
+export async function getSites({
   userId,
-  campaignId
-}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
-  await connectToDatabase();
-
-  try {
-    const user = await requireUser();
-    const query: Record<string, unknown> = {};
-
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
-    }
-    if (campaignId) {
-      query.campaignId = campaignId; // include ALL NPCs in this campaign
-    } else if (userId) {
-      query.userId = userId; // fallback to personal NPCs
-    }
-    if (types?.length) query.type = { $in: types };
-    if (tone?.length) query.tone = { $all: tone };
-    if (favorite) query.favorite = true;
-
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
-
-    return {
-      success: true,
-      sites: sites.map(serializeSite),
-      total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
-    };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
-  }
-}
-
-export async function getSitesBySettlementPaginated({
+  campaignId,
   settlementId,
-  page,
-  limit,
-  search,
+  isPublic,
+  page = 1,
+  limit = 12,
+  search = '',
   types,
   tone,
-  favorite,
-}: PaginatedQueryParams & { settlementId: string | null }): Promise<PaginatedQueryResponse<SiteType>> {
+  favorite
+}: {
+  userId?: string;
+  campaignId?: string;
+  settlementId?: string;
+  isPublic?: boolean;
+  page?: number;
+  limit?: number;
+  search?: string;
+  types: string[];
+  tone?: string[];
+  favorite?: boolean;
+}) {
   await connectToDatabase();
 
-  try {
-    const query: Record<string, unknown> = {};
+  const query: Record<string, unknown> = {};
 
-    if (settlementId === "wilderness") {
-      query.settlementId = null;
-    } else if (settlementId && ObjectId.isValid(settlementId)) {
-      query.settlementId = new ObjectId(settlementId);
-    } else {
-      return {
-        success: false,
-        sites: [],
-        total: 0,
-        currentPage: 1,
-        totalPages: 1,
-        error: "Invalid settlementId provided",
-      };
-    }
-
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
-    }
-    if (types?.length) query.type = { $in: types };
-    if (tone?.length) query.tone = { $all: tone };
-    if (favorite) query.favorite = true;
-
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
-
-    return {
-      success: true,
-      sites: sites.map(serializeSite),
-      total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
-    };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
+  if(campaignId){
+    query.campaignId = campaignId; // include sites in the campaign
+  } else if(userId){
+    query.userId = userId; // fallback to personal sites
   }
+
+  if(settlementId){
+    query.settlementId = settlementId;
+  }
+
+  if(typeof isPublic === 'boolean') query.isPublic = isPublic;
+
+  if (search) query.name = { $regex: new RegExp(search, 'i') };
+  if (types?.length) query.type = { $in: types };
+  if (tone?.length) query.tone = { $all: tone };
+  if (favorite) query.favorite = true;
+
+  const total = await Site.countDocuments(query);
+  const sites = await Site.find(query)
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(limit)
+
+  return {
+    success: true,
+    sites: sites.map(serializeSite),
+    total,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+  };
 }
+
+export async function getOwnedSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>
+) {
+  const user = await requireUser();
+  return getSites({ ...options, userId: user.id });
+}
+
+export async function getSitesBySettlement(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>,
+  settlementId: string
+) {
+  const user = await requireUser();
+  return getSites({ ...options, userId: user.id, settlementId });
+}
+
+export async function getCampaignSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>,
+  campaignId: string,
+  settlementId?: string
+) {
+  return getSites({...options, campaignId, settlementId: settlementId || undefined})
+}
+
+export async function getPublicSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>
+) {
+  return getSites({...options, isPublic: true})
+}
+
 
 export async function getSiteById(id: string) {
   await connectToDatabase();

@@ -111,9 +111,10 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
 
       // Invalidate all relevant site lists
       await Promise.all([
-        queryClient.invalidateQueries({ queryKey: siteKeys.owned({}), exact: false }),
-        queryClient.invalidateQueries({ queryKey: siteKeys.settlement(settlementId, {}), exact: false }),
-        queryClient.invalidateQueries({ queryKey: siteKeys.public({}), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.owned(), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.settlement(settlementId), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.public(), exact: false }),
+        queryClient.invalidateQueries({ queryKey: siteKeys.campaign(selectedCampaign?._id), exact: false }),
       ]);
 
       router.push(`/settlements/${settlementId}`);
@@ -138,50 +139,41 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
     const payload = { ...update, idempotencyKey };
 
     // Known query data types
-    type OwnedSitesData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getOwnedSitesPaginated>>;
     type SiteData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getSiteById>>;
-    type SitesBySettlementData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getSitesBySettlementPaginated>>;
+    type SitesBySettlementData = Awaited<ReturnType<typeof import("@/lib/actions/site.actions").getSitesBySettlement>>;
 
     const settlementQueries = queryClient
-    .getQueryCache()
-    .getAll()
-    .filter(
-      (q) =>
-        Array.isArray(q.queryKey) &&
-        q.queryKey[0] === "sites" &&
-        q.queryKey[1] === "settlement" &&
-        q.queryKey[2] === update.settlementId
-    );
+      .getQueryCache()
+      .getAll()
+      .filter(
+        (q) =>
+          Array.isArray(q.queryKey) &&
+          q.queryKey[0] === siteKeys.all[0] && // 'sites'
+          q.queryKey[1] === 'settlement' &&
+          q.queryKey[2] === update.settlementId
+      );
 
-    //console.log("=== ALL CACHED QUERIES BEFORE OPTIMISTIC UPDATE ===");
     queryClient.getQueryCache().getAll().forEach(q => console.log(q.queryKey));
-    //console.log("=== SETTLEMENT QUERIES TO UPDATE ===", settlementQueries.map(q => q.queryKey));
-    //console.log("=== OPTIMISTIC UPDATE PAYLOAD ===", update);
 
     settlementQueries.forEach((query) => {
       queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
-        //console.log("Old data for query", query.queryKey, old);
         if (!old?.sites) return old;
         const updated = {
           ...old,
           sites: old.sites.map((s) => (s._id === update._id ? { ...s, ...update } : s)),
         };
-        ///console.log("Updated data for query", query.queryKey, updated);
+
         return updated;
       });
     });
 
     // Update individual site cache
-    //console.log("=== UPDATING INDIVIDUAL SITE CACHE ===", update._id, update);
-    queryClient.setQueryData<SiteData>(["site", update._id], (old) => {
-      //console.log("Old site data:", old); // 6️⃣
+    queryClient.setQueryData<SiteData>(siteKeys.detail(update._id), (old) => {
       return old ? { ...old, ...update } : old;
     });
 
     try {
       const updatedSite = await updateSitePartial(update._id, payload);
-      //console.log("=== SERVER RESPONSE ===", updatedSite);
-
       // Apply server response to caches
       settlementQueries.forEach((query) => {
         queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {

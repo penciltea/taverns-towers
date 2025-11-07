@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
-import { CampaignForClient, CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
+import { CampaignForClient, CampaignForDB, CampaignPermissions, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
 import { serializeCampaign } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";
@@ -341,17 +341,20 @@ export async function getCampaignPermissions(campaignId: string) {
 
   // Find the user in the campaign player list
   const player = campaign.players.find(
-    (p: any) => p.user?.toString() === user.id.toString()
+    (p: PlayerForClient) => p.user?.toString() === user.id.toString()
   );
 
   if (!player) return null;
 
   // Combine permissions from all their roles
-  const combinedPermissions = player.roles.reduce(
-    (acc: any, role: string) => {
+  const combinedPermissions = player.roles.reduce<CampaignPermissions>(
+    (acc, role) => {
       const rolePerms = CAMPAIGN_PERMISSIONS[role] || {};
       for (const [key, value] of Object.entries(rolePerms)) {
-        if (value) acc[key] = true;
+        if (value) {
+          const k = key as keyof CampaignPermissions;
+          acc[k] = true;
+        }
       }
       return acc;
     },

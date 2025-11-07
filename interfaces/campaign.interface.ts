@@ -65,3 +65,12 @@ export const DefaultCampaignQueryParams: CampaignQueryParams = {
     tone: [],
     genre: []
 }
+
+export interface CampaignPermissions {
+  canView: boolean;
+  canEditCampaign: boolean;
+  canManageSettlements: boolean;
+  canManageSites: boolean;
+  canManageNpcs: boolean;
+  isOwner: boolean;
+};

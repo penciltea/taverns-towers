@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from "next-auth/react";
 import { useSetActiveCampaign } from "@/hooks/campaign/useSetActiveCampaign";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -15,8 +14,6 @@ import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 
 
 export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
-    const { data: session } = useSession();
-    const user = session?.user ? { id: session.user.id } : null;
 
     const { activeCampaign, setActiveCampaign } = useSetActiveCampaign();
     const { isPlayerInCampaign } = useCampaignAccess();
