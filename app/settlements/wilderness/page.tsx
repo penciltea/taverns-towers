@@ -5,28 +5,36 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import GridItem from '@/components/Grid/GridItem';
 import AuthGate from '@/components/Auth/AuthGuard';
-import { useOwnedSitesQuery } from '@/hooks/site/site.query';
+import { useSitesBySettlementQuery } from '@/hooks/site/site.query';
 import { SiteQueryParams, DefaultSiteQueryParams, SiteType } from '@/interfaces/site.interface';
 import { useUIStore } from '@/store/uiStore';
 import FilterBar from '@/components/Grid/FilterBar';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
-import { useAuthStore } from '@/store/authStore';
 
 export default function WildernessPage() {
     const settlementId = 'wilderness';
-    const user = useAuthStore(state => state.user);
 
     const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
         const [filters, setFilters] = useState<SiteQueryParams>({
         ...DefaultSiteQueryParams,
+        settlementId
     });
 
     // Only enable query if user is logged in
-    const { data } = useOwnedSitesQuery(filters, {
-        isEnabled: !!user,
-    });
+    const { data } = useSitesBySettlementQuery(
+    settlementId,
+    {
+      page: filters.page,
+      limit: filters.limit,
+      search: filters.search,
+      types: filters.types,
+      tone: filters.tone,
+      favorite: filters.favorite,
+    },
+    { isEnabled: !!settlementId }
+  );
 
     async function handleDeleteSite(id: string) {
         try {
@@ -64,7 +72,7 @@ export default function WildernessPage() {
                 countVariant="h6"
                 countComponent="h6"
                 items={sites}
-                emptyText="This settlement doesn&apos;t have any sites yet. Add one to bring it to life; even the smallest village has a gathering spot or two."
+                emptyText="The wilderness is pretty empty currently. Add a site to bring it to life; even the smallest village has a gathering spot or two."
                 renderItem={(site) => (
                     <GridItem
                         key={site._id}

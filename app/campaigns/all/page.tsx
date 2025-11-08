@@ -61,13 +61,13 @@ export default function CampaignsPage(){
             {(!params || ownedLoading || assignedLoading) ? (
                 <Spinner />
             ) : uniqueCampaigns.length === 0 ? (
-                <Typography>Looks like your world is still a bit quiet. Create an NPC to populate your story — every bustling market or haunted forest needs someone to talk to (or run from).</Typography>
+                <Typography>It seems your adventures haven&apos;t begun just yet. Create a campaign to start weaving your tales; every grand story needs a world to call its own.</Typography>
             ) : (
                 <FilteredGridView
                     title="My Campaigns"
                     titleVariant="h3"
                     titleComponent="h1"
-                    description="NPCs are the personalities that inhabit your world. From eccentric shopkeepers and wandering sages to rival adventurers, they bring voice, drama, and surprise to every encounter."
+                    description="Campaigns are the heart of your storytelling, the grand frameworks where your worlds, characters, and adventures come together. Gather your players, chart your quests, and bring your stories to life, one session at a time."
                     content={handleContentTitle().toString()}
                     searchVariant="h5"
                     searchComponent="h2"

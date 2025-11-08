@@ -43,9 +43,12 @@ export async function getSites({
     query.userId = userId; // fallback to personal sites
   }
 
-  if(settlementId){
+  if(settlementId === "wilderness"){
+    query.settlementId = null;
+  } else if(settlementId && ObjectId.isValid(settlementId)) {
     query.settlementId = settlementId;
   }
+  
 
   if(typeof isPublic === 'boolean') query.isPublic = isPublic;
 
