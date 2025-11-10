@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
-import { CampaignForClient, CampaignForDB, CampaignPermissions, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
+import { CampaignForClient, CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
 import { serializeCampaign } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";

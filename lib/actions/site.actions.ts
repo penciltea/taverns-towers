@@ -29,7 +29,7 @@ export async function getSites({
   page?: number;
   limit?: number;
   search?: string;
-  types: string[];
+  types?: string[];
   tone?: string[];
   favorite?: boolean;
 }) {

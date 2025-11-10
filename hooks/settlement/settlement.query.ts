@@ -76,10 +76,17 @@ export function useOwnedSettlementsQuery(
   };
 
   return useQuery<Awaited<ReturnType<GetOwnedSettlementsFn>>, Error>({
-    queryKey: ['ownedSettlements', mergedParams],
+    queryKey: selectedCampaign
+      ? ['campaignSettlements', selectedCampaign._id, mergedParams]
+      : ['ownedSettlements', mergedParams],
     queryFn: async () => {
-      const { getOwnedSettlements } = await import('@/lib/actions/settlement.actions');
-      return await getOwnedSettlements(mergedParams);
+      if (selectedCampaign) {
+        const { getCampaignSettlements } = await import('@/lib/actions/settlement.actions');
+        return getCampaignSettlements(params, selectedCampaign._id);
+      } else {
+        const { getOwnedSettlements } = await import('@/lib/actions/settlement.actions');
+        return await getOwnedSettlements(mergedParams);
+      }      
     },
     staleTime: 1000 * 60 * 5,
     enabled: options?.isEnabled ?? true,

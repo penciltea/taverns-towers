@@ -6,7 +6,7 @@ import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import { DefaultNpcQueryParams } from '@/interfaces/npc.interface';
 
 export async function prefetchUserData() {
-  const [{ getOwnedSettlements }, { getOwnedSitesPaginated }, { getOwnedNpcs }] =
+  const [{ getOwnedSettlements }, { getOwnedSites }, { getOwnedNpcs }] =
     await Promise.all([
       import('@/lib/actions/settlement.actions'),
       import('@/lib/actions/site.actions'),
@@ -20,7 +20,7 @@ export async function prefetchUserData() {
     }),
     queryClient.prefetchQuery({
       queryKey: ['ownedSites', DefaultSiteQueryParams],
-      queryFn: () => getOwnedSitesPaginated(DefaultSiteQueryParams),
+      queryFn: () => getOwnedSites(DefaultSiteQueryParams),
     }),
     queryClient.prefetchQuery({
       queryKey: ['ownedNpcs', DefaultNpcQueryParams],

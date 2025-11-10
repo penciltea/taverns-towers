@@ -1,21 +1,25 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useAuthStore } from '@/store/authStore';
+import { useCampaignStore } from '@/store/campaignStore';
+import { useOwnedSettlementsQuery } from '@/hooks/settlement/settlement.query';
+import { DefaultSettlementQueryParams, SettlementQueryParams } from '@/interfaces/settlement.interface';
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import { canCreate } from '@/lib/auth/authPermissions';
+import AuthGate from '@/components/Auth/AuthGuard';
 import SettlementFilters from '@/components/Settlement/View/SettlementFilter';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
-import { useOwnedSettlementsQuery } from '@/hooks/settlement/settlement.query';
-import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { DefaultSettlementQueryParams, SettlementQueryParams } from '@/interfaces/settlement.interface';
 import GridItem from '@/components/Grid/GridItem';
 import { Spinner } from '@/components/Common/Spinner';
-import { useAuthStore } from '@/store/authStore';
-import AuthGate from '@/components/Auth/AuthGuard';
-import { useCampaignStore } from '@/store/campaignStore';
 
 export default function SettlementsPage() {
   const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
   const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
+  
 
   const [params, setParams] = useState<SettlementQueryParams>({
     ...DefaultSettlementQueryParams
@@ -48,6 +52,13 @@ export default function SettlementsPage() {
       return "My Settlements"
     }
   }
+
+  function handleFabPermissions(){
+      if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
+        return true
+      }
+      return false;
+    }
 
   return (
     <AuthGate fallbackText="You must be logged in to view your settlements.">
@@ -94,6 +105,7 @@ export default function SettlementsPage() {
           pageSize={params.limit}
           fabLabel="Add Settlement"
           fabLink="/settlements/new"
+          fabPermissions={handleFabPermissions}
         />
       )}
     </AuthGate>

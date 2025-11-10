@@ -14,6 +14,7 @@ import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/ser
 import { tierLimits, userTier } from "@/constants/user.options";
 import Account from "../models/account.model";
 import { getCampaignPermissions } from "./campaign.actions";
+import { canCreate, canEdit } from "../auth/authPermissions";
 
 
 // Serialize for client compatibility
@@ -348,7 +349,7 @@ export async function getFavorites() {
 
 
 // For checking to see if user can create more content based on their tier
-export async function canCreateContent(userId: string, contentType: "settlement" | "site" | "npc", campaignId?: string): Promise<boolean> {
+export async function canCreateContent(userId: string, contentType: "settlement" | "site" | "npc", campaignId?: string | undefined): Promise<boolean> {
   await connectToDatabase();
   const user = await User.findById(userId).lean();
   
@@ -362,16 +363,23 @@ export async function canCreateContent(userId: string, contentType: "settlement"
     limits.siteLimit === -1 &&
     limits.npcLimit === -1;
 
-  const campaignPermissions = await getCampaignPermissions(campaignId ?? "");
-  console.log("permissions: ", campaignPermissions);
+  if(campaignId){
+    const campaignPermissions = await getCampaignPermissions(campaignId ?? "");
+    console.log("permissions: ", campaignPermissions); 
 
-  // 3. If user is premium OR has campaign management rights, allow unlimited
-  // if (hasUnlimitedTier || (campaignId && ()) {
-    // return true;
-  // }
+    if( canCreate(campaignPermissions ?? undefined) ){
+      return true;
+    }
 
-  if (limits.settlementLimit === -1 && limits.siteLimit === -1 && limits.npcLimit === -1) {
-    return true; // unlimited content
+    if ( canEdit(userId, { userId }, campaignPermissions ?? undefined) ){
+      return true;
+    }
+    
+    return false;
+  }
+
+  if (hasUnlimitedTier) {
+    return true;
   } else {
     let currentCount = 0;
     let limit = 0;

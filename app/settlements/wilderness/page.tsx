@@ -1,11 +1,15 @@
 'use client';
 
-import FilteredGridView from '@/components/Grid/FilteredGridView';
+
 import { useState } from 'react';
+import { canCreate } from '@/lib/auth/authPermissions';
+import AuthGate from '@/components/Auth/AuthGuard';
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import { useCampaignStore } from '@/store/campaignStore';
+import { useSitesBySettlementQuery } from '@/hooks/site/site.query';
+import FilteredGridView from '@/components/Grid/FilteredGridView';
 import Typography from '@mui/material/Typography';
 import GridItem from '@/components/Grid/GridItem';
-import AuthGate from '@/components/Auth/AuthGuard';
-import { useSitesBySettlementQuery } from '@/hooks/site/site.query';
 import { SiteQueryParams, DefaultSiteQueryParams, SiteType } from '@/interfaces/site.interface';
 import { useUIStore } from '@/store/uiStore';
 import FilterBar from '@/components/Grid/FilterBar';
@@ -15,6 +19,10 @@ import { queryClient } from '@/components/Layout/QueryProviderWrapper';
 
 export default function WildernessPage() {
     const settlementId = 'wilderness';
+    const defaultImage = '/placeholders/town.png';
+    const { selectedCampaign } = useCampaignStore();
+    const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
+      
 
     const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
         const [filters, setFilters] = useState<SiteQueryParams>({
@@ -59,14 +67,37 @@ export default function WildernessPage() {
     const sites = data?.sites || [];
     const totalCount = data?.total || 0;
 
+    function handleContentTitle(){
+        if( data?.sites && data?.sites.length > 1 ){
+            return "Sites"
+        } else {
+            return "Site"
+        }
+    }
+
+  function handlePageTitle(){
+    if(selectedCampaign){
+      return `The Wilderness for ${selectedCampaign.name}`
+    } else {
+      return "The Wilderness"
+    }
+  }
+
+    function handleFabPermissions(){
+        if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
+          return true
+        }
+        return false;
+    }
+
     return (
         <AuthGate fallbackText="You must be logged in to view your wilderness data.">
             <FilteredGridView<SiteType>
-                title="The Wilderness"
+                title={handlePageTitle().toString()}
                 titleVariant="h4"
                 titleComponent="h4"
                 description="The wilderness is the vast canvas between towns and cities. It&apos;s the stretch of land where adventurers wander, stories unfold, and danger lingers. From lone shrines to mysterious caves, these sites help bring your world&apos;s wild places to life."
-                content="sites"
+                content={handleContentTitle().toString()}
                 searchVariant="h5"
                 searchComponent="h5"
                 countVariant="h6"
@@ -77,7 +108,7 @@ export default function WildernessPage() {
                     <GridItem
                         key={site._id}
                         title={site.name}
-                        image={site.image}
+                        image={site.image ?? defaultImage}
                         subtitle={handleSiteLabel(site)}
                         tone={site.tone}
                         onClick={() => {
@@ -112,7 +143,13 @@ export default function WildernessPage() {
                 onPageChange={(newPage) => setFilters((prev) => ({ ...prev, page: newPage }))}
                 totalCount={totalCount}
                 pageSize={filters.limit}
-                />
+                fabLabel="Add Site"
+                fabOnClick={() => setOpenDialog('siteTypeDialog', { 
+                    dialogMode: 'direct', 
+                    settlementId, 
+                })}
+                fabPermissions={handleFabPermissions}
+            />
         </AuthGate>
     );
 }

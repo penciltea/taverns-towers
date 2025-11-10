@@ -9,7 +9,7 @@ export function useSetActiveCampaign() {
     const {
         selectedCampaign,
         setSelectedCampaign,
-        clearSelectedCampaign,
+        reset,
     } = useCampaignStore();
 
     const setActiveCampaign = useCallback(
@@ -21,9 +21,9 @@ export function useSetActiveCampaign() {
     );
 
     const clearActiveCampaign = useCallback(() => {
-        clearSelectedCampaign();
+        reset();
         showSnackbar("Active campaign has been cleared!", "success");
-    }, [clearSelectedCampaign]);
+    }, [reset]);
 
     return {
         activeCampaign: selectedCampaign,

@@ -11,6 +11,8 @@ import { useSession } from "next-auth/react";
 import { canEdit } from "@/lib/auth/authPermissions";
 import EntityViewLayout from "@/components/Layout/EntityView/EntityViewLayout";
 import EntityViewImage from "@/components/Layout/EntityView/EntityViewImage";
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import { useCampaignStore } from '@/store/campaignStore';
 
 interface ViewSettlementProps {
   settlement: Settlement;
@@ -20,8 +22,10 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
   const { setOpenDialog } = useUIStore();
   const { data: session } = useSession();
   const user = session?.user ? { id: session.user.id } : null;
+  const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
   
-  const editable = canEdit(user, { userId: settlement.userId, editors: settlement.editors });
+  const creatable = canEdit(user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined);
 
 
   return (
@@ -39,7 +43,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
       }
       extraContent={ <SiteList settlementId={settlement._id} /> }
       connections={ <SettlementConnections connections={settlement.connections} /> }
-      fab={editable && <FabButton label="Add Site" onClick={() => setOpenDialog('siteTypeDialog', { 
+      fab={creatable && <FabButton label="Add Site" onClick={() => setOpenDialog('siteTypeDialog', { 
           dialogMode: 'direct', 
           settlementId: settlement._id, 
         })}  />}

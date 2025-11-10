@@ -1,15 +1,8 @@
-import { UserPermissions } from "@/interfaces/user.interface";
-
 interface ItemPermissions {
   userId: string;
   editors?: string[]; // user ids who have been given edit permissions
 }
 
-interface PlayerPermission {
-  _id: string;
-  user: string | { id: string; username?: string; email?: string };
-  roles: string[];  // e.g. ["player", "editor"]
-}
 
 export function canCreate(
   campaignPermissions?: {
@@ -25,8 +18,9 @@ export function canCreate(
   return false
 }
 
+
 export function canEdit(
-  user: UserPermissions | null,
+  userId: string | undefined,
   item: ItemPermissions,
   campaignPermissions?: {
     canEditOwnContent: boolean;
@@ -34,34 +28,35 @@ export function canEdit(
     isOwner?: boolean;
   }
 ): boolean {
-  if (!user) return false;
+  if (!userId) return false;
 
   // For content inside of a campaign
   if (campaignPermissions) {
     if (campaignPermissions.isOwner) return true; // campaign owner
     if (campaignPermissions.canEditAllContent) return true; // can edit anyone’s content
-    if (campaignPermissions.canEditOwnContent && user.id === item.userId) return true; // can edit own content
+    if (campaignPermissions.canEditOwnContent && userId === item.userId) return true; // can edit own content
   } else {
     // For content outside of a campaign
-    if (user.id === item.userId) return true; // user owns the content
-    if (item.editors?.includes(user.id)) return true; // explicit editors for standalone content
+    if (userId === item.userId) return true; // user owns the content
+    if (item.editors?.includes(userId)) return true; // explicit editors for standalone content
   }
 
   return false;
 }
 
+
 export function canDelete(
-  user: UserPermissions | null,
+  userId: string | undefined,
   item: ItemPermissions,
   campaignPermissions?: { isOwner?: boolean }
 ): boolean {
-  if (!user) return false;
+  if (!userId) return false;
 
   // For campaign content
   if (campaignPermissions) {
     return campaignPermissions.isOwner === true; // only campaign owner can delete
   } else {
     // For content outside of a campaign
-    return user.id === item.userId; // user can delete their own content
+    return userId === item.userId; // user can delete their own content
   }
 }

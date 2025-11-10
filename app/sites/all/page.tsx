@@ -1,33 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUIStore } from '@/store/uiStore';
-import { SiteType } from '@/interfaces/site.interface';
+import { useAuthStore } from '@/store/authStore';
+import { useCampaignStore } from '@/store/campaignStore';
 import { useOwnedSitesQuery } from '@/hooks/site/site.query';
+import { canCreate } from '@/lib/auth/authPermissions';
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import AuthGate from '@/components/Auth/AuthGuard';
+import { SiteType } from '@/interfaces/site.interface';
 import FilteredGridView from '@/components/Grid/FilteredGridView';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { SiteQueryParams } from '@/interfaces/site.interface';
 import GridItem from '@/components/Grid/GridItem';
 import { DefaultSiteQueryParams } from '@/interfaces/site.interface';
 import FilterBar from '@/components/Grid/FilterBar';
-import AuthGate from '@/components/Auth/AuthGuard';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
 import Typography from '@mui/material/Typography';
-import { useAuthStore } from '@/store/authStore';
-import { useCampaignStore } from '@/store/campaignStore';
 
 export default function AllSitesPage() {
-  const { setOpenDialog } = useUIStore();
+  const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
+  const { setOpenDialog } = useUIStore();
   const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
   
   const [filters, setFilters] = useState<SiteQueryParams>({
     ...DefaultSiteQueryParams,
   });
 
-  // Query using filters
-  const { data, isLoading, error } = useOwnedSitesQuery(filters, {
+  // Set initial params after user loads
+  useEffect(() => {
+    if (user) {
+      setFilters({ ...DefaultSiteQueryParams });
+    }
+  }, [user]);
+
+  // Prevent query call until params are ready
+  const { data, isLoading, error } = useOwnedSitesQuery(filters!, {
     isEnabled: !!user,
   });
 
@@ -45,6 +56,13 @@ export default function AllSitesPage() {
     } else {
       return "My Sites"
     }
+  }
+
+  function handleFabPermissions(){
+    if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
+      return true
+    }
+    return false;
   }
   
   return (
@@ -69,7 +87,7 @@ export default function AllSitesPage() {
             <GridItem
               key={site._id}
               title={site.name}
-              image={site.image}
+              image={site.image ?? defaultImage}
               subtitle={handleSiteLabel(site)}
               tone={site.tone}
               link={`/sites/${site._id}`}
@@ -101,6 +119,7 @@ export default function AllSitesPage() {
           fabOnClick={() =>
             setOpenDialog('siteTypeDialog', { dialogMode: 'global' })
           }
+          fabPermissions={handleFabPermissions}
         />
       )}
     </AuthGate>

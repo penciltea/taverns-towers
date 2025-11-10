@@ -22,8 +22,8 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const editable = canEdit(user, { userId: campaign.userId }, campaignPermissions ?? undefined);
-  const deletable = canDelete(user, { userId: campaign.userId }, campaignPermissions ?? undefined);
+  const editable = canEdit(user?.id, { userId: campaign.userId }, campaignPermissions ?? undefined);
+  const deletable = canDelete(user?.id, { userId: campaign.userId }, campaignPermissions ?? undefined);
 
   const handleEdit = () => {
     router.push(`/campaigns/${campaign._id}/edit`);

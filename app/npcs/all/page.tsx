@@ -1,19 +1,19 @@
 'use client';
 
-import NpcFilters from '@/components/Npc/View/NpcFilter';
-import FilteredGridView from '@/components/Grid/FilteredGridView';
-import GridItem from '@/components/Grid/GridItem';
-import { useOwnedNpcsQuery } from '@/hooks/npc/npc.query';
 import { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
-import { DefaultNpcQueryParams, NpcQueryParams } from '@/interfaces/npc.interface';
-import { Spinner } from '@/components/Common/Spinner';
-import { useAuthStore } from '@/store/authStore';
-import AuthGate from '@/components/Auth/AuthGuard';
-import { toTitleCase } from '@/lib/util/stringFormats';
 import { useCampaignStore } from '@/store/campaignStore';
 import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
 import { canCreate } from '@/lib/auth/authPermissions';
+import { useOwnedNpcsQuery } from '@/hooks/npc/npc.query';
+import { DefaultNpcQueryParams, NpcQueryParams } from '@/interfaces/npc.interface';
+import { useAuthStore } from '@/store/authStore';
+import AuthGate from '@/components/Auth/AuthGuard';
+import NpcFilters from '@/components/Npc/View/NpcFilter';
+import FilteredGridView from '@/components/Grid/FilteredGridView';
+import GridItem from '@/components/Grid/GridItem';
+import { Typography } from '@mui/material';
+import { Spinner } from '@/components/Common/Spinner';
+import { toTitleCase } from '@/lib/util/stringFormats';
 
 export default function NpcsPage() {
   const defaultImage = '/placeholders/town.png';

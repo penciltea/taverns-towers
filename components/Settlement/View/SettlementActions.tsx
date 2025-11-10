@@ -24,9 +24,9 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const canFavorite = canEdit(user, { userId: settlement.userId});
-  const editable = canEdit(user, {userId: settlement.userId}) || campaignPermissions?.canManageSettlements;
-  const deletable = canDelete(user, { userId: settlement.userId});
+  const canFavorite = canEdit(user?.id, { userId: settlement.userId});
+  const editable = canEdit(user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined);
+  const deletable = canDelete(user?.id, { userId: settlement.userId});
 
   const { handlePartialUpdate } = useSaveSettlement("edit", settlement._id);
 

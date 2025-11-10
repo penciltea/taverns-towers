@@ -29,9 +29,9 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const canFavorite = canEdit(user, { userId: site.userId});
-  const editable = canEdit(user, {userId: site.userId}) || campaignPermissions?.canManageSites;
-  const deletable = canDelete(user, { userId: site.userId});
+  const canFavorite = canEdit(user?.id, { userId: site.userId });
+  const editable = canEdit(user?.id, { userId: site.userId }, campaignPermissions ?? undefined);
+  const deletable = canDelete(user?.id, { userId: site.userId});
 
   const handleEdit = () => {
     router.push(`/settlements/${site.settlementId ? site.settlementId : 'wilderness'}/sites/${site._id}`);
