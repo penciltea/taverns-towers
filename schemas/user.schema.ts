@@ -53,6 +53,14 @@ export const loginSchema = z.object({
 export type LoginSchema = z.infer<typeof loginSchema>;
 
 
+// Verification schema
+
+export const resendVerificationSchema = z.object({
+  credential: z.string().min(1, "Please enter your username or email")
+});
+
+export type ResendVerificationSchema = z.infer<typeof resendVerificationSchema>;
+
 // Password schemas
 export const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email address"),

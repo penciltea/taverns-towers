@@ -15,9 +15,16 @@ import { tierLimits, userTier } from "@/constants/user.options";
 import Account from "../models/account.model";
 import { getCampaignPermissions } from "./campaign.actions";
 import { canCreate } from "../auth/authPermissions";
+import { generateAndSendVerificationEmail } from "./verification.actions";
 
 
-// Serialize for client compatibility
+/**
+ * Serializes a Mongoose user document for client compatibility.
+ * Converts _id to string and selects only public fields.
+ * @param user Mongoose User document or raw UserModel
+ * @returns UserInterface object suitable for sending to the client
+ */
+
 function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInterface {
   const obj = 'toObject' in user ? user.toObject() : user;
 
@@ -30,6 +37,15 @@ function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInte
     theme: obj.theme
   };
 }
+
+
+/**
+ * Registers a new user or converts a placeholder user into a real user.
+ * Sends a verification email after successful creation/conversion.
+ * Handles idempotency key, duplicates, and placeholder conversion.
+ * @param data RegisterPayload containing username, email, password, and idempotencyKey
+ * @returns success boolean and optional error message
+ */
 
 export async function registerUser(data: RegisterPayload): Promise<{
   success: boolean;
@@ -68,6 +84,10 @@ export async function registerUser(data: RegisterPayload): Promise<{
       placeholderUser.updatedAt = new Date();
 
       await placeholderUser.save();
+
+      // Send verification email to converted user
+      await generateAndSendVerificationEmail(placeholderUser._id.toString());
+
       return { success: true };
     }
 
@@ -84,7 +104,7 @@ export async function registerUser(data: RegisterPayload): Promise<{
     }
 
     // Create new user
-    await User.create({
+    const newUser = await User.create({
       username: data.username.toLowerCase(),
       email: data.email.toLowerCase(),
       passwordHash: hashedPassword,
@@ -94,6 +114,8 @@ export async function registerUser(data: RegisterPayload): Promise<{
       updatedAt: new Date(),
       idempotencyKey: data.idempotencyKey,
     });
+
+    await generateAndSendVerificationEmail(newUser._id.toString());
 
     return { success: true };
   } catch (err) {
@@ -105,6 +127,12 @@ export async function registerUser(data: RegisterPayload): Promise<{
   }
 }
 
+/**
+ * Logs in a user by checking username/email and password.
+ * Uses bcrypt for password comparison.
+ * @param data LoginPayload containing credential (email or username) and password
+ * @returns LoginSuccess with serialized user or LoginFailure with error message
+ */
 
 type LoginResult = LoginSuccess | LoginFailure;
 
@@ -141,6 +169,11 @@ export async function loginUser(data: LoginPayload): Promise<LoginResult>{
     };
 }
 
+/**
+ * Retrieves the currently authenticated user along with linked Patreon account (if any).
+ * @returns user info including Patreon details or an error object
+ */
+
 export async function getUser() {
   const user = await requireUser(); // ensures authenticated user
   await connectToDatabase();
@@ -172,6 +205,14 @@ export async function getUser() {
   };
 }
 
+
+/**
+ * Updates a user's theme preference (light or dark).
+ * @param userId ID of the user to update
+ * @param theme "light" or "dark"
+ * @returns success boolean and optional error message
+ */
+
 export async function updateUserTheme(userId: string, theme: "light" | "dark"): Promise<{
   success: boolean;
   error?: string;
@@ -195,6 +236,14 @@ export async function updateUserTheme(userId: string, theme: "light" | "dark"): 
     return { success: false, error: "Could not update theme preference." };
   }
 }
+
+
+/**
+ * Updates a user's account details such as username, email, password, and avatar.
+ * Checks for duplicates and hashes password if provided.
+ * @param data UpdateUserPayload containing optional username, email, password, and avatar
+ * @returns success boolean and updated user data or error message
+ */
 
 export async function updateUser(
   data: UpdateUserPayload
@@ -273,6 +322,15 @@ export async function updateUser(
   }
 }
 
+
+
+/**
+ * Refreshes a user's session data.
+ * Useful after updating user info to ensure client sees latest data.
+ * @param userId ID of the user
+ * @returns serialized user object including Patreon account info, or null if not found
+ */
+
 export async function refreshUserSession(userId: string) {
   await connectToDatabase();
 
@@ -302,7 +360,15 @@ export async function refreshUserSession(userId: string) {
   };
 }
 
-// For use on the account dashboard "recent activity" section
+
+
+/**
+ * Fetches recent activity for the authenticated user.
+ * Aggregates NPCs, Settlements, and Sites, sorts by updatedAt descending.
+ * @param limit Maximum number of items to return (default 5)
+ * @returns array of recent activity objects with type tags
+ */
+
 export async function getRecentActivity(limit = 5) {
   const user = await requireUser();
   await connectToDatabase();
@@ -325,7 +391,14 @@ export async function getRecentActivity(limit = 5) {
     .slice(0, limit);
 }
 
-// For checking user's favorites
+
+
+
+
+/**
+ * Fetches all favorite NPCs, Settlements, and Sites for the authenticated user.
+ * @returns array of favorite items, sorted by updatedAt descending
+ */
 export async function getFavorites() {
   const user = await requireUser();
   await connectToDatabase();
@@ -348,7 +421,15 @@ export async function getFavorites() {
 }
 
 
-// For checking to see if user can create more content based on their tier
+
+
+/**
+ * Checks if a user can create more content of a given type, based on their tier or campaign permissions.
+ * @param userId ID of the user
+ * @param contentType "settlement" | "site" | "npc"
+ * @param campaignId Optional campaign ID to check campaign-specific permissions
+ * @returns boolean indicating whether the user can create additional content
+ */
 export async function canCreateContent(userId: string, contentType: "settlement" | "site" | "npc", campaignId?: string | undefined): Promise<boolean> {
   await connectToDatabase();
   const user = await User.findById(userId).lean();
@@ -399,7 +480,17 @@ export async function canCreateContent(userId: string, contentType: "settlement"
   }
 }
 
-// For linking Patreon accounts to native/RealmFoundry accounts
+
+
+/**
+ * Links a Patreon account to a RealmFoundry user account.
+ * Throws an error if the Patreon account is already linked elsewhere.
+ * @param userId ID of the user
+ * @param patreonId Patreon account ID
+ * @param accessToken Patreon access token
+ * @param refreshToken Patreon refresh token
+ */
+
 export async function linkPatreonAccount(userId: string, patreonId: string, accessToken: string, refreshToken: string) {
   await connectToDatabase();
 
@@ -419,7 +510,14 @@ export async function linkPatreonAccount(userId: string, patreonId: string, acce
   });
 }
 
-// For unlinking patreon accounts
+
+/**
+ * Unlinks a Patreon account from a RealmFoundry user account.
+ * @param userId ID of the user
+ * @param patreonAccountId Patreon provider account ID
+ * @returns success boolean and optional error message
+ */
+
 export async function unlinkPatreonAccount(
   userId: string,
   patreonAccountId: string
@@ -443,6 +541,13 @@ export async function unlinkPatreonAccount(
     return { success: false, error: "Failed to unlink Patreon account." };
   }
 }
+
+
+/**
+ * Resolves a user ID from an email or username.
+ * @param identifier email or username
+ * @returns string user ID or null if not found
+ */
 
 export async function resolveUserId(identifier: string) {
   const user = await User.findOne({

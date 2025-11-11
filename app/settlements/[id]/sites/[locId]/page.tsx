@@ -59,7 +59,6 @@ export default function EditSitePage() {
         ...(mapSiteToForm(site.site) as SiteFormData)
       });
       
-      console.log("site: ", site);
     } else if (safeId && !isLoading) {
       clearSelectedItem();
       showErrorDialog("Site could not be found, please try again later!");

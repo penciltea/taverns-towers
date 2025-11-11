@@ -272,10 +272,6 @@ export function useSiteGeneratorActions(
     const currentValues = methods.getValues();
     const overrides = getUserOverrides(currentValues);
 
-
-    console.log("currentValues: ", currentValues);
-    console.log("overrides: ", overrides);
-
     // Generate site data based on whether wilderness or settlement context
     const { generateSiteData } = await import('@/lib/actions/siteGenerator.actions');
     const result = await generateSiteData(

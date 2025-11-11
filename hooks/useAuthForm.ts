@@ -52,10 +52,10 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
         }
         
         const result = await registerUser(transformed as RegisterPayload);
-        finalRedirect ??= "/auth/login";
+        finalRedirect ??= "/verify-your-email";
 
         if (result.success) {
-          showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
+          showSnackbar("Your scroll has been scribed! Check your email for a verification link.", "success");
           onSuccess?.();
           
           if (!options.skipRedirect) {

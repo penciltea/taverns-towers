@@ -19,6 +19,10 @@ export interface UserModel {
   passwordHash?: string;
   passwordResetToken?: string;
   passwordResetExpires?: Date;
+
+  emailVerified?: boolean;
+  verificationToken?: string;
+  verificationTokenExpires?: Date;
 }
 
 const userSchema = new Schema<UserModel>({
@@ -32,6 +36,9 @@ const userSchema = new Schema<UserModel>({
   placeholder: { type: Boolean, required: false },
   passwordResetToken: String,
   passwordResetExpires: Date,
+  emailVerified: { type: Boolean, default: false },
+  verificationToken: { type: String, default: null },
+  verificationTokenExpires: { type: Date, default: null },
 });
 
 export const User = models?.User
