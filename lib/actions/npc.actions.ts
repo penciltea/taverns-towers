@@ -11,6 +11,8 @@ import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
 import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeNpc } from "../util/serializers";
+import { canEdit } from "../auth/authPermissions";
+import { getCampaignPermissions } from "./campaign.actions";
 
 
 export async function getNpcs({
@@ -44,8 +46,12 @@ export async function getNpcs({
 
   if (campaignId) {
     query.campaignId = campaignId; // include ALL NPCs in this campaign
-  } else if (userId) {
-    query.userId = userId; // fallback to personal NPCs
+  } else {
+    query.campaignId = { $in: [null, undefined] };
+
+    if (userId) {
+      query.userId = userId; // fallback to personal NPCs
+    }
   }
 
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;
@@ -199,33 +205,42 @@ export async function createNpc(data: NpcFormData): Promise<Npc> {
 
 
 
-export async function updateNpc(id: string, data: NpcFormData): Promise<Npc> {
-    await connectToDatabase();
+export async function updateNpc(id: string, data: Partial<Npc>, campaignId?: string) {
+  await connectToDatabase();
 
-    if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
 
-    const user = await requireUser();
-    const existing = await NpcModel.findById(id);
+  const user = await requireUser();
+  const existing = await NpcModel.findById(id);
 
-    if (!existing) throw new Error("NPC not found");
-    if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  if (!existing) throw new Error("NPC not found");
+  
+  if(campaignId){
+    const campaignPermissions = await getCampaignPermissions(campaignId);
 
-    // Normalize connection ids
-    const normalizedConnections = normalizeConnections(data.connections);
+    if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
+      throw new Error("Unauthorized");
+    }
+  } else if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
-    const updatedNpc = await NpcModel.findByIdAndUpdate(
-        id,
-        {
-            ...data,
-            connections: normalizedConnections,
-        },
-        { new: true }
-    );
+  // Normalize connection ids
+  const normalizedConnections = normalizeConnections(data.connections);
 
-    if (!updatedNpc) throw new Error("NPC not found");
+  const updatedNpc = await NpcModel.findByIdAndUpdate(
+    id,
+    {
+        ...data,
+        connections: normalizedConnections,
+    },
+    { new: true }
+  );
 
-    revalidatePath("/npcs");
-    return serializeNpc(updatedNpc);
+  if (!updatedNpc) throw new Error("NPC not found");
+
+  revalidatePath("/npcs");
+  return serializeNpc(updatedNpc);
 }
 
 export async function updateNpcPartial(

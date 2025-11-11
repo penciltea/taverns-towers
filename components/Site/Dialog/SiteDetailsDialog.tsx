@@ -151,9 +151,7 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }} justifyContent="space-between">
             <Box sx={{ px: 2 }}>
               <Typography variant="h6" sx={{ textDecoration: 'underline' }}>Site Details</Typography>
-              <Component
-                site={typedSite}
-              />
+              <Component site={typedSite} />
             </Box>
 
             {site.image && (

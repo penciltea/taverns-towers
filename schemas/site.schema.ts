@@ -74,7 +74,7 @@ export const tavernSchema = baseSiteSchema.extend({
   type: z.literal("tavern"),
   clientele: z.string().optional(),
   cost: z.string().optional(),
-  entertainment: z.array(z.string()),
+  entertainment: z.array(z.string()).optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
@@ -176,6 +176,8 @@ export const defaultSiteValues: Record<
   tavern: {
     name: "",
     type: "tavern",
+    size: "",
+    condition: "",
     clientele: "",
     entertainment: [],
     cost: "",
@@ -186,6 +188,8 @@ export const defaultSiteValues: Record<
   temple: {
     name: "",
     type: "temple",
+    size: "",
+    condition: "",
     domains: [],
     relics: "",
     siteTheme: [],
@@ -195,6 +199,8 @@ export const defaultSiteValues: Record<
   shop: {
     name: "",
     type: "shop",
+    size: "",
+    condition: "",
     shopType: "",
     siteTheme: [],
     menu: [],
@@ -203,6 +209,8 @@ export const defaultSiteValues: Record<
   guild: {
     name: "",
     type: "guild",
+    size: "",
+    condition: "",
     guildType: "",
     guildName: "",
     membershipRequirements: [],
@@ -214,6 +222,8 @@ export const defaultSiteValues: Record<
   government: {
     name: "",
     type: "government",
+    size: "",
+    condition: "",
     function: "",
     security: "",
     siteTheme: [],
@@ -222,6 +232,8 @@ export const defaultSiteValues: Record<
   entertainment: {
     name: "",
     type: "entertainment",
+    size: "",
+    condition: "",
     venueType: "",
     cost: "",
     siteTheme: [],
@@ -230,6 +242,8 @@ export const defaultSiteValues: Record<
   hidden: {
     name: "",
     type: "hidden",
+    size: "",
+    condition: "",
     secrecy: [],
     knownTo: [],
     defenses: [],
@@ -240,6 +254,8 @@ export const defaultSiteValues: Record<
   residence: {
     name: "",
     type: "residence",
+    size: "",
+    condition: "",
     notableFeatures: "",
     siteTheme: [],
     connections: []
@@ -247,6 +263,8 @@ export const defaultSiteValues: Record<
   miscellaneous: {
     name: "",
     type: "miscellaneous",
+    size: "",
+    condition: "",
     features: "",
     use: "",
     siteTheme: [],

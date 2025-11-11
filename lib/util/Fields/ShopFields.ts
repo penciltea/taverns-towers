@@ -12,9 +12,10 @@ export function getShopTypeLabel(value: string): string {
 
 export function getShopSiteDetails(site: ShopSite){
     return [
-        { label: "Shop Type", type: "text", value: site.shopType ? getShopTypeLabel(site.shopType) : "N/A" },
-        { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
-        { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
+      { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
+      { label: "Shop Type", type: "text", value: site.shopType ? getShopTypeLabel(site.shopType) : "N/A" },
+      { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
+      { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
     ]
 }
 

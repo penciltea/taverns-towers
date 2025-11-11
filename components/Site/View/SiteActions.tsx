@@ -29,7 +29,7 @@ export default function SiteActions<T extends keyof SiteTypeMap>({ site }: SiteA
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const canFavorite = canEdit(user?.id, { userId: site.userId });
+  const canFavorite = user?.id === site.userId;
   const editable = canEdit(user?.id, { userId: site.userId }, campaignPermissions ?? undefined);
   const deletable = canDelete(user?.id, { userId: site.userId});
 

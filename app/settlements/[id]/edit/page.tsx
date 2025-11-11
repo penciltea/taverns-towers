@@ -13,7 +13,8 @@ import { normalizeSettlementData } from "@/lib/util/normalize";
 import { SkeletonLoader } from "@/components/Common/SkeletonLoader";
 import { Spinner } from "@/components/Common/Spinner";
 import { useSettlementQuery } from "@/hooks/settlement/settlement.query";
-import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
+import { useSettlementActions } from "@/hooks/settlement/useSettlementActions";
+import { useSettlementMutations } from "@/hooks/settlement/useSettlementMutations";
 import { useFormMode } from "@/hooks/useFormMode";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { useHandleDeletedConnections } from "@/hooks/connection/useHandleDeletedConnections";
@@ -36,7 +37,11 @@ export default function EditSettlementFormPage() {
 
   const { data: settlement, isLoading, error } = useSettlementQuery(safeId ?? null);
 
-  const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "edit");
+  const { onGenerate, onReroll } = useSettlementActions(methods);
+  const { handleSubmit: onSubmit } = useSettlementMutations({
+    mode,
+    settlementId: safeId,
+  });
   const { handleDeletedConnections } = useHandleDeletedConnections<SettlementFormData>("settlement");
   
 
@@ -53,7 +58,10 @@ export default function EditSettlementFormPage() {
         ...settlement
       }) as SettlementFormData;
 
-      methods.reset(mergedSettlement);
+      // Delay reset until dynamic fields have mounted
+      setTimeout(() => {
+        methods.reset(mergedSettlement);
+      }, 0);
     } else if(safeId && !isLoading){
       // If no settlement, clear selection
       clearSelectedItem();

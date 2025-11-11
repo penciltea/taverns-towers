@@ -14,10 +14,11 @@ export function getGovernmentTypeLabel(value: string): string {
 
 export function getGovernmentSiteDetails(site: GovernmentSite){
     return [
-        { label: "Function", type: "text", value: site.function ? getGovernmentTypeLabel(site.function) : "N/A" },
-        { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
-        { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
-        { label: "Security", type: "text", value: getLabelFromValue(SECURITY_LEVELS, site.security) }
+      { label: "Function", type: "text", value: site.function ? getGovernmentTypeLabel(site.function) : "N/A" },
+      { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
+      { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
+      { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
+      { label: "Security", type: "text", value: getLabelFromValue(SECURITY_LEVELS, site.security) }
     ]
 }
 

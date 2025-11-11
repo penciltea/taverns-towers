@@ -6,6 +6,9 @@ import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
+import { userTier } from "@/constants/user.options";
+import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+import { useAuthStore } from "@/store/authStore";
 
 
 export default function GuildFields({generator}: SiteFormFieldProps){
@@ -14,6 +17,8 @@ export default function GuildFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
   
     return (
         <>
@@ -43,6 +48,15 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 fieldError={errors.name}
                 required                
                 onGenerate={() => generator?.name?.("name")}
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
 
             <FormSelect

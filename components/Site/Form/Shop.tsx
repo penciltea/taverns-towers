@@ -1,11 +1,14 @@
 import { useUIStore } from "@/store/uiStore";
-import { FormSelect, FormTextField } from "@/components/Form";
-import { Box } from "@mui/material";
+import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
+import Box from "@mui/material/Box";
 import { FieldError, useFormContext } from "react-hook-form";
 import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
+import { useAuthStore } from "@/store/authStore";
+import { userTier } from "@/constants/user.options";
+import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
 
 export default function ShopFields({generator}: SiteFormFieldProps){
     const { setOpenDialog } = useUIStore();
@@ -16,6 +19,9 @@ export default function ShopFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
+    
     const handleTypeChange = (field: "shopType" | "guildType", value: string) => {
         // Check to see if menu has been generated before, to avoid menu category conflicts
         const menu = methods.getValues("menu") || [];
@@ -61,6 +67,15 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 fieldError={errors.name}
                 onGenerate={generator?.name}
             />   
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
+            />
 
             <FormSelect
                 name="size"

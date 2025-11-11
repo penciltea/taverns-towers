@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 interface SiteDetailsDescriptionsProps{
     details: {
         label: string,
-        value: string | undefined
+        value: string | string[] | undefined
     }[],
     descriptions: {
         label: string,

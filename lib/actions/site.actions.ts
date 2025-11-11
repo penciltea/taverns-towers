@@ -7,6 +7,8 @@ import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
 import { SiteType } from "@/interfaces/site.interface";
 import { serializeSite } from "../util/serializers";
+import { getCampaignPermissions } from "./campaign.actions";
+import { canEdit } from "../auth/authPermissions";
 
 type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
 
@@ -39,8 +41,12 @@ export async function getSites({
 
   if(campaignId){
     query.campaignId = campaignId; // include sites in the campaign
-  } else if(userId){
-    query.userId = userId; // fallback to personal sites
+  } else {
+    query.campaignId = { $in: [null, undefined] };
+
+    if (userId) {
+      query.userId = userId; // fallback to personal sites
+    }
   }
 
   if(settlementId === "wilderness"){
@@ -152,14 +158,25 @@ export async function createSite(data: SiteType, settlementId: string) {
   return serializeSite(newSite);
 }
 
-export async function updateSite(data: SiteUpdateData, id: string) {
+export async function updateSite(data: SiteUpdateData, id: string, campaignId?: string) {
   await connectToDatabase();
 
   const user = await requireUser();
   const existing = await Site.findById(id);
 
   if (!existing) throw new Error("Site not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  
+  if(campaignId){
+      const campaignPermissions = await getCampaignPermissions(campaignId);
+      
+      if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
+        throw new Error("Unauthorized");
+      }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new Error("Unauthorized");
+    }
+
+
 
   const model = Site.discriminators?.[existing.type] || Site;
 

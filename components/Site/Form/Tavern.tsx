@@ -1,11 +1,17 @@
+'use client'
+
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { FieldError, useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormEditableCard from "@/components/Form/FormEditableCard";
+import { useAuthStore } from "@/store/authStore";
+import { userTier } from "@/constants/user.options";
+import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+
 
 export default function TavernFields({generator}: SiteFormFieldProps){
     const {
@@ -13,9 +19,11 @@ export default function TavernFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
     
     return (
-        <>
+        <Box sx={{ flexGrow: 1 }}>
             <FormFieldWithGenerate
                 name="name"
                 label="Tavern Name"
@@ -23,6 +31,15 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
 
             <FormSelect
@@ -93,6 +110,6 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                     buttonLabel="Conjure full menu"
                 />
             </Box>
-        </>
+        </Box>
     )
 }

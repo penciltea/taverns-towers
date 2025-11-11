@@ -16,6 +16,7 @@ import { getLabelFromValue } from "./getLabelFromValue";
 import { getShopTypeLabel } from "./Fields/ShopFields";
 import { getGovernmentTypeLabel } from "./Fields/GovernmentFields";
 import { getGuildypeLabel } from "./Fields/GuildFields";
+import { NpcConnection } from "@/interfaces/connection.interface";
 
 /**
  * Type guard to check whether a given string is a valid site category.
@@ -137,116 +138,111 @@ export function siteTypeHasMenu(site: SiteType): site is TavernSite | TempleSite
   return ["shop", "tavern", "guild", "temple"].includes(site.type);
 }
 
+
+
+
+function mapCommonFields<T extends { name?: string; size?: string; condition?: string; connections?: NpcConnection[], siteTheme?: string[] }>(
+  site: T
+) {
+  return {
+    name: site.name ?? "",
+    size: site.size ?? "",
+    condition: site.condition ?? "",
+    connections: site.connections ?? [],
+    siteTheme: site.siteTheme ?? [],
+  };
+}
+
 export function mapSiteToForm(site: SiteType): SiteFormData | null {
   switch (site.type) {
     case "tavern":
-      // TypeScript now knows 'site' is TavernSite
       const tavernSite = site as TavernSite;
       return {
         type: "tavern",
-        name: tavernSite.name ?? "",
+        ...mapCommonFields(tavernSite),
         clientele: tavernSite.clientele ?? "",
         entertainment: tavernSite.entertainment ?? [],
         cost: tavernSite.cost ?? "",
         menu: tavernSite.menu ?? [],
-        connections: tavernSite.connections ?? [],
       };
 
     case "temple":
       const templeSite = site as TempleSite;
       return {
         type: "temple",
-        name: templeSite.name ?? "",
-        size: templeSite.size ?? "",
-        condition: templeSite.condition ?? "",
+        ...mapCommonFields(templeSite),
         domains: templeSite.domains ?? [],
         relics: templeSite.relics ?? "",
         menu: templeSite.menu ?? [],
-        connections: templeSite.connections ?? [],
       };
 
     case "shop":
       const shopSite = site as ShopSite;
       return {
         type: "shop",
-        name: shopSite.name ?? "",
+        ...mapCommonFields(shopSite),
         shopType: shopSite.shopType ?? "" as ShopSite["shopType"],
-        size: shopSite.size ?? "",
-        condition: shopSite.condition ?? "",
         menu: shopSite.menu ?? [],
-        connections: shopSite.connections ?? [],
       };
 
     case "guild":
       const guildSite = site as GuildSite;
       return {
         type: "guild",
-        name: guildSite.name ?? "",
-        size: guildSite.size ?? "",
-        condition: guildSite.condition ?? "",
+        ...mapCommonFields(guildSite),
         guildType: guildSite.guildType ?? "" as GuildSite["guildType"],
         guildName: guildSite.guildName ?? "",
         membershipRequirements: guildSite.membershipRequirements ?? [],
         knownRivals: guildSite.knownRivals ?? "",
         menu: guildSite.menu ?? [],
-        connections: guildSite.connections ?? [],
       };
+
     case "government":
       const governmentSite = site as GovernmentSite;
       return {
         type: "government",
-        name: governmentSite.name ?? "",
-        size: governmentSite.size ?? "",
-        condition: governmentSite.condition ?? "",
-        function: governmentSite.function as GovernmentSite["function"] ?? "" ,
-        security: governmentSite.security as GovernmentSite["security"] ?? "",
-        connections: governmentSite.connections ?? [],
+        ...mapCommonFields(governmentSite),
+        function: governmentSite.function ?? "",
+        security: governmentSite.security ?? "",
       };
+
     case "entertainment":
       const entertainmentSite = site as EntertainmentSite;
       return {
         type: "entertainment",
-        name: entertainmentSite.name ?? "",
-        size: entertainmentSite.size ?? "",
-        condition: entertainmentSite.condition ?? "",
+        ...mapCommonFields(entertainmentSite),
         venueType: entertainmentSite.venueType ?? "" as EntertainmentSite["venueType"],
         cost: entertainmentSite.cost ?? "",
-        connections: entertainmentSite.connections ?? [],
       };
+
     case "hidden":
       const hiddenSite = site as HiddenSite;
       return {
         type: "hidden",
-        name: hiddenSite.name ?? "",
-        size: hiddenSite.size ?? "",
-        condition: hiddenSite.condition ?? "",
+        ...mapCommonFields(hiddenSite),
         secrecy: hiddenSite.secrecy ?? [],
         knownTo: hiddenSite.knownTo ?? [],
         defenses: hiddenSite.defenses ?? [],
         purpose: hiddenSite.purpose ?? [],
-        connections: hiddenSite.connections ?? [],
       };
+
     case "residence":
       const residenceSite = site as ResidenceSite;
       return {
         type: "residence",
-        name: residenceSite.name ?? "",
-        size: residenceSite.size ?? "",
-        condition: residenceSite.condition ?? "",
+        ...mapCommonFields(residenceSite),
         notableFeatures: residenceSite.notableFeatures ?? "",
-        connections: residenceSite.connections ?? [],
       };
+
     case "miscellaneous":
       const miscellaneousSite = site as MiscellaneousSite;
       return {
         type: "miscellaneous",
-        name: miscellaneousSite.name ?? "",
-        size: miscellaneousSite.size ?? "",
-        condition: miscellaneousSite.condition ?? "",
+        ...mapCommonFields(miscellaneousSite),
         features: miscellaneousSite.features ?? "",
         use: miscellaneousSite.use ?? "",
-        connections: miscellaneousSite.connections ?? [],
       };
+
     default:
       return null;
   }

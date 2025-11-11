@@ -9,11 +9,12 @@ import { useUIStore } from "@/store/uiStore";
 import { useAuthStore } from "@/store/authStore";
 import { settlementSchema, defaultSettlementValues, SettlementFormData } from "@/schemas/settlement.schema";
 import { getSingleParam } from "@/lib/util/getSingleParam";
-import { useSettlementFormSetup } from "@/hooks/settlement/useSettlementFormSetup";
+import { useSettlementActions } from "@/hooks/settlement/useSettlementActions";
 import { useFormMode } from "@/hooks/useFormMode";
 import { useDraftForm } from "@/hooks/useDraftForm";
 import { AuthDialogInput } from "@/interfaces/dialogProps.interface";
 import { useEffect } from "react";
+import { useSettlementMutations } from "@/hooks/settlement/useSettlementMutations";
 
 const LazySettlementForm = dynamic(
   () => import("@/components/Settlement/Form/SettlementForm"),
@@ -47,7 +48,11 @@ export default function NewSettlementPage() {
     }
   }, [draftItem, initialDraft, setDraftItem]);
 
-  const { onGenerate, onReroll, onSubmit } = useSettlementFormSetup(methods, safeId ?? null, mode ?? "add");
+  const { onGenerate, onReroll } = useSettlementActions(methods);
+  const { handleSubmit: onSubmit } = useSettlementMutations({
+    mode,
+    settlementId: safeId,
+  }); 
   
   const openLoginDialog = (props?: AuthDialogInput<Partial<SettlementFormData>>) =>
       setOpenDialog("LoginDialog", { ...props, openRegisterDialog });

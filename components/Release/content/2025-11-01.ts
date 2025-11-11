@@ -9,9 +9,10 @@ export const release20251101 = {
     "Added exclusive themes for Artisan and Architect tier members",
   ],
   improvements: [
+    "Adding 'theme' field to site forms"
   ],
   bugFixes: [
-
+    "Tavern sites: Fixed an issue where 'size' and 'condition' field values weren't loading properly on the edit form"
   ],
   knownIssues: [
   ]

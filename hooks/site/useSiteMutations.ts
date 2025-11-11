@@ -40,14 +40,6 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
     try {
       if (!user?.id) throw new Error("User is not logged in");
 
-      const { canCreateContent } = await import("@/lib/actions/user.actions");
-      if (!(await canCreateContent(user.id, "site"))) {
-        showErrorDialog(
-          "You have reached the maximum number of sites for your membership tier. Please either upgrade your membership tier or delete an existing site to continue."
-        );
-        return;
-      }
-
       const idempotencyKey = generateIdempotencyKey();
 
       // Upload image if needed
@@ -56,21 +48,32 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
       // Transform form data for DB and attach the image
       const siteData = {
         ...transformSiteFormData(data),
+        userId: user.id,
         image: cleanImage,
         campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
         idempotencyKey,
       } as SiteType;
 
-      const { createSite, updateSite } = await import("@/lib/actions/site.actions");
+      let saved;
 
-      const saved =
-        mode === "add"
-          ? await createSite(siteData, settlementId)
-          : mode === "edit" && siteId
-          ? await updateSite(siteData, siteId)
-          : (() => {
-              throw new Error("Invalid mutation mode");
-            })();
+      if(mode === "add"){
+        const { canCreateContent } = await import("@/lib/actions/user.actions");
+        if (!(await canCreateContent(user.id, "site"))) {
+          showErrorDialog(
+            "You have reached the maximum number of sites for your membership tier. Please either upgrade your membership tier or delete an existing site to continue."
+          );
+          return;
+        }
+        const { createSite } = await import("@/lib/actions/site.actions");
+        saved = await createSite(siteData, settlementId)
+      } else if (mode === "edit"){
+        if(!siteId) throw new Error("Site ID is required for editing.");
+
+        const { updateSite } = await import("@/lib/actions/site.actions");
+        saved = await updateSite(siteData, siteId, selectedCampaign?._id ?? undefined)
+      } else {
+        throw new Error("Invalid mutation mode");
+      }
 
       if (!saved || !saved._id) {
         throw new Error("There was a problem saving the site, please try again later!");

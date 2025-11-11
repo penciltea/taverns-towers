@@ -29,16 +29,11 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
     const { selectedCampaign } = useCampaignStore();
-
+        
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
         try {
             if (!user?.id) throw new Error("User is not logged in");
-            const { canCreateContent } = await import('@/lib/actions/user.actions');
-            if (!(await canCreateContent(user.id, "npc"))) {
-                showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
-                return;
-            }
 
             const idempotencyKey = generateIdempotencyKey();
 
@@ -48,6 +43,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             // Transform form data for DB and attach the image & idempotencyKey
             const transformed = {
                 ...transformNpcFormData(data),
+                userId: user.id,
                 campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
                 image: cleanImage,
                 idempotencyKey,
@@ -56,12 +52,18 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             let saved;
             
             if (mode === "add") {
+                const { canCreateContent } = await import('@/lib/actions/user.actions');
+                if (!(await canCreateContent(user.id, "npc"))) {
+                    showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
+                    return;
+                }
+
                 const { createNpc } = await import('@/lib/actions/npc.actions');
                 saved = await createNpc(transformed);
             } else if (mode === "edit") {
             if (!npcId) throw new Error("NPC ID is required for edit mode");
                 const { updateNpc } = await import('@/lib/actions/npc.actions');
-                saved = await updateNpc(npcId, transformed);
+                saved = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
             } else {
                 throw new Error("Invalid mutation mode");
             }

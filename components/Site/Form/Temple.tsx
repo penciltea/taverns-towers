@@ -3,8 +3,11 @@ import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { DOMAINS } from "@/constants/common.options";
 import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
+import { userTier } from "@/constants/user.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
+import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+import { useAuthStore } from "@/store/authStore";
 import { Box } from "@mui/material";
 import { FieldError, useFormContext } from "react-hook-form";
 
@@ -14,6 +17,8 @@ export default function TempleFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
 
     return (
         <>
@@ -34,6 +39,15 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
                 fieldError={errors.domains}
                 tooltip="This field influences the following fields: relics, services item generation."
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
 
             <FormSelect

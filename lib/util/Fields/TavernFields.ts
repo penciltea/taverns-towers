@@ -4,6 +4,7 @@ import { getLabelFromValue } from "../getLabelFromValue";
 
 export function getTavernSiteDetails(site: TavernSite){
     return [
+        { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
         { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
         { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
         { label: "Clientele", type: "text", value: site.clientele },

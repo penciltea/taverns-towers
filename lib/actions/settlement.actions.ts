@@ -8,6 +8,8 @@ import SettlementModel from "@/lib/models/settlement.model";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeSettlement } from "../util/serializers";
+import { canEdit } from "../auth/authPermissions";
+import { getCampaignPermissions } from "./campaign.actions";
 
 export async function getSettlements({
   userId,
@@ -43,9 +45,13 @@ export async function getSettlements({
   const query: Record<string, unknown> = {};
 
   if (campaignId) {
-    query.campaignId = campaignId; // include ALL NPCs in this campaign
-  } else if (userId) {
-    query.userId = userId; // fallback to personal NPCs
+    query.campaignId = campaignId; // include ALL settlements in this campaign
+  } else {
+    query.campaignId = { $in: [null, undefined] };
+
+    if (userId) {
+      query.userId = userId; // fallback to personal settlements
+    }
   }
 
   if (typeof isPublic === 'boolean') query.isPublic = isPublic;
@@ -90,7 +96,7 @@ export async function getOwnedSettlements(
   options: Omit<Parameters<typeof getSettlements>[0], 'userId'>
 ) {
   const user = await requireUser();
-  return getSettlements({ ...options, userId: user.id });
+  return getSettlements({ ...options, userId: user.id, campaignId: undefined });
 }
 
 export async function getCampaignSettlements(
@@ -149,7 +155,7 @@ export async function createSettlement(data: Partial<Settlement>) {
 
 
 
-export async function updateSettlement(id: string, data: Partial<Settlement>) {
+export async function updateSettlement(id: string, data: Partial<Settlement>, campaignId?: string) {
   await connectToDatabase();
 
   if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
@@ -158,10 +164,19 @@ export async function updateSettlement(id: string, data: Partial<Settlement>) {
   const existing = await SettlementModel.findById(id);
 
   if (!existing) throw new Error("Settlement not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  if(campaignId){
+    const campaignPermissions = await getCampaignPermissions(campaignId);
+    
+    if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
+      throw new Error("Unauthorized");
+    }
+  } else if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
   // Normalize connection ids
-    const normalizedConnections = normalizeConnections(data.connections);
+  const normalizedConnections = normalizeConnections(data.connections);
 
   const updatedSettlement = await SettlementModel.findByIdAndUpdate(
     id,

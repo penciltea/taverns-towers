@@ -10,7 +10,7 @@ import DeleteButton from "@/components/Common/Button/DeleteButton";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 import FavoriteButton from "@/components/Common/Button/FavoriteButton";
-import { useSaveSettlement } from "@/hooks/settlement/useSaveSettlement";
+import { useSettlementMutations } from "@/hooks/settlement/useSettlementMutations";
 import { useCampaignPermissionsQuery } from "@/hooks/campaign/campaign.query";
 import { useCampaignStore } from "@/store/campaignStore";
 
@@ -24,11 +24,12 @@ export default function SettlementActions({ settlement }: { settlement: Settleme
 
   const user = session?.user ? { id: session.user.id } : null;
 
-  const canFavorite = canEdit(user?.id, { userId: settlement.userId});
-  const editable = canEdit(user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined);
-  const deletable = canDelete(user?.id, { userId: settlement.userId});
+  const canFavorite = user?.id === settlement.userId;
+  const editable = canEdit( user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined );
+  const deletable = canDelete( user?.id, { userId: settlement.userId} );
 
-  const { handlePartialUpdate } = useSaveSettlement("edit", settlement._id);
+  const { handlePartialUpdate } = useSettlementMutations({ mode: "edit", settlementId: settlement._id});
+  
 
   const handleEdit = () => {
     router.push(`/settlements/${settlement._id}/edit`);

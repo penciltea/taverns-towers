@@ -30,7 +30,7 @@ export interface IBaseSite {
   updatedAt: Date;
   userId: string;
   name: string;
-  theme: string;
+  siteTheme: string;
   [key: string]: unknown; // allows extra fields from discriminators
 }
 
@@ -50,7 +50,7 @@ const BaseSiteSchema = new Schema(
       enum: conditionValues,
       required: false
     },
-    theme: [{ type: String, required: false }],
+    siteTheme: [{ type: String, required: false }],
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
     image: { type: String, required: false },

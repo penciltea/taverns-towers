@@ -14,7 +14,7 @@ import { serializeNpc, serializeSettlement, serializeSite } from "@/lib/util/ser
 import { tierLimits, userTier } from "@/constants/user.options";
 import Account from "../models/account.model";
 import { getCampaignPermissions } from "./campaign.actions";
-import { canCreate, canEdit } from "../auth/authPermissions";
+import { canCreate } from "../auth/authPermissions";
 
 
 // Serialize for client compatibility
@@ -368,10 +368,6 @@ export async function canCreateContent(userId: string, contentType: "settlement"
     console.log("permissions: ", campaignPermissions); 
 
     if( canCreate(campaignPermissions ?? undefined) ){
-      return true;
-    }
-
-    if ( canEdit(userId, { userId }, campaignPermissions ?? undefined) ){
       return true;
     }
     
