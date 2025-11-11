@@ -30,7 +30,7 @@ export interface IBaseSite {
   updatedAt: Date;
   userId: string;
   name: string;
-  siteTheme: string;
+  siteTheme: string[];
   [key: string]: unknown; // allows extra fields from discriminators
 }
 

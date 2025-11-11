@@ -38,6 +38,7 @@ export function serializeSite(site: Parameters<typeof serializeFromDb>[0]): Base
   // Map connections
   const baseData = {
     ...serialized,
+    siteTheme: Array.isArray((serialized as { siteTheme?: string[]}).siteTheme) ? ((serialized as unknown as { siteTheme: string[]}).siteTheme) : [],
     connections: Array.isArray((serialized as { connections?: NpcConnection[] }).connections)
       ? ((serialized as unknown as { connections: NpcConnection[] }).connections).map((conn: NpcConnection) => ({
           ...conn,

@@ -54,9 +54,11 @@ export default function EditSitePage() {
     if (site?.success && site.site) {
       setSelectedItem(site.site);
       setInitialConnections(site.site.connections);
+
       methods.reset({
         ...(mapSiteToForm(site.site) as SiteFormData)
       });
+      
       console.log("site: ", site);
     } else if (safeId && !isLoading) {
       clearSelectedItem();
