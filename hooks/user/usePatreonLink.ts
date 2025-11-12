@@ -32,7 +32,7 @@ export function usePatreonLink() {
       if (!result.success) throw new Error(result.error ?? "Failed to unlink Patreon account.");
 
       setUser({ ...user, patreon: undefined });
-      showSnackbar("Patreon account unlinked successfully.", "success");
+      showSnackbar("Patreon account unlinked successfully. You may need to log back in to see your changes.", "success");
     } catch (err) {
       showErrorDialog(err instanceof Error ? err.message : "Failed to unlink Patreon account.");
     } finally {

@@ -8,6 +8,7 @@ export interface UserInterface {
   passwordHash?: string;
   passwordResetToken?: string;
   passwordResetExpires?: Date;
+  emailVerified?: boolean;
   patreon?: {
     tier?: string;          // optional Patreon tier
     accessToken?: string;   // Patreon API access token
@@ -42,7 +43,8 @@ export interface LoginSuccess {
     username: string; 
     avatar?: string; 
     tier: string, 
-    theme: string 
+    theme: string;
+    emailVerified?: boolean;
   };
 }
 

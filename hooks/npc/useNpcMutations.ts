@@ -11,6 +11,7 @@ import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { Npc } from "@/interfaces/npc.interface";
 import { useCampaignStore } from "@/store/campaignStore";
+import { isUserVerified } from "@/lib/util/isUserVerified";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
@@ -34,6 +35,11 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         setSubmitting(true);
         try {
             if (!user?.id) throw new Error("User is not logged in");
+
+            if(!isUserVerified(user)){
+                showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
+                return;
+            }
 
             const idempotencyKey = generateIdempotencyKey();
 
@@ -61,7 +67,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 const { createNpc } = await import('@/lib/actions/npc.actions');
                 saved = await createNpc(transformed);
             } else if (mode === "edit") {
-            if (!npcId) throw new Error("NPC ID is required for edit mode");
+                if (!npcId) throw new Error("NPC ID is required for edit mode");
                 const { updateNpc } = await import('@/lib/actions/npc.actions');
                 saved = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
             } else {

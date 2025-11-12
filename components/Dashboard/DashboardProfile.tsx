@@ -1,8 +1,9 @@
 import { Stack, Box, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import UserAvatar from "../Common/UserAvatar";
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
-export default function DashboardProfile({ username, email, avatar }: { username: string; email: string, avatar?: string}){
+export default function DashboardProfile({ username, email, avatar, emailVerified }: { username: string; email: string, avatar?: string, emailVerified: boolean | null}){
     return (
         <>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2, alignItems: 'center', justifyItems: 'center' }}>
@@ -12,6 +13,13 @@ export default function DashboardProfile({ username, email, avatar }: { username
                 <Box>
                     <Typography>Username: { username }</Typography>
                     <Typography>Email: { email } </Typography>
+                    { ( !emailVerified && emailVerified === false ) && 
+                        (
+                            <Box>                                
+                                <Typography><WarningAmberIcon fontSize="small" />  Email hasn&apos;t been verified</Typography>
+                            </Box>
+                        )
+                    }
                 </Box>
             </Stack>
             <Box 

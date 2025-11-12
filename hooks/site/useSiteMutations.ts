@@ -12,6 +12,7 @@ import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { siteKeys } from "./site.query";
 import { useCampaignStore } from "@/store/campaignStore";
+import { isUserVerified } from "@/lib/util/isUserVerified";
 
 
 interface UseSiteMutationsProps {
@@ -39,6 +40,12 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
     setSubmitting(true);
     try {
       if (!user?.id) throw new Error("User is not logged in");
+
+      if(!isUserVerified(user)){
+        showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
+        return;
+      }
+      
 
       const idempotencyKey = generateIdempotencyKey();
 

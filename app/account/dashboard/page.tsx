@@ -18,6 +18,7 @@ import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 import MembershipPanel from '@/components/Dashboard/Memberships';
 import DashboardProfile from '@/components/Dashboard/DashboardProfile';
 import DashboardFavorites from '@/components/Dashboard/DashboardFavorites';
+import { isUserVerified } from '@/lib/util/isUserVerified';
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
@@ -39,7 +40,7 @@ export default function AccountDashboard(){
                         <Card sx={{ px: 2, mb: 2 }}>
                             <CardContent>
                                 <Typography variant="h5" component="h2" sx={{ mb: 2 }}>User Profile</Typography>
-                                <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} />
+                                <DashboardProfile username={user?.username ?? "N/A"} email={ user?.email ?? "N/A" } avatar={ user?.avatar ?? ""} emailVerified={ isUserVerified(user ?? undefined) } />
                             </CardContent>
                         </Card>
 

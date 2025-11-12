@@ -11,6 +11,7 @@ import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { useCampaignStore } from "@/store/campaignStore";
 import { Settlement } from "@/interfaces/settlement.interface";
+import { isUserVerified } from "@/lib/util/isUserVerified";
 
 interface UseSettlementMutationsProps {
   mode: "add" | "edit" | null;
@@ -34,6 +35,12 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
 
     try {
       if (!user?.id) throw new Error("User is not logged in");
+
+      if(!isUserVerified(user)){
+        showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
+        return;
+      }
+      
 
       const idempotencyKey = generateIdempotencyKey();
 

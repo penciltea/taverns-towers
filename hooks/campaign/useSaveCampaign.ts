@@ -6,6 +6,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { CampaignFormData } from "@/schemas/campaign.schema";
+import { isUserVerified } from "@/lib/util/isUserVerified";
 
 export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
     const router = useRouter();
@@ -18,6 +19,12 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
         setSubmitting(true);
         try {
             if (!user?.id) throw new Error("User is not logged in");
+
+            if(!isUserVerified(user)){
+                showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
+                return;
+            }
+            
 
             const idempotencyKey = generateIdempotencyKey();
 
