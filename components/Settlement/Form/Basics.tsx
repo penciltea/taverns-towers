@@ -1,3 +1,8 @@
+'use client'
+
+import { useEffect, useState } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FieldError, useFormContext } from "react-hook-form";
 import { Box, Stack } from "@mui/material";
 import { MAGIC_LEVELS, SIZE_TYPES } from "@/constants/settlement.options";
@@ -10,6 +15,7 @@ import { TONE } from "@/constants/common.options";
 import { THEME, ARTISAN_THEMES } from '@/constants/settlement.options';
 import { useAuthStore } from "@/store/authStore";
 import { userTier } from "@/constants/user.options";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 export default function SettlementFormBasics(){
     const {
@@ -22,17 +28,29 @@ export default function SettlementFormBasics(){
 
     const { user } = useAuthStore();
 
-    function handleThemesByTier(){
-        const tier = user?.tier;
-        switch (tier) {
-            case "Artisan":
-            case "Architect":
-            return [...ARTISAN_THEMES, ...THEME];
-            case "Apprentice":
-            default:
-            return THEME;
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(THEME);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: THEME,
+                premiumOptions: [...ARTISAN_THEMES, ...THEME],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
         }
-    }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
     
     const handleGenerateName = async () => {
         const terrain = watch("terrain");
@@ -75,7 +93,7 @@ export default function SettlementFormBasics(){
                     name="theme"
                     label="Theme"
                     control={control}
-                    options={handleThemesByTier()}
+                    options={themes}
                     fieldError={errors.theme}
                     tooltip="This field influences name generation."
                 />

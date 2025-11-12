@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/store/authStore";
 import { useAssignedCampaignsQuery } from "./campaign.query";
 import { CampaignForClient, PlayerForClient } from "@/interfaces/campaign.interface";
+import { getCampaignPermissions } from "@/lib/actions/campaign.actions";
 
 export function useCampaignAccess(){
     const user = useAuthStore(state => state.user);
@@ -23,13 +24,22 @@ export function useCampaignAccess(){
         })
     }
 
+    async function playerHasContentPermissions(campaignId: string): Promise<boolean> {
+        if (!user || !campaignId) return false;
+
+        const perms = await getCampaignPermissions(campaignId);
+        if (!perms) return false;
+
+        return perms.canCreateContent || perms.canEditOwnContent || perms.canEditAllContent;
+    }
+
     return {
-        user,
         isLoggedIn,
         isPremium,
         assignedCampaigns,
         hasAssignedCampaigns,
         canAccessCampaigns: isPremium || hasAssignedCampaigns,
-        isPlayerInCampaign
+        isPlayerInCampaign,
+        playerHasContentPermissions
     };
 }

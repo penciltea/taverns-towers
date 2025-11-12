@@ -446,7 +446,6 @@ export async function canCreateContent(userId: string, contentType: "settlement"
 
   if(campaignId){
     const campaignPermissions = await getCampaignPermissions(campaignId ?? "");
-    console.log("permissions: ", campaignPermissions); 
 
     if( canCreate(campaignPermissions ?? undefined) ){
       return true;
