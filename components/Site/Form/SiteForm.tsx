@@ -11,11 +11,11 @@ import { SiteFormData } from "@/schemas/site.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useUIStore } from "@/store/uiStore";
 import { useSiteContentStore } from "@/store/siteStore";
-import SiteFormTabs from "./Tabs";
-import { SITE_CATEGORIES } from "@/constants/site/site.options";
+import { SITE_CATEGORIES, SITE_TABS } from "@/constants/site/site.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { useSearchParams } from "next/navigation";
 import { Spinner } from "@/components/Common/Spinner";
+import FormTabs from "@/components/Form/FormTabs";
 
 const SiteFormBasics = dynamic(() => import("./Basics"), {
   ssr: false,
@@ -52,13 +52,25 @@ function TabPanel({
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`settlement-tabpanel-${index}`}
-      aria-labelledby={`settlement-tab-${index}`}
+      id={`site-tabpanel-${index}`}
+      aria-labelledby={`site-tab-${index}`}
     >
       {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
     </div>
   );
 }
+
+function SiteFormTabs({ tab, setTab }: { tab: number; setTab: (newTab: number) => void;}) {
+  return (
+    <FormTabs
+      tab={tab}
+      setTab={setTab}
+      labels={SITE_TABS}
+      ariaLabelPrefix="Site"
+    />
+  );
+}
+
 
 export default function SiteForm({ onSubmit, mode, isWilderness, generator }: SiteFormProps) {
   const [tab, setTab] = useState(0);

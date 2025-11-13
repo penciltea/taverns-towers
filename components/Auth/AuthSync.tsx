@@ -39,6 +39,7 @@ export default function AuthSync() {
           ),
           theme: dbUser?.theme || sessionUser.theme || "dark",
           patreon: sessionUser.patreon || undefined,
+          emailVerified: dbUser?.emailVerified || sessionUser.emailVerified || false
         };
 
         setUser(mergedUser);

@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { FieldErrors, useFormContext } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -9,19 +10,60 @@ import { Spinner } from "@/components/Common/Spinner";
 import FormActions from "@/components/Form/FormActions";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { Paper, Box, Typography } from "@mui/material";
-import { FormChipSelect, FormTextField } from "@/components/Form";
-import { TONE } from "@/constants/common.options";
-import { toSelectOptions } from "@/lib/util/formatSelectOptions";
-import FormChipInput from "@/components/Form/FormChipInput";
-import { CAMPAIGN_ROLES, GENRES } from "@/constants/campaign.options";
-import FormRoleAssignmentInput from "@/components/Form/FormRoleAssignmentInput";
+import { CAMPAIGN_TABS } from "@/constants/campaign.options";
+import FormTabs from "@/components/Form/FormTabs";
+import CamapignFormTabs from "./Tabs";
+
+const CampaignFormBasics = dynamic(() => import("./Basics"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+const CampaignFormConfiguration = dynamic(() => import("./Configuration"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 type CampaignFormProps = {
     onSubmit: (data: CampaignFormData) => void;
     mode: "add" | "edit" | null;
 };
 
+function TabPanel({
+  children,
+  value,
+  index,
+}: {
+  children: React.ReactNode;
+  value: number;
+  index: number;
+}) {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`campaign-tabpanel-${index}`}
+      aria-labelledby={`campaign-tab-${index}`}
+    >
+      {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
+    </div>
+  );
+}
+
+function SiteFormTabs({ tab, setTab }: { tab: number; setTab: (newTab: number) => void;}) {
+  return (
+    <FormTabs
+      tab={tab}
+      setTab={setTab}
+      labels={CAMPAIGN_TABS}
+      ariaLabelPrefix="Campaign"
+    />
+  );
+}
+
+
 export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
+    const [tab, setTab] = useState(0);
     const { isSubmitting } = useUIStore();
     const router = useRouter();
     const { selectedCampaign, reset } = useCampaignStore();
@@ -45,7 +87,7 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
         router.back();
     }
 
-    const roles = CAMPAIGN_ROLES;
+    
 
 
     return (
@@ -56,6 +98,8 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
                     <Typography variant="h3" component="h1" gutterBottom>
                         {mode === "edit" ? `Edit ${selectedCampaign?.name}` : "Forge a Campaign"}
                     </Typography>
+
+                    <CamapignFormTabs tab={tab} setTab={setTab} />
 
                     {formError && (
                         <Box sx={{ mb: 2 }}>
@@ -70,60 +114,14 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
                         </Box>
                     )}
 
-                    <FormTextField
-                        label="Campaign Name"
-                        required
-                        registration={register("name")}
-                        fieldError={errors.name}
-                    />
+                    <TabPanel value={tab} index={0}>
+                        { tab === 0 && <CampaignFormBasics /> }
+                    </TabPanel>
+                    <TabPanel value={tab} index={1}>
+                        { tab === 1 && <CampaignFormConfiguration /> }
+                    </TabPanel>
 
-                    <FormChipSelect
-                        name="genre"
-                        label="Genre"
-                        control={control}
-                        options={[...GENRES]}
-                        fieldError={errors.genre}
-                    />
-
-                    <FormChipSelect
-                        name="tone"
-                        label="Tone"
-                        control={control}
-                        options={[...toSelectOptions(TONE)]}
-                        fieldError={errors.tone}
-                        tooltip="This field will apply to any content created in this campaign" // ToDo: Update 
-                    />
-
-                    <FormTextField
-                        label="Campaign Description"
-                        registration={register("description")}
-                        fieldError={errors.description}
-                        multiline
-                        rows={4}
-                    />  
-
-                    <FormTextField
-                        label="Campaign Rules"
-                        registration={register("rules")}
-                        fieldError={errors.rules}
-                        multiline
-                        rows={4}
-                    />
-
-                    <FormChipInput
-                        name="links"
-                        label="External Link(s)"
-                        control={control}
-                    />
-
-                    <FormRoleAssignmentInput
-                        name="players"
-                        label="Campaign Players"
-                        control={control}
-                        roles={roles}
-                        itemLabel="Player"
-                        tooltip="Press Enter to add players and toggle their roles."
-                    />
+                    
 
                     <FormActions mode={mode} entityName="Campaign" isSubmitting={isSubmitting} onCancel={handleCancel} />
                 </Box>

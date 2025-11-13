@@ -1,11 +1,15 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
+import { SiteFormFieldProps } from "@/interfaces/site.interface";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignStore } from "@/store/campaignStore";
+import { FieldError, useFormContext } from "react-hook-form";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
-import { userTier } from "@/constants/user.options";
-import { SiteFormFieldProps } from "@/interfaces/site.interface";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
-import { useAuthStore } from "@/store/authStore";
-import { FieldError, useFormContext } from "react-hook-form";
+import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 
 export default function MiscellaneousFields({generator}: SiteFormFieldProps){
     const {
@@ -15,6 +19,29 @@ export default function MiscellaneousFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
     
     return (
         <>
@@ -31,7 +58,7 @@ export default function MiscellaneousFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

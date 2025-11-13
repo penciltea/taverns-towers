@@ -28,7 +28,6 @@ export default function SettlementFormBasics(){
 
     const { user } = useAuthStore();
 
-
     const { playerHasContentPermissions } = useCampaignAccess();
     const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
 

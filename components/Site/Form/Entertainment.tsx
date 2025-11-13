@@ -1,13 +1,16 @@
 'use client';
 
+import { useEffect, useState } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import { FieldError, useFormContext } from "react-hook-form";
-import { ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ARTISAN_SITE_THEMES, ENTERTAINMENT_VENUE_TYPES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
 import { useAuthStore } from "@/store/authStore";
-import { userTier } from "@/constants/user.options";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
+
 
 export default function EntertainmentFields({generator}: SiteFormFieldProps){
     const {
@@ -17,6 +20,29 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
 
     return (
         <>
@@ -33,7 +59,7 @@ export default function EntertainmentFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

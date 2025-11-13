@@ -1,13 +1,17 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { DOMAINS } from "@/constants/common.options";
-import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
-import { userTier } from "@/constants/user.options";
+import { SITE_SIZE, SITE_CONDITION, ARTISAN_SITE_THEMES, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
-import { useAuthStore } from "@/store/authStore";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 import { Box } from "@mui/material";
 import { FieldError, useFormContext } from "react-hook-form";
 
@@ -19,6 +23,29 @@ export default function TempleFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
 
     return (
         <>
@@ -45,7 +72,7 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

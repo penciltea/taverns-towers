@@ -1,16 +1,18 @@
 'use client'
 
+import { useState, useEffect } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS } from "@/constants/site/site.options";
+import { SITE_SIZE, SITE_CONDITION, TAVERN_ENTERTAINMENT_OFFERINGS, ARTISAN_SITE_THEMES, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import Box from "@mui/material/Box";
 import { FieldError, useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import { useAuthStore } from "@/store/authStore";
-import { userTier } from "@/constants/user.options";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 
 export default function TavernFields({generator}: SiteFormFieldProps){
@@ -21,6 +23,29 @@ export default function TavernFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -37,7 +62,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

@@ -20,6 +20,10 @@ export interface ICampaign extends Document {
     links?: string[];
     highlights?: string[];
     players: PlayerForDB[];
+    allowedRaces?: string[];
+    generatorDomains?: string[];
+    generatorMagic?: string[];
+    isActive: boolean;
     isPublic: boolean;
     userId: Types.ObjectId;
     createdAt: Date;
@@ -56,6 +60,10 @@ const CampaignSchema = new Schema<ICampaign>(
                 },
             }
         ],
+        allowedRaces: [{ type: String, required: false}],
+        generatorDomains: [{ type: String, required: false }],
+        generatorMagic: [{ type: String, required: false }],
+        isActive: { type: Boolean, default: true },
         isPublic: { type: Boolean, default: false },
         userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
         idempotencyKey: { type: String, unique: true, sparse: true }
@@ -63,4 +71,5 @@ const CampaignSchema = new Schema<ICampaign>(
     { timestamps: true, toJSON: { virtuals: true } }
 );
 
-export default mongoose.models.Campaign || mongoose.model<ICampaign>('Campaign', CampaignSchema, 'campaigns');
+const CampaignModel = mongoose.models.Campaign || mongoose.model("Campaign", CampaignSchema, "campaigns");
+export default CampaignModel;

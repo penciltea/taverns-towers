@@ -51,6 +51,7 @@ export interface CampaignForClient extends Campaign {
 }
 
 export interface CampaignQueryParams {
+    userId: string;
     page: number;
     limit: number;
     search: string;
@@ -59,6 +60,7 @@ export interface CampaignQueryParams {
 }
 
 export const DefaultCampaignQueryParams: CampaignQueryParams = {
+    userId: '',
     page: 1,
     limit: 12,
     search: '',

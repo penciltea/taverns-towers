@@ -1,14 +1,18 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { useUIStore } from "@/store/uiStore";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import Box from "@mui/material/Box";
 import { FieldError, useFormContext } from "react-hook-form";
-import { SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ARTISAN_SITE_THEMES, SHOP_TYPE_CATEGORIES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import { useAuthStore } from "@/store/authStore";
-import { userTier } from "@/constants/user.options";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 export default function ShopFields({generator}: SiteFormFieldProps){
     const { setOpenDialog } = useUIStore();
@@ -21,6 +25,29 @@ export default function ShopFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
     
     const handleTypeChange = (field: "shopType" | "guildType", value: string) => {
         // Check to see if menu has been generated before, to avoid menu category conflicts
@@ -72,7 +99,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

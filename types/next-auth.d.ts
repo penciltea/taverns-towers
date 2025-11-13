@@ -3,21 +3,7 @@ import { UI_THEME } from "@/types/ui";
 
 declare module "next-auth" {
   interface Session {
-    user: {
-      id: string;
-      email: string | null; // Patreon users may not have email
-      username?: string; // optional for Patreon
-      name?: string;     // Patreon full name
-      tier?: string;     // optional if not set yet
-      theme?: UI_THEME;  // optional
-      provider?: string;
-      patreon?: {
-        tier?: string;
-        accessToken?: string;
-        refreshToken?: string;
-        providerAccountId?: string;
-      };
-    };
+    user: User;
   }
 
   interface User {
@@ -28,6 +14,7 @@ declare module "next-auth" {
     tier?: string;
     theme?: string;
     provider?: string;
+    emailVerified?: boolean;
     patreon?: {
       tier?: string;
       accessToken?: string;
@@ -46,7 +33,7 @@ declare module "next-auth/jwt" {
     tier?: string;
     theme?: string;
     provider?: string;
-
+    emailVerified?: boolean;
     /** Expiry timestamp in ms */
     expires?: number;
 

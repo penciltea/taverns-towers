@@ -34,7 +34,8 @@ function serializeUser(user: mongoose.Document<UserModel> | UserModel): UserInte
     username: obj.username,
     avatar: obj.avatar,
     tier: obj.tier,
-    theme: obj.theme
+    theme: obj.theme,
+    emailVerified: obj.emailVerified
   };
 }
 
@@ -202,6 +203,7 @@ export async function getUser() {
           providerAccountId: patreonAccount.providerAccountId,
         }
       : undefined,
+    emailVerified: dbUser.emailVerified
   };
 }
 

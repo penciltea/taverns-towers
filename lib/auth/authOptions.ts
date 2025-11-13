@@ -35,11 +35,12 @@ export const authOptions: AuthOptions = {
         // Typecast to NextAuth User type
         return {
           id: result.user.id,
-          email: result.user.email ?? null,  // <--- use null instead of undefined
+          email: result.user.email ?? null,
           name: result.user.username,        // optional 'name' field
           tier: result.user.tier,
           theme: result.user.theme,
           provider: "credentials",
+          emailVerified: result.user.emailVerified ?? false,
         } as unknown as User;
       }
     }),
@@ -102,6 +103,7 @@ export const authOptions: AuthOptions = {
         token.tier = user.tier;
         token.theme = user.theme;
         token.provider = user.provider;
+        token.emailVerified = !!user.emailVerified; // default to false
       }
 
       // Patreon OAuth handling
@@ -185,24 +187,18 @@ export const authOptions: AuthOptions = {
 
     // Session callback: expose only safe fields to client
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id;
-        session.user.username = token.username ?? session.user.username;
-        session.user.tier = token.tier ?? session.user.tier;
-        session.user.theme = token.theme ?? session.user.theme;
-        session.user.provider = token.provider ?? session.user.provider;
-
-        // Expose Patreon tier only (no tokens)
-        if (token.patreon) {
-          session.user.patreon = {
-            tier: token.patreon.tier,
-            providerAccountId: token.patreon.providerAccountId,
-          };
-        }
-
-        // Optional email (some OAuth users may not have one)
-        session.user.email = token.email ?? session.user.email;
-      }
+      session.user = {
+        id: token.id,
+        username: token.username ?? session.user?.username,
+        tier: token.tier ?? session.user?.tier,
+        theme: token.theme ?? session.user?.theme,
+        provider: token.provider ?? session.user?.provider,
+        emailVerified: token.emailVerified ?? false,
+        email: token.email ?? session.user?.email,
+        patreon: token.patreon
+          ? { tier: token.patreon.tier, providerAccountId: token.patreon.providerAccountId }
+          : undefined,
+      };
 
       return session;
     },

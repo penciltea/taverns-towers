@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuthStore } from "@/store/authStore";
-import { useAssignedCampaignsQuery, useOwnedCampaignsQuery } from '@/hooks/campaign/campaign.query';
+import { useUserCampaignsQuery } from '@/hooks/campaign/campaign.query';
 import { DefaultCampaignQueryParams, CampaignQueryParams } from '@/interfaces/campaign.interface';
 import AuthGate from '@/components/Auth/AuthGuard';
 import { Spinner } from '@/components/Common/Spinner';
@@ -28,28 +28,12 @@ export default function CampaignsPage(){
     }, [user]);
 
     // Prevent query call until params are ready
-    const { data: ownedData, isLoading: ownedLoading } = useOwnedCampaignsQuery(params!, {
-        isEnabled: !!params && !!user?.id,
+    const { data, isLoading, error } = useUserCampaignsQuery(params!, {
+        isEnabled: !!params
     });
-
-    const { data: assignedData, isLoading: assignedLoading } = useAssignedCampaignsQuery(user?.id, {
-        isEnabled: !!user?.id,
-    });
-
-    const allCampaigns = [
-        ...(ownedData?.campaigns || []),
-        ...(assignedData || []),
-    ];
-
-    const uniqueCampaigns = Object.values(
-        allCampaigns.reduce((acc, campaign) => {
-            acc[campaign._id] = campaign;
-            return acc;
-        }, {} as Record<string, typeof allCampaigns[0]>)
-    );
 
     function handleContentTitle(){
-        if( allCampaigns && allCampaigns.length > 1 ){
+        if( data?.campaigns && data?.campaigns.length > 1 ){
             return "Campaigns"
         } else {
             return "Campaign"
@@ -58,22 +42,22 @@ export default function CampaignsPage(){
 
     return (
         <AuthGate fallbackText="You must be logged in to view your campaigns." hasAccess={canAccessCampaigns}>
-            {(!params || ownedLoading || assignedLoading) ? (
+            {(!params || isLoading) ? (
                 <Spinner />
-            ) : uniqueCampaigns.length === 0 ? (
+            ) : error || !data?.success ? (
                 <Typography>It seems your adventures haven&apos;t begun just yet. Create a campaign to start weaving your tales; every grand story needs a world to call its own.</Typography>
             ) : (
                 <FilteredGridView
                     title="My Campaigns"
                     titleVariant="h3"
                     titleComponent="h1"
-                    description="Campaigns are the heart of your storytelling, the grand frameworks where your worlds, characters, and adventures come together. Gather your players, chart your quests, and bring your stories to life, one session at a time."
+                    description="Campaigns are the heart of your storytelling, the grand frameworks where your worlds, characters, and adventures come together. Gather your players, chart your quests, and bring your stories to life, one session at a time. The list of campaigns below includes any campaigns that have you listed as a player and any campaigns that you may have created."
                     content={handleContentTitle().toString()}
                     searchVariant="h5"
                     searchComponent="h2"
                     countVariant="subtitle1"
                     countComponent="h3"
-                    items={uniqueCampaigns}
+                    items={data.campaigns}
                     renderItem={(campaign) => (
                         <GridItem
                             key={campaign._id}
@@ -96,7 +80,7 @@ export default function CampaignsPage(){
                     onPageChange={(newPage) =>
                         setParams((prev) => ({ ...prev!, page: newPage }))
                     }
-                    totalCount={uniqueCampaigns.length}
+                    totalCount={data?.campaigns.length}
                     pageSize={params.limit}
                     fabLabel="Create Campaign"
                     fabLink="/campaigns/new"

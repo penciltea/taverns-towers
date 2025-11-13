@@ -1,3 +1,5 @@
+export const CAMPAIGN_TABS = ["Basics", "Configuration"]
+
 export const GENRES = [
   {
     label: "Classic Fantasy",

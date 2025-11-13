@@ -47,8 +47,10 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
                   return deleteCampaign(id);
                 }}
                 onSuccess={() => {
-                    queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'] });
+                    queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'], exact: false });
+                    queryClient.invalidateQueries({ queryKey: ['assignedCampaigns'], exact: false });
                     queryClient.removeQueries({ queryKey: ['campaign', campaign._id] }); // remove single campaign cache
+                    queryClient.removeQueries({ queryKey: ['campaignPermissions', campaign._id] });
                     router.push("/campaigns/all");
                     showSnackbar('Campaign deleted successfully!', 'success');
                 }}

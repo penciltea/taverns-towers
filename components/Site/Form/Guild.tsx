@@ -1,14 +1,18 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { GUILD_MEMBERSHIP_REQUIREMENTS, GUILD_TYPES } from "@/constants/site/guild.options";
 import { Box } from "@mui/material";
 import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import { userTier } from "@/constants/user.options";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
 import { useAuthStore } from "@/store/authStore";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 
 export default function GuildFields({generator}: SiteFormFieldProps){
@@ -19,6 +23,29 @@ export default function GuildFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
   
     return (
         <>
@@ -54,7 +81,7 @@ export default function GuildFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

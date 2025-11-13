@@ -33,6 +33,10 @@ export const campaignSchema = z.object({
             roles: z.array(z.string())
         })
     ).optional(),
+    allowedRaces: z.array(z.string()).optional(),
+    generatorDomains: z.array(z.string()).optional(),
+    generatorMagic: z.array(z.string()).optional(),
+    isActive: z.boolean().optional(),
     isPublic: z.boolean().optional(),
     idempotencyKey: z.string().optional(),
 });
@@ -49,6 +53,10 @@ export const defaultCampaignValues = {
     tone: [],
     rules: "",
     links: [],
+    allowedRaces: [],
+    generatorDomains: [],
+    generatorMagic: [],
+    isActive: true,
     isPublic: false,
     players: [],
     highlights: [],

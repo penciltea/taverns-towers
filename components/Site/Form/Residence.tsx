@@ -1,11 +1,15 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
-import { userTier } from "@/constants/user.options";
+import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
-import { handleSiteThemesByTier } from "@/lib/util/getMembershipTierForFields";
-import { useAuthStore } from "@/store/authStore";
+import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 import { FieldError, useFormContext } from "react-hook-form";
 
 export default function ResidenceFields({generator}: SiteFormFieldProps){
@@ -16,7 +20,30 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
     } = useFormContext();
 
     const { user } = useAuthStore();
-    
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        async function loadThemes() {
+            if (!user) return;
+
+            const available = await getAvailableOptions({
+                freeOptions: SITE_THEMES,
+                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
+                userTier: user?.tier,
+                selectedCampaign,
+                playerHasContentPermissions,
+            });
+
+            setThemes(available);
+        }
+
+        loadThemes();
+    }, [user?.tier, selectedCampaign?._id]);
+
     return (
         <>
             <FormFieldWithGenerate
@@ -32,7 +59,7 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 name="siteTheme"
                 label="Theme"
                 control={control}
-                options={handleSiteThemesByTier(user?.tier ?? userTier[0])}
+                options={themes}
                 fieldError={errors.siteTheme}
                 tooltip="This field influences name generation."
             />

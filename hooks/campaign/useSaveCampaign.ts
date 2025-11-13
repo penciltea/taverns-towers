@@ -73,7 +73,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
 
             // Invalidate the campaign itself and owned campaigns for the editor
             queryClient.invalidateQueries({ queryKey: ['campaign', saved._id] });
-            queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'] });
+            queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'], exact: false });
 
             router.push(`/campaigns/${saved._id}`);
 

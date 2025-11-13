@@ -101,6 +101,9 @@ export async function getCampaigns({
       }))
   }));
 
+  console.log("search: ", search);
+  console.log("campaigns: ", serializedCampaigns);
+
   return {
       success: true,
       campaigns: serializedCampaigns,
@@ -117,6 +120,8 @@ export async function getOwnedCampaigns(
   const user = await requireUser();
   return getCampaigns({ ...options, userId: user.id });
 }
+
+
 
 
 
@@ -369,4 +374,73 @@ export async function getCampaignPermissions(campaignId: string) {
   }
 
   return combinedPermissions;
+}
+
+
+/* 
+A server action that returns both a user's owned and assigned campaigns
+*/
+
+export async function getUserCampaigns({
+  page = 1,
+  limit = 12,
+  search = '',
+  tone = [],
+  genre = [],
+}: {
+  page?: number;
+  limit?: number;
+  search?: string;
+  tone?: string[];
+  genre?: string[];
+}) {
+  const user = await requireUser();
+  const userId = user.id;
+
+  await connectToDatabase();
+
+  const query: Record<string, unknown> = {
+    $or: [
+      { userId: new ObjectId(userId) },       // Owned campaigns
+      { 'players.user': new ObjectId(userId) } // Assigned campaigns
+    ],
+  };
+
+  if (search) query.name = { $regex: new RegExp(search, 'i') };
+  if (tone.length > 0) query.tone = { $all: tone };
+  if (genre.length > 0) query.genre = { $all: genre };
+
+  const total = await CampaignModel.countDocuments(query);
+
+  const campaigns = await CampaignModel.find(query)
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .lean<CampaignForDB[]>();
+
+  // Deduplicate in case user is both owner and player
+  const seen = new Set<string>();
+  const serialized = campaigns.map((campaign) => ({
+    ...campaign,
+    _id: campaign._id.toString(),
+    userId: campaign.userId.toString(),
+    players: campaign.players.map((player) => ({
+        ...player,
+        user: player.user?.toString(),
+        _id: player?._id ? player?._id.toString() : ""
+    }))
+  }))
+  .filter((c) => {
+    if (seen.has(c._id)) return false;
+    seen.add(c._id);
+    return true;
+  });
+
+  return {
+    success: true,
+    campaigns: serialized,
+    total,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+  };
 }
