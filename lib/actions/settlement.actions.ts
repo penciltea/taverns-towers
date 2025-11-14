@@ -202,8 +202,15 @@ export async function updateSettlementPartial(
 
   const user = await requireUser();
   const existing = await SettlementModel.findById(id);
+  
   if (!existing) throw new Error("Settlement not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  if(existing.campaignId){
+    const campaignPermissions = await getCampaignPermissions(existing.campaignId);
+    if(!campaignPermissions || !campaignPermissions.isOwner) throw new Error("Unauthorized");
+
+  } else if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
   // Only normalize connections if provided
   const updatedData = {

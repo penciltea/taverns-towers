@@ -201,7 +201,13 @@ export async function updateSitePartial(id: string, data: PartialSiteUpdate) {
   const existing = await Site.findById(id);
 
   if (!existing) throw new Error("Site not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+  if(existing.campaignId){
+    const campaignPermissions = await getCampaignPermissions(existing.campaignId);
+    if(!campaignPermissions || !campaignPermissions.isOwner) throw new Error("Unauthorized");
+
+  } else if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
   const model = Site.discriminators?.[existing.type] || Site;
 

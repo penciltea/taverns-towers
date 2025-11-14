@@ -38,6 +38,7 @@ export interface INpc extends Document {
   connections: NpcConnection[];
   image?: string;
   favorite?: boolean;
+  campaignHighlight?: boolean;
   isPublic?: boolean;
   editors?: mongoose.Types.ObjectId[];
   createdAt?: Date;
@@ -68,6 +69,7 @@ const npcSchema = new Schema<INpc>(
     connections: [connectionSchema],
     image: { type: String },
     favorite: { type: Boolean, default: false },
+    campaignHighlight: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{ type: Schema.Types.ObjectId, ref: "User" }],
     idempotencyKey: { type: String, unique: true, sparse: true },

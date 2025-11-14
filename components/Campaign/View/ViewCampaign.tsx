@@ -12,6 +12,10 @@ import CampaignDetails from "./CampaignDetails";
 import FabButton from "@/components/Common/Button/fabButton";
 import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { useSession } from "next-auth/react";
+import { useGetCampaignHighlights } from "@/hooks/campaign/campaign.query";
+import GridContainer from "@/components/Grid/GridContainer";
+import GridItem from "@/components/Grid/GridItem";
+import { toTitleCase } from "@/lib/util/stringFormats";
 
 
 export default function ViewCampaign({ campaign }: { campaign: CampaignForClient }){
@@ -19,10 +23,19 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
     const { activeCampaign, setActiveCampaign } = useSetActiveCampaign();
     const { isPlayerInCampaign } = useCampaignAccess();
 
-    const user = session?.user ? { id: session.user.id } : null;
+    const user = session?.user ? { id: session.user.id } : null;    
+    const { data: campaignHighlights, isLoading: loadingHighlights, isError: highlightsError } = useGetCampaignHighlights(campaign._id);
+
 
     function handleSetActiveCampaign() {
         setActiveCampaign(campaign);
+    }
+    
+    function handleTitle(contentType: string){
+        if(contentType === "npc"){
+            return "NPC"
+        }
+        return toTitleCase(contentType)
     }
 
     return (
@@ -61,7 +74,29 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
                     <Card sx={{ px: 2, mb: 2 }}>
                         <CardContent>
                             <Typography variant="h5" component="h4" sx={{ mb: 2 }}>Highlights</Typography>
-                            HIGHLIGHTS
+                            { loadingHighlights && <Typography>Loading highlights...</Typography> }
+                            { highlightsError && <Typography color="error">Something went wrong loading the campaign&apos;s highlights.</Typography> }
+                            { !loadingHighlights && !highlightsError && (
+                                <>
+                                    { campaignHighlights && campaignHighlights.length > 0 ? (
+                                        <GridContainer>
+                                            { campaignHighlights.map((item) => (
+                                                <Grid key={item._id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+                                                    <GridItem
+                                                        key={item._id}
+                                                        link={`/${item.type}s/${item._id}`}
+                                                        title={item.name}
+                                                        subtitle={handleTitle(item.type) }
+                                                    />
+                                                </Grid>
+                                            ))}
+                                        </GridContainer>
+                                        
+                                    ) : (
+                                        <Typography>No campaign highlights found.</Typography>
+                                    )}
+                                </>
+                            )}
                         </CardContent>
                     </Card>
                 </Grid>

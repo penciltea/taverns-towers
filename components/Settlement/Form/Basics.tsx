@@ -49,7 +49,7 @@ export default function SettlementFormBasics(){
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id]);
+    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
     
     const handleGenerateName = async () => {
         const terrain = watch("terrain");

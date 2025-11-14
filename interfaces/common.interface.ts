@@ -5,6 +5,7 @@ export interface CommonInterface {
     campaignId?: string;
     editors?: string[];
     favorite?: boolean;
+    campaignHighlight?: boolean;
     isPublic: boolean;
     publicNotes?: string;
     gmNotes?: string;  

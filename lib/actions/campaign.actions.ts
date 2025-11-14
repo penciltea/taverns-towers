@@ -6,10 +6,16 @@ import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import CampaignModel from "@/lib/models/campaign.model";
 import { CampaignForClient, CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
-import { serializeCampaign } from "../util/serializers";
+import { serializeCampaign, serializeNpc, serializeSettlement, serializeSite } from "../util/serializers";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { resolveUserId } from "./user.actions";
 import { CAMPAIGN_PERMISSIONS, CampaignRole } from "@/constants/campaign.options";
+import NpcModel from "@/lib/models/npc.model";
+import Site from "@/lib/models/site.model";
+import SettlementModel from "@/lib/models/settlement.model";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { safeServerAction } from "./safeServerAction.actions";
+import { AppError } from "../errors/app-error";
 
 export async function transformCampaignFormData(
   data: CampaignFormData
@@ -131,58 +137,61 @@ export async function getPublicCampaigns(options: Omit<Parameters<typeof getCamp
 
 
 
-export async function getCampaignById(id: string) {
-  await connectToDatabase();
+export async function getCampaignById(id: string): Promise<ActionResult<CampaignForClient>> {
+  return safeServerAction(async () => {
+  
+    await connectToDatabase();
 
-  if (!ObjectId.isValid(id)) throw new Error("Invalid campaign ID");
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid Campaign ID", 400);
 
-  const campaign = await CampaignModel.findById(id)
-    .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[]; placeholder?: boolean; identifier?: string }[] }>({
-      path: "players.user",
-      select: "username email _id",
-    })
-    .lean<CampaignForClient>();
+    const campaign = await CampaignModel.findById(id)
+      .populate<{ players: { user: { username?: string; email?: string } | ObjectId; roles: string[]; placeholder?: boolean; identifier?: string }[] }>({
+        path: "players.user",
+        select: "username email _id",
+      })
+      .lean<CampaignForClient>();
 
-  if (!campaign) throw new Error("Campaign not found");
+    if (!campaign) throw new AppError("Campaign not found", 404);
 
-  const serialized: CampaignForClient = {
-    ...campaign,
-    _id: campaign._id.toString(),
-    userId: campaign.userId.toString(),
-    players: campaign.players.map<PlayerForClient>((player) => {
-      if (player.placeholder) {
-        // Placeholder user
-        return {
-          _id: player._id.toString(),
-          roles: player.roles ?? [],
-          user: {
-            username: player.identifier ?? "",
-            email: "",
-            id: "",
-          },
-        };
-      }
-
-      // Existing user
-      return {
-        _id: player._id.toString(),
-        roles: player.roles ?? [],
-        user: player.user && typeof player.user !== "string"
-          ? {
-              username: player.user.username,
-              email: player.user.email,
-              id: player.user._id?.toString(),
-            }
-          : {
-              username: "",
+    const serialized: CampaignForClient = {
+      ...campaign,
+      _id: campaign._id.toString() ?? "",
+      userId: campaign.userId.toString(),
+      players: campaign.players.map<PlayerForClient>((player) => {
+        if (player.placeholder) {
+          // Placeholder user
+          return {
+            _id: player._id.toString(),
+            roles: player.roles ?? [],
+            user: {
+              username: player.identifier ?? "",
               email: "",
               id: "",
             },
-      };
-    }),
-  };
+          };
+        }
 
-  return serialized;
+        // Existing user
+        return {
+          _id: player._id.toString(),
+          roles: player.roles ?? [],
+          user: player.user && typeof player.user !== "string"
+            ? {
+                username: player.user.username,
+                email: player.user.email,
+                id: player.user._id?.toString(),
+              }
+            : {
+                username: "",
+                email: "",
+                id: "",
+              },
+        };
+      }),
+    };
+
+    return serialized;
+  })
 }
 
 
@@ -319,6 +328,7 @@ export async function getAssignedCampaigns(userId: string): Promise<CampaignForC
     }),
   }));
 
+  console.log("serialized: ", serialized);
   return serialized;
 }
 
@@ -443,4 +453,27 @@ export async function getUserCampaigns({
     currentPage: page,
     totalPages: Math.ceil(total / limit),
   };
+}
+
+
+export async function getCampaignHighlights(campaignId: string){
+  if(!campaignId) throw new Error("Invalid campaign");
+
+  await connectToDatabase();
+
+   const [npcs, settlements, sites] = await Promise.all([
+    NpcModel.find({ campaignId, campaignHighlight: true }).lean(),
+    SettlementModel.find({ campaignId, campaignHighlight: true }).lean(),
+    Site.find({ campaignId, campaignHighlight: true }).lean(),
+  ]);
+
+  const tagged = [
+    ...npcs.map((n) => ({ ...serializeNpc(n), type: "npc" })),
+    ...settlements.map((s) => ({ ...serializeSettlement(s), type: "settlement" })),
+    ...sites.map((s) => ({ ...serializeSite(s), type: "site" })),
+  ];
+
+  // Sort by updatedAt descending
+  return tagged
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
 }

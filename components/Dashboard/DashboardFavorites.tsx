@@ -46,7 +46,7 @@ export default function DashboardFavorites(){
                             ))}
                         </List>
                     ) : (
-                        <Typography>No featured items found.</Typography>
+                        <Typography sx={{ marginTop: 1 }}>No featured items found.</Typography>
                     )}
                 </>
             )}

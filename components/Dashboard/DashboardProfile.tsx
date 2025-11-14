@@ -24,6 +24,7 @@ export default function DashboardProfile({ username, email, avatar }: { username
             >
                 <Button
                     variant="outlined"
+                    color="secondary"
                     component={Link}
                     href="/account/edit"
                 >

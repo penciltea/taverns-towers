@@ -45,7 +45,7 @@ export default function TavernFields({generator}: SiteFormFieldProps){
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id]);
+    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>

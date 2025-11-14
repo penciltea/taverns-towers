@@ -1,6 +1,5 @@
-import { FormTextField, FormChipSelect } from "@/components/Form";
+import { FormChipSelect } from "@/components/Form";
 import FormCheckboxField from "@/components/Form/FormCheckbox";
-import { GENRES } from "@/constants/campaign.options";
 import { DOMAINS } from "@/constants/common.options";
 import { NPC_RACES } from "@/constants/npc.options";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";

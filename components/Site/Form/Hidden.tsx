@@ -44,7 +44,7 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id]);
+    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
     
     return (
         <>

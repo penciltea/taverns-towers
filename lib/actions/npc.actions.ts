@@ -243,6 +243,7 @@ export async function updateNpc(id: string, data: Partial<Npc>, campaignId?: str
   return serializeNpc(updatedNpc);
 }
 
+
 export async function updateNpcPartial(
   id: string,
   update: Partial<NpcFormData>
@@ -252,8 +253,16 @@ export async function updateNpcPartial(
 
   const user = await requireUser();
   const existing = await NpcModel.findById(id);
+
   if (!existing) throw new Error("NPC not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+
+  if(existing.campaignId){
+    const campaignPermissions = await getCampaignPermissions(existing.campaignId);
+    if(!campaignPermissions || !campaignPermissions.isOwner) throw new Error("Unauthorized");
+
+  } else if (existing.userId.toString() !== user.id) {
+    throw new Error("Unauthorized");
+  }
 
   // Only normalize connections if provided
   const updatedData = {
@@ -267,6 +276,7 @@ export async function updateNpcPartial(
   revalidatePath("/npcs");
   return serializeNpc(updatedNpc);
 }
+
 
 export async function deleteNpc(id: string) {
   await connectToDatabase();

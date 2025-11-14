@@ -16,6 +16,7 @@ import Account from "../models/account.model";
 import { getCampaignPermissions } from "./campaign.actions";
 import { canCreate } from "../auth/authPermissions";
 import { generateAndSendVerificationEmail } from "./verification.actions";
+import { ContentType } from "@/constants/common.options";
 
 
 /**
@@ -307,6 +308,7 @@ export async function updateUser(
         avatar: updatedUser.avatar,
         tier: updatedUser.tier,
         theme: updatedUser.theme,
+        emailVerified: updatedUser.emailVerified,
         passwordHash: updatedUser.passwordHash,
         patreon: patreonAccount
           ? {
@@ -351,6 +353,7 @@ export async function refreshUserSession(userId: string) {
     tier: user.tier,
     theme: user.theme,
     avatar: user.avatar,
+    emailVerified: user.emailVerified,
     patreon: patreonAccount
       ? {
           tier: "Patron",
@@ -428,11 +431,11 @@ export async function getFavorites() {
 /**
  * Checks if a user can create more content of a given type, based on their tier or campaign permissions.
  * @param userId ID of the user
- * @param contentType "settlement" | "site" | "npc"
+ * @param contentType type of content, found in constants/common.options.ts
  * @param campaignId Optional campaign ID to check campaign-specific permissions
  * @returns boolean indicating whether the user can create additional content
  */
-export async function canCreateContent(userId: string, contentType: "settlement" | "site" | "npc", campaignId?: string | undefined): Promise<boolean> {
+export async function canCreateContent(userId: string, contentType: ContentType, campaignId?: string | undefined): Promise<boolean> {
   await connectToDatabase();
   const user = await User.findById(userId).lean();
   

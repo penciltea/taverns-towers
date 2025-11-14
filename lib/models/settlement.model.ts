@@ -34,7 +34,8 @@ export interface ISettlement extends Document {
   tone: ToneTypes[];
   theme: string;
   createdBy: Types.ObjectId;
-  favorite?: boolean,
+  favorite?: boolean;  
+  campaignHighlight?: boolean;
   isPublic: boolean;
   userId: Types.ObjectId;
   editors: string[];
@@ -75,6 +76,7 @@ const SettlementSchema = new Schema<ISettlement>(
       required: true,
     },
     favorite: { type: Boolean, default: false },
+    campaignHighlight: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{type: String, required: false}],
     idempotencyKey: { type: String, unique: true, sparse: true },

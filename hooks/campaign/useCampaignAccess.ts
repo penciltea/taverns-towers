@@ -16,7 +16,7 @@ export function useCampaignAccess(){
     const hasAssignedCampaigns = (assignedCampaigns && assignedCampaigns?.length > 0) ?? false;
 
     function isPlayerInCampaign(campaign: CampaignForClient): boolean{
-        if (!campaign || (user !== null && !user.id) ) return false;
+        if (!campaign || !campaign.players || (user !== null && !user.id) ) return false;
     
         return campaign.players.some((player: PlayerForClient) => {
             const playerId = player.user.id?.toString();

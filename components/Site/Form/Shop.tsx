@@ -47,7 +47,7 @@ export default function ShopFields({generator}: SiteFormFieldProps){
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id]);
+    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
     
     const handleTypeChange = (field: "shopType" | "guildType", value: string) => {
         // Check to see if menu has been generated before, to avoid menu category conflicts

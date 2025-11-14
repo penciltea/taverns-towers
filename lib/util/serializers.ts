@@ -3,7 +3,7 @@ import { serializeFromDb } from "./serializeFromDb";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { BaseSite, SiteType, TavernSite, generatorMenuItem, TempleSite, ShopSite, GuildSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
 import { Npc } from "@/interfaces/npc.interface";
-import { CampaignForDB, PlayerForDB } from "@/interfaces/campaign.interface";
+import { CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
 
 export function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
   const serialized = serializeFromDb(settlement) as Settlement | null;
@@ -173,5 +173,31 @@ export function serializeCampaign(campaign: Parameters<typeof serializeFromDb>[0
       user: player.user?.toString(),
       roles: player.roles ?? [],
     })),
+  };
+}
+
+export function serializePlayer(player: PlayerForClient): PlayerForClient {
+  if (player.placeholder) {
+    return {
+      _id: player._id?.toString() ?? "",
+      roles: player.roles ?? [],
+      user: {
+        username: player.identifier ?? "",
+        email: "",
+        id: "",
+      },
+    };
+  }
+
+  return {
+    _id: player._id?.toString() ?? "",
+    roles: player.roles ?? [],
+    user: player.user && typeof player.user !== "string"
+      ? {
+          username: player.user.username,
+          email: player.user.email,
+          id: player.user._id?.toString() ?? "",
+        }
+      : { username: "", email: "", id: "" },
   };
 }

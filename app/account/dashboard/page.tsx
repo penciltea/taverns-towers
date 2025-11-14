@@ -2,7 +2,8 @@
 
 
 import { useState } from 'react';
-
+import { useCampaignStore } from '@/store/campaignStore';
+import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import AuthGate from '@/components/Auth/AuthGuard';
 import Typography from "@mui/material/Typography";
@@ -18,17 +19,21 @@ import DashboardActivity from '@/components/Dashboard/DashboardActivity';
 import MembershipPanel from '@/components/Dashboard/Memberships';
 import DashboardProfile from '@/components/Dashboard/DashboardProfile';
 import DashboardFavorites from '@/components/Dashboard/DashboardFavorites';
-import { isUserVerified } from '@/lib/util/isUserVerified';
+import { userTier } from '@/constants/user.options';
+
 
 export default function AccountDashboard(){
     const user = useAuthStore(state => state.user);
     const isLoggedIn = (user ? true : false);
+    const isPremium = (user && user.tier !== userTier[0] ? true : false)
 
     const [tab, setTab] = useState(0);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setTab(newValue);
     };
+    const router = useRouter();
+    const { selectedCampaign } = useCampaignStore();
 
     
     return (
@@ -76,29 +81,43 @@ export default function AccountDashboard(){
                         </Card>
 
                         <Grid container spacing={2} sx={{ mb: 2 }}>
-                            <Grid size={{ xs: 12, md: 6 }}>
-                                {/* Custom Data CTA */}
-                                <Card sx={{ px: 2, mb: 2 }}>
-                                    <CardContent>
-                                        <Typography variant="h6">Custom Data</Typography>
-                                        <Button variant="contained" color="secondary" sx={{ mt: 1 }} disabled>
-                                            Add Custom Data
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
                             
-                            <Grid size={{ xs: 12, md: 6 }}>
-                                {/* Campaign Settings CTA */}
-                                <Card sx={{ px: 2, mb: 2 }}>
-                                    <CardContent>
-                                        <Typography variant="h6">Campaign Settings</Typography>
-                                        <Button variant="outlined" sx={{ mt: 1 }} disabled>
-                                            Manage Editors / Co-GMs
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
+                            {/* Active Campaign Data & CTA */}
+                            {selectedCampaign && (
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    <Card sx={{ px: 2, mb: 2 }}>
+                                        <CardContent>
+                                            <Typography variant="h6" gutterBottom>Active Campaign</Typography>
+                                            <Typography variant="body1" sx={{ marginBottom: 2 }}>{ selectedCampaign.name }</Typography>
+                                            <Button 
+                                                variant="outlined" 
+                                                color="secondary" 
+                                                sx={{ mt: 1 }} 
+                                                onClick={() =>{
+                                                    router.push(`/campaigns/${selectedCampaign._id}`);
+                                                }}
+                                            >
+                                                view campaign details
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            )}
+                            
+                            {isPremium && (
+                                <Grid size={{ xs: 12, md: 6 }}>
+                                    {/* Custom Data CTA */}
+                                    <Card sx={{ px: 2, mb: 2 }}>
+                                        <CardContent>
+                                            <Typography variant="h6" gutterBottom>Custom Data</Typography>
+                                            <Typography sx={{ marginBottom: 2 }}>Manage your custom races, pantheons, and more.</Typography>
+                                            <Button variant="outlined" sx={{ mt: 1 }} disabled>
+                                                Manage custom data (coming soon!) 
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            )}
                         </Grid>
                     </Grid>
                 </Grid>

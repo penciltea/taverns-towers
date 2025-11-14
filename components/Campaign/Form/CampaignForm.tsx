@@ -12,7 +12,6 @@ import { CampaignFormData } from "@/schemas/campaign.schema";
 import { Paper, Box, Typography } from "@mui/material";
 import { CAMPAIGN_TABS } from "@/constants/campaign.options";
 import FormTabs from "@/components/Form/FormTabs";
-import CamapignFormTabs from "./Tabs";
 
 const CampaignFormBasics = dynamic(() => import("./Basics"), {
   ssr: false,
@@ -50,7 +49,7 @@ function TabPanel({
   );
 }
 
-function SiteFormTabs({ tab, setTab }: { tab: number; setTab: (newTab: number) => void;}) {
+function CampaignFormTabs({ tab, setTab }: { tab: number; setTab: (newTab: number) => void;}) {
   return (
     <FormTabs
       tab={tab}
@@ -69,7 +68,7 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
     const { selectedCampaign, reset } = useCampaignStore();
     const [formError, setFormError] = useState<string | null>(null);
     const methods = useFormContext<CampaignFormData>();
-    const { handleSubmit, formState: { errors }, register, control } = methods;
+    const { handleSubmit, formState: { errors } } = methods;
 
     useEffect(() => {
         if (Object.keys(errors).length > 0) {
@@ -99,7 +98,7 @@ export default function CampaignForm({ onSubmit, mode }: CampaignFormProps) {
                         {mode === "edit" ? `Edit ${selectedCampaign?.name}` : "Forge a Campaign"}
                     </Typography>
 
-                    <CamapignFormTabs tab={tab} setTab={setTab} />
+                    <CampaignFormTabs tab={tab} setTab={setTab} />
 
                     {formError && (
                         <Box sx={{ mb: 2 }}>

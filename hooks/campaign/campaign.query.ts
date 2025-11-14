@@ -1,7 +1,10 @@
 'use client';
 
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns, getAssignedCampaigns, getCampaignPermissions, getUserCampaigns } from '@/lib/actions/campaign.actions';
+import type { getCampaigns, getCampaignById, getOwnedCampaigns, getPublicCampaigns, getAssignedCampaigns, getCampaignPermissions, getUserCampaigns, getCampaignHighlights } from '@/lib/actions/campaign.actions';
+import { CampaignForClient } from '@/interfaces/campaign.interface';
+import { ActionResult } from '@/interfaces/server-action.interface';
+import { AppError } from '@/lib/errors/app-error';
 
 // -------------------------
 // Types for server functions
@@ -12,6 +15,8 @@ type GetOwnedCampaignsFn = typeof getOwnedCampaigns;
 type GetPublicCampaignsFn = typeof getPublicCampaigns;
 type GetAssignedCampaignsFn = typeof getAssignedCampaigns;
 type GetUserCampaignsFn = typeof getUserCampaigns;
+type GetCampaignPermissionsFn = typeof getCampaignPermissions;
+type GetCampaignHighlightsFn = typeof getCampaignHighlights;
 
 // -------------------------
 // Campaigns list query
@@ -35,13 +40,20 @@ export function useCampaignsQuery(
 // -------------------------
 export function useGetCampaignById(
   campaignId: Parameters<GetCampaignByIdFn>[0] | null
-): UseQueryResult<Awaited<ReturnType<GetCampaignByIdFn>>, Error> {
-  return useQuery<Awaited<ReturnType<GetCampaignByIdFn>>, Error>({
+): UseQueryResult<CampaignForClient, AppError> {
+  return useQuery<CampaignForClient, AppError>({
     queryKey: ['campaign', campaignId],
     queryFn: async () => {
-      if (!campaignId) throw new Error('No campaign ID provided');
+      if (!campaignId) throw new AppError('No campaign ID provided', 400);
+
       const { getCampaignById } = await import('@/lib/actions/campaign.actions');
-      return await getCampaignById(campaignId);
+      const result: ActionResult<CampaignForClient> = await getCampaignById(campaignId);
+
+      if (result.success) {
+        return result.data;
+      } else {
+        throw new AppError(result.message, result.status ?? 500);
+      }
     },
     enabled: !!campaignId,
   });
@@ -127,10 +139,10 @@ export function useCampaignPermissionsQuery(
   campaignId?: string,
   options?: { isEnabled?: boolean }
 ): UseQueryResult<
-  Awaited<ReturnType<typeof getCampaignPermissions>>,
+  Awaited<ReturnType<GetCampaignPermissionsFn>>,
   Error
 > {
-  return useQuery<Awaited<ReturnType<typeof getCampaignPermissions>>, Error>({
+  return useQuery<Awaited<ReturnType<GetCampaignPermissionsFn>>, Error>({
     queryKey: ['campaignPermissions', campaignId],
     queryFn: async () => {
       if (!campaignId) return null;
@@ -139,5 +151,23 @@ export function useCampaignPermissionsQuery(
     },
     staleTime: 1000 * 60 * 5, // cache for 5 minutes
     enabled: options?.isEnabled ?? !!campaignId,
+  });
+}
+
+
+export function useGetCampaignHighlights(
+  campaignId?: string
+): UseQueryResult<
+  Awaited<ReturnType<GetCampaignHighlightsFn>>,
+  Error
+> {
+  return useQuery<Awaited<ReturnType<GetCampaignHighlightsFn>>, Error>({
+    queryKey: ['campaignHighlights', campaignId],
+    queryFn: async () => {
+      if(!campaignId) return [];
+      const { getCampaignHighlights } = await import('@/lib/actions/campaign.actions') as { getCampaignHighlights: GetCampaignHighlightsFn };
+      return await getCampaignHighlights(campaignId);
+    },
+    staleTime: 1000 * 60 * 2,
   });
 }

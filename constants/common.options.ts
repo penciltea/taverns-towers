@@ -75,6 +75,12 @@ export const TONE = [
   "Other"
 ];
 
+export const CONTENT_TYPES = [
+  "settlement", 
+  "site", 
+  "npc"
+] as const;
+
 
 export type Flatten<T> = T extends Array<{ options: readonly any[] }>
   ? T[number]["options"][number]
@@ -82,3 +88,4 @@ export type Flatten<T> = T extends Array<{ options: readonly any[] }>
 
 export type DomainTypes = (typeof DOMAINS)[number];
 export type ToneTypes = (typeof TONE)[number];
+export type ContentType = (typeof CONTENT_TYPES)[number];
