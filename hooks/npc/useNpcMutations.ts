@@ -12,6 +12,8 @@ import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { Npc } from "@/interfaces/npc.interface";
 import { useCampaignStore } from "@/store/campaignStore";
 import { isUserVerified } from "@/lib/util/isUserVerified";
+import { AppError } from "@/lib/errors/app-error";
+import { handleActionResult } from "../queryHook.util";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
@@ -65,11 +67,13 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 }
 
                 const { createNpc } = await import('@/lib/actions/npc.actions');
-                saved = await createNpc(transformed);
+                const result = await createNpc(transformed);
+                saved = handleActionResult(result);
             } else if (mode === "edit") {
                 if (!npcId) throw new Error("NPC ID is required for edit mode");
                 const { updateNpc } = await import('@/lib/actions/npc.actions');
-                saved = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
+                const result = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
+                saved = handleActionResult(result);
             } else {
                 throw new Error("Invalid mutation mode");
             }
@@ -152,7 +156,8 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         });
 
         try {
-            const updatedNpc = await updateNpcPartial(update._id, payload);
+            const result = await updateNpcPartial(update._id, payload);
+            const updatedNpc = handleActionResult(result);
 
             queryClient.setQueriesData({ queryKey: ["ownedNpcs"] }, (old: any) => {
                 if (!old?.npcs) return old;

@@ -1,5 +1,5 @@
 import { SettlementFormData } from "@/schemas/settlement.schema";
-import { ConnectionInput } from "../actions/npcConnections";
+import { ConnectionInput } from "../actions/npcConnections.actions";
 
 const normalizeArray = (arr?: string[]) => Array.isArray(arr) ? arr.filter(val => val.trim() !== "") : [];
 

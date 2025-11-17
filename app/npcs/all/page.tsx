@@ -66,7 +66,7 @@ export default function NpcsPage() {
     <AuthGate fallbackText="You must be logged in to view your NPCs.">
       {!params || isLoading ? (
         <Spinner />
-      ) : error || !data?.success ? (
+      ) : error || !data?.npcs ? (
         <Typography>Looks like your world is still a bit quiet. Create an NPC to populate your story — every bustling market or haunted forest needs someone to talk to (or run from).</Typography>
       ) : (
         <FilteredGridView

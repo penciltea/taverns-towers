@@ -25,7 +25,7 @@ export default function AssignNpcDialog({
   const { data, isLoading, error } = useOwnedNpcsQuery(DefaultNpcQueryParams);
 
   if (isLoading) return <Spinner />;
-  if (error || !data?.success) return <Typography>Failed to load NPCs.</Typography>;
+  if (error || !data?.npcs) return <Typography>Failed to load NPCs.</Typography>;
 
   return (
     <EntityLinkDialog<Npc>

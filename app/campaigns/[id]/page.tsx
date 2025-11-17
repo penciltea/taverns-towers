@@ -1,13 +1,12 @@
 import ViewCampaign from "@/components/Campaign/View/ViewCampaign";
 import { AppError } from "@/lib/errors/app-error";
-import { getCampaignById } from "@/lib/actions/campaign.actions";
-import { Typography } from "@mui/material";
-
+import Typography from '@mui/material/Typography';
 
 export default async function ViewCampaignPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   try {
+    const { getCampaignById } = await import('@/lib/actions/campaign.actions');
     const result = await getCampaignById(id);
 
     if (result.success) {

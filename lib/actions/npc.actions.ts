@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import NpcModel from "../models/npc.model";
-import { Npc } from "@/interfaces/npc.interface";
+import { Npc, NpcResponse } from "@/interfaces/npc.interface";
 import { NpcFormData } from "@/schemas/npc.schema";
 import Settlement from "../models/settlement.model";
 import Site from "../models/site.model";
@@ -13,6 +13,10 @@ import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeNpc } from "../util/serializers";
 import { canEdit } from "../auth/authPermissions";
 import { getCampaignPermissions } from "./campaign.actions";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { safeServerAction } from "./safeServerAction.actions";
+import { AppError } from "../errors/app-error";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 
 export async function getNpcs({
@@ -39,147 +43,158 @@ export async function getNpcs({
   alignment?: string;
   status?: string;
   pronouns?: string;
-}) {
-  await connectToDatabase();
+}): Promise<ActionResult<NpcResponse>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
 
-  const query: Record<string, unknown> = {};
+    const query: Record<string, unknown> = {};
 
-  if (campaignId) {
-    query.campaignId = campaignId; // include ALL NPCs in this campaign
-  } else {
-    query.campaignId = { $in: [null, undefined] };
+    if (campaignId) {
+      query.campaignId = campaignId; // include ALL NPCs in this campaign
+    } else {
+      query.campaignId = { $in: [null, undefined] };
 
-    if (userId) {
-      query.userId = userId; // fallback to personal NPCs
+      if (userId) {
+        query.userId = userId; // fallback to personal NPCs
+      }
     }
-  }
 
-  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+    if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
-  if (search) query.name = { $regex: new RegExp(search, 'i') };
-  if (race) query.race = race;
-  if (age) query.age = age;
-  if (alignment) query.alignment = alignment;
-  if (status) query.status = status;
-  if (pronouns) query.pronouns = pronouns;
+    if (search) query.name = { $regex: new RegExp(search, 'i') };
+    if (race) query.race = race;
+    if (age) query.age = age;
+    if (alignment) query.alignment = alignment;
+    if (status) query.status = status;
+    if (pronouns) query.pronouns = pronouns;
 
-  const total = await NpcModel.countDocuments(query);
-  const npcs = await NpcModel.find(query)
-    .sort({ createdAt: -1 })
-    .skip((page - 1) * limit)
-    .limit(limit)
-    .lean<Npc[]>();
+    const total = await NpcModel.countDocuments(query);
+    const npcs = await NpcModel.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean<Npc[]>();
 
-  const serializedNpcs = npcs.map((npc) => ({
-    ...npc,
-    _id: npc._id.toString(),
-    userId: npc.userId.toString(),
-    campaignId: npc.campaignId !== null && npc.campaignId ? npc.campaignId.toString() : "",
-    connections: npc.connections.map((conn) => ({
-      ...conn,
-      id: conn.id.toString(),
-    })),
-  }));
+    const serializedNpcs = npcs.map((npc) => ({
+      ...npc,
+      _id: npc._id.toString(),
+      userId: npc.userId.toString(),
+      campaignId: npc.campaignId ? npc.campaignId.toString() : "",
+      connections: npc.connections.map((conn) => ({
+        ...conn,
+        id: conn.id.toString(),
+      })),
+    }));
 
-  return {
-    success: true,
-    npcs: serializedNpcs,
-    total,
-    currentPage: page,
-    totalPages: Math.ceil(total / limit),
-  };
+    return {
+      npcs: serializedNpcs,
+      total,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+    };
+  })
 }
 
 
 
 export async function getOwnedNpcs(
   options: Omit<Parameters<typeof getNpcs>[0], 'userId'>
-) {
-  const user = await requireUser();
-  return getNpcs({ ...options, userId: user.id });
+): Promise<ActionResult<NpcResponse>> {
+   const user = await requireUser();
+    return getNpcs({ ...options, userId: user.id });
 }
 
 export async function getCampaignNpcs(
   options: Omit<Parameters<typeof getNpcs>[0], 'userId'>,
   campaignId: string
-) {
-  return getNpcs({...options, campaignId})
+): Promise<ActionResult<NpcResponse>> {
+  return getNpcs({ ...options, campaignId });
 }
 
 
 
 export async function getPublicNpcs(
   options: Omit<Parameters<typeof getNpcs>[0], 'isPublic'>
-) {
+): Promise<ActionResult<NpcResponse>> {
   return getNpcs({ ...options, isPublic: true });
 }
 
 
 
 
-export async function getNpcById(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+export async function getNpcById(id: string): Promise<ActionResult<Npc>> {
+  return safeServerAction( async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
 
-  const npc = await NpcModel.findById(id);
-  if (!npc) throw new Error("NPC not found");
+    const npc = await NpcModel.findById(id);
+    if (!npc) throw new Error("NPC not found");
 
-  return serializeNpc(npc);
-}
+    return serializeNpc(npc);
+  }
+)}
 
-export async function resolveConnectionNames(connections: Npc['connections']) {
-  const results = await Promise.all(
-    connections.map(async (conn) => {
-      try {
+
+
+export async function resolveConnectionNames(
+  connections: Npc['connections'] = []
+): Promise<ActionResult<(typeof connections[number] & { name: string; siteType?: string; npcData?: Npc })[]>> {
+  return safeServerAction(async () => {
+    const results = await Promise.all(
+      connections.map(async (conn) => {
         let name = '';
-        switch (conn.type) {
-          case 'settlement': {
-            const doc = await Settlement.findById(conn.id).select('name');
-            name = doc?.name || '[Unknown Settlement]';
-            break;
-          }
-          case 'site': {
-            const doc = await Site.findById(conn.id);
-            if(doc){
-              return {...conn, name: doc.name, siteType: doc.type}
-            } else {
-              name = '[Unknown Site]';
+
+        try {
+          switch (conn.type) {
+            case 'settlement': {
+              const doc = await Settlement.findById(conn.id).select('name');
+              name = doc?.name ?? '[Unknown Settlement]';
+              break;
             }
-            
-            break;
-          }
-          case 'npc': {
-            const doc = await NpcModel.findById(conn.id);
-            if (doc) {
+            case 'site': {
+              const doc = await Site.findById(conn.id);
+              if (doc) {
+                return { ...conn, name: doc.name, siteType: doc.type };
+              } else {
+                name = '[Unknown Site]';
+              }
+              break;
+            }
+            case 'npc': {
+              const doc = await NpcModel.findById(conn.id);
+              if (doc) {
                 const serialized = serializeNpc(doc);
                 return { ...conn, name: serialized.name, npcData: serialized };
-            } else {
+              } else {
                 name = '[Unknown NPC]';
+              }
+              break;
             }
-            break;
+            default:
+              name = '[Unknown Type]';
           }
-          default:
-            name = '[Unknown Type]';
+        } catch (error) {
+          console.error(`Error resolving connection ${conn.type} (${conn.id}):`, error);
+          name = '[Error Resolving Name]';
         }
-        return { ...conn, name };
-      } catch (error) {
-        console.error(`Error resolving connection ${conn.type} (${conn.id}):`, error);
-        return { ...conn, name: '[Error Resolving Name]' };
-      }
-    })
-  );
 
-  return results;
+        return { ...conn, name };
+      })
+    );
+
+    return results;
+  });
 }
 
 
 
-export async function createNpc(data: NpcFormData): Promise<Npc> {
+export async function createNpc(data: NpcFormData): Promise<ActionResult<Npc>> {
+  return safeServerAction(async () => {
     await connectToDatabase();
     const user = await requireUser();
 
     if (!data.idempotencyKey) {
-        throw new Error("Missing idempotency key for idempotent creation");
+        throw new AppError("Missing idempotency key for idempotent creation", 400);
     }
 
     // Check if an NPC with this key already exists
@@ -200,97 +215,119 @@ export async function createNpc(data: NpcFormData): Promise<Npc> {
     revalidatePath("/npcs");
 
     return serializeNpc(newNpc);
+  })
 }
 
 
 
 
-export async function updateNpc(id: string, data: Partial<Npc>, campaignId?: string) {
-  await connectToDatabase();
+export async function updateNpc(id: string, data: Partial<Npc>, campaignId?: string): Promise<ActionResult<Npc>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
 
-  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid NPC ID", 400);
 
-  const user = await requireUser();
-  const existing = await NpcModel.findById(id);
+    const user = await requireUser();
+    const existing = await NpcModel.findById(id);
 
-  if (!existing) throw new Error("NPC not found");
-  
-  if(campaignId){
-    const campaignPermissions = await getCampaignPermissions(campaignId);
+    if (!existing) throw new AppError("NPC not found", 404);
+    
+    if (campaignId) {
+      // unwrap the ActionResult
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(campaignId)
+      );
 
-    if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
-      throw new Error("Unauthorized");
+      if (
+        !canEdit(
+          user.id,
+          { userId: data.userId ?? "" },
+          campaignPermissions
+        )
+      ) {
+        throw new AppError("Unauthorized", 403);
+      }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
     }
-  } else if (existing.userId.toString() !== user.id) {
-    throw new Error("Unauthorized");
-  }
 
-  // Normalize connection ids
-  const normalizedConnections = normalizeConnections(data.connections);
+    // Normalize connection ids
+    const normalizedConnections = normalizeConnections(data.connections);
 
-  const updatedNpc = await NpcModel.findByIdAndUpdate(
-    id,
-    {
-        ...data,
-        connections: normalizedConnections,
-    },
-    { new: true }
-  );
+    const updatedNpc = await NpcModel.findByIdAndUpdate(
+      id,
+      {
+          ...data,
+          connections: normalizedConnections,
+      },
+      { new: true }
+    );
 
-  if (!updatedNpc) throw new Error("NPC not found");
+    if (!updatedNpc) throw new AppError("NPC not found", 404);
 
-  revalidatePath("/npcs");
-  return serializeNpc(updatedNpc);
+    revalidatePath("/npcs");
+    return serializeNpc(updatedNpc);
+  })
 }
 
 
 export async function updateNpcPartial(
   id: string,
   update: Partial<NpcFormData>
-): Promise<Npc> {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+): Promise<ActionResult<Npc>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid NPC ID", 404);
 
-  const user = await requireUser();
-  const existing = await NpcModel.findById(id);
+    const user = await requireUser();
+    const existing = await NpcModel.findById(id);
 
-  if (!existing) throw new Error("NPC not found");
+    if (!existing) throw new AppError("NPC not found", 404);
 
-  if(existing.campaignId){
-    const campaignPermissions = await getCampaignPermissions(existing.campaignId);
-    if(!campaignPermissions || !campaignPermissions.isOwner) throw new Error("Unauthorized");
+    if (existing.campaignId) {
+      // unwrap the ActionResult
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(existing.campaignId)
+      );
 
-  } else if (existing.userId.toString() !== user.id) {
-    throw new Error("Unauthorized");
-  }
+      if (!campaignPermissions.isOwner) {
+        throw new AppError("Unauthorized", 403);
+      }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
 
-  // Only normalize connections if provided
-  const updatedData = {
-    ...update,
-    connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
-  };
+    // Only normalize connections if provided
+    const updatedData = {
+      ...update,
+      connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
+    };
 
-  const updatedNpc = await NpcModel.findByIdAndUpdate(id, updatedData, { new: true });
-  if (!updatedNpc) throw new Error("NPC not found");
+    const updatedNpc = await NpcModel.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!updatedNpc) throw new AppError("NPC not found", 404);
 
-  revalidatePath("/npcs");
-  return serializeNpc(updatedNpc);
+    revalidatePath("/npcs");
+    return serializeNpc(updatedNpc);
+  })
 }
+  
 
 
-export async function deleteNpc(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+export async function deleteNpc(id: string): Promise<ActionResult<{ message: string, status: number }>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid NPC ID", 404);
 
-  const user = await requireUser();
-  const existing = await NpcModel.findById(id);
+    const user = await requireUser();
+    const existing = await NpcModel.findById(id);
 
-  if(!existing) throw new Error("NPC not found");
-  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+    if(!existing) throw new AppError("NPC not found", 404);
+    if(existing.userId.toString() !== user.id) throw new AppError("Unauthorized", 404);
 
-  const deletedNpc = await NpcModel.findByIdAndDelete(id);
-  if (!deletedNpc) throw new Error("NPC not found");
+    const deletedNpc = await NpcModel.findByIdAndDelete(id);
+    if (!deletedNpc) throw new AppError("NPC not found", 404);
 
-  revalidatePath("/npcs");
-  return { message: "NPC deleted successfully" };
+    revalidatePath("/npcs");
+    return { message: "NPC deleted successfully", status: 200 };
+  })
 }

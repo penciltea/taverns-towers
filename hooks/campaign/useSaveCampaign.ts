@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { CampaignFormData } from "@/schemas/campaign.schema";
 import { isUserVerified } from "@/lib/util/isUserVerified";
+import { AppError } from "@/lib/errors/app-error";
+import { handleActionResult } from "../queryHook.util";
 
 export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
     const router = useRouter();
@@ -36,21 +38,23 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 idempotencyKey,
             };
 
-            let saved;
+            let saved;            
             
             if (mode === "add") {
                 const { createCampaign } = await import('@/lib/actions/campaign.actions');
-                saved = await createCampaign(transformed);
+                const result = await createCampaign(transformed);
+                saved = handleActionResult(result);
             } else if (mode === "edit") {
             if (!campaignId) throw new Error("NPC ID is required for edit mode");
                 const { updateCampaign } = await import('@/lib/actions/campaign.actions');
-                saved = await updateCampaign(campaignId, transformed);
+                const result = await updateCampaign(campaignId, transformed);
+                saved = handleActionResult(result);
             } else {
                 throw new Error("Invalid mutation mode");
             }
 
             if (!saved || !saved._id) {
-                throw new Error("There was a problem saving the campaign, please try again later!");
+                throw new AppError("There was a problem saving the campaign, please try again later!");
             }
 
             showSnackbar(

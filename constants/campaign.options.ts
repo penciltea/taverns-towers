@@ -2,6 +2,18 @@ export const CAMPAIGN_TABS = ["Basics", "Configuration"]
 
 export const GENRES = [
   {
+    label: "Basic",
+    options: [
+      { label: "Fantasy", value: "Fantasy" },
+      { label: "Science Fiction", value: "Science Fiction" },
+      { label: "Horror", value: "Horror" },
+      { label: "Adventure", value: "Adventure" },
+      { label: "Historical", value: "Historical" },
+      { label: "Magical / Supernatural", value: "Magical / Supernatural" },
+      { label: "Comedy / Lighthearted", value: "Comedy / Lighthearted" },
+    ],
+  },
+  {
     label: "Classic Fantasy",
     options: [
       { label: "High Fantasy", value: "High Fantasy" },

@@ -44,7 +44,7 @@ export default function CampaignsPage(){
         <AuthGate fallbackText="You must be logged in to view your campaigns." hasAccess={canAccessCampaigns}>
             {(!params || isLoading) ? (
                 <Spinner />
-            ) : error || !data?.success ? (
+            ) : error || !data?.campaigns ? (
                 <Typography>It seems your adventures haven&apos;t begun just yet. Create a campaign to start weaving your tales; every grand story needs a world to call its own.</Typography>
             ) : (
                 <FilteredGridView

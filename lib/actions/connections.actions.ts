@@ -5,8 +5,10 @@ import NpcModel from "@/lib/models/npc.model";
 import SiteModel from "@/lib/models/site.model";
 import SettlementModel from "@/lib/models/settlement.model";
 import { NPC_ROLE_PAIRS } from "@/constants/npc.options";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { AppError } from "../errors/app-error";
+import { safeServerAction } from "./safeServerAction.actions";
 
-// You could extend this with more as needed
 const MODEL_MAP = {
   npc: NpcModel,
   site: SiteModel,
@@ -21,66 +23,80 @@ interface AddConnectionInput {
   role: string;                         // e.g. "leader"
 }
 
-export async function addConnection({
-  sourceType,
-  sourceId,
-  targetType,
-  targetId,
-  role,
-}: AddConnectionInput) {
+
+export async function addConnection(
+  input: AddConnectionInput
+): Promise<ActionResult<{ sourceId: string; targetId: string; sourceType: string; targetType: string; role: string; targetRole: string }>> {
+  return safeServerAction(async () => {
     await connectToDatabase();
 
+    const { sourceType, sourceId, targetType, targetId, role } = input;
     const TargetModel = MODEL_MAP[targetType];
 
     if (!TargetModel) {
-        throw new Error(`Unsupported connection type: ${sourceType} or ${targetType}`);
+      throw new AppError(`Unsupported connection type: ${sourceType} or ${targetType}`, 400);
     }
 
     const reciprocalRole = NPC_ROLE_PAIRS[role] ?? role;
 
-    // Remove any existing connection for this source
+    // Remove any existing connection
     await TargetModel.findByIdAndUpdate(targetId, {
-        $pull: { connections: { type: sourceType, id: sourceId } },
+      $pull: { connections: { type: sourceType, id: sourceId } },
     });
 
-    // Add new connection with the updated role
+    // Add new connection with updated role
     await TargetModel.findByIdAndUpdate(targetId, {
-        $push: { connections: { type: sourceType, id: sourceId, role: reciprocalRole } },
+      $push: { connections: { type: sourceType, id: sourceId, role: reciprocalRole } },
     });
 
-    return { sourceId, targetId, sourceType, targetType, role, targetRole: reciprocalRole };
+    return {
+      sourceId, 
+      targetId, 
+      sourceType, 
+      targetType,
+      role, 
+      targetRole: reciprocalRole
+    }
+  })
 }
 
 
-export async function deleteConnection({
-  sourceType,
-  sourceId,
-  targetType,
-  targetId,
-}: AddConnectionInput) {
-  await connectToDatabase();
 
-  const TargetModel = MODEL_MAP[targetType];
+export async function deleteConnection(
+  input: AddConnectionInput
+): Promise<ActionResult<{ sourceId: string; targetId: string; sourceType: string; targetType: string }>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
 
-  if (!TargetModel) {
-    throw new Error(`Unsupported connection type: ${sourceType} or ${targetType}`);
-  }
+    const { sourceType, sourceId, targetType, targetId } = input;
+    const TargetModel = MODEL_MAP[targetType];
 
-  if (!sourceId || !targetId) {
-    throw new Error("Invalid source or target ID for connection deletion");
-  }
+    if (!TargetModel) {
+      throw new AppError(`Unsupported connection type: ${sourceType} or ${targetType}`, 400);
+    }
 
-  const updatedDoc = await TargetModel.findByIdAndUpdate(
-    targetId,
-    { $pull: { connections: { type: sourceType, id: sourceId } } },
-    { new: true }
-  );
+    if (!sourceId || !targetId) {
+      throw new AppError("Invalid source or target ID for connection deletion", 400);
+    }
 
-  if (!updatedDoc) {
-    throw new Error(
-      `Failed to delete connection: ${targetType} with id ${targetId} not found`
+    const updatedDoc = await TargetModel.findByIdAndUpdate(
+      targetId,
+      { $pull: { connections: { type: sourceType, id: sourceId } } },
+      { new: true }
     );
-  }
 
-  return { sourceId, targetId, sourceType, targetType };
+    if (!updatedDoc) {
+      throw new AppError(
+        `Failed to delete connection: ${targetType} with id ${targetId} not found`,
+        404
+      );
+    }
+
+    return {
+      sourceId, 
+      targetId, 
+      sourceType, 
+      targetType
+    };
+  })
 }
