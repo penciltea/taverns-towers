@@ -6,6 +6,7 @@ import { useUIStore } from "@/store/uiStore";
 import FormTextField from "@/components/Form/FormTextField";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { ResendVerificationSchema, resendVerificationSchema } from "@/schemas/user.schema";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 export default function ResendVerificationPage() {
     const { showSnackbar } = useUIStore();
@@ -35,7 +36,8 @@ export default function ResendVerificationPage() {
             if( userId && userId !== null){
 
                 const { generateAndSendVerificationEmail } = await import("@/lib/actions/verification.actions")
-                const result = await generateAndSendVerificationEmail(userId);
+                const response = await generateAndSendVerificationEmail(userId);
+                const result = handleActionResult(response);
             
                 if (result.success) {
                     showSnackbar("Verification email sent! Check your inbox.", "success");

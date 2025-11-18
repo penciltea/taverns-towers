@@ -6,7 +6,9 @@ import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/mat
 import NextMuiLink from "../Common/NextMuiLink";
 
 export default function DashboardActivity(){
-    const { data, isLoading, isError } = useRecentActivityQuery(5);
+    const { data: activityResult, isLoading, isError } = useRecentActivityQuery(5);
+
+    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
 
     function handleNavigation(item: RecentItem) {
         switch (item.type) {
@@ -29,35 +31,33 @@ export default function DashboardActivity(){
             {!isLoading && !isError && (
                 <>
                     <Typography variant="body2" color="text.secondary">Below are your most recent works. Tap or click an item to resume crafting!</Typography>
-                    {data && data.length > 0 ? (
+                    {items.length > 0 ? (
                         <List>
-                            {data.map((item) => (
-                                <Box key={item._id}>
-                                    <ListItem
-                                        component={NextMuiLink}
-                                        href={handleNavigation(item)}
-                                        sx={{
-                                            cursor: "pointer",
-                                            textDecoration: "none",
-                                            color: "inherit",
-                                            "&:hover": { backgroundColor: "action.hover" },
-                                        }}
-                                    >
-                                        <ListItemText
-                                            primary={item.name}
-                                            secondary={item.type}
-                                            slotProps={{
-                                                primary: { color: 'info.main', fontWeight: "bold" },
-                                                secondary: {
-                                                    textTransform:
-                                                        item.type.toLowerCase() === "npc"
-                                                            ? "uppercase"
-                                                            : "capitalize",
-                                                },
-                                            }}
-                                        />
-                                    </ListItem>
-                                    <Divider />
+                            {items.map((item: RecentItem) => (
+                                <Box key={`${item.type}-${item._id}`}>
+                                <ListItem
+                                    component={NextMuiLink}
+                                    href={handleNavigation(item)}
+                                    sx={{
+                                    cursor: "pointer",
+                                    textDecoration: "none",
+                                    color: "inherit",
+                                    "&:hover": { backgroundColor: "action.hover" },
+                                    }}
+                                >
+                                    <ListItemText
+                                    primary={item.name}
+                                    secondary={item.type}
+                                    slotProps={{
+                                        primary: { color: "info.main", fontWeight: "bold" },
+                                        secondary: {
+                                        textTransform:
+                                            item.type === "npc" ? "uppercase" : "capitalize",
+                                        },
+                                    }}
+                                    />
+                                </ListItem>
+                                <Divider />
                                 </Box>
                             ))}
                         </List>

@@ -136,7 +136,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
       let message = "Something went wrong saving the site. Please try again later.";
       if (error instanceof Error) message = error.message;
       showErrorDialog(message);
-      console.error("Site mutation error:", error);
+      // console.error("Site mutation error:", error);
     } finally {
       setSubmitting(false);
     }
@@ -171,13 +171,19 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
 
     settlementQueries.forEach((query) => {
       queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
-        if (!old?.sites) return old;
-        const updated = {
-          ...old,
-          sites: old.sites.map((s) => (s._id === update._id ? { ...s, ...update } : s)),
-        };
+        if (!old) return old;
 
-        return updated;
+        const data = handleActionResult(old);
+
+        return {
+          success: true,
+          data: {
+            ...data,
+            sites: data.sites.map((s) =>
+              s._id === update._id ? { ...s, ...update } : s
+            )
+          }
+        };
       });
     });
 
@@ -187,27 +193,33 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
     });
 
     try {
-      const updatedSite = await updateSitePartial(update._id, payload);
+      const result = await updateSitePartial(update._id, payload);
+      const updatedSite = handleActionResult(result);
+
       // Apply server response to caches
       settlementQueries.forEach((query) => {
         queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
-          if (!old?.sites) return old;
-          const updated = {
-            ...old,
-            sites: old.sites.map((s) => (s._id === updatedSite._id ? updatedSite : s)),
+          if (!old) return old;
+
+          const data = handleActionResult(old);
+          return {
+            success: true,
+            data: {
+              ...data,
+              sites: data.sites.map((s) =>
+                s._id === update._id ? { ...s, ...update } : s
+              )
+            }
           };
-          //console.log("Updated data after server response:", query.queryKey, updated);
-          return updated;
         });
       });
 
       queryClient.setQueryData<SiteData>(["site", updatedSite._id], {
         success: true,
-        site: updatedSite,
+        data: updatedSite,
       });
     } catch (error) {
-      console.error("Failed to update site:", error);
-      throw error;
+      throw new AppError(`There was a problem updating the site: ${error}`, 500);
     }
   }
 

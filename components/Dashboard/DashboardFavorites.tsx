@@ -1,9 +1,12 @@
 import { useGetFavorites } from "@/hooks/user/user.query"
 import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import NextMuiLink from "../Common/NextMuiLink";
+import { RecentItem } from "@/interfaces/user.interface";
 
 export default function DashboardFavorites(){
-    const { data, isLoading, isError } = useGetFavorites();
+    const { data: activityResult, isLoading, isError } = useGetFavorites();
+
+    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
 
     return (
         <Box>
@@ -13,9 +16,9 @@ export default function DashboardFavorites(){
             {!isLoading && !isError && (
                 <>
                     <Typography variant="body2" color="text.secondary">Below are your favorite items. Tap or click an item to view them!</Typography>               
-                    {data && data.length > 0 ? (
+                    {items.length > 0 ? (
                         <List>
-                            {data.map((item) => (
+                            {items.map((item) => (
                                 <Box key={item._id}>
                                     <ListItem
                                         component={NextMuiLink}

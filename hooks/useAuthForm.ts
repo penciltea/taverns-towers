@@ -5,6 +5,7 @@ import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
 import { signIn } from "next-auth/react";
 import { prefetchUserData } from "@/lib/util/userData.prefetch";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
+import { handleActionResult } from "./queryHook.util";
 
 type AuthFormType = "login" | "register";
 
@@ -51,7 +52,8 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
           idempotencyKey
         }
         
-        const result = await registerUser(transformed as RegisterPayload);
+        const response = await registerUser(transformed as RegisterPayload);
+        const result = handleActionResult(response);
         finalRedirect ??= "/verify-your-email";
 
         if (result.success) {

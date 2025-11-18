@@ -7,6 +7,7 @@ import { userTier } from "@/constants/user.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
 import { PatreonIdentityResponse, PatreonMember, PatreonTier } from "@/interfaces/patreon.interface";
 import { Adapter } from "next-auth/adapters";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 
 const adapter: Adapter = MongoDBAdapter(clientPromise!) as Adapter;
@@ -25,10 +26,12 @@ export const authOptions: AuthOptions = {
         if (!credentials?.credential || !credentials?.password) return null;
 
         const { loginUser } = await import("@/lib/actions/user.actions");
-        const result = await loginUser({
+        const response = await loginUser({
           credential: credentials.credential,
           password: credentials.password,
         });
+        
+        const result = handleActionResult(response);
 
         if (!result.success || !result.user) return null;
 

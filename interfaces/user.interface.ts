@@ -1,3 +1,7 @@
+import { Npc } from "./npc.interface";
+import { Settlement } from "./settlement.interface";
+import { BaseSite } from "./site.interface";
+
 export interface UserInterface {
   id: string;
   email?: string;
@@ -68,3 +72,10 @@ export type RecentItem = {
   type: string;
   [key: string]: any;
 };
+
+
+export type ActivityNpc = Npc & { type: "npc" };
+export type ActivitySettlement = Settlement & { type: "settlement" };
+export type ActivitySite = BaseSite & { type: "site" };
+
+export type RecentItemList = ActivityNpc | ActivitySettlement | ActivitySite;

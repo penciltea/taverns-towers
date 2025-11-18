@@ -100,7 +100,7 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
   });
 
   // Always define site for later use; may be undefined during loading
-  const site = data?.site;
+  const site = data;
   const siteType = site?.type as keyof typeof SiteTypeComponents | undefined;
 
   if (!site || !siteType) return null;

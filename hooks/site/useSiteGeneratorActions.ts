@@ -16,6 +16,7 @@ import { UseFormReturn } from "react-hook-form";
 import { SiteFormData } from "@/schemas/site.schema";
 import { siteTypeHasMenuType } from "@/lib/util/siteHelpers";
 import { shouldReplace } from "@/lib/util/randomValues";
+import { handleActionResult } from "../queryHook.util";
 
 type GeneratorContext = {
   siteType: SiteFormData["type"];
@@ -139,7 +140,7 @@ export function useSiteGeneratorActions(
 
       const { generateSiteName } = await import('@/lib/actions/siteGenerator.actions');
 
-      const name = await generateSiteName({
+      const result = await generateSiteName({
         siteType: [siteType],
         siteSize: formData.size,
         siteCondition: formData.condition,
@@ -153,6 +154,8 @@ export function useSiteGeneratorActions(
         climate: env.climate,
         tags: env.tags,
       });
+
+      const name = handleActionResult(result);
 
       if (siteType !== "guild") {
         setValue("name", name);

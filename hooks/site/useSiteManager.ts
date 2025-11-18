@@ -7,6 +7,7 @@ import { useSiteContentStore } from "@/store/siteStore";
 import { useUIStore } from "@/store/uiStore";
 import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import { SiteType } from "@/interfaces/site.interface";
+import { handleActionResult } from "../queryHook.util";
 
 export function useSiteManager(settlementId: string | null) {
   const isWilderness = settlementId === "wilderness";
@@ -23,7 +24,8 @@ export function useSiteManager(settlementId: string | null) {
   async function addSite(newSite: SiteType) {
     try {
       const { createSite } = await import('@/lib/actions/site.actions');
-      const saved = await createSite(newSite, isWilderness ? "wilderness" : settlementId!);
+      const result = await createSite(newSite, isWilderness ? "wilderness" : settlementId!);
+      const saved = handleActionResult(result);
       setItems([...allItems, saved]);
 
       if (!isWilderness) {

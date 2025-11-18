@@ -18,6 +18,7 @@ import { mapSiteToForm } from "@/lib/util/siteHelpers";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { useHandleDeletedConnections } from "@/hooks/connection/useHandleDeletedConnections";
 import { useUIStore } from "@/store/uiStore";
+import { Typography } from "@mui/material";
 
 export default function EditSitePage() {
   const { id, locId } = useParams();
@@ -51,12 +52,12 @@ export default function EditSitePage() {
   useEffect(() => {
     if (isLoading) return;
 
-    if (site?.success && site.data) {
-      setSelectedItem(site.data);
-      setInitialConnections(site.data.connections);
+    if (site) {
+      setSelectedItem(site);
+      setInitialConnections(site.connections);
 
       methods.reset({
-        ...(mapSiteToForm(site.data) as SiteFormData)
+        ...(mapSiteToForm(site) as SiteFormData)
       });
       
     } else if (safeId && !isLoading) {
@@ -83,11 +84,11 @@ export default function EditSitePage() {
   };
   
   if (!safeId) {
-    return <div className="error-message">Invalid site ID.</div>;
+    showErrorDialog("Invalid site ID");
   }
 
-  if (isLoading) return <p>Loading site...</p>;
-  if (isError || !site) return <p>Site not found or failed to load.</p>;
+  if (isLoading) return <Typography variant="body1" component="p">Loading site...</Typography>;
+  if (isError || !site) return <Typography variant="body1" component="p">Site not found or failed to load.</Typography>;
 
   return (
     <SkeletonLoader loading={isLoading} skeleton={<Spinner />}>
