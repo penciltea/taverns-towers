@@ -14,7 +14,7 @@ export default function Roadmap(){
 
             <Typography variant="h5" gutterBottom>Version 3.0: Open Beta launch</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -22,7 +22,7 @@ export default function Roadmap(){
                         secondary={<span> Settlements, Sites, and NPCs are more polished.</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -35,7 +35,7 @@ export default function Roadmap(){
 
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.1</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -43,7 +43,7 @@ export default function Roadmap(){
                         secondary={<span> &quot;Copy&quot; and &quot;Move to...&quot; functionality for content</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -51,7 +51,7 @@ export default function Roadmap(){
                         secondary={<span> Artisans & Architects will be able to export their data. We're starting with JSON data and will be rolling out support for PDFs, VTT formats, and more!</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-3">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -59,7 +59,7 @@ export default function Roadmap(){
                         secondary={<span> We&apos;ll be steadily rolling out updates to generator logic to include Description fields</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-4">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -72,7 +72,7 @@ export default function Roadmap(){
 
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.3</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -80,7 +80,7 @@ export default function Roadmap(){
                         secondary={<span> From local street thugs to settlement-spanning merchant guilds, we&apos;ll be adding support for guilds and factions!</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -93,7 +93,7 @@ export default function Roadmap(){
 
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.4</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -101,7 +101,7 @@ export default function Roadmap(){
                         secondary={<span> During settlement creation, Artisans & Architects will be able to opt in to creating sites, following generator logic to create sites that make sense. After all, a port town needs at least a dock and a tavern!</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
@@ -112,7 +112,7 @@ export default function Roadmap(){
 
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.4</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding>
+                <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
