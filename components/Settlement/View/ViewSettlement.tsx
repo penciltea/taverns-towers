@@ -9,7 +9,7 @@ import SiteList from "@/components/Settlement/View/SiteList";
 import FabButton from "@/components/Common/Button/fabButton";
 import SettlementConnections from "./SettlementConnections";
 import { useSession } from "next-auth/react";
-import { canEdit, canDelete } from "@/lib/auth/authPermissions";
+import { canEdit, canDelete, canCreate } from "@/lib/auth/authPermissions";
 import EntityViewLayout from "@/components/Layout/EntityView/EntityViewLayout";
 import EntityViewImage from "@/components/Layout/EntityView/EntityViewImage";
 import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
@@ -32,7 +32,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
   
   const user = session?.user ? { id: session.user.id } : null;
   
-  const creatable = canEdit(user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined);
+  const creatable = (selectedCampaign && canCreate(campaignPermissions ?? undefined)) || (user?.id === settlement.userId);
   const canFavorite = user?.id === settlement.userId;
   const editable = canEdit( user?.id, { userId: settlement.userId }, campaignPermissions ?? undefined );
   const deletable = canDelete( user?.id, { userId: settlement.userId} );
@@ -59,6 +59,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
       console.error("Failed to delete settlement:", err);
     }
   };
+
 
   return (
     <EntityViewLayout

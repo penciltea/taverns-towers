@@ -33,6 +33,12 @@ const SettlementFormConnections = dynamic(() => import("./Connections"), {
   loading: () => <Spinner />,
 });
 
+const SettlementFormConfiguration = dynamic(() => import("./Configuration"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+
 
 type SettlementFormProps = {
   onSubmit: (data: SettlementFormData) => void;
@@ -183,6 +189,9 @@ export default function SettlementForm({ onSubmit, mode, onGenerate, onReroll }:
           </TabPanel>
           <TabPanel value={tab} index={3}>
             { tab === 3 && <SettlementFormConnections /> }
+          </TabPanel>
+          <TabPanel value={tab} index={4}>
+            { tab === 4 && <SettlementFormConfiguration /> }
           </TabPanel>
 
           <FormActions mode={mode} entityName="Settlement" isSubmitting={isSubmitting} onCancel={handleCancel} />

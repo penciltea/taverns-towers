@@ -10,7 +10,7 @@ import { isUserVerified } from "@/lib/util/isUserVerified";
 import { AppError } from "@/lib/errors/app-error";
 import { handleActionResult } from "../queryHook.util";
 
-export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
+export function useSaveCampaign({ mode, campaignId}: {mode: "add" | "edit", campaignId?: string}) {
     const router = useRouter();
     const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
@@ -19,6 +19,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
 
     async function handleSubmit(data: CampaignFormData) {
         setSubmitting(true);
+        console.log("data: ", data);
         try {
             if (!user?.id) throw new AppError("User is not logged in", 400);
 
@@ -26,15 +27,11 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
                 return;
             }
-            
 
             const idempotencyKey = generateIdempotencyKey();
 
-            const { transformCampaignFormData } = await import('@/lib/actions/campaign.actions')
-            const transformedData = await transformCampaignFormData(data);
-
             const transformed = {
-                ...transformedData,
+                ...data,
                 idempotencyKey,
             };
 
@@ -45,7 +42,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 const result = await createCampaign(transformed);
                 saved = handleActionResult(result);
             } else if (mode === "edit") {
-            if (!campaignId) throw new AppError("NPC ID is required for edit mode", 400);
+                if (!campaignId) throw new AppError("NPC ID is required for edit mode", 400);
                 const { updateCampaign } = await import('@/lib/actions/campaign.actions');
                 const result = await updateCampaign(campaignId, transformed);
                 saved = handleActionResult(result);
@@ -91,7 +88,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
             }
 
             showErrorDialog(message);
-            console.error("campaign mutation error:", error);
+            console.error(error);
         } finally {
             setSubmitting(false);
         }

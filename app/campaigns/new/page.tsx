@@ -17,7 +17,7 @@ export default function NewCampaignsPage(){
     const { canAccessCampaigns } = useCampaignAccess();
     const mode = "add";
 
-    const { handleSubmit: onSubmit } = useSaveCampaign("add");
+    const { handleSubmit: onSubmit } = useSaveCampaign({ mode: "add" });
 
     const wrappedOnSubmit = async (data: CampaignFormData) => {
         console.log("form submit: ", data);

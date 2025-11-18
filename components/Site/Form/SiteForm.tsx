@@ -27,6 +27,11 @@ const SiteFormConnections = dynamic(() => import("./Connections"), {
   loading: () => <Spinner />,
 });
 
+const SiteFormConfiguration = dynamic(() => import("./Configuration"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
 type SiteFormProps = {
   onSubmit: (data: SiteFormData) => void;
   mode: "add" | "edit" | null;
@@ -177,6 +182,9 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
           </TabPanel>
           <TabPanel value={tab} index={1}>
             { tab === 1 && <SiteFormConnections mode={mode} /> }
+          </TabPanel>
+          <TabPanel value={tab} index={2}>
+            { tab === 2 && <SiteFormConfiguration mode={mode} /> }
           </TabPanel>
 
           <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />

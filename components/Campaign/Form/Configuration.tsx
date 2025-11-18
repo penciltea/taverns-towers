@@ -1,5 +1,6 @@
 import { FormChipSelect } from "@/components/Form";
 import FormCheckboxField from "@/components/Form/FormCheckbox";
+import FormChipInput from "@/components/Form/FormChipInput";
 import { DOMAINS } from "@/constants/common.options";
 import { NPC_RACES } from "@/constants/npc.options";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
@@ -30,10 +31,17 @@ export default function CampaignFormConfiguration(){
                     />
                 </Box>
                 
-
                 <Box>
                     <FormCheckboxField
                         label="Campaign is publicly shareable"
+                        registration={register("isPublic")}
+                        disabled
+                    />
+                </Box>
+
+                <Box>
+                    <FormCheckboxField
+                        label="Share to RealmFoundry's Collection"
                         registration={register("isPublic")}
                         disabled
                     />

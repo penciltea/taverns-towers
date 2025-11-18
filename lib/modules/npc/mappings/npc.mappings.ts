@@ -1,4 +1,4 @@
-import { NpcAge, NpcArchetype } from "@/constants/npc.options";
+import { NpcAge, NpcAlignment, NpcArchetype } from "@/constants/npc.options";
 
 export const archetypeByAgeMapping: Record<NpcAge, string[]> = {
     "Child": [
@@ -235,3 +235,26 @@ export const occupationByArchetypeMapping: Record<NpcArchetype, string[]> = {
 };
 
 
+export const npcAlignmentMapping = [
+    "Lawful Good",
+    "Lawful Good",
+    "Lawful Good",
+    "Lawful Good",
+    "Lawful Good",
+    "Neutral Good",
+    "Neutral Good",
+    "Neutral Good",
+    "Chaotic Good",
+    "Chaotic Good",
+    "Lawful Neutral",
+    "Lawful Neutral",
+    "Lawful Neutral",
+    "True Neutral",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Chaotic Neutral",
+    "Lawful Evil",
+    "Neutral Evil",
+    "Chaotic Evil",
+    "Unaligned"
+]

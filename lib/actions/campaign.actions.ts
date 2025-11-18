@@ -210,7 +210,7 @@ export async function getCampaignById(id: string): Promise<ActionResult<Campaign
 
 
 
-export async function createCampaign(data: Partial<CampaignForDB>): Promise<ActionResult<CampaignForDB>> {
+export async function createCampaign(data: Partial<CampaignFormData>): Promise<ActionResult<CampaignForDB>> {
   return safeServerAction(async () => {
     await connectToDatabase();
     const user = await requireUser();
@@ -222,6 +222,8 @@ export async function createCampaign(data: Partial<CampaignForDB>): Promise<Acti
     if (!data.idempotencyKey) {
       throw new AppError("Missing idempotency key for idempotent creation", 400);
     }
+
+    console.log("server action: ", data);
   
     // Check if a campaign with this key already exists
     const existing = await CampaignModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
@@ -229,10 +231,10 @@ export async function createCampaign(data: Partial<CampaignForDB>): Promise<Acti
       return serializeCampaign(existing);
     }
 
-      const players = (data.players ?? []).map(player => ({
-          ...player,
-          user: new ObjectId(player.user)
-      }));
+    const players = (data.players ?? []).map(player => ({
+      ...player,
+      user: new ObjectId(player.user)
+    }));
     
     const newCampaign = await CampaignModel.create({
       ...data,
@@ -247,7 +249,7 @@ export async function createCampaign(data: Partial<CampaignForDB>): Promise<Acti
 
 
 
-export async function updateCampaign(id: string, data: Partial<CampaignForDB>): Promise<ActionResult<CampaignForDB>> {
+export async function updateCampaign(id: string, data: Partial<CampaignFormData>): Promise<ActionResult<CampaignForDB>> {
   return safeServerAction(async () => {
     await connectToDatabase();
     const user = await requireUser();

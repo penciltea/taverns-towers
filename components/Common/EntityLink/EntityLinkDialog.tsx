@@ -67,9 +67,9 @@ export default function EntityLinkDialog<T>({
           )}
         />
 
-        <Stack direction="row" spacing={1} mt={2} flexWrap="wrap">
+        <Stack direction="row" spacing={1} mt={2} flexWrap="wrap" useFlexGap>
           {localSelected.map((entity) => (
-            <Chip key={getId(entity)} label={getLabel(entity)} onDelete={() => handleRemove(getId(entity))} />
+            <Chip key={getId(entity)} label={getLabel(entity)} onDelete={() => handleRemove(getId(entity))} sx={{ my: 0.25 }} />
           ))}
         </Stack>
       </DialogContent>

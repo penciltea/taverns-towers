@@ -84,10 +84,10 @@ export default function WildernessPage() {
   }
 
     function handleFabPermissions(){
-        if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
-          return true
-        }
-        return false;
+      if(selectedCampaign && canCreate(campaignPermissions ?? undefined)){
+        return true
+      }
+      return false;
     }
 
     return (

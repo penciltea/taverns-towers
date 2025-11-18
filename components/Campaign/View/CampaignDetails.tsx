@@ -20,8 +20,8 @@ export default function CampaignDetails({ campaign }: { campaign: CampaignForCli
                         <Box key={field.label} component="dl" sx={{ display: "flex", gap: 1, mb: 1, flexWrap: "wrap" }}>
                         <Typography component="dt" fontWeight="bold" minWidth={200}>{ field.label }</Typography>
                         {Array.isArray(field.value) && field.value.length > 0 ? (
-                            <Stack direction="row" spacing={1} component="span" sx={{ flexWrap: "wrap", mt: 0.5 }}>
-                                { field.value.map((value) => <Chip key={value} label={value} size="small" />) }
+                            <Stack direction="row" spacing={1} component="span" useFlexGap sx={{ flexWrap: "wrap", mt: 0.5 }}>
+                                { field.value.map((value) => <Chip key={value} label={value} size="small" sx={{ my: 0.25 }} />) }
                             </Stack>            
                         ) : (
                             <Typography>N/A</Typography>

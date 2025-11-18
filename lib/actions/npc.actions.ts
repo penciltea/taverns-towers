@@ -197,6 +197,8 @@ export async function createNpc(data: NpcFormData): Promise<ActionResult<Npc>> {
         throw new AppError("Missing idempotency key for idempotent creation", 400);
     }
 
+    console.log("data: ", data);
+
     // Check if an NPC with this key already exists
     const existing = await NpcModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
     if (existing) {

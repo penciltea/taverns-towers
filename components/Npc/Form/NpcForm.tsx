@@ -30,6 +30,11 @@ const NpcFormConnections = dynamic(() => import("./Connections"), {
   loading: () => <Spinner />,
 });
 
+const NpcFormConfiguration = dynamic(() => import("./Configuration"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
 type NpcFormProps = {
   onSubmit: (data: NpcFormData) => void;
   mode: "add" | "edit" | null;
@@ -174,6 +179,9 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
         </TabPanel>
         <TabPanel value={tab} index={2}>
           { tab === 2 && <NpcFormConnections /> }
+        </TabPanel>
+        <TabPanel value={tab} index={3}>
+          { tab === 3 && <NpcFormConfiguration /> }
         </TabPanel>
 
         <FormActions mode={mode} entityName="Npc" isSubmitting={isSubmitting} onCancel={handleCancel} />

@@ -27,7 +27,7 @@ export default function EditCampaignsPage(){
     const { canAccessCampaigns } = useCampaignAccess();
 
     
-    const { handleSubmit: onSubmit } = useSaveCampaign("edit", safeId);
+    const { handleSubmit: onSubmit } = useSaveCampaign({ mode:"edit", campaignId: safeId} );
     const { data: campaign, isLoading } = useGetCampaignById(safeId ?? '');
     
     const methods = useFormWithSchema(campaignSchema, {
