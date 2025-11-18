@@ -42,21 +42,20 @@ const CampaignSchema = new Schema<ICampaign>(
         highlights: [{ String }],
         players: [
             {
-                // Either a real user ObjectId or a placeholder
-                user: { 
-                    type: mongoose.Schema.Types.ObjectId, 
-                    ref: "User", 
-                    required: function(this: { placeholder?: boolean }) { return !this.placeholder; } 
+                user: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                    required: function(this: { placeholder?: boolean }) {
+                        return !this.placeholder; // required if not a placeholder
+                    },
                 },
-                roles: [{ type: String, required: false }],
-                    
-                // Flag to mark placeholder users
+                roles: [{ type: String }],
                 placeholder: { type: Boolean, default: false },
-                    
-                // For placeholders: store the email or username
-                identifier: { 
-                    type: String, 
-                    required: function(this: { placeholder?: boolean }) { return this.placeholder; } 
+                identifier: {
+                    type: String,
+                    required: function(this: { placeholder?: boolean }) {
+                        return !!this.placeholder; // required if placeholder
+                    },
                 },
             }
         ],

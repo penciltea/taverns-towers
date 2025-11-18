@@ -30,8 +30,11 @@ export function useSaveCampaign({ mode, campaignId}: {mode: "add" | "edit", camp
 
             const idempotencyKey = generateIdempotencyKey();
 
+            const { transformCampaignFormData } = await import('@/lib/actions/campaign.actions')
+            const transformedResult = handleActionResult(await transformCampaignFormData(data));
+
             const transformed = {
-                ...data,
+                ...transformedResult,
                 idempotencyKey,
             };
 

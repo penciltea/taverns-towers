@@ -33,9 +33,9 @@ export async function transformCampaignFormData(
       const transformedPlayers: PlayerForDB[] = (
         await Promise.all(
           data.players.map(async (player): Promise<PlayerForDB | null> => {
-            if (!player.identifier) return null;
+            if (!player.identifier && !player.userId) return null;
 
-            const userId = await resolveUserId(player.identifier);
+            const userId = player.userId ?? await resolveUserId(player.identifier);
 
             if (userId) {
               return {
@@ -46,7 +46,7 @@ export async function transformCampaignFormData(
             } else {
               return {
                 user: undefined,
-                identifier: player.identifier,
+                identifier: player.identifier!,
                 roles: player.roles,
                 placeholder: true,
               };
@@ -210,7 +210,7 @@ export async function getCampaignById(id: string): Promise<ActionResult<Campaign
 
 
 
-export async function createCampaign(data: Partial<CampaignFormData>): Promise<ActionResult<CampaignForDB>> {
+export async function createCampaign(data: Partial<CampaignForDB>): Promise<ActionResult<CampaignForDB>> {
   return safeServerAction(async () => {
     await connectToDatabase();
     const user = await requireUser();
@@ -249,7 +249,7 @@ export async function createCampaign(data: Partial<CampaignFormData>): Promise<A
 
 
 
-export async function updateCampaign(id: string, data: Partial<CampaignFormData>): Promise<ActionResult<CampaignForDB>> {
+export async function updateCampaign(id: string, data: Partial<CampaignForDB>): Promise<ActionResult<CampaignForDB>> {
   return safeServerAction(async () => {
     await connectToDatabase();
     const user = await requireUser();

@@ -30,6 +30,7 @@ export const campaignSchema = z.object({
         z.object({
             identifier: z.string().min(1),  // for form input
             user: z.string().optional(),   // optional, filled in transform
+            userId: z.string().min(24).optional(),
             roles: z.array(z.string())
         })
     ).optional(),
