@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
+import { AppError } from '@/lib/errors/app-error';
 
 export default function ForgotPasswordPage() {
   const { showSnackbar, setLoading, isLoading } = useUIStore();
@@ -37,7 +38,7 @@ export default function ForgotPasswordPage() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        throw new Error(data?.error || 'Something went wrong');
+        throw new AppError(`Something went wrong: ${data.error}`, 400);
       }
 
       showSnackbar('Check your email for a reset link.', 'success');

@@ -9,6 +9,7 @@ import { generateSiteValues, generateSiteValuesFromSettlement, SiteGenerator } f
 import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
 import { NAME_FRAGMENT_MAP_BY_TYPE } from "../modules/site/name/name.fragment.mappings";
+import { AppError } from "../errors/app-error";
 
 export async function generateSiteName({
   siteType,
@@ -90,7 +91,7 @@ export async function generateMenuData(
   await connectToDatabase();
 
   if (!context.siteType) {
-    throw new Error("Missing site type in menu generation context");
+    throw new AppError("Missing site type in menu generation context", 500);
   }
 
   const items = await generateMenu(context);
@@ -123,7 +124,7 @@ export async function generateSiteData(
 
   // Fallback if no settlement context: just call the generator directly
   const generator = SiteGenerator[type];
-  if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
+  if (!generator) throw new AppError(`No generation rules defined for site type: ${type}`, 500);
 
   const baseInput: SiteGenerationInput = {
     ...input.overrides,

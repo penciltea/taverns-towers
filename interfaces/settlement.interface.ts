@@ -23,7 +23,6 @@ export interface SettlementAccordionProps {
 }
 
 export interface SettlementResponse {
-  success: boolean;
   settlements: Settlement[];
   total: number;
   currentPage: number;

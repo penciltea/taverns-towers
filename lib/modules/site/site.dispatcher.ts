@@ -27,6 +27,7 @@ import { generateEntertainmentData } from "./entertainment/entertainment.rules";
 import { generateResidenceData } from "./residence/residence.rules";
 import { generateHiddenData } from "./hidden/hidden.rules";
 import { generateMiscellaneousData } from "./miscellaneous/miscellaneous.rules";
+import { AppError } from "@/lib/errors/app-error";
 
 type ShopSiteData = Extract<SiteFormData, { type: "shop" }>;
 type GuildSiteData = Extract<SiteFormData, { type: "guild" }>;
@@ -66,7 +67,7 @@ export async function generateSiteValues(
   input: SiteGenerationInput & { overrides?: Partial<SiteFormData> }
 ): Promise<SiteFormData> {
   const generator = SiteGenerator[type];
-  if (!generator) throw new Error(`No generation rules defined for site type: ${type}`);
+  if (!generator) throw new AppError(`No generation rules defined for site type: ${type}`, 500);
 
   // Generate base site data from the rules for the given type
   const baseData = await generator(input);

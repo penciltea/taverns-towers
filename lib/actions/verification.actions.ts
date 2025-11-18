@@ -4,26 +4,25 @@ import crypto from "crypto";
 import { connectToDatabase } from "@/lib/db/connect";
 import { User } from "@/lib/models/user.model";
 import { sendVerificationEmail } from "@/lib/util/emails/sendVerification";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { safeServerAction } from "./safeServerAction.actions";
+import { AppError } from "../errors/app-error";
 
 /**
  * Generates a verification token and emails it via Resend.
  * This is called after registration, or can be reused for "resend verification".
  */
-export async function generateAndSendVerificationEmail(userId: string): Promise<{
+export async function generateAndSendVerificationEmail(userId: string): Promise<ActionResult<{
   success: boolean;
   error?: string;
-}> {
-  try {
+}>> {
+  return safeServerAction(async () => {
     await connectToDatabase();
 
     const user = await User.findById(userId);
-    if (!user) {
-      return { success: false, error: "User not found" };
-    }
+    if (!user) throw new AppError("Cannot find user", 400);
 
-    if(!user.email){
-        return { success: false, error: "Email not found" };
-    }
+    if(!user.email) throw new AppError("Cannot find email", 400);
 
     // Generate a secure token and expiry
     const token = crypto.randomBytes(32).toString("hex");
@@ -42,8 +41,5 @@ export async function generateAndSendVerificationEmail(userId: string): Promise<
     await sendVerificationEmail(user.email, verifyUrl);
 
     return { success: true };
-  } catch (err) {
-    console.error("Error generating verification email:", err);
-    return { success: false, error: "Failed to generate verification email" };
-  }
+  })
 }

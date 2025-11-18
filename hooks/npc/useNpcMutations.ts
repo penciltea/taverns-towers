@@ -36,7 +36,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
         try {
-            if (!user?.id) throw new Error("User is not logged in");
+            if (!user?.id) throw new AppError("User is not logged in", 400);
 
             if(!isUserVerified(user)){
                 showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
@@ -70,16 +70,16 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 const result = await createNpc(transformed);
                 saved = handleActionResult(result);
             } else if (mode === "edit") {
-                if (!npcId) throw new Error("NPC ID is required for edit mode");
+                if (!npcId) throw new AppError("NPC ID is required for edit mode", 400);
                 const { updateNpc } = await import('@/lib/actions/npc.actions');
                 const result = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
                 saved = handleActionResult(result);
             } else {
-                throw new Error("Invalid mutation mode");
+                throw new AppError("Invalid mutation mode", 400);
             }
 
             if (!saved || !saved._id) {
-                throw new Error("There was a problem saving the NPC, please try again later!");
+                throw new AppError("There was a problem saving the NPC, please try again later!", 500);
             }
 
             if (data.connections?.length) {
@@ -139,7 +139,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
      * Lightweight partial update — e.g. toggling "favorite"
      */
     async function handlePartialUpdate<T extends PartialNpcUpdate>(update: T) {
-        if (!user?.id) throw new Error("User is not logged in");
+        if (!user?.id) throw new AppError("User is not logged in", 400);
 
         const { updateNpcPartial } = await import("@/lib/actions/npc.actions");
         const idempotencyKey = generateIdempotencyKey();

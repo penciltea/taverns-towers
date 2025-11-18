@@ -12,6 +12,8 @@ import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { useCampaignStore } from "@/store/campaignStore";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { isUserVerified } from "@/lib/util/isUserVerified";
+import { AppError } from "@/lib/errors/app-error";
+import { handleActionResult } from "../queryHook.util";
 
 interface UseSettlementMutationsProps {
   mode: "add" | "edit" | null;
@@ -34,7 +36,7 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
     setSubmitting(true);
 
     try {
-      if (!user?.id) throw new Error("User is not logged in");
+      if (!user?.id) throw new AppError("User is not logged in", 400);
 
       if(!isUserVerified(user)){
         showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
@@ -73,17 +75,19 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
         }
 
         const { createSettlement } = await import("@/lib/actions/settlement.actions");
-        saved = await createSettlement(transformed);
+        const result = await createSettlement(transformed);
+        saved = handleActionResult(result);
       } else if (mode === "edit") {
-        if (!settlementId) throw new Error("Settlement ID is required for editing.");
+        if (!settlementId) throw new AppError("Settlement ID is required for editing.", 400);
         const { updateSettlement } = await import("@/lib/actions/settlement.actions");
-        saved = await updateSettlement(settlementId, transformed, selectedCampaign?._id ?? undefined);
+        const result = await updateSettlement(settlementId, transformed, selectedCampaign?._id ?? undefined);
+        saved = handleActionResult(result);
       } else {
-        throw new Error("Invalid mutation mode");
+        throw new AppError("Invalid mutation mode", 400);
       }
 
       if (!saved || !saved._id) {
-        throw new Error("There was a problem saving the settlement. Please try again later!");
+        throw new AppError("There was a problem saving the settlement. Please try again later!", 500);
       }
 
       // Handle connections
@@ -146,7 +150,7 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
   }
 
   async function handlePartialUpdate<T extends PartialSettlementUpdate>(update: T) {
-    if (!user?.id) throw new Error("User is not logged in");
+    if (!user?.id) throw new AppError("User is not logged in", 400);
 
     const { updateSettlementPartial } = await import("@/lib/actions/settlement.actions");
     const idempotencyKey = generateIdempotencyKey();
@@ -163,7 +167,8 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
     });
 
     try {
-      const updatedSettlement = await updateSettlementPartial(update._id, payload);
+      const result = await updateSettlementPartial(update._id, payload);
+      const updatedSettlement = handleActionResult(result);
 
       queryClient.setQueriesData({ queryKey: ["ownedSettlements"] }, (old: any) => {
         if (!old?.settlements) return old;

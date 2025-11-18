@@ -20,7 +20,7 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
     async function handleSubmit(data: CampaignFormData) {
         setSubmitting(true);
         try {
-            if (!user?.id) throw new Error("User is not logged in");
+            if (!user?.id) throw new AppError("User is not logged in", 400);
 
             if(!isUserVerified(user)){
                 showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
@@ -45,12 +45,12 @@ export function useSaveCampaign(mode: "add" | "edit", campaignId?: string) {
                 const result = await createCampaign(transformed);
                 saved = handleActionResult(result);
             } else if (mode === "edit") {
-            if (!campaignId) throw new Error("NPC ID is required for edit mode");
+            if (!campaignId) throw new AppError("NPC ID is required for edit mode", 400);
                 const { updateCampaign } = await import('@/lib/actions/campaign.actions');
                 const result = await updateCampaign(campaignId, transformed);
                 saved = handleActionResult(result);
             } else {
-                throw new Error("Invalid mutation mode");
+                throw new AppError("Invalid mutation mode", 400);
             }
 
             if (!saved || !saved._id) {

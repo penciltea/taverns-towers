@@ -5,11 +5,15 @@ import { revalidatePath } from "next/cache";
 import connectToDatabase from "@/lib/db/connect";
 import { requireUser } from "../auth/authHelpers";
 import SettlementModel from "@/lib/models/settlement.model";
-import { Settlement } from "@/interfaces/settlement.interface";
+import { Settlement, SettlementResponse } from "@/interfaces/settlement.interface";
 import { normalizeConnections } from "@/lib/util/normalize";
 import { serializeSettlement } from "../util/serializers";
 import { canEdit } from "../auth/authPermissions";
 import { getCampaignPermissions } from "./campaign.actions";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { safeServerAction } from "./safeServerAction.actions";
+import { AppError } from "../errors/app-error";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 export async function getSettlements({
   userId,
@@ -39,62 +43,63 @@ export async function getSettlements({
   tags?: string[];
   terrain?: string[];
   tone?: string[];
-}) {
-  await connectToDatabase();
+}): Promise<ActionResult<SettlementResponse>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
 
-  const query: Record<string, unknown> = {};
+    const query: Record<string, unknown> = {};
 
-  if (campaignId) {
-    query.campaignId = campaignId; // include ALL settlements in this campaign
-  } else {
-    query.campaignId = { $in: [null, undefined] };
+    if (campaignId) {
+      query.campaignId = campaignId; // include ALL settlements in this campaign
+    } else {
+      query.campaignId = { $in: [null, undefined] };
 
-    if (userId) {
-      query.userId = userId; // fallback to personal settlements
+      if (userId) {
+        query.userId = userId; // fallback to personal settlements
+      }
     }
-  }
 
-  if (typeof isPublic === 'boolean') query.isPublic = isPublic;
+    if (typeof isPublic === 'boolean') query.isPublic = isPublic;
 
-  if (search) query.name = { $regex: new RegExp(search, 'i') };
-  if (size) query.size = size;
-  if (climate) query.climate = climate;
-  if (magic) query.magic = magic;
-  if (wealth) query.wealth = wealth;
-  if (tags.length > 0) query.tags = { $all: tags };
-  if (terrain.length > 0) query.terrain = { $all: terrain };
-  if (tone.length > 0) query.tone = { $all: tone };
+    if (search) query.name = { $regex: new RegExp(search, 'i') };
+    if (size) query.size = size;
+    if (climate) query.climate = climate;
+    if (magic) query.magic = magic;
+    if (wealth) query.wealth = wealth;
+    if (tags.length > 0) query.tags = { $all: tags };
+    if (terrain.length > 0) query.terrain = { $all: terrain };
+    if (tone.length > 0) query.tone = { $all: tone };
 
-  const total = await SettlementModel.countDocuments(query);
-  const settlements = await SettlementModel.find(query)
-    .sort({ createdAt: -1 })
-    .skip((page - 1) * limit)
-    .limit(limit)
-    .lean<Settlement[]>();
+    const total = await SettlementModel.countDocuments(query);
+    const settlements = await SettlementModel.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean<Settlement[]>();
 
-  const serializedSettlements = settlements.map((settlement) => ({
-    ...settlement,
-    _id: settlement._id.toString(),
-    userId: settlement.userId.toString(),
-    campaignId: settlement.campaignId !== null && settlement.campaignId ? settlement.campaignId.toString() : "",
-    connections: settlement.connections.map((conn) => ({
-      ...conn,
-      id: conn.id.toString(),
-    })),
-  }));
+    const serializedSettlements = settlements.map((settlement) => ({
+      ...settlement,
+      _id: settlement._id.toString(),
+      userId: settlement.userId.toString(),
+      campaignId: settlement.campaignId !== null && settlement.campaignId ? settlement.campaignId.toString() : "",
+      connections: settlement.connections.map((conn) => ({
+        ...conn,
+        id: conn.id.toString(),
+      })),
+    }));
 
-  return {
-    success: true,
-    settlements: serializedSettlements,
-    total,
-    currentPage: page,
-    totalPages: Math.ceil(total / limit),
-  };
+    return {
+      settlements: serializedSettlements,
+      total,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+    };
+  })
 }
 
 export async function getOwnedSettlements(
   options: Omit<Parameters<typeof getSettlements>[0], 'userId'>
-) {
+): Promise<ActionResult<SettlementResponse>> {
   const user = await requireUser();
   return getSettlements({ ...options, userId: user.id, campaignId: undefined });
 }
@@ -102,144 +107,160 @@ export async function getOwnedSettlements(
 export async function getCampaignSettlements(
   options: Omit<Parameters<typeof getSettlements>[0], 'userId'>,
   campaignId: string
-) {
+): Promise<ActionResult<SettlementResponse>> {
   return getSettlements({...options, campaignId})
 }
 
 
 
-export async function getPublicSettlements(options: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>) {
+export async function getPublicSettlements(
+  options: Omit<Parameters<typeof getSettlements>[0], 'isPublic'>
+): Promise<ActionResult<SettlementResponse>> {
   return getSettlements({ ...options, isPublic: true });
 }
 
 
-export async function getSettlementById(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+export async function getSettlementById(id: string): Promise<ActionResult<Settlement>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid settlement ID", 400);
 
-  const settlement = await SettlementModel.findById(id);
-  if (!settlement) throw new Error("Settlement not found");
+    const settlement = await SettlementModel.findById(id);
+    if (!settlement) throw new AppError("Settlement not found", 404);
 
-  return serializeSettlement(settlement);
+    return serializeSettlement(settlement);
+  })
 }
 
 
 
-export async function createSettlement(data: Partial<Settlement>) {
-  await connectToDatabase();
-  const user = await requireUser();
+export async function createSettlement(data: Partial<Settlement>): Promise<ActionResult<Settlement>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    const user = await requireUser();
 
-  if (!data.idempotencyKey) {
-    throw new Error("Missing idempotency key for idempotent creation");
-  }
-
-  // Check if an settlement with this key already exists
-  const existing = await SettlementModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
-  if (existing) {
-    return serializeSettlement(existing); // Return existing settlement instead of creating duplicate
-  }
-
-  // Normalize connection ids
-  const normalizedConnections = normalizeConnections(data.connections);
-  
-
-  const newSettlement = await SettlementModel.create({
-    ...data,
-    userId: new ObjectId(user.id),
-    connections: normalizedConnections,
-  });
-
-  revalidatePath("/settlements");
-  return serializeSettlement(newSettlement);
-}
-
-
-
-export async function updateSettlement(id: string, data: Partial<Settlement>, campaignId?: string) {
-  await connectToDatabase();
-
-  if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
-
-  const user = await requireUser();
-  const existing = await SettlementModel.findById(id);
-
-  if (!existing) throw new Error("Settlement not found");
-
-  if(campaignId){
-    const campaignPermissions = await getCampaignPermissions(campaignId);
-    
-    if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
-      throw new Error("Unauthorized");
+    if (!data.idempotencyKey) {
+      throw new AppError("Missing idempotency key for idempotent creation", 400);
     }
-  } else if (existing.userId.toString() !== user.id) {
-    throw new Error("Unauthorized");
-  }
 
-  // Normalize connection ids
-  const normalizedConnections = normalizeConnections(data.connections);
+    // Check if an settlement with this key already exists
+    const existing = await SettlementModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+    if (existing) {
+      return serializeSettlement(existing); // Return existing settlement instead of creating duplicate
+    }
 
-  const updatedSettlement = await SettlementModel.findByIdAndUpdate(
-    id,
-    {
+    // Normalize connection ids
+    const normalizedConnections = normalizeConnections(data.connections);
+    
+
+    const newSettlement = await SettlementModel.create({
       ...data,
+      userId: new ObjectId(user.id),
       connections: normalizedConnections,
-    },
-    { new: true }
-  );
+    });
 
-  if (!updatedSettlement) throw new Error("Settlement not found");
+    revalidatePath("/settlements");
+    return serializeSettlement(newSettlement);
+  })
+}
 
-  revalidatePath("/settlements");
-  return serializeSettlement(updatedSettlement);
+
+
+export async function updateSettlement(id: string, data: Partial<Settlement>, campaignId?: string): Promise<ActionResult<Settlement>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid settlement ID", 400);
+
+    const user = await requireUser();
+    const existing = await SettlementModel.findById(id);
+
+    if (!existing) throw new AppError("Settlement not found", 404);
+
+    if(campaignId){
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(campaignId)
+      );
+      
+      if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
+        throw new AppError("Unauthorized", 403);
+      }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
+
+    // Normalize connection ids
+    const normalizedConnections = normalizeConnections(data.connections);
+
+    const updatedSettlement = await SettlementModel.findByIdAndUpdate(
+      id,
+      {
+        ...data,
+        connections: normalizedConnections,
+      },
+      { new: true }
+    );
+
+    if (!updatedSettlement) throw new AppError("Settlement not found", 404);
+
+    revalidatePath("/settlements");
+    return serializeSettlement(updatedSettlement);
+  })
 }
 
 export async function updateSettlementPartial(
   id: string,
   update: Partial<Settlement>
-): Promise<Settlement> {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+): Promise<ActionResult<Settlement>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid settlement ID", 400);
 
-  const user = await requireUser();
-  const existing = await SettlementModel.findById(id);
-  
-  if (!existing) throw new Error("Settlement not found");
-  if(existing.campaignId){
-    const campaignPermissions = await getCampaignPermissions(existing.campaignId);
-    if(!campaignPermissions || !campaignPermissions.isOwner) throw new Error("Unauthorized");
+    const user = await requireUser();
+    const existing = await SettlementModel.findById(id);
+    
+    if (!existing) throw new AppError("Settlement not found", 404);
+    if(existing.campaignId){
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(existing.campaignId)
+      );
+      if(!campaignPermissions || !campaignPermissions.isOwner) throw new AppError("Unauthorized", 403);
 
-  } else if (existing.userId.toString() !== user.id) {
-    throw new Error("Unauthorized");
-  }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
 
-  // Only normalize connections if provided
-  const updatedData = {
-    ...update,
-    connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
-  };
+    // Only normalize connections if provided
+    const updatedData = {
+      ...update,
+      connections: update.connections ? normalizeConnections(update.connections) : existing.connections,
+    };
 
-  const updatedSettlement = await SettlementModel.findByIdAndUpdate(id, updatedData, { new: true });
-  if (!updatedSettlement) throw new Error("Settlement not found");
+    const updatedSettlement = await SettlementModel.findByIdAndUpdate(id, updatedData, { new: true });
+    if (!updatedSettlement) throw new AppError("Settlement not found", 404);
 
-  revalidatePath("/settlements");
-  return serializeSettlement(updatedSettlement);
+    revalidatePath("/settlements");
+    return serializeSettlement(updatedSettlement);
+  })
 }
 
 
 
-export async function deleteSettlement(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid settlement ID");
+export async function deleteSettlement(id: string): Promise<ActionResult<{message: string, status: number}>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid settlement ID", 400);
 
-  const user = await requireUser();
-  const existing = await SettlementModel.findById(id);
+    const user = await requireUser();
+    const existing = await SettlementModel.findById(id);
 
-  if(!existing) throw new Error("Settlement not found");
-  if(existing.userId.toString() !== user.id) throw new Error("Unauthorized");
+    if(!existing) throw new AppError("Settlement not found", 404);
+    if(existing.userId.toString() !== user.id) throw new AppError("Unauthorized", 403);
 
-  const deletedSettlement = await SettlementModel.findByIdAndDelete(id);
-  if (!deletedSettlement) throw new Error("Settlement not found");
+    const deletedSettlement = await SettlementModel.findByIdAndDelete(id);
+    if (!deletedSettlement) throw new AppError("Settlement not found", 404);
 
-  revalidatePath("/settlements");
-  return { message: "Settlement deleted successfully" };
+    revalidatePath("/settlements");
+    return { message: "Settlement deleted successfully", status: 200 };
+  })
 }

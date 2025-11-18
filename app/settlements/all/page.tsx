@@ -64,7 +64,7 @@ export default function SettlementsPage() {
     <AuthGate fallbackText="You must be logged in to view your settlements.">
       {!params || isLoading ? (
         <Spinner />
-      ) : error || !data?.success ? (
+      ) : error || !data?.settlements ? (
         <Typography>It looks like you haven&apos;t forged any settlements yet. Start by creating one to lay the foundation for your world; every great story begins with a town square (or a back-alley tavern).</Typography>
       ) : (
         <FilteredGridView

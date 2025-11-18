@@ -13,6 +13,8 @@ import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { siteKeys } from "./site.query";
 import { useCampaignStore } from "@/store/campaignStore";
 import { isUserVerified } from "@/lib/util/isUserVerified";
+import { handleActionResult } from "../queryHook.util";
+import { AppError } from "@/lib/errors/app-error";
 
 
 interface UseSiteMutationsProps {
@@ -39,7 +41,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
   async function handleSubmit(data: SiteFormData) {
     setSubmitting(true);
     try {
-      if (!user?.id) throw new Error("User is not logged in");
+      if (!user?.id) throw new AppError("User is not logged in", 400);
 
       if(!isUserVerified(user)){
         showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
@@ -72,18 +74,20 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
           return;
         }
         const { createSite } = await import("@/lib/actions/site.actions");
-        saved = await createSite(siteData, settlementId)
+        const result = await createSite(siteData, settlementId);
+        saved = handleActionResult(result);
       } else if (mode === "edit"){
-        if(!siteId) throw new Error("Site ID is required for editing.");
+        if(!siteId) throw new AppError("Site ID is required for editing.", 400);
 
         const { updateSite } = await import("@/lib/actions/site.actions");
-        saved = await updateSite(siteData, siteId, selectedCampaign?._id ?? undefined)
+        const result = await updateSite(siteData, siteId, selectedCampaign?._id ?? undefined);
+        saved = handleActionResult(result);
       } else {
-        throw new Error("Invalid mutation mode");
+        throw new AppError("Invalid mutation mode", 400);
       }
 
       if (!saved || !saved._id) {
-        throw new Error("There was a problem saving the site, please try again later!");
+        throw new AppError("There was a problem saving the site, please try again later!", 500);
       }
 
       // Handle connections
@@ -142,7 +146,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
   // Lightweight Partial Update
   // -----------------------------
   async function handlePartialUpdate<T extends PartialSiteUpdate>(update: T): Promise<void> {
-    if (!user?.id) throw new Error("User is not logged in");
+    if (!user?.id) throw new AppError("User is not logged in", 400);
 
     const { updateSitePartial } = await import("@/lib/actions/site.actions");
     const idempotencyKey = generateIdempotencyKey();

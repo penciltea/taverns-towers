@@ -53,17 +53,7 @@ export interface PaginatedQueryParams {
   campaignId?: string;
 }
 
-export interface PaginatedQueryResponse<T> {
-  success: boolean;
-  sites: T[];
-  total: number;
-  currentPage: number;
-  totalPages: number;
-  error?: string;
-}
-
 export interface SiteResponse {
-  success: boolean;
   sites: SiteType[];
   total: number;
   totalPages: number;

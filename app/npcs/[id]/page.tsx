@@ -10,15 +10,15 @@ export default async function ViewNpcPage({ params }: { params: Promise<{ id: st
     const result = await getNpcById(id);
 
     if (result.success) {
-        const npc = result.data;
-        return <ViewNpc npc={npc} />;
+      const npc = result.data;
+      return <ViewNpc npc={npc} />;
     } else {
-        return (
-            <>
-                <Typography variant="h5" component="p" gutterBottom>NPC Not Found</Typography>
-                <Typography>{ result.message }</Typography>
-            </>
-        );
+      return (
+        <>
+          <Typography variant="h5" component="p" gutterBottom>NPC Not Found</Typography>
+          <Typography>{ result.message }</Typography>
+        </>
+      );
     }
   } catch (err: unknown) {
     // Catch unexpected errors
@@ -28,10 +28,10 @@ export default async function ViewNpcPage({ params }: { params: Promise<{ id: st
         : "Something went wrong loading this NPC.";
 
     return (
-        <>
-            <Typography variant="h5" component="p" gutterBottom>NPC Not Found</Typography>
-            <Typography>{ message }</Typography>
-        </>
+      <>
+        <Typography variant="h5" component="p" gutterBottom>NPC Not Found</Typography>
+        <Typography>{ message }</Typography>
+      </>
     );
   }
 }

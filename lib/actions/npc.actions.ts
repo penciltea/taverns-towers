@@ -125,10 +125,10 @@ export async function getPublicNpcs(
 export async function getNpcById(id: string): Promise<ActionResult<Npc>> {
   return safeServerAction( async () => {
     await connectToDatabase();
-    if (!ObjectId.isValid(id)) throw new Error("Invalid NPC ID");
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid NPC ID", 400);
 
     const npc = await NpcModel.findById(id);
-    if (!npc) throw new Error("NPC not found");
+    if (!npc) throw new AppError("NPC not found", 404);
 
     return serializeNpc(npc);
   }

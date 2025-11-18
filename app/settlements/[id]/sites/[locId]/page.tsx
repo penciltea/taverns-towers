@@ -51,12 +51,12 @@ export default function EditSitePage() {
   useEffect(() => {
     if (isLoading) return;
 
-    if (site?.success && site.site) {
-      setSelectedItem(site.site);
-      setInitialConnections(site.site.connections);
+    if (site?.success && site.data) {
+      setSelectedItem(site.data);
+      setInitialConnections(site.data.connections);
 
       methods.reset({
-        ...(mapSiteToForm(site.site) as SiteFormData)
+        ...(mapSiteToForm(site.data) as SiteFormData)
       });
       
     } else if (safeId && !isLoading) {
