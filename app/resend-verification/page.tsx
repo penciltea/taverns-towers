@@ -42,7 +42,7 @@ export default function ResendVerificationPage() {
                 if (result.success) {
                     showSnackbar("Verification email sent! Check your inbox.", "success");
                 } else {
-                    setError(result.error || "Could not resend verification email.");
+                    setError(result.error || "Could not send verification email.");
                 }
             } else {
                 setError("There was a problem sending your verification email, please try again later.");
@@ -65,8 +65,8 @@ export default function ResendVerificationPage() {
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh', px: 2 }} 
         >
             <Paper sx={{ p: 4, maxWidth: 500, width: '100%', textAlign: 'center', borderRadius: 2 }}>
-                <Typography variant="h4" gutterBottom>Resend Verification Email</Typography>
-                <Typography variant="body1" sx={{ mb: 3 }}>Enter your email address and we&apos;ll resend the verification link.</Typography>
+                <Typography variant="h4" gutterBottom>Send Verification Email</Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>Enter your email address and we&apos;ll send the verification link.</Typography>
 
                 {error && (
                     <Typography color="error" sx={{ fontWeight: 'bold', mb: 2 }}>{ error }</Typography>
@@ -85,7 +85,7 @@ export default function ResendVerificationPage() {
                     fullWidth
                     disabled={!isTouched}
                 >
-                    {isSubmitting ? "Sending..." : "Resend Email"}
+                    {isSubmitting ? "Sending..." : "Send Email"}
                 </Button>
             </Paper>
         </Box>

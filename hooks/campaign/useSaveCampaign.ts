@@ -19,7 +19,6 @@ export function useSaveCampaign({ mode, campaignId}: {mode: "add" | "edit", camp
 
     async function handleSubmit(data: CampaignFormData) {
         setSubmitting(true);
-        console.log("data: ", data);
         try {
             if (!user?.id) throw new AppError("User is not logged in", 400);
 

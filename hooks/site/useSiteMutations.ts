@@ -167,8 +167,6 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
           q.queryKey[2] === update.settlementId
       );
 
-    queryClient.getQueryCache().getAll().forEach(q => console.log(q.queryKey));
-
     settlementQueries.forEach((query) => {
       queryClient.setQueryData<SitesBySettlementData>(query.queryKey, (old) => {
         if (!old) return old;

@@ -67,6 +67,14 @@ export default function Roadmap(){
                         secondary={<span> Similarly, NPC generation logic will add support for Likes & Dislikes fields</span>}
                     />
                 </ListItem>
+                <ListItem disablePadding key="item-4">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary={<strong>New themes:</strong>}
+                        secondary={<span> New themes will be frequently rolled out in order to provide more robust generation options</span>}
+                    />
+                </ListItem>
             </List>
 
 

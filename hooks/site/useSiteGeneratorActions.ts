@@ -123,7 +123,6 @@ export function useSiteGeneratorActions(
       if (!siteType) return;
 
       const formData = methods.getValues();
-      console.log("formData: ", formData);
 
       const env = await regenerateEnvironment(false);
       const shopType = getSubType("shopType") ;

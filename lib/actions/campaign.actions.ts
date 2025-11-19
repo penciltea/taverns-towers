@@ -222,8 +222,6 @@ export async function createCampaign(data: Partial<CampaignForDB>): Promise<Acti
     if (!data.idempotencyKey) {
       throw new AppError("Missing idempotency key for idempotent creation", 400);
     }
-
-    console.log("server action: ", data);
   
     // Check if a campaign with this key already exists
     const existing = await CampaignModel.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });

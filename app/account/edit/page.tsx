@@ -32,7 +32,6 @@ export default function UpdateProfilePage() {
 
     if (user) {
       // user loaded successfully
-      console.log("user: ", user);
       setSelectedItem(user);
       methods.reset(user);
     } else {

@@ -20,7 +20,6 @@ export default function NewCampaignsPage(){
     const { handleSubmit: onSubmit } = useSaveCampaign({ mode: "add" });
 
     const wrappedOnSubmit = async (data: CampaignFormData) => {
-        console.log("form submit: ", data);
         await onSubmit(data);
     };
 
