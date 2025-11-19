@@ -77,17 +77,26 @@ export default function HomeContent(){
                     </video>
                 </Box>
             </Stack>
+            
 
-            <Box sx={{ py: 6, px: { xs: 2, sm: 4 }, textAlign: "center" }}>
+            <Box
+                sx={{
+                    py: 6,
+                    px: { xs: 2, sm: 4 },
+                    textAlign: "center",
+                    backgroundColor: (theme) => theme.palette.mode === "light" ? "#f0f8ff" : "#1e1e2e",
+                    borderRadius: 2,
+                    my: 8,
+                }}
+            >
                 <Typography variant="h4" component="h3" gutterBottom> Procedural, Not Predictive</Typography>
-                <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto" }}>
-                    RealmFoundry does not (and never will) use AI to create content. Every result comes from handcrafted, rule-based systems designed for storytellers. From bustling cities to the shadiest shopkeepers, each creation is grounded in logic, lore, and consistency — not randomness.
-                </Typography>
+                <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>RealmFoundry does not (and never will) use AI to create content.</Typography>
+                <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto" }}>Every result comes from handcrafted, rule-based systems designed for storytellers. From bustling cities to the shadiest shopkeepers, each creation is grounded in logic, lore, and consistency — not randomness.</Typography>
                 <Typography variant="body1" sx={{ mt: 2, maxWidth: 700, mx: "auto" }}> You stay the creator. RealmFoundry just helps bring your imagination to life. </Typography>
             </Box>
 
             {/* Features Section */}
-            <Paper sx={{ px: 2, py: 4, borderRadius: 2 }}>
+            <Paper sx={{ px: 2, py: 4, my: 8, borderRadius: 2 }}>
                 <Typography variant="h4" component="h4" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
 
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "stretch", justifyContent: "center" }}>
@@ -116,7 +125,7 @@ export default function HomeContent(){
 
             <Box 
                 sx={{
-                    my: 2,
+                    my: 8,
                     py: 8,
                     px: { xs: 2, sm: 4 },
                     background: (theme) =>

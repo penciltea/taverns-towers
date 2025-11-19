@@ -18,9 +18,9 @@ import FilterBar from '@/components/Grid/FilterBar';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { Spinner } from '@/components/Common/Spinner';
 import Typography from '@mui/material/Typography';
+import { getPlaceholderSite } from '@/lib/util/getPlaceholders';
 
 export default function AllSitesPage() {
-  const defaultImage = '/placeholders/town.png';
   const user = useAuthStore(state => state.user);
   const { setOpenDialog } = useUIStore();
   const { selectedCampaign } = useCampaignStore();
@@ -87,7 +87,7 @@ export default function AllSitesPage() {
             <GridItem
               key={site._id}
               title={site.name}
-              image={site.image ?? defaultImage}
+              image={site.image ?? getPlaceholderSite(site.type)}
               subtitle={handleSiteLabel(site)}
               tone={site.tone}
               link={`/sites/${site._id}`}

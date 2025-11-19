@@ -16,10 +16,10 @@ import FilterBar from '@/components/Grid/FilterBar';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
+import { getPlaceholderSite } from '@/lib/util/getPlaceholders';
 
 export default function WildernessPage() {
     const settlementId = 'wilderness';
-    const defaultImage = '/placeholders/town.png';
     const { selectedCampaign } = useCampaignStore();
     const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
       
@@ -108,7 +108,7 @@ export default function WildernessPage() {
                     <GridItem
                         key={site._id}
                         title={site.name}
-                        image={site.image ?? defaultImage}
+                        image={site.image ?? getPlaceholderSite(site.type)}
                         subtitle={handleSiteLabel(site)}
                         tone={site.tone}
                         onClick={() => {

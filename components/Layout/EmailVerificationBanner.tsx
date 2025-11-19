@@ -19,7 +19,7 @@ export default function EmailVerificationBanner() {
       sx={{
         width: '100%',
         backgroundColor: 'warning.main',
-        color: 'white',
+        color: 'black',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,7 +32,7 @@ export default function EmailVerificationBanner() {
       <WarningAmberIcon fontSize="medium" />
       <Typography variant="body1" sx={{ fontWeight: 500, textAlign: 'center' }}>
         Your email hasn&apos;t been verified yet. Magic can&apos;t preserve your creations until it&apos;s confirmed!{' '}
-        <Link href="/verify-your-email" style={{ color: 'white', textDecoration: 'underline' }}>
+        <Link href="/verify-your-email" style={{ color: 'black', textDecoration: 'underline' }}>
           Verify now.
         </Link>
       </Typography>
