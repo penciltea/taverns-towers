@@ -1,6 +1,6 @@
 'use client';
 
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { useResolvedConnections } from "@/hooks/npc/npc.query";
 import EntityLinkList from "@/components/Common/EntityLink/EntityLinkList";
 import { ConnectionProps } from "@/interfaces/connection.interface";
@@ -25,8 +25,9 @@ export default function SettlementConnections({ connections }: ConnectionProps) 
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Typography variant="h5">NPC Connections</Typography>
-            {content}
+            <Box sx={{ mt: 4 }}>
+                { content }
+            </Box>
         </Paper>
     );
 }

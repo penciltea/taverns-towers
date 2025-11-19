@@ -31,7 +31,6 @@ export default function NpcConnections({ connections }: ConnectionProps) {
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Typography variant="h4">NPC Connections</Typography>
             <Box sx={{ mt: 4 }}>
                 { content }
             </Box>
