@@ -184,7 +184,7 @@ export default function SiteForm({ onSubmit, mode, isWilderness, generator }: Si
             { tab === 1 && <SiteFormConnections mode={mode} /> }
           </TabPanel>
           <TabPanel value={tab} index={2}>
-            { tab === 2 && <SiteFormConfiguration mode={mode} /> }
+            { tab === 2 && <SiteFormConfiguration /> }
           </TabPanel>
 
           <FormActions isSubmitting={isSubmitting} mode={mode} entityName="Site" onCancel={handleCancel} />

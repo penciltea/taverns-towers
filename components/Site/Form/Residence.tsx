@@ -9,7 +9,6 @@ import { FormSelect } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
-import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 import { FieldError, useFormContext } from "react-hook-form";
 
 export default function ResidenceFields({generator}: SiteFormFieldProps){
@@ -27,22 +26,27 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
     const [themes, setThemes] = useState(SITE_THEMES);
 
     useEffect(() => {
+        let isMounted = true;
+
         async function loadThemes() {
-            if (!user) return;
+            if (!user || !selectedCampaign?._id) return;
 
-            const available = await getAvailableOptions({
-                freeOptions: SITE_THEMES,
-                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
-                userTier: user?.tier,
-                selectedCampaign,
-                playerHasContentPermissions,
-            });
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
 
-            setThemes(available);
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_SITE_THEMES, ...SITE_THEMES]);
+            } else {
+                setThemes(SITE_THEMES);
+            }
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
 
     return (
         <>

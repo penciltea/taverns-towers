@@ -1,6 +1,6 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
-import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
+import { NPC_AGE, NPC_RACES, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
 import { archetypeByAgeMapping, npcAlignmentMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
 import { persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
 

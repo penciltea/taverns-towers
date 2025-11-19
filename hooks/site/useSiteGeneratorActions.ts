@@ -140,7 +140,7 @@ export function useSiteGeneratorActions(
 
       const { generateSiteName } = await import('@/lib/actions/siteGenerator.actions');
 
-      const result = await generateSiteName({
+      const name = await generateSiteName({
         siteType: [siteType],
         siteSize: formData.size,
         siteCondition: formData.condition,
@@ -154,8 +154,6 @@ export function useSiteGeneratorActions(
         climate: env.climate,
         tags: env.tags,
       });
-
-      const name = handleActionResult(result);
 
       if (siteType !== "guild") {
         setValue("name", name);

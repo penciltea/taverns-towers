@@ -1,6 +1,5 @@
 import { FormChipSelect } from "@/components/Form";
 import FormCheckboxField from "@/components/Form/FormCheckbox";
-import FormChipInput from "@/components/Form/FormChipInput";
 import { DOMAINS } from "@/constants/common.options";
 import { NPC_RACES } from "@/constants/npc.options";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";

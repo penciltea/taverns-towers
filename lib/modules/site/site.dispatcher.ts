@@ -28,7 +28,6 @@ import { generateResidenceData } from "./residence/residence.rules";
 import { generateHiddenData } from "./hidden/hidden.rules";
 import { generateMiscellaneousData } from "./miscellaneous/miscellaneous.rules";
 import { AppError } from "@/lib/errors/app-error";
-import { handleActionResult } from "@/hooks/queryHook.util";
 
 type ShopSiteData = Extract<SiteFormData, { type: "shop" }>;
 type GuildSiteData = Extract<SiteFormData, { type: "guild" }>;
@@ -100,7 +99,7 @@ export async function generateSiteValues(
   }
 
   // Generate a site name if one wasn't provided
-  const response = await generateSiteName({
+  const name = await generateSiteName({
     siteType: [type],
     shopType,
     guildType,
@@ -113,8 +112,6 @@ export async function generateSiteValues(
     siteCondition: mergedData.condition,
     siteTheme: mergedData.siteTheme
   });
-
-  const name = handleActionResult(response);
 
   return {
     ...mergedData,

@@ -18,7 +18,7 @@ export default function Roadmap(){
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Experience RealmFoundry's Core:</strong>}
+                        primary={<strong>Experience RealmFoundry&apos;s Core:</strong>}
                         secondary={<span> Settlements, Sites, and NPCs are more polished.</span>}
                     />
                 </ListItem>
@@ -48,7 +48,7 @@ export default function Roadmap(){
                         sx={{ display: 'list-item' }}
                         disableTypography
                         primary={<strong>Exporting data:</strong>}
-                        secondary={<span> Artisans & Architects will be able to export their data. We're starting with JSON data and will be rolling out support for PDFs, VTT formats, and more!</span>}
+                        secondary={<span> Artisans & Architects will be able to export their data. We&apos;re starting with JSON data and will be rolling out support for PDFs, VTT formats, and more!</span>}
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-3">

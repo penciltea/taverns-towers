@@ -15,7 +15,6 @@ import { TONE } from "@/constants/common.options";
 import { THEME, ARTISAN_THEMES } from '@/constants/settlement.options';
 import { useAuthStore } from "@/store/authStore";
 import { userTier } from "@/constants/user.options";
-import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 export default function SettlementFormBasics(){
     const {
@@ -34,22 +33,27 @@ export default function SettlementFormBasics(){
     const [themes, setThemes] = useState(THEME);
 
     useEffect(() => {
+        let isMounted = true;
+
         async function loadThemes() {
-            if (!user) return;
+            if (!user || !selectedCampaign?._id) return;
 
-            const available = await getAvailableOptions({
-                freeOptions: THEME,
-                premiumOptions: [...ARTISAN_THEMES, ...THEME],
-                userTier: user?.tier,
-                selectedCampaign,
-                playerHasContentPermissions,
-            });
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
 
-            setThemes(available);
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_THEMES, ...THEME]);
+            } else {
+                setThemes(THEME);
+            }
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
     
     const handleGenerateName = async () => {
         const terrain = watch("terrain");

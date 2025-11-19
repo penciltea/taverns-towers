@@ -9,9 +9,6 @@ import { generateMenu } from "../modules/site/common/menu.dispatcher";
 import { dispatchSiteName } from "../modules/site/name/name.dispatcher";
 import { NAME_FRAGMENT_MAP_BY_TYPE } from "../modules/site/name/name.fragment.mappings";
 import { AppError } from "../errors/app-error";
-import { handleActionResult } from "@/hooks/queryHook.util";
-import { ActionResult } from "@/interfaces/server-action.interface";
-import { safeServerAction } from "./safeServerAction.actions";
 
 export async function generateSiteName({
   siteType,
@@ -41,67 +38,63 @@ export async function generateSiteName({
   climate?: string;
   tags?: string[];
   data?: Partial<SiteFormData>;
-}): Promise<ActionResult<string>> {
-  return safeServerAction(async () => {
-    await connectToDatabase();
+}): Promise<string> {
+  await connectToDatabase();
 
-    let fragments: GeneratorSiteFragmentPlain[] = [];
+  let fragments: GeneratorSiteFragmentPlain[] = [];
 
-    try {
-      const rawFragments = await GeneratorSiteFragment.find().lean<GeneratorSiteFragmentPlain[]>();
-      fragments = rawFragments.filter(
-        (f): f is GeneratorSiteFragmentPlain =>
-          typeof f.type === "string" && typeof f.value === "string"
-      );
-    } catch (error) {
-      console.warn("Failed to load site name fragments from DB, using fallback data", error);
-    }
+  try {
+    const rawFragments = await GeneratorSiteFragment.find().lean<GeneratorSiteFragmentPlain[]>();
+    fragments = rawFragments.filter(
+      (f): f is GeneratorSiteFragmentPlain =>
+        typeof f.type === "string" && typeof f.value === "string"
+    );
+  } catch (error) {
+    console.warn("Failed to load site name fragments from DB, using fallback data", error);
+  }
 
-    // Use fallback if DB fragments are empty
-    if (!fragments.length) {
-      const fallbackFragments = Object.values(NAME_FRAGMENT_MAP_BY_TYPE).flat().map(frag => ({
-        ...frag,
-        type: frag.type as GroupKey,
-      }));
+  // Use fallback if DB fragments are empty
+  if (!fragments.length) {
+    const fallbackFragments = Object.values(NAME_FRAGMENT_MAP_BY_TYPE).flat().map(frag => ({
+      ...frag,
+      type: frag.type as GroupKey,
+    }));
 
-      fragments = fallbackFragments;
-    }
+    fragments = fallbackFragments;
+  }
 
-    const toArray = <T>(val?: T | T[]): T[] | undefined =>
-      val === undefined ? undefined : Array.isArray(val) ? val : [val];
+  const toArray = <T>(val?: T | T[]): T[] | undefined =>
+    val === undefined ? undefined : Array.isArray(val) ? val : [val];
 
-    return dispatchSiteName(fragments, {
-      siteType,
-      shopType: toArray(shopType),
-      guildType: toArray(guildType),
-      venueType: toArray(venueType),
-      functionType: toArray(functionType),
-      siteSize: toArray(siteSize),
-      siteCondition: toArray(siteCondition),
-      siteTheme,
-      domains: toArray(domains),
-      terrain,
-      climate,
-      tags,
-      data,
-    });
-  })
+  return dispatchSiteName(fragments, {
+    siteType,
+    shopType: toArray(shopType),
+    guildType: toArray(guildType),
+    venueType: toArray(venueType),
+    functionType: toArray(functionType),
+    siteSize: toArray(siteSize),
+    siteCondition: toArray(siteCondition),
+    siteTheme,
+    domains: toArray(domains),
+    terrain,
+    climate,
+    tags,
+    data,
+  });
 }
 
 
 export async function generateMenuData(
   context: SiteGenerationContext & { singleItem?: boolean }
-): Promise<ActionResult<generatorMenuItem[]>> {
-  return safeServerAction(async () => {
-    await connectToDatabase();
+): Promise<generatorMenuItem[]> {
+  await connectToDatabase();
 
-    if (!context.siteType) {
-      throw new AppError("Missing site type in menu generation context", 500);
-    }
+  if (!context.siteType) {
+    throw new AppError("Missing site type in menu generation context", 500);
+  }
 
-    const items = await generateMenu(context);
-    return items;
-  })
+  const items = await generateMenu(context);
+  return items;
 }
 
 
@@ -109,38 +102,40 @@ export async function generateSiteData(
   type: string,
   input: SiteGenerationInput,
   rerollAll = false
-): Promise<ActionResult<SiteFormData>> {
-  return safeServerAction(async () => {
-    await connectToDatabase();
+): Promise<SiteFormData> {
+  await connectToDatabase();
 
-    // console.log("generator input (fallback path):", {
-    //  climate: input.climate,
-    //  terrain: input.terrain,
-    //  tags: input.tags,
-    //  ...input.overrides,
-    // });
+  // console.log("generator input (fallback path):", {
+  //  climate: input.climate,
+  //  terrain: input.terrain,
+  //  tags: input.tags,
+  //  ...input.overrides,
+  // });
 
-    if (input.settlementId) {
-      // Fetch the full settlement first
-      const { getSettlementById } = await import("./settlement.actions");
-      const result = await getSettlementById(input.settlementId);
-      const settlement = handleActionResult(result);
+  if (input.settlementId) {
+    const { getSettlementById } = await import("./settlement.actions");
+    const result = await getSettlementById(input.settlementId);
 
-      // Use your helper to generate site data from settlement + overrides
-      return generateSiteValuesFromSettlement(type, settlement, input.overrides ?? {});
+    if (!result.success) {
+      throw new AppError(`Failed to fetch settlement: ${result.message}`, result.status ?? 500);
     }
+    
+    const settlement = result.data;
 
-    // Fallback if no settlement context: just call the generator directly
-    const generator = SiteGenerator[type];
-    if (!generator) throw new AppError(`No generation rules defined for site type: ${type}`, 500);
+    // Pass only the required fields to generateSiteValuesFromSettlement
+    return generateSiteValuesFromSettlement(type, settlement, input.overrides ?? {});
+  }
 
-    const baseInput: SiteGenerationInput = {
-      ...input.overrides,
-      climate: rerollAll ? input.climate ?? "random" : input.climate,
-      terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
-      tags: rerollAll ? input.tags ?? ["random"] : input.tags
-    };
+  // Fallback if no settlement context: just call the generator directly
+  const generator = SiteGenerator[type];
+  if (!generator) throw new AppError(`No generation rules defined for site type: ${type}`, 500);
 
-    return await generateSiteValues(type, baseInput);
-  })
+  const baseInput: SiteGenerationInput = {
+    ...input.overrides,
+    climate: rerollAll ? input.climate ?? "random" : input.climate,
+    terrain: rerollAll ? input.terrain ?? ["random"] : input.terrain,
+    tags: rerollAll ? input.tags ?? ["random"] : input.tags
+  };
+
+  return await generateSiteValues(type, baseInput);
 }

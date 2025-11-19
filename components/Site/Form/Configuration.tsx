@@ -3,11 +3,7 @@ import FormChipInput from "@/components/Form/FormChipInput";
 import { Box, Typography } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
-interface Props {
-  mode: "add" | "edit" | null;
-}
-
-export default function SiteFormConfiguration({ mode }: Props){
+export default function SiteFormConfiguration(){
     const {
         register,
         control

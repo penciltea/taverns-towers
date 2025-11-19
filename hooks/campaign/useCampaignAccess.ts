@@ -3,6 +3,7 @@ import { useAssignedCampaignsQuery } from "./campaign.query";
 import { CampaignForClient, PlayerForClient } from "@/interfaces/campaign.interface";
 import { getCampaignPermissions } from "@/lib/actions/campaign.actions";
 import { handleActionResult } from "../queryHook.util";
+import { useCallback } from "react";
 
 export function useCampaignAccess(){
     const user = useAuthStore(state => state.user);
@@ -25,7 +26,7 @@ export function useCampaignAccess(){
         })
     }
 
-    async function playerHasContentPermissions(campaignId: string): Promise<boolean> {
+    const playerHasContentPermissions = useCallback(async (campaignId: string) => {
         if (!user || !campaignId) return false;
 
         const result = await getCampaignPermissions(campaignId);
@@ -33,7 +34,7 @@ export function useCampaignAccess(){
         if (!perms) return false;
 
         return perms.canCreateContent || perms.canEditOwnContent || perms.canEditAllContent;
-    }
+    }, [ user ]);
 
     return {
         isLoggedIn,

@@ -12,7 +12,6 @@ import { FieldError, useFormContext } from "react-hook-form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormEditableCard from "@/components/Form/FormEditableCard";
-import { getAvailableOptions } from "@/lib/util/getAvailableOptions";
 
 
 export default function TavernFields({generator}: SiteFormFieldProps){
@@ -30,22 +29,27 @@ export default function TavernFields({generator}: SiteFormFieldProps){
     const [themes, setThemes] = useState(SITE_THEMES);
 
     useEffect(() => {
+        let isMounted = true;
+
         async function loadThemes() {
-            if (!user) return;
+            if (!user || !selectedCampaign?._id) return;
 
-            const available = await getAvailableOptions({
-                freeOptions: SITE_THEMES,
-                premiumOptions: [...ARTISAN_SITE_THEMES, ...SITE_THEMES],
-                userTier: user?.tier,
-                selectedCampaign,
-                playerHasContentPermissions,
-            });
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
 
-            setThemes(available);
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_SITE_THEMES, ...SITE_THEMES]);
+            } else {
+                setThemes(SITE_THEMES);
+            }
         }
 
         loadThemes();
-    }, [user?.tier, selectedCampaign?._id, selectedCampaign, user, playerHasContentPermissions]);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
     
     return (
         <Box sx={{ flexGrow: 1 }}>
