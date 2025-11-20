@@ -3,7 +3,7 @@
 import connectToDatabase from "@/lib/db/connect";
 import bcrypt from "bcryptjs";
 import { User, UserModel } from "../models/user.model";
-import { LoginFailure, LoginPayload, LoginSuccess, RecentItemList, RegisterPayload, UpdateUserPayload, UserInterface } from "@/interfaces/user.interface";
+import { ActivityNpc, ActivitySettlement, ActivitySite, LoginFailure, LoginPayload, LoginSuccess, RecentItemList, RegisterPayload, UpdateUserPayload, UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
 import mongoose, { Types } from "mongoose";
 import { requireUser } from "@/lib/auth/authHelpers";
@@ -23,6 +23,7 @@ import { handleActionResult } from "@/hooks/queryHook.util";
 import { Npc } from "@/interfaces/npc.interface";
 import { Settlement } from "@/interfaces/settlement.interface";
 import { BaseSite } from "@/interfaces/site.interface";
+import { serializeNpc, serializeSettlement, serializeSite } from "../util/serializers";
 
 
 /**
@@ -373,20 +374,26 @@ export async function getRecentActivity(limit = 5): Promise<ActionResult<RecentI
     await connectToDatabase();
 
     const [npcs, settlements, sites] = await Promise.all([
-      NpcModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean<Npc[]>(),
-      SettlementModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean<Settlement[]>(),
-      Site.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean<BaseSite[]>(),
+      NpcModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
+      SettlementModel.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
+      Site.find({ userId: user.id }).sort({ updatedAt: -1 }).limit(limit).lean(),
     ]);
 
-    function tag<T extends object, U extends RecentItemList['type']>(item: T, type: U) {
-      return { ...item, type } as T & { type: U };
-    }
-
     const tagged: RecentItemList[] = [
-      ...npcs.map((n) => tag(n, "npc")),
-      ...settlements.map((s) => tag(s, "settlement")),
-      ...sites.map((s) => tag(s, "site")),
+      ...npcs.map((n): ActivityNpc => ({
+        ...serializeNpc(n),
+        type: "npc" as const,
+      })),
+      ...settlements.map((s): ActivitySettlement => ({
+        ...serializeSettlement(s),
+        type: "settlement" as const,
+      })),
+      ...sites.map((s): ActivitySite => ({
+        ...serializeSite(s),
+        type: "site" as const,
+      })),
     ];
+
 
     // Sort by updatedAt descending
     return tagged
@@ -408,19 +415,24 @@ export async function getFavorites(): Promise<ActionResult<RecentItemList[]>> {
     await connectToDatabase();
 
     const [npcs, settlements, sites] = await Promise.all([
-      NpcModel.find({ userId: user.id }).sort({ updatedAt: -1 }).lean<Npc[]>(),
-      SettlementModel.find({ userId: user.id }).sort({ updatedAt: -1 }).lean<Settlement[]>(),
-      Site.find({ userId: user.id }).sort({ updatedAt: -1 }).lean<BaseSite[]>(),
+      NpcModel.find({ userId: user.id, favorite: true }).lean(),
+      SettlementModel.find({ userId: user.id, favorite: true }).lean(),
+      Site.find({ userId: user.id, favorite: true }).lean(),
     ]);
 
-    function tag<T extends object, U extends RecentItemList['type']>(item: T, type: U) {
-      return { ...item, type } as T & { type: U };
-    }
-
     const tagged: RecentItemList[] = [
-      ...npcs.map((n) => tag(n, "npc")),
-      ...settlements.map((s) => tag(s, "settlement")),
-      ...sites.map((s) => tag(s, "site")),
+      ...npcs.map((n): ActivityNpc => ({
+        ...serializeNpc(n),
+        type: "npc" as const,
+      })),
+      ...settlements.map((s): ActivitySettlement => ({
+        ...serializeSettlement(s),
+        type: "settlement" as const,
+      })),
+      ...sites.map((s): ActivitySite => ({
+        ...serializeSite(s),
+        type: "site" as const,
+      })),
     ];
 
     // Sort by updatedAt descending
