@@ -6,6 +6,7 @@ export const userTier = [
 ];
 
 export const isPremiumTier = [
+    "Charter Member",
     "Artisan", 
     "Architect",
 ]
@@ -27,9 +28,9 @@ export const membershipBenefits = [
         benefits: [
             "Unlimited Settlements, Sites, and NPCs",
             "Multiple themed content options (Sci-Fi, Asian-inspired, etc.)",
-            "Optional batch site generation with Settlements",
+            "Optional batch site generation with Settlements (coming soon!)",
             "Add custom dropdown options (races, domains, factions)",
-            "Export content in PDF or VTT-ready formats",
+            "Export content in JSON, PDF, or VTT-ready formats (coming soon!)",
         ]
     },
     {
@@ -38,9 +39,9 @@ export const membershipBenefits = [
             "Unlimited Settlements, Sites, and NPCs",
             "Organize your worlds with Campaigns — manage content and invite players",
             "Multiple themed content options (Sci-Fi, Asian-inspired, etc.)",
-            "Optional batch site generation with Settlements",
+            "Optional batch site generation with Settlements (coming soon!)",
             "Add custom dropdown options (races, domains, factions)",
-            "Export content in PDF or VTT-ready formats",
+            "Export content in JSON, PDF, or VTT-ready formats (coming soon!)",
         ]
     },
     {
