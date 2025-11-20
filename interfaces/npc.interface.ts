@@ -20,7 +20,6 @@ export interface Npc extends CommonInterface {
   image?: string;
   description?: string;
   connections: NpcConnection[];
-  idempotencyKey?: string;
 }
 
 export interface NpcProps {
@@ -29,12 +28,12 @@ export interface NpcProps {
 
 
 export interface NpcResponse {
-  success: boolean;
   npcs: Npc[];
   total: number;
   currentPage: number;
   totalPages: number;
 }
+
 
 export const DefaultNpcQueryParams: NpcQueryParams = {
   page: 1,

@@ -1,8 +1,14 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormChipSelect, FormSelect, FormTextField } from "@/components/Form";
 import FormEditableCard from "@/components/Form/FormEditableCard";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
 import { DOMAINS } from "@/constants/common.options";
-import { SITE_SIZE, SITE_CONDITION } from "@/constants/site/site.options";
+import { SITE_SIZE, SITE_CONDITION, ARTISAN_SITE_THEMES, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import { Box } from "@mui/material";
@@ -14,6 +20,36 @@ export default function TempleFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function loadThemes() {
+            if (!user || !selectedCampaign?._id) return;
+
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
+
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_SITE_THEMES, ...SITE_THEMES]);
+            } else {
+                setThemes(SITE_THEMES);
+            }
+        }
+
+        loadThemes();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
 
     return (
         <>
@@ -34,6 +70,15 @@ export default function TempleFields({generator}: SiteFormFieldProps){
                 options={[{ label: "Random", value: "random" }, ...toSelectOptions(DOMAINS)]}
                 fieldError={errors.domains}
                 tooltip="This field influences the following fields: relics, services item generation."
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={themes}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
 
             <FormSelect

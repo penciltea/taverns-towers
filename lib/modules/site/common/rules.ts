@@ -1,5 +1,5 @@
-import { getRandom } from "@/lib/util/randomValues";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { getRandom, shouldReplace } from "@/lib/util/randomValues";
+import { SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormData } from "@/schemas/site.schema";
 
 
@@ -19,4 +19,12 @@ export function applySiteConditionRule(data: Partial<SiteFormData>) {
   return data;
 }
 
-export const commonRules = [applySiteSizeRule, applySiteConditionRule];
+export function applySiteThemeRule(data: Partial<SiteFormData>){
+  if(shouldReplace(data.siteTheme)){
+    const allThemeOptions = SITE_THEMES.flatMap(group => group.options);
+     data.siteTheme = [getRandom(allThemeOptions).value];
+  }
+  return data;
+}
+
+export const commonRules = [applySiteSizeRule, applySiteConditionRule, applySiteThemeRule];

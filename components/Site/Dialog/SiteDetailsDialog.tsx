@@ -16,6 +16,8 @@ import { useGetSiteById } from '@/hooks/site/site.query';
 import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import FavoriteButton from '@/components/Common/Button/FavoriteButton';
 import { useQueryClient } from '@tanstack/react-query';
+import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
+import { useCampaignStore } from '@/store/campaignStore';
 
 
 export const TavernDetails = dynamic<{ site: TavernSite }>(
@@ -85,6 +87,8 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
   const { showSnackbar, closeDialog } = useUIStore();
   const { data: session } = useSession();
   const queryClient = useQueryClient();
+  const { selectedCampaign } = useCampaignStore();
+  const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
   const { data, isLoading, isError } = useGetSiteById(siteData._id ?? null);
 
@@ -96,7 +100,7 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
   });
 
   // Always define site for later use; may be undefined during loading
-  const site = data?.site;
+  const site = data;
   const siteType = site?.type as keyof typeof SiteTypeComponents | undefined;
 
   if (!site || !siteType) return null;
@@ -105,8 +109,8 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
   const typedSite = site as Extract<typeof site, { type: typeof siteType }>;
 
   const user = session?.user ? { id: session.user.id } : null;
-  const editable = site && canEdit(user, { userId: site.userId, editors: site.editors });
-  const deletable = site && canDelete(user, { userId: site.userId });
+  const editable = site &&  canEdit(user?.id, { userId: site.userId }, campaignPermissions ?? undefined);
+  const deletable = site && canDelete(user?.id, { userId: site.userId });
 
   const handleEdit = () => {
     if (!site) return;
@@ -147,9 +151,7 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2, md: 4 }} justifyContent="space-between">
             <Box sx={{ px: 2 }}>
               <Typography variant="h6" sx={{ textDecoration: 'underline' }}>Site Details</Typography>
-              <Component
-                site={typedSite}
-              />
+              <Component site={typedSite} />
             </Box>
 
             {site.image && (

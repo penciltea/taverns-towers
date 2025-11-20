@@ -1,10 +1,17 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FormSelect, FormTextField } from "@/components/Form";
 import { FormChipSelect } from "@/components/Form";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { DEFENSE, KNOWN_TO, PURPOSE, SECRECY_LEVELS } from "@/constants/site/hidden.options";
 import { FieldError, useFormContext } from "react-hook-form";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
+
 
 export default function HiddenFields({generator}: SiteFormFieldProps){
     const {
@@ -12,6 +19,36 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
+
+    const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function loadThemes() {
+            if (!user || !selectedCampaign?._id) return;
+
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
+
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_SITE_THEMES, ...SITE_THEMES]);
+            } else {
+                setThemes(SITE_THEMES);
+            }
+        }
+
+        loadThemes();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
     
     return (
         <>
@@ -22,6 +59,15 @@ export default function HiddenFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={themes}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
             
             <FormSelect

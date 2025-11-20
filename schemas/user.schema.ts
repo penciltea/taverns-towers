@@ -19,7 +19,7 @@ export const userSchema = z.object({
       }
     )
     .optional(),
-  idempotencyKey: z.string().optional()
+  idempotencyKey: z.string().optional(),
 });
 
 export type UserSchema = z.infer<typeof userSchema>;
@@ -52,6 +52,14 @@ export const loginSchema = z.object({
 
 export type LoginSchema = z.infer<typeof loginSchema>;
 
+
+// Verification schema
+
+export const resendVerificationSchema = z.object({
+  credential: z.string().min(1, "Please enter your username or email")
+});
+
+export type ResendVerificationSchema = z.infer<typeof resendVerificationSchema>;
 
 // Password schemas
 export const forgotPasswordSchema = z.object({

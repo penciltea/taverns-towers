@@ -16,7 +16,7 @@ import { applyDomainsByConditions } from "./domain.rules";
 import { applyCrimeByWealthRule, applyMilitaryByConditions, applyRulingStyleBySizeRule, applyWealthBySizeRule } from "./law.rules";
 import { applyMagicByWealthRule } from "./magic.rules";
 import { applyRacesByConditions } from "./race.rules";
-import { applySizeRule } from "./size.rules";
+import { applySettlementThemeRule, applySizeRule } from "./size.rules";
 import { applyTradeNotesRule } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
 import { applyFolkloreByConditions } from "./folklore.rules";
@@ -26,6 +26,7 @@ import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions"
 // Each rule enriches or modifies the settlement data based on various conditions.
 const ruleFns = [
   applySizeRule,
+  applySettlementThemeRule,
   applyWealthBySizeRule,
   applyCrimeByWealthRule,
   applyRulingStyleBySizeRule,

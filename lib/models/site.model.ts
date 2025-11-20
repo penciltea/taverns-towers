@@ -25,15 +25,18 @@ const venueTypes = ENTERTAINMENT_VENUE_TYPES.map(option => option.value);
 
 export interface IBaseSite {
   _id: mongoose.Types.ObjectId;
+  campaignId?: mongoose.Types.ObjectId;
   type: string;
   updatedAt: Date;
   userId: string;
   name: string;
+  siteTheme: string[];
   [key: string]: unknown; // allows extra fields from discriminators
 }
 
 const BaseSiteSchema = new Schema(
   {
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     settlementId: { type: Schema.Types.ObjectId, ref: "Settlement" },
     name: { type: String, required: true },
     type: { type: String, required: true },
@@ -47,6 +50,7 @@ const BaseSiteSchema = new Schema(
       enum: conditionValues,
       required: false
     },
+    siteTheme: [{ type: String, required: false }],
     publicNotes: { type: String, required: false },
     gmNotes: { type: String, required: false },
     image: { type: String, required: false },
@@ -57,6 +61,7 @@ const BaseSiteSchema = new Schema(
       required: true,
     },
     favorite: { type: Boolean, default: false },
+    campaignHighlight: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{type: String, required: false}], //editors: [{ type: Schema.Types.ObjectId, ref: 'User' }]
     idempotencyKey: { type: String, unique: true, sparse: true },

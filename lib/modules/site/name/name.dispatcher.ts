@@ -10,12 +10,14 @@ export function dispatchSiteName(
   const siteTypeKey = (options.siteType?.[0] ?? "").toLowerCase();
   const config = nameGeneratorConfigs[siteTypeKey];
 
+  //console.log("options: ", options);
+
   return generateSiteNameFromFragments({
     fragments,
     filters: options,
     ...(config ?? {
       fallbackFormats: ["The {{prefix}} {{noun}}"],
-      allowedKeys: ["prefix", "suffix", "noun", "person", "fullName"],
+      allowedKeys: ["prefix", "suffix", "noun", "person", "fullName", "siteTheme"],
     }),
   });
 }

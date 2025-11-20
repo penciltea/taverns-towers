@@ -1,10 +1,9 @@
 import mongoose, { Schema, Document} from "mongoose";
-import { NPC_AGE, NPC_ALIGNMENT, NPC_ARCHETYPE, NPC_OCCUPATION, NPC_PERSUASION, NPC_PRONOUNS, NPC_RACES, NPC_REPUTATION, NPC_STATUS, NPC_TRAITS, NpcRace, NpcTrait } from "@/constants/npc.options";
+import { NPC_AGE, NPC_ALIGNMENT, NPC_ARCHETYPE, NPC_OCCUPATION, NPC_PERSUASION, NPC_PRONOUNS, NPC_REPUTATION, NPC_STATUS, NPC_TRAITS, NpcTrait } from "@/constants/npc.options";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { connectionSchema } from "./connection.model";
 
 // Flatten trait values for enum use
-const raceValues = NPC_RACES.map(option => option.value);
 const persuasionValues = NPC_PERSUASION.map(option => option.value);
 const reputationValues = NPC_REPUTATION.map(option => option.value);
 const npcArchetypeValues: string[] = NPC_ARCHETYPE.flatMap((group) =>
@@ -19,12 +18,13 @@ const npcTraitValues: string[] = NPC_TRAITS.flatMap((group) =>
 
 export interface INpc extends Document {
   userId: mongoose.Types.ObjectId;
+  campaignId?: mongoose.Types.ObjectId;
   name: string;
   age?: string;
   pronouns?: string;
   alignment?: string;
   status?: string;
-  race?: NpcRace;
+  race?: string;
   traits?: NpcTrait[];
   reputation?: string;
   archetype?: string;
@@ -38,6 +38,7 @@ export interface INpc extends Document {
   connections: NpcConnection[];
   image?: string;
   favorite?: boolean;
+  campaignHighlight?: boolean;
   isPublic?: boolean;
   editors?: mongoose.Types.ObjectId[];
   createdAt?: Date;
@@ -48,12 +49,13 @@ export interface INpc extends Document {
 const npcSchema = new Schema<INpc>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     name: { type: String, required: true, trim: true },
     age: { type: String, enum: NPC_AGE },
     pronouns: { type: String, enum: NPC_PRONOUNS },
     alignment: { type: String, enum: NPC_ALIGNMENT },
     status: { type: String, enum: NPC_STATUS },
-    race: { type: String, enum: raceValues },
+    race: { type: String },
     traits: [{ type: String, enum: npcTraitValues }],
     reputation: { type: String, enum: reputationValues },
     archetype: { type: String, enum: npcArchetypeValues },
@@ -67,6 +69,7 @@ const npcSchema = new Schema<INpc>(
     connections: [connectionSchema],
     image: { type: String },
     favorite: { type: Boolean, default: false },
+    campaignHighlight: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{ type: Schema.Types.ObjectId, ref: "User" }],
     idempotencyKey: { type: String, unique: true, sparse: true },

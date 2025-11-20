@@ -12,6 +12,7 @@ export const TAG_TYPES = [
     "Hidden",
     "Infested",
     "Isolated",
+    "Military Outpost",
     "Mining Camp",
     "Nomadic",
     "Overgrown",
@@ -20,7 +21,6 @@ export const TAG_TYPES = [
     "Remote",
     "Sacred Site",
     "Trade Hub",
-    "Military Outpost",
 ];
 
 export const TERRAIN_TYPES = [

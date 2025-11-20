@@ -5,294 +5,262 @@ import connectToDatabase from "@/lib/db/connect";
 import Site from '@/lib/models/site.model';
 import { revalidatePath } from 'next/cache';
 import { requireUser } from "../auth/authHelpers";
-import { PaginatedQueryParams, PaginatedQueryResponse, SiteType } from "@/interfaces/site.interface";
+import { SiteResponse, SiteType } from "@/interfaces/site.interface";
 import { serializeSite } from "../util/serializers";
+import { getCampaignPermissions } from "./campaign.actions";
+import { canEdit } from "../auth/authPermissions";
+import { ActionResult } from "@/interfaces/server-action.interface";
+import { safeServerAction } from "./safeServerAction.actions";
+import { AppError } from "../errors/app-error";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
 
-function getPagination(page?: number, limit?: number) {
-  const safePage = Math.max(Number(page) || 1, 1);
-  const safeLimit = Math.min(Math.max(Number(limit) || 12, 1), 100);
-  return { skip: (safePage - 1) * safeLimit, limit: safeLimit, page: safePage };
-}
-
-export async function getPublicSitesPaginated({
-  page,
-  limit,
-  search,
-  types,
-  tone,
-}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
-  await connectToDatabase();
-
-  try {
-    const query: Record<string, unknown> = { isPublic: true };
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
-    }
-    if (types?.length) query.type = { $in: types };
-    if (tone?.length) query.tone = { $all: tone };
-
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
-
-    return {
-      success: true,
-      sites: sites.map(serializeSite),
-      total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
-    };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
-  }
-}
-
-export async function getOwnedSitesPaginated({
-  page,
-  limit,
-  search,
-  types,
-  tone,
-  favorite,
-}: PaginatedQueryParams): Promise<PaginatedQueryResponse<SiteType>> {
-  await connectToDatabase();
-
-  try {
-    const user = await requireUser();
-    const query: Record<string, unknown> = { userId: new ObjectId(user.id) };
-
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
-    }
-    if (types?.length) query.type = { $in: types };
-    if (tone?.length) query.tone = { $all: tone };
-    if (favorite) query.favorite = true;
-
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
-
-    return {
-      success: true,
-      sites: sites.map(serializeSite),
-      total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
-    };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
-  }
-}
-
-export async function getSitesBySettlementPaginated({
+export async function getSites({
+  userId,
+  campaignId,
   settlementId,
-  page,
-  limit,
-  search,
+  isPublic,
+  page = 1,
+  limit = 12,
+  search = '',
   types,
   tone,
-  favorite,
-}: PaginatedQueryParams & { settlementId: string | null }): Promise<PaginatedQueryResponse<SiteType>> {
-  await connectToDatabase();
+  favorite
+}: {
+  userId?: string;
+  campaignId?: string;
+  settlementId?: string;
+  isPublic?: boolean;
+  page?: number;
+  limit?: number;
+  search?: string;
+  types?: string[];
+  tone?: string[];
+  favorite?: boolean;
+}): Promise<ActionResult<SiteResponse>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
 
-  try {
     const query: Record<string, unknown> = {};
 
-    if (settlementId === "wilderness") {
-      query.settlementId = null;
-    } else if (settlementId && ObjectId.isValid(settlementId)) {
-      query.settlementId = new ObjectId(settlementId);
+    if(campaignId){
+      query.campaignId = campaignId; // include sites in the campaign
     } else {
-      return {
-        success: false,
-        sites: [],
-        total: 0,
-        currentPage: 1,
-        totalPages: 1,
-        error: "Invalid settlementId provided",
-      };
+      query.campaignId = { $in: [null, undefined] };
+
+      if (userId) {
+        query.userId = userId; // fallback to personal sites
+      }
     }
 
-    if (typeof search === "string" && search.trim()) {
-      query.name = { $regex: search.trim(), $options: "i" };
+    if(settlementId === "wilderness"){
+      query.settlementId = null;
+    } else if(settlementId && ObjectId.isValid(settlementId)) {
+      query.settlementId = settlementId;
     }
+    
+
+    if(typeof isPublic === 'boolean') query.isPublic = isPublic;
+
+    if (search) query.name = { $regex: new RegExp(search, 'i') };
     if (types?.length) query.type = { $in: types };
     if (tone?.length) query.tone = { $all: tone };
     if (favorite) query.favorite = true;
 
-    const { skip, limit: safeLimit, page: safePage } = getPagination(page, limit);
-
-    const [sites, total] = await Promise.all([
-      Site.find(query).sort({ createdAt: -1 }).skip(skip).limit(safeLimit),
-      Site.countDocuments(query),
-    ]);
+    const total = await Site.countDocuments(query);
+    const sites = await Site.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
 
     return {
       success: true,
       sites: sites.map(serializeSite),
       total,
-      currentPage: safePage,
-      totalPages: Math.ceil(total / safeLimit),
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
     };
-  } catch (error) {
-    return {
-      success: false,
-      sites: [],
-      total: 0,
-      currentPage: 1,
-      totalPages: 1,
-      error: (error as Error).message,
-    };
-  }
+  })
 }
 
-export async function getSiteById(id: string) {
-  await connectToDatabase();
-
-  if (!ObjectId.isValid(id)) {
-    return { success: false, error: "Invalid site ID" };
-  }
-
-  const site = await Site.findById(id);
-  if (!site) {
-    return { success: false, error: "Site not found" };
-  }
-
-  return { success: true, site: serializeSite(site) };
-}
-
-
-
-export async function createSite(data: SiteType, settlementId: string) {
-  await connectToDatabase();
+export async function getOwnedSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>
+): Promise<ActionResult<SiteResponse>> {
   const user = await requireUser();
-  const model = Site.discriminators?.[data.type] || Site;
+  return getSites({ ...options, userId: user.id });
+}
 
-  const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
+export async function getSitesBySettlement(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>,
+  settlementId: string
+): Promise<ActionResult<SiteResponse>> {
+  const user = await requireUser();
+  return getSites({ ...options, userId: user.id, settlementId });
+}
 
-  if (!data.idempotencyKey) {
-    throw new Error("Missing idempotency key for idempotent creation");
-  }
+export async function getCampaignSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>,
+  campaignId: string,
+  settlementId?: string
+): Promise<ActionResult<SiteResponse>> {
+  return getSites({...options, campaignId, settlementId: settlementId || undefined})
+}
 
-  // Check if an settlement with this key already exists
-  const existing = await model.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
-  if (existing) {
-    return serializeSite(existing); // Return existing settlement instead of creating duplicate
-  }
+export async function getPublicSites(
+  options: Omit<Parameters<typeof getSites>[0], 'userId'>
+): Promise<ActionResult<SiteResponse>> {
+  return getSites({...options, isPublic: true})
+}
 
-  const newSite = await model.create({
-    ...data,
-    settlementId: dbSettlementId,
-    userId: new ObjectId(user.id),
+
+export async function getSiteById(id: string): Promise<ActionResult<SiteType>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid site ID", 400);
+
+    const site = await Site.findById(id);
+    if (!site) throw new AppError("Site not found", 404);
+
+    return serializeSite(site);
+  })
+}
+
+
+
+export async function createSite(data: SiteType, settlementId: string): Promise<ActionResult<SiteType>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    const user = await requireUser();
+    const model = Site.discriminators?.[data.type] || Site;
+
+    const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
+
+    if (!data.idempotencyKey) {
+      throw new AppError("Missing idempotency key for idempotent creation", 400);
+    }
+
+    // Check if an settlement with this key already exists
+    const existing = await model.findOne({ idempotencyKey: data.idempotencyKey, userId: user.id });
+    if (existing) {
+      return serializeSite(existing); // Return existing settlement instead of creating duplicate
+    }
+
+    const newSite = await model.create({
+      ...data,
+      settlementId: dbSettlementId,
+      userId: new ObjectId(user.id),
+    });
+
+
+    if (dbSettlementId) {
+      revalidatePath(`/settlements/${dbSettlementId.toString()}`);
+    } else {
+      revalidatePath(`/wilderness`);
+    }
+    
+    return serializeSite(newSite);
+  })
+}
+
+export async function updateSite(data: SiteUpdateData, id: string, campaignId?: string): Promise<ActionResult<SiteType>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+
+    const user = await requireUser();
+    const existing = await Site.findById(id);
+
+    if (!existing) throw new AppError("Site not found", 404);
+    
+    if(campaignId){
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(campaignId)
+      );
+      
+      if (!canEdit(user?.id, { userId: data.userId ?? ""}, campaignPermissions ?? undefined)){
+        throw new AppError("Unauthorized", 403);
+      }
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
+
+    const model = Site.discriminators?.[existing.type] || Site;
+
+    const updated = await model.findByIdAndUpdate(
+      id,
+      { ...data },
+      { new: true }
+    );
+
+    if (updated?.settlementId) {
+      revalidatePath(`/settlements/${updated.settlementId}`);
+    }
+
+    return serializeSite(updated);
+  })
+}
+
+export async function updateSitePartial(id: string, data: PartialSiteUpdate): Promise<ActionResult<SiteType>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid site ID", 400);
+
+    const user = await requireUser();
+    const existing = await Site.findById(id);
+
+    if (!existing) throw new AppError("Site not found", 404);
+    if(existing.campaignId){
+      const campaignPermissions = handleActionResult(
+        await getCampaignPermissions(existing.campaignId)
+      );
+      if(!campaignPermissions || !campaignPermissions.isOwner) throw new AppError("Unauthorized", 403);
+
+    } else if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
+
+    const model = Site.discriminators?.[existing.type] || Site;
+
+    const updatedSite = await model.findByIdAndUpdate(
+      id,
+      { ...data },
+      { new: true }
+    );
+
+    if (!updatedSite) throw new AppError("Failed to update site", 400);
+
+    // Revalidate the settlement page if needed
+    if (updatedSite.settlementId) {
+      revalidatePath(`/settlements/${updatedSite.settlementId}`);
+    }
+
+    return serializeSite(updatedSite);
   });
-
-
-  if (dbSettlementId) {
-    revalidatePath(`/settlements/${dbSettlementId.toString()}`);
-  } else {
-    revalidatePath(`/wilderness`);
-  }
-  
-  return serializeSite(newSite);
-}
-
-export async function updateSite(data: SiteUpdateData, id: string) {
-  await connectToDatabase();
-
-  const user = await requireUser();
-  const existing = await Site.findById(id);
-
-  if (!existing) throw new Error("Site not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
-
-  const model = Site.discriminators?.[existing.type] || Site;
-
-  const updated = await model.findByIdAndUpdate(
-    id,
-    { ...data },
-    { new: true }
-  );
-
-  if (updated?.settlementId) {
-    revalidatePath(`/settlements/${updated.settlementId}`);
-  }
-
-  return serializeSite(updated);
-}
-
-export async function updateSitePartial(id: string, data: PartialSiteUpdate) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid site ID");
-
-  const user = await requireUser();
-  const existing = await Site.findById(id);
-
-  if (!existing) throw new Error("Site not found");
-  if (existing.userId.toString() !== user.id) throw new Error("Unauthorized");
-
-  const model = Site.discriminators?.[existing.type] || Site;
-
-  const updatedSite = await model.findByIdAndUpdate(
-    id,
-    { ...data },
-    { new: true }
-  );
-
-  if (!updatedSite) throw new Error("Failed to update site");
-
-  // Revalidate the settlement page if needed
-  if (updatedSite.settlementId) {
-    revalidatePath(`/settlements/${updatedSite.settlementId}`);
-  }
-
-  return serializeSite(updatedSite);
 }
 
 
 
-export async function deleteSite(id: string) {
-  await connectToDatabase();
-  if (!ObjectId.isValid(id)) throw new Error("Invalid site ID");
+export async function deleteSite(id: string): Promise<ActionResult<{ message: string, status: number}>> {
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid site ID", 400);
 
-  const user = await requireUser();
-  const existing = await Site.findById(id);
+    const user = await requireUser();
+    const existing = await Site.findById(id);
 
-  if (!existing) {
-    // already deleted – just return a success-like response
-    return { success: true, message: "Already deleted" };
-  }
+    if (!existing) throw new AppError("Site not found", 404);
 
-  if (existing.userId.toString() !== user.id) {
-    throw new Error("Unauthorized");
-  }
+    if (existing.userId.toString() !== user.id) {
+      throw new AppError("Unauthorized", 403);
+    }
 
-  const deletedSite = await Site.findByIdAndDelete(id);
-  if (!deletedSite) throw new Error("Site not found");
+    const deletedSite = await Site.findByIdAndDelete(id);
+    if (!deletedSite) throw new AppError("Site not found", 404);
 
-  if (deletedSite?.settlementId) revalidatePath(`/settlement/${deletedSite.settlementId}`);
-  return { success: true };
+    if (deletedSite?.settlementId) revalidatePath(`/settlement/${deletedSite.settlementId}`);
+    return { message: "Site successfully deleted", status: 200};
+  })
 }
 
 type SiteUpdateData = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>>;

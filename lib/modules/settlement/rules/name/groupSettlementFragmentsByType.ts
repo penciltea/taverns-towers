@@ -9,7 +9,6 @@ export function groupSettlementFragmentsByType(fragments: GeneratorSettlementFra
     descriptor: fragments.filter(f => f.type === "descriptor"),
     connector: fragments.filter(f => f.type === "connector"),
     size: fragments.filter(f => f.type === "size"),
-    theme: fragments.filter(f => f.type === "theme"),
     format: fragments.filter(f => f.type === "format")
   };
 }

@@ -5,6 +5,7 @@ import { authOptions } from "./authOptions";
 import { UserInterface } from "@/interfaces/user.interface";
 import { UI_THEMES } from "@/constants/ui.options";
 import { userTier } from "@/constants/user.options";
+import { AppError } from "../errors/app-error";
 
 export async function auth() {
   return getServerSession(authOptions);
@@ -12,11 +13,11 @@ export async function auth() {
 
 export async function requireUser(): Promise<UserInterface> {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  if (!session?.user) throw new AppError("Unauthorized", 403);
 
   const { id, username, name, email, tier, theme, patreon } = session.user;
 
-  if (!id || !email) throw new Error("Incomplete user session data");
+  if (!id || !email) throw new AppError("Incomplete user session data", 400);
 
   // Use Patreon name as fallback for username
   const resolvedUsername = username || name || "Traveler";

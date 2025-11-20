@@ -11,7 +11,7 @@ export function generateSiteNameFromFragments({
   subtypeKey,
   getSubtypeValues,
   fallbackFormats,
-  allowedKeys = ["prefix", "suffix", "noun", "person", "siteTypeName", "fullName"],
+  allowedKeys = ["prefix", "suffix", "noun", "person", "siteTypeName", "fullName", "theme"],
 }: {
   fragments: GeneratorSiteFragmentPlain[];
   filters: GenerateSiteNameOptions;
@@ -57,6 +57,7 @@ export function generateSiteNameFromFragments({
     person: [],
     siteTypeName: [],
     fullName: [],
+    siteTheme: [],
     format: [],
   };
 

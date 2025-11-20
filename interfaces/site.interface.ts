@@ -49,19 +49,11 @@ export interface PaginatedQueryParams {
   types?: string[];
   tone?: string[];
   favorite?: boolean;
-}
-
-export interface PaginatedQueryResponse<T> {
-  success: boolean;
-  sites: T[];
-  total: number;
-  currentPage: number;
-  totalPages: number;
-  error?: string;
+  userId?: string;
+  campaignId?: string;
 }
 
 export interface SiteResponse {
-  success: boolean;
   sites: SiteType[];
   total: number;
   totalPages: number;
@@ -76,7 +68,7 @@ export interface BaseSite extends CommonInterface {
   condition?: SiteCondition;
   image?: string;
   tone?: string[];
-  idempotencyKey?: string;
+  siteTheme?: string[];
   connections: NpcConnection[];
 }
 
@@ -171,6 +163,9 @@ export interface GenerateSiteNameOptions {
   venueType?: string[];
   functionType?: string[];
   domains?: string[];
+  siteSize?: string[];
+  siteCondition?: string[];
+  siteTheme?: string[];
   data?: Partial<SiteFormData>;
 }
 
@@ -182,6 +177,7 @@ export type GroupKey =
   | "person"
   | "siteTypeName"
   | "fullName"
+  | "siteTheme"
   | "format";
 
 
@@ -200,6 +196,7 @@ export interface SiteGenerationContext {
   settlementId?: string;
   settlementName?: string;
   reroll?: boolean;
+  siteTheme?: string[];
   siteType?: string;
   shopType?: string;
   guildType?: string;

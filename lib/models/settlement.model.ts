@@ -1,18 +1,16 @@
 import mongoose from 'mongoose';
 import { Document, Types } from 'mongoose';
 import { SizeTypes, WealthLevel, MagicLevel, RulingType, CriminalActivityTypes, CRIMINAL_ACTIVITY_TYPES, MAGIC_LEVELS, RULING_TYPES, WEALTH_LEVELS, MilitaryPresenceTypes, MILITARY_PRESENCE_TYPES} from '@/constants/settlement.options';
-import { DOMAINS, DomainTypes, THEME, ThemeTypes, TONE, ToneTypes } from '@/constants/common.options';
+import { DOMAINS, DomainTypes, TONE, ToneTypes } from '@/constants/common.options';
 import { ClimateTypes, TerrainTypes, TagTypes, TAG_TYPES, TERRAIN_TYPES, CLIMATE_TYPES } from '@/constants/environment.options';
 import { connectionSchema } from './connection.model';
 import { NpcConnection } from '@/interfaces/connection.interface';
 const { Schema } = mongoose;
 
-const THEME_TYPES = THEME.flatMap(group =>
-  group.options.map(option => option.value)
-);
 
 export interface ISettlement extends Document {
   _id: Types.ObjectId;
+  campaignId?: Types.ObjectId;
   name: string;
   size: SizeTypes;
   tags: TagTypes[];
@@ -34,9 +32,10 @@ export interface ISettlement extends Document {
   folklore: string;
   crime: CriminalActivityTypes[];
   tone: ToneTypes[];
-  theme: ThemeTypes[];
+  theme: string;
   createdBy: Types.ObjectId;
-  favorite?: boolean,
+  favorite?: boolean;  
+  campaignHighlight?: boolean;
   isPublic: boolean;
   userId: Types.ObjectId;
   editors: string[];
@@ -47,6 +46,7 @@ export interface ISettlement extends Document {
 
 const SettlementSchema = new Schema<ISettlement>(
   {
+    campaignId: { type: Schema.Types.ObjectId, ref: "Campaign", required: false },
     name: { type: String, required: true },
     size: { type: String, required: false },
     map: { type: String, required: false },
@@ -68,7 +68,7 @@ const SettlementSchema = new Schema<ISettlement>(
     holidays: { type: String, required: false },
     folklore: { type: String, required: false },
     tone: [{ type: String, enum: TONE, required: false}],
-    theme: [{ type: String, enum: THEME_TYPES, required: false }],
+    theme: [{ type: String, required: false }],
     connections: [connectionSchema],
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -76,6 +76,7 @@ const SettlementSchema = new Schema<ISettlement>(
       required: true,
     },
     favorite: { type: Boolean, default: false },
+    campaignHighlight: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },
     editors: [{type: String, required: false}],
     idempotencyKey: { type: String, unique: true, sparse: true },

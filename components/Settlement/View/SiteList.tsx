@@ -11,6 +11,7 @@ import FilterBar from "@/components/Grid/FilterBar";
 import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { queryClient } from "@/components/Layout/QueryProviderWrapper";
 import { handleSiteLabel } from "@/lib/util/siteHelpers";
+import { getPlaceholderSite } from "@/lib/util/getPlaceholders";
 
 export default function SiteList({ settlementId }: SiteListProps) {
   const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
@@ -74,7 +75,7 @@ export default function SiteList({ settlementId }: SiteListProps) {
         <GridItem
           key={site._id}
           title={site.name}
-          image={site.image}
+          image={site.image ?? getPlaceholderSite(site.type)}
           subtitle={handleSiteLabel(site)}
           onClick={() => {
             setOpenDialog('SiteDetailsDialog', {  

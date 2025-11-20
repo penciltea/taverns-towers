@@ -3,12 +3,14 @@ import { serializeFromDb } from "./serializeFromDb";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { BaseSite, SiteType, TavernSite, generatorMenuItem, TempleSite, ShopSite, GuildSite, GovernmentSite, EntertainmentSite, HiddenSite, ResidenceSite, MiscellaneousSite } from "@/interfaces/site.interface";
 import { Npc } from "@/interfaces/npc.interface";
+import { CampaignForDB, PlayerForClient, PlayerForDB } from "@/interfaces/campaign.interface";
+import { AppError } from "../errors/app-error";
 
 export function serializeSettlement(settlement: Parameters<typeof serializeFromDb>[0]): Settlement {
   const serialized = serializeFromDb(settlement) as Settlement | null;
 
   if (!serialized || !Array.isArray(serialized.connections)) {
-    throw new Error("Invalid settlement data for serialization");
+    throw new AppError("Invalid settlement data for serialization", 400);
   }
 
   return {
@@ -31,12 +33,13 @@ export function serializeSite(site: Parameters<typeof serializeFromDb>[0]): Base
     Array.isArray(serialized) ||
     !("type" in serialized)
   ) {
-    throw new Error("Invalid serialized site data");
+    throw new AppError("Invalid serialized site data", 400);
   }
 
   // Map connections
   const baseData = {
     ...serialized,
+    siteTheme: Array.isArray((serialized as { siteTheme?: string[]}).siteTheme) ? ((serialized as unknown as { siteTheme: string[]}).siteTheme) : [],
     connections: Array.isArray((serialized as { connections?: NpcConnection[] }).connections)
       ? ((serialized as unknown as { connections: NpcConnection[] }).connections).map((conn: NpcConnection) => ({
           ...conn,
@@ -143,7 +146,7 @@ export function serializeNpc(npc: Parameters<typeof serializeFromDb>[0]): Npc {
   const serialized = serializeFromDb(npc) as Npc | null;
 
   if (!serialized || !Array.isArray(serialized.connections)) {
-    throw new Error("Invalid NPC data for serialization");
+    throw new AppError("Invalid NPC data for serialization", 400);
   }
 
   return {
@@ -152,5 +155,49 @@ export function serializeNpc(npc: Parameters<typeof serializeFromDb>[0]): Npc {
       ...conn,
       id: conn.id.toString(),
     })),
+  };
+}
+
+export function serializeCampaign(campaign: Parameters<typeof serializeFromDb>[0]): CampaignForDB {
+  const serialized = serializeFromDb(campaign) as CampaignForDB | null;
+  
+  if (!serialized || !Array.isArray(serialized.tone) || !Array.isArray(serialized.players)) {
+    throw new AppError("Invalid campaign data for serialization", 400);
+  }
+  return {
+    ...serialized,
+    _id: serialized._id.toString(),
+    userId: serialized.userId.toString(),
+    players: serialized.players.map((player: PlayerForDB) => ({
+      _id: player._id?.toString() ?? "",
+      user: player.user?.toString(),
+      roles: player.roles ?? [],
+    })),
+  };
+}
+
+export function serializePlayer(player: PlayerForClient): PlayerForClient {
+  if (player.placeholder) {
+    return {
+      _id: player._id?.toString() ?? "",
+      roles: player.roles ?? [],
+      user: {
+        username: player.identifier ?? "",
+        email: "",
+        id: "",
+      },
+    };
+  }
+
+  return {
+    _id: player._id?.toString() ?? "",
+    roles: player.roles ?? [],
+    user: player.user && typeof player.user !== "string"
+      ? {
+          username: player.user.username,
+          email: player.user.email,
+          id: player.user._id?.toString() ?? "",
+        }
+      : { username: "", email: "", id: "" },
   };
 }

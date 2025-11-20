@@ -27,6 +27,7 @@ type FilteredGridViewProps<T extends CommonInterface> = {
   fabLabel?: string;
   fabLink?: string;
   fabOnClick?: () => void;
+  fabPermissions?: boolean | (() => boolean);
 };
 
 export default function FilteredGridView<T extends CommonInterface>({
@@ -49,7 +50,8 @@ export default function FilteredGridView<T extends CommonInterface>({
   emptyText = 'No items found.',
   fabLabel,
   fabLink,
-  fabOnClick
+  fabOnClick,
+  fabPermissions
 }: FilteredGridViewProps<T>) {
   const totalPages = Math.ceil(totalCount / pageSize);
 
@@ -90,7 +92,7 @@ export default function FilteredGridView<T extends CommonInterface>({
         </Typography>
       )}
 
-      {fabLabel && (fabLink || fabOnClick) && (
+      {fabLabel && (fabLink || fabOnClick) && fabPermissions && (
         <FabButton label={fabLabel} link={fabLink} onClick={fabOnClick} />
       )}
     </Paper>

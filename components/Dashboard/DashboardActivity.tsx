@@ -6,7 +6,9 @@ import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/mat
 import NextMuiLink from "../Common/NextMuiLink";
 
 export default function DashboardActivity(){
-    const { data, isLoading, isError } = useRecentActivityQuery(5);
+    const { data: activityResult, isLoading, isError } = useRecentActivityQuery(5);
+
+    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
 
     function handleNavigation(item: RecentItem) {
         switch (item.type) {
@@ -22,60 +24,48 @@ export default function DashboardActivity(){
     }
 
     return (
-        <Box
-            sx={{
-                mb: 2,
-                flex: 1,
-                minHeight: 200,
-                padding: 2
-            }}
-        >
-            <Typography variant="h5" component="h4" gutterBottom>Recent Activity</Typography>
-            <Box>
-                {isLoading && <Typography>Loading recent activity...</Typography>}
-                {isError && <Typography color="error">Something went wrong loading your activity.</Typography>}
+        <Box>
+            {isLoading && <Typography>Loading recent activity...</Typography>}
+            {isError && <Typography color="error">Something went wrong loading your activity.</Typography>}
 
-                {!isLoading && !isError && (
-                    <>
-                        <Typography variant="body2" color="text.secondary">Below are your most recent works. Tap or click an item to resume crafting!</Typography>
-                        {data && data.length > 0 ? (
-                            <List>
-                                {data.map((item) => (
-                                    <Box key={item._id}>
-                                        <ListItem
-                                            component={NextMuiLink}
-                                            href={handleNavigation(item)}
-                                            sx={{
-                                                cursor: "pointer",
-                                                textDecoration: "none",
-                                                color: "inherit",
-                                                "&:hover": { backgroundColor: "action.hover" },
-                                            }}
-                                        >
-                                            <ListItemText
-                                                primary={item.name}
-                                                secondary={item.type}
-                                                slotProps={{
-                                                    primary: { color: 'info.main', fontWeight: "bold" },
-                                                    secondary: {
-                                                        textTransform:
-                                                            item.type.toLowerCase() === "npc"
-                                                                ? "uppercase"
-                                                                : "capitalize",
-                                                    },
-                                                }}
-                                            />
-                                        </ListItem>
-                                        <Divider />
-                                    </Box>
-                                ))}
-                            </List>
-                        ) : (
-                            <Typography>No recent activity found.</Typography>
-                        )}
-                    </>
-                )}
-            </Box>
+            {!isLoading && !isError && (
+                <>
+                    <Typography variant="body2" color="text.secondary">Below are your most recent works. Tap or click an item to resume crafting!</Typography>
+                    {items.length > 0 ? (
+                        <List>
+                            {items.map((item: RecentItem) => (
+                                <Box key={`${item.type}-${item._id}`}>
+                                <ListItem
+                                    component={NextMuiLink}
+                                    href={handleNavigation(item)}
+                                    sx={{
+                                    cursor: "pointer",
+                                    textDecoration: "none",
+                                    color: "inherit",
+                                    "&:hover": { backgroundColor: "action.hover" },
+                                    }}
+                                >
+                                    <ListItemText
+                                    primary={item.name}
+                                    secondary={item.type}
+                                    slotProps={{
+                                        primary: { color: "info.main", fontWeight: "bold" },
+                                        secondary: {
+                                        textTransform:
+                                            item.type === "npc" ? "uppercase" : "capitalize",
+                                        },
+                                    }}
+                                    />
+                                </ListItem>
+                                <Divider />
+                                </Box>
+                            ))}
+                        </List>
+                    ) : (
+                        <Typography>No recent activity found.</Typography>
+                    )}
+                </>
+            )}
         </Box>
     )
 }

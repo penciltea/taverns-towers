@@ -1,7 +1,13 @@
-import { FormTextField } from "@/components/Form";
+'use client'
+
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@/store/authStore";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
+import { FormChipSelect, FormTextField } from "@/components/Form";
 import { FormSelect } from "@/components/Form";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { SITE_CONDITION, SITE_SIZE } from "@/constants/site/site.options";
+import { ARTISAN_SITE_THEMES, SITE_CONDITION, SITE_SIZE, SITE_THEMES } from "@/constants/site/site.options";
 import { SiteFormFieldProps } from "@/interfaces/site.interface";
 import { FieldError, useFormContext } from "react-hook-form";
 
@@ -11,7 +17,37 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
         control,
         formState: { errors },
     } = useFormContext();
-    
+
+    const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(SITE_THEMES);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function loadThemes() {
+            if (!user || !selectedCampaign?._id) return;
+
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
+
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_SITE_THEMES, ...SITE_THEMES]);
+            } else {
+                setThemes(SITE_THEMES);
+            }
+        }
+
+        loadThemes();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
+
     return (
         <>
             <FormFieldWithGenerate
@@ -21,6 +57,15 @@ export default function ResidenceFields({generator}: SiteFormFieldProps){
                 registration={register("name")}
                 fieldError={errors.name}
                 onGenerate={generator?.name}
+            />
+
+            <FormChipSelect
+                name="siteTheme"
+                label="Theme"
+                control={control}
+                options={themes}
+                fieldError={errors.siteTheme}
+                tooltip="This field influences name generation."
             />
             
             <FormSelect

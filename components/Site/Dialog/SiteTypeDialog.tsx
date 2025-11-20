@@ -31,7 +31,11 @@ export default function SiteTypeDialog({ open, onClose, dialogMode, defaultSettl
         setError(true);
         return;
       }
-      settlementToUse = params.id as string;
+      if(selectedSettlement === 'wilderness'){
+        settlementToUse = selectedSettlement
+      } else {
+        settlementToUse = params.id as string;
+      }
     }
 
     if (dialogMode === 'global') {

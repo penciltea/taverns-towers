@@ -110,23 +110,27 @@ export default function EntityLinkList({
                         spacing={1}
                         flexWrap="wrap"
                         component="div"
+                        useFlexGap
                       >
                         {conn.role && (
                           <Chip
                             label={toTitleCase(mapConnectionRole(conn, pageSiteType))}
                             size="small"
+                            sx={{ my: 0.5 }}
                           />
                         )}
                         {conn.npcData.race && (
                           <Chip
                             label={toTitleCase(conn.npcData.race)}
                             size="small"
+                            sx={{ my: 0.5 }}
                           />
                         )}
                         {conn.npcData.pronouns && (
                           <Chip
                             label={toTitleCase(conn.npcData.pronouns)}
                             size="small"
+                            sx={{ my: 0.5 }}
                           />
                         )}
                       </Stack>

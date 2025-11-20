@@ -5,7 +5,9 @@
     "climate": ["Temperate", "Continental", "Tropical"],
     "terrain": ["Plains", "Forest", "Hills", "Coast"],
     "tags": ["Trade Hub", "Military Outpost"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -13,7 +15,9 @@
     "climate": ["Temperate", "Continental", "Dry"],
     "terrain": ["Hills", "Mountains", "Plains"],
     "tags": ["Military Outpost", "Fortress"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -21,7 +25,9 @@
     "climate": ["Polar", "Temperate"],
     "terrain": ["Mountains", "Tundra"],
     "tags": ["Isolated", "Fortress"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -29,7 +35,9 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Hills", "Plains"],
     "tags": ["Remote", "Hidden"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Dark / Gothic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -37,7 +45,9 @@
     "climate": ["Temperate", "Tropical"],
     "terrain": ["River", "Coast"],
     "tags": ["Port", "Trade Hub"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -45,7 +55,9 @@
     "climate": ["Dry", "Continental"],
     "terrain": ["Desert", "Hills"],
     "tags": ["Garrison", "Criminal Hideout"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -53,7 +65,9 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Urban", "Forest"],
     "tags": ["Criminal Hideout", "Trade Hub"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -61,7 +75,9 @@
     "tags": ["Trade Hub", "Urban"],
     "climate": ["Temperate", "Tropical"],
     "terrain": ["Plains", "Urban"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -69,7 +85,9 @@
     "tags": ["Criminal Hideout", "Garrison"],
     "climate": ["Dry", "Continental"],
     "terrain": ["Hills", "Desert"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -77,7 +95,9 @@
     "tags": ["Hidden", "Arcane Nexus"],
     "climate": ["Temperate", "Continental"],
     "terrain": ["Forest", "Urban"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -85,7 +105,9 @@
     "tags": ["Remote", "Trade Hub"],
     "climate": ["Dry", "Tropical"],
     "terrain": ["Plains", "Desert", "River"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -93,82 +115,112 @@
     "tags": ["Swamp", "Infested"],
     "climate": ["Tropical"],
     "terrain": ["Swamp"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
 
   
 
   {
-      "type": "noun",
-      "value": "Rest",
-      "siteType": ["tavern"]
+    "type": "noun",
+    "value": "Rest",
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
-      "type": "noun",
-      "value": "Den",
-      "siteType": ["tavern"]
+    "type": "noun",
+    "value": "Den",
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
-      "type": "noun",
-      "value": "Roost",
-      "siteType": ["tavern"]
+    "type": "noun",
+    "value": "Roost",
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
-      "type": "noun",
-      "value": "Lodge",
-      "siteType": ["tavern"]
+    "type": "noun",
+    "value": "Lodge",
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Taproom",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Flagon",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Hearth",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Bunkhouse",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Burrow",
     "siteType": ["tavern"],
-    "tags": ["Hidden", "Isolated"]
+    "tags": ["Hidden", "Isolated"],
+    "theme": ["Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Barrelhouse",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Dive",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Hole",
     "siteType": ["tavern"],
-    "tags": ["Criminal Hideout", "Isolated"]
+    "tags": ["Criminal Hideout", "Isolated"],
+    "theme": ["Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Spigot",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Clockwork / Steampunk"],
+    "tier": ["Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Cup",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -176,7 +228,9 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Trade Hub", "Hidden"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -184,7 +238,9 @@
     "climate": ["Temperate", "Tropical", "Continental"],
     "terrain": ["Forest", "Plains", "river"],
     "tags": ["Trade Hub", "Arcane Nexus"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Dark / Gothic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -192,7 +248,9 @@
     "climate": ["Temperate", "Dry"],
     "terrain": ["Plains", "Hills", "Desert"],
     "tags": ["Border Post", "Garrison"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -200,7 +258,9 @@
     "climate": ["Temperate", "Continental", "Tundra"],
     "terrain": ["Mountains", "Forest"],
     "tags": ["Ancient Ruins", "Fortress"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   }, 
   {
     "type": "noun",
@@ -208,7 +268,9 @@
     "climate": ["Temperate", "Tropical", "Continental"],
     "terrain": ["Plains", "river", "Forest"],
     "tags": ["Arcane Nexus", "Trade Hub"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Arcane / Mystic", "Dark / Gothic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   }, 
   {
     "type": "noun",
@@ -216,7 +278,9 @@
     "climate": ["Temperate", "Continental", "Tropical"],
     "terrain": ["Coast", "river"],
     "tags": ["Port", "Garrison"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -224,7 +288,9 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Forest", "Hills"],
     "tags": ["Remote", "Hidden"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -232,7 +298,9 @@
     "climate": ["Temperate", "Tropical"],
     "terrain": ["River", "Urban", "Coast"],
     "tags": ["Trade Hub", "Port"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -240,7 +308,9 @@
     "climate": ["Continental", "Tundra"],
     "terrain": ["Mountains"],
     "tags": ["Fortress", "Ancient Ruins"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Arcane / Mystic", "Fey / Nature", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -248,7 +318,9 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Urban", "Plains"],
     "tags": ["Trade Hub", "Criminal Hideout"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Clockwork / Steampunk", "Dark / Gothic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -256,7 +328,9 @@
     "climate": ["Temperate", "Tropical"],
     "terrain": ["River", "Urban", "Coast"],
     "tags": ["Arcane Nexus", "Port"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -264,7 +338,9 @@
     "climate": ["Temperate", "Dry"],
     "terrain": ["Plains", "Desert"],
     "tags": ["Military Outpost", "Garrison"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -272,7 +348,9 @@
     "tags": ["Druidic", "Swamp"],
     "terrain": ["Swamp", "Forest"],
     "climate": ["Tropical"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -280,7 +358,9 @@
     "tags": ["Arcane Nexus", "Hidden"],
     "terrain": ["Forest", "Mountains"],
     "climate": ["Temperate", "Continental"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Arcane / Mystic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -288,7 +368,9 @@
     "tags": ["Fortress", "Craftsmen"],
     "terrain": ["Mountains", "Urban"],
     "climate": ["Temperate", "Continental"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
@@ -296,7 +378,9 @@
     "tags": ["Port", "Fishing"],
     "terrain": ["Coast", "River"],
     "climate": ["Tropical", "Temperate"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
 
 
@@ -308,28 +392,38 @@
     "climate": ["Temperate", "Continental"],
     "terrain": ["Forest", "Plains"],
     "tags": ["hidden", "Military Outpost"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "person",
     "value": "Old Tom",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "person",
     "value": "Mad Maggie",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "person",
     "value": "Captain Yorrik",
     "tags": ["Port"],
     "terrain": ["Coast", "River"],
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "person",
     "value": "Red Jarna",
-    "siteType": ["tavern"]
+    "siteType": ["tavern"],
+    "theme": ["Frontier / Rustic", "Medieval Fantasy", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   }
 ]

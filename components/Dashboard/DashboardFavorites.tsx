@@ -1,20 +1,24 @@
 import { useGetFavorites } from "@/hooks/user/user.query"
 import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import NextMuiLink from "../Common/NextMuiLink";
+import { RecentItem } from "@/interfaces/user.interface";
 
 export default function DashboardFavorites(){
-    const { data, isLoading, isError } = useGetFavorites();
+    const { data: activityResult, isLoading, isError } = useGetFavorites();
+
+    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
 
     return (
         <Box>
-            {isLoading && <Typography>Loading featured items...</Typography>}
+            {isLoading && <Typography>Loading favorite items...</Typography>}
             {isError && <Typography color="error">Something went wrong loading your featured items.</Typography>}
 
             {!isLoading && !isError && (
                 <>
-                    {data && data.length > 0 ? (
+                    <Typography variant="body2" color="text.secondary">Below are your favorite items. Tap or click an item to view them!</Typography>               
+                    {items.length > 0 ? (
                         <List>
-                            {data.map((item) => (
+                            {items.map((item) => (
                                 <Box key={item._id}>
                                     <ListItem
                                         component={NextMuiLink}
@@ -45,7 +49,7 @@ export default function DashboardFavorites(){
                             ))}
                         </List>
                     ) : (
-                        <Typography>No featured items found.</Typography>
+                        <Typography sx={{ marginTop: 1 }}>No featured items found.</Typography>
                     )}
                 </>
             )}

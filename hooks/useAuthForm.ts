@@ -4,6 +4,8 @@ import { useUIStore } from "@/store/uiStore";
 import { RegisterPayload, LoginPayload } from "@/interfaces/user.interface";
 import { signIn } from "next-auth/react";
 import { prefetchUserData } from "@/lib/util/userData.prefetch";
+import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
+import { handleActionResult } from "./queryHook.util";
 
 type AuthFormType = "login" | "register";
 
@@ -43,11 +45,19 @@ export function useAuthForm<T extends AuthFormType>(options: AuthFormOptions<T>)
 
       if (type === "register") {
         const { registerUser } = await import("@/lib/actions/user.actions");
-        const result = await registerUser(data as RegisterPayload);
-        finalRedirect ??= "/auth/login";
+        const idempotencyKey = generateIdempotencyKey();
+
+        const transformed = {
+          ...data,
+          idempotencyKey
+        }
+        
+        const response = await registerUser(transformed as RegisterPayload);
+        const result = handleActionResult(response);
+        finalRedirect ??= "/verify-your-email";
 
         if (result.success) {
-          showSnackbar("Your scroll has been scribed! Proceed to the sign-in gate.", "success");
+          showSnackbar("Your scroll has been scribed! Check your email for a verification link.", "success");
           onSuccess?.();
           
           if (!options.skipRedirect) {

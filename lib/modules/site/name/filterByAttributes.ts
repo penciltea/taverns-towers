@@ -5,7 +5,7 @@ export function filterByAttributes(
   fragments: GeneratorSiteFragmentPlain[],
   filters: GenerateSiteNameOptions
 ): GeneratorSiteFragmentPlain[] {
-  const { tags = [], terrain = [], climate, siteType = [] } = filters;
+  const { tags = [], terrain = [], climate, siteType = [], siteTheme = [] } = filters;
 
   return fragments.filter(f => {
     // Basic universal filters
@@ -49,6 +49,13 @@ export function filterByAttributes(
 
     // Climate filter (case-insensitive)
     if (f.climate?.length && climate && !f.climate.includes(climate.toLowerCase())) return false;
+
+    // Theme filter
+    if (f.siteTheme?.length && siteTheme.length > 0) {
+      const normalizedTheme = siteTheme.map(t => t.toLowerCase());
+      const normalizedFragmentTheme = f.siteTheme.map(siteTheme => siteTheme.toLowerCase());
+      if (!normalizedFragmentTheme.some(siteTheme => normalizedTheme.includes(siteTheme))) return false;
+    }
 
     // console.log("Filtering fragment", f.value, {
     //   fragmentSiteTypes,

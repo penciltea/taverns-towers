@@ -29,6 +29,7 @@ export function useSiteFormSetup({
     const tags = methods.watch("tags") || context?.tags || [];
     const magic = context?.magic || "";
     const wealth = context?.wealth || "";
+    const siteTheme = methods.watch("siteTheme") || [];
 
     const generator = useSiteGeneratorActions(
         methods,
@@ -38,7 +39,8 @@ export function useSiteFormSetup({
             climate,
             tags,
             magic,
-            wealth
+            wealth,
+            siteTheme
         },
         isWilderness,
         settlementId

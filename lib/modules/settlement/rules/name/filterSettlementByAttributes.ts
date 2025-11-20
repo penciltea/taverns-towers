@@ -5,7 +5,7 @@ export function filterSettlementByAttributes(
   fragments: GeneratorSettlementFragmentPlain[],
   filters: GenerateSettlementNameOptions
 ): GeneratorSettlementFragmentPlain[] {
-  const { tags = [], terrain = [], climate, magic, size, wealth, theme = [] } = filters;
+  const { tags = [], terrain = [], climate, magic, size, wealth, theme = [], tier} = filters;
 
   return fragments.filter(f => {
     // Tag filter
@@ -49,13 +49,19 @@ export function filterSettlementByAttributes(
       const normalizedFragmentWealth = f.wealth.map(w => w.toLowerCase());
       if (!normalizedFragmentWealth.includes(normalizedWealth)) return false;
     }
-
     
     // Theme filter
     if (f.theme?.length && theme.length > 0) {
       const normalizedTheme = theme.map(t => t.toLowerCase());
       const normalizedFragmentTheme = f.theme.map(theme => theme.toLowerCase());
       if (!normalizedFragmentTheme.some(theme => normalizedTheme.includes(theme))) return false;
+    }
+
+    // Tier filter
+    if (f.tier?.length && tier) {
+      const normalizedTier = tier.toLowerCase();
+      const normalizedFragmentTier = f.tier.map(t => t.toLowerCase());
+      if (!normalizedFragmentTier.includes(normalizedTier)) return false;
     }
 
     return true;

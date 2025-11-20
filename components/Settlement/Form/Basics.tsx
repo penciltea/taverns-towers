@@ -1,3 +1,8 @@
+'use client'
+
+import { useEffect, useState } from "react";
+import { useCampaignStore } from "@/store/campaignStore";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { FieldError, useFormContext } from "react-hook-form";
 import { Box, Stack } from "@mui/material";
 import { MAGIC_LEVELS, SIZE_TYPES } from "@/constants/settlement.options";
@@ -6,7 +11,10 @@ import { FormTextField, FormSelect, FormChipSelect } from "@/components/Form";
 import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 import FormImageUpload from "@/components/Form/FormImageUpload";
 import FormFieldWithGenerate from "@/components/Form/FormTextFieldWithGenerate";
-import { THEME, TONE } from "@/constants/common.options";
+import { TONE } from "@/constants/common.options";
+import { THEME, ARTISAN_THEMES } from '@/constants/settlement.options';
+import { useAuthStore } from "@/store/authStore";
+import { userTier } from "@/constants/user.options";
 
 export default function SettlementFormBasics(){
     const {
@@ -17,6 +25,36 @@ export default function SettlementFormBasics(){
         formState: { errors },
     } = useFormContext();
 
+    const { user } = useAuthStore();
+
+    const { playerHasContentPermissions } = useCampaignAccess();
+    const selectedCampaign = useCampaignStore(state => state.selectedCampaign);
+
+    const [themes, setThemes] = useState(THEME);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function loadThemes() {
+            if (!user || !selectedCampaign?._id) return;
+
+            const hasPermissions = await playerHasContentPermissions(selectedCampaign._id);
+            if (!isMounted) return;
+
+            if (hasPermissions || user.tier === "Artisan" || user.tier === "Architect") {
+                setThemes([...ARTISAN_THEMES, ...THEME]);
+            } else {
+                setThemes(THEME);
+            }
+        }
+
+        loadThemes();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [user, selectedCampaign?._id, playerHasContentPermissions]);
+    
     const handleGenerateName = async () => {
         const terrain = watch("terrain");
         const tags = watch("tags");
@@ -34,6 +72,7 @@ export default function SettlementFormBasics(){
             wealth: wealth,
             size: size,
             theme: Array.isArray(theme) ? theme : [theme],
+            tier: user?.tier ?? userTier[0]
         });
         setValue("name", generatedName, { shouldValidate: true });
     };
@@ -57,8 +96,8 @@ export default function SettlementFormBasics(){
                     name="theme"
                     label="Theme"
                     control={control}
-                    options={THEME}
-                    fieldError={errors.tone}
+                    options={themes}
+                    fieldError={errors.theme}
                     tooltip="This field influences name generation."
                 />
 

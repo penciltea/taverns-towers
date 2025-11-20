@@ -1,7 +1,7 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
-import { NPC_AGE, NPC_RACES, NPC_ALIGNMENT, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
-import { archetypeByAgeMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
+import { NPC_AGE, NPC_RACES, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
+import { archetypeByAgeMapping, npcAlignmentMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
 import { persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
 
 // Logic for setting Age if set to "random" or missing
@@ -34,7 +34,7 @@ export function applyRaceRule(data: ReturnType<typeof normalizeNpcInput>): Norma
 // Logic for setting Alignment if set to "random" or missing
 export function applyAlignmentRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
     if (!data.alignment || data.alignment === "random") {
-        data.alignment = getRandom(NPC_ALIGNMENT);
+        data.alignment = getRandom(npcAlignmentMapping);
     }
 
     return data;

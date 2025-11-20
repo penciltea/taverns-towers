@@ -10,6 +10,7 @@ import { useUIStore } from '@/store/uiStore';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormPasswordField from '@/components/Form/FormPasswordField';
+import { AppError } from '@/lib/errors/app-error';
 
 interface ResetFormInputs {
   password: string;
@@ -62,7 +63,7 @@ export default function ResetPasswordPage() {
         headers: { 'Content-Type': 'application/json' },
       });
 
-      if (!res.ok) throw new Error('Reset failed');
+      if (!res.ok) throw new AppError('Reset failed', 400);
 
       showSnackbar('Password successfully reset! You may now log in.', 'success');
       router.push('/auth/login');

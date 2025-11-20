@@ -1,6 +1,8 @@
+import { AppError } from "../errors/app-error";
+
 export const uploadToCloudinary = async (file: File): Promise<string | undefined> => {
   if (!file.type.startsWith("image/")) {
-    throw new Error("Only image files are allowed.");
+    throw new AppError("Only image files are allowed.", 400);
   }
   
   const formData = new FormData();
@@ -9,7 +11,7 @@ export const uploadToCloudinary = async (file: File): Promise<string | undefined
 
   const cloudinaryUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   if (!cloudinaryUrl) {
-    throw new Error("Cloudinary URL is not defined in environment variables");
+    throw new AppError("Cloudinary URL is not defined in environment variables", 500);
   }
 
   try {
@@ -21,7 +23,7 @@ export const uploadToCloudinary = async (file: File): Promise<string | undefined
     const result = await cloudinaryRes.json();
     return result.secure_url;
   } catch (err) {
-    throw new Error(`Failed to upload image: ${err}`);
+    throw new AppError(`Failed to upload image: ${err}`, 500);
   }
 };
 

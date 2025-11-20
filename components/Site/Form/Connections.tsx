@@ -11,7 +11,7 @@ import { Option } from "@/components/Form/FormSelect";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
 
 interface Props {
-    mode: "add" | "edit" | null;
+  mode: "add" | "edit" | null;
 }
 
 export default function SiteFormConnections({ mode }: Props) {

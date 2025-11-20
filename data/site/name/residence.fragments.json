@@ -3,103 +3,137 @@
     "type": "prefix",
     "value": "Wren",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Dun",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Hearth",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Ash",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Thistle",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Oak",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Bramble",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Wind",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Fog",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Sun",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Rose",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Silver",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Hollow",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Bell",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Arcane / Mystic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Clover",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Duskwind",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Elm",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -107,7 +141,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Coast", "River"],
-    "climate": ["Temperate", "Tropical"]
+    "climate": ["Temperate", "Tropical"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -115,7 +151,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "climate": ["Polar", "Dry"],
-    "terrain": ["Tundra", "Mountains"]
+    "terrain": ["Tundra", "Mountains"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -123,7 +161,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Swamp", "Forest"],
-    "tags": ["Druidic", "Overgrown"]
+    "tags": ["Druidic", "Overgrown"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -131,7 +171,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Volcanic", "Mountains"],
-    "climate": ["Dry"]
+    "climate": ["Dry"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -139,7 +181,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Swamp", "River"],
-    "tags": ["Fishing"]
+    "tags": ["Fishing"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -147,49 +191,65 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Hills", "Coast"],
-    "tags": ["Remote"]
+    "tags": ["Remote"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Drift",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Ember",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Sable",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Glint",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Hush",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Mirth",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
     "value": "Petal",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -197,7 +257,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Hills", "Underground"],
-    "tags": ["Hidden", "Isolated"]
+    "tags": ["Hidden", "Isolated"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -205,7 +267,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "climate": ["Polar"],
-    "terrain": ["Tundra", "Mountains"]
+    "terrain": ["Tundra", "Mountains"], 
+    "theme": ["Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -213,7 +277,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Jungle", "Forest"],
-    "tags": ["Overgrown", "Druidic"]
+    "tags": ["Overgrown", "Druidic"], 
+    "theme": ["Medieval Fantasy", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -221,7 +287,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["River", "Plains"],
-    "climate": ["Temperate"]
+    "climate": ["Temperate"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -230,7 +298,9 @@
     "siteType": ["residence"],
     "terrain": ["Coast"],
     "climate": ["Tropical", "Dry"],
-    "tags": ["Fishing", "Port"]
+    "tags": ["Fishing", "Port"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "prefix",
@@ -238,7 +308,9 @@
     "weight": 1,
     "siteType": ["residence"],
     "terrain": ["Plains", "Hills"],
-    "climate": ["Dry", "Continental"]
+    "climate": ["Dry", "Continental"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
 
 
@@ -248,48 +320,64 @@
     "type": "noun",
     "value": "Hall",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Manor",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Cottage",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Keep",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Arcane / Mystic", "Dark / Gothic", "Clockwork / Steampunk"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Lodge",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Estate",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "House",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Dark / Gothic", "Arcane / Mystic"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   },
   {
     "type": "noun",
     "value": "Lodge",
     "weight": 1,
-    "siteType": ["residence"]
+    "siteType": ["residence"], 
+    "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+    "tier": ["Apprentice", "Artisan", "Architect"]
   }
 ]

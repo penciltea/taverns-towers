@@ -13,13 +13,14 @@ export function getGuildypeLabel(value: string): string {
 
 export function getGuildSiteDetails(site: GuildSite){
     return [
-        { label: "Guild Type", type: "text", value: getGuildypeLabel(site.guildType) },
-        { label: "Guild Name", type: "text", value: site.guildName },
-        { label: "Site Name", type: "text", value: site.name },
-        { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
-        { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
-        { label: "Membership Requirements", type: "text", value: site.membershipRequirements?.join(", ") },
-        { label: "Known Rivals", type: "text", value: site.knownRivals },
+      { label: "Guild Type", type: "text", value: getGuildypeLabel(site.guildType) },
+      { label: "Guild Name", type: "text", value: site.guildName },
+      { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
+      { label: "Site Name", type: "text", value: site.name },
+      { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
+      { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
+      { label: "Membership Requirements", type: "text", value: site.membershipRequirements?.join(", ") },
+      { label: "Known Rivals", type: "text", value: site.knownRivals },
     ];
 }
 

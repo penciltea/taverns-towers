@@ -4,6 +4,7 @@ import { getLabelFromValue } from "../getLabelFromValue";
 
 export function getTempleSiteDetails(site: TempleSite){
     return [
+        { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
         { label: "Worshipped Domain(s)", type: "text", value: site.domains?.length ? site.domains.join(', ') : 'N/A' },
         { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
         { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },

@@ -35,6 +35,7 @@ export const baseSiteSchema = z.object({
   publicNotes: z.string().optional(),
   gmNotes: z.string().optional(),
   tone: z.array(z.string()).optional(),
+  siteTheme: z.array(z.string()).optional(),
   connections: z.array(npcConnectionItemSchema),
   favorite: z.boolean().optional(),
   isPublic: z.boolean().optional(),
@@ -73,7 +74,7 @@ export const tavernSchema = baseSiteSchema.extend({
   type: z.literal("tavern"),
   clientele: z.string().optional(),
   cost: z.string().optional(),
-  entertainment: z.array(z.string()),
+  entertainment: z.array(z.string()).optional(),
   menu: z.array(menuItemSchema).optional(),
 });
 
@@ -175,71 +176,98 @@ export const defaultSiteValues: Record<
   tavern: {
     name: "",
     type: "tavern",
+    size: "",
+    condition: "",
     clientele: "",
     entertainment: [],
     cost: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
   temple: {
     name: "",
     type: "temple",
+    size: "",
+    condition: "",
     domains: [],
     relics: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
   shop: {
     name: "",
     type: "shop",
+    size: "",
+    condition: "",
     shopType: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
   guild: {
     name: "",
     type: "guild",
+    size: "",
+    condition: "",
     guildType: "",
     guildName: "",
     membershipRequirements: [],
     knownRivals: "",
+    siteTheme: [],
     menu: [],
     connections: []
   },
   government: {
     name: "",
     type: "government",
+    size: "",
+    condition: "",
     function: "",
     security: "",
+    siteTheme: [],
     connections: []
   },
   entertainment: {
     name: "",
     type: "entertainment",
+    size: "",
+    condition: "",
     venueType: "",
     cost: "",
+    siteTheme: [],
     connections: []
   },
   hidden: {
     name: "",
     type: "hidden",
+    size: "",
+    condition: "",
     secrecy: [],
     knownTo: [],
     defenses: [],
     purpose: [],
+    siteTheme: [],
     connections: []
   }, 
   residence: {
     name: "",
     type: "residence",
+    size: "",
+    condition: "",
     notableFeatures: "",
+    siteTheme: [],
     connections: []
   },
   miscellaneous: {
     name: "",
     type: "miscellaneous",
+    size: "",
+    condition: "",
     features: "",
     use: "",
+    siteTheme: [],
     connections: []
   }
 };

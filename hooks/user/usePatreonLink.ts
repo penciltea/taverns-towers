@@ -1,3 +1,4 @@
+import { AppError } from "@/lib/errors/app-error";
 import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
 import { signIn } from "next-auth/react";
@@ -29,10 +30,10 @@ export function usePatreonLink() {
       const { unlinkPatreonAccount } = await import("@/lib/actions/user.actions");
       const result = await unlinkPatreonAccount(user.id, patreonAccountId);
 
-      if (!result.success) throw new Error(result.error ?? "Failed to unlink Patreon account.");
+      if (!result.success) throw new AppError(result.error ?? "Failed to unlink Patreon account.");
 
       setUser({ ...user, patreon: undefined });
-      showSnackbar("Patreon account unlinked successfully.", "success");
+      showSnackbar("Patreon account unlinked successfully. You may need to log back in to see your changes.", "success");
     } catch (err) {
       showErrorDialog(err instanceof Error ? err.message : "Failed to unlink Patreon account.");
     } finally {

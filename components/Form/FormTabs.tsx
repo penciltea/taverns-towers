@@ -1,21 +1,28 @@
 import { Tabs, Tab, Select, MenuItem, FormControl, InputLabel, Box, SelectChangeEvent } from "@mui/material";
-import { SETTLEMENT_TABS } from "@/constants/settlement.options";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
-type Props = {
+type FormTabsProps = {
   tab: number;
   setTab: (newTab: number) => void;
+  labels: string[];               // Use constants for tab labels
+  labelName?: string;             // For the input label ("Section" by default)
+  ariaLabelPrefix?: string;       // For accessibility ("Settlement", "NPC", etc.)
 };
 
-export default function SettlementFormTabs({ tab, setTab }: Props) {
+export default function FormTabs({
+  tab,
+  setTab,
+  labels,
+  labelName = "Section",
+  ariaLabelPrefix = "",
+}: FormTabsProps) {
   const isMobile = useIsMobile();
-
   const [announcement, setAnnouncement] = useState("");
 
   useEffect(() => {
-    setAnnouncement(`${SETTLEMENT_TABS[tab]} section selected`);
-  }, [tab]);
+    setAnnouncement(`${ariaLabelPrefix ? ariaLabelPrefix + " " : ""}${labels[tab]} section selected`);
+  }, [tab, labels, ariaLabelPrefix]);
 
   const handleChange = (event: SelectChangeEvent<number>) => {
     setTab(Number(event.target.value));
@@ -25,14 +32,14 @@ export default function SettlementFormTabs({ tab, setTab }: Props) {
     return (
       <Box sx={{ mb: 2 }}>
         <FormControl fullWidth size="small">
-          <InputLabel id="settlement-tab-select-label">Section</InputLabel>
+          <InputLabel id="form-tab-select-label">{labelName}</InputLabel>
           <Select
-            labelId="settlement-tab-select-label"
+            labelId="form-tab-select-label"
             value={tab}
-            label="Section"
+            label={labelName}
             onChange={handleChange}
           >
-            {SETTLEMENT_TABS.map((label, index) => (
+            {labels.map((label, index) => (
               <MenuItem key={label} value={index}>
                 {label}
               </MenuItem>
@@ -65,7 +72,7 @@ export default function SettlementFormTabs({ tab, setTab }: Props) {
           },
         }}
       >
-        {SETTLEMENT_TABS.map((label, index) => (
+        {labels.map((label, index) => (
           <Tab key={index} label={label} />
         ))}
       </Tabs>

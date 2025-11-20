@@ -70,11 +70,11 @@ export default function MembershipPage() {
                                     >
                                         Recommended
                                     </Typography>
-                                    <Typography variant="subtitle1" fontWeight="bold">Premium</Typography>
+                                    <Typography variant="subtitle1" fontWeight="bold">Artisan</Typography>
                                 </Box>
                             </TableCell>
                             <TableCell align="center">
-                                <strong>Premium+</strong>
+                                <strong>Architect</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -122,6 +122,27 @@ export default function MembershipPage() {
                         </TableRow>
 
                         <TableRow>
+                            <TableCell>Campaign Management</TableCell>
+                            <TableCell align="center">Only granted access by <br />Artisans & Architects</TableCell>
+                            <TableCell
+                                align="center"
+                                sx={{
+                                    backgroundColor: (theme) =>
+                                    theme.palette.mode === "light"
+                                        ? theme.palette.secondary.light + "22"
+                                        : theme.palette.secondary.dark + "22",
+                                    borderLeft: (theme) => `2px solid ${theme.palette.secondary.main}`,
+                                    borderRight: (theme) => `2px solid ${theme.palette.secondary.main}`,
+                                    fontWeight: "bold",
+                                    position: "relative",
+                                }}
+                            >
+                                Full access
+                            </TableCell>
+                            <TableCell align="center">Full access</TableCell>
+                        </TableRow>
+
+                        <TableRow>
                             <TableCell>Number of NPCs</TableCell>
                             <TableCell align="center">5</TableCell>
                             <TableCell
@@ -158,9 +179,9 @@ export default function MembershipPage() {
                                     position: "relative",
                                 }}
                             >
-                                Multiple themes + custom options&nbsp;<Typography variant="caption">(coming soon!)</Typography>
+                                Exclusive themes + custom options<br /><Typography variant="caption">(coming soon!)</Typography>
                             </TableCell>
-                            <TableCell align="center">Premium + early access</TableCell>
+                            <TableCell align="center">Artisan + early access</TableCell>
                         </TableRow>
 
                         <TableRow>
@@ -181,7 +202,7 @@ export default function MembershipPage() {
                             >
                                 Co-GM & Player sharing
                             </TableCell>
-                            <TableCell align="center">Same as Premium</TableCell>
+                            <TableCell align="center">Same as Artisan</TableCell>
                         </TableRow>
 
                         <TableRow>
@@ -200,7 +221,7 @@ export default function MembershipPage() {
                                     position: "relative",
                                 }}
                             >
-                                Basic batch&nbsp;<Typography variant="caption">(coming soon!)</Typography>
+                                Basic batch<br /><Typography variant="caption">(coming soon!)</Typography>
                             </TableCell>
                             <TableCell align="center">Advanced batch</TableCell>
                         </TableRow>
@@ -221,9 +242,9 @@ export default function MembershipPage() {
                                     position: "relative",
                                 }}
                             >
-                                PDF, VTT, etc.&nbsp;<Typography variant="caption">(coming soon!)</Typography>
+                                PDF, VTT, etc.<br /><Typography variant="caption">(coming soon!)</Typography>
                             </TableCell>
-                            <TableCell align="center">Premium + handouts</TableCell>
+                            <TableCell align="center">Artisan + handouts</TableCell>
                         </TableRow>
 
                         <TableRow>

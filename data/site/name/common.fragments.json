@@ -1,401 +1,526 @@
 [
     {
         "type": "prefix",
-        "value": "Old",
-        "weight": 2
+        "value": "Old", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Creaking",
-        "weight": 2
+        "value": "Creaking", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Squeaking",
-        "weight": 2
+        "value": "Squeaking", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Jeweled",
-        "weight": 2
+        "value": "Jeweled", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Whispering",
-        "weight": 1
+        "value": "Whispering", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Leaning"
+        "value": "Leaning", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Goldenleaf",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Forest", "Plains"],
-        "tags": ["Trade Hub", "Druidic"]
+        "tags": ["Trade Hub", "Druidic"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Black",
         "climate": ["Temperate", "Continental", "Polar"],
         "terrain": ["Forest", "Mountains", "Tundra"],
-        "tags": ["infested", "Isolated"]
+        "tags": ["infested", "Isolated"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Dusky",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Jungle", "Forest"],
-        "tags": ["hidden", "Arcane Nexus"]
+        "tags": ["hidden", "Arcane Nexus"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ironclad",
         "climate": ["Temperate", "Dry"],
         "terrain": ["Mountains", "Plains"],
-        "tags": ["Fortress", "Garrison"]
+        "tags": ["Fortress", "Garrison"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Brightwater",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Coast", "river"],
-        "tags": ["Port", "Trade Hub"]
+        "tags": ["Port", "Trade Hub"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Shimmering",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Coast", "Jungle"],
-        "tags": ["Arcane Nexus", "Trade Hub"]
+        "tags": ["Arcane Nexus", "Trade Hub"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Burning",
         "climate": ["Dry"],
         "terrain": ["Desert", "Plains"],
-        "tags": ["Military Outpost", "Fortress"]
+        "tags": ["Military Outpost", "Fortress"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Frosted",
         "climate": ["Polar", "Tundra"],
         "terrain": ["Tundra", "Mountains"],
-        "tags": ["Isolated", "Hidden"]
+        "tags": ["Isolated", "Hidden"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Duskmire",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Swamp", "Forest"],
-        "tags": ["infested", "Hidden"]
+        "tags": ["infested", "Hidden"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Silent",
         "climate": ["Polar", "Tundra"],
         "terrain": ["Tundra", "Mountains"],
-        "tags": ["hidden", "Isolated"]
+        "tags": ["hidden", "Isolated"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Sable",
-        "weight": 1,
-        "siteType": ["residence", "guild"]
+        "siteType": ["residence", "guild"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Gilded",
-        "weight": 1,
-        "siteType": ["residence", "guild"]
+        "siteType": ["residence", "guild"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Weathered",
-        "weight": 1,
-        "siteType": ["residence", "guild"]
+        "siteType": ["residence", "guild"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Twilit",
-        "weight": 1,
-        "siteType": ["residence", "guild"]
+        "siteType": ["residence", "guild"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Crimson",
-        "weight": 1
+        "value": "Crimson", 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Azure",
-        "weight": 1
+        "value": "Azure", 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Sable",
-        "weight": 1
+        "value": "Sable", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Golden",
-        "weight": 1
+        "value": "Golden", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Ivory",
-        "weight": 1
+        "value": "Ivory", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Jade",
-        "weight": 1,
-        "terrain": ["forest", "jungle"]
+        "terrain": ["forest", "jungle"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Obsidian",
-        "weight": 1,
-        "terrain": ["mountains", "underground"]
+        "terrain": ["mountains", "underground"], 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Silver",
-        "weight": 1
+        "value": "Silver", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Bronze",
-        "weight": 1
+        "value": "Bronze", 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Onyx",
-        "weight": 1
+        "value": "Onyx", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Verdant",
-        "weight": 1,
-        "climate": ["tropical", "temperate"]
+        "climate": ["tropical", "temperate"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Cerulean",
-        "weight": 1,
-        "terrain": ["coast", "river"]
+        "terrain": ["coast", "river"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Amber",
-        "weight": 1
+        "value": "Amber", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Emerald",
-        "weight": 1
+        "value": "Emerald", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Charcoal",
-        "weight": 1
+        "value": "Charcoal", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Rose",
-        "weight": 1
+        "value": "Rose", 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
         "value": "Ashen",
-        "weight": 1,
         "terrain": ["plains", "hills"],
-        "tags": ["overgrown", "infested"]
+        "tags": ["overgrown", "infested"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Pale",
-        "weight": 1
+        "value": "Pale", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Lavender",
-        "weight": 1
+        "value": "Lavender", 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Scarlet",
-        "weight": 1
+        "value": "Scarlet", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "prefix",
-        "value": "Turquoise",
-        "weight": 1
+        "value": "Turquoise", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },    
+    {
+        "type": "prefix",
+        "value": "Runic", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Starforged", 
+        "theme": ["Clockwork / Steampunk", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Blooming", 
+        "theme": ["Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Thorned", 
+        "theme": ["Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Wailing", 
+        "theme": ["Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
+    {
+        "type": "prefix",
+        "value": "Haunted", 
+        "theme": ["Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
     {
         "type": "suffix",
-        "value": "mere"
+        "value": "mere", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "fall"
+        "value": "fall", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "reach"
+        "value": "reach", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "vale"
+        "value": "vale", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "shade"
+        "value": "shade", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "hold"
+        "value": "hold", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "hollow"
+        "value": "hollow", 
+        "theme": ["Medieval Fantasy","Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "watch"
+        "value": "watch", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "crest"
+        "value": "crest", 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "moor"
+        "value": "moor", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "rest"
+        "value": "rest", 
+        "theme": ["Medieval Fantasy","Frontier / Rustic", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "run"
+        "value": "run", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "forge"
+        "value": "forge", 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "rock"
+        "value": "rock", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Frontier / Rustic", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "spire"
+        "value": "spire", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "bluff"
+        "value": "bluff", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "gate"
+        "value": "gate", 
+        "theme": ["Medieval Fantasy", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "brook"
+        "value": "brook", 
+        "terrain": ["river", "coast"],
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "thorn"
+        "value": "thorn", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "glade"
+        "value": "glade", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },    
     {
         "type": "suffix",
-        "value": "cliff"
+        "value": "cliff", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "loft"
+        "value": "loft", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "ridge"
+        "value": "ridge", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "glen"
+        "value": "glen", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "bough"
+        "value": "bough", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "fen"
+        "value": "fen", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
-        "value": "dell"
-    },
-    {
-        "type": "suffix",
-        "value": "hearth"
-    },
-    {
-        "type": "suffix",
-        "value": "brook",
-        "terrain": ["river"]
-    }, {
-        "type": "suffix",
-        "value": "fen",
-        "weight": 1,
-        "terrain": ["Swamp", "River"],
-        "climate": ["Temperate", "Tropical"]
-    },
-    {
-        "type": "suffix",
-        "value": "dell",
-        "weight": 1,
-        "terrain": ["Forest", "Hills"],
-        "climate": ["Temperate"]
-    },
-    {
-        "type": "suffix",
-        "value": "hearth",
-        "weight": 1
+        "value": "dell", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
         "value": "barrow",
-        "weight": 1,
         "terrain": ["Hills", "Underground"],
-        "tags": ["Ancient Ruins", "Isolated"]
+        "tags": ["Ancient Ruins", "Isolated"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
         "value": "point",
-        "weight": 1,
-        "terrain": ["Coast", "Hills"]
+        "terrain": ["Coast", "Hills"], 
+        "theme": ["Medieval Fantasy"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "suffix",
         "value": "nest",
-        "weight": 1,
-        "tags": ["Isolated", "Hidden"]
-    }, 
+        "tags": ["Isolated", "Hidden"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
+    },
     {
         "type": "suffix",
-        "value": "shade",
-        "weight": 1,
-        "terrain": ["Forest", "Jungle"],
-        "climate": ["Tropical"]
+        "value": "works",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Artisan", "Architect"]
     },
+    {
+        "type": "suffix",
+        "value": "station",
+        "theme": ["Clockwork / Steampunk"],
+        "tier": ["Artisan", "Architect"]
+    },
+    
 
 
 
@@ -404,136 +529,171 @@
         "value": "Rift",
         "climate": ["Temperate", "Dry"],
         "terrain": ["Mountains", "Desert"],
-        "tags": ["Ancient Ruins", "Overgrown"]
+        "tags": ["Ancient Ruins", "Overgrown"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Harbinger",
         "climate": ["Temperate", "Dry"],
         "terrain": ["Plains", "Desert"],
-        "tags": ["Military Outpost", "Fortress"]
+        "tags": ["Military Outpost", "Fortress"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Den",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Forest", "Swamp"],
-        "tags": ["Criminal Hideout", "Hidden"]
+        "tags": ["Criminal Hideout", "Hidden"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Ember",
         "climate": ["Dry", "Temperate"],
         "terrain": ["Desert", "Plains"],
-        "tags": ["Ancient Ruins", "Overgrown"]
+        "tags": ["Ancient Ruins", "Overgrown"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Glade",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Forest", "Swamp"],
-        "tags": ["Sacred Site", "Druidic"]
+        "tags": ["Sacred Site", "Druidic"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Crossroads",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Plains", "Hills"],
-        "tags": ["Trade Hub", "Border Post"]
+        "tags": ["Trade Hub", "Border Post"], 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Lantern",
         "climate": ["Temperate", "Dry"],
         "terrain": ["Urban"],
-        "tags": ["Trade Hub", "Capital"]
+        "tags": ["Trade Hub", "Capital"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "noun",
         "value": "Meadow",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Plains", "Forest"],
-        "tags": ["Trade Hub", "Overgrown"]
+        "tags": ["Trade Hub", "Overgrown"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
 
     {
         "type": "person",
-        "value": "Elira",
-        "weight": 1
+        "value": "Elira", 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Thorn",
-        "weight": 1
+        "value": "Thorn", 
+        "theme": ["Fey / Nature", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Bran",
-        "weight": 1
+        "value": "Bran", 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Myla",
-        "weight": 1
+        "value": "Myla", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Teren",
-        "weight": 1
+        "value": "Teren", 
+        "theme": ["Medieval Fantasy", "Fey / Nature", "Clockwork / Steampunk"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Jorra",
-        "weight": 1
+        "value": "Jorra", 
+        "theme": ["Medieval Fantasy", "Frontier / Rustic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
-        "value": "Kaelen",
-        "weight": 1
+        "value": "Kaelen", 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Faelan",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Forest", "Hills"],
-        "tags": ["Druidic", "Sacred Site"]
+        "tags": ["Druidic", "Sacred Site"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Arden",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Forest", "Plains"],
-        "tags": ["Sacred Site", "Druidic"]
+        "tags": ["Sacred Site", "Druidic"], 
+        "theme": ["Medieval Fantasy", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Talon",
         "climate": ["Temperate", "Dry"],
         "terrain": ["Mountains", "Hills"],
-        "tags": ["Military Outpost", "Fortress"]
+        "tags": ["Military Outpost", "Fortress"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Serena",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Forest", "Jungle"],
-        "tags": ["Sacred Site", "Arcane Nexus"]
+        "tags": ["Sacred Site", "Arcane Nexus"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic", "Arcane / Mystic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Marrek",
         "climate": ["Temperate", "Continental"],
         "terrain": ["Plains", "Hills"],
-        "tags": ["Trade Hub", "Capital"]
+        "tags": ["Trade Hub", "Capital"], 
+        "theme": ["Medieval Fantasy", "Dark / Gothic"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "person",
         "value": "Elara",
         "climate": ["Temperate", "Tropical"],
         "terrain": ["Forest", "Jungle"],
-        "tags": ["Arcane Nexus", "Sacred Site"]
+        "tags": ["Arcane Nexus", "Sacred Site"], 
+        "theme": ["Medieval Fantasy", "Arcane / Mystic", "Fey / Nature"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
 
 
@@ -541,94 +701,95 @@
     {
         "type": "format",
         "value": "{{fullName}}",
-        "weight": 1
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
-        "value": "The {{siteTypeName}}",
-        "weight": 1
+        "value": "The {{siteTypeName}}", 
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{noun}} & {{noun}}",
         "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern"]
+        "siteType": ["shop", "guild", "entertainment", "tavern"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "The {{noun}} and the {{noun}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern"]
+        "siteType": ["shop", "guild", "entertainment", "tavern"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "The {{prefix}}{{suffix}} {{noun}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{prefix}}{{suffix}} {{noun}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },    
     {
         "type": "format",
         "value": "The {{prefix}}{{suffix}} {{siteTypeName}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence", "government"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "The {{prefix}} {{noun}}",
-        "weight": 1
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}}'s {{siteTypeName}}",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment", "tavern", "residence"]
+        "siteType": ["shop", "guild", "entertainment", "tavern", "residence"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} & Sons",
-        "weight": 2,
-        "siteType": ["shop", "guild", "entertainment", "tavern"]
+        "siteType": ["shop", "guild", "entertainment", "tavern"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} & Daughters",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment"]
+        "siteType": ["shop", "guild", "entertainment"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} & Co.",
-        "weight": 3,
-        "siteType": ["shop", "guild", "entertainment", "tavern"]
+        "siteType": ["shop", "guild", "entertainment", "tavern"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} & Partner",
-        "weight": 1,
-        "siteType": ["shop", "guild", "entertainment"]
+        "siteType": ["shop", "guild", "entertainment"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} Family {{siteTypeName}}",
-        "weight": 1,
-        "siteType": ["residence", "shop", "tavern"]
+        "siteType": ["residence", "shop", "tavern"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "The House of {{person}}",
-        "weight": 1,
-        "siteType": ["residence", "entertainment"]
+        "siteType": ["residence", "entertainment"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     },
     {
         "type": "format",
         "value": "{{person}} & Kin",
-        "weight": 1,
-        "siteType": ["shop", "guild"]
+        "siteType": ["shop", "guild"],
+        "tier": ["Apprentice", "Artisan", "Architect"]
     }
 ]

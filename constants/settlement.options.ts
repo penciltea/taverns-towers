@@ -1,4 +1,4 @@
-export const SETTLEMENT_TABS = ["Basics", "Law & Economics", "Culture & Society", "NPC Connections"];
+export const SETTLEMENT_TABS = ["Basics", "Law & Economics", "Culture & Society", "NPC Connections", "Configuration"];
 
 export const SIZE_TYPES = [
     "Encampment",
@@ -43,17 +43,17 @@ export const RULING_TYPES = [
 
 export const CRIMINAL_ACTIVITY_TYPES = [
     "None",
+    "Assassins' Guild",
+    "Corruption",
+    "Cult Activity",
+    "Black Market",
+    "Illegal Gambling",
+    "Organized Crime",
     "Petty Theft",
     "Pickpocketing Rings",
-    "Smuggling",
-    "Illegal Gambling",
-    "Black Market",
-    "Corruption",
-    "Organized Crime",
-    "Assassins' Guild",
     "Slavery & Trafficking",
-    "Cult Activity",
-    "Widespread Lawlessness",
+    "Smuggling",
+    "Widespread Lawlessness"
 ];
 
 export const MILITARY_PRESENCE_TYPES = [
@@ -70,6 +70,30 @@ export const MILITARY_PRESENCE_TYPES = [
     "Town Guard",
 ];
 
+export const THEME = [
+  {
+    label: "Apprentice-tier Options",
+    options: [
+      { label: "Dark Elven-Inspired", value: "Dark Elven-Inspired"},
+      { label: "Dwarven-Inspired", value: "Dwarven-Inspired" },
+      { label: "Elven-Inspired", value: "Elven-Inspired" },
+      { label: "Medieval Fantasy", value: "Medieval Fantasy"},
+    ]
+  }
+];
+
+export const ARTISAN_THEMES = [
+  {
+    label: "Premim-tier Exclusives",
+    options: [
+      { label: "Arabic-Inpired", value: "Arabic-Inspired" }
+    ]
+  }
+];
+
+export type Flatten<T> = T extends Array<{ options: readonly any[] }>
+  ? T[number]["options"][number]
+  : never;
 
 export type SizeTypes = (typeof SIZE_TYPES)[number]
 export type WealthLevel = (typeof WEALTH_LEVELS)[number]

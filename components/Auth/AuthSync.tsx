@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useAuthStore } from "@/store/authStore";
 import { capitalizeFirstLetter } from "@/lib/util/stringFormats";
 import { userTier } from "@/constants/user.options";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 export default function AuthSync() {
   const { data: session, status } = useSession();
@@ -24,7 +25,8 @@ export default function AuthSync() {
     async function fetchLatestUser() {
       try {
         const { getUser } = await import("@/lib/actions/user.actions");
-        const dbUser = await getUser();
+        const response = await getUser();
+        const dbUser = handleActionResult(response);
         const sessionUser = session!.user;
         if (!sessionUser) return;
 
@@ -39,6 +41,7 @@ export default function AuthSync() {
           ),
           theme: dbUser?.theme || sessionUser.theme || "dark",
           patreon: sessionUser.patreon || undefined,
+          emailVerified: dbUser?.emailVerified || sessionUser.emailVerified || false
         };
 
         setUser(mergedUser);

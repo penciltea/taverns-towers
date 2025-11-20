@@ -5,6 +5,7 @@ import { getLabelFromValue } from "../getLabelFromValue";
 
 export function getHiddenSiteDetails(site: HiddenSite){
     return [
+        { label: "Theme", type: "chip", value: site.siteTheme ?? [] },
         { label: "Size", type: "text", value: getLabelFromValue(SITE_SIZE, site.size) },
         { label: "Condition", type: "text", value: getLabelFromValue(SITE_CONDITION, site.condition) },
         { label: "Security", type: "text", value: site.secrecy?.length ? site.secrecy.map((value) => getLabelFromValue(SECRECY_LEVELS, value)).join(", ") : "N/A" },

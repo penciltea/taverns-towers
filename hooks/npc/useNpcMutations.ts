@@ -10,6 +10,10 @@ import { invalidateConnections } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { Npc } from "@/interfaces/npc.interface";
+import { useCampaignStore } from "@/store/campaignStore";
+import { isUserVerified } from "@/lib/util/isUserVerified";
+import { AppError } from "@/lib/errors/app-error";
+import { handleActionResult } from "../queryHook.util";
 
 interface UseNpcMutationsProps {
     mode: "add" | "edit" | null;
@@ -27,14 +31,15 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
     const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
-
+    const { selectedCampaign } = useCampaignStore();
+        
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
         try {
-            if (!user?.id) throw new Error("User is not logged in");
-            const { canCreateContent } = await import('@/lib/actions/user.actions');
-            if (!(await canCreateContent(user.id, "npc"))) {
-                showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
+            if (!user?.id) throw new AppError("User is not logged in", 400);
+
+            if(!isUserVerified(user)){
+                showErrorDialog("Your email address hasn't been verified yet. Magic can't preserve your work until it's confirmed.");
                 return;
             }
 
@@ -46,6 +51,8 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             // Transform form data for DB and attach the image & idempotencyKey
             const transformed = {
                 ...transformNpcFormData(data),
+                userId: user.id,
+                campaignId: selectedCampaign && selectedCampaign._id !== null ? selectedCampaign._id : undefined,
                 image: cleanImage,
                 idempotencyKey,
             };
@@ -53,18 +60,26 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             let saved;
             
             if (mode === "add") {
+                const { canCreateContent } = await import('@/lib/actions/user.actions');
+                if (!(await canCreateContent(user.id, "npc"))) {
+                    showErrorDialog("You have reached the maximum number of NPCs for your membership tier. Please either upgrade your membership tier or delete an existing NPC to continue.");
+                    return;
+                }
+
                 const { createNpc } = await import('@/lib/actions/npc.actions');
-                saved = await createNpc(transformed);
+                const result = await createNpc(transformed);
+                saved = handleActionResult(result);
             } else if (mode === "edit") {
-            if (!npcId) throw new Error("NPC ID is required for edit mode");
+                if (!npcId) throw new AppError("NPC ID is required for edit mode", 400);
                 const { updateNpc } = await import('@/lib/actions/npc.actions');
-                saved = await updateNpc(npcId, transformed);
+                const result = await updateNpc(npcId, transformed, selectedCampaign?._id ?? undefined);
+                saved = handleActionResult(result);
             } else {
-                throw new Error("Invalid mutation mode");
+                throw new AppError("Invalid mutation mode", 400);
             }
 
             if (!saved || !saved._id) {
-                throw new Error("There was a problem saving the NPC, please try again later!");
+                throw new AppError("There was a problem saving the NPC, please try again later!", 500);
             }
 
             if (data.connections?.length) {
@@ -98,6 +113,10 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 "success"
             );
             queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
+            if(selectedCampaign){
+                queryClient.invalidateQueries({ queryKey: ["campaignNpcs", selectedCampaign._id]});
+            }
+
             router.push(`/npcs/${saved._id}`);
 
         } catch (error) {
@@ -120,7 +139,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
      * Lightweight partial update — e.g. toggling "favorite"
      */
     async function handlePartialUpdate<T extends PartialNpcUpdate>(update: T) {
-        if (!user?.id) throw new Error("User is not logged in");
+        if (!user?.id) throw new AppError("User is not logged in", 400);
 
         const { updateNpcPartial } = await import("@/lib/actions/npc.actions");
         const idempotencyKey = generateIdempotencyKey();
@@ -137,7 +156,8 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         });
 
         try {
-            const updatedNpc = await updateNpcPartial(update._id, payload);
+            const result = await updateNpcPartial(update._id, payload);
+            const updatedNpc = handleActionResult(result);
 
             queryClient.setQueriesData({ queryKey: ["ownedNpcs"] }, (old: any) => {
                 if (!old?.npcs) return old;

@@ -7,7 +7,6 @@ import ToggleFieldButton from "@/components/Common/Button/ToggleFieldButton";
 interface FavoriteButtonProps<T extends { _id: string; favorite?: boolean }> {
   item: T;
   onToggleFavorite: (updated: Pick<T, "_id" | "favorite">) => Promise<void>;
-  /** Optional MUI IconButton props */
   iconProps?: React.ComponentProps<typeof ToggleFieldButton<T, "favorite">>["iconProps"];
 }
 

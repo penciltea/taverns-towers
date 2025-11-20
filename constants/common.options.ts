@@ -75,17 +75,11 @@ export const TONE = [
   "Other"
 ];
 
-export const THEME = [
-  {
-    label: "Fantasy Inspired",
-    options: [
-      { label: "Dark Elven-Inspired", value: "Dark Elven-Inspired"},
-      { label: "Dwarven-Inspired", value: "Dwarven-Inspired" },
-      { label: "Elven-Inspired", value: "Elven-Inspired" },
-      { label: "Medieval Fantasy", value: "Medieval Fantasy"},
-    ]
-  }
-]
+export const CONTENT_TYPES = [
+  "settlement", 
+  "site", 
+  "npc"
+] as const;
 
 
 export type Flatten<T> = T extends Array<{ options: readonly any[] }>
@@ -94,4 +88,4 @@ export type Flatten<T> = T extends Array<{ options: readonly any[] }>
 
 export type DomainTypes = (typeof DOMAINS)[number];
 export type ToneTypes = (typeof TONE)[number];
-export type ThemeTypes = Flatten<typeof THEME>["value"];
+export type ContentType = (typeof CONTENT_TYPES)[number];

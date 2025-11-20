@@ -10,9 +10,10 @@ import { NpcFormData } from "@/schemas/npc.schema";
 import FormActions from "@/components/Form/FormActions";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useUIStore } from "@/store/uiStore";
-import NpcFormTabs from "./Tabs";
 import { FieldErrors } from "react-hook-form";
 import { Spinner } from "@/components/Common/Spinner";
+import { NPC_TABS } from "@/constants/npc.options";
+import FormTabs from "@/components/Form/FormTabs";
 
 const NpcFormBasics = dynamic(() => import("./Basics"), {
   ssr: false,
@@ -25,6 +26,11 @@ const NpcFormPersonality = dynamic(() => import("./Personality"), {
 });
 
 const NpcFormConnections = dynamic(() => import("./Connections"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
+const NpcFormConfiguration = dynamic(() => import("./Configuration"), {
   ssr: false,
   loading: () => <Spinner />,
 });
@@ -57,6 +63,17 @@ function TabPanel({
     >
       {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
     </div>
+  );
+}
+
+function NpcFormTabs({ tab, setTab }: { tab: number; setTab: (newTab: number) => void;}) {
+  return (
+    <FormTabs
+      tab={tab}
+      setTab={setTab}
+      labels={NPC_TABS}
+      ariaLabelPrefix="NPC"
+    />
   );
 }
 
@@ -162,6 +179,9 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
         </TabPanel>
         <TabPanel value={tab} index={2}>
           { tab === 2 && <NpcFormConnections /> }
+        </TabPanel>
+        <TabPanel value={tab} index={3}>
+          { tab === 3 && <NpcFormConfiguration /> }
         </TabPanel>
 
         <FormActions mode={mode} entityName="Npc" isSubmitting={isSubmitting} onCancel={handleCancel} />

@@ -21,7 +21,7 @@ export default function ErrorDialog() {
       fullWidth
     >
       <DialogTitle>
-        <Typography variant="h6">Error</Typography>
+        <Typography variant="h6" component="p">Error</Typography>
         <IconButton
           edge="end"
           color="inherit"

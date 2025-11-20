@@ -1,4 +1,6 @@
 import { Box, Button, CircularProgress } from "@mui/material";
+import { useAuthStore } from "@/store/authStore";
+import { isUserVerified } from "@/lib/util/isUserVerified";
 
 
 type FormActionProps = {
@@ -9,6 +11,30 @@ type FormActionProps = {
 };
 
 export default function FormActions({ mode, entityName, isSubmitting, onCancel }: FormActionProps) {
+  const user = useAuthStore(state => state.user);
+  const verified = isUserVerified(user);
+
+  const buttonText = isSubmitting
+    ? "Saving..."
+    : verified
+    ? `${mode === "edit" ? "Update" : "Create"} ${entityName}`
+    : `Verify Email to ${mode === "edit" ? "Update" : "Create"}`;
+
+  const buttonContent = isSubmitting ? (
+    <>
+      <CircularProgress size={20} sx={{ mr: 1, color: "white" }} />
+      {buttonText}
+    </>
+  ) : (
+    buttonText
+  );
+
+  function isEnabled() {
+    if (!user) return true;
+    if (verified) return true;
+    return false;
+  }
+  
   return (
     <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
       
@@ -26,18 +52,11 @@ export default function FormActions({ mode, entityName, isSubmitting, onCancel }
       <Button 
         type="submit" 
         variant="contained" 
-        disabled={isSubmitting}
+        disabled={!isEnabled()}
         sx={{ mt: 3 }} 
         size="large"
       >
-        {isSubmitting ? (
-          <>
-            <CircularProgress size={20} sx={{ mr: 1, color: "white" }} />
-            Saving...
-          </>
-        ) : (
-          `${mode === "edit" ? "Update" : "Create"} ${entityName}`
-        )}
+        {buttonContent}
       </Button>
     </Box>
   );

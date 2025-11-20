@@ -10,13 +10,9 @@ export default function HighlightCard({ icon, title, description }: { icon: stri
                 flex: 1, 
                 px: 2, 
                 py: 3, 
-                textAlign: "center", 
-                transition: "transform 0.2s, box-shadow 0.2s",
-                "&:hover": {
-                    transform: "translateY(-4px)",
-                    boxShadow: 6,
-            }
-        }}>
+                textAlign: "center"
+            }}
+        >
             <Typography variant="h4" gutterBottom>{ icon }</Typography>
             <Typography variant="h5" gutterBottom>{ title }</Typography>
             <Typography>{ description }</Typography>

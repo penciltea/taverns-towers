@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AppError } from "../errors/app-error";
 
 /**
  * Creates an optional Zod enum that allows either a value from the provided array or undefined/empty string.
@@ -10,7 +11,7 @@ export function extractValues<T extends readonly { value: string }[]>(
 ): [string, ...string[]] {
   const values = arr.map((item) => item.value);
   if (values.length === 0) {
-    throw new Error("Cannot create enum from empty array");
+    throw new AppError("Cannot create enum from empty array", 500);
   }
   return values as [string, ...string[]];
 }

@@ -23,7 +23,6 @@ export interface SettlementAccordionProps {
 }
 
 export interface SettlementResponse {
-  success: boolean;
   settlements: Settlement[];
   total: number;
   currentPage: number;
@@ -49,7 +48,6 @@ export interface Settlement extends CommonInterface {
   crime?: string[];
   tone?: string[];
   theme?: string[];
-  idempotencyKey?: string;
   connections: NpcConnection[];
 }
 
@@ -85,7 +83,7 @@ export interface SettlementQueryParams {
 
 
 export interface SettlementFragment {
-  type: 'prefix' | 'suffix';
+  type: SettlementGroupKey;
   value: string;
   terrain?: string[];
   tags?: string[];
@@ -95,6 +93,7 @@ export interface SettlementFragment {
   wealth?: string[];
   weight?: number;
   theme?: string[];
+  tier?: string[];
 }
 
 // For name generation fragments
@@ -105,7 +104,6 @@ export type SettlementGroupKey =
   | "descriptor"
   | "connector"
   | "size"
-  | "theme"
   | "format"
   ;
 
@@ -117,4 +115,5 @@ export interface GenerateSettlementNameOptions {
   wealth?: string;
   size?: string;
   theme?: string[];
+  tier?: string;
 }

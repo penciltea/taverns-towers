@@ -11,7 +11,7 @@ export function dispatchSettlementName(
     filters: options,
     ...({
       fallbackFormats: ["{{prefix}}{{suffix}}"],
-      allowedKeys: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "theme", "format"],
+      allowedKeys: ["prefix", "suffix", "noun", "descriptor", "connector", "size", "format"],
     }),
   });
 }

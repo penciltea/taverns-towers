@@ -15,7 +15,7 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.venueType
         : undefined),
     fallbackFormats: ["The {{noun}} and the {{noun}}", "{{prefix}} Hall"],
-    allowedKeys: ["prefix", "suffix", "noun", "person", "fullName", "siteTypeName"],
+    allowedKeys: ["prefix", "suffix", "noun", "person", "fullName", "siteTypeName", "siteTheme"],
   },
   government: {
     subtypeKey: "functionType",
@@ -25,7 +25,7 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.function
         : undefined),
     fallbackFormats: ["The {{prefix}} {{siteTypeName}}", "The {{siteTypeName}}"],
-    allowedKeys: ["prefix", "suffix", "noun", "siteTypeName"],
+    allowedKeys: ["prefix", "suffix", "noun", "siteTypeName", "siteTheme"],
   },
   shop: {
     subtypeKey: "shopType",
@@ -35,7 +35,7 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.shopType
         : undefined),
     fallbackFormats: ["{{person}}'s {{siteTypeName}}", "The {{siteTypeName}}"],
-    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName"],
+    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName", "siteTheme"],
   },
   guild: {
     subtypeKey: "guildType",
@@ -45,7 +45,7 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.guildType
         : undefined),
     fallbackFormats: ["The {{siteTypeName}} Guildhall", "The {{prefix}} {{noun}}"],
-    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName"],
+    allowedKeys: ["prefix", "noun", "suffix", "siteTypeName", "siteTheme"],
   },
   temple: {
     subtypeKey: "domain",
@@ -55,6 +55,6 @@ export const nameGeneratorConfigs: Record<string, {
         ? filters.data.domains
         : undefined),
     fallbackFormats: ["{{siteTypeName}} of {{noun}}", "The {{prefix}} {{siteTypeName}}"],
-    allowedKeys: ["prefix", "noun", "siteTypeName"],
+    allowedKeys: ["prefix", "noun", "suffix", "descriptor", "siteTypeName", "siteTheme"],
   },
 };

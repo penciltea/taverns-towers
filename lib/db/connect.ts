@@ -1,11 +1,12 @@
 'use server';
 
 import mongoose from 'mongoose';
+import { AppError } from '../errors/app-error';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+  throw new AppError('Please define the MONGODB_URI environment variable inside .env.local', 500);
 }
 
 let cachedConn: typeof mongoose | null = null;

@@ -1,0 +1,36 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import AuthGate from "@/components/Auth/AuthGuard";
+import { useSaveCampaign } from "@/hooks/campaign/useSaveCampaign";
+import { CampaignFormData, campaignSchema } from "@/schemas/campaign.schema";
+import { FormProvider } from "react-hook-form";
+import { useFormWithSchema } from "@/hooks/useFormWithSchema";
+import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
+
+const LazyCampaignForm = dynamic(
+    () => import("@/components/Campaign/Form/CampaignForm"),
+    { ssr: false, loading: () => <p>Loading form...</p> }
+);
+
+export default function NewCampaignsPage(){
+    const { canAccessCampaigns } = useCampaignAccess();
+    const mode = "add";
+
+    const { handleSubmit: onSubmit } = useSaveCampaign({ mode: "add" });
+
+    const wrappedOnSubmit = async (data: CampaignFormData) => {
+        await onSubmit(data);
+    };
+
+    const methods = useFormWithSchema(campaignSchema);
+
+    return(
+        <AuthGate fallbackText="Please log in to create a new campaign." hasAccess={canAccessCampaigns}>
+            { }
+            <FormProvider {...methods}>
+                <LazyCampaignForm onSubmit={wrappedOnSubmit} mode={mode} />
+            </FormProvider>
+        </AuthGate>
+    )
+}

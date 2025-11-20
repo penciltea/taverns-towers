@@ -5,6 +5,12 @@ export const userTier = [
     "Architect"
 ];
 
+export const isPremiumTier = [
+    "Charter Member",
+    "Artisan", 
+    "Architect",
+]
+
 export const membershipBenefits = [
     {
         "tier": "Apprentice",
@@ -12,7 +18,8 @@ export const membershipBenefits = [
             "Create up to 5 Settlements",
             "Create up to 15 Sites total",
             "Create up to 5 NPCs",
-            "Explore medieval fantasy content"
+            "Explore medieval fantasy content",
+            "Access RealmFoundry's core features"
         ]
     },
     // Temporary testing tier
@@ -21,25 +28,26 @@ export const membershipBenefits = [
         benefits: [
             "Unlimited Settlements, Sites, and NPCs",
             "Multiple themed content options (Sci-Fi, Asian-inspired, etc.)",
-            "Optional batch site generation with Settlements",
+            "Optional batch site generation with Settlements (coming soon!)",
             "Add custom dropdown options (races, domains, factions)",
-            "Export content in PDF or VTT-ready formats",
+            "Export content in JSON, PDF, or VTT-ready formats (coming soon!)",
         ]
     },
     {
         "tier": "Artisan",
         benefits: [
             "Unlimited Settlements, Sites, and NPCs",
+            "Organize your worlds with Campaigns — manage content and invite players",
             "Multiple themed content options (Sci-Fi, Asian-inspired, etc.)",
-            "Optional batch site generation with Settlements",
+            "Optional batch site generation with Settlements (coming soon!)",
             "Add custom dropdown options (races, domains, factions)",
-            "Export content in PDF or VTT-ready formats",
+            "Export content in JSON, PDF, or VTT-ready formats (coming soon!)",
         ]
     },
     {
         "tier": "Architect",
         benefits: [
-            "All Premium features included",
+            "All Artisan features included",
             "Early access to new generators and themes",
             "Exclusive polls and feedback channels to shape RealmFoundry",
             "Rare fragment packs and special UI badges",
