@@ -240,7 +240,7 @@ export default function HomeContent() {
                             <ListItem>Access to exclusive content</ListItem>
                             <ListItem>Batch generation & custom options&nbsp;<Typography variant="caption">(coming soon!)</Typography></ListItem>
                         </List>
-                        <Typography variant="body2" sx={{ mt: 2 }}>Unlock RealmFoundry's full potential.</Typography>
+                        <Typography variant="body2" sx={{ mt: 2 }}>Unlock RealmFoundry&apos;s full potential.</Typography>
                     </Card>
 
                     {/* Premium+ Tier (Coming Soon) */}
