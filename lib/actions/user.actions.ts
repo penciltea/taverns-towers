@@ -20,9 +20,6 @@ import { ActionResult } from "@/interfaces/server-action.interface";
 import { safeServerAction } from "./safeServerAction.actions";
 import { AppError } from "../errors/app-error";
 import { handleActionResult } from "@/hooks/queryHook.util";
-import { Npc } from "@/interfaces/npc.interface";
-import { Settlement } from "@/interfaces/settlement.interface";
-import { BaseSite } from "@/interfaces/site.interface";
 import { serializeNpc, serializeSettlement, serializeSite } from "../util/serializers";
 
 

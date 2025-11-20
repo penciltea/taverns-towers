@@ -11,28 +11,6 @@ export default function Roadmap(){
             <Typography variant="h4" component="h1" gutterBottom>What&apos;s Coming Next</Typography>
             <Typography sx={{marginBottom: 3}}>Curious about the upcoming releases? Below is a list of upcoming features, improvements, and more! More details, updates, and sneak peeks about upcoming releases can be found on RealmFoundry&apos;s Patreon page.</Typography>
 
-
-            <Typography variant="h5" gutterBottom>Version 3.0: Open Beta launch</Typography>
-            <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding key="item-1">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>Experience RealmFoundry&apos;s Core:</strong>}
-                        secondary={<span> Settlements, Sites, and NPCs are more polished.</span>}
-                    />
-                </ListItem>
-                <ListItem disablePadding key="item-2">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>Campaign Management:</strong>}
-                        secondary={<span> Artisan & Architect tier members will be able to create campaigns, manage access and editing permissions for campaign players, and create content in the context of that campaign.</span>}
-                    />
-                </ListItem>
-            </List>
-
-
             <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.1</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
