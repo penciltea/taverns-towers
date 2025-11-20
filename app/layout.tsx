@@ -13,9 +13,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 export const metadata = {
   title: "RealmFoundry",
   description: "A world builder for your TTRPG campaigns",
-  icons: {
-    icon: '/favicon.png',
-  },
+  manifest: '/manifest.json'
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
