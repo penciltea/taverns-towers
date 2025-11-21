@@ -17,6 +17,7 @@ import { ActionResult } from "@/interfaces/server-action.interface";
 import { safeServerAction } from "./safeServerAction.actions";
 import { AppError } from "../errors/app-error";
 import { handleActionResult } from "@/hooks/queryHook.util";
+import { generateIdempotencyKey } from "../util/generateIdempotencyKey";
 
 
 export async function getNpcs({
@@ -194,7 +195,7 @@ export async function createNpc(data: NpcFormData): Promise<ActionResult<Npc>> {
     const user = await requireUser();
 
     if (!data.idempotencyKey) {
-        throw new AppError("Missing idempotency key for idempotent creation", 400);
+        throw new AppError("Missing magic key for idempotent creation", 400);
     }
 
     // Check if an NPC with this key already exists
@@ -329,5 +330,42 @@ export async function deleteNpc(id: string): Promise<ActionResult<{ message: str
 
     revalidatePath("/npcs");
     return { message: "NPC deleted successfully", status: 200 };
+  })
+}
+
+export async function copyNpc(id: string): Promise<ActionResult<Npc>>{
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid NPC ID", 404);
+
+    const user = await requireUser();
+    const original = await NpcModel.findById(id);
+
+    if(!original) throw new AppError("Cannot find the original NPC", 404);
+
+    if(!user) throw new AppError("Sorry, you must be logged in to perform this action.", 500);
+
+    const {
+      _id,
+      createdAt,
+      updatedAt,
+      idempotencyKey,
+      ...rest
+    } = original;
+
+    const duplicatedNpc = {
+      ...rest,
+      name: `${original.name} (Copy)`,
+      userId: new ObjectId(user.id),
+      idempotencyKey: generateIdempotencyKey()
+    }
+
+    if (!duplicatedNpc.idempotencyKey) {
+        throw new AppError("Missing magic keys for item creation", 400);
+    }
+
+    const newNpcDoc = await NpcModel.create(duplicatedNpc);
+
+    return serializeNpc(newNpcDoc);
   })
 }

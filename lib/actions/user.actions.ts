@@ -61,7 +61,7 @@ export async function registerUser(data: RegisterPayload): Promise<ActionResult<
     await connectToDatabase();
 
     if (!data.idempotencyKey) {
-      throw new AppError("Missing idempotency key for registration", 400);
+      throw new AppError("Missing magic keys for registration", 400);
     }
 
     // Check for existing user with this key

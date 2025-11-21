@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import  Button  from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUIStore } from "@/store/uiStore";
-import DeleteConfirmationDialog from "@/components/Common/Dialog/DeleteConfirmationDialog";
+import ActionConfirmationDialog from "@/components/Common/Dialog/ActionConfirmationDialog";
 
 interface DeleteButtonProps<T = unknown> {
     id: string;
@@ -44,11 +44,11 @@ export default function DeleteButton({ id, entity, deleteAction, onSuccess }: De
                 {isPending ? "Deleting..." : "Delete"}
             </Button>
 
-            <DeleteConfirmationDialog
+            <ActionConfirmationDialog
                 open={confirmOpen}
                 onClose={() => setConfirmOpen(false)}
                 onConfirm={handleConfirm}
-                deleting={entity}
+                contentName={entity}
             />
         </>
     );

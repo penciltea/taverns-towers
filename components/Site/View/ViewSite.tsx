@@ -14,8 +14,9 @@ import type { SiteType, SiteTypeMap } from '@/interfaces/site.interface';
 import SiteDetails from './SiteDetails';
 import SiteConnections from './SiteConnections';
 import SiteDescriptions from './SiteDescriptions';
-import { deleteSite } from "@/lib/actions/site.actions";
+import { copySite, deleteSite } from "@/lib/actions/site.actions";
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 interface ViewSiteProps {
   site: SiteType;
@@ -48,6 +49,20 @@ export default function ViewSite({ site }: ViewSiteProps) {
     queryClient.invalidateQueries({ queryKey: ['highlights'] });
   };
 
+  const handleCopy = async () => {
+      try {
+        const result = await copySite(site._id);
+        const newSite = handleActionResult(result);
+        queryClient.invalidateQueries({ queryKey: ['sites', 'owned'], exact: false });
+        queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', site.settlementId], exact: false });
+        
+        router.push(`/sites/${newSite._id}/`);
+        showSnackbar('Site copied successfully!', 'success');
+      } catch (err) {
+        console.error("Failed to copy site: ", err);
+      }
+    }
+
   const handleDelete = async () => {
       try {
         await deleteSite(site._id);
@@ -69,6 +84,7 @@ export default function ViewSite({ site }: ViewSiteProps) {
             item={site}
             canFavorite={canFavorite}
             canEdit={editable}
+            canCopy={editable}
             canDelete={deletable}
             canHighlight={canHighlight}
             onToggleFavorite={async (updated) => {
@@ -76,6 +92,7 @@ export default function ViewSite({ site }: ViewSiteProps) {
               queryClient.invalidateQueries({ queryKey: ['favorites'] });
             }}
             onEdit={handleEdit}
+            onCopy={() => handleCopy()}
             onDelete={() => handleDelete()}
             onHighlight={handleHighlight}
           />

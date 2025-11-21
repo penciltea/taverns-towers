@@ -220,7 +220,7 @@ export async function createCampaign(data: Partial<CampaignForDB>): Promise<Acti
     } 
   
     if (!data.idempotencyKey) {
-      throw new AppError("Missing idempotency key for idempotent creation", 400);
+      throw new AppError("Missing magic keys for idempotent creation", 400);
     }
   
     // Check if a campaign with this key already exists

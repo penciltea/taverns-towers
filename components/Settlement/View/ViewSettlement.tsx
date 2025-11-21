@@ -14,9 +14,10 @@ import EntityViewLayout from "@/components/Layout/EntityView/EntityViewLayout";
 import EntityViewImage from "@/components/Layout/EntityView/EntityViewImage";
 import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
 import { useCampaignStore } from '@/store/campaignStore';
-import { deleteSettlement } from '@/lib/actions/settlement.actions';
+import { copySettlement, deleteSettlement } from '@/lib/actions/settlement.actions';
 import { useSettlementMutations } from '@/hooks/settlement/useSettlementMutations';
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 interface ViewSettlementProps {
   settlement: Settlement;
@@ -60,6 +61,18 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
     }
   };
 
+  const handleCopy = async () => {
+      try {
+        const result = await copySettlement(settlement._id);
+        const newSettlement = handleActionResult(result);
+        queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+        router.push(`/settlements/${newSettlement._id}/`);
+        showSnackbar('Settlement copied successfully!', 'success');
+      } catch (err) {
+        console.error("Failed to copy settlement: ", err);
+      }
+    }
+
 
   return (
     <EntityViewLayout
@@ -69,6 +82,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
           item={settlement}
           canFavorite={canFavorite}
           canEdit={editable}
+          canCopy={editable}
           canDelete={deletable}
           canHighlight={canHighlight}
           onToggleFavorite={async (updated) => {
@@ -76,6 +90,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
             queryClient.invalidateQueries({ queryKey: ['favorites'] });
           }}
           onEdit={handleEdit}
+          onCopy={() => handleCopy()}
           onDelete={() => handleDelete()}
           onHighlight={handleHighlight}
         />

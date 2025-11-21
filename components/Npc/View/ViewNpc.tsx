@@ -15,8 +15,9 @@ import EntityViewLayout from '@/components/Layout/EntityView/EntityViewLayout';
 import EntityViewImage from '@/components/Layout/EntityView/EntityViewImage';
 import NpcDescriptions from './NpcDescriptions';
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
-import { deleteNpc } from "@/lib/actions/npc.actions";
+import { copyNpc, deleteNpc } from "@/lib/actions/npc.actions";
 import { canEdit, canDelete } from "@/lib/auth/authPermissions";
+import { handleActionResult } from "@/hooks/queryHook.util";
 
 export default function ViewNpc({ npc }: NpcProps){
   const router = useRouter();
@@ -55,6 +56,18 @@ export default function ViewNpc({ npc }: NpcProps){
     }
   };
 
+  const handleCopy = async () => {
+    try {
+      const result = await copyNpc(npc._id);
+      const newNpc = handleActionResult(result);
+      queryClient.invalidateQueries({ queryKey: ['ownedNpcs'] });
+      router.push(`/npcs/${newNpc._id}/`);
+      showSnackbar('NPC copied successfully!', 'success');
+    } catch (err) {
+      console.error("Failed to copy NPC: ", err);
+    }
+  }
+
   return (
     <EntityViewLayout
       title={ npc.name }
@@ -65,12 +78,14 @@ export default function ViewNpc({ npc }: NpcProps){
           canEdit={editable}
           canDelete={deletable}
           canHighlight={canHighlight}
+          canCopy={editable}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
             queryClient.invalidateQueries({ queryKey: ['favorites'] });
           }}
           onEdit={handleEdit}
           onDelete={() => handleDelete()}
+          onCopy={() => handleCopy()}
           onHighlight={handleHighlight}
         />
       }

@@ -13,6 +13,7 @@ import { ActionResult } from "@/interfaces/server-action.interface";
 import { safeServerAction } from "./safeServerAction.actions";
 import { AppError } from "../errors/app-error";
 import { handleActionResult } from "@/hooks/queryHook.util";
+import { generateIdempotencyKey } from "../util/generateIdempotencyKey";
 
 type PartialSiteUpdate = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>> & { _id: string };
 
@@ -138,7 +139,7 @@ export async function createSite(data: SiteType, settlementId: string): Promise<
     const dbSettlementId = ObjectId.isValid(settlementId) ? new ObjectId(settlementId) : null;
 
     if (!data.idempotencyKey) {
-      throw new AppError("Missing idempotency key for idempotent creation", 400);
+      throw new AppError("Missing magic keys for item creation", 400);
     }
 
     // Check if an settlement with this key already exists
@@ -267,3 +268,42 @@ type SiteUpdateData = Partial<Omit<SiteType, '_id' | 'createdAt' | 'updatedAt'>>
 
 
 
+export async function copySite(id: string): Promise<ActionResult<SiteType>>{
+  return safeServerAction(async () => {
+    await connectToDatabase();
+    if (!ObjectId.isValid(id)) throw new AppError("Invalid site ID", 404);
+
+    const user = await requireUser();
+    const original = await Site.findById(id);
+
+    if(!original) throw new AppError("Cannot find the original site", 404);
+
+    if(!user) throw new AppError("Sorry, you must be logged in to perform this action.", 500);
+
+    const {
+      _id,
+      createdAt,
+      updatedAt,
+      idempotencyKey,
+      ...rest
+    } = original;
+
+    console.log("original: ", original);
+    const model = Site.discriminators?.[original.type] || Site;
+
+    const duplicatedSite = {
+      ...rest,
+      name: `${original.name} (Copy)`,
+      userId: new ObjectId(user.id),
+      idempotencyKey: generateIdempotencyKey()
+    }
+
+    if (!duplicatedSite.idempotencyKey) {
+        throw new AppError("Missing magic keys for item creation", 400);
+    }
+
+    const newSiteDoc = await model.create(duplicatedSite);
+
+    return serializeSite(newSiteDoc);
+  })
+}
