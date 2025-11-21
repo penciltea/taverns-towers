@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import type { getOwnedSites, getPublicSites, getSiteById, getSitesBySettlement } from '@/lib/actions/site.actions';
 import { useCampaignStore } from '@/store/campaignStore';
 import { ActionResult } from '@/interfaces/server-action.interface';

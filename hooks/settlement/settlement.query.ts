@@ -15,23 +15,30 @@ type GetSettlementByIdFn = typeof getSettlementById;
 type GetOwnedSettlementsFn = typeof getOwnedSettlements;
 type GetPublicSettlementsFn = typeof getPublicSettlements;
 
+
 // -------------------------
-// Settlements list query
+// Query key helper
 // -------------------------
-export function useSettlementsQuery(
-  params: Parameters<GetSettlementsFn>[0]
-): UseQueryResult<ReturnType<GetSettlementsFn> extends Promise<ActionResult<infer T>> ? T : never, AppError> {
-  return useActionQuery(
-    ['settlements', params],
-    async () => {
-      const { getSettlements } = await import('@/lib/actions/settlement.actions');
-      return await getSettlements(params);
-    },
-    {
-      staleTime: 1000 * 60 * 5
-    }
-  )
+export const settlementKeys = {
+  all: ['settlements'] as const,
+
+  lists: () => [...settlementKeys.all, 'list' ] as const,
+  list: (params?: Record<string, unknown>) =>
+    [...settlementKeys.lists(), { ...params }] as const,
+
+  public: (params?: Record<string, unknown>) =>
+    [...settlementKeys.all, 'public', { ...params }] as const,
+
+  owned: (params?: Record<string, unknown>) =>
+    [...settlementKeys.all, 'owned', { ...params }] as const,
+
+  campaign: (campaignId?: string, params?: Record<string, unknown>) =>
+    [...settlementKeys.all, 'campaign', campaignId ?? 'none', { ...params }] as const,
+  
+  detail: (id?: string | null) =>
+    [...settlementKeys.all, 'detail', id ?? 'unknown'] as const,
 }
+
 
 // -------------------------
 // Single settlement query
@@ -40,7 +47,7 @@ export function useSettlementQuery(
   settlementId: Parameters<GetSettlementByIdFn>[0] | null
 ): UseQueryResult<ReturnType<GetSettlementByIdFn> extends Promise<ActionResult<infer T>> ? T : never, AppError> {
   return useActionQuery(
-    ['settlement', settlementId],
+    settlementKeys.detail(settlementId),
     async () => {
       if (!settlementId) throw new AppError('No settlement ID provided', 400);
       const { getSettlementById } = await import('@/lib/actions/settlement.actions');
@@ -59,7 +66,7 @@ export function usePublicSettlementsQuery(
   params: Omit<Parameters<GetSettlementsFn>[0], 'isPublic' | 'userId'>
 ): UseQueryResult<ReturnType<GetPublicSettlementsFn> extends Promise<ActionResult<infer T>> ? T : never, AppError> {
   return useActionQuery(
-    ['publicSettlements', params],
+    settlementKeys.public(params),
     async () => {
       const { getPublicSettlements } = await import('@/lib/actions/settlement.actions');
       return await getPublicSettlements(params);
@@ -85,8 +92,8 @@ export function useOwnedSettlementsQuery(
   };
 
   const queryKey = selectedCampaign
-  ? ['campaignSettlements', selectedCampaign._id, mergedParams]
-  : ['ownedSettlements', mergedParams];
+  ? settlementKeys.campaign(selectedCampaign._id, mergedParams)
+  : settlementKeys.owned(mergedParams);
 
   const action = async () => {
     if(selectedCampaign){

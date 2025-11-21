@@ -7,6 +7,7 @@ import { ActionResult } from '@/interfaces/server-action.interface';
 import { AppError } from '@/lib/errors/app-error';
 import { useActionQuery } from '../queryHook.util';
 
+
 // -------------------------
 // Types for server functions
 // -------------------------
@@ -19,23 +20,38 @@ type GetUserCampaignsFn = typeof getUserCampaigns;
 type GetCampaignPermissionsFn = typeof getCampaignPermissions;
 type GetCampaignHighlightsFn = typeof getCampaignHighlights;
 
-
 // -------------------------
-// Campaigns list query
+// Query key helper
 // -------------------------
+export const campaignKeys = {
+  all: ['npcs'] as const,
 
-export function useCampaignsQuery(
-  params: Parameters<GetCampaignsFn>[0]
-): UseQueryResult<ReturnType<GetCampaignsFn> extends Promise<ActionResult<infer T>> ? T : never, AppError> {
-  return useActionQuery(
-    ['campaigns', params],
-    async () => {
-      const { getCampaigns } = await import('@/lib/actions/campaign.actions');
-      return getCampaigns(params);
-    },
-    { staleTime: 1000 * 60 * 5 }
-  );
+  lists: () => [...campaignKeys.all, 'list' ] as const,
+  list: (params?: Record<string, unknown>) =>
+    [...campaignKeys.lists(), { ...params }] as const,
+
+  public: (params?: Record<string, unknown>) =>
+    [...campaignKeys.all, 'public', { ...params }] as const,
+
+  owned: (params?: Record<string, unknown>) =>
+    [...campaignKeys.all, 'owned', { ...params }] as const,
+
+  assigned: (id?: string | null) => 
+    [...campaignKeys.all, 'assigned', id ?? 'unknown'] as const,
+
+  user: (params?: Record<string, unknown>) => 
+    [...campaignKeys.all, 'user', { ...params }] as const,
+
+  campaignPermissions: (campaignId?: string) =>
+    [...campaignKeys.all, 'campaignPermissions', campaignId ?? 'none'] as const,
+
+  campaignHighlights: (campaignId?: string) =>
+    [...campaignKeys.all, 'campaignHighlights', campaignId ?? 'none'] as const,
+  
+  detail: (id?: string | null) =>
+    [...campaignKeys.all, 'detail', id ?? 'unknown'] as const,
 }
+
 
 // -------------------------
 // Single campaign query
@@ -44,7 +60,7 @@ export function useGetCampaignById(
   campaignId: Parameters<GetCampaignByIdFn>[0] | null
 ): UseQueryResult<CampaignForClient, AppError> {
   return useActionQuery(
-    ['campaign', campaignId],
+    campaignKeys.detail(campaignId),
     async () => {
       if (!campaignId) throw new AppError('No campaign ID provided', 400);
       const { getCampaignById } = await import('@/lib/actions/campaign.actions');
@@ -64,7 +80,7 @@ export function usePublicCampaignsQuery(
   AppError
 > {
   return useActionQuery(
-    ['publicCampaigns', params],
+    campaignKeys.public(params),
     async () => {
       const { getPublicCampaigns } = await import('@/lib/actions/campaign.actions');
       return getPublicCampaigns(params);
@@ -85,7 +101,7 @@ export function useOwnedCampaignsQuery(
   AppError
 > {
   return useActionQuery(
-    ['ownedCampaigns', params],
+    campaignKeys.owned(params),
     async () => {
       const { getOwnedCampaigns } = await import('@/lib/actions/campaign.actions');
       return getOwnedCampaigns(params);
@@ -109,7 +125,7 @@ export function useAssignedCampaignsQuery(
   AppError
 > {
   return useActionQuery(
-    ['assignedCampaigns', userId],
+    campaignKeys.assigned(userId),
     async () => {
       if (!userId) return { success: true, data: [] } as ActionResult<[]>; // safe fallback
       const { getAssignedCampaigns } = await import('@/lib/actions/campaign.actions');
@@ -133,7 +149,7 @@ export function useUserCampaignsQuery(
   AppError
 > {
   return useActionQuery(
-    ['userCampaigns', params],
+    campaignKeys.user(params),
     async () => {
       const { getUserCampaigns } = await import('@/lib/actions/campaign.actions');
       return getUserCampaigns(params);
@@ -157,7 +173,7 @@ export function useCampaignPermissionsQuery(
   AppError
 > {
   return useActionQuery(
-    ['campaignPermissions', campaignId],
+    campaignKeys.campaignPermissions(campaignId),
     async () => {
       if (!campaignId)
         return { success: true, data: null } as ActionResult<null>;
@@ -183,7 +199,7 @@ export function useGetCampaignHighlights(
   AppError
 > {
   return useActionQuery(
-    ['campaignHighlights', campaignId],
+    campaignKeys.campaignHighlights(campaignId),
     async () => {
       if (!campaignId)
         return { success: true, data: [] } as ActionResult<[]>;
