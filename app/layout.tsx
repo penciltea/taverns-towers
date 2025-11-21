@@ -14,7 +14,6 @@ export const metadata = {
   title: "RealmFoundry",
   description: "A world builder for your TTRPG campaigns.",
   manifest: "/manifest.json",
-  themeColor: "#ffffff",
 
   // Good for SEO
   keywords: [
@@ -41,6 +40,13 @@ export const metadata = {
       },
     ],
     type: "website",
+  },
+  metadataBase: new URL('https://realmfoundry.app'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US',
+    }
   },
 
   // Twitter / X previews

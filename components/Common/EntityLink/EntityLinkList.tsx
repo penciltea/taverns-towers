@@ -61,7 +61,7 @@ function mapConnectionRole(conn: TypeConnection, pageSiteType?: string): string 
 
 export default function EntityLinkList({
   connections,
-  title = "Connections",
+  title = "NPC Connections",
   showType = false,
   variant = "h4",
   pageSiteType,
