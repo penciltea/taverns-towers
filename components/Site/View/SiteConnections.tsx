@@ -15,17 +15,19 @@ export default function SiteConnections({ connections }: ConnectionProps) {
         );
     } else if (!resolvedConnections || resolvedConnections.length === 0) {
         content = (
-            <Typography variant="body1">No connections yet. Try linking your NPCs to the places they live or the people they love (or despise). These ties turn a list of names into a living web of stories.</Typography>
+            <>
+                <Typography variant="h4" gutterBottom>NPC Connections</Typography>
+                <Typography variant="body1">No connections yet. Try linking your NPCs to the places they live or the people they love (or despise). These ties turn a list of names into a living web of stories.</Typography>
+            </>
         );
     } else {
         content = (
-            <EntityLinkList connections={resolvedConnections} showType={false} />
+            <EntityLinkList connections={resolvedConnections} showType={false} title="NPC Connections" />
         );
     }
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Typography variant="h5">NPC Connections</Typography>
             {content}
         </Paper>
     );

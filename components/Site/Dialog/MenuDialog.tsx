@@ -18,7 +18,7 @@ export default function SiteMenuDialog({ open, onClose, site }: SiteMenuDialogPr
 
     return (
          <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth scroll="paper" aria-labelledby="site-dialog-title">
-            <DialogTitle id="site-dialog-title">{site.name} Menu</DialogTitle>
+            <DialogTitle id="site-dialog-title">{site.name}</DialogTitle>
             <DialogContent>
                 <MenuList menu={site.menu ?? []} label="Menu" />
             </DialogContent>
