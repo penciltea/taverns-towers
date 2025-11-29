@@ -12,6 +12,7 @@ import PatreonCta from "./PatreonCta"
 import NextMuiLink from "./NextMuiLink";
 import ThemedButton from "./Button/ThemedButton";
 import HighlightCard from "./HighlightCard";
+import { Button } from "@mui/material";
 
 export default function HomeContent() {
     return (
@@ -289,6 +290,68 @@ export default function HomeContent() {
 
             <Box sx={{ textAlign: "center", my: 6 }}>
                 <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜃 🜁 🜚 🜂 🜄</Typography>
+            </Box>
+
+            <Paper
+                sx={{
+                    textAlign: "center",
+                    mt: 8,
+                    mb: 4,
+                    py: 4,
+                    px: 2,
+                    borderRadius: 2,
+                }}
+            >
+                <Typography variant="h4" gutterBottom>
+                    Stay Connected
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                    Follow RealmFoundry for updates, feature announcements, and world-building tips.
+                </Typography>
+
+                <Stack
+                    direction="row"
+                    spacing={3}
+                    justifyContent="center"
+                    sx={{ flexWrap: "wrap" }}
+                >
+                    
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ mt: 3 }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://bsky.app/profile/realmfoundry.bsky.social"
+                    >
+                        BlueSky
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ mt: 3 }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://x.com/RealmFoundry"
+                    >
+                        X (Twitter)
+                    </Button>
+
+                    {/* Coming Soon Items */}
+                    <Box sx={{ opacity: 0.6 }}>
+                        <Button variant="outlined" disabled>Discord (Coming Soon)</Button>
+                    </Box>
+
+                    <Box sx={{ opacity: 0.6 }}>
+                        <Button variant="outlined" disabled>Reddit (Coming Soon)</Button>
+                    </Box>
+                </Stack>
+            </Paper>
+
+            <Box sx={{ textAlign: "center", my: 6 }}>
+                <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜄 🜂 🜚 🜁 🜃</Typography>
             </Box>
 
             {/* Release Notes & Roadmap */}
