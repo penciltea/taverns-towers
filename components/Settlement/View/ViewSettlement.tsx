@@ -18,6 +18,7 @@ import { copySettlement, deleteSettlement } from '@/lib/actions/settlement.actio
 import { useSettlementMutations } from '@/hooks/settlement/useSettlementMutations';
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
 import { handleActionResult } from "@/hooks/queryHook.util";
+import { invalidateCampaignQueries, invalidateSettlementQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
 
 interface ViewSettlementProps {
   settlement: Settlement;
@@ -47,13 +48,15 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
 
   const handleHighlight = async () => {
     await handlePartialUpdate({ _id: settlement._id, campaignHighlight: !settlement.campaignHighlight });
-    queryClient.invalidateQueries({ queryKey: ['highlights'] });
+    if(selectedCampaign?._id){
+      invalidateCampaignQueries(queryClient, selectedCampaign?._id);
+    }
   };
 
   const handleDelete = async () => {
     try {
       await deleteSettlement(settlement._id);
-      queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+      invalidateSettlementQueries(queryClient, settlement._id, selectedCampaign?._id);
       router.push("/settlements/all");
       showSnackbar('Settlement deleted successfully!', 'success');
     } catch (err) {
@@ -65,7 +68,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
       try {
         const result = await copySettlement(settlement._id);
         const newSettlement = handleActionResult(result);
-        queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+        invalidateSettlementQueries(queryClient, settlement._id, selectedCampaign?._id);
         router.push(`/settlements/${newSettlement._id}/`);
         showSnackbar('Settlement copied successfully!', 'success');
       } catch (err) {
@@ -87,7 +90,7 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
           canHighlight={canHighlight}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-            queryClient.invalidateQueries({ queryKey: ['favorites'] });
+            invalidateUserQueries(queryClient, user!.id);
           }}
           onEdit={handleEdit}
           onCopy={() => handleCopy()}

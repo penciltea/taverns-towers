@@ -357,6 +357,7 @@ export async function copyNpc(id: string): Promise<ActionResult<Npc>>{
       ...rest,
       name: `${original.name} (Copy)`,
       userId: new ObjectId(user.id),
+      campaignId: original.campaignId ? new ObjectId(original.campaignId.toString()) : undefined,
       idempotencyKey: generateIdempotencyKey()
     }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import type { Npc } from '@/interfaces/npc.interface';
 import type { getOwnedNpcs, getPublicNpcs, getNpcById, resolveConnectionNames } from '@/lib/actions/npc.actions';
 import { useCampaignStore } from '@/store/campaignStore';

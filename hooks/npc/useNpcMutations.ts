@@ -6,7 +6,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformNpcFormData } from "@/lib/util/transformFormDataForDB";
-import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { invalidateConnections, invalidateNpcQueries } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { Npc } from "@/interfaces/npc.interface";
@@ -112,11 +112,9 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 mode === "edit" ? "NPC updated successfully!" : "NPC created successfully!",
                 "success"
             );
-            queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
-            if(selectedCampaign){
-                queryClient.invalidateQueries({ queryKey: ["campaignNpcs", selectedCampaign._id]});
-            }
 
+            invalidateNpcQueries(queryClient, npcId ?? "", selectedCampaign?._id ?? undefined );
+            
             router.push(`/npcs/${saved._id}`);
 
         } catch (error) {
@@ -159,22 +157,12 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
             const result = await updateNpcPartial(update._id, payload);
             const updatedNpc = handleActionResult(result);
 
-            queryClient.setQueriesData({ queryKey: ["ownedNpcs"] }, (old: any) => {
-                if (!old?.npcs) return old;
-                return {
-                    ...old,
-                    npcs: old.npcs.map((n: Npc) =>
-                        n._id === updatedNpc._id ? updatedNpc : n
-                    ),
-                };
-            });
+            invalidateNpcQueries(queryClient, updatedNpc._id);
 
             showSnackbar("NPC updated successfully!", "success");
         } catch (error) {
-            queryClient.invalidateQueries({ queryKey: ["ownedNpcs"] });
             console.error("Failed to update NPC:", error);
             showErrorDialog("Failed to update NPC. Please try again.");
-            throw error;
         }
     }
 

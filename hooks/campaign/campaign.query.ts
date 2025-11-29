@@ -36,8 +36,8 @@ export const campaignKeys = {
   owned: (params?: Record<string, unknown>) =>
     [...campaignKeys.all, 'owned', { ...params }] as const,
 
-  assigned: (id?: string | null) => 
-    [...campaignKeys.all, 'assigned', id ?? 'unknown'] as const,
+  assigned: (userId?: string | null) => 
+    [...campaignKeys.all, 'assigned', userId ?? 'unknown'] as const,
 
   user: (params?: Record<string, unknown>) => 
     [...campaignKeys.all, 'user', { ...params }] as const,

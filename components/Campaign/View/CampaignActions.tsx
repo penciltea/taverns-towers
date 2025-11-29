@@ -11,6 +11,7 @@ import { CampaignForClient } from "@/interfaces/campaign.interface";
 import { canDelete, canEdit } from "@/lib/auth/authPermissions";
 import { useCampaignPermissionsQuery } from "@/hooks/campaign/campaign.query";
 import { useCampaignStore } from "@/store/campaignStore";
+import { invalidateCampaignQueries } from "@/lib/util/invalidateQuery";
 
 export default function CampaignActions({ campaign }: { campaign: CampaignForClient }) {
   const router = useRouter();
@@ -47,10 +48,7 @@ export default function CampaignActions({ campaign }: { campaign: CampaignForCli
                   return deleteCampaign(id);
                 }}
                 onSuccess={() => {
-                    queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'], exact: false });
-                    queryClient.invalidateQueries({ queryKey: ['assignedCampaigns'], exact: false });
-                    queryClient.removeQueries({ queryKey: ['campaign', campaign._id] }); // remove single campaign cache
-                    queryClient.removeQueries({ queryKey: ['campaignPermissions', campaign._id] });
+                    invalidateCampaignQueries(queryClient, campaign._id);
                     router.push("/campaigns/all");
                     showSnackbar('Campaign deleted successfully!', 'success');
                 }}

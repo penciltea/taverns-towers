@@ -9,6 +9,7 @@ import { CampaignFormData } from "@/schemas/campaign.schema";
 import { isUserVerified } from "@/lib/util/isUserVerified";
 import { AppError } from "@/lib/errors/app-error";
 import { handleActionResult } from "../queryHook.util";
+import { invalidateCampaignQueries } from "@/lib/util/invalidateQuery";
 
 export function useSaveCampaign({ mode, campaignId}: {mode: "add" | "edit", campaignId?: string}) {
     const router = useRouter();
@@ -71,13 +72,11 @@ export function useSaveCampaign({ mode, campaignId}: {mode: "add" | "edit", camp
 
             // Invalidate assigned campaigns for each affected user
             affectedUserIds.forEach((uid) => {
-                queryClient.invalidateQueries({ queryKey: ['assignedCampaigns', uid] });
+                invalidateCampaignQueries(queryClient, saved._id, uid);
             });
 
             // Invalidate the campaign itself and owned campaigns for the editor
-            queryClient.invalidateQueries({ queryKey: ['campaign', saved._id] });
-            queryClient.invalidateQueries({ queryKey: ['ownedCampaigns'], exact: false });
-
+            invalidateCampaignQueries(queryClient, saved._id);
             router.push(`/campaigns/${saved._id}`);
 
         } catch (error) {

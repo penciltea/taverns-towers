@@ -6,7 +6,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
 import { transformSettlementFormData } from "@/lib/util/transformFormDataForDB";
-import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { invalidateCampaignQueries, invalidateConnections, invalidateSettlementQueries } from "@/lib/util/invalidateQuery";
 import { useAuthStore } from "@/store/authStore";
 import { generateIdempotencyKey } from "@/lib/util/generateIdempotencyKey";
 import { useCampaignStore } from "@/store/campaignStore";
@@ -125,11 +125,9 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
         "success"
       );
 
-      queryClient.invalidateQueries({ queryKey: ["ownedSettlements"] });
+      invalidateSettlementQueries(queryClient, saved._id);
       if (selectedCampaign) {
-        queryClient.invalidateQueries({
-          queryKey: ["campaignSettlements", selectedCampaign._id],
-        });
+        invalidateCampaignQueries(queryClient, selectedCampaign._id);
       }
 
       router.push(`/settlements/${saved._id}`);
@@ -182,7 +180,7 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
 
       showSnackbar("Settlement updated successfully!", "success");
     } catch (error) {
-      queryClient.invalidateQueries({ queryKey: ["ownedSettlements"] });
+      invalidateSettlementQueries(queryClient, update._id);
       console.error("Failed to update settlement:", error);
       showErrorDialog("Failed to update settlement. Please try again.");
       throw error;

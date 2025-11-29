@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import type { getSettlements, getSettlementById, getOwnedSettlements, getPublicSettlements } from '@/lib/actions/settlement.actions';
 import { useCampaignStore } from '@/store/campaignStore';
 import { AppError } from '@/lib/errors/app-error';

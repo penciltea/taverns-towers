@@ -291,6 +291,7 @@ export async function copySettlement(id: string): Promise<ActionResult<Settlemen
       ...rest,
       name: `${original.name} (Copy)`,
       userId: new ObjectId(user.id),
+      campaignId: original.campaignId ? new ObjectId(original.campaignId.toString()) : undefined,
       idempotencyKey: generateIdempotencyKey()
     }
 

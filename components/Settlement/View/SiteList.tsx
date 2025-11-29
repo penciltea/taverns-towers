@@ -12,6 +12,7 @@ import { SITE_CATEGORIES } from "@/constants/site/site.options";
 import { queryClient } from "@/components/Layout/QueryProviderWrapper";
 import { handleSiteLabel } from "@/lib/util/siteHelpers";
 import { getPlaceholderSite } from "@/lib/util/getPlaceholders";
+import { invalidateSiteQueries } from "@/lib/util/invalidateQuery";
 
 export default function SiteList({ settlementId }: SiteListProps) {
   const { setOpenDialog, closeDialog, showErrorDialog } = useUIStore();
@@ -40,8 +41,8 @@ export default function SiteList({ settlementId }: SiteListProps) {
       await deleteSite(id);
 
       // Invalidate queries for this settlement
-      queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', settlementId], exact: false });
-
+      invalidateSiteQueries(queryClient, id, settlementId);
+      
       closeDialog();
     } catch (error) {
       showErrorDialog(

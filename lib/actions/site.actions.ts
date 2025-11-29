@@ -295,8 +295,12 @@ export async function copySite(id: string): Promise<ActionResult<SiteType>>{
       ...rest,
       name: `${original.name} (Copy)`,
       userId: new ObjectId(user.id),
+      campaignId: original.campaignId ? new ObjectId(original.campaignId.toString()) : undefined,
+      settlementId: original.settlementId ? new ObjectId(original.settlementId.toString()) : undefined,
       idempotencyKey: generateIdempotencyKey()
     }
+
+    console.log("duplicated site: ", duplicatedSite);
 
     if (!duplicatedSite.idempotencyKey) {
         throw new AppError("Missing magic keys for item creation", 400);

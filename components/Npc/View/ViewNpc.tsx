@@ -18,6 +18,7 @@ import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions"
 import { copyNpc, deleteNpc } from "@/lib/actions/npc.actions";
 import { canEdit, canDelete } from "@/lib/auth/authPermissions";
 import { handleActionResult } from "@/hooks/queryHook.util";
+import { invalidateCampaignQueries, invalidateNpcQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
 
 export default function ViewNpc({ npc }: NpcProps){
   const router = useRouter();
@@ -42,13 +43,15 @@ export default function ViewNpc({ npc }: NpcProps){
 
   const handleHighlight = async () => {
     await handlePartialUpdate({ _id: npc._id, campaignHighlight: !npc.campaignHighlight });
-    queryClient.invalidateQueries({ queryKey: ['highlights'] });
+    if(selectedCampaign?._id){
+      invalidateCampaignQueries(queryClient, selectedCampaign._id);
+    }
   };
 
   const handleDelete = async () => {
     try {
       await deleteNpc(npc._id);
-      queryClient.invalidateQueries({ queryKey: ['ownedNpcs'] });
+      invalidateNpcQueries(queryClient, npc._id, selectedCampaign?._id);
       router.push("/npcs/all");
       showSnackbar('NPC deleted successfully!', 'success');
     } catch (err) {
@@ -60,7 +63,7 @@ export default function ViewNpc({ npc }: NpcProps){
     try {
       const result = await copyNpc(npc._id);
       const newNpc = handleActionResult(result);
-      queryClient.invalidateQueries({ queryKey: ['ownedNpcs'] });
+      invalidateNpcQueries(queryClient, npc._id, selectedCampaign?._id);
       router.push(`/npcs/${newNpc._id}/`);
       showSnackbar('NPC copied successfully!', 'success');
     } catch (err) {
@@ -81,7 +84,9 @@ export default function ViewNpc({ npc }: NpcProps){
           canCopy={editable}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-            queryClient.invalidateQueries({ queryKey: ['favorites'] });
+            if(user){
+              invalidateUserQueries(queryClient, user.id);
+            }            
           }}
           onEdit={handleEdit}
           onDelete={() => handleDelete()}

@@ -5,7 +5,7 @@ import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { SiteFormData } from "@/schemas/site.schema";
 import { handleDynamicFileUpload } from "@/lib/util/uploadToCloudinary";
-import { invalidateConnections } from "@/lib/util/invalidateQuery";
+import { invalidateConnections, invalidateSiteQueries } from "@/lib/util/invalidateQuery";
 import { transformSiteFormData } from "@/lib/util/transformFormDataForDB";
 import { SiteType } from "@/interfaces/site.interface";
 import { useAuthStore } from "@/store/authStore";
@@ -123,13 +123,8 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
         "success"
       );
 
-      // Invalidate all relevant site lists
-      await Promise.all([
-        queryClient.invalidateQueries({ queryKey: siteKeys.owned(), exact: false }),
-        queryClient.invalidateQueries({ queryKey: siteKeys.settlement(settlementId), exact: false }),
-        queryClient.invalidateQueries({ queryKey: siteKeys.public(), exact: false }),
-        queryClient.invalidateQueries({ queryKey: siteKeys.campaign(selectedCampaign?._id), exact: false }),
-      ]);
+      // Invalidate site queries
+      invalidateSiteQueries(queryClient, settlementId, selectedCampaign?._id);
 
       router.push(`/settlements/${settlementId}`);
     } catch (error) {
