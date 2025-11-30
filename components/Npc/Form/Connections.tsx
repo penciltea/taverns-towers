@@ -11,9 +11,12 @@ import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
 import { Option } from "@/components/Form/FormSelect";
+import { useNpcContentStore } from "@/store/npc.store";
 
 export default function NpcFormConnections() {
   const { control, watch, setValue } = useFormContext();
+
+  const { selectedItem } = useNpcContentStore();
 
   const { data: settlementsData, isLoading: settlementsLoading } = useOwnedSettlementsQuery({}, { isEnabled: true });
   const { data: sitesData, isLoading: sitesLoading } = useOwnedSitesQuery({}, { isEnabled: true });
@@ -59,7 +62,7 @@ export default function NpcFormConnections() {
     type: NpcConnectionType;
     loading: boolean;
     options: { id: string; name: string }[];
-    roleOptions: Option[];
+    roleOptions: (Option | { label: string; options: Option[] })[];
     dynamicRoleOptions?: (id: string | undefined) => Option[];
   }) => {
     if (loading) {
@@ -118,7 +121,7 @@ export default function NpcFormConnections() {
         label: "NPCs",
         type: "npc",
         loading: npcsLoading,
-        options: formatOptions(npcsData?.npcs),
+        options: formatOptions(npcsData?.npcs?.filter(npc => npc._id !== selectedItem!._id)),
         roleOptions: NPC_CONNECTION_NPC_ROLE,
       })}
     </>

@@ -19,7 +19,7 @@ export default function NpcFormPersonality(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box sx={{ flexGrow: 1 }}>                
+            <Box sx={{ flexGrow: 1 }}>
                 <FormChipSelect
                     name="traits"
                     label="Traits"

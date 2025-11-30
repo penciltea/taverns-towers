@@ -400,15 +400,40 @@ export const NPC_CONNECTION_SITE_TYPE_ROLES: Record<string, { label: string; val
 };
 
 export const NPC_CONNECTION_NPC_ROLE = [
-  { label: "Friend", value: "friend" },
-  { label: "Enemy", value: "enemy" },
-  { label: "Teacher / Mentor", value: "teacher" },  
-  { label: "Student / Apprentice", value: "student" },
-  { label: "Parent", value: "parent" },
-  { label: "Child", value: "child" },
-  { label: "Sibling", value: "sibling" },
-  { label: "Family", value: "family" },
-  { label: "Rival", value: "rival" },
+  { label: "General",
+    options: [
+      { label: "Friend", value: "friend" },
+      { label: "Rival", value: "rival" },
+      { label: "Enemy", value: "enemy" },
+      { label: "Romantic Interest", value: "romanticInterest" },
+    ]
+  },
+  {
+    label: "Education",
+    options: [
+      { label: "Teacher / Mentor", value: "teacher" },  
+      { label: "Student / Apprentice", value: "student" },
+      { label: "Classmate", value: "classmate" }
+    ]
+  },
+  { label: "Family", 
+    options: [
+      { label: "Parent", value: "parent" },
+      { label: "Child", value: "child" },
+      { label: "Sibling", value: "sibling" },
+      { label: "Relative", value: "relative" },
+      { label: "Spouse / Partner", value: "spouse" },
+      { label: "Divorced / Ex-partner", value: "divorced" },
+    ]
+  },
+  {
+    label: "Work-Related",
+    options: [
+      { label: "Colleague / Associate", value: "colleague" },
+      { label: "Employer", value: "employer" },
+      { label: "Employee", value: "employee" }
+    ]    
+  }  
 ];
 
 export const NPC_CONNECTION_GUILD_ROLE = [
@@ -422,7 +447,12 @@ export const NPC_ROLE_PAIRS: Record<string, string> = {
   parent: "child",
   child: "parent",
   teacher: "student",
-  student: "teacher"
+  student: "teacher",
+  employer: "employee",
+  employee: "employer",
+  colleague: "colleague",
+  divorced: "divorced",
+  spouse: "spouse"
 };
 
 

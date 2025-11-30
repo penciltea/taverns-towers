@@ -315,7 +315,6 @@ export default function HomeContent() {
                     justifyContent="center"
                     sx={{ flexWrap: "wrap" }}
                 >
-                    
 
                     <Button
                         variant="contained"

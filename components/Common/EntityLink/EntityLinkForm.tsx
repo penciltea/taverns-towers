@@ -18,7 +18,7 @@ interface EntityLinkFormProps<TFieldValues extends FieldValues> {
     availableOptions: { id: string; name: string }[];
     value: ConnectionItem[];
     onChange: (updated: ConnectionItem[]) => void;
-    roleOptions: Option[];
+    roleOptions: (Option | { label: string; options: Option[] })[];
     control: Control<TFieldValues>;
     namePrefix: string;
     type: NpcConnectionType;

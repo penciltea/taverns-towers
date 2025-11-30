@@ -24,7 +24,7 @@ export default function NpcConnections({ connections }: ConnectionProps) {
     } else {
         content = (
             <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
-                <EntityLinkList connections={resolvedConnections} showType={true} />
+                <EntityLinkList connections={resolvedConnections} showType={false} />
             </Grid>
         )
     }

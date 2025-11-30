@@ -23,7 +23,12 @@ export interface INpc extends Document {
   age?: string;
   pronouns?: string;
   alignment?: string;
+  height?: string;
+  build?: string;
   status?: string;
+  eyeColor?: string;
+  hairColor?: string;
+  hairStyle?: string;
   race?: string;
   traits?: NpcTrait[];
   reputation?: string;
