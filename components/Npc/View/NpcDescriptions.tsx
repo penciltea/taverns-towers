@@ -22,7 +22,7 @@ export default function NpcDescriptions({ npc, userId }: NpcDescriptionsProps) {
 
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-            <Typography variant="h4" component="p" sx={{ mb: 2 }}>Description</Typography>
+            <Typography variant="h4" component="p" sx={{ mb: 2 }}>Description & Notes</Typography>
             <Box sx={{my: 2}}>
               <Typography variant="h5" component="h3">Description</Typography>
               <Divider sx={{mb: 2}} />
@@ -35,7 +35,7 @@ export default function NpcDescriptions({ npc, userId }: NpcDescriptionsProps) {
               <Typography variant="body1" component="p" sx={{ whiteSpace: 'pre-line' }}>{npc.publicNotes ? npc.publicNotes : "N/A" }</Typography>
             </Box>
 
-            { (user?.id === userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) &&  (
+            { ( (user?.id === userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) ) &&  (
               <Box sx={{my: 2}}>
                 <Typography variant="h5" component="h5">GM Notes</Typography>
                 <Divider sx={{mb: 2}} />

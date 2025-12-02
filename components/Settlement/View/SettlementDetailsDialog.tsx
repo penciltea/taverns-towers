@@ -49,10 +49,10 @@ export default function SettlementDetailsDialog({ open, onClose, settlement }: S
                 </SettlementAccordion>
 
                 {/* Notes */}
-                <SettlementAccordion title="Notes & Descriptions" defaultExpanded>
+                <SettlementAccordion title="Description & Notes" defaultExpanded>
                     <Typography variant="body2" component="p" gutterBottom sx={{ whiteSpace: 'pre-line' }}><strong>Public Notes:</strong> {settlement.publicNotes || "N/A"}</Typography>
                     
-                    { (user?.id === settlement.userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) &&  (
+                    { ( (user?.id === settlement.userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) ) &&  (
                         <>
                             <Divider sx={{ my: 2 }} />
                             <Typography variant="body2" component="p" gutterBottom sx={{ whiteSpace: 'pre-line' }}><strong>GM Notes:</strong> {settlement.gmNotes || "N/A"}</Typography>
