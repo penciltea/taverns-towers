@@ -44,7 +44,7 @@ export default function NpcFormPersonality(){
                     label="Persuased by"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_PERSUASION]}
-                    fieldError={errors.alignment}
+                    fieldError={errors.persuasion}
                     tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 

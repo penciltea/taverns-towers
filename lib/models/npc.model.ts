@@ -26,9 +26,11 @@ export interface INpc extends Document {
   height?: string;
   build?: string;
   status?: string;
-  eyeColor?: string;
-  hairColor?: string;
+  eyeColor?: string[];
+  hairColor?: string[];
   hairStyle?: string;
+  skinTone?: string[];
+  features?: string[];
   race?: string;
   traits?: NpcTrait[];
   reputation?: string;
@@ -66,6 +68,13 @@ const npcSchema = new Schema<INpc>(
     archetype: { type: String, enum: npcArchetypeValues },
     occupation: [{ type: String, enum: npcOccupationValues }],
     persuasion: [{ type: String, enum: persuasionValues }],
+    eyeColor: [{ type: String }],
+    hairColor: [{ type: String }],
+    hairStyle: [{ type: String }],
+    skinTone: [{ type: String }],
+    features: [{ type: String }],
+    height: String,
+    build: String,
     likes: String,
     dislikes: String,
     description: { type: String },

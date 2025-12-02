@@ -1,6 +1,6 @@
 import { Flatten } from "./common.options";
 
-export const NPC_TABS = ["Basics", "Personality", "NPC Connections", "Configuration"];
+export const NPC_TABS = ["Basics", "Physical Traits", "Personality", "NPC Connections", "Configuration"];
 
 export const NPC_AGE = [
   "Child",
@@ -308,6 +308,169 @@ export const NPC_PERSUASION = [
   { label: "Negotiation / Compromise", value: "negotiation" },
   { label: "None (Stubborn)", value: "none" },
 ];
+
+export const NPC_HEIGHT = [
+  { label: "Very short", value: "veryShort" },
+  { label: "Short", value: "short" },
+  { label: "Average", value: "average" },
+  { label: "Tall", value: "tall" },
+  { label: "Very tall", value: "veryTall" },
+];
+
+export const NPC_BUILD = [
+  { label: "Very thin", value: "veryThin" },
+  { label: "Thin", value: "thin" },
+  { label: "Average", value: "average" },
+  { label: "Athletic", value: "athletic" },
+  { label: "Heavyset", value: "heavyset" },
+  { label: "Obese", value: "obese" },
+];
+
+export const NPC_SKINTONE = [
+  { label: "Human skintones", 
+    options: [
+      { label: "Very pale", value: "veryPale" },
+      { label: "Pale", value: "pale" },
+      { label: "Fair", value: "fair" },
+      { label: "Light", value: "light" },
+      { label: "Medium", value: "medium" },
+      { label: "Light olive", value: "lightOlive" },
+      { label: "Olive", value: "olive" },
+      { label: "Tan", value: "tan" },
+      { label: "Deep tan", value: "deepTan" },
+      { label: "Brown", value: "brown" },
+      { label: "Dark brown", value: "darkBrown" },
+      { label: "Ebony", value: "ebony" },
+    ]
+  },
+  {
+    label: "Fantasy skintones",
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Ashen Gray", value: "ashenGray" },
+      { label: "Azure", value: "azure" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Brass", value: "brass" },
+      { label: "Charcoal Black", value: "charcoalBlack" },
+      { label: "Cobalt", value: "cobalt" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Clay Red", value: "clayRed" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Ice Blue", value: "iceBlue" },
+      { label: "Jet Black", value: "jetBlack" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Midnight Blue", value: "midnightBlue" },
+      { label: "Moss Green", value: "mossGreen" },
+      { label: "Olive Green", value: "oliveGreen" },
+      { label: "Pearl White", value: "pearlWhite" },
+      { label: "Rose", value: "rose" },
+      { label: "Ruby Red", value: "rubyRed" },
+      { label: "Sandy Tan", value: "sandyTan" },
+      { label: "Silver", value: "silver" },
+      { label: "Slate", value: "slate" },
+      { label: "Stone Gray", value: "stoneGray" },
+      { label: "Terracotta", value: "terracotta" },
+      { label: "Teal", value: "teal" },
+      { label: "Violet", value: "violet" },
+      { label: "Verdigris", value: "verdigris" }
+    ]
+  }
+];
+
+export const NPC_HAIR_COLOR = [
+  { label: "Human colors", 
+    options: [
+      { label: "Auburn", value: "auburn" },
+      { label: "Black", value: "black" },
+      { label: "Blonde", value: "blonde" },
+      { label: "Brown", value: "brown" },
+      { label: "Chestnut", value: "chestnut" },
+      { label: "Dirty Blonde", value: "dirtyBlonde" },
+      { label: "Gray", value: "gray" },
+      { label: "Platinum Blonde", value: "platinumBlonde" },
+      { label: "Red", value: "red" },
+      { label: "Strawberry Blonde", value: "strawberryBlonde" },
+      { label: "White", value: "white" }
+    ]
+  },
+  { label: "Fantasy colors", 
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Aqua", value: "aqua" },
+      { label: "Blue", value: "blue" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Copper", value: "copper" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Pink", value: "pink" },
+      { label: "Purple", value: "purple" },
+      { label: "Silver", value: "silver" },
+      { label: "Teal", value: "teal" },
+      { label: "Vibrant Red", value: "vibrantRed" },
+      { label: "Yellow", value: "yellow" }
+    ]
+  }
+];
+
+export const NPC_HAIR_STYLE = [
+  { label: "Hair Textures", 
+    options: [
+      { label: "Straight", value: "straight" },
+      { label: "Wavy", value: "wavy" },
+      { label: "Curly", value: "curly" },
+      { label: "Coily", value: "coily" },
+      { label: "Kinky", value: "kinky" },
+      { label: "Fine", value: "fine" },
+      { label: "Thick", value: "thick" },
+      { label: "Voluminous", value: "voluminous" },
+    ]
+  },
+  { label: "Hair Lengths", 
+    options: [
+      { label: "Bald", value: "bald" },
+      { label: "Buzz cut", value: "buzzCut" },
+      { label: "Short", value: "short" },
+      { label: "Medium", value: "medium" },
+      { label: "Shoulder-length", value: "shoulderLength" },
+      { label: "Long", value: "long" },
+      { label: "Waist-length", value: "waistLength" },
+      { label: "Very long", value: "veryLong" },
+    ]
+  },
+  { label: "Hair Styles",
+    options: [
+      { label: "Braided", value: "braided" },
+      { label: "Bun(s)", value: "buns" },
+      { label: "Cornrows", value: "cornrows" },
+      { label: "Dreadlocks", value: "dreadlocks" },
+      { label: "Half-up half-down", value: "halfUpHalfDown" },
+      { label: "Loose", value: "loose" },
+      { label: "Messy bun(s)", value: "messyBuns" },
+      { label: "Mohawk", value: "mohawk" },
+      { label: "Pigtails", value: "pigtails" },
+      { label: "Ponytail", value: "ponytail" },
+      { label: "Ringlets", value: "ringlets" },
+      { label: "Shaggy", value: "shaggy" },
+      { label: "Side-shave", value: "side-shave" },
+      { label: "Wavy mane", value: "wavyMane" },
+      { label: "Windswept", value: "windswept" },
+      { label: "Wolf cut", value: "wolfCut" },
+      { label: "Undercut", value: "undercut" },
+      { label: "Unkempt", value: "unkempt" },
+      { label: "Updo", value: "updo" },
+    ]
+  }
+]
+
+
+
 
 export const NPC_CONNECTION_TYPE = [
     "settlement",
