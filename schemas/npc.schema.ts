@@ -20,7 +20,7 @@ export const npcSchema = z.object({
   hairColor: z.array(z.string()).optional(),
   hairStyle: z.array(z.string()).optional(),
   features: z.array(z.string()).optional(),
-  skinTone: z.string().optional(),
+  skinTone: z.array(z.string()).optional(),
   description: z.string().optional(),
   gmNotes: z.string().optional(),
   publicNotes: z.string().optional(),

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";

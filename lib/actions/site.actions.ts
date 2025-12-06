@@ -280,15 +280,15 @@ export async function copySite(id: string): Promise<ActionResult<SiteType>>{
 
     if(!user) throw new AppError("Sorry, you must be logged in to perform this action.", 500);
 
+    const originalObj = original.toObject();
     const {
       _id,
       createdAt,
       updatedAt,
       idempotencyKey,
       ...rest
-    } = original;
+    } = originalObj;
 
-    console.log("original: ", original);
     const model = Site.discriminators?.[original.type] || Site;
 
     const duplicatedSite = {
@@ -299,8 +299,6 @@ export async function copySite(id: string): Promise<ActionResult<SiteType>>{
       settlementId: original.settlementId ? new ObjectId(original.settlementId.toString()) : undefined,
       idempotencyKey: generateIdempotencyKey()
     }
-
-    console.log("duplicated site: ", duplicatedSite);
 
     if (!duplicatedSite.idempotencyKey) {
         throw new AppError("Missing magic keys for item creation", 400);

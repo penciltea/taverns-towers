@@ -44,12 +44,13 @@ function mapConnectionRole(conn: TypeConnection, pageSiteType?: string): string 
       break;
 
     case "npc":
-      options = [
-        ...NPC_CONNECTION_NPC_ROLE,
-        ...(typeForLookup
-          ? NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? []
-          : []),
-      ];
+      options = NPC_CONNECTION_NPC_ROLE.flatMap(group => group.options);
+      if (typeForLookup) {
+        options = [
+          ...options,
+          ...(NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? []),
+        ];
+      }
       break;
 
     default:

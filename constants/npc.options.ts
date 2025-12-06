@@ -310,39 +310,42 @@ export const NPC_PERSUASION = [
 ];
 
 export const NPC_HEIGHT = [
-  { label: "Very short", value: "veryShort" },
-  { label: "Short", value: "short" },
   { label: "Average", value: "average" },
+  { label: "Short", value: "short" },
   { label: "Tall", value: "tall" },
+  { label: "Very short", value: "veryShort" },
   { label: "Very tall", value: "veryTall" },
 ];
 
 export const NPC_BUILD = [
-  { label: "Very thin", value: "veryThin" },
-  { label: "Thin", value: "thin" },
-  { label: "Average", value: "average" },
   { label: "Athletic", value: "athletic" },
+  { label: "Average", value: "average" },
   { label: "Heavyset", value: "heavyset" },
   { label: "Obese", value: "obese" },
+  { label: "Thin", value: "thin" },
+  { label: "Very thin", value: "veryThin" },
 ];
 
-export const NPC_SKINTONE = [
+export const NPC_HUMAN_SKINTONES = [
   { label: "Human skintones", 
     options: [
-      { label: "Very pale", value: "veryPale" },
-      { label: "Pale", value: "pale" },
-      { label: "Fair", value: "fair" },
-      { label: "Light", value: "light" },
-      { label: "Medium", value: "medium" },
-      { label: "Light olive", value: "lightOlive" },
-      { label: "Olive", value: "olive" },
-      { label: "Tan", value: "tan" },
-      { label: "Deep tan", value: "deepTan" },
       { label: "Brown", value: "brown" },
       { label: "Dark brown", value: "darkBrown" },
+      { label: "Deep tan", value: "deepTan" },
       { label: "Ebony", value: "ebony" },
+      { label: "Fair", value: "fair" },
+      { label: "Light olive", value: "lightOlive" },
+      { label: "Medium", value: "medium" },
+      { label: "Olive", value: "olive" },
+      { label: "Pale", value: "pale" },
+      { label: "Tan", value: "tan" },
+      { label: "Very pale", value: "veryPale" },
+      
     ]
-  },
+  }
+];
+
+export const NPC_FANTASY_SKINTONES = [
   {
     label: "Fantasy skintones",
     options: [
@@ -380,6 +383,12 @@ export const NPC_SKINTONE = [
   }
 ];
 
+// Broken apart for NPC Generator logic
+export const NPC_SKINTONE = [
+  ...NPC_HUMAN_SKINTONES,
+  ...NPC_FANTASY_SKINTONES
+];
+
 export const NPC_HAIR_COLOR = [
   { label: "Human colors", 
     options: [
@@ -412,6 +421,7 @@ export const NPC_HAIR_COLOR = [
       { label: "Pink", value: "pink" },
       { label: "Purple", value: "purple" },
       { label: "Silver", value: "silver" },
+      { label: "Snow White", value: "snowWhite" },
       { label: "Teal", value: "teal" },
       { label: "Vibrant Red", value: "vibrantRed" },
       { label: "Yellow", value: "yellow" }
@@ -419,32 +429,38 @@ export const NPC_HAIR_COLOR = [
   }
 ];
 
-export const NPC_HAIR_STYLE = [
-  { label: "Hair Textures", 
+export const NPC_HAIR_TEXTURES = [
+  { label: "Hair textures", 
     options: [
-      { label: "Straight", value: "straight" },
-      { label: "Wavy", value: "wavy" },
-      { label: "Curly", value: "curly" },
       { label: "Coily", value: "coily" },
-      { label: "Kinky", value: "kinky" },
+      { label: "Curly", value: "curly" },
       { label: "Fine", value: "fine" },
+      { label: "Kinky", value: "kinky" },
+      { label: "Straight", value: "straight" },
       { label: "Thick", value: "thick" },
       { label: "Voluminous", value: "voluminous" },
+      { label: "Wavy", value: "wavy" },
     ]
-  },
-  { label: "Hair Lengths", 
+  }
+];
+
+export const NPC_HAIR_LENGTHS = [
+  { label: "Hair lengths", 
     options: [
       { label: "Bald", value: "bald" },
       { label: "Buzz cut", value: "buzzCut" },
-      { label: "Short", value: "short" },
-      { label: "Medium", value: "medium" },
-      { label: "Shoulder-length", value: "shoulderLength" },
       { label: "Long", value: "long" },
-      { label: "Waist-length", value: "waistLength" },
+      { label: "Medium", value: "medium" },
+      { label: "Short", value: "short" },
+      { label: "Shoulder-length", value: "shoulderLength" },
       { label: "Very long", value: "veryLong" },
+      { label: "Waist-length", value: "waistLength" },
     ]
-  },
-  { label: "Hair Styles",
+  }
+];
+
+export const NPC_HAIR_STYLES = [
+  { label: "Hair styles",
     options: [
       { label: "Braided", value: "braided" },
       { label: "Bun(s)", value: "buns" },
@@ -469,7 +485,130 @@ export const NPC_HAIR_STYLE = [
   }
 ]
 
+// Broken apart for NPC Generator logic
+export const NPC_HAIR_STYLE = [
+  ...NPC_HAIR_TEXTURES,
+  ...NPC_HAIR_LENGTHS,
+  ...NPC_HAIR_STYLES
+];
 
+
+
+export const NPC_HUMAN_EYE_COLORS = [
+  { label: "Human eye colors", 
+    options: [
+      { label: "Black", value: "black" },
+      { label: "Blue", value: "blue" },
+      { label: "Dark brown", value: "darkBrown" },
+      { label: "Gray", value: "gray" },
+      { label: "Green", value: "green" },
+      { label: "Hazel", value: "hazel" },
+      { label: "Honey", value: "honey" },
+      { label: "Light brown", value: "lightBrown" },
+    ]
+  }
+];
+
+export const NPC_FANTASY_EYE_COLORS = [
+  { label: "Fantasy eye colors", 
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Aqua", value: "aqua" },
+      { label: "Blood Red", value: "bloodRed" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Cobalt", value: "cobalt" },
+      { label: "Copper", value: "copper" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Opal", value: "opal" },
+      { label: "Peridot", value: "peridot" },
+      { label: "Rose", value: "rose" },
+      { label: "Ruby", value: "ruby" },
+      { label: "Sapphire", value: "sapphire" },
+      { label: "Silver", value: "silver" },
+      { label: "Teal", value: "teal" },
+      { label: "Topaz", value: "topaz" },
+      { label: "Violet", value: "violet" },
+      { label: "Vibrant Blue", value: "vibrantBlue" },
+      { label: "Vibrant Green", value: "vibrantGreen" },
+      { label: "Vibrant Pink", value: "vibrantPink" },
+      { label: "Vibrant Purple", value: "vibrantPurple" },
+      { label: "Vibrant Red", value: "vibrantRed" },
+      { label: "Vibrant Yellow", value: "vibrantYellow" },
+    ]
+  }
+];
+
+// Broken apart for NPC Generator logic
+export const NPC_EYE_COLOR = [
+  ...NPC_HUMAN_EYE_COLORS,
+  ...NPC_FANTASY_EYE_COLORS
+];
+
+
+export const NPC_DISTINGUISHING_FEATURES = [
+  { label: "Eyes", 
+    options: [
+      { label: "Blind", value: "blind" },
+      { label: "Cataract(s)", value: "cataracts" },
+      { label: "Cross-eyed", value: "crossEyed" },
+      { label: "Heterochromia", value: "heterochromia" },
+      { label: "Glowing eyes", value: "glowingEyes" },
+      { label: "Missing eye(s)", value: "missingEyes" },
+      { label: "Scarred eye(s)", value: "scarredEyes" },
+      { label: "Unusual pupil(s)", value: "unusualPupils" },
+    ]
+  },
+  { label: "Face", 
+    options: [
+      { label: "Beard / Facial hair", value: "facialHair" },
+      { label: "Birthmark(s)", value: "birthmarks" },
+      { label: "Cleft chin", value: "cleftChin" },
+      { label: "Crooked nose", value: "crookedNose" },
+      { label: "Dimples", value: "dimples" },
+      { label: "Face / War paint", value: "warPaint" },
+      { label: "Freckles", value: "freckles" },
+      { label: "Mole(s)", value: "moles" },
+      { label: "Piercing(s)", value: "piercings" },
+      { label: "Scars", value: "scars" },
+      { label: "Tattoos", value: "faceTattoos" },
+    ]
+  },
+  { label: "Body", 
+    options: [
+      { label: "Albanism", value: "albinism" },
+      { label: "Birthmark(s)", value: "bodyBirthmarks" },
+      { label: "Body / War paint", value: "bodyWarPaint" },
+      { label: "Burn scar(s)", value: "burnScars" },
+      { label: "Exotic feature(s) (horns, tails, etc.)", value: "exoticFeatures" },
+      { label: "Glowing skin", value: "glowingSkin" },
+      { label: "Missing limb(s)", value: "missingLimbs" },
+      { label: "Missing finger(s)/toe(s)", value: "missingDigits" },
+      { label: "Piercing(s)", value: "bodyPiercings" },
+      { label: "Scar(s)", value: "bodyScars" },
+      { label: "Tattoo(s)", value: "bodyTattoos" },
+      { label: "Unusual skin texture", value: "unusualSkinTexture" },
+      { label: "Uses assistive device(s) (wheelchair, crutches, etc.)", value: "assistiveDevices" },
+      { label: "Vitiligo", value: "vitiligo" },
+      { label: "Webbed fingers/toes", value: "webbedDigits" },
+      { label: "Wings (feathered)", value: "featheredWings" },
+      { label: "Wings (insectoid)", value: "insectoidWings" },
+      { label: "Wings (leathery)", value: "leatheryWings" },
+    ]
+  }, 
+  { label: "Other",
+    options: [
+      { label: "Distinctive clothing/jewelry", value: "distinctiveClothing" },
+      { label: "Distinctive gait/movement", value: "distinctiveGait" },
+      { label: "Unique scent", value: "uniqueScent" },
+      { label: "Unusual voice", value: "unusualVoice" },
+    ]
+  }
+]
 
 
 export const NPC_CONNECTION_TYPE = [

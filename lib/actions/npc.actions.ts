@@ -341,17 +341,14 @@ export async function copyNpc(id: string): Promise<ActionResult<Npc>>{
     const user = await requireUser();
     const original = await NpcModel.findById(id);
 
+    console.log("original NPC: ", original);
+
     if(!original) throw new AppError("Cannot find the original NPC", 404);
 
     if(!user) throw new AppError("Sorry, you must be logged in to perform this action.", 500);
 
-    const {
-      _id,
-      createdAt,
-      updatedAt,
-      idempotencyKey,
-      ...rest
-    } = original;
+    const originalObj = original.toObject();
+    const { _id, ...rest } = originalObj;
 
     const duplicatedNpc = {
       ...rest,
@@ -360,6 +357,8 @@ export async function copyNpc(id: string): Promise<ActionResult<Npc>>{
       campaignId: original.campaignId ? new ObjectId(original.campaignId.toString()) : undefined,
       idempotencyKey: generateIdempotencyKey()
     }
+
+    console.log("DuplicatedNPC: ", duplicatedNpc);
 
     if (!duplicatedNpc.idempotencyKey) {
         throw new AppError("Missing magic keys for item creation", 400);

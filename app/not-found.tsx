@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Typography, Button, Paper } from "@mui/material";
 import Link from "next/link";
 

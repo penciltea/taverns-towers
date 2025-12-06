@@ -279,13 +279,14 @@ export async function copySettlement(id: string): Promise<ActionResult<Settlemen
 
     if(!user) throw new AppError("Sorry, you must be logged in to perform this action.", 500);
 
+    const originalObj = original.toObject();
     const {
       _id,
       createdAt,
       updatedAt,
       idempotencyKey,
       ...rest
-    } = original;
+    } = originalObj;
 
     const duplicatedSettlement = {
       ...rest,
