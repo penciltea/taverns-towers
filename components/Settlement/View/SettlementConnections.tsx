@@ -28,9 +28,7 @@ export default function SettlementConnections({ connections }: ConnectionProps) 
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Box sx={{ mt: 4 }}>
-                { content }
-            </Box>
+           { content }
         </Paper>
     );
 }

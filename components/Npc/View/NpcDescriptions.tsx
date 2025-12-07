@@ -21,7 +21,7 @@ export default function NpcDescriptions({ npc, userId }: NpcDescriptionsProps) {
     const { data: campaignPermissions } = useCampaignPermissionsQuery(selectedCampaign?._id);
 
     return (
-        <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
+        <Paper elevation={3} sx={{ p: 3, borderRadius: 2, flex: 1, maxWidth: "1/3" }}>
             <Typography variant="h4" component="p" sx={{ mb: 2 }}>Description & Notes</Typography>
             <Box sx={{my: 2}}>
               <Typography variant="h5" component="h3">Description</Typography>

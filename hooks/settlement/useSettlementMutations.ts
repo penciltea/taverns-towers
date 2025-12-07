@@ -126,11 +126,14 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
       );
 
       invalidateSettlementQueries(queryClient, saved._id);
+
       if (selectedCampaign) {
         invalidateCampaignQueries(queryClient, selectedCampaign._id);
       }
 
+      console.log(`/settlements/${saved._id}`);
       router.push(`/settlements/${saved._id}`);
+
     } catch (error) {
       let message = "Something went wrong saving the settlement. Please try again later.";
 
@@ -179,6 +182,7 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
       });
 
       showSnackbar("Settlement updated successfully!", "success");
+
     } catch (error) {
       invalidateSettlementQueries(queryClient, update._id);
       console.error("Failed to update settlement:", error);

@@ -19,6 +19,9 @@ import { copyNpc, deleteNpc } from "@/lib/actions/npc.actions";
 import { canEdit, canDelete } from "@/lib/auth/authPermissions";
 import { handleActionResult } from "@/hooks/queryHook.util";
 import { invalidateCampaignQueries, invalidateNpcQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
+import { Stack } from "@mui/material";
+import NpcPhysicalTraits from "./NpcPhysicalTraits";
+import NpcPersonality from "./NpcPersonality";
 
 export default function ViewNpc({ npc }: NpcProps){
   const router = useRouter();
@@ -103,7 +106,13 @@ export default function ViewNpc({ npc }: NpcProps){
             fallbackText="No NPC portait uploaded."
           />
       }
-      extraContent={ <NpcDescriptions npc={npc} userId={npc.userId}/> }
+      extraContent={ 
+        <Stack  direction={{ xs: "column", sm: "row" }} spacing={2} mt={2}>
+          <NpcPhysicalTraits npc={npc} />
+          <NpcPersonality npc={npc} />
+          <NpcDescriptions npc={npc} userId={npc.userId}/> 
+        </Stack>
+      }
       connections={ <NpcConnections connections={npc.connections} /> }
     />
   )

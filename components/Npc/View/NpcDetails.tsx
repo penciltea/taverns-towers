@@ -26,12 +26,6 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
     { label: "Age", value: npc.age ? npc.age : "N/A" },
     { label: "Race", value: npc.race ? toTitleCase(npc.race) : "N/A" },
     { label: "Alignment", value: npc.alignment ? npc.alignment : "N/A" },
-    {
-      label: "Trait(s)",
-      value: npc.traits?.length
-        ? npc.traits.map(getTraitLabel).join(", ")
-        : "N/A"
-    },
     { label: "Archetype", value: npc.archetype ? toTitleCase(npc.archetype) : "N/A" },
     { 
       label: "Occupation(s)", 
@@ -39,8 +33,6 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
         ? npc.occupation.map(getOccupationLabel).join(", ")
         : "N/A"
     },
-    { label: "Likes", value: npc.likes ? npc.likes : "N/A" },
-    { label: "Disikes", value: npc.dislikes ? npc.dislikes : "N/A" },
     { label: "Status", value: npc.status }
   ];
 

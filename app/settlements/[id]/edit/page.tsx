@@ -24,7 +24,6 @@ export default function EditSettlementFormPage() {
   const safeId = getSingleParam(id);
   const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
 
-
   useFormMode(safeId, useSettlementContentStore);
   const { mode } = useSettlementContentStore();
 

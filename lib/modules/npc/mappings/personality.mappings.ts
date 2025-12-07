@@ -47,9 +47,9 @@ export const persuasionByAlignmentMapping: Record<NpcAlignment, string[]> = {
     "Neutral Good": ["negotiation", "empathy", "reason"],
     "Chaotic Good": ["empathy", "negotiation", "charm", "manipulation", "flattery"],
 
-    "Lawful Neutral": ["authority", "reason", "negotiaton"],
+    "Lawful Neutral": ["authority", "reason", "negotiation"],
     "True Neutral": ["none", "reason", "negotiation", "goading"],
-    "Chaotic Neutral": ["empathy", "deception", "flattery", "negotiaton", "goading"],
+    "Chaotic Neutral": ["empathy", "deception", "flattery", "negotiation", "goading"],
     
     "Lawful Evil": ["authority", "negotiation", "reason", "manipulation"],
     "Neutral Evil": ["manipulation", "deception", "trheats", "bribery", "goading"],

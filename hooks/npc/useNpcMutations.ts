@@ -35,6 +35,7 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
         
     async function handleSubmit(data: NpcFormData) {
         setSubmitting(true);
+
         try {
             if (!user?.id) throw new AppError("User is not logged in", 400);
 
