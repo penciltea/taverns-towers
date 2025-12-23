@@ -1,7 +1,6 @@
-import { Box, Typography, List, Stack, Paper, Chip } from "@mui/material";
+import { Box, Typography, Stack, Paper, Chip } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { toTitleCase } from "@/lib/util/stringFormats";
 import { NPC_PERSUASION, NPC_REPUTATION, NPC_TRAITS } from "@/constants/npc.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { getDropdownLabel } from "@/lib/util/getDropdownLabel";
@@ -31,7 +30,7 @@ export default function NpcPersonality({ npc }: { npc: Npc }) {
 
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2, flex: 1, maxWidth: "1/4" }}>
-            <Typography variant="h4" component="h2">Personality</Typography>
+            <Typography variant="h4" component="h2">Personality Traits</Typography>
             
             <Box>
                 {fields.map((field) => {

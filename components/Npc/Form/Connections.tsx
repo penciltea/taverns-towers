@@ -10,7 +10,7 @@ import { useOwnedSettlementsQuery } from "@/hooks/settlement/settlement.query";
 import { useOwnedNpcsQuery } from "@/hooks/npc/npc.query";
 import { useOwnedSitesQuery } from "@/hooks/site/site.query";
 import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/EntityLinkForm";
-import { Option } from "@/components/Form/FormSelect";
+import { Option } from "@/interfaces/options.interface";
 import { useNpcContentStore } from "@/store/npc.store";
 
 export default function NpcFormConnections() {

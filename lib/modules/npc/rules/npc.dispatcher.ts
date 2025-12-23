@@ -24,6 +24,12 @@ import {
   applyTraitsRule,
 } from "./applyRules";
 
+import { 
+  applyHeightRule,
+  applyBuildRule,
+  applySkinToneRule
+ } from "./physicalTraitRules";
+
 // Default list of rules to apply sequentially
 const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[] = [
   async (data) => applyAgeRule(data),
@@ -36,6 +42,9 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyReputationByArchetypeRule(data),
   async (data) => applyOccupationByConditionsRule(data),
   async (data) => applyPersuasionByConditionsRule(data),
+  async (data) => applyHeightRule(data),
+  async (data) => applyBuildRule(data),
+  async (data) => applySkinToneRule(data),
 ];
 
 /**

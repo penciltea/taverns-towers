@@ -78,3 +78,55 @@ export function shouldReplace(value: unknown): boolean {
 
   return false;
 }
+
+
+/**
+ * Takes weighted option groups and returns `count` random option values,
+ * selecting groups according to their weights.
+*/
+
+type WeightedOptionGroup = {
+  weight: number;
+  group: {
+    label: string;
+    options: { label: string; value: string }[];
+  };
+};
+
+export function getWeightedRandomOptions(
+  groups: readonly WeightedOptionGroup[],
+  count: number
+): string[] {
+  if (count <= 0) return [];
+
+  const results: string[] = [];
+
+  const totalWeight = groups.reduce((sum, g) => sum + g.weight, 0);
+
+  for (let i = 0; i < count; i++) {
+    let roll = Math.random() * totalWeight;
+    let selectedGroup: WeightedOptionGroup | undefined;
+
+    // 1. Pick a group by weight
+    for (const group of groups) {
+      roll -= group.weight;
+      if (roll <= 0) {
+        selectedGroup = group;
+        break;
+      }
+    }
+
+    if (!selectedGroup || selectedGroup.group.options.length === 0) {
+      continue;
+    }
+
+    // 2. Pick an option from that group
+    const options = selectedGroup.group.options;
+    const option =
+      options[Math.floor(Math.random() * options.length)];
+
+    results.push(option.value);
+  }
+
+  return results;
+}

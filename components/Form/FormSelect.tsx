@@ -3,17 +3,10 @@
 import { JSX, useId } from "react";
 import { FormControl, InputLabel, MenuItem, Select, SelectProps, FormHelperText, ListSubheader, Typography} from "@mui/material";
 import { Control, Controller, FieldError, FieldValues, Path } from "react-hook-form";
+import { Option, OptionGroup } from "./FormChipSelect";
 
 
-export interface Option {
-  label: string;
-  value: string;
-}
 
-export interface OptionGroup {
-  label: string;
-  options: ReadonlyArray<Option>;
-}
 
 export interface FormSelectProps<
   TFieldValues extends FieldValues,
