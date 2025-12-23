@@ -27,7 +27,9 @@ import {
 import { 
   applyHeightRule,
   applyBuildRule,
-  applySkinToneRule
+  applySkinToneRule,
+  applyEyeColorRule,
+  applyHairColorRule
  } from "./physicalTraitRules";
 
 // Default list of rules to apply sequentially
@@ -45,6 +47,8 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyHeightRule(data),
   async (data) => applyBuildRule(data),
   async (data) => applySkinToneRule(data),
+  async (data) => applyEyeColorRule(data),
+  async (data) => applyHairColorRule(data)
 ];
 
 /**

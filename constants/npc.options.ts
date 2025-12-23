@@ -5,7 +5,7 @@ export const NPC_TABS = ["Basics", "Physical Traits", "Personality", "NPC Connec
 export const NPC_AGE = [
   "Child",
   "Teenager",
-  "Young Adult",
+  "Young adult",
   "Adult",
   "Middle-aged",
   "Elderly",
@@ -25,15 +25,15 @@ export const NPC_PRONOUNS = [
 ];
 
 export const NPC_ALIGNMENT = [
-  "Lawful Good",
-  "Neutral Good",
-  "Chaotic Good",
-  "Lawful Neutral",
-  "True Neutral",
-  "Chaotic Neutral",
-  "Lawful Evil",
-  "Neutral Evil",
-  "Chaotic Evil",
+  "Lawful good",
+  "Neutral good",
+  "Chaotic good",
+  "Lawful neutral",
+  "True neutral",
+  "Chaotic neutral",
+  "Lawful evil",
+  "Neutral evil",
+  "Chaotic evil",
   "Unaligned"
 ];
 
@@ -55,6 +55,7 @@ export const NPC_RACES = [
   { label: "Genasi", value: "genasi" },
   { label: "Gnome", value: "gnome" },
   { label: "Goblin", value: "goblin" },
+  { label: "Goliath", value: "goliath" }, 
   { label: "Half-Elf", value: "half-elf" },
   { label: "Half-Orc", value: "half-orc" },
   { label: "Halfling", value: "halfling" },
@@ -148,9 +149,9 @@ export const NPC_ARCHETYPE = [
   {
     label: "Magical",
     options: [
-      { label: "Apprentice Wizard", value: "apprentice wizard" },
-      { label: "Elder Wizard", value: "elder wizard" },
-      { label: "Occult Caster", value: "occult caster" },
+      { label: "Apprentice wizard", value: "apprentice wizard" },
+      { label: "Elder wizard", value: "elder wizard" },
+      { label: "Occult caster", value: "occult caster" },
       { label: "Priest / Cleric", value: "cleric" },
       { label: "Druid / Shaman", value: "druid" }
     ]
@@ -158,7 +159,7 @@ export const NPC_ARCHETYPE = [
   {
     label: "Martial",
     options: [
-      { label: "Veteran Soldier", value: "veteran soldier" },
+      { label: "Veteran soldier", value: "veteran soldier" },
       { label: "Squire", value: "squire" },
       { label: "Ruffian / Thug", value: "ruffian" },
       { label: "Mercenary", value: "mercenary" }
@@ -209,7 +210,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Agricultural",
     options: [
-      { label: "Animal Husbandry", value: "animal husbandry" },
+      { label: "Animal husbandry", value: "animal husbandry" },
       { label: "Farmer", value: "farmer" },
       { label: "Fisher", value: "fisher" },
       { label: "Hunter / Trapper", value: "hunter" },
@@ -220,7 +221,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Crafts & Services",
     options: [
-      { label: "Apprentice Artisan", value: "apprentice artisan" },
+      { label: "Apprentice artisan", value: "apprentice artisan" },
       { label: "Artisan", value: "artisan" },
       { label: "Auctioneer", value: "auctioneer" },
       { label: "Banker", value: "banker" },
@@ -248,7 +249,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Magical & Religious",
     options: [
-      { label: "Apprentice Wizard", value: "apprentice wizard" },
+      { label: "Apprentice wizard", value: "apprentice wizard" },
       { label: "Druid / Shaman", value: "druid" },
       { label: "Priest / Cleric", value: "priest" },
       { label: "Wizard / Mage", value: "wizard" },
@@ -262,8 +263,8 @@ export const NPC_OCCUPATION = [
       { label: "Knight", value: "knight" },
       { label: "Mercenary", value: "mercenary" },
       { label: "Soldier", value: "soldier" },
-      { label: "Military Leader", value: "military leader" },
-      { label: "Militia Member", value: "militia" },
+      { label: "Military leader", value: "military leader" },
+      { label: "Militia member", value: "militia" },
       { label: "Squire", value: "squire" },
     ]
   },
@@ -271,7 +272,7 @@ export const NPC_OCCUPATION = [
     label: "Underworld / Criminal",
     options: [
       { label: "Assassin", value: "assassin" },
-      { label: "Fence / Black Market Dealer", value: "fence" },
+      { label: "Fence / Black market dealer", value: "fence" },
       { label: "Ruffian / Thug", value: "ruffian" },
       { label: "Smuggler", value: "smuggler" },
       { label: "Spy / Informant", value: "spy" },
@@ -285,7 +286,7 @@ export const NPC_OCCUPATION = [
       { label: "Beggar / Drifter", value: "beggar" },
       { label: "Councilor / Advisor", value: "advisor" },
       { label: "Entertainer", value: "entertainer" },
-      { label: "Government Official", value: "official" },
+      { label: "Government official", value: "official" },
       { label: "Servant / Retainer", value: "servant" },
       { label: "Steward / Chamberlain", value: "steward" },
       { label: "Student", value: "student" },
@@ -295,18 +296,18 @@ export const NPC_OCCUPATION = [
 ];
 
 export const NPC_PERSUASION = [
-  { label: "Appeal to Authority / Tradition", value: "authority" },
-  { label: "Appeal to Emotion / Empathy", value: "empathy" },
-  { label: "Appeal to Reason / Logic", value: "reason" },
+  { label: "Appeal to authority / tradition", value: "authority" },
+  { label: "Appeal to emotion / empathy", value: "empathy" },
+  { label: "Appeal to reason / logic", value: "reason" },
   { label: "Bribery", value: "bribery" },
   { label: "Charm / Seduction", value: "charm" },
   { label: "Deception", value: "deception" },
-  { label: "Emotional Manipulation", value: "manipulation" },
+  { label: "Emotional manipulation", value: "manipulation" },
   { label: "Flattery", value: "flattery" },
   { label: "Force / Threats", value: "threats" },
   { label: "Goading", value: "goading" },
   { label: "Negotiation / Compromise", value: "negotiation" },
-  { label: "None (Stubborn)", value: "none" },
+  { label: "None (stubborn)", value: "none" },
 ];
 
 export const NPC_HEIGHT = [
@@ -389,8 +390,8 @@ export const NPC_SKINTONE = [
   ...NPC_FANTASY_SKINTONES
 ];
 
-export const NPC_HAIR_COLOR = [
-  { label: "Human colors", 
+export const NPC_HUMAN_HAIR_COLORS = [
+  { label: "Realistic colors", 
     options: [
       { label: "Auburn", value: "auburn" },
       { label: "Black", value: "black" },
@@ -405,6 +406,9 @@ export const NPC_HAIR_COLOR = [
       { label: "White", value: "white" }
     ]
   },
+];
+
+export const NPC_FANTASY_HAIR_COLORS = [
   { label: "Fantasy colors", 
     options: [
       { label: "Amethyst", value: "amethyst" },
@@ -427,6 +431,11 @@ export const NPC_HAIR_COLOR = [
       { label: "Yellow", value: "yellow" }
     ]
   }
+];
+
+export const NPC_HAIR_COLOR = [
+  ...NPC_HUMAN_HAIR_COLORS,
+  ...NPC_FANTASY_HAIR_COLORS
 ];
 
 export const NPC_HAIR_TEXTURES = [
@@ -587,7 +596,7 @@ export const NPC_DISTINGUISHING_FEATURES = [
       { label: "Exotic feature(s) (horns, tails, etc.)", value: "exoticFeatures" },
       { label: "Glowing skin", value: "glowingSkin" },
       { label: "Missing limb(s)", value: "missingLimbs" },
-      { label: "Missing finger(s)/toe(s)", value: "missingDigits" },
+      { label: "Missing finger(s) / toe(s)", value: "missingDigits" },
       { label: "Mole(s) on body", value: "bodyMoles" },
       { label: "Piercing(s) on body", value: "bodyPiercings" },
       { label: "Scar(s) on body", value: "bodyScars" },
@@ -605,8 +614,8 @@ export const NPC_DISTINGUISHING_FEATURES = [
     options: [
       { label: "Blind / Visually impaired", value: "blind" },
       { label: "Deaf / Hard of hearing", value: "deaf" },
-      { label: "Distinctive clothing/jewelry", value: "distinctiveClothing" },
-      { label: "Distinctive gait/movement", value: "distinctiveGait" },
+      { label: "Distinctive clothing / jewelry", value: "distinctiveClothing" },
+      { label: "Distinctive gait / movement", value: "distinctiveGait" },
       { label: "Distinctive mannerisms", value: "distinctiveMannerisms" },
       { label: "Mute / Non-verbal", value: "mute" },
       { label: "Unique scent", value: "uniqueScent" },
