@@ -2,7 +2,7 @@ import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
 import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
 import { NPC_AGE, NPC_RACES, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
 import { archetypeByAgeMapping, npcAlignmentMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
-import { persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
+import { NpcCommonDislikes, NpcCommonLikes, NpcUncommonDislikes, NpcUncommonLikes, persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
 
 // Logic for setting Age if set to "random" or missing
 export function applyAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
@@ -115,6 +115,39 @@ export function applyPersuasionByConditionsRule(data: ReturnType<typeof normaliz
         } else {
             data.persuasion = results;
         }
+    }
+
+    return data;
+}
+
+export function applyLikesRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput{
+    if(shouldReplace(data.likes)){
+        let commonLikes = getRandomSubset(NpcCommonLikes, {min: 1, max: 3});
+        let uncommonLikes = getRandom(NpcUncommonLikes);
+        data.likes = [...commonLikes, uncommonLikes].join(", ").toString();
+    }
+
+    return data;
+}
+
+export function applyDislikesRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput{
+    if(shouldReplace(data.dislikes)){
+        let commonDislikes = getRandomSubset(NpcCommonDislikes, {min: 1, max: 2});
+        let uncommonDislikes = getRandom(NpcUncommonDislikes);
+        let selectedDislikes = [...commonDislikes, uncommonDislikes];
+
+        // Convert likes to an array (only if they exist)
+        const likeList = data.likes
+            ? data.likes.split(",").map(like => like.trim().toLowerCase())
+            : [];
+
+        // Filter the dislikes to avoid conflicts
+        selectedDislikes = selectedDislikes.filter(dislike =>
+            !likeList.includes(dislike.toLowerCase())
+        );
+
+        // Reassign final filtered string
+        data.dislikes = selectedDislikes.join(", ").toString();
     }
 
     return data;

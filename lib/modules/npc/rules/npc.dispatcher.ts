@@ -22,6 +22,8 @@ import {
   applyReputationByArchetypeRule,
   applyStatusRule,
   applyTraitsRule,
+  applyLikesRule,
+  applyDislikesRule
 } from "./applyRules";
 
 import { 
@@ -53,6 +55,8 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyHairColorRule(data),
   async (data) => applyHairStyleRule(data),
   async (data) => applyDistinguishingFeaturesRule(data),
+  async (data) => applyLikesRule(data),
+  async (data) => applyDislikesRule(data),
 ];
 
 /**

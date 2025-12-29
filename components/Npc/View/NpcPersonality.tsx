@@ -7,7 +7,6 @@ import { getDropdownLabel } from "@/lib/util/getDropdownLabel";
 
 
 export default function NpcPersonality({ npc }: { npc: Npc }) {
-    console.log("Npc: ", npc);
     const fields = [
         {
             label: "Trait(s)",
