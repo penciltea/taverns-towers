@@ -87,10 +87,9 @@ export function shouldReplace(value: unknown): boolean {
 
 type WeightedOptionGroup = {
   weight: number;
-  group: {
-    label: string;
-    options: { label: string; value: string }[];
-  };
+  group: 
+  | { label: string; options: { label: string; value: string }[]; } 
+  | { label: string; value: string }[];
 };
 
 export function getWeightedRandomOptions(
@@ -116,12 +115,15 @@ export function getWeightedRandomOptions(
       }
     }
 
-    if (!selectedGroup || selectedGroup.group.options.length === 0) {
+    if ( !selectedGroup) {
       continue;
     }
 
+    const options = Array.isArray(selectedGroup.group)
+      ? selectedGroup.group
+      : selectedGroup.group.options;
+
     // 2. Pick an option from that group
-    const options = selectedGroup.group.options;
     const option =
       options[Math.floor(Math.random() * options.length)];
 

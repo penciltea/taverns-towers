@@ -558,69 +558,114 @@ export const NPC_EYE_COLOR = [
   ...NPC_FANTASY_EYE_COLORS
 ];
 
+export const NPC_DISTINGUISHING_EYES = [
+  { label: "Cataract(s)", value: "cataracts" },
+  { label: "Cross-eyed", value: "crossEyed" },
+  { label: "Heterochromia", value: "heterochromia" },
+  { label: "Glowing eyes", value: "glowingEyes" },
+  { label: "Missing eye(s)", value: "missingEyes" },
+  { label: "Scarred eye(s)", value: "scarredEyes" },
+  { label: "Unusual pupil(s)", value: "unusualPupils" }
+];
+
+export const NPC_DISTINGUISHING_FACE_COMMON = [
+  { label: "Beard / Facial hair", value: "facialHair" },
+  { label: "Birthmark(s) on face", value: "birthmarks" },
+  { label: "Dimples", value: "dimples" },
+  { label: "Freckles", value: "freckles" },
+  { label: "Mole(s) on face", value: "moles" }
+];
+
+export const NPC_DISTINGUISHING_FACE_UNCOMMON = [
+  { label: "Burn scar(s) on face", value: "burnScars" },
+  { label: "Cleft chin", value: "cleftChin" },
+  { label: "Crooked nose", value: "crookedNose" },
+  { label: "Face / War paint", value: "warPaint" },
+  { label: "Piercing(s) on face", value: "piercings" },
+  { label: "Scar(s) on face", value: "scars" },
+  { label: "Tattoo(s) on face", value: "faceTattoos" }
+];
+
+export const NPC_DISTINGUISHING_BODY_COMMON = [
+  { label: "Birthmark(s) on body", value: "bodyBirthmarks" },
+  { label: "Mole(s) on body", value: "bodyMoles" },
+  { label: "Piercing(s) on body", value: "bodyPiercings" },
+];
+
+export const NPC_DISTINGUISHING_BODY_UNCOMMON = [
+  { label: "Body / War paint", value: "bodyWarPaint" },
+  { label: "Scar(s) on body", value: "bodyScars" },
+  { label: "Tattoo(s) on body", value: "bodyTattoos" },
+  { label: "Uses assistive device(s) (crutches, hearing aids, glasses, etc.)", value: "assistiveDevices" },
+];
+
+export const NPC_DISTINGUISHING_BODY_RARE = [
+  { label: "Albanism", value: "albinism" },
+  { label: "Burn scar(s) on body", value: "burnScars" },
+  { label: "Missing limb(s)", value: "missingLimbs" },
+  { label: "Missing finger(s) / toe(s)", value: "missingDigits" },
+  { label: "Unusual skin texture", value: "unusualSkinTexture" },
+  { label: "Vitiligo", value: "vitiligo" },   
+];
+
+export const NPC_DISTINGUISHING_BODY_VERY_RARE = [
+  { label: "Exotic feature(s) (horns, tails, etc.)", value: "exoticFeatures" },
+  { label: "Glowing skin", value: "glowingSkin" },
+  { label: "Webbed fingers/toes", value: "webbedDigits" },
+  { label: "Wings (feathered)", value: "featheredWings" },
+  { label: "Wings (insectoid)", value: "insectoidWings" },
+  { label: "Wings (leathery)", value: "leatheryWings" },
+];
+
+export const NPC_DISTINGUISHING_OTHER_COMMON = [
+  { label: "Distinctive clothing / jewelry", value: "distinctiveClothing" },
+  { label: "Distinctive gait / movement", value: "distinctiveGait" },
+  { label: "Distinctive mannerisms", value: "distinctiveMannerisms" }, 
+];
+
+export const NPC_DISTINGUISHING_OTHER_UNCOMMON = [
+  { label: "Unique scent", value: "uniqueScent" },
+  { label: "Unusual voice", value: "unusualVoice" },
+];
+
+export const NPC_DISTINGUISHING_OTHER_RARE = [
+  { label: "Blind / Visually impaired", value: "blind" },
+  { label: "Deaf / Hard of hearing", value: "deaf" },
+  { label: "Mute / Non-verbal", value: "mute" },
+];
 
 export const NPC_DISTINGUISHING_FEATURES = [
   { label: "Eyes", 
     options: [
-      { label: "Cataract(s)", value: "cataracts" },
-      { label: "Cross-eyed", value: "crossEyed" },
-      { label: "Heterochromia", value: "heterochromia" },
-      { label: "Glowing eyes", value: "glowingEyes" },
-      { label: "Missing eye(s)", value: "missingEyes" },
-      { label: "Scarred eye(s)", value: "scarredEyes" },
-      { label: "Unusual pupil(s)", value: "unusualPupils" },
+      ...NPC_DISTINGUISHING_EYES
     ]
   },
   { label: "Face", 
     options: [
-      { label: "Beard / Facial hair", value: "facialHair" },
-      { label: "Birthmark(s) on face", value: "birthmarks" },
-      { label: "Burn scar(s) on face", value: "burnScars" },
-      { label: "Cleft chin", value: "cleftChin" },
-      { label: "Crooked nose", value: "crookedNose" },
-      { label: "Dimples", value: "dimples" },
-      { label: "Face / War paint", value: "warPaint" },
-      { label: "Freckles", value: "freckles" },
-      { label: "Mole(s) on face", value: "moles" },
-      { label: "Piercing(s) on face", value: "piercings" },
-      { label: "Scar(s) on face", value: "scars" },
-      { label: "Tattoo(s) on face", value: "faceTattoos" },
-    ]
+      ...NPC_DISTINGUISHING_FACE_COMMON,
+      ...NPC_DISTINGUISHING_FACE_UNCOMMON
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
   },
   { label: "Body", 
     options: [
-      { label: "Albanism", value: "albinism" },
-      { label: "Birthmark(s) on body", value: "bodyBirthmarks" },
-      { label: "Body / War paint", value: "bodyWarPaint" },
-      { label: "Burn scar(s) on body", value: "burnScars" },
-      { label: "Exotic feature(s) (horns, tails, etc.)", value: "exoticFeatures" },
-      { label: "Glowing skin", value: "glowingSkin" },
-      { label: "Missing limb(s)", value: "missingLimbs" },
-      { label: "Missing finger(s) / toe(s)", value: "missingDigits" },
-      { label: "Mole(s) on body", value: "bodyMoles" },
-      { label: "Piercing(s) on body", value: "bodyPiercings" },
-      { label: "Scar(s) on body", value: "bodyScars" },
-      { label: "Tattoo(s) on body", value: "bodyTattoos" },
-      { label: "Unusual skin texture", value: "unusualSkinTexture" },
-      { label: "Uses assistive device(s) (wheelchair, crutches, etc.)", value: "assistiveDevices" },
-      { label: "Vitiligo", value: "vitiligo" },
-      { label: "Webbed fingers/toes", value: "webbedDigits" },
-      { label: "Wings (feathered)", value: "featheredWings" },
-      { label: "Wings (insectoid)", value: "insectoidWings" },
-      { label: "Wings (leathery)", value: "leatheryWings" },
-    ]
+      ...NPC_DISTINGUISHING_BODY_COMMON,
+      ...NPC_DISTINGUISHING_BODY_UNCOMMON,
+      ...NPC_DISTINGUISHING_BODY_RARE,
+      ...NPC_DISTINGUISHING_BODY_VERY_RARE
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
   }, 
   { label: "Other",
     options: [
-      { label: "Blind / Visually impaired", value: "blind" },
-      { label: "Deaf / Hard of hearing", value: "deaf" },
-      { label: "Distinctive clothing / jewelry", value: "distinctiveClothing" },
-      { label: "Distinctive gait / movement", value: "distinctiveGait" },
-      { label: "Distinctive mannerisms", value: "distinctiveMannerisms" },
-      { label: "Mute / Non-verbal", value: "mute" },
-      { label: "Unique scent", value: "uniqueScent" },
-      { label: "Unusual voice", value: "unusualVoice" },
-    ]
+      ...NPC_DISTINGUISHING_OTHER_COMMON,
+      ...NPC_DISTINGUISHING_OTHER_UNCOMMON,
+      ...NPC_DISTINGUISHING_OTHER_RARE
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
   }
 ]
 
