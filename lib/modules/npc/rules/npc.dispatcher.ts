@@ -24,7 +24,7 @@ import {
   applyTraitsRule,
   applyLikesRule,
   applyDislikesRule
-} from "./applyRules";
+} from "./npc.rules";
 
 import { 
   applyHeightRule,
@@ -34,7 +34,11 @@ import {
   applyHairColorRule,
   applyHairStyleRule,
   applyDistinguishingFeaturesRule
- } from "./physicalTraitRules";
+} from "./physicalTrait.rules";
+
+ import { 
+  applyNpcDescriptionRule
+} from "./description.rules";
 
 // Default list of rules to apply sequentially
 const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[] = [
@@ -77,6 +81,8 @@ export const generateNpcValues = async (
     data = await fn(data);
   }
 
+  data.description = applyNpcDescriptionRule(data).description;
+
   return data;
 };
 
@@ -91,14 +97,16 @@ export const generateNpcWithName = async (
   input: NormalizedNpcInput,
   rules?: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[]
 ) => {
-  const coreData = await generateNpcValues(input, rules);
+  let coreData = await generateNpcValues(input, rules);
 
   const raceArray = coreData.race ? [coreData.race] : undefined;
 
-  const name = await generateNpcName({ race: raceArray });
+  coreData.name = await generateNpcName({ race: raceArray });
+  coreData.description = "";
+
+  coreData = applyNpcDescriptionRule(coreData);
 
   return {
-    ...coreData,
-    name,
+    ...coreData
   };
 };

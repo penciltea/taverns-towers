@@ -70,7 +70,7 @@ export const defaultNpcValues = {
   eyeColor: [],
   hairColor: [],
   hairStyle: [],
-  skintone: [],
+  skinTone: [],
   features: [],
   traits: [],          // Optional multi-select
   reputation: "",

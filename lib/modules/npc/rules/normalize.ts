@@ -29,26 +29,34 @@ export const defaultCommonFields: NormalizedCommonInput = {
 
 // All required fields after normalization
 export type NormalizedNpcInput = Omit<Npc, '_id' | 'createdAt' | 'updatedAt'> &  {
-    race: string;
-    age: string;
-    pronouns: string;
-    alignment: string;
-    status: string;
-    traits: string[];
-    archetype: string;
-    occupation: string[];
-    height: string;
-    build: string;
-    skinTone: string[];
-    hairColor: string[];
-    hairStyle: string[];
-    eyeColor: string[];
-    features: string[];
-    persuasion: string[];
-    reputation: string;
-    likes: string;
-    dislikes: string;
-  };
+  name: string;
+  race: string;
+  age: string;
+  pronouns: string;
+  alignment: string;
+  status: string;
+  traits: string[];
+  archetype: string;
+  occupation: string[];
+  height: string;
+  build: string;
+  skinTone: string[];
+  hairColor: string[];
+  hairStyle: string[];
+  eyeColor: string[];
+  features: string[];
+  persuasion: string[];
+  reputation: string;
+  likes: string;
+  dislikes: string;
+};
+
+export interface NpcDescriptionType extends NormalizedNpcInput {
+  pronounNoun: string;
+  pronounPossessive: string;
+  hasOrHave: string;
+  ageStartsWithVowel: boolean;
+}
 
 export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {
     const common = normalizeCommonInput(data);

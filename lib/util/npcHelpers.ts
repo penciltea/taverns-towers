@@ -1,3 +1,4 @@
+import { NPC_TRAITS, NPC_OCCUPATION, NPC_EYE_COLOR, NPC_HAIR_COLOR } from "@/constants/npc.options";
 import { Npc } from "@/interfaces/npc.interface";
 
 /**
@@ -80,4 +81,26 @@ export function flattenConnections(
  */
 export function isNpcConnection(conn: TypeConnection): conn is NpcTypeConnection {
   return conn.type === "npc" && "npcData" in conn && !!conn.npcData;
+}
+
+export function getTraitLabel(value: string): string {
+  for (const category of NPC_TRAITS) {
+    const match = category.options.find(option => option.value === value);
+    if (match) return match.label;
+  }
+  return value; // fallback to raw value if not found
+}
+
+export function getOccupationLabel(value: string): string {
+  for (const category of NPC_OCCUPATION) {
+    const match = category.options.find(option => option.value === value);
+    if (match) return match.label;
+  }
+  return value; // fallback to raw value if not found
+}
+
+export function checkAgeStartsWithVowel(age: string) {
+  if (!age) return false;
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  return vowels.some(vowel => age.toLowerCase().startsWith(vowel));
 }

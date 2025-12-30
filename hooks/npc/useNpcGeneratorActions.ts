@@ -16,8 +16,6 @@ export function useNpcGeneratorActions(
 ): UseNpcGeneratorActionsReturn {
   const { getValues, setValue } = methods;
 
-
-
   /**
    * Generate an NPC name based on race, pronouns, etc.
    */
@@ -30,6 +28,11 @@ export function useNpcGeneratorActions(
     setValue("name", name);
   }, [getValues, setValue]);
 
+
+  /**
+   * Generate any fields that are set to empty or "random" if applicable
+   */
+  
   const generateMissing = useCallback(async () => {  
     const currentValues = methods.getValues();
     const overrides = { ...currentValues };

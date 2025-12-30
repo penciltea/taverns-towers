@@ -828,3 +828,4 @@ export type NpcArchetype = Flatten<typeof NPC_ARCHETYPE>["value"];
 export type NpcOccupation = Flatten<typeof NPC_OCCUPATION>["value"];
 export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];
+export type NpcHeight = typeof NPC_HEIGHT[number]["value"];

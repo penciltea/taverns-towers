@@ -1,24 +1,9 @@
 import { Box, Typography, List } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { NPC_OCCUPATION, NPC_TRAITS } from "@/constants/npc.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
+import { getOccupationLabel } from "@/lib/util/npcHelpers";
 
-export function getTraitLabel(value: string): string {
-  for (const category of NPC_TRAITS) {
-    const match = category.options.find(option => option.value === value);
-    if (match) return match.label;
-  }
-  return value; // fallback to raw value if not found
-}
-
-export function getOccupationLabel(value: string): string {
-  for (const category of NPC_OCCUPATION) {
-    const match = category.options.find(option => option.value === value);
-    if (match) return match.label;
-  }
-  return value; // fallback to raw value if not found
-}
 
 export default function NpcDetails({ npc }: { npc: Npc }) {
   const fields = [
