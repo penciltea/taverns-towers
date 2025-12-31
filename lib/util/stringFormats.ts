@@ -6,3 +6,9 @@ export function capitalizeFirstLetter(str: string): string {
 export function toTitleCase(str: string): string {
   return str.replace(/\b\w+/g, (txt) => txt[0].toUpperCase() + txt.slice(1));
 };
+
+export function checkStringStartsWithVowel(value: string) {
+  if (!value) return false;
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  return vowels.some(vowel => value.toLowerCase().startsWith(vowel));
+}

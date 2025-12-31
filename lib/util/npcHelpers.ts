@@ -98,9 +98,3 @@ export function getOccupationLabel(value: string): string {
   }
   return value; // fallback to raw value if not found
 }
-
-export function checkAgeStartsWithVowel(age: string) {
-  if (!age) return false;
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
-  return vowels.some(vowel => age.toLowerCase().startsWith(vowel));
-}
