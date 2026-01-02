@@ -1,13 +1,26 @@
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
-import { getRandom, getRandomSubset, shouldReplace } from "@/lib/util/randomValues";
+import { getRandom, getRandomSubset, getWeightedRandomOptions, shouldReplace } from "@/lib/util/randomValues";
 import { NPC_AGE, NPC_RACES, NPC_STATUS, NPC_PRONOUNS, NPC_TRAITS } from "@/constants/npc.options";
 import { archetypeByAgeMapping, npcAlignmentMapping, occupationByArchetypeMapping, occupationCountByArchetype, reputationByArchetypeMapping } from "../mappings/npc.mappings";
 import { NpcCommonDislikes, NpcCommonLikes, NpcUncommonDislikes, NpcUncommonLikes, persuasionByAlignmentMapping, persuasionByArchetypeMapping, persuasionByTraitsMapping } from "../mappings/personality.mappings";
+import { toSelectOptions } from "@/lib/util/formatSelectOptions";
 
 // Logic for setting Age if set to "random" or missing
 export function applyAgeRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
     if (!data.age || data.age === "random") {
-        data.age = getRandom(NPC_AGE);
+
+        let npcAgePools = [
+            {
+                weight: 5,
+                group: toSelectOptions(["Young adult", "Adult", "Middle-aged"])
+            },
+            {
+                weight: 1,
+                group: toSelectOptions(["Child", "Teenager", "Elderly", "Ageless"])
+            }
+        ] as const;
+
+        data.age = getWeightedRandomOptions(npcAgePools, 1).toString();
     }
 
     return data;

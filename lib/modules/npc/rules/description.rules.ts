@@ -20,9 +20,12 @@ export function setPronouns(value: string){
         npcPronounPossessive = "This individual's";
     } else {
         npcPronounNoun = value.split("/")[0];
+        
+        // ToDo: Change to switch statement
         npcPronounPossessive = value.split("/")[1];
 
         // Grammatical fixes for narrative descriptions
+
         if (npcPronounPossessive.toLowerCase() === "they" || npcPronounPossessive.toLowerCase() === "them"){
             npcPronounPossessive = "Their";
         }

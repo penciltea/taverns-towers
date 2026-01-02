@@ -7,6 +7,7 @@ export const release20260123 = {
   ],
   improvements: [
     "Updated the 'view NPC' screen to better showcase the new NPC details.",
+    "NPC generator logic is less likely to choose children, elderly, or ageless ages",
   ],
   bugFixes: [
   ],
