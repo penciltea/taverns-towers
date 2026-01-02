@@ -20,7 +20,10 @@ export const NPC_PRONOUNS = [
   "She/They",
   "It/Its",
   "Xe/Xem",
+  "Xe/Xim",
   "Ze/Hir",
+  "Ze/Zir",
+  "Zey/Zem",
   "Other",
 ];
 
@@ -830,3 +833,4 @@ export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];
 export type NpcHeight = typeof NPC_HEIGHT[number]["value"];
 export type NpcBuild = typeof NPC_BUILD[number]["value"];
+export type NpcHairStyles = Flatten<typeof NPC_HAIR_STYLE>["value"];

@@ -56,6 +56,10 @@ export interface NpcDescriptionType extends NormalizedNpcInput {
   pronounPossessive: string;
   hasOrHave: string;
   ageStartsWithVowel: boolean;
+  hairLength?: string;
+  hairTexture?: string;
+  hairStyles?: string[];
+  hairDescription?: string;
 }
 
 export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {

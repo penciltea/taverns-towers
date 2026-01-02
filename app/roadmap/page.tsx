@@ -11,13 +11,13 @@ export default function Roadmap(){
             <Typography variant="h4" component="h1" gutterBottom>What&apos;s Coming Next</Typography>
             <Typography sx={{marginBottom: 3}}>Curious about the upcoming releases? Below is a list of upcoming features, improvements, and more! More details, updates, and sneak peeks about upcoming releases can be found on RealmFoundry&apos;s Patreon page.</Typography>
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.1</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.1</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Improved functionality</strong>}
+                        primary={<strong>Improved functionality:</strong>}
                         secondary={<span> &quot;Copy&quot; and &quot;Move to...&quot; functionality for content</span>}
                     />
                 </ListItem>
@@ -45,18 +45,10 @@ export default function Roadmap(){
                         secondary={<span> Similarly, NPC generation logic will add support for Likes & Dislikes fields</span>}
                     />
                 </ListItem>
-                <ListItem disablePadding key="item-4">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>New themes:</strong>}
-                        secondary={<span> New themes will be frequently rolled out in order to provide more robust generation options</span>}
-                    />
-                </ListItem>
             </List>
 
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.3</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.2</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
@@ -74,10 +66,18 @@ export default function Roadmap(){
                         secondary={<span> The Guild site creation form will receive an overhaul to align with the new guilds & factions content!</span>}
                     />
                 </ListItem>
+                <ListItem disablePadding key="item-3">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary={<strong>New themes:</strong>}
+                        secondary={<span> New themes will be frequently rolled out in order to provide more robust generation options</span>}
+                    />
+                </ListItem>
             </List>
 
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.4</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.3</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
@@ -96,13 +96,20 @@ export default function Roadmap(){
                 </ListItem>
             </List>
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 3.4</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.4</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
                         primary={<strong>New Content - Pantheons & Lore!</strong>}
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-2">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="More content updates will be on the horizon!"
                     />
                 </ListItem>
             </List>
