@@ -1,7 +1,7 @@
 import { getRandom, shouldReplace } from "@/lib/util/randomValues";
 import { normalizeNpcInput, NormalizedNpcInput, NpcDescriptionType } from "./normalize";
 import { NpcBuildText, NpcDescriptionTemplates, NpcHeightText } from "../mappings/description.mappings";
-import { NpcHairDescriptionTemplates, NpcHairStyleText } from "../mappings/hair.mappings";
+import { NpcHairDescriptionTemplates, NpcHairLengthText, NpcHairStyleText, NpcHairTextureText } from "../mappings/hair.mappings";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { NPC_EYE_COLOR, NPC_HAIR_COLOR, NPC_HAIR_LENGTHS, NPC_HAIR_STYLES, NPC_HAIR_TEXTURES, NPC_RACES } from "@/constants/npc.options";
 import { getDropdownLabel } from "@/lib/util/getDropdownLabel";
@@ -15,39 +15,39 @@ export function setPronouns(value: string){
     // If pronouns aren't set, default to a generic value
     // If pronouns are set to "other", for descriptive purposes, also fallback to generic 
     if(!value || value.trim() === "" || value.toLowerCase() === "other") {
-        console.log(1);
         npcPronounNoun = "This individual";
         npcPronounPossessive = "This individual's";
     } else {
-        npcPronounNoun = value.split("/")[0];
-        
-        // ToDo: Change to switch statement
-        npcPronounPossessive = value.split("/")[1];
+        const [ noun, poss ] = value.split("/");
+        npcPronounNoun = noun;
 
         // Grammatical fixes for narrative descriptions
 
-        if (npcPronounPossessive.toLowerCase() === "they" || npcPronounPossessive.toLowerCase() === "them"){
+        if (poss.toLowerCase() === "they" || poss.toLowerCase() === "them"){
             npcPronounPossessive = "Their";
         }
 
-        if(npcPronounNoun.toLowerCase() === "him"){
-            npcPronounNoun = "His";
-        }
-
-        if(npcPronounNoun.toLowerCase() === "xem"){
-            npcPronounNoun = "Xyrs";
-        }
-        if(npcPronounNoun.toLowerCase() === "xim"){
-            npcPronounNoun = "Xirs";
-        }
-        if(npcPronounNoun.toLowerCase() === "zir"){
-            npcPronounNoun = "Zirs";
-        }
-        if(npcPronounNoun.toLowerCase() === "zem"){
-            npcPronounNoun = "Zers";
-        }
-        if(npcPronounNoun.toLowerCase() === "hir"){
-            npcPronounNoun = "Hirs";
+        switch (poss.toLowerCase()){
+            case "him":
+                npcPronounPossessive = "His";
+                break;
+            case "xem":
+                npcPronounPossessive = "Xyrs";
+                break;
+            case "xim":
+                npcPronounPossessive = "Xirs";
+                break;
+            case "zir":
+                npcPronounPossessive = "Zirs";
+                break;
+            case "zem":
+                npcPronounPossessive = "Zers";
+                break;
+            case "hir":
+                npcPronounPossessive = "Hirs";
+                break;
+            default: 
+                npcPronounPossessive = "This individual's";
         }
     }
 }
@@ -83,24 +83,24 @@ export function groupHairStyles(values: string[]) {
 function getHairLengthDescriptions(lengths: string[]) {
     return lengths.map(lengthLabel => {
         if (!lengthLabel) return "";
-        if (lengthLabel.toLowerCase() === "bald"){
-            return "";
-        }
-        return getDropdownLabel(NPC_HAIR_LENGTHS, lengthLabel).toLowerCase();
+        return getRandom(
+            NpcHairLengthText[lengthLabel as keyof typeof NpcHairLengthText]
+        );
     });
 }
 
 function getHairTextureDescriptions(textures: string[]) {
     return textures.map(textureLabel => {
         if (!textureLabel) return "";
-            return getDropdownLabel(NPC_HAIR_TEXTURES, textureLabel).toLowerCase();
+        return getRandom(
+            NpcHairTextureText[textureLabel as keyof typeof NpcHairTextureText]
+        );
         }
     );
 }
 
 
 function getHairStyleDescriptions(styles: string[]) {
-    console.log("styles: ", styles);
     return styles.map(styleLabel => {
         if (!styleLabel) return "";
             return getRandom(
@@ -110,67 +110,79 @@ function getHairStyleDescriptions(styles: string[]) {
     );
 }
 
+function getEyeColorDescriptions(colors: string[]){
+    return colors.map(colorLabel => {
+        if(!colorLabel) return "";
+        return getDropdownLabel(NPC_EYE_COLOR, colorLabel).toLowerCase();
+    })
+};
+
+function getHairColorDescriptions(colors: string[]){
+    return colors.map(colorLabel => {
+        if(!colorLabel) return "";
+        return getDropdownLabel(NPC_HAIR_COLOR, colorLabel).toLowerCase();
+    })
+};
+
 export function getNpcHairDescription(npc: NpcDescriptionType): string {
-  // Step 1: Get the hair styles description (e.g., braids, buns)
-  const styleDescription =
-    npc.hairStyles && npc.hairStyles.length > 0
-      ? npc.hairStyles
-          .map(style => {
-            if(!style) return "";
-            return getRandom(NpcHairStyleText[style as keyof typeof NpcHairStyleText])
-          })
-          .join(", ")
-      : "";
-
-  // Step 2: Pick a hair description template
   const pick = Math.floor(Math.random() * NpcHairDescriptionTemplates.length);
-  const hairBase = NpcHairDescriptionTemplates[pick](npc);
-
-  // Step 3: Merge the style description into the template
-  if (styleDescription) {
-    return `${hairBase.replace(/\.$/, "")}, styled as ${styleDescription}.`;
-  }
-
-  return hairBase;
+  return NpcHairDescriptionTemplates[pick](npc);
 }
 
 export function applyNpcDescriptionRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
     console.log("data: ", data);
-    if(shouldReplace(data.description)){
-        setPronouns(data.pronouns);
-        console.log("hair details: ", groupHairStyles(data.hairStyle || []));
-
-        let pronounNoun = npcPronounNoun;
-        let pronounPossessive = npcPronounPossessive;
-        let hasOrHave = pronounNoun.toLowerCase() === "they" ? "have" : "has";
-
-        let npcData = {
-            ...data,
-            age: data.age.toLowerCase(),
-            pronounNoun,
-            pronounPossessive,
-            race: getLabelFromValue(NPC_RACES, data.race).toLowerCase(),
-            height: getRandom(NpcHeightText[data.height]),
-            build: getRandom(NpcBuildText[data.build]),
-            occupation: data.occupation.map(getOccupationLabel),
-            hairColor: data.hairColor.map((color) => getDropdownLabel(NPC_HAIR_COLOR, color).toLowerCase()),
-            eyeColor: data.eyeColor.map((color) => getDropdownLabel(NPC_EYE_COLOR, color).toLowerCase()),
-            ageStartsWithVowel: checkStringStartsWithVowel(data.age),
-            hasOrHave,
-            hairDescription: getNpcHairDescription({
-                ...data,
-                pronounNoun,
-                pronounPossessive,
-                hasOrHave,
-                hairStyles: groupHairStyles(data.hairStyle || []).styles,
-                hairLength: oxfordCommaList(getHairLengthDescriptions(groupHairStyles(data.hairStyle || []).lengths)),
-                hairTexture: oxfordCommaList(getHairTextureDescriptions(groupHairStyles(data.hairStyle || []).textures))
-            } as NpcDescriptionType)
-        };
-        
-        const pick = Math.floor(Math.random() * NpcDescriptionTemplates.length);
-        data.description = NpcDescriptionTemplates[pick](npcData as NpcDescriptionType);
+    if(!shouldReplace(data.description)){
+        return data;
     }
+
+    setPronouns(data.pronouns);
+
+    let pronounNoun = npcPronounNoun;
+    let pronounPossessive = npcPronounPossessive;
+    const hasOrHave = (pronounNoun.toLowerCase() === "they" || pronounNoun.toLowerCase() === "zey") ? "have" : "has";
+    const groupedHair = groupHairStyles(data.hairStyle || []);
+
+    const hairLengthText = oxfordCommaList(getHairLengthDescriptions(groupedHair.lengths));
+    const hairTextureText = oxfordCommaList(getHairTextureDescriptions(groupedHair.textures));
+    const hairStyleText = oxfordCommaList(getHairStyleDescriptions(groupedHair.styles));
+    const eyeColorText = oxfordCommaList(getEyeColorDescriptions(data.eyeColor));
+    const hairColorText = oxfordCommaList(getHairColorDescriptions(data.hairColor));
+
+    const hairDescription = getNpcHairDescription({
+        ...data,
+        pronounNoun,
+        pronounPossessive,
+        ageStartsWithVowel: checkStringStartsWithVowel(data.age),
+        hasOrHave,
+        hairColorText,
+        hairStyleText,
+        hairLengthText,
+        hairTextureText,
+        hairFlags: {
+            isBald: groupedHair.lengths.includes("bald"),
+            isBuzzCut: groupedHair.lengths.includes("buzzCut")
+        },
+    } as NpcDescriptionType)
+
+    const npcData: NpcDescriptionType = {
+        ...data,
+        age: data.age.toLowerCase(),
+        pronounNoun,
+        pronounPossessive,
+        race: getLabelFromValue(NPC_RACES, data.race).toLowerCase(),
+        height: getRandom(NpcHeightText[data.height]),
+        build: getRandom(NpcBuildText[data.build]),
+        occupation: data.occupation.map(getOccupationLabel),
+        ageStartsWithVowel: checkStringStartsWithVowel(data.age),
+        hasOrHave,
+        eyeColorText,
+        hairDescription    
+    };
+
+    console.log("npcData: ", npcData);
+    
+    const pick = Math.floor(Math.random() * NpcDescriptionTemplates.length);
+    data.description = NpcDescriptionTemplates[pick](npcData);
 
     return data;
 }

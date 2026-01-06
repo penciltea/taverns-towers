@@ -487,7 +487,6 @@ export const NPC_HAIR_STYLES = [
       { label: "Ringlets", value: "ringlets" },
       { label: "Shaggy", value: "shaggy" },
       { label: "Side-shave", value: "side-shave" },
-      { label: "Wavy mane", value: "wavyMane" },
       { label: "Windswept", value: "windswept" },
       { label: "Wolf cut", value: "wolfCut" },
       { label: "Undercut", value: "undercut" },
@@ -833,4 +832,6 @@ export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];
 export type NpcHeight = typeof NPC_HEIGHT[number]["value"];
 export type NpcBuild = typeof NPC_BUILD[number]["value"];
+export type NpcHairLengths = Flatten<typeof NPC_HAIR_LENGTHS>["value"];
+export type NpcHairTextures = Flatten<typeof NPC_HAIR_TEXTURES>["value"];
 export type NpcHairStyles = Flatten<typeof NPC_HAIR_STYLE>["value"];

@@ -1,100 +1,153 @@
-import { NpcHairStyles } from "@/constants/npc.options";
+import { NpcHairLengths, NpcHairStyles, NpcHairTextures } from "@/constants/npc.options";
 import { NpcDescriptionType } from "../rules/normalize";
 
 export const NpcHairDescriptionTemplates = [
   (npc: NpcDescriptionType) => {
-    console.log("hair npc: ", npc);
-    if(npc.hairLength === "bald") {
-        return `${npc.pronounNoun === "They" ? "They are" : npc.pronounNoun + " is"} bald.`;
+    if (npc.hairFlags?.isBald) {
+      return `${npc.pronounNoun} ${npc.hasOrHave === "have" ? "are" : "is"} bald.`;
     }
-    
-    return `${npc.pronounPossessive} ${npc.hairTexture}, ${npc.hairLength} hair is ${npc.hairStyles}.`
+
+    if (npc.hairFlags?.isBuzzCut) {
+      return `${npc.pronounPossessive} ${npc.hairColorText} hair is cut very short in a neat buzz cut.`;
+    }
+
+    return `${npc.pronounPossessive} ${npc.hairColorText}, ${npc.hairTextureText} ${npc.hairLengthText} hair is ${npc.hairStyleText}.`;
   }
 ];
 
+export const NpcHairLengthText: Record<NpcHairLengths, string[]> = {
+  "bald": [
+    "sample bald text",
+  ],
+  "buzzCut": [
+    "sample buzz cut text",
+  ],
+  "long": [
+    "sample long text",
+  ],
+  "medium": [
+    "sample medium text",
+  ],
+  "short": [
+    "sample short text",
+  ],
+  "shoulderLength": [
+    "sample shoulder length text",
+  ],
+  "veryLong": [
+    "sample very long text",
+  ],
+  "waistLength": [
+    "sample wasit long text",
+  ]
+}
+
+export const NpcHairTextureText: Record<NpcHairTextures, string[]> = {
+  "coily": [
+    "sample coily text",
+  ],
+  "curly": [
+    "sample curly text",
+  ],
+  "fine": [
+    "sample fine text",
+  ],
+  "kinky": [
+    "sample kinky text",
+  ],
+  "straight": [
+    "sample straight text",
+  ],
+  "thick": [
+    "sample thick text",
+  ],
+  "voluminous": [
+    "sample voluminous text",
+  ],
+  "wavy": [
+    "sample wavy text",
+  ],
+}
+
 export const NpcHairStyleText: Record<NpcHairStyles, string[]> = {
   "braided": [
-    "hair worn in neat braids",
+    "worn in neat braids",
     "carefully braided hair",
-    "hair arranged into tight braids"
+    "arranged into tight braids"
   ],
 
   "buns": [
-    "hair gathered into one or more buns",
-    "hair tied back in tidy buns",
-    "hair styled into compact buns"
+    "gathered into one bun",
+    "tied back in tidy buns",
+    "styled into compact buns",
+    "pulled back into two low buns",
+    "separated into three small buns going down the back of the head"
   ],
 
   "cornrows": [
-    "hair woven into close-set cornrows",
+    "woven into close-set cornrows",
     "tightly braided cornrows",
-    "hair styled in neat rows against the scalp"
+    "styled in neat rows against the scalp"
   ],
 
   "dreadlocks": [
-    "hair worn in thick dreadlocks",
-    "long, locked strands of hair",
-    "hair formed into heavy locks"
+    "worn in thick dreadlocks",
+    "styled into long, locked strands of hair",
+    "formed into heavy locks"
   ],
 
   "halfUpHalfDown": [
-    "hair worn half up and half loose",
-    "hair partly tied back, the rest falling free",
+    "worn half up and half loose",
+    "partly tied back, the rest falling free",
     "a half-bound hairstyle that keeps hair from the face"
   ],
 
   "loose": [
-    "hair left loose around the shoulders",
-    "hair worn freely without restraint",
-    "unbound hair that falls naturally"
+    "left loose around the shoulders",
+    "worn freely without restraint",
+    "unbound and falls naturally"
   ],
 
   "messyBuns": [
-    "hair pulled into loose, messy buns",
-    "a casually gathered, untidy bun",
-    "hair hastily tied back in a loose bun"
+    "pulled into loose, messy buns",
+    "thrown into a a casually gathered, untidy bun",
+    "hastily tied back in a loose bun"
   ],
 
   "mohawk": [
-    "hair shaved at the sides with a raised strip along the center",
+    "shaved at the sides with a raised strip along the center",
     "a bold mohawk cut",
     "a narrow crest of hair running from forehead to neck"
   ],
 
   "pigtails": [
-    "hair tied into two pigtails",
-    "hair split and tied into matching tails",
-    "a pair of neatly tied pigtails"
+    "tied into two pigtails",
+    "split and tied into matching tails",
+    "tied into a pair of neatly tied pigtails"
   ],
 
   "ponytail": [
-    "hair pulled back into a ponytail",
-    "hair tied tightly at the back of the head",
+    "pulled back into a ponytail",
+    "tied tightly at the back of the head",
     "a simple, practical ponytail"
   ],
 
   "ringlets": [
-    "hair falling in tight ringlets",
-    "defined curls forming neat ringlets",
-    "coiled strands framing the face"
+    "a series of tight ringlets",
+    "well-defined, forming neat ringlets",
+    "coiled, framing the face"
   ],
 
   "shaggy": [
-    "hair worn in a shaggy, uneven cut",
-    "hair cut in a rough, layered style",
-    "an intentionally unkempt, shaggy hairstyle"
+    "worn in a shaggy, uneven cut",
+    "cut in a rough, layered style",
+    "left in an intentionally unkempt, shaggy hairstyle"
   ],
 
   "side-shave": [
-    "hair shaved along one side of the head",
+    "shaved along one side of the head",
     "a partially shaved hairstyle",
-    "hair cut short on one side, longer on the other"
-  ],
-
-  "wavyMane": [
-    "long hair flowing in loose waves",
-    "a thick mane of wavy hair",
-    "waves of hair falling freely over the shoulders"
+    "cut short on one side, longer on the other"
   ],
 
   "windswept": [
@@ -106,24 +159,24 @@ export const NpcHairStyleText: Record<NpcHairStyles, string[]> = {
   "wolfCut": [
     "a layered cut with wild, uneven volume",
     "a shaggy, layered hairstyle with a feral edge",
-    "hair cut in a rough, modern layered style"
+    "cut in a rough, modern layered style"
   ],
 
   "undercut": [
-    "hair shaved short beneath longer layers",
+    "shaved short beneath longer layers",
     "a sharp undercut framing longer hair above",
     "closely cropped sides beneath longer strands"
   ],
 
   "unkempt": [
-    "hair left unkempt and poorly tended",
-    "hair in a state of disarray",
-    "an unclean, neglected hairstyle"
+    "left unkempt and poorly tended",
+    "in a state of disarray",
+    "unclean and neglected"
   ],
 
   "updo": [
-    "hair arranged in a formal updo",
+    "arranged in a formal updo",
     "hair pinned up in an elegant style",
-    "hair styled neatly above the neck"
+    "styled neatly above the neck"
   ],
 };
