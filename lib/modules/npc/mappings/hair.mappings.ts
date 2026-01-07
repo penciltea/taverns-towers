@@ -11,63 +11,111 @@ export const NpcHairDescriptionTemplates = [
       return `${npc.pronounPossessive} ${npc.hairColorText} hair is cut very short in a neat buzz cut.`;
     }
 
-    return `${npc.pronounPossessive} ${npc.hairColorText}, ${npc.hairTextureText} ${npc.hairLengthText} hair is ${npc.hairStyleText}.`;
+    return `${npc.pronounPossessive} ${npc.hairColorText}, ${npc.hairTextureText} ${npc.hairLengthText} is ${npc.hairStyleText}.`;
   }
 ];
 
 export const NpcHairLengthText: Record<NpcHairLengths, string[]> = {
   "bald": [
-    "sample bald text",
+    "no-length",
   ],
   "buzzCut": [
-    "sample buzz cut text",
+    "exceptionally short hair",
+    "hair shaved close to the scalp"
   ],
   "long": [
-    "sample long text",
+    "rather long hair",
+    "hair, sweeping past the shoulders,"
   ],
   "medium": [
-    "sample medium text",
+    "medium length hair",
+    "chin-length hair"
   ],
   "short": [
-    "sample short text",
+    "hair, a bit on the short side,",
+    "rather short hair",
   ],
   "shoulderLength": [
-    "sample shoulder length text",
+    "shoulder length hair",
+    "hair, falling just past the shoulders,"
   ],
   "veryLong": [
-    "sample very long text",
+    "surprisingly long hair",
+    "hair, cascading down the back,",
+    "exceptionally long hair",
   ],
   "waistLength": [
-    "sample wasit long text",
+    "waist length hair",
+    "hair falls just above the hips"
   ]
 }
 
 export const NpcHairTextureText: Record<NpcHairTextures, string[]> = {
-  "coily": [
-    "sample coily text",
+  coily: [
+    "tight, coily",
+    "coiled tightly",
+    "very coily",
+    "densely coiled",
+    "coily"
   ],
-  "curly": [
-    "sample curly text",
+
+  curly: [
+    "loosely curled",
+    "tightly curled",
+    "very curly",
+    "softly curled",
+    "rather curly",
+    "curly"
   ],
-  "fine": [
-    "sample fine text",
+
+  fine: [
+    "fine and light",
+    "thin and delicate",
+    "soft, fine",
+    "fine-textured",
+    "silken and fine"
   ],
-  "kinky": [
-    "sample kinky text",
+
+  kinky: [
+    "tightly kinked",
+    "densely kinked",
+    "short, kinky",
+    "coarse and kinked",
+    "kinky"
   ],
-  "straight": [
-    "sample straight text",
+
+  straight: [
+    "straight and smooth",
+    "sleek and straight",
+    "pin-straight",
+    "perfectly straight",
+    "straight"
   ],
-  "thick": [
-    "sample thick text",
+
+  thick: [
+    "thick and heavy",
+    "dense and thick",
+    "full and thick",
+    "coarsely thick",
+    "thick"
   ],
-  "voluminous": [
-    "sample voluminous text",
+
+  voluminous: [
+    "rich and voluminous",
+    "thick with volume",
+    "luxuriantly full, ",
+    "voluminous"
   ],
-  "wavy": [
-    "sample wavy text",
-  ],
-}
+
+  wavy: [
+    "softly wavy",
+    "gently waved",
+    "loose, wavy",
+    "lightly wavy",
+    "wavy"
+  ]
+};
+
 
 export const NpcHairStyleText: Record<NpcHairStyles, string[]> = {
   "braided": [

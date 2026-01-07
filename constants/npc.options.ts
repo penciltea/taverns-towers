@@ -835,3 +835,5 @@ export type NpcBuild = typeof NPC_BUILD[number]["value"];
 export type NpcHairLengths = Flatten<typeof NPC_HAIR_LENGTHS>["value"];
 export type NpcHairTextures = Flatten<typeof NPC_HAIR_TEXTURES>["value"];
 export type NpcHairStyles = Flatten<typeof NPC_HAIR_STYLE>["value"];
+export type NpcHumanSkinTones = Flatten<typeof NPC_HUMAN_SKINTONES>["value"];
+export type NpcFantasySkinTones = Flatten<typeof NPC_FANTASY_SKINTONES>["value"];

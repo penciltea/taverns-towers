@@ -1,10 +1,10 @@
-import { toTitleCase } from "@/lib/util/stringFormats";
 import { NpcDescriptionType } from "../rules/normalize";
 import { NpcBuild, NpcHeight } from "@/constants/npc.options";
 
 export const NpcDescriptionTemplates = [
   (npc: NpcDescriptionType) =>
     `${npc.name} is ${npc.ageStartsWithVowel ? "an" : "a"} ${npc.age} ${npc.race}, who is ${npc.height} and ${npc.build}. ` +
+    `${npc.skinToneDescription}` +
     `${npc.hairDescription}`
   /*
   (npc: NpcDescriptionType) =>
