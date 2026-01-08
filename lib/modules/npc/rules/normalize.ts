@@ -49,6 +49,7 @@ export type NormalizedNpcInput = Omit<Npc, '_id' | 'createdAt' | 'updatedAt'> & 
   reputation: string;
   likes: string;
   dislikes: string;
+  description: string;
 };
 
 export interface NpcDescriptionType extends NormalizedNpcInput {
@@ -68,6 +69,7 @@ export interface NpcDescriptionType extends NormalizedNpcInput {
     isBald: boolean;
     isBuzzCut: boolean;
   }
+  specialSkinText?: string;
 }
 
 export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {
@@ -101,7 +103,7 @@ export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {
         likes: data.likes?.trim() || "",
         dislikes: data.dislikes?.trim() || "",
         image: data.image,
-        description: data.description,
+        description: data.description || "",
         connections: normalizedConnections,
     };
 }

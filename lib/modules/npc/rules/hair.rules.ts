@@ -78,10 +78,10 @@ export function getNpcHairDescription(npc: NpcDescriptionType): string {
 export function buildNpcHairDescription(data: ReturnType<typeof normalizeNpcInput>, hasOrHave: string, pronounNoun: string, pronounPossessive: string): string {
     const groupedHair = groupHairStyles(data.hairStyle || []);
 
-    const hairLengthText = oxfordCommaList(getHairLengthDescriptions(groupedHair.lengths));
-    const hairTextureText = oxfordCommaList(getHairTextureDescriptions(groupedHair.textures));
-    const hairStyleText = oxfordCommaList(getHairStyleDescriptions(groupedHair.styles));
-    const hairColorText = oxfordCommaList(getHairColorDescriptions(data.hairColor));
+    let hairLengthText = oxfordCommaList(getHairLengthDescriptions(groupedHair.lengths));
+    let hairTextureText = oxfordCommaList(getHairTextureDescriptions(groupedHair.textures));
+    let hairStyleText = oxfordCommaList(getHairStyleDescriptions(groupedHair.styles));
+    let hairColorText = oxfordCommaList(getHairColorDescriptions(data.hairColor));
 
     const hairDescription = getNpcHairDescription({
         ...data,

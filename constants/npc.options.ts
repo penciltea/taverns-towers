@@ -669,8 +669,7 @@ export const NPC_DISTINGUISHING_FEATURES = [
       a.label.localeCompare(b.label)
     )
   }
-]
-
+];
 
 export const NPC_CONNECTION_TYPE = [
     "settlement",

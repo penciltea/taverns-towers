@@ -4,6 +4,9 @@ import { NpcDescriptionType } from "../rules/normalize";
 export const NpcHairDescriptionTemplates = [
   (npc: NpcDescriptionType) => {
     if (npc.hairFlags?.isBald) {
+      if(npc.race.toLowerCase() === "tabaxi"){
+        return `${npc.pronounNoun} ${npc.hasOrHave} no distinguishing hairstyle beyond ${npc.pronounPossessive.toLowerCase()} fur.`;
+      }
       return `${npc.pronounNoun} ${npc.hasOrHave === "have" ? "are" : "is"} bald.`;
     }
 
@@ -17,7 +20,7 @@ export const NpcHairDescriptionTemplates = [
 
 export const NpcHairLengthText: Record<NpcHairLengths, string[]> = {
   "bald": [
-    "no-length",
+    "nonexistent",
   ],
   "buzzCut": [
     "exceptionally short hair",
@@ -25,23 +28,23 @@ export const NpcHairLengthText: Record<NpcHairLengths, string[]> = {
   ],
   "long": [
     "rather long hair",
-    "hair, sweeping past the shoulders,"
+    "hair that sweeps past the shoulders"
   ],
   "medium": [
     "medium length hair",
     "chin-length hair"
   ],
   "short": [
-    "hair, a bit on the short side,",
+    "slightly short hair",
     "rather short hair",
   ],
   "shoulderLength": [
     "shoulder length hair",
-    "hair, falling just past the shoulders,"
+    "hair that falls just past the shoulders"
   ],
   "veryLong": [
     "surprisingly long hair",
-    "hair, cascading down the back,",
+    "hair that cascades down the back",
     "exceptionally long hair",
   ],
   "waistLength": [
@@ -85,10 +88,10 @@ export const NpcHairTextureText: Record<NpcHairTextures, string[]> = {
   ],
 
   straight: [
-    "straight and smooth",
-    "sleek and straight",
-    "pin-straight",
-    "perfectly straight",
+    "straight and smooth,",
+    "sleek and straight,",
+    "pin-straight,",
+    "perfectly straight,",
     "straight"
   ],
 
@@ -140,7 +143,7 @@ export const NpcHairStyleText: Record<NpcHairStyles, string[]> = {
 
   "dreadlocks": [
     "worn in thick dreadlocks",
-    "styled into long, locked strands of hair",
+    "styled into locked strands of hair",
     "formed into heavy locks"
   ],
 

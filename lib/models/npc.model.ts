@@ -91,5 +91,18 @@ const npcSchema = new Schema<INpc>(
   { timestamps: true }
 );
 
+/**
+ * For NPC description purposes 
+*/
+export type IntegumentType =
+  | "skin"
+  | "scales"
+  | "feathers"
+  | "fur"
+  | "chitin"
+  | "stone"
+  | "metal"
+  | "other";
+
 const NpcModel = mongoose.models.NPC || mongoose.model("NPC", npcSchema, "npcs");
 export default NpcModel;

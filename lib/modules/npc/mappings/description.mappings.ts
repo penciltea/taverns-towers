@@ -3,7 +3,7 @@ import { NpcBuild, NpcHeight } from "@/constants/npc.options";
 
 export const NpcDescriptionTemplates = [
   (npc: NpcDescriptionType) =>
-    `${npc.name} is ${npc.ageStartsWithVowel ? "an" : "a"} ${npc.age} ${npc.race}, who is ${npc.height} and ${npc.build}. ` +
+    `${npc.name ? npc.name : "This individual"} is ${npc.ageStartsWithVowel ? "an" : "a"} ${npc.age} ${npc.race}, who is ${npc.height} and ${npc.build}. ` +
     `${npc.skinToneDescription} ` +
     `${npc.hairDescription}`
   /*

@@ -1,23 +1,8 @@
 import { NPC_BUILD, NPC_DISTINGUISHING_BODY_COMMON, NPC_DISTINGUISHING_BODY_RARE, NPC_DISTINGUISHING_BODY_UNCOMMON, NPC_DISTINGUISHING_BODY_VERY_RARE, NPC_DISTINGUISHING_EYES, NPC_DISTINGUISHING_FACE_COMMON, NPC_DISTINGUISHING_FACE_UNCOMMON, NPC_DISTINGUISHING_OTHER_COMMON, NPC_DISTINGUISHING_OTHER_RARE, NPC_DISTINGUISHING_OTHER_UNCOMMON, NPC_FANTASY_EYE_COLORS, NPC_FANTASY_HAIR_COLORS, NPC_FANTASY_SKINTONES, NPC_HAIR_LENGTHS, NPC_HAIR_STYLES, NPC_HAIR_TEXTURES, NPC_HEIGHT, NPC_HUMAN_EYE_COLORS, NPC_HUMAN_HAIR_COLORS, NPC_HUMAN_SKINTONES } from "@/constants/npc.options";
 import { getRandom, getWeightedRandomOptions } from "@/lib/util/randomValues";
 import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
+import { checkIfHumanDerivedRace } from "./common.rules";
 
-function checkIfHumanDerivedRace(race: string){
-    if( race === "human" || 
-        "elf" || 
-        "dwarf" || 
-        "halfling" || 
-        "gnome" || 
-        "half-elf" || 
-        "half-orc" || 
-        "aasimar" || 
-        "goliath" || 
-        "goblin" 
-    ){
-        return true;
-    }
-    return false;
-}
 
 export function applyHeightRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
     if (!data.height || data.height === "random") {
@@ -54,7 +39,7 @@ export function applySkinToneRule(data: ReturnType<typeof normalizeNpcInput>): N
             data.skinTone = getWeightedRandomOptions(HUMANOID_SKINTONES, 1);
 
         // Some races should have fantasy-color skintones exclusively
-        } else if( data.race === "dragonborn" || "kenku" || "tabaxi" ) {
+        } else if (["dragonborn", "kenku", "tabaxi"].includes(data.race.toLowerCase())) {
             const SKINTONES = [...NPC_FANTASY_SKINTONES[0].options];
 
             const options = getRandom(SKINTONES).value;
@@ -184,14 +169,15 @@ export function applyDistinguishingFeaturesRule(data: ReturnType<typeof normaliz
         ] as const;
 
         data.features = getWeightedRandomOptions(POSSIBLE_FEATURES, 2);
-
-        // Overwriting potential pre-existing options based on real-world albinism
-        if(data.features.includes("albinism")){
-            data.eyeColor = ["pink"];
-            data.hairColor = ["white"];
-            data.skinTone = ["veryPale"]
-        }
     }
+
+    // Overwriting potential pre-existing options based on real-world albinism
+    if(data.features.includes("albinism")){
+        data.eyeColor = ["pink"];
+        data.hairColor = ["white"];
+        data.skinTone = ["veryPale"];
+    }
+
     return data;
 }
 

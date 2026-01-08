@@ -60,10 +60,7 @@ function getEyeColorDescriptions(colors: string[]){
     })
 };
 
-
-
 export function applyNpcDescriptionRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {
-    console.log("data: ", data);
     if(!shouldReplace(data.description)){
         return data;
     }
@@ -91,8 +88,6 @@ export function applyNpcDescriptionRule(data: ReturnType<typeof normalizeNpcInpu
         skinToneDescription: buildNpcSkinToneDescription(data, hasOrHave, pronounNoun, pronounPossessive),
         hairDescription: buildNpcHairDescription(data, hasOrHave, pronounNoun, pronounPossessive)    
     };
-
-    console.log("npcData: ", npcData);
     
     const pick = Math.floor(Math.random() * NpcDescriptionTemplates.length);
     data.description = NpcDescriptionTemplates[pick](npcData);
