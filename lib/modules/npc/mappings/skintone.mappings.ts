@@ -5,7 +5,9 @@ export const NpcSkinToneDescriptionTemplates = [
         // ToDo: Add checks for albanism, vitiligo, and other unique skin descriptions
         return `${npc.pronounNoun} ${npc.hasOrHave.toLowerCase()} ${npc.skinToneText} skin.`
     }
-]
+];
+
+
 
 export const NpcSkinToneText: Record<string, string[]> = {
     // Human skin tones
@@ -47,7 +49,7 @@ export const NpcSkinToneText: Record<string, string[]> = {
     ],
     "medium": [
         "medium-toned",
-        "balanced medium skin",
+        "balanced medium",
         "neutral brown",
         "evenly tan"
     ],
@@ -257,4 +259,46 @@ export const NpcSkinToneText: Record<string, string[]> = {
         "blue-green patina",
         "muted turquoise"
     ]
+};
+
+export const npcSkinToneSpecialText: Record<string, string[]> ={
+    "albinism": [
+
+    ],
+    "birthmarks": [
+
+    ],
+    "bodyBirthmarks": [
+
+    ],
+    "bodyMoles": [
+
+    ],
+    "bodyScars": [
+
+    ],
+    "burnScars": [
+
+    ],
+    "burnScarsOnFace": [
+
+    ],
+    "freckles": [
+
+    ],
+    "glowingSkin": [
+    
+    ],
+    "moles": [
+        
+    ],
+    "scars": [
+
+    ],
+    "unusualSkinTexture": [
+
+    ],
+    "vitiligo": [
+
+    ],
 };

@@ -184,6 +184,13 @@ export function applyDistinguishingFeaturesRule(data: ReturnType<typeof normaliz
         ] as const;
 
         data.features = getWeightedRandomOptions(POSSIBLE_FEATURES, 2);
+
+        // Overwriting potential pre-existing options based on real-world albinism
+        if(data.features.includes("albinism")){
+            data.eyeColor = ["pink"];
+            data.hairColor = ["white"];
+            data.skinTone = ["veryPale"]
+        }
     }
     return data;
 }

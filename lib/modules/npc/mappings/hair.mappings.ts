@@ -60,11 +60,11 @@ export const NpcHairTextureText: Record<NpcHairTextures, string[]> = {
   ],
 
   curly: [
-    "loosely curled",
-    "tightly curled",
-    "very curly",
-    "softly curled",
-    "rather curly",
+    "loosely curled,",
+    "tightly curled,",
+    "very curly,",
+    "softly curled,",
+    "rather curly,",
     "curly"
   ],
 
@@ -93,17 +93,17 @@ export const NpcHairTextureText: Record<NpcHairTextures, string[]> = {
   ],
 
   thick: [
-    "thick and heavy",
-    "dense and thick",
-    "full and thick",
-    "coarsely thick",
+    "thick and heavy,",
+    "dense and thick,",
+    "full and thick,",
+    "coarsely thick,",
     "thick"
   ],
 
   voluminous: [
-    "rich and voluminous",
-    "thick with volume",
-    "luxuriantly full, ",
+    "rich and voluminous,",
+    "copious,",
+    "luxuriantly full,",
     "voluminous"
   ],
 

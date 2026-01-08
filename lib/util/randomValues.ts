@@ -98,16 +98,34 @@ export function getWeightedRandomOptions(
 ): string[] {
   if (count <= 0) return [];
 
+  // Clone groups so we can safely mutate options
+  const workingGroups = groups.map(g => ({
+    weight: g.weight,
+    options: Array.isArray(g.group)
+      ? [...g.group]
+      : [...g.group.options],
+  }));
+
   const results: string[] = [];
 
-  const totalWeight = groups.reduce((sum, g) => sum + g.weight, 0);
-
   for (let i = 0; i < count; i++) {
-    let roll = Math.random() * totalWeight;
-    let selectedGroup: WeightedOptionGroup | undefined;
+    // Filter out empty groups
+    const availableGroups = workingGroups.filter(
+      g => g.options.length > 0
+    );
 
-    // 1. Pick a group by weight
-    for (const group of groups) {
+    if (availableGroups.length === 0) break;
+
+    const totalWeight = availableGroups.reduce(
+      (sum, g) => sum + g.weight,
+      0
+    );
+
+    // Pick a group by weight
+    let roll = Math.random() * totalWeight;
+    let selectedGroup: typeof availableGroups[number] | undefined;
+
+    for (const group of availableGroups) {
       roll -= group.weight;
       if (roll <= 0) {
         selectedGroup = group;
@@ -115,19 +133,18 @@ export function getWeightedRandomOptions(
       }
     }
 
-    if ( !selectedGroup) {
-      continue;
-    }
+    if (!selectedGroup) break;
 
-    const options = Array.isArray(selectedGroup.group)
-      ? selectedGroup.group
-      : selectedGroup.group.options;
-
-    // 2. Pick an option from that group
-    const option =
-      options[Math.floor(Math.random() * options.length)];
+    // Pick an option from that group
+    const optionIndex = Math.floor(
+      Math.random() * selectedGroup.options.length
+    );
+    const option = selectedGroup.options[optionIndex];
 
     results.push(option.value);
+
+    // Remove option so it cannot be selected again
+    selectedGroup.options.splice(optionIndex, 1);
   }
 
   return results;

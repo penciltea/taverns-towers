@@ -537,7 +537,7 @@ export const NPC_FANTASY_EYE_COLORS = [
       { label: "Magenta", value: "magenta" },
       { label: "Opal", value: "opal" },
       { label: "Peridot", value: "peridot" },
-      { label: "Rose", value: "rose" },
+      { label: "Pink", value: "pink" },
       { label: "Ruby", value: "ruby" },
       { label: "Sapphire", value: "sapphire" },
       { label: "Silver", value: "silver" },
@@ -602,8 +602,8 @@ export const NPC_DISTINGUISHING_BODY_UNCOMMON = [
 ];
 
 export const NPC_DISTINGUISHING_BODY_RARE = [
-  { label: "Albanism", value: "albinism" },
-  { label: "Burn scar(s) on body", value: "burnScars" },
+  { label: "Albinism", value: "albinism" },
+  { label: "Burn scar(s) on body", value: "bodyBurnScars" },
   { label: "Missing limb(s)", value: "missingLimbs" },
   { label: "Missing finger(s) / toe(s)", value: "missingDigits" },
   { label: "Unusual skin texture", value: "unusualSkinTexture" },
