@@ -58,6 +58,7 @@ export interface NpcDescriptionType extends NormalizedNpcInput {
   hasOrHave: string;
   ageStartsWithVowel: boolean;
   eyeColorText?: string;
+  specialEyeText?: string;
   skinToneText?: string;
   skinToneDescription?: string;
   hairColorText?: string;

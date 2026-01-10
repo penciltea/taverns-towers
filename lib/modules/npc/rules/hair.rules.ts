@@ -4,6 +4,7 @@ import { getRandom } from "@/lib/util/randomValues";
 import { NpcHairLengthText, NpcHairTextureText, NpcHairStyleText, NpcHairDescriptionTemplates } from "../mappings/hair.mappings";
 import { normalizeNpcInput, NpcDescriptionType } from "./normalize";
 import { oxfordCommaList } from "@/lib/util/stringFormats";
+import { getNonHumanIntegument } from "./common.rules";
 
 export function groupHairStyles(values: string[]) {
   return values.reduce(
@@ -71,8 +72,12 @@ export function getHairColorDescriptions(colors: string[]){
 };
 
 export function getNpcHairDescription(npc: NpcDescriptionType): string {
+  if(npc.hairStyle.includes("none")) return "";
+  const surface = getNonHumanIntegument(npc.race);
   const pick = Math.floor(Math.random() * NpcHairDescriptionTemplates.length);
-  return NpcHairDescriptionTemplates[pick](npc);
+  const option = NpcHairDescriptionTemplates[pick](npc);
+
+  return option.replace(/\{surface\}/g, surface);
 }
 
 export function buildNpcHairDescription(data: ReturnType<typeof normalizeNpcInput>, hasOrHave: string, pronounNoun: string, pronounPossessive: string): string {

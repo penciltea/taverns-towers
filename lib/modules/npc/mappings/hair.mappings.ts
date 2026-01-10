@@ -4,8 +4,8 @@ import { NpcDescriptionType } from "../rules/normalize";
 export const NpcHairDescriptionTemplates = [
   (npc: NpcDescriptionType) => {
     if (npc.hairFlags?.isBald) {
-      if(npc.race.toLowerCase() === "tabaxi"){
-        return `${npc.pronounNoun} ${npc.hasOrHave} no distinguishing hairstyle beyond ${npc.pronounPossessive.toLowerCase()} fur.`;
+      if(["dragonborn", "kenku", "tabaxi"].includes(npc.race.toLowerCase())){
+        return `${npc.pronounNoun} ${npc.hasOrHave} no distinguishing hairstyle beyond ${npc.pronounPossessive.toLowerCase()} {surface}.`;
       }
       return `${npc.pronounNoun} ${npc.hasOrHave === "have" ? "are" : "is"} bald.`;
     }

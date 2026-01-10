@@ -51,7 +51,7 @@ export default function NpcFormPhysicalTraits(){
                     name="hairColor"
                     label="Hair Color"
                     control={control}
-                    options={[{ label: "Random", value: "random" }, ...NPC_HAIR_COLOR]}
+                    options={[{ label: "Random", value: "random" }, { label: "None", value: "none" }, ...NPC_HAIR_COLOR]}
                     fieldError={errors.hairColor}
                     tooltip="This field is purely descriptive."
                 />
@@ -60,7 +60,7 @@ export default function NpcFormPhysicalTraits(){
                     name="hairStyle"
                     label="Hair Style"
                     control={control}
-                    options={[{ label: "Random", value: "random" }, ...NPC_HAIR_STYLE]}
+                    options={[{ label: "Random", value: "random" }, { label: "None", value: "none" }, ...NPC_HAIR_STYLE]}
                     fieldError={errors.hairStyle}
                     tooltip="This field is purely descriptive."
                 />

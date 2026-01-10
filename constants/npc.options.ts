@@ -514,7 +514,6 @@ export const NPC_HUMAN_EYE_COLORS = [
       { label: "Gray", value: "gray" },
       { label: "Green", value: "green" },
       { label: "Hazel", value: "hazel" },
-      { label: "Honey", value: "honey" },
       { label: "Light brown", value: "lightBrown" },
     ]
   }

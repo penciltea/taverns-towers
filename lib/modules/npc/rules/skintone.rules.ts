@@ -3,23 +3,7 @@ import { NpcSkinToneDescriptionTemplates, NpcSkinToneSpecialText, NpcSkinToneTex
 import { normalizeNpcInput, NpcDescriptionType } from "./normalize";
 import { oxfordCommaList } from "@/lib/util/stringFormats";
 import { IntegumentType } from "@/lib/models/npc.model";
-import { checkIfHumanDerivedRace } from "./common.rules";
-
-function getNonHumanIntegument(race: string): IntegumentType {
-    switch (race.toLowerCase()) {
-        case "dragonborn":
-        case "lizardfolk":
-            return "scales";
-        case "kenku":
-        case "aarakocra":
-            return "feathers";
-        case "tabaxi":
-        case "leonin":
-            return "fur";
-        default:
-            return "skin";
-    }
-}
+import { checkIfHumanDerivedRace, getNonHumanIntegument } from "./common.rules";
 
 function filterApplicableSkinFeatures(
   features: string[],
@@ -47,16 +31,12 @@ export function getSkinToneStyleDescriptions(skinTones: string[]) {
     });
 }
 
-export function getSpecialSkinDescriptions(race: string, features: string[]){
-    const surface = getNonHumanIntegument(race)
+export function getSpecialSkinDescriptions(features: string[]){
     return features.map(feature => {
         if(!feature) return "";
-
-        const options = NpcSkinToneSpecialText[feature as keyof typeof NpcSkinToneSpecialText];
-        if(!options || options.length === 0) return "";
-
-        const text = getRandom(options);
-        return text.replace(/\{surface\}/g, surface);
+        return getRandom(
+            NpcSkinToneSpecialText[feature as keyof typeof NpcSkinToneSpecialText]
+        );
     })
 }
 
@@ -73,7 +53,7 @@ export function buildNpcSkinToneDescription(data: ReturnType<typeof normalizeNpc
     const integument = checkIfHumanDerivedRace(data.race) ? "skin" : getNonHumanIntegument(data.race);
 
     const applicableFeatures = filterApplicableSkinFeatures(data.features, integument);
-    let specialSkinText = oxfordCommaList(getSpecialSkinDescriptions(data.race, applicableFeatures));
+    let specialSkinText = oxfordCommaList(getSpecialSkinDescriptions(applicableFeatures));
     let skinToneText = oxfordCommaList(getSkinToneStyleDescriptions(data.skinTone));
     
     const skinToneDescription = getNpcSkinToneDescription({
