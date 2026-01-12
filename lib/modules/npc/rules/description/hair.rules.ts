@@ -1,10 +1,10 @@
 import { NPC_HAIR_COLOR, NPC_HAIR_LENGTHS, NPC_HAIR_STYLES, NPC_HAIR_TEXTURES } from "@/constants/npc.options";
 import { getDropdownLabel } from "@/lib/util/getDropdownLabel";
 import { getRandom } from "@/lib/util/randomValues";
-import { NpcHairLengthText, NpcHairTextureText, NpcHairStyleText, NpcHairDescriptionTemplates } from "../mappings/hair.mappings";
-import { normalizeNpcInput, NpcDescriptionType } from "./normalize";
+import { NpcHairLengthText, NpcHairTextureText, NpcHairStyleText, NpcHairDescriptionTemplates } from "../../mappings/hair.mappings";
+import { normalizeNpcInput, NpcDescriptionType } from "../normalize";
 import { oxfordCommaList } from "@/lib/util/stringFormats";
-import { getNonHumanIntegument } from "./common.rules";
+import { getNonHumanIntegument } from "../common.rules";
 
 export function groupHairStyles(values: string[]) {
   return values.reduce(

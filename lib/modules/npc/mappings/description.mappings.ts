@@ -6,7 +6,8 @@ export const NpcDescriptionTemplates = [
     `${npc.name ? npc.name : "This individual"} is ${npc.ageStartsWithVowel ? "an" : "a"} ${npc.age} ${npc.race}, who is ${npc.height} and ${npc.build}. ` +
     `${npc.skinToneDescription} ` +
     `${npc.hairDescription} ` + 
-    `${npc.eyeDescription}`
+    `${npc.eyeDescription} `+
+    `${npc.featuresDescription}`
   /*
   (npc: NpcDescriptionType) =>
     `At first glance, ${npc.name} appears ${npc.traits}, with ${npc.eyeColor} eyes, and so on.

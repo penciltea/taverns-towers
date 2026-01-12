@@ -1,7 +1,7 @@
 import { NPC_BUILD, NPC_DISTINGUISHING_BODY_COMMON, NPC_DISTINGUISHING_BODY_RARE, NPC_DISTINGUISHING_BODY_UNCOMMON, NPC_DISTINGUISHING_BODY_VERY_RARE, NPC_DISTINGUISHING_EYES, NPC_DISTINGUISHING_FACE_COMMON, NPC_DISTINGUISHING_FACE_UNCOMMON, NPC_DISTINGUISHING_OTHER_COMMON, NPC_DISTINGUISHING_OTHER_RARE, NPC_DISTINGUISHING_OTHER_UNCOMMON, NPC_FANTASY_EYE_COLORS, NPC_FANTASY_HAIR_COLORS, NPC_FANTASY_SKINTONES, NPC_HAIR_LENGTHS, NPC_HAIR_STYLES, NPC_HAIR_TEXTURES, NPC_HEIGHT, NPC_HUMAN_EYE_COLORS, NPC_HUMAN_HAIR_COLORS, NPC_HUMAN_SKINTONES } from "@/constants/npc.options";
 import { getRandom, getWeightedRandomOptions } from "@/lib/util/randomValues";
-import { normalizeNpcInput, NormalizedNpcInput } from "./normalize";
-import { checkIfHumanDerivedRace } from "./common.rules";
+import { normalizeNpcInput, NormalizedNpcInput } from "../normalize";
+import { checkIfHumanDerivedRace } from "../common.rules";
 
 
 export function applyHeightRule(data: ReturnType<typeof normalizeNpcInput>): NormalizedNpcInput {

@@ -1,9 +1,9 @@
 import { getRandom } from "@/lib/util/randomValues";
-import { NpcSkinToneDescriptionTemplates, NpcSkinToneSpecialText, NpcSkinToneText, PIGMENT_FEATURES, SKIN_SURFACE_FEATURES, UNIVERSAL_SURFACE_FEATURES } from "../mappings/skintone.mappings";
-import { normalizeNpcInput, NpcDescriptionType } from "./normalize";
+import { NpcSkinToneDescriptionTemplates, NpcSkinToneSpecialText, NpcSkinToneText, PIGMENT_FEATURES, SKIN_SURFACE_FEATURES, UNIVERSAL_SURFACE_FEATURES } from "../../mappings/skintone.mappings";
+import { normalizeNpcInput, NpcDescriptionType } from "../normalize";
 import { oxfordCommaList } from "@/lib/util/stringFormats";
 import { IntegumentType } from "@/lib/models/npc.model";
-import { checkIfHumanDerivedRace, getNonHumanIntegument } from "./common.rules";
+import { checkIfHumanDerivedRace, getNonHumanIntegument } from "../common.rules";
 
 function filterApplicableSkinFeatures(
   features: string[],

@@ -56,12 +56,27 @@ export interface NpcDescriptionType extends NormalizedNpcInput {
   pronounNoun: string;
   pronounPossessive: string;
   hasOrHave: string;
+  isOrAre?: string;
   ageStartsWithVowel: boolean;
+
+  
+  /* distinguishing features values */
+  featuresDescription?: string;
+  featuresText?: string;
+  featuresVerbText?: string;
+  featuresNounText?: string;
+
+  /* eye values */
   eyeDescription?: string;
   eyeColorText?: string;
-  specialEyeText?: string;
-  skinToneText?: string;
+  specialEyeText?: string; 
+
+  /* skin tone values */
   skinToneDescription?: string;
+  skinToneText?: string;
+  specialSkinText?: string;
+
+  /* hair values */
   hairColorText?: string;
   hairLengthText?: string;
   hairTextureText?: string;
@@ -71,7 +86,7 @@ export interface NpcDescriptionType extends NormalizedNpcInput {
     isBald: boolean;
     isBuzzCut: boolean;
   }
-  specialSkinText?: string;
+
 }
 
 export function normalizeNpcInput(data: Partial<Npc>): NormalizedNpcInput {

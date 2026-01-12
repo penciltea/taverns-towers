@@ -1,11 +1,9 @@
 import { oxfordCommaList } from "@/lib/util/stringFormats";
-import { NPC_EYE_FEATURE_KEYS, NpcEyeColorText, NpcEyeDescriptionTemplates, NpcEyeSpecialText } from "../mappings/eyes.mappings";
-import { normalizeNpcInput, NpcDescriptionType } from "./normalize";
+import { NPC_EYE_FEATURE_KEYS, NpcEyeColorText, NpcEyeDescriptionTemplates, NpcEyeSpecialText } from "../../mappings/eyes.mappings";
+import { normalizeNpcInput, NpcDescriptionType } from "../normalize";
 import { getRandom } from "@/lib/util/randomValues";
 
-function filterApplicableEyeFeatures(
-    features: string[]
-): string[]{
+export function filterApplicableEyeFeatures(features: string[]): string[]{
     return features.filter(feature => {
         if(NPC_EYE_FEATURE_KEYS.has(feature)) return true;
         return false;
@@ -40,7 +38,7 @@ export function buildNpcEyeDescription(data: ReturnType<typeof normalizeNpcInput
     let specialEyeText = oxfordCommaList(getSpecialEyeDescriptions(applicableFeatures));
     let eyeColorText = oxfordCommaList(getEyeColorDescriptions(data.eyeColor));
     
-    const skinToneDescription = getNpcEyeDescriptions({
+    const eyeDescription = getNpcEyeDescriptions({
         ...data,
         pronounNoun,
         pronounPossessive,
@@ -49,5 +47,5 @@ export function buildNpcEyeDescription(data: ReturnType<typeof normalizeNpcInput
         specialEyeText
     } as NpcDescriptionType)
 
-    return skinToneDescription;
+    return eyeDescription;
 }

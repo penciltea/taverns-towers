@@ -34,11 +34,11 @@ import {
   applyHairColorRule,
   applyHairStyleRule,
   applyDistinguishingFeaturesRule
-} from "./physicalTrait.rules";
+} from "./description/physicalTrait.rules";
 
  import { 
   applyNpcDescriptionRule
-} from "./description.rules";
+} from "./description/description.rules";
 
 // Default list of rules to apply sequentially
 const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[] = [
