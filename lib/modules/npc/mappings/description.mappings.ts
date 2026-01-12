@@ -5,7 +5,8 @@ export const NpcDescriptionTemplates = [
   (npc: NpcDescriptionType) =>
     `${npc.name ? npc.name : "This individual"} is ${npc.ageStartsWithVowel ? "an" : "a"} ${npc.age} ${npc.race}, who is ${npc.height} and ${npc.build}. ` +
     `${npc.skinToneDescription} ` +
-    `${npc.hairDescription}`
+    `${npc.hairDescription} ` + 
+    `${npc.eyeDescription}`
   /*
   (npc: NpcDescriptionType) =>
     `At first glance, ${npc.name} appears ${npc.traits}, with ${npc.eyeColor} eyes, and so on.
@@ -47,7 +48,7 @@ export const NpcHeightText: Record<NpcHeight, string[]> = {
   "veryTall": [
     "much taller than average", 
     "rather tall", 
-    "noticeably oversized", 
+    "noticeably tall", 
     "quite tall" , 
     "towering in height"
   ],
@@ -63,8 +64,7 @@ export const NpcBuildText: Record<NpcBuild, string[]> = {
   "average": [
     "with an average build",
     "has an unremarkable physique",
-    "has a typical build",
-    "is neither slim nor heavy in frame"
+    "has a typical build"
   ],
   "heavyset": [
     "with a heavyset build",

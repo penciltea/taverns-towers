@@ -9,107 +9,156 @@ export default function Roadmap(){
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
             <Typography variant="h4" component="h1" gutterBottom>What&apos;s Coming Next</Typography>
-            <Typography sx={{marginBottom: 3}}>Curious about the upcoming releases? Below is a list of upcoming features, improvements, and more! More details, updates, and sneak peeks about upcoming releases can be found on RealmFoundry&apos;s Patreon page.</Typography>
+            <Typography gutterBottom>RealmFoundry is being built with one primary goal: helping Game Masters create, find, and adapt content quickly, especially mid-session.</Typography>
+            <Typography sx={{marginBottom: 3}}>This roadmap highlights the major areas of focus coming next. The order reflects priority, not exact release timing.</Typography>
 
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.1</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Improving Core Generation (In Progress & Ongoing)</Typography>
+            <Typography gutterBottom>These updates improve the quality and usefulness of generated content across the entire app. They will benefit all content types and membership tiers.</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Improved functionality:</strong>}
-                        secondary={<span> &quot;Copy&quot; and &quot;Move to...&quot; functionality for content</span>}
+                        primary="Generating descriptions for Sites & Settlements that can be read aloud at the table."
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Exporting data:</strong>}
-                        secondary={<span> Artisans & Architects will be able to export their data. We&apos;re starting with JSON data and will be rolling out support for PDFs, VTT formats, and more!</span>}
+                        primary="Continued releases of new generation themes for better tone and flavor."
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-3">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Description fields:</strong>}
-                        secondary={<span> We&apos;ll be steadily rolling out updates to generator logic to include Description fields</span>}
+                        primary="Continued refinements of existing generation logic."
+                    />
+                </ListItem>
+            </List>
+
+
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Faster Navigation & Content Control</Typography>
+            <Typography gutterBottom>These features make RealmFoundry easier to use as your content library grows.</Typography>
+            <List sx={{ listStyleType: 'disc', pl: 4 }}>
+                <ListItem disablePadding key="item-1">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Global search functionality to quickly find any content you've created across all campaigns and content types. These improvements will help reduce friction, fix mistakes instantly, and keep your sessions moving."
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-2">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Move content across the app without deleting or recreating them."
+                    />
+                </ListItem>
+            </List>
+
+
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Campaign Customization (Artisan & Architect Tiers)</Typography>
+            <Typography gutterBottom>These tools help RealmFoundry respect your world's canon. They're ideal for campaigns with specific lore or restrictions.</Typography>
+            <List sx={{ listStyleType: 'disc', pl: 4 }}>
+                <ListItem disablePadding key="item-1">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Campaign-level control options, such as choosing what races are available for use within the campaign."
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-2">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Custom dropdown content, such as adding your own races, for use throughout the app."
+                    />
+                </ListItem>
+            </List>
+
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Speed & Scaling Tools (Artisan & Architect Tiers)</Typography>
+            <Typography gutterBottom>For GMs who want to generate more, faster-- keeping your session prep quick and easy.</Typography>
+            <List sx={{ listStyleType: 'disc', pl: 4 }}>
+                <ListItem disablePadding key="item-1">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Creating multiple Sites, NPCs, or other content in one action."
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-2">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Settlement templates will automatically generate sites based on settlement size and tags (e.g. ports generate docks, taverns, warehouses, etc.)."
+                    />
+                </ListItem>
+            </List>
+
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>New World-building Content Types</Typography>
+            <Typography gutterBottom>Expanding RealmFoundry beyond people and places. These new content types will naturally integrate with the existing content as appropriate.</Typography>
+            <List sx={{ listStyleType: 'disc', pl: 4 }}>
+                <ListItem disablePadding key="item-1">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Guilds & Factions (with a redesigned Guild site experience)"
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-2">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Pantheons"
+                    />
+                </ListItem>
+                <ListItem disablePadding key="item-3">
+                    <ListItemText
+                        sx={{ display: 'list-item' }}
+                        disableTypography
+                        primary="Flora & Fauna"
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-4">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>NPC fields:</strong>}
-                        secondary={<span> Similarly, NPC generation logic will add support for Likes & Dislikes fields</span>}
+                        primary="Lore"
                     />
                 </ListItem>
             </List>
 
-
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.2</Typography>
+            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Exporting, Sharing, & Community</Typography>
+            <Typography gutterBottom>Helping your work travel beyond just a single campaign in RealmFoundry. These updates will foster RealmFoundry as a community.</Typography>
             <List sx={{ listStyleType: 'disc', pl: 4 }}>
                 <ListItem disablePadding key="item-1">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>New Content - Guilds & Factions:</strong>}
-                        secondary={<span> From local street thugs to settlement-spanning merchant guilds, we&apos;ll be adding support for guilds and factions!</span>}
+                        primary="Exporting to JSON, PDF, and VTT formats."
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-2">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Improvement - Guild Sites:</strong>}
-                        secondary={<span> The Guild site creation form will receive an overhaul to align with the new guilds & factions content!</span>}
+                        primary="Share content with other users in the RealmFoundry Collections, favorite others' creations, and copy them into your campaigns."
                     />
                 </ListItem>
                 <ListItem disablePadding key="item-3">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>New themes:</strong>}
-                        secondary={<span> New themes will be frequently rolled out in order to provide more robust generation options</span>}
+                        primary="Official RealmFoundry Discord server and subReddit."
                     />
                 </ListItem>
-            </List>
-
-
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.3</Typography>
-            <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding key="item-1">
+                <ListItem disablePadding key="item-4">
                     <ListItemText
                         sx={{ display: 'list-item' }}
                         disableTypography
-                        primary={<strong>Bulk Site Creation</strong>}
-                        secondary={<span> During settlement creation, Artisans & Architects will be able to opt in to creating sites, following generator logic to create sites that make sense. After all, a port town needs at least a dock and a tavern!</span>}
-                    />
-                </ListItem>
-                <ListItem disablePadding key="item-2">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary="Support for shortened URLs"
-                    />
-                </ListItem>
-            </List>
-
-            <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>Version 0.3.4</Typography>
-            <List sx={{ listStyleType: 'disc', pl: 4 }}>
-                <ListItem disablePadding key="item-1">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary={<strong>New Content - Pantheons & Lore!</strong>}
-                    />
-                </ListItem>
-                <ListItem disablePadding key="item-2">
-                    <ListItemText
-                        sx={{ display: 'list-item' }}
-                        disableTypography
-                        primary="More content updates will be on the horizon!"
+                        primary="Feedback-driven iteration and feature prioritization."
                     />
                 </ListItem>
             </List>

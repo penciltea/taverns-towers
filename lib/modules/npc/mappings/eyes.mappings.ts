@@ -301,3 +301,14 @@ export const NpcEyeSpecialText: Record<string, string[]> = {
         "with pupils unlike those of most folk"
     ]
 };
+
+export const NPC_EYE_FEATURE_KEYS = new Set<string>([
+    "blind",
+    "cataracts",
+    "crossEyed",
+    "heterochromia",
+    "glowingEyes",
+    "missingEyes",
+    "scarredEyes",
+    "unusualPupils"
+])

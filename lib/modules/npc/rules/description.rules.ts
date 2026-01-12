@@ -8,6 +8,7 @@ import { getOccupationLabel } from "@/lib/util/npcHelpers";
 import { checkStringStartsWithVowel, oxfordCommaList } from "@/lib/util/stringFormats";
 import { buildNpcHairDescription } from "./hair.rules";
 import { buildNpcSkinToneDescription } from "./skintone.rules";
+import { buildNpcEyeDescription } from "./eyes.rules";
 
 let npcPronounNoun = "";
 let npcPronounPossessive = "";
@@ -84,7 +85,7 @@ export function applyNpcDescriptionRule(data: ReturnType<typeof normalizeNpcInpu
         occupation: data.occupation.map(getOccupationLabel),
         ageStartsWithVowel: checkStringStartsWithVowel(data.age),
         hasOrHave,
-        eyeColorText,
+        eyeDescription: buildNpcEyeDescription(data, hasOrHave, pronounNoun, pronounPossessive),
         skinToneDescription: buildNpcSkinToneDescription(data, hasOrHave, pronounNoun, pronounPossessive),
         hairDescription: buildNpcHairDescription(data, hasOrHave, pronounNoun, pronounPossessive)    
     };

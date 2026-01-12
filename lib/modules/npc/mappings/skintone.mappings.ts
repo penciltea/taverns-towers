@@ -324,7 +324,7 @@ export const NpcSkinToneSpecialText: Record<string, string[]> ={
         "with visible scars etched into the {surface}",
         "showing the marks of healed wounds",
         "marked by one large scar across the back",
-        "bearing a scar on one arm",
+        "a scar on one arm",
         "with a scar running across the abdomen",
         "bearing a scar that runs down one leg"  
     ],
@@ -334,7 +334,7 @@ export const NpcSkinToneSpecialText: Record<string, string[]> ={
         "with areas of {surface} altered by old burns",
         "bearing the lasting scars of fire or heat",
         "with burn scars tracing parts of the body",
-        "with a small, faded burn on the back of a hand",
+        "a small, faded burn on the back of a hand",
         "bearing a faded burn scar across the shoulder and chest",
     ],
 
