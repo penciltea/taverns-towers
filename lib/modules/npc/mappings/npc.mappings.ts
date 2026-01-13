@@ -16,7 +16,7 @@ export const archetypeByAgeMapping: Record<NpcAge, string[]> = {
         "artisan",
         "peasant"
     ],
-    "Young Adult": [
+    "Young adult": [
         "squire",
         "apprentice wizard",
         "ruffian",
@@ -236,25 +236,25 @@ export const occupationByArchetypeMapping: Record<NpcArchetype, string[]> = {
 
 
 export const npcAlignmentMapping = [
-    "Lawful Good",
-    "Lawful Good",
-    "Lawful Good",
-    "Lawful Good",
-    "Lawful Good",
-    "Neutral Good",
-    "Neutral Good",
-    "Neutral Good",
-    "Chaotic Good",
-    "Chaotic Good",
-    "Lawful Neutral",
-    "Lawful Neutral",
-    "Lawful Neutral",
-    "True Neutral",
-    "True Neutral",
-    "Chaotic Neutral",
-    "Chaotic Neutral",
-    "Lawful Evil",
-    "Neutral Evil",
-    "Chaotic Evil",
+    "Lawful good",
+    "Lawful good",
+    "Lawful good",
+    "Lawful good",
+    "Lawful good",
+    "Neutral good",
+    "Neutral good",
+    "Neutral good",
+    "Chaotic good",
+    "Chaotic good",
+    "Lawful neutral",
+    "Lawful neutral",
+    "Lawful neutral",
+    "True neutral",
+    "True neutral",
+    "Chaotic neutral",
+    "Chaotic neutral",
+    "Lawful evil",
+    "Neutral evil",
+    "Chaotic evil",
     "Unaligned"
-]
+];

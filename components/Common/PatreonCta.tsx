@@ -14,7 +14,7 @@ export default function PatreonCta(){
             </Typography>
             <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 sx={{ mt: 3 }}
                 target="_blank"
                 rel="noopener noreferrer"

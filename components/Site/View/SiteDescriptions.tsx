@@ -21,14 +21,14 @@ export default function SiteDescriptions({ site, userId }: SiteDescriptionsProps
 
     return (
         <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
-            <Typography variant="h4" component="p" sx={{ mb: 2 }}>Description</Typography>
+            <Typography variant="h4" component="p" sx={{ mb: 2 }}>Description & Notes</Typography>
             <Box sx={{my: 2}}>
               <Typography variant="h5" component="h4">Public Notes</Typography>
               <Divider sx={{mb: 2}} />
               <Typography variant="body1" component="p" sx={{ whiteSpace: 'pre-line' }}>{site.publicNotes ? site.publicNotes : "N/A" }</Typography>
             </Box>
 
-            { (user?.id === userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) &&  (
+            { ( (user?.id === userId) || (campaignPermissions !== null && campaignPermissions?.isOwner === true) ) &&  (
               <Box sx={{my: 2}}>
                 <Typography variant="h5" component="h5">GM Notes</Typography>
                 <Divider sx={{mb: 2}} />

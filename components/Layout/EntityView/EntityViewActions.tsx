@@ -10,173 +10,194 @@ import DriveFileMoveIcon from "@mui/icons-material/DriveFileMove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import FavoriteButton from "@/components/Common/Button/FavoriteButton";
-import DeleteConfirmationDialog from "@/components/Common/Dialog/DeleteConfirmationDialog";
+import ActionConfirmationDialog from "@/components/Common/Dialog/ActionConfirmationDialog";
 
 type CommonItem = { _id: string; favorite?: boolean; campaignHighlight?: boolean };
 
 interface EntityViewActionsProps<T extends CommonItem> {
-  item: T;
+    item: T;
 
-  // Permissions
-  canFavorite: boolean;
-  canEdit?: boolean;
-  canHighlight?: boolean;
-  canMove?: boolean;
-  canCopy?: boolean;
-  canDelete?: boolean;
+    // Permissions
+    canFavorite: boolean;
+    canEdit?: boolean;
+    canHighlight?: boolean;
+    canMove?: boolean;
+    canCopy?: boolean;
+    canDelete?: boolean;
 
-  // Callbacks
-  onToggleFavorite: (updated: Pick<T, "_id" | "favorite">) => Promise<void>;
-  onEdit?: () => void;
-  onHighlight?: () => Promise<void>;
-  onMove?: () => void;
-  onCopy?: () => void;
-  onDelete?: () => Promise<void>; // simplified: the caller handles post-delete actions
+    // Callbacks
+    onToggleFavorite: (updated: Pick<T, "_id" | "favorite">) => Promise<void>;
+    onEdit?: () => void;
+    onHighlight?: () => Promise<void>;
+    onMove?: () => void;
+    onCopy?: () => Promise<void>;
+    onDelete?: () => Promise<void>; // simplified: the caller handles post-delete actions
 }
 
 export default function EntityViewActions<T extends CommonItem>({
-  item,
-  canFavorite,
-  canEdit,
-  canHighlight,
-  canMove,
-  canCopy,
-  canDelete,
-  onToggleFavorite,
-  onEdit,
-  onHighlight,
-  onMove,
-  onCopy,
-  onDelete,
+    item,
+    canFavorite,
+    canEdit,
+    canHighlight,
+    canMove,
+    canCopy,
+    canDelete,
+    onToggleFavorite,
+    onEdit,
+    onHighlight,
+    onMove,
+    onCopy,
+    onDelete,
 }: EntityViewActionsProps<T>) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [confirmOpen, setConfirmOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
+    const [confirmCopyOpen, setConfirmCopyOpen] = useState(false);
 
-  const open = Boolean(anchorEl);
+    const open = Boolean(anchorEl);
 
-  // Determine if any menu actions exist
+    // Determine if any menu actions exist
     const hasMenuActions =
-    (canHighlight && !!onHighlight) ||
-    (canMove && !!onMove) ||
-    (canCopy && !!onCopy) ||
-    (canDelete && !!onDelete);
+        (canHighlight && !!onHighlight) ||
+        (canMove && !!onMove) ||
+        (canCopy && !!onCopy) ||
+        (canDelete && !!onDelete);
 
-  const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget);
-  const handleCloseMenu = () => setAnchorEl(null);
+    const handleOpenMenu = (e: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget);
+    const handleCloseMenu = () => setAnchorEl(null);
 
-  const handleDelete = async () => {
-    try {
-      if (!onDelete) return;
-      await onDelete();
-      setConfirmOpen(false);
-      handleCloseMenu();
-    } catch (err) {
-      console.error("Delete failed:", err);
+    const handleDelete = async () => {
+        try {
+            if (!onDelete) return;
+            await onDelete();
+            setConfirmDeleteOpen(false);
+            handleCloseMenu();
+        } catch (err) {
+            console.error("Delete failed:", err);
+        }
+    };
+
+    const handleCopy = async () => {
+        try{
+            if(!onCopy) return;
+            await onCopy();            
+            setConfirmCopyOpen(false);
+            handleCloseMenu();
+        } catch (err) {
+            console.error("Copying failed:", err);
+        }
     }
-  };
 
-  return (
-    <>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {/* Favorite button */}
-            {canFavorite && (
-                <FavoriteButton<T>
-                    item={item}
-                    onToggleFavorite={onToggleFavorite}
-                    iconProps={{ sx: { mr: 1 } }}
-                />
-            )}
+    return (
+        <>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                {/* Favorite button */}
+                {canFavorite && (
+                    <FavoriteButton<T>
+                        item={item}
+                        onToggleFavorite={onToggleFavorite}
+                        iconProps={{ sx: { mr: 1 } }}
+                    />
+                )}
 
-            {/* Edit button, if needed */}
-            {canEdit && onEdit && (
-                <Button 
-                    size="medium" 
-                    sx={{ color: "#1d2a3b" }} 
-                    variant="contained" color="primary" 
-                    startIcon={<EditIcon />}  
-                    onClick={onEdit}
-                >
-                    Edit
-                </Button>
-            )}
+                {/* Edit button, if needed */}
+                {canEdit && onEdit && (
+                    <Button 
+                        size="medium" 
+                        sx={{ color: "#1d2a3b" }} 
+                        variant="contained" color="primary" 
+                        startIcon={<EditIcon />}  
+                        onClick={onEdit}
+                    >
+                        Edit
+                    </Button>
+                )}
 
-            {/* More actions menu */}
-            {hasMenuActions && (
-                <>
-                    <Tooltip title="More actions">
-                        <IconButton onClick={handleOpenMenu}>
-                            <MoreVertIcon />
-                        </IconButton>
-                    </Tooltip>
+                {/* More actions menu */}
+                {hasMenuActions && (
+                    <>
+                        <Tooltip title="More actions">
+                            <IconButton onClick={handleOpenMenu}>
+                                <MoreVertIcon />
+                            </IconButton>
+                        </Tooltip>
 
-                    <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
-                        {/* Campaign Highlight */}
-                        {canHighlight && onHighlight && (
-                        <MenuItem
-                            onClick={async () => {
-                            await onHighlight();
-                            handleCloseMenu();
-                            }}
-                        >
-                            <ListItemIcon>
-                                {item.campaignHighlight ? <Star fontSize="small" /> : <StarBorder fontSize="small" />}
-                            </ListItemIcon>
-                            <ListItemText>Highlight in Campaign</ListItemText>
-                        </MenuItem>
-                        )}
+                        <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
+                            {/* Campaign Highlight */}
+                            {canHighlight && onHighlight && (
+                                <MenuItem
+                                    onClick={async () => {
+                                        await onHighlight();
+                                        handleCloseMenu();
+                                    }}
+                                >
+                                    <ListItemIcon>
+                                        {item.campaignHighlight ? <Star fontSize="small" /> : <StarBorder fontSize="small" />}
+                                    </ListItemIcon>
+                                    <ListItemText>Highlight in Campaign</ListItemText>
+                                </MenuItem>
+                            )}
 
-                        {/* Move */}
-                        {canMove && onMove && (
-                        <MenuItem
-                            onClick={() => {
-                            onMove();
-                            handleCloseMenu();
-                            }}
-                        >
-                            <ListItemIcon>
-                                <DriveFileMoveIcon fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText>Move to…</ListItemText>
-                        </MenuItem>
-                        )}
+                            {/* Move */}
+                            {canMove && onMove && (
+                                <MenuItem
+                                    onClick={() => {
+                                        onMove();
+                                        handleCloseMenu();
+                                    }}
+                                >
+                                    <ListItemIcon>
+                                        <DriveFileMoveIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>Move to…</ListItemText>
+                                </MenuItem>
+                            )}
 
-                        {/* Copy */}
-                        {canCopy && onCopy && (
-                        <MenuItem
-                            onClick={() => {
-                            onCopy();
-                            handleCloseMenu();
-                            }}
-                        >
-                            <ListItemIcon>
-                                <ContentCopyIcon fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText>Copy</ListItemText>
-                        </MenuItem>
-                        )}
+                            {/* Copy */}
+                            {canCopy && onCopy && (
+                                <MenuItem
+                                    onClick={() => {
+                                        setConfirmCopyOpen(true)
+                                    }}
+                                >
+                                    <ListItemIcon>
+                                        <ContentCopyIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>Copy</ListItemText>
+                                </MenuItem>
+                            )}
 
-                        {/* Delete */}
-                        {canDelete && onDelete && (
-                            <MenuItem
-                                onClick={() => setConfirmOpen(true)}
-                                sx={{ color: "error.main" }}
-                            >
-                                <ListItemIcon>
-                                    <DeleteIcon fontSize="small" color="error" />
-                                </ListItemIcon>
-                                <ListItemText>Delete</ListItemText>
-                            </MenuItem>
-                        )}
-                    </Menu>
-                </>
-            )}
-        </Box>
-        <DeleteConfirmationDialog
-            open={confirmOpen}
-            onClose={() => setConfirmOpen(false)}
-            onConfirm={handleDelete}
-            deleting="item"
-        />
-    </>
-  );
+                            {/* Delete */}
+                            {canDelete && onDelete && (
+                                <MenuItem
+                                    onClick={() => setConfirmDeleteOpen(true)}
+                                    sx={{ color: "error.main" }}
+                                >
+                                    <ListItemIcon>
+                                        <DeleteIcon fontSize="small" color="error" />
+                                    </ListItemIcon>
+                                    <ListItemText>Delete</ListItemText>
+                                </MenuItem>
+                            )}
+                        </Menu>
+                    </>
+                )}
+            </Box>
+            <ActionConfirmationDialog
+                open={confirmDeleteOpen}
+                onClose={() => setConfirmDeleteOpen(false)}
+                onConfirm={handleDelete}
+                contentName="item"
+            />
+
+            <ActionConfirmationDialog
+                open={confirmCopyOpen}
+                onClose={() => setConfirmDeleteOpen(false)}
+                onConfirm={handleCopy}
+                contentName="item"
+                buttonText="Copy"
+                title="Copy Item?"
+                message="Do you want to create a copy of this item?"
+            />
+        </>
+    );
 }

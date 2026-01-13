@@ -14,8 +14,10 @@ import type { SiteType, SiteTypeMap } from '@/interfaces/site.interface';
 import SiteDetails from './SiteDetails';
 import SiteConnections from './SiteConnections';
 import SiteDescriptions from './SiteDescriptions';
-import { deleteSite } from "@/lib/actions/site.actions";
+import { copySite, deleteSite } from "@/lib/actions/site.actions";
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
+import { handleActionResult } from "@/hooks/queryHook.util";
+import { invalidateCampaignQueries, invalidateSiteQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
 
 interface ViewSiteProps {
   site: SiteType;
@@ -45,14 +47,28 @@ export default function ViewSite({ site }: ViewSiteProps) {
   
   const handleHighlight = async () => {
     await handlePartialUpdate({ _id: site._id, campaignHighlight: !site.campaignHighlight });
-    queryClient.invalidateQueries({ queryKey: ['highlights'] });
+    if(selectedCampaign?._id){
+      invalidateCampaignQueries(queryClient, selectedCampaign?._id);
+    }
   };
+
+  const handleCopy = async () => {
+      try {
+        const result = await copySite(site._id);
+        const newSite = handleActionResult(result);
+        invalidateSiteQueries(queryClient,site._id, site.settlementId);
+        
+        router.push(`/sites/${newSite._id}/`);
+        showSnackbar('Site copied successfully!', 'success');
+      } catch (err) {
+        console.error("Failed to copy site: ", err);
+      }
+    }
 
   const handleDelete = async () => {
       try {
         await deleteSite(site._id);
-        queryClient.invalidateQueries({ queryKey: ['sites', 'owned'], exact: false });
-        queryClient.invalidateQueries({ queryKey: ['sites', 'settlement', site.settlementId], exact: false });
+        invalidateSiteQueries(queryClient,site._id, site.settlementId);
               
         router.push("/sites/all");
         showSnackbar('Site deleted successfully!', 'success');
@@ -69,13 +85,15 @@ export default function ViewSite({ site }: ViewSiteProps) {
             item={site}
             canFavorite={canFavorite}
             canEdit={editable}
+            canCopy={editable}
             canDelete={deletable}
             canHighlight={canHighlight}
             onToggleFavorite={async (updated) => {
               await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-              queryClient.invalidateQueries({ queryKey: ['favorites'] });
+              invalidateUserQueries(queryClient, user!.id);
             }}
             onEdit={handleEdit}
+            onCopy={() => handleCopy()}
             onDelete={() => handleDelete()}
             onHighlight={handleHighlight}
           />

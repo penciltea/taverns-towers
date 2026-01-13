@@ -1,24 +1,9 @@
 import { Box, Typography, List } from "@mui/material";
 import { Npc } from "@/interfaces/npc.interface";
 import InfoListItem from "@/components/Common/InfoListItem";
-import { NPC_OCCUPATION, NPC_TRAITS } from "@/constants/npc.options";
 import { toTitleCase } from "@/lib/util/stringFormats";
+import { getOccupationLabel } from "@/lib/util/npcHelpers";
 
-export function getTraitLabel(value: string): string {
-  for (const category of NPC_TRAITS) {
-    const match = category.options.find(option => option.value === value);
-    if (match) return match.label;
-  }
-  return value; // fallback to raw value if not found
-}
-
-export function getOccupationLabel(value: string): string {
-  for (const category of NPC_OCCUPATION) {
-    const match = category.options.find(option => option.value === value);
-    if (match) return match.label;
-  }
-  return value; // fallback to raw value if not found
-}
 
 export default function NpcDetails({ npc }: { npc: Npc }) {
   const fields = [
@@ -26,12 +11,6 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
     { label: "Age", value: npc.age ? npc.age : "N/A" },
     { label: "Race", value: npc.race ? toTitleCase(npc.race) : "N/A" },
     { label: "Alignment", value: npc.alignment ? npc.alignment : "N/A" },
-    {
-      label: "Trait(s)",
-      value: npc.traits?.length
-        ? npc.traits.map(getTraitLabel).join(", ")
-        : "N/A"
-    },
     { label: "Archetype", value: npc.archetype ? toTitleCase(npc.archetype) : "N/A" },
     { 
       label: "Occupation(s)", 
@@ -39,8 +18,6 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
         ? npc.occupation.map(getOccupationLabel).join(", ")
         : "N/A"
     },
-    { label: "Likes", value: npc.likes ? npc.likes : "N/A" },
-    { label: "Disikes", value: npc.dislikes ? npc.dislikes : "N/A" },
     { label: "Status", value: npc.status }
   ];
 
@@ -51,7 +28,7 @@ export default function NpcDetails({ npc }: { npc: Npc }) {
   return (
     <>
       <Box sx={{marginTop: 1}}>
-        <Typography variant="h4" component="h2">Details</Typography>
+        <Typography variant="h4" component="h2">Basic Details</Typography>
         
         <List>
           {fields.map((field) => (

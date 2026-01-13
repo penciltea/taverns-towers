@@ -102,7 +102,7 @@ export default function ViewCampaign({ campaign }: { campaign: CampaignForClient
                 </Grid>
             </Grid>
             
-            { (activeCampaign?._id !== campaign._id && isPlayerInCampaign(campaign) || (user?.id && campaign.userId === user?.id)) && 
+            { (activeCampaign?._id !== campaign._id && ( isPlayerInCampaign(campaign) || (user?.id && campaign.userId === user?.id)) ) && 
                 <FabButton
                     label="Set as Active Campaign"
                     onClick={handleSetActiveCampaign}

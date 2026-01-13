@@ -1,4 +1,4 @@
-import { applyAgeRule, applyPronounsRule, applyRaceRule, applyAlignmentRule, applyStatusRule, applyTraitsRule } from './applyRules';
+import { applyAgeRule, applyPronounsRule, applyRaceRule, applyAlignmentRule, applyStatusRule, applyTraitsRule } from './npc.rules';
 import { normalizeNpcInput } from "./normalize";
 import * as randomValues from "@/lib/util/randomValues";
 

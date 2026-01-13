@@ -15,8 +15,13 @@ import EntityViewLayout from '@/components/Layout/EntityView/EntityViewLayout';
 import EntityViewImage from '@/components/Layout/EntityView/EntityViewImage';
 import NpcDescriptions from './NpcDescriptions';
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
-import { deleteNpc } from "@/lib/actions/npc.actions";
+import { copyNpc, deleteNpc } from "@/lib/actions/npc.actions";
 import { canEdit, canDelete } from "@/lib/auth/authPermissions";
+import { handleActionResult } from "@/hooks/queryHook.util";
+import { invalidateCampaignQueries, invalidateNpcQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
+import { Stack } from "@mui/material";
+import NpcPhysicalTraits from "./NpcPhysicalTraits";
+import NpcPersonality from "./NpcPersonality";
 
 export default function ViewNpc({ npc }: NpcProps){
   const router = useRouter();
@@ -41,19 +46,33 @@ export default function ViewNpc({ npc }: NpcProps){
 
   const handleHighlight = async () => {
     await handlePartialUpdate({ _id: npc._id, campaignHighlight: !npc.campaignHighlight });
-    queryClient.invalidateQueries({ queryKey: ['highlights'] });
+    if(selectedCampaign?._id){
+      invalidateCampaignQueries(queryClient, selectedCampaign._id);
+    }
   };
 
   const handleDelete = async () => {
     try {
       await deleteNpc(npc._id);
-      queryClient.invalidateQueries({ queryKey: ['ownedNpcs'] });
+      invalidateNpcQueries(queryClient, npc._id, selectedCampaign?._id);
       router.push("/npcs/all");
       showSnackbar('NPC deleted successfully!', 'success');
     } catch (err) {
       console.error("Failed to delete NPC:", err);
     }
   };
+
+  const handleCopy = async () => {
+    try {
+      const result = await copyNpc(npc._id);
+      const newNpc = handleActionResult(result);
+      invalidateNpcQueries(queryClient, npc._id, selectedCampaign?._id);
+      router.push(`/npcs/${newNpc._id}/`);
+      showSnackbar('NPC copied successfully!', 'success');
+    } catch (err) {
+      console.error("Failed to copy NPC: ", err);
+    }
+  }
 
   return (
     <EntityViewLayout
@@ -65,12 +84,16 @@ export default function ViewNpc({ npc }: NpcProps){
           canEdit={editable}
           canDelete={deletable}
           canHighlight={canHighlight}
+          canCopy={editable}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-            queryClient.invalidateQueries({ queryKey: ['favorites'] });
+            if(user){
+              invalidateUserQueries(queryClient, user.id);
+            }            
           }}
           onEdit={handleEdit}
           onDelete={() => handleDelete()}
+          onCopy={() => handleCopy()}
           onHighlight={handleHighlight}
         />
       }
@@ -83,7 +106,13 @@ export default function ViewNpc({ npc }: NpcProps){
             fallbackText="No NPC portait uploaded."
           />
       }
-      extraContent={ <NpcDescriptions npc={npc} userId={npc.userId}/> }
+      extraContent={ 
+        <Stack  direction={{ xs: "column", sm: "row" }} spacing={2} mt={2}>
+          <NpcPhysicalTraits npc={npc} />
+          <NpcPersonality npc={npc} />
+          <NpcDescriptions npc={npc} userId={npc.userId}/> 
+        </Stack>
+      }
       connections={ <NpcConnections connections={npc.connections} /> }
     />
   )

@@ -76,7 +76,7 @@ export default function NpcFormBasics(){
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...toSelectOptions(NPC_ALIGNMENT)]}
                     fieldError={errors.alignment}
-                    tooltip="This field influences the persuaded by field."
+                    tooltip="This field influences the following fields: persuaded by."
                 />
 
                 <FormSelect
@@ -121,7 +121,7 @@ export default function NpcFormBasics(){
                     rows={4}
                     registration={register("publicNotes")}
                     fieldError={errors.publicNotes}
-                    tooltip="This field is purely descriptive and is visible to everyone if this site is shared."
+                    tooltip="This field is purely descriptive and is visible to everyone if this NPC is shared."
                 />
 
                 <FormTextField

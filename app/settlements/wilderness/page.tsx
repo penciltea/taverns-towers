@@ -17,6 +17,7 @@ import { SITE_CATEGORIES } from '@/constants/site/site.options';
 import { handleSiteLabel } from '@/lib/util/siteHelpers';
 import { queryClient } from '@/components/Layout/QueryProviderWrapper';
 import { getPlaceholderSite } from '@/lib/util/getPlaceholders';
+import { invalidateSiteQueries } from '@/lib/util/invalidateQuery';
 
 export default function WildernessPage() {
     const settlementId = 'wilderness';
@@ -49,7 +50,7 @@ export default function WildernessPage() {
         const { deleteSite } = await import("@/lib/actions/site.actions");
           await deleteSite(id);
     
-          queryClient.invalidateQueries({ queryKey: ["sites"] });
+          invalidateSiteQueries(queryClient, settlementId, selectedCampaign?._id);
     
           closeDialog();
         } catch (error) {

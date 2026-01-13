@@ -1,11 +1,11 @@
 import { Flatten } from "./common.options";
 
-export const NPC_TABS = ["Basics", "Personality", "NPC Connections", "Configuration"];
+export const NPC_TABS = ["Basics", "Physical Traits", "Personality", "NPC Connections", "Configuration"];
 
 export const NPC_AGE = [
   "Child",
   "Teenager",
-  "Young Adult",
+  "Young adult",
   "Adult",
   "Middle-aged",
   "Elderly",
@@ -20,20 +20,23 @@ export const NPC_PRONOUNS = [
   "She/They",
   "It/Its",
   "Xe/Xem",
+  "Xe/Xim",
   "Ze/Hir",
+  "Ze/Zir",
+  "Zey/Zem",
   "Other",
 ];
 
 export const NPC_ALIGNMENT = [
-  "Lawful Good",
-  "Neutral Good",
-  "Chaotic Good",
-  "Lawful Neutral",
-  "True Neutral",
-  "Chaotic Neutral",
-  "Lawful Evil",
-  "Neutral Evil",
-  "Chaotic Evil",
+  "Lawful good",
+  "Neutral good",
+  "Chaotic good",
+  "Lawful neutral",
+  "True neutral",
+  "Chaotic neutral",
+  "Lawful evil",
+  "Neutral evil",
+  "Chaotic evil",
   "Unaligned"
 ];
 
@@ -55,6 +58,7 @@ export const NPC_RACES = [
   { label: "Genasi", value: "genasi" },
   { label: "Gnome", value: "gnome" },
   { label: "Goblin", value: "goblin" },
+  { label: "Goliath", value: "goliath" }, 
   { label: "Half-Elf", value: "half-elf" },
   { label: "Half-Orc", value: "half-orc" },
   { label: "Halfling", value: "halfling" },
@@ -148,9 +152,9 @@ export const NPC_ARCHETYPE = [
   {
     label: "Magical",
     options: [
-      { label: "Apprentice Wizard", value: "apprentice wizard" },
-      { label: "Elder Wizard", value: "elder wizard" },
-      { label: "Occult Caster", value: "occult caster" },
+      { label: "Apprentice wizard", value: "apprentice wizard" },
+      { label: "Elder wizard", value: "elder wizard" },
+      { label: "Occult caster", value: "occult caster" },
       { label: "Priest / Cleric", value: "cleric" },
       { label: "Druid / Shaman", value: "druid" }
     ]
@@ -158,7 +162,7 @@ export const NPC_ARCHETYPE = [
   {
     label: "Martial",
     options: [
-      { label: "Veteran Soldier", value: "veteran soldier" },
+      { label: "Veteran soldier", value: "veteran soldier" },
       { label: "Squire", value: "squire" },
       { label: "Ruffian / Thug", value: "ruffian" },
       { label: "Mercenary", value: "mercenary" }
@@ -209,7 +213,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Agricultural",
     options: [
-      { label: "Animal Husbandry", value: "animal husbandry" },
+      { label: "Animal husbandry", value: "animal husbandry" },
       { label: "Farmer", value: "farmer" },
       { label: "Fisher", value: "fisher" },
       { label: "Hunter / Trapper", value: "hunter" },
@@ -220,7 +224,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Crafts & Services",
     options: [
-      { label: "Apprentice Artisan", value: "apprentice artisan" },
+      { label: "Apprentice artisan", value: "apprentice artisan" },
       { label: "Artisan", value: "artisan" },
       { label: "Auctioneer", value: "auctioneer" },
       { label: "Banker", value: "banker" },
@@ -248,7 +252,7 @@ export const NPC_OCCUPATION = [
   {
     label: "Magical & Religious",
     options: [
-      { label: "Apprentice Wizard", value: "apprentice wizard" },
+      { label: "Apprentice wizard", value: "apprentice wizard" },
       { label: "Druid / Shaman", value: "druid" },
       { label: "Priest / Cleric", value: "priest" },
       { label: "Wizard / Mage", value: "wizard" },
@@ -262,8 +266,8 @@ export const NPC_OCCUPATION = [
       { label: "Knight", value: "knight" },
       { label: "Mercenary", value: "mercenary" },
       { label: "Soldier", value: "soldier" },
-      { label: "Military Leader", value: "military leader" },
-      { label: "Militia Member", value: "militia" },
+      { label: "Military leader", value: "military leader" },
+      { label: "Militia member", value: "militia" },
       { label: "Squire", value: "squire" },
     ]
   },
@@ -271,7 +275,7 @@ export const NPC_OCCUPATION = [
     label: "Underworld / Criminal",
     options: [
       { label: "Assassin", value: "assassin" },
-      { label: "Fence / Black Market Dealer", value: "fence" },
+      { label: "Fence / Black market dealer", value: "fence" },
       { label: "Ruffian / Thug", value: "ruffian" },
       { label: "Smuggler", value: "smuggler" },
       { label: "Spy / Informant", value: "spy" },
@@ -285,7 +289,7 @@ export const NPC_OCCUPATION = [
       { label: "Beggar / Drifter", value: "beggar" },
       { label: "Councilor / Advisor", value: "advisor" },
       { label: "Entertainer", value: "entertainer" },
-      { label: "Government Official", value: "official" },
+      { label: "Government official", value: "official" },
       { label: "Servant / Retainer", value: "servant" },
       { label: "Steward / Chamberlain", value: "steward" },
       { label: "Student", value: "student" },
@@ -295,18 +299,375 @@ export const NPC_OCCUPATION = [
 ];
 
 export const NPC_PERSUASION = [
-  { label: "Appeal to Authority / Tradition", value: "authority" },
-  { label: "Appeal to Emotion / Empathy", value: "empathy" },
-  { label: "Appeal to Reason / Logic", value: "reason" },
+  { label: "Appeal to authority / tradition", value: "authority" },
+  { label: "Appeal to emotion / empathy", value: "empathy" },
+  { label: "Appeal to reason / logic", value: "reason" },
   { label: "Bribery", value: "bribery" },
   { label: "Charm / Seduction", value: "charm" },
   { label: "Deception", value: "deception" },
-  { label: "Emotional Manipulation", value: "manipulation" },
+  { label: "Emotional manipulation", value: "manipulation" },
   { label: "Flattery", value: "flattery" },
   { label: "Force / Threats", value: "threats" },
   { label: "Goading", value: "goading" },
   { label: "Negotiation / Compromise", value: "negotiation" },
-  { label: "None (Stubborn)", value: "none" },
+  { label: "None (stubborn)", value: "none" },
+];
+
+export const NPC_HEIGHT = [
+  { label: "Average", value: "average" },
+  { label: "Short", value: "short" },
+  { label: "Tall", value: "tall" },
+  { label: "Very short", value: "veryShort" },
+  { label: "Very tall", value: "veryTall" },
+];
+
+export const NPC_BUILD = [
+  { label: "Athletic", value: "athletic" },
+  { label: "Average", value: "average" },
+  { label: "Heavyset", value: "heavyset" },
+  { label: "Obese", value: "obese" },
+  { label: "Thin", value: "thin" },
+  { label: "Very thin", value: "veryThin" },
+];
+
+export const NPC_HUMAN_SKINTONES = [
+  { label: "Human skintones", 
+    options: [
+      { label: "Brown", value: "brown" },
+      { label: "Dark brown", value: "darkBrown" },
+      { label: "Deep tan", value: "deepTan" },
+      { label: "Ebony", value: "ebony" },
+      { label: "Fair", value: "fair" },
+      { label: "Light olive", value: "lightOlive" },
+      { label: "Medium", value: "medium" },
+      { label: "Olive", value: "olive" },
+      { label: "Pale", value: "pale" },
+      { label: "Tan", value: "tan" },
+      { label: "Very pale", value: "veryPale" },
+      
+    ]
+  }
+];
+
+export const NPC_FANTASY_SKINTONES = [
+  {
+    label: "Fantasy skintones",
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Ashen gray", value: "ashenGray" },
+      { label: "Azure", value: "azure" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Brass", value: "brass" },
+      { label: "Charcoal black", value: "charcoalBlack" },
+      { label: "Cobalt", value: "cobalt" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Clay red", value: "clayRed" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Ice blue", value: "iceBlue" },
+      { label: "Jet black", value: "jetBlack" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Midnight blue", value: "midnightBlue" },
+      { label: "Moss green", value: "mossGreen" },
+      { label: "Olive green", value: "oliveGreen" },
+      { label: "Pearl white", value: "pearlWhite" },
+      { label: "Rose", value: "rose" },
+      { label: "Ruby red", value: "rubyRed" },
+      { label: "Sandy tan", value: "sandyTan" },
+      { label: "Silver", value: "silver" },
+      { label: "Slate", value: "slate" },
+      { label: "Stone gray", value: "stoneGray" },
+      { label: "Terracotta", value: "terracotta" },
+      { label: "Teal", value: "teal" },
+      { label: "Violet", value: "violet" },
+      { label: "Verdigris", value: "verdigris" }
+    ]
+  }
+];
+
+// Broken apart for NPC Generator logic
+export const NPC_SKINTONE = [
+  ...NPC_HUMAN_SKINTONES,
+  ...NPC_FANTASY_SKINTONES
+];
+
+export const NPC_HUMAN_HAIR_COLORS = [
+  { label: "Realistic colors", 
+    options: [
+      { label: "Auburn", value: "auburn" },
+      { label: "Black", value: "black" },
+      { label: "Blonde", value: "blonde" },
+      { label: "Brown", value: "brown" },
+      { label: "Chestnut", value: "chestnut" },
+      { label: "Dirty blonde", value: "dirtyBlonde" },
+      { label: "Gray", value: "gray" },
+      { label: "Platinum blonde", value: "platinumBlonde" },
+      { label: "Red", value: "red" },
+      { label: "Strawberry blonde", value: "strawberryBlonde" },
+      { label: "White", value: "white" }
+    ]
+  },
+];
+
+export const NPC_FANTASY_HAIR_COLORS = [
+  { label: "Fantasy colors", 
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Aqua", value: "aqua" },
+      { label: "Blue", value: "blue" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Copper", value: "copper" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Pink", value: "pink" },
+      { label: "Purple", value: "purple" },
+      { label: "Silver", value: "silver" },
+      { label: "Snow white", value: "snowWhite" },
+      { label: "Teal", value: "teal" },
+      { label: "Vibrant red", value: "vibrantRed" },
+      { label: "Yellow", value: "yellow" }
+    ]
+  }
+];
+
+export const NPC_HAIR_COLOR = [
+  ...NPC_HUMAN_HAIR_COLORS,
+  ...NPC_FANTASY_HAIR_COLORS
+];
+
+export const NPC_HAIR_TEXTURES = [
+  { label: "Hair textures", 
+    options: [
+      { label: "Coily", value: "coily" },
+      { label: "Curly", value: "curly" },
+      { label: "Fine", value: "fine" },
+      { label: "Kinky", value: "kinky" },
+      { label: "Straight", value: "straight" },
+      { label: "Thick", value: "thick" },
+      { label: "Voluminous", value: "voluminous" },
+      { label: "Wavy", value: "wavy" },
+    ]
+  }
+];
+
+export const NPC_HAIR_LENGTHS = [
+  { label: "Hair lengths", 
+    options: [
+      { label: "Bald", value: "bald" },
+      { label: "Buzz cut", value: "buzzCut" },
+      { label: "Long", value: "long" },
+      { label: "Medium", value: "medium" },
+      { label: "Short", value: "short" },
+      { label: "Shoulder-length", value: "shoulderLength" },
+      { label: "Very long", value: "veryLong" },
+      { label: "Waist-length", value: "waistLength" },
+    ]
+  }
+];
+
+export const NPC_HAIR_STYLES = [
+  { label: "Hair styles",
+    options: [
+      { label: "Braided", value: "braided" },
+      { label: "Bun(s)", value: "buns" },
+      { label: "Cornrows", value: "cornrows" },
+      { label: "Dreadlocks", value: "dreadlocks" },
+      { label: "Half-up half-down", value: "halfUpHalfDown" },
+      { label: "Loose", value: "loose" },
+      { label: "Messy bun(s)", value: "messyBuns" },
+      { label: "Mohawk", value: "mohawk" },
+      { label: "Pigtails", value: "pigtails" },
+      { label: "Ponytail", value: "ponytail" },
+      { label: "Ringlets", value: "ringlets" },
+      { label: "Shaggy", value: "shaggy" },
+      { label: "Side-shave", value: "side-shave" },
+      { label: "Windswept", value: "windswept" },
+      { label: "Wolf cut", value: "wolfCut" },
+      { label: "Undercut", value: "undercut" },
+      { label: "Unkempt", value: "unkempt" },
+      { label: "Updo", value: "updo" },
+    ]
+  }
+]
+
+// Broken apart for NPC Generator logic
+export const NPC_HAIR_STYLE = [
+  ...NPC_HAIR_TEXTURES,
+  ...NPC_HAIR_LENGTHS,
+  ...NPC_HAIR_STYLES
+];
+
+
+
+export const NPC_HUMAN_EYE_COLORS = [
+  { label: "Human eye colors", 
+    options: [
+      { label: "Black", value: "black" },
+      { label: "Blue", value: "blue" },
+      { label: "Dark brown", value: "darkBrown" },
+      { label: "Gray", value: "gray" },
+      { label: "Green", value: "green" },
+      { label: "Hazel", value: "hazel" },
+      { label: "Light brown", value: "lightBrown" },
+    ]
+  }
+];
+
+export const NPC_FANTASY_EYE_COLORS = [
+  { label: "Fantasy eye colors", 
+    options: [
+      { label: "Amethyst", value: "amethyst" },
+      { label: "Aqua", value: "aqua" },
+      { label: "Blood Red", value: "bloodRed" },
+      { label: "Bronze", value: "bronze" },
+      { label: "Cobalt", value: "cobalt" },
+      { label: "Copper", value: "copper" },
+      { label: "Crimson", value: "crimson" },
+      { label: "Emerald", value: "emerald" },
+      { label: "Gold", value: "gold" },
+      { label: "Indigo", value: "indigo" },
+      { label: "Lavender", value: "lavender" },
+      { label: "Magenta", value: "magenta" },
+      { label: "Opal", value: "opal" },
+      { label: "Peridot", value: "peridot" },
+      { label: "Pink", value: "pink" },
+      { label: "Ruby", value: "ruby" },
+      { label: "Sapphire", value: "sapphire" },
+      { label: "Silver", value: "silver" },
+      { label: "Teal", value: "teal" },
+      { label: "Topaz", value: "topaz" },
+      { label: "Violet", value: "violet" },
+      { label: "Vibrant Blue", value: "vibrantBlue" },
+      { label: "Vibrant Green", value: "vibrantGreen" },
+      { label: "Vibrant Pink", value: "vibrantPink" },
+      { label: "Vibrant Purple", value: "vibrantPurple" },
+      { label: "Vibrant Red", value: "vibrantRed" },
+      { label: "Vibrant Yellow", value: "vibrantYellow" },
+    ]
+  }
+];
+
+// Broken apart for NPC Generator logic
+export const NPC_EYE_COLOR = [
+  ...NPC_HUMAN_EYE_COLORS,
+  ...NPC_FANTASY_EYE_COLORS
+];
+
+export const NPC_DISTINGUISHING_EYES = [
+  { label: "Cataract(s)", value: "cataracts" },
+  { label: "Cross-eyed", value: "crossEyed" },
+  { label: "Heterochromia", value: "heterochromia" },
+  { label: "Glowing eyes", value: "glowingEyes" },
+  { label: "Missing eye(s)", value: "missingEyes" },
+  { label: "Scarred eye(s)", value: "scarredEyes" },
+  { label: "Unusual pupil(s)", value: "unusualPupils" }
+];
+
+export const NPC_DISTINGUISHING_FACE_COMMON = [
+  { label: "Beard / Facial hair", value: "facialHair" },
+  { label: "Birthmark(s) on face", value: "birthmarks" },
+  { label: "Dimples", value: "dimples" },
+  { label: "Freckles", value: "freckles" },
+  { label: "Mole(s) on face", value: "moles" }
+];
+
+export const NPC_DISTINGUISHING_FACE_UNCOMMON = [
+  { label: "Burn scar(s) on face", value: "burnScars" },
+  { label: "Cleft chin", value: "cleftChin" },
+  { label: "Crooked nose", value: "crookedNose" },
+  { label: "Face / War paint", value: "warPaint" },
+  { label: "Piercing(s) on face", value: "piercings" },
+  { label: "Scar(s) on face", value: "scars" },
+  { label: "Tattoo(s) on face", value: "faceTattoos" }
+];
+
+export const NPC_DISTINGUISHING_BODY_COMMON = [
+  { label: "Birthmark(s) on body", value: "bodyBirthmarks" },
+  { label: "Mole(s) on body", value: "bodyMoles" },
+  { label: "Piercing(s) on body", value: "bodyPiercings" },
+];
+
+export const NPC_DISTINGUISHING_BODY_UNCOMMON = [
+  { label: "Body / War paint", value: "bodyWarPaint" },
+  { label: "Scar(s) on body", value: "bodyScars" },
+  { label: "Tattoo(s) on body", value: "bodyTattoos" },
+  { label: "Uses assistive device(s) (crutches, hearing aids, glasses, etc.)", value: "assistiveDevices" },
+];
+
+export const NPC_DISTINGUISHING_BODY_RARE = [
+  { label: "Albinism", value: "albinism" },
+  { label: "Burn scar(s) on body", value: "bodyBurnScars" },
+  { label: "Missing limb(s)", value: "missingLimbs" },
+  { label: "Missing finger(s) / toe(s)", value: "missingDigits" },
+  { label: "Unusual skin texture", value: "unusualSkinTexture" },
+  { label: "Vitiligo", value: "vitiligo" },   
+];
+
+export const NPC_DISTINGUISHING_BODY_VERY_RARE = [
+  { label: "Exotic feature(s) (horns, tails, etc.)", value: "exoticFeatures" },
+  { label: "Glowing skin", value: "glowingSkin" },
+  { label: "Webbed fingers/toes", value: "webbedDigits" },
+  { label: "Wings (feathered)", value: "featheredWings" },
+  { label: "Wings (insectoid)", value: "insectoidWings" },
+  { label: "Wings (leathery)", value: "leatheryWings" },
+];
+
+export const NPC_DISTINGUISHING_OTHER_COMMON = [
+  { label: "Distinctive clothing / jewelry", value: "distinctiveClothing" },
+  { label: "Distinctive gait / movement", value: "distinctiveGait" },
+  { label: "Distinctive mannerisms", value: "distinctiveMannerisms" }, 
+];
+
+export const NPC_DISTINGUISHING_OTHER_UNCOMMON = [
+  { label: "Unique scent", value: "uniqueScent" },
+  { label: "Unusual voice", value: "unusualVoice" },
+];
+
+export const NPC_DISTINGUISHING_OTHER_RARE = [
+  { label: "Blind / Visually impaired", value: "blind" },
+  { label: "Deaf / Hard of hearing", value: "deaf" },
+  { label: "Mute / Non-verbal", value: "mute" },
+];
+
+export const NPC_DISTINGUISHING_FEATURES = [
+  { label: "Eyes", 
+    options: [
+      ...NPC_DISTINGUISHING_EYES
+    ]
+  },
+  { label: "Face", 
+    options: [
+      ...NPC_DISTINGUISHING_FACE_COMMON,
+      ...NPC_DISTINGUISHING_FACE_UNCOMMON
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
+  },
+  { label: "Body", 
+    options: [
+      ...NPC_DISTINGUISHING_BODY_COMMON,
+      ...NPC_DISTINGUISHING_BODY_UNCOMMON,
+      ...NPC_DISTINGUISHING_BODY_RARE,
+      ...NPC_DISTINGUISHING_BODY_VERY_RARE
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
+  }, 
+  { label: "Other",
+    options: [
+      ...NPC_DISTINGUISHING_OTHER_COMMON,
+      ...NPC_DISTINGUISHING_OTHER_UNCOMMON,
+      ...NPC_DISTINGUISHING_OTHER_RARE
+    ].sort((a, b) =>
+      a.label.localeCompare(b.label)
+    )
+  }
 ];
 
 export const NPC_CONNECTION_TYPE = [
@@ -400,15 +761,40 @@ export const NPC_CONNECTION_SITE_TYPE_ROLES: Record<string, { label: string; val
 };
 
 export const NPC_CONNECTION_NPC_ROLE = [
-  { label: "Friend", value: "friend" },
-  { label: "Enemy", value: "enemy" },
-  { label: "Teacher / Mentor", value: "teacher" },  
-  { label: "Student / Apprentice", value: "student" },
-  { label: "Parent", value: "parent" },
-  { label: "Child", value: "child" },
-  { label: "Sibling", value: "sibling" },
-  { label: "Family", value: "family" },
-  { label: "Rival", value: "rival" },
+  { label: "General",
+    options: [
+      { label: "Friend", value: "friend" },
+      { label: "Rival", value: "rival" },
+      { label: "Enemy", value: "enemy" },
+      { label: "Romantic Interest", value: "romanticInterest" },
+    ]
+  },
+  {
+    label: "Education",
+    options: [
+      { label: "Teacher / Mentor", value: "teacher" },  
+      { label: "Student / Apprentice", value: "student" },
+      { label: "Classmate", value: "classmate" }
+    ]
+  },
+  { label: "Family", 
+    options: [
+      { label: "Parent", value: "parent" },
+      { label: "Child", value: "child" },
+      { label: "Sibling", value: "sibling" },
+      { label: "Relative", value: "relative" },
+      { label: "Spouse / Partner", value: "spouse" },
+      { label: "Divorced / Ex-partner", value: "divorced" },
+    ]
+  },
+  {
+    label: "Work-Related",
+    options: [
+      { label: "Colleague / Associate", value: "colleague" },
+      { label: "Employer", value: "employer" },
+      { label: "Employee", value: "employee" }
+    ]    
+  }  
 ];
 
 export const NPC_CONNECTION_GUILD_ROLE = [
@@ -422,7 +808,12 @@ export const NPC_ROLE_PAIRS: Record<string, string> = {
   parent: "child",
   child: "parent",
   teacher: "student",
-  student: "teacher"
+  student: "teacher",
+  employer: "employee",
+  employee: "employer",
+  colleague: "colleague",
+  divorced: "divorced",
+  spouse: "spouse"
 };
 
 
@@ -437,3 +828,10 @@ export type NpcArchetype = Flatten<typeof NPC_ARCHETYPE>["value"];
 export type NpcOccupation = Flatten<typeof NPC_OCCUPATION>["value"];
 export type NpcPersuasion = Flatten<typeof NPC_PERSUASION>["value"];
 export type NpcConnectionType = typeof NPC_CONNECTION_TYPE[number];
+export type NpcHeight = typeof NPC_HEIGHT[number]["value"];
+export type NpcBuild = typeof NPC_BUILD[number]["value"];
+export type NpcHairLengths = Flatten<typeof NPC_HAIR_LENGTHS>["value"];
+export type NpcHairTextures = Flatten<typeof NPC_HAIR_TEXTURES>["value"];
+export type NpcHairStyles = Flatten<typeof NPC_HAIR_STYLE>["value"];
+export type NpcHumanSkinTones = Flatten<typeof NPC_HUMAN_SKINTONES>["value"];
+export type NpcFantasySkinTones = Flatten<typeof NPC_FANTASY_SKINTONES>["value"];

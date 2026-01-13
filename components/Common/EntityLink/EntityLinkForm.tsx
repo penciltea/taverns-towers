@@ -7,9 +7,10 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Control, FieldValues, Path } from "react-hook-form";
-import FormSelect, { Option } from "@/components/Form/FormSelect";
+import FormSelect from "@/components/Form/FormSelect";
 import { NpcConnection } from "@/interfaces/connection.interface";
 import { NpcConnectionType } from "@/constants/npc.options";
+import { Option } from "@/interfaces/options.interface"
 
 export type ConnectionItem = NpcConnection & { name: string };
 
@@ -18,7 +19,7 @@ interface EntityLinkFormProps<TFieldValues extends FieldValues> {
     availableOptions: { id: string; name: string }[];
     value: ConnectionItem[];
     onChange: (updated: ConnectionItem[]) => void;
-    roleOptions: Option[];
+    roleOptions: (Option | { label: string; options: Option[] })[];
     control: Control<TFieldValues>;
     namePrefix: string;
     type: NpcConnectionType;

@@ -14,9 +14,11 @@ import EntityViewLayout from "@/components/Layout/EntityView/EntityViewLayout";
 import EntityViewImage from "@/components/Layout/EntityView/EntityViewImage";
 import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
 import { useCampaignStore } from '@/store/campaignStore';
-import { deleteSettlement } from '@/lib/actions/settlement.actions';
+import { copySettlement, deleteSettlement } from '@/lib/actions/settlement.actions';
 import { useSettlementMutations } from '@/hooks/settlement/useSettlementMutations';
 import EntityViewActions from "@/components/Layout/EntityView/EntityViewActions";
+import { handleActionResult } from "@/hooks/queryHook.util";
+import { invalidateCampaignQueries, invalidateSettlementQueries, invalidateUserQueries } from "@/lib/util/invalidateQuery";
 
 interface ViewSettlementProps {
   settlement: Settlement;
@@ -46,19 +48,33 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
 
   const handleHighlight = async () => {
     await handlePartialUpdate({ _id: settlement._id, campaignHighlight: !settlement.campaignHighlight });
-    queryClient.invalidateQueries({ queryKey: ['highlights'] });
+    if(selectedCampaign?._id){
+      invalidateCampaignQueries(queryClient, selectedCampaign?._id);
+    }
   };
 
   const handleDelete = async () => {
     try {
       await deleteSettlement(settlement._id);
-      queryClient.invalidateQueries({ queryKey: ['ownedSettlements'] });
+      invalidateSettlementQueries(queryClient, settlement._id, selectedCampaign?._id);
       router.push("/settlements/all");
       showSnackbar('Settlement deleted successfully!', 'success');
     } catch (err) {
       console.error("Failed to delete settlement:", err);
     }
   };
+
+  const handleCopy = async () => {
+      try {
+        const result = await copySettlement(settlement._id);
+        const newSettlement = handleActionResult(result);
+        invalidateSettlementQueries(queryClient, settlement._id, selectedCampaign?._id);
+        router.push(`/settlements/${newSettlement._id}/`);
+        showSnackbar('Settlement copied successfully!', 'success');
+      } catch (err) {
+        console.error("Failed to copy settlement: ", err);
+      }
+    }
 
 
   return (
@@ -69,13 +85,15 @@ export default function ViewSettlement({ settlement }: ViewSettlementProps) {
           item={settlement}
           canFavorite={canFavorite}
           canEdit={editable}
+          canCopy={editable}
           canDelete={deletable}
           canHighlight={canHighlight}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-            queryClient.invalidateQueries({ queryKey: ['favorites'] });
+            invalidateUserQueries(queryClient, user!.id);
           }}
           onEdit={handleEdit}
+          onCopy={() => handleCopy()}
           onDelete={() => handleDelete()}
           onHighlight={handleHighlight}
         />

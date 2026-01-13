@@ -6,7 +6,7 @@ import { RecentItem } from "@/interfaces/user.interface";
 export default function DashboardFavorites(){
     const { data: activityResult, isLoading, isError } = useGetFavorites();
 
-    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
+    const items: RecentItem[] = activityResult ? activityResult : [];
 
     return (
         <Box>

@@ -19,7 +19,7 @@ export default function NpcFormPersonality(){
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
         >
-            <Box sx={{ flexGrow: 1 }}>                
+            <Box sx={{ flexGrow: 1 }}>
                 <FormChipSelect
                     name="traits"
                     label="Traits"
@@ -44,7 +44,7 @@ export default function NpcFormPersonality(){
                     label="Persuased by"
                     control={control}
                     options={[{ label: "Random", value: "random" }, ...NPC_PERSUASION]}
-                    fieldError={errors.alignment}
+                    fieldError={errors.persuasion}
                     tooltip="This field is purely descriptive." // ToDo: Verify
                 />
 

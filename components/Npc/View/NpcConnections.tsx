@@ -19,21 +19,22 @@ export default function NpcConnections({ connections }: ConnectionProps) {
         );
     } else if (!resolvedConnections || resolvedConnections.length === 0) {
         content = (
-            <Typography variant="body1">No connections yet! Who does this character know? Where do they belong? Add a connection to weave them into the tapestry of your world.</Typography>
+            <>
+                <Typography variant="h4" gutterBottom>Connections</Typography>
+                <Typography variant="body1">No connections yet! Who does this character know? Where do they belong? Add a connection to weave them into the tapestry of your world.</Typography>
+            </>
         );
     } else {
         content = (
             <Grid size={{xs: 12}} sx={{ marginTop: 4 }}>
-                <EntityLinkList connections={resolvedConnections} showType={true} />
+                <EntityLinkList connections={resolvedConnections} showType={false} />
             </Grid>
         )
     }
 
     return (
         <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 2 }}>
-            <Box sx={{ mt: 4 }}>
-                { content }
-            </Box>
+            { content }
         </Paper>
     );
 }

@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { TypographyProps } from "@mui/material/Typography";
 import { toTitleCase } from "@/lib/util/stringFormats";
-import { Option } from "@/components/Form/FormSelect";
+import { Option } from "@/interfaces/options.interface";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES, NPC_CONNECTION_SETTLEMENT_ROLE, NPC_CONNECTION_NPC_ROLE } from "@/constants/npc.options";
 import { getLabelFromValue } from "@/lib/util/getLabelFromValue";
 import { TypeConnection, isNpcConnection } from "@/lib/util/npcHelpers";
@@ -44,12 +44,13 @@ function mapConnectionRole(conn: TypeConnection, pageSiteType?: string): string 
       break;
 
     case "npc":
-      options = [
-        ...NPC_CONNECTION_NPC_ROLE,
-        ...(typeForLookup
-          ? NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? []
-          : []),
-      ];
+      options = NPC_CONNECTION_NPC_ROLE.flatMap(group => group.options);
+      if (typeForLookup) {
+        options = [
+          ...options,
+          ...(NPC_CONNECTION_SITE_TYPE_ROLES[typeForLookup] ?? []),
+        ];
+      }
       break;
 
     default:

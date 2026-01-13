@@ -47,9 +47,9 @@ export const persuasionByAlignmentMapping: Record<NpcAlignment, string[]> = {
     "Neutral Good": ["negotiation", "empathy", "reason"],
     "Chaotic Good": ["empathy", "negotiation", "charm", "manipulation", "flattery"],
 
-    "Lawful Neutral": ["authority", "reason", "negotiaton"],
+    "Lawful Neutral": ["authority", "reason", "negotiation"],
     "True Neutral": ["none", "reason", "negotiation", "goading"],
-    "Chaotic Neutral": ["empathy", "deception", "flattery", "negotiaton", "goading"],
+    "Chaotic Neutral": ["empathy", "deception", "flattery", "negotiation", "goading"],
     
     "Lawful Evil": ["authority", "negotiation", "reason", "manipulation"],
     "Neutral Evil": ["manipulation", "deception", "trheats", "bribery", "goading"],
@@ -85,10 +85,52 @@ export const persuasionByTraitsMapping: Record<string, string[]> = {
   "obsessive": ["reason", "manipulation"]
 };
 
-export const NpcLikes = {
+export const NpcCommonLikes = [
+  "sharing meals", "cooking", "trying new cuisines", "gourmet dishes", "baking", "spicy foods", "sweets", "alcoholic drinks", "coffee", "tea", "fresh fruit",
+  "the smell of fresh bread", "the smell of rain", "the smell of a fireplace", "fresh flowers", "the ocean breeze",
+  "playing instruments", "singing", "dancing", "attending performances", "writing music",
+  "telling tales", "listening to stories", "reading books", "writing stories", "poetry",
+  "hiking", "gardening", "bird watching", "camping", "fishing", "spending time outdoors",
+  "painting", "sculpting", "dabbling in new hobbies", "crafting", "drawing",
+  "board games", "card games", 
+  "cats", "dogs", "horses", "exotic pets", "wildlife",
+  "studying history", "visiting historical sites", "collecting antiques",
+  "exploring new places", "meeting new people", "adventuring", "learning about cultures",
+  "studying new subjects", "attending lectures", "reading scholarly works",
+  "cozy firesides", "warm blankets", "comfortable furniture", "quiet spaces", "taking warm baths",
+];
 
-}
+export const NpcUncommonLikes = [
+  "carving wood animals", "tailoring", "jewelry making",
+  "taking a nap in sunlight", "cloud watching", "stargazing", "moonlit walks",
+  "wearing perfume or cologne", "dressing fashionably", "collecting hats", "designing clothing",
+  "debating philosophical ideas", "reading philosophical texts", "writing philosophical texts", "engaging in debates",
+  "meditation", "prayer", "attending religious services", "studying sacred texts",
+  "strategy games", "gambling", "puzzles", "drinking games",
+  "inventing", "tinkering", "studying new technologies", "building gadgets",
+  "collecting oddly-shaped rocks", "collecting feathers, buttons, or other trinkets", "talking to plants", "memorizing unusual facts", "walking in the rain without an umbrella", "splashing in puddles",
+  "reading tea leaves", "studying astrology", "practicing divination", "exploring haunted places",
+  "being the center of attention", "public speaking", "large social gatherings",
+];
 
-export const NpcDislikes = {
-    
-}
+export const NpcCommonDislikes = [
+  "spicy foods", "sweets", "coffee", "tea", "beer or ale", "wine", "fish or seafood", 
+  "loud noises", "crowded places",
+  "spiders", "snakes", "bugs", "insects",
+  "scratchy fabrics", "tight clothing", "damp clothes", "wet socks",
+  "being interrupted", "rudeness", "dishonesty", "cheating",
+  "waiting in long lines", "being late",
+  "cold weather", "hot weather", "being wet",
+  "drunken brawlers",
+];
+
+export const NpcUncommonDislikes = [
+  "rough textures", "the sound of quills on parchment", "overly repetitive noises", "the smell of smoke", "the taste of magically-purified water", "strong perfumes or colognes", "cilantro",
+  "cats", "dogs",
+  "the color orange", "the color yellow", 
+  "being the center of attention", "public speaking", "large social gatherings", "being ignored",
+  "dirty environment", "untidiness", 
+  "heights", "dark or enclosed spaces", "feeling worthless",
+  "bad weather on travel days", "early mornings", 
+  "sitting facing away from the door", "gossipers",
+]

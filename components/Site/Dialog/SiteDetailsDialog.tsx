@@ -18,6 +18,7 @@ import FavoriteButton from '@/components/Common/Button/FavoriteButton';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCampaignPermissionsQuery } from '@/hooks/campaign/campaign.query';
 import { useCampaignStore } from '@/store/campaignStore';
+import { invalidateUserQueries } from '@/lib/util/invalidateQuery';
 
 
 export const TavernDetails = dynamic<{ site: TavernSite }>(
@@ -138,7 +139,7 @@ export default function SiteDetailsDialog({ open, onClose, settlementId, siteDat
           item={site}
           onToggleFavorite={async (updated) => {
             await handlePartialUpdate({ _id: updated._id, favorite: updated.favorite });
-            queryClient.invalidateQueries({ queryKey: ["favorites"] });
+            invalidateUserQueries(queryClient, user!.id);
           }}
         />
       </DialogTitle>

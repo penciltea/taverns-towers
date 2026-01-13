@@ -7,7 +7,7 @@ import EntityLinkForm, { ConnectionItem } from "@/components/Common/EntityLink/E
 import { SiteFormData } from "@/schemas/site.schema";
 import { useSiteContentStore } from "@/store/siteStore";
 import { useSearchParams } from "next/navigation";
-import { Option } from "@/components/Form/FormSelect";
+import { Option } from "@/interfaces/options.interface";
 import { NPC_CONNECTION_SITE_ROLE, NPC_CONNECTION_SITE_TYPE_ROLES } from "@/constants/npc.options";
 
 interface Props {

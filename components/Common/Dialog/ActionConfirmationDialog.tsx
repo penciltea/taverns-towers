@@ -9,17 +9,17 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import { DialogProps } from "@/interfaces/dialogProps.interface";
 
-export default function DeleteConfirmationDialog({
+export default function ActionConfirmationDialog({
   open,
   onClose,
   onConfirm,
   title,
   message,
-  deleting = "item",
-  deleteText = "delete"
+  contentName = "item",
+  buttonText = "delete"
 }: DialogProps) {
-  const defaultTitle = `Delete ${deleting}?`;
-  const defaultMessage = `Are you sure you want to delete this ${deleting}? This action cannot be undone.`;
+  const defaultTitle = `Delete ${contentName}?`;
+  const defaultMessage = `Are you sure you want to delete this ${contentName}? This action cannot be undone.`;
 
 
   return (
@@ -34,7 +34,7 @@ export default function DeleteConfirmationDialog({
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button color="error" onClick={onConfirm}>{ deleteText }</Button>
+        <Button color="error" onClick={onConfirm}>{ buttonText }</Button>
       </DialogActions>
     </Dialog>
   );

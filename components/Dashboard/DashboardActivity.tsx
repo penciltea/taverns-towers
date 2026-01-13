@@ -1,14 +1,16 @@
 'use client'
 
+import { useAuthStore } from "@/store/authStore";
 import { useRecentActivityQuery } from "@/hooks/user/user.query";
 import { RecentItem } from "@/interfaces/user.interface";
 import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import NextMuiLink from "../Common/NextMuiLink";
 
 export default function DashboardActivity(){
-    const { data: activityResult, isLoading, isError } = useRecentActivityQuery(5);
+    const user = useAuthStore(state => state.user);
+    const { data: activityResult, isLoading, isError } = useRecentActivityQuery(5, user!.id);
 
-    const items: RecentItem[] = activityResult?.success ? activityResult.data : [];
+    const items: RecentItem[] = activityResult? activityResult : [];
 
     function handleNavigation(item: RecentItem) {
         switch (item.type) {

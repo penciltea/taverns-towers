@@ -23,7 +23,14 @@ export interface INpc extends Document {
   age?: string;
   pronouns?: string;
   alignment?: string;
+  height?: string;
+  build?: string;
   status?: string;
+  eyeColor?: string[];
+  hairColor?: string[];
+  hairStyle?: string;
+  skinTone?: string[];
+  features?: string[];
   race?: string;
   traits?: NpcTrait[];
   reputation?: string;
@@ -61,6 +68,13 @@ const npcSchema = new Schema<INpc>(
     archetype: { type: String, enum: npcArchetypeValues },
     occupation: [{ type: String, enum: npcOccupationValues }],
     persuasion: [{ type: String, enum: persuasionValues }],
+    eyeColor: [{ type: String }],
+    hairColor: [{ type: String }],
+    hairStyle: [{ type: String }],
+    skinTone: [{ type: String }],
+    features: [{ type: String }],
+    height: String,
+    build: String,
     likes: String,
     dislikes: String,
     description: { type: String },
@@ -76,6 +90,19 @@ const npcSchema = new Schema<INpc>(
   },
   { timestamps: true }
 );
+
+/**
+ * For NPC description purposes 
+*/
+export type IntegumentType =
+  | "skin"
+  | "scales"
+  | "feathers"
+  | "fur"
+  | "chitin"
+  | "stone"
+  | "metal"
+  | "other";
 
 const NpcModel = mongoose.models.NPC || mongoose.model("NPC", npcSchema, "npcs");
 export default NpcModel;

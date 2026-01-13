@@ -20,6 +20,11 @@ const NpcFormBasics = dynamic(() => import("./Basics"), {
   loading: () => <Spinner />,
 });
 
+const NpcFormPhysicalTraits = dynamic(() => import("./PhysicalTraits"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+
 const NpcFormPersonality = dynamic(() => import("./Personality"), {
   ssr: false,
   loading: () => <Spinner />,
@@ -175,13 +180,16 @@ export default function NpcForm({ onSubmit, mode, generator }: NpcFormProps) {
           { tab === 0 && <NpcFormBasics /> }
         </TabPanel>
         <TabPanel value={tab} index={1}>
-          { tab === 1 && <NpcFormPersonality /> }
+          { tab === 1 && <NpcFormPhysicalTraits /> }
         </TabPanel>
         <TabPanel value={tab} index={2}>
-          { tab === 2 && <NpcFormConnections /> }
+          { tab === 2 && <NpcFormPersonality /> }
         </TabPanel>
         <TabPanel value={tab} index={3}>
-          { tab === 3 && <NpcFormConfiguration /> }
+          { tab === 3 && <NpcFormConnections /> }
+        </TabPanel>
+        <TabPanel value={tab} index={4}>
+          { tab === 4 && <NpcFormConfiguration /> }
         </TabPanel>
 
         <FormActions mode={mode} entityName="Npc" isSubmitting={isSubmitting} onCancel={handleCancel} />

@@ -22,7 +22,23 @@ import {
   applyReputationByArchetypeRule,
   applyStatusRule,
   applyTraitsRule,
-} from "./applyRules";
+  applyLikesRule,
+  applyDislikesRule
+} from "./npc.rules";
+
+import { 
+  applyHeightRule,
+  applyBuildRule,
+  applySkinToneRule,
+  applyEyeColorRule,
+  applyHairColorRule,
+  applyHairStyleRule,
+  applyDistinguishingFeaturesRule
+} from "./description/physicalTrait.rules";
+
+ import { 
+  applyNpcDescriptionRule
+} from "./description/description.rules";
 
 // Default list of rules to apply sequentially
 const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[] = [
@@ -36,6 +52,15 @@ const defaultRuleFns: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>
   async (data) => applyReputationByArchetypeRule(data),
   async (data) => applyOccupationByConditionsRule(data),
   async (data) => applyPersuasionByConditionsRule(data),
+  async (data) => applyHeightRule(data),
+  async (data) => applyBuildRule(data),
+  async (data) => applySkinToneRule(data),
+  async (data) => applyEyeColorRule(data),
+  async (data) => applyHairColorRule(data),
+  async (data) => applyHairStyleRule(data),
+  async (data) => applyDistinguishingFeaturesRule(data),
+  async (data) => applyLikesRule(data),
+  async (data) => applyDislikesRule(data),
 ];
 
 /**
@@ -56,6 +81,8 @@ export const generateNpcValues = async (
     data = await fn(data);
   }
 
+  data.description = applyNpcDescriptionRule(data).description;
+
   return data;
 };
 
@@ -70,14 +97,16 @@ export const generateNpcWithName = async (
   input: NormalizedNpcInput,
   rules?: ((data: NormalizedNpcInput) => Promise<NormalizedNpcInput>)[]
 ) => {
-  const coreData = await generateNpcValues(input, rules);
+  let coreData = await generateNpcValues(input, rules);
 
   const raceArray = coreData.race ? [coreData.race] : undefined;
 
-  const name = await generateNpcName({ race: raceArray });
+  coreData.name = await generateNpcName({ race: raceArray });
+  coreData.description = "";
+
+  coreData = applyNpcDescriptionRule(coreData);
 
   return {
-    ...coreData,
-    name,
+    ...coreData
   };
 };

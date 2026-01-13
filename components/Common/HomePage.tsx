@@ -12,6 +12,7 @@ import PatreonCta from "./PatreonCta"
 import NextMuiLink from "./NextMuiLink";
 import ThemedButton from "./Button/ThemedButton";
 import HighlightCard from "./HighlightCard";
+import { Button } from "@mui/material";
 
 export default function HomeContent() {
     return (
@@ -33,7 +34,7 @@ export default function HomeContent() {
                     Build Worlds, Craft Stories, Play Better
                 </Typography>
                 <Typography variant="h6" component="p" gutterBottom>
-                    Generate towns, locations, and characters with powerful tools tailored for GMs, writers, and world-builders.
+                    Generate towns, locations, and characters when you need them, without breaking the flow of play.
                 </Typography>
                 <Box sx={{ marginTop: 4 }}>
                     <ThemedButton text="create your world" href="/settlements/new" />
@@ -125,7 +126,7 @@ export default function HomeContent() {
                     my: 6,
                 }}
             >
-                <Typography variant="h4" component="h3" gutterBottom>How It Works</Typography>
+                <Typography variant="h4" component="h4" gutterBottom>How It Works</Typography>
                 <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto", mb: 4 }}>
                     Build your world in seconds with just a few simple steps:
                 </Typography>
@@ -167,34 +168,67 @@ export default function HomeContent() {
 
             {/* Features Section */}
             <Paper sx={{ px: 2, py: 4, my: 8, borderRadius: 2 }}>
-                <Typography variant="h4" component="h4" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
+                <Typography variant="h4" component="h5" sx={{ textAlign: "center", marginBottom: 3 }}>Features</Typography>
 
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ alignItems: "stretch", justifyContent: "center" }}>
                     <HighlightCard
-                        icon="&#x1F3F0;"
-                        title="Create settlements & sites"
-                        description="Generate towns, villages, and unique locations in seconds. Customize size, terrain, and special features to fit your world."
-                    />
-                    <HighlightCard
-                        icon="&#x1F4DC;"
-                        title="Menus made easy"
-                        description="Quickly craft menus for shops, taverns, and more. Include meals, drinks, and magical items with a few clicks."
+                        icon="&#x1F528;"
+                        title="Campaign-ready tools"
+                        description="Favorites, recent content, active campaigns, and highlights help you find what you need fast, even mid-session. New generators like guilds and factions are actively in development."
                     />
                     <HighlightCard
                         icon="&#x1F9DD;"
                         title="Build NPCs"
-                        description="Generate names, personalities, traits, and relationships instantly. Bring your towns to life with memorable characters."
+                        description="Instantly generate names, personalities, and standout traits you can read aloud at the table. Perfect for when players talk to *that* NPC you didn&apos;t plan for."
                     />
-                    <HighlightCard
-                        icon="&#x1F528;"
-                        title="More tools coming"
-                        description="New features are added regularly, including guilds & factions, pantheons, and more ways to bring your world to life."
+                    <HighlightCard                    
+                        icon="&#x1F3F0;"
+                        title="Create settlements & sites"
+                        description="Generate towns, villages, and locations in seconds, complete with coherent details and sensible structure. Designed to stay consistent with your world, even when you&apos;re improvising."
                     />
+                    <HighlightCard                        
+                        icon="&#x1F4DC;"
+                        title="Menus made easy"
+                        description="Quickly generate shop and tavern menus when players ask what&apos;s for sale. Clear, usable lists that make sense for the venue. No scrambling or stalling the game."
+                    />                    
                 </Stack>
             </Paper>
 
+            {/* Release Notes & Roadmap */}
+            <Box sx={{ textAlign: "center", marginTop: 6, marginBottom: 1 }}>
+                <Typography variant="h4" component="p" gutterBottom textAlign="center">Available Today & More on the Way</Typography>
+                <Typography variant="body1" sx={{ my: 2 }}>All core tools are fully usable today, from NPCs and settlements to sites, campaigns, and quick-reference menus.</Typography>
+                
+                <Typography>Additional generators, export options, and advanced features are actively in development to make your worldbuilding even faster and more flexible. <NextMuiLink href="/roadmap" underline="always">Check out the Roadmap</NextMuiLink>.
+                </Typography>
+            </Box>
+
+            
             <Box sx={{ textAlign: "center", my: 6 }}>
-                <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜄 🜂 🜚 🜁 🜃</Typography>
+                <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜂 🜃 🜄 🜚 🜁</Typography>
+            </Box>
+
+            {/* What RealmFoundry Isn't */}
+            <Box
+                sx={{
+                    py: 5,
+                    px: { xs: 2, sm: 4 },
+                    textAlign: "center",
+                    backgroundColor: (theme) => theme.palette.mode === "light" ? "#f0f8ff" : "#1e1e2e",
+                    borderRadius: 2,
+                    my: 8,
+                    position: "relative",
+                }}
+            >
+                <Typography variant="h4" component="h6" gutterBottom>What RealmFoundry Isn&apos;t</Typography>
+
+                <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto" }}>RealmFoundry is designed to support your game — not replace your creativity. It isn&apos;t a full campaign writer, a plot generator, or a replacement for your virtual tabletop. Instead, it gives you fast, flexible tools for creating and organizing the details you need when inspiration runs short or time is tight.</Typography>
+
+                <Typography variant="body1" sx={{ maxWidth: 700, mx: "auto" }}>You stay in control of the story. RealmFoundry helps you keep the world consistent and playable.</Typography>
+            </Box>
+
+            <Box sx={{ textAlign: "center", my: 6 }}>
+                <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜄 🜁 🜚 🜂 🜃</Typography>
             </Box>
 
             {/* Membership Tiers */}
@@ -209,8 +243,9 @@ export default function HomeContent() {
                             : "linear-gradient(180deg, #2B2B3F 0%, #1d2a3b 50%, #2B2B3F 100%)",
                 }}
             >
-                <Typography variant="h4" component="h5" gutterBottom textAlign="center">Membership Tiers</Typography>
-                <Typography variant="body1" sx={{ mb: 4, textAlign: "center" }}>Choose a plan that fits your world-building needs.</Typography>
+                <Typography variant="h4" component="p" gutterBottom textAlign="center">Membership Tiers</Typography>
+
+                <Typography variant="body1" gutterBottom sx={{ mb: 4, textAlign: "center" }}>Choose a plan that fits your world-building needs. Your support helps RealmFoundry grow and unlock new tools faster.</Typography>
 
                 <Stack
                     direction={{ xs: "column", sm: "row" }}
@@ -291,15 +326,60 @@ export default function HomeContent() {
                 <Typography variant="h2" sx={{ fontSize: 36, opacity: 0.08 }}>🜃 🜁 🜚 🜂 🜄</Typography>
             </Box>
 
-            {/* Release Notes & Roadmap */}
-            <Box sx={{ textAlign: "center", marginTop: 6, marginBottom: 1 }}>
-                <Typography variant="h4" component="h5" gutterBottom textAlign="center">
-                    What&apos;s Available & What&apos;s Coming Next
+            <Paper
+                sx={{
+                    textAlign: "center",
+                    mt: 8,
+                    mb: 4,
+                    py: 4,
+                    px: 2,
+                    borderRadius: 2,
+                }}
+            >
+                <Typography variant="h4" gutterBottom>Stay Connected</Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                    Follow RealmFoundry for updates, feature announcements, and world-building tips.
                 </Typography>
-                <Typography variant="body1" sx={{ mt: 2 }}>
-                    See what&apos;s live in the <NextMuiLink href="/releases/" underline="always">Release Notes</NextMuiLink> or what&apos;s coming in the <NextMuiLink href="/roadmap" underline="always">Roadmap</NextMuiLink>.
-                </Typography>
-            </Box>
+
+                <Stack
+                    direction="row"
+                    spacing={3}
+                    justifyContent="center"
+                    sx={{ flexWrap: "wrap" }}
+                >
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ mt: 3 }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://bsky.app/profile/realmfoundry.bsky.social"
+                    >
+                        BlueSky
+                    </Button>
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ mt: 3 }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://x.com/RealmFoundry"
+                    >
+                        X (Twitter)
+                    </Button>
+
+                    {/* Coming Soon Items */}
+                    <Box sx={{ opacity: 0.6 }}>
+                        <Button variant="outlined" disabled>Discord (Coming Soon)</Button>
+                    </Box>
+
+                    <Box sx={{ opacity: 0.6 }}>
+                        <Button variant="outlined" disabled>Reddit (Coming Soon)</Button>
+                    </Box>
+                </Stack>
+            </Paper>
 
             <PatreonCta />
         </Box>

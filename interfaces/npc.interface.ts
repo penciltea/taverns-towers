@@ -15,6 +15,13 @@ export interface Npc extends CommonInterface {
   archetype?: string;
   occupation?: string[];
   persuasion?: string[];
+  height?: string;
+  build?: string;
+  eyeColor?: string[];
+  hairColor?: string[];
+  hairStyle?: string[];
+  skinTone?: string[];
+  features?: string[];
   likes?: string;
   dislikes?: string;
   image?: string;
