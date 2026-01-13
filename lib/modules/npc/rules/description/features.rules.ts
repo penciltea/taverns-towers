@@ -12,38 +12,48 @@ export function filterApplicableFeatures(features: string[]): string[]{
 
 function conjugateForPlural(verbPhrase: string, pronoun: string): string {
   const lower = pronoun.toLowerCase();
-  
+
   // Only apply for plural pronouns
   if (!["they", "zey"].includes(lower)) return verbPhrase;
 
   const words = verbPhrase.split(" ");
-  let firstVerb = words[0];
+  let firstVerb = words[0].toLowerCase();
 
-  // Handle common irregulars first
-  if (firstVerb === "has") firstVerb = "have";
-  else if (firstVerb === "is") firstVerb = "are";
-  else {
-    const lastChar = firstVerb.slice(-1).toLowerCase();
-
-    if (lastChar === "y" && firstVerb.length > 1 && !/[aeiou]/i.test(firstVerb.slice(-2, -1))) {
-      // consonant + y -> ies
-      firstVerb = firstVerb.slice(0, -1) + "ies";
-    } else if (lastChar === "h") {
-      // verbs ending in 'h' -> es (push -> pushes already in singular)
-      firstVerb = firstVerb + "es";
-    } else if (lastChar === "s") {
-      // verbs ending in 's' -> es
-      firstVerb = firstVerb + "es";
-    } else if (lastChar === "p") {
-      // verbs ending in 's' -> es
-      firstVerb = firstVerb + "es";
-    }else {
-      // All other verbs just append 's'
-      firstVerb = firstVerb + "s";
-    }
+  // Handle irregulars first
+  if (firstVerb === "has") {
+    words[0] = "have";
+    return words.join(" ");
   }
 
-  words[0] = firstVerb;
+  if (firstVerb === "is") {
+    words[0] = "are";
+    return words.join(" ");
+  }
+
+  if( firstVerb === "uses"){
+    words[0] = "use";
+    return words.join(" ");
+  }
+
+  // ies → y (carries → carry)
+  if (firstVerb.endsWith("ies") && firstVerb.length > 3) {
+    words[0] = firstVerb.slice(0, -3) + "y";
+    return words.join(" ");
+  }
+
+  // es → base (pushes → push, dresses → dress)
+  const esEndings = ["ches", "shes", "ses", "xes", "zes", "pes"];
+  if (esEndings.some(e => firstVerb.endsWith(e))) {
+    words[0] = firstVerb.slice(0, -2);
+    return words.join(" ");
+  }
+
+  // s → base (walks → walk)
+  if (firstVerb.endsWith("s")) {
+    words[0] = firstVerb.slice(0, -1);
+    return words.join(" ");
+  }
+
   return words.join(" ");
 }
 
@@ -64,7 +74,8 @@ export function getFeaturesDescriptions(
     if (NpcFeatureNounText[feature as keyof typeof NpcFeatureNounText]) {
       const text = getRandom(
         NpcFeatureNounText[feature as keyof typeof NpcFeatureNounText]
-      ).replace(/\{possessive\}/g, pronounPossessive.toLowerCase());
+      )
+      .replace(/\{possessive\}/g, pronounPossessive.toLowerCase());
 
       noun.push(text);
       continue;
@@ -73,7 +84,8 @@ export function getFeaturesDescriptions(
     if (NpcFeatureVerbText[feature as keyof typeof NpcFeatureVerbText]) {
       let text = getRandom(
         NpcFeatureVerbText[feature as keyof typeof NpcFeatureVerbText]
-      ).replace(/\{possessive\}/g, pronounPossessive.toLowerCase());
+      )
+      .replace(/\{possessive\}/g, pronounPossessive.toLowerCase());
 
       text = conjugateForPlural(text, pronounNoun);
 
@@ -108,7 +120,6 @@ export function getNpcFeatureDescriptions(npc: NpcDescriptionType): string {
 
 
 export function buildNpcFeaturesDescription(data: ReturnType<typeof normalizeNpcInput>, hasOrHave: string, pronounNoun: string, pronounPossessive: string): string {
-    console.log("features data: ", data);
     const applicableFeatures = filterApplicableFeatures(data.features);
     const { noun, verb } = getFeaturesDescriptions(
         applicableFeatures,
@@ -118,9 +129,6 @@ export function buildNpcFeaturesDescription(data: ReturnType<typeof normalizeNpc
 
     const featuresNounText = noun.length ? oxfordCommaList(noun) : undefined;
     const featuresVerbText = verb.length ? oxfordCommaList(verb) : undefined;
-
-    console.log("noun length: ", noun.length);
-    console.log("verb length: ", verb.length);
 
     // If no distinguishing features, exit early to prevent strange descriptions
     if (!noun.length && !verb.length) {

@@ -117,28 +117,28 @@ export const NpcFeatureNounText: Record<string, string[]> = {
 export const NpcFeatureVerbText: Record<string, string[]> = {
   "assistiveDevices": [
     // Mobility aids
-    "walk with the aid of a cane",
-    "lean heavily on a carved walking staff",
-    "move with the support of a sturdy crutch",
-    "move with the help of worn crutches",
-    "use a brace to support one leg",
-    "wear a rigid leg brace beneath {possessive} clothing",
-    "steady themselves with a walking frame",
-    "push a small wheeled chair adapted for travel",
+    "walks with the aid of a cane",
+    "leans heavily on a carved walking staff",
+    "moves with the support of a sturdy crutch",
+    "moves with the help of worn crutches",
+    "uses a brace to support one leg",
+    "wears a rigid leg brace beneath {possessive} clothing",
+    "steadies themselves with a walking frame",
+    "pushes a small wheeled chair adapted for travel",
 
     // Sensory aids
-    "wear thick-lensed spectacles",
-    "use a monocle to focus {possessive} vision",
-    "rely on a finely crafted hearing trumpet",
-    "wear a subtle hearing aid",
+    "wears thick-lensed spectacles",
+    "uses a monocle to focus {possessive} vision",
+    "relies on a finely crafted hearing trumpet",
+    "wears a subtle hearing aid",
     "is guided by a white cane",
     "is guided by a trained companion animal",
 
     // Prosthetics
-    "bear a well-crafted prosthetic hand",
-    "us a wooden prosthetic leg",
-    "wear an articulated metal prosthetic",
-    "bear a magically reinforced limb replacement"
+    "bears a well-crafted prosthetic hand",
+    "uses a wooden prosthetic leg",
+    "wears an articulated metal prosthetic",
+    "bears a magically reinforced limb replacement"
   ],
 
   "missingLimbs": [
@@ -159,7 +159,7 @@ export const NpcFeatureVerbText: Record<string, string[]> = {
   "exoticFeatures": [
     "has small, curved horns atop {possessive} head",
     "has a long, flexible tail",
-    "bear a pair of twisted horns",
+    "bears a pair of twisted horns",
     "has a tail that sways with {possessive} movements",
     "has short, stubby horns emerging from {possessive} skull",
     "has horns curving backward along {possessive} head",
@@ -176,101 +176,101 @@ export const NpcFeatureVerbText: Record<string, string[]> = {
 
   "featheredWings": [
     "has large feathered wings",
-    "bear wings of layered feathers",
+    "bears wings of layered feathers",
     "has feathered wings sprouting from {possessive} back",
     "has wings like those of a great bird"
   ],
 
   "insectoidWings": [
     "has translucent, insect-like wings",
-    "bear delicate insectoid wings",
+    "bears delicate insectoid wings",
     "has shimmering wings fitted along {possessive} back",
     "has wings resembling those of a giant insect"
   ],
 
   "leatheryWings": [
     "has broad leathery wings",
-    "bear bat-like wings",
+    "bears bat-like wings",
     "has wings stretched with thin, leathery skin",
     "has wings of stretched membrane"
   ],
 
   "distinctiveClothing": [
-    "wear distinctive clothing",
-    "dress in unusual garments",
-    "wear attire that immediately draws the eye",
-    "adorn themselves with memorable clothing or jewelry"
+    "wears distinctive clothing",
+    "dresses in unusual garments",
+    "wears attire that immediately draws the eye",
+    "sports memorable clothing or jewelry"
   ],
 
   "distinctiveGait": [
-    "move with a measured, deliberate stride",
-    "walk with a slight hitch in each step",
-    "favor one leg when walking",
-    "move as though carefully pacing every step",
+    "moves with a measured, deliberate stride",
+    "walks with a slight hitch in each step",
+    "favors one leg when walking",
+    "moves as though carefully pacing every step",
     "has a rolling, side-to-side walk",
-    "walk with the confidence of someone long accustomed to being watched",
-    "move with an oddly graceful limp",
+    "walks with the confidence of someone long accustomed to being watched",
+    "moves with an oddly graceful limp",
     "has a stride that seems rehearsed rather than natural",
-    "walk as if always navigating uneven ground",
-    "step in a steady, almost ritual pattern"
+    "walks as if always navigating uneven ground",
+    "steps in a steady, almost ritual pattern"
   ],
 
   "distinctiveMannerisms": [
-    "punctuate speech with precise, practiced gestures",
+    "punctuates speech with precise, practiced gestures",
     "has a habit of tilting {possessive} head while listening",
-    "tap fingers when thinking",
-    "move {possessive} hands constantly while speaking",
-    "pause mid-sentence as if choosing each word carefully",
-    "adjust {possessive} posture frequently when observed",
+    "taps fingers when thinking",
+    "moves {possessive} hands constantly while speaking",
+    "pauses mid-sentence as if choosing each word carefully",
+    "adjusts {possessive} posture frequently when observed",
     "has a tendency to repeat certain phrases unconsciously",
-    "use overly formal gestures even in casual moments",
-    "shift expressions quickly, rarely settling"
+    "uses overly formal gestures even in casual moments",
+    "shifts expressions quickly, rarely settling"
   ],
 
   "uniqueScent": [
-    "carry a faint scent of incense and old parchment",
-    "smell faintly of smoke and ash",
+    "carries a faint scent of incense and old parchment",
+    "smells faintly of smoke and ash",
     "is followed by the lingering scent of herbs",
-    "carry the sharp tang of metal and oil",
-    "smell of damp earth and rain",
+    "carries the sharp tang of metal and oil",
+    "smells of damp earth and rain",
     "has a faintly floral scent that seems out of place",
-    "leave behind the smell of leather and polish",
-    "carry a clean, almost medicinal aroma",
-    "smell faintly of salt and wind",
+    "leaves behind the smell of leather and polish",
+    "carries a clean, almost medicinal aroma",
+    "smells faintly of salt and wind",
     "has a lingering odor"
   ],
 
   "unusualVoice": [
-    "speak in a low, rasping tone",
+    "speaks in a low, rasping tone",
     "has a voice that sounds perpetually hoarse",
-    "speak with a soft voice that carries surprisingly far",
+    "speaks with a soft voice that carries surprisingly far",
     "has a voice that rises and falls unpredictably",
-    "speak with a measured, almost careful cadence",
+    "speaks with a measured, almost careful cadence",
     "has a voice that seems oddly hollow",
-    "speak with a sharp, clipped delivery",
+    "speaks with a sharp, clipped delivery",
     "has a voice that lingers in the air after speaking",
-    "speak with an accent that defies easy placement",
-    "carry an unsettling calm in {possessive} voice"
+    "speaks with an accent that defies easy placement",
+    "carries an unsettling calm in {possessive} voice"
   ],
 
   "blind": [
-    "is blind or visually impaired",
-    "navigate without relying on sight",
-    "show signs of visual impairment"
+    "is visually impaired",
+    "navigates without relying on sight",
+    "shows signs of visual impairment"
   ],
 
   "deaf": [
     "is hard of hearing",
-    "respond primarily to visual cues",
-    "communicate with limited reliance on sound",
-    "show signs of hearing loss"
+    "responds primarily to visual cues",
+    "communicates with limited reliance on sound",
+    "shows signs of hearing loss"
   ],
 
   "mute": [
     "is unable to speak",
-    "communicate without spoken words",
-    "rely on gestures or signs to communicate",
-    "express themselves without a voice"
+    "communicates without spoken words",
+    "relies on gestures or signs to communicate",
+    "expresses themselves without a voice"
   ]
 };
 
