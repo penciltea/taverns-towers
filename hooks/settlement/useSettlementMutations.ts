@@ -125,14 +125,13 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
         "success"
       );
 
+      router.replace(`/settlements/${saved._id}`);
+
       invalidateSettlementQueries(queryClient, saved._id);
 
       if (selectedCampaign) {
         invalidateCampaignQueries(queryClient, selectedCampaign._id);
-      }
-
-      console.log(`/settlements/${saved._id}`);
-      router.push(`/settlements/${saved._id}`);
+      }     
 
     } catch (error) {
       let message = "Something went wrong saving the settlement. Please try again later.";

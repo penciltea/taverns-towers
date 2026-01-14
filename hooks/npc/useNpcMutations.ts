@@ -114,9 +114,9 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 "success"
             );
 
-            invalidateNpcQueries(queryClient, npcId ?? "", selectedCampaign?._id ?? undefined );
-            
             router.push(`/npcs/${saved._id}`);
+
+            invalidateNpcQueries(queryClient, npcId ?? "", selectedCampaign?._id ?? undefined );
 
         } catch (error) {
             let message = "Something went wrong saving the NPC. Please try again later.";

@@ -342,7 +342,7 @@ export default function HomeContent() {
                 </Typography>
 
                 <Stack
-                    direction="row"
+                    direction={{ xs: "column", sm: "row" }}
                     spacing={3}
                     justifyContent="center"
                     sx={{ flexWrap: "wrap" }}
@@ -351,7 +351,6 @@ export default function HomeContent() {
                     <Button
                         variant="contained"
                         color="secondary"
-                        sx={{ mt: 3 }}
                         target="_blank"
                         rel="noopener noreferrer"
                         href="https://bsky.app/profile/realmfoundry.bsky.social"
@@ -362,7 +361,6 @@ export default function HomeContent() {
                     <Button
                         variant="contained"
                         color="secondary"
-                        sx={{ mt: 3 }}
                         target="_blank"
                         rel="noopener noreferrer"
                         href="https://x.com/RealmFoundry"
