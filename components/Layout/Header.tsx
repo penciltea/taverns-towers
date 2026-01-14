@@ -56,6 +56,39 @@ export default function Header() {
   const headerTextColor =
     theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
 
+  const UserActions = (
+    <>
+      <Button
+        color="secondary"
+        variant="outlined"
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+      >
+        <UserAvatar
+          username={user?.username ?? ""}
+          avatar={user?.avatar ?? ""}
+          width={26}
+          height={26}
+        />
+        Hi, {displayName}!
+      </Button>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={closeUserMenu}
+      >
+        <MenuItem disabled>Tier: {displayTier}</MenuItem>
+        <Divider />
+        <MenuItem onClick={() => handleNavigate('/account/dashboard')}>
+          Account Dashboard
+        </MenuItem>
+        <MenuItem onClick={handleSignOut}>
+          Logout
+        </MenuItem>
+      </Menu>
+    </>
+  );
+
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       {/* === TOP ROW (always horizontal) === */}
@@ -78,65 +111,41 @@ export default function Header() {
         <Box sx={{ flexGrow: 1 }} />
 
         {/* Desktop-only actions */}
-        {!isMobile && (
-          <>
-            {user ? (
-              <>
-                <Button
-                  color="inherit"
-                  onClick={(e) => setAnchorEl(e.currentTarget)}
-                >
-                  <UserAvatar
-                    username={user.username}
-                    avatar={user.avatar ?? ""}
-                    width={26}
-                    height={26}
-                  />
-                  Hi, {displayName}!
-                </Button>
-
-                <Menu
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={closeUserMenu}
-                >
-                  <MenuItem disabled>Tier: {displayTier}</MenuItem>
-                  <Divider />
-                  <MenuItem onClick={() => handleNavigate('/account/dashboard')}>
-                    Account Dashboard
-                  </MenuItem>
-                  <MenuItem onClick={handleSignOut}>
-                    Logout
-                  </MenuItem>
-                </Menu>
-              </>
-            ) : (
-              <Stack direction="row" spacing={1}>
-                <Button
-                  variant="outlined"
-                  color="inherit"
-                  size="small"
-                  sx={{ color: headerTextColor }}
-                  onClick={() => handleNavigate('/auth/login')}
-                >
-                  Login
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  onClick={() => handleNavigate('/auth/register')}
-                >
-                  Register
-                </Button>
-              </Stack>
-            )}
-          </>
+        {!isMobile && user && UserActions }
+        {!isMobile && !user && (
+          <Stack direction="row" spacing={1}>
+            <Button
+              variant="outlined"
+              color="inherit"
+              size="small"
+              sx={{ color: headerTextColor }}
+              onClick={() => handleNavigate('/auth/login')}
+            >
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              onClick={() => handleNavigate('/auth/register')}
+            >
+              Register
+            </Button>
+          </Stack>
         )}
       </Toolbar>
 
       {/* === MOBILE STACKED ACTIONS === */}
+      {isMobile && user && (
+        <Box sx={{pb: 0.5 }}>
+          <Stack alignItems="center">
+            {UserActions}
+          </Stack>
+        </Box>
+      )}
+
       {isMobile && !user && (
+        
         <Box sx={{ px: 2, pb: 2 }}>
           <Stack spacing={1}>
             <Button
