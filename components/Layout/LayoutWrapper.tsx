@@ -6,10 +6,12 @@ import { useUIStore } from "@/store/uiStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import Header from "./Header";
 import EmailVerificationBanner from "./EmailVerificationBanner";
+import { useAuthStore } from "@/store/authStore";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }){
     const isMobile = useIsMobile();
     const isDrawerOpen = useUIStore(state => state.isDrawerOpen);
+    const user = useAuthStore((state) => state.user);
     const drawerWidth = 240;
 
     return (
@@ -17,7 +19,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             <Header />
             <Sidebar />
 
-            <Box sx={{ display: 'flex', paddingTop: { xs: '7vh', sm: '40px', md: '60px' } }}>
+            <Box sx={{ display: 'flex', paddingTop: { xs: user ? '12vh' : '18vh', sm: '80px', md: '60px' } }}>
                 <Box
                     component="main"
                     sx={{

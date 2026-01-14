@@ -9,6 +9,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import { APP_VERSION } from "@/version";
 import { useCampaignAccess } from "@/hooks/campaign/useCampaignAccess";
 import { useCampaignStore } from "@/store/campaignStore";
+import { useAuthStore } from "@/store/authStore";
 
 type NavChild = {
   label: string;
@@ -29,6 +30,7 @@ type NavItem = {
 export const Sidebar = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
+  const user = useAuthStore((state) => state.user);
 
   const { selectedCampaign, reset: resetCampaign } = useCampaignStore();
 
@@ -170,7 +172,7 @@ export const Sidebar = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        paddingTop: "60px",
+        paddingTop: { xs: user ? '12vh' : '17vh', sm: '80px', md: '60px' }
       }}
       role="presentation"
     >
