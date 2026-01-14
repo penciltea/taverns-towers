@@ -123,10 +123,10 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
         "success"
       );
 
+      router.replace(`/settlements/${settlementId}`);
+
       // Invalidate site queries
       invalidateSiteQueries(queryClient, settlementId, selectedCampaign?._id);
-
-      router.push(`/settlements/${settlementId}`);
     } catch (error) {
       let message = "Something went wrong saving the site. Please try again later.";
       if (error instanceof Error) message = error.message;
