@@ -26,7 +26,7 @@ export default function VerifyYourEmailPage() {
                     onClick={() => router.push('/resend-verification')}
                     sx={{ mb: 2 }}
                 >
-                    Resend Verification Email
+                    Send Verification Email
                 </Button>
 
                 <Typography variant="body2">Already verified? <MuiLink onClick={() => router.push("/auth/login")} sx={{ cursor: 'pointer' }}>Go to Login</MuiLink></Typography>
