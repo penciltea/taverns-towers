@@ -103,10 +103,7 @@ export async function registerUser(data: RegisterPayload): Promise<ActionResult<
     });
 
     if (existingUser) {
-      return {
-        success: false,
-        error: "A user with that email or username already exists.",
-      };
+      throw new AppError("Username or email address is already taken", 500);
     }
 
     // Create new user
