@@ -54,6 +54,15 @@ export default function SettlementFormBasics(){
             isMounted = false;
         };
     }, [user, selectedCampaign?._id, playerHasContentPermissions]);
+
+    const rawTheme = watch("theme");
+
+    const theme =
+    Array.isArray(rawTheme) && rawTheme.length > 0
+        ? rawTheme.filter(Boolean)
+        : rawTheme
+        ? [rawTheme]
+        : ["Medieval Fantasy"];
     
     const handleGenerateName = async () => {
         const terrain = watch("terrain");
@@ -71,7 +80,7 @@ export default function SettlementFormBasics(){
             magic: magic,
             wealth: wealth,
             size: size,
-            theme: Array.isArray(theme) ? theme : [theme],
+            theme,
             tier: user?.tier ?? userTier[0]
         });
         setValue("name", generatedName, { shouldValidate: true });
