@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useUIStore } from "@/store/uiStore";
@@ -20,6 +20,7 @@ import { NpcConnection } from "@/interfaces/connection.interface";
 import { useHandleDeletedConnections } from "@/hooks/connection/useHandleDeletedConnections";
 
 export default function EditSettlementFormPage() {
+  const router = useRouter();
   const { id } = useParams();
   const safeId = getSingleParam(id);
   const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
@@ -78,7 +79,11 @@ export default function EditSettlementFormPage() {
       currentConnections: data.connections,
       formData: data,
       onConfirm: async (formData) => {
-        await onSubmit(formData);
+        const savedId = await onSubmit(formData);
+
+        if (savedId) {
+          router.replace(`/settlements/${savedId}`);
+        }
       },
     });
 

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { useSettlementContentStore } from "@/store/settlementStore";
@@ -22,6 +22,7 @@ const LazySettlementForm = dynamic(
 );
 
 export default function NewSettlementPage() {
+  const router = useRouter();
   const { id } = useParams();
   const safeId = getSingleParam(id);
 
@@ -91,12 +92,14 @@ export default function NewSettlementPage() {
       return;
     }
 
-    // User is logged in → submit normally
-    await onSubmit(data);
+    const savedId = await onSubmit(data);
 
-    // Clean up draft after successful submission
-    clearDraftItem();
-    sessionStorage.removeItem(draftKey);
+    if (savedId) {
+        clearDraftItem();
+        sessionStorage.removeItem(draftKey);
+
+        router.replace(`/settlements/${savedId}`);
+    }
   };
 
 

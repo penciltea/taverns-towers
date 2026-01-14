@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { SettlementFormData } from "@/schemas/settlement.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
@@ -26,13 +25,12 @@ interface PartialSettlementUpdate {
 }
 
 export function useSettlementMutations({ mode, settlementId }: UseSettlementMutationsProps) {
-  const router = useRouter();
   const { user } = useAuthStore();
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const queryClient = useQueryClient();
   const { selectedCampaign } = useCampaignStore();
 
-  async function handleSubmit(data: SettlementFormData) {
+  async function handleSubmit(data: SettlementFormData): Promise<string | undefined> {
     setSubmitting(true);
 
     try {
@@ -125,13 +123,13 @@ export function useSettlementMutations({ mode, settlementId }: UseSettlementMuta
         "success"
       );
 
-      router.replace(`/settlements/${saved._id}`);
-
       invalidateSettlementQueries(queryClient, saved._id);
 
       if (selectedCampaign) {
         invalidateCampaignQueries(queryClient, selectedCampaign._id);
       }     
+
+      return saved._id.toString();
 
     } catch (error) {
       let message = "Something went wrong saving the settlement. Please try again later.";

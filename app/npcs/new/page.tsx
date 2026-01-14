@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
 import { useUIStore } from "@/store/uiStore";
@@ -20,6 +20,7 @@ import { useEffect } from "react";
 export default function NewNpcPage() {
   const { id } = useParams();
   const safeId = getSingleParam(id);
+  const router = useRouter();
 
   useFormMode(safeId, useNpcContentStore);
   const { mode, draftItem, clearDraftItem, setDraftItem, submittingDraft, setSubmittingDraft } = useNpcContentStore();
@@ -91,11 +92,15 @@ export default function NewNpcPage() {
        saveDraftAndPromptLogin(data, openLoginDialog);
         return;
       }
-      await onSubmit(data);
+      const savedId = await onSubmit(data);
 
-      // Clean up draft after successful submission
-      clearDraftItem();
-      sessionStorage.removeItem(draftKey);
+      if (savedId) {
+        clearDraftItem();
+        sessionStorage.removeItem(draftKey);
+
+        // ✅ Page-level redirect (mobile-safe)
+        router.replace(`/npcs/${savedId}`);
+      }
     } catch (err) {
       showErrorDialog(`Sorry, there was a problem: ${err}`);
       console.error("Error during NPC submission:", err);

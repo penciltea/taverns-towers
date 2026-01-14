@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider } from "react-hook-form";
 import { useNpcContentStore } from "@/store/npc.store";
@@ -20,6 +20,7 @@ import { NpcConnection } from "@/interfaces/connection.interface";
 import { useUIStore } from "@/store/uiStore";
 
 export default function EditNpcPage() {
+  const router = useRouter();
   const { id } = useParams();
   const safeId = getSingleParam(id);
   const [initialConnections, setInitialConnections] = useState<NpcConnection[]>([]);
@@ -67,7 +68,11 @@ export default function EditNpcPage() {
         currentConnections: data.connections,
         formData: data,
         onConfirm: async (formData) => {
-          await handleSubmit(formData);
+          const savedId = await handleSubmit(formData);
+
+          if (savedId) {
+            router.replace(`/npcs/${savedId}`);
+          }
         },
       });
 
