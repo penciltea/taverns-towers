@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import { NpcFormData } from "@/schemas/npc.schema";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
@@ -27,13 +26,12 @@ interface PartialNpcUpdate {
 
 
 export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
-    const router = useRouter();
     const { user } = useAuthStore();
     const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
     const queryClient = useQueryClient();
     const { selectedCampaign } = useCampaignStore();
         
-    async function handleSubmit(data: NpcFormData) {
+    async function handleSubmit(data: NpcFormData): Promise<string | undefined> {
         setSubmitting(true);
 
         try {
@@ -114,9 +112,9 @@ export function useNpcMutations({ mode, npcId }: UseNpcMutationsProps) {
                 "success"
             );
 
-            router.push(`/npcs/${saved._id}`);
-
             invalidateNpcQueries(queryClient, npcId ?? "", selectedCampaign?._id ?? undefined );
+            
+            return saved._id.toString();
 
         } catch (error) {
             let message = "Something went wrong saving the NPC. Please try again later.";

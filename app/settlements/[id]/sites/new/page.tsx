@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from "next/dynamic";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { useFormWithSchema } from "@/hooks/useFormWithSchema";
 import { siteSchema, defaultSiteValues, SiteFormData } from "@/schemas/site.schema";
@@ -24,6 +24,7 @@ const SiteForm = dynamic(() => import("@/components/Site/Form/SiteForm"), {
 
 
 export default function NewSitePage() {
+    const router = useRouter();
     const params = useParams();
     const searchParams = useSearchParams();
     const settlementId = params.id as string;
@@ -105,11 +106,14 @@ export default function NewSitePage() {
                 saveDraftAndPromptLogin(data, openLoginDialog);
                 return;
             }
-            await onSubmit(data);
+            const savedId = await onSubmit(data);
 
-            // Clean up draft after successful submission
-            clearDraftItem();
-            sessionStorage.removeItem(draftKey);
+            if (savedId) {
+                clearDraftItem();
+                sessionStorage.removeItem(draftKey);
+
+                router.replace(`/settlements/${settlementId}`);
+            }
         } catch (err) {
             showErrorDialog(`Sorry, there was a problem: ${err}`);
             console.error("Error during site submission:", err);

@@ -7,7 +7,7 @@ type DraftFormOptions<T> = {
   clearDraftItem: () => void;
   submittingDraft: boolean;
   setSubmittingDraft: (value: boolean) => void;
-  onSubmit: (data: T) => Promise<void>;
+  onSubmit: (data: T) => Promise<string | undefined>;
   draftKey?: string;
 };
 
@@ -39,10 +39,12 @@ export function useDraftForm<T>({
 
     (async () => {
       try {
-        await onSubmit(draftItem as T);
+        const result = await onSubmit(draftItem as T);
+        if (result) {
+          clearDraftItem();
+          if (draftKey) sessionStorage.removeItem(draftKey);
+        }
       } finally {
-        clearDraftItem();
-        if (draftKey) sessionStorage.removeItem(draftKey);
         setSubmittingDraft(false);
         hasSubmittedDraftRef.current = false;
       }

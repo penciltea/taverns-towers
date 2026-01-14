@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { SiteFormData, siteSchema } from "@/schemas/site.schema";
 import { useSiteContentStore } from "@/store/siteStore";
@@ -21,6 +21,7 @@ import { useUIStore } from "@/store/uiStore";
 import { Typography } from "@mui/material";
 
 export default function EditSitePage() {
+  const router = useRouter();
   const { id, locId } = useParams();
   const settlementId = id as string;
   const safeId = getSingleParam(locId);
@@ -75,7 +76,11 @@ export default function EditSitePage() {
       currentConnections: data.connections,
       formData: data,
       onConfirm: async (formData) => {
-        await handleSubmit(formData);
+        const savedId = await handleSubmit(formData);
+
+        if (savedId) {
+          router.replace(`/settlements/${settlementId}`);
+        }
       },
     });
 

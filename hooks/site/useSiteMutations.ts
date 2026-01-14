@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import { useUIStore } from "@/store/uiStore";
 import { useQueryClient } from "@tanstack/react-query";
 import { SiteFormData } from "@/schemas/site.schema";
@@ -29,7 +28,6 @@ interface PartialSiteUpdate {
 }
 
 export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutationsProps) {
-  const router = useRouter();
   const { user } = useAuthStore();
   const { showSnackbar, setSubmitting, showErrorDialog } = useUIStore();
   const queryClient = useQueryClient();
@@ -38,7 +36,7 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
   // -----------------------------
   // Full form submit (create/edit)
   // -----------------------------
-  async function handleSubmit(data: SiteFormData) {
+  async function handleSubmit(data: SiteFormData): Promise<string | undefined> {
     setSubmitting(true);
     try {
       if (!user?.id) throw new AppError("User is not logged in", 400);
@@ -123,10 +121,10 @@ export function useSiteMutations({ mode, settlementId, siteId }: UseSiteMutation
         "success"
       );
 
-      router.replace(`/settlements/${settlementId}`);
-
       // Invalidate site queries
       invalidateSiteQueries(queryClient, settlementId, selectedCampaign?._id);
+
+      return saved._id.toString();
     } catch (error) {
       let message = "Something went wrong saving the site. Please try again later.";
       if (error instanceof Error) message = error.message;
