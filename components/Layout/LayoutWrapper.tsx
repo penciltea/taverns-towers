@@ -22,7 +22,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                     component="main"
                     sx={{
                         flexGrow: 1,
-                        p: 3,
+                        p: { xs: 2, sm: 3 },
                         transition: 'margin 0.3s',
                         marginLeft: !isMobile && isDrawerOpen ? `${drawerWidth}px` : 0,
                     }}

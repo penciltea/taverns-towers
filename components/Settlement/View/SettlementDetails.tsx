@@ -30,7 +30,7 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
           {fields.map((field) => {
             if (field.type === "chip") {
               return (
-                <Box key={field.label} component="dl" sx={{ display: "flex", gap: 1, mb: 1, flexWrap: "wrap" }}>
+                <Stack direction={{ xs: "column", md: "row" }} key={field.label} component="dl" sx={{ display: "flex", gap: 1, mb: 1, flexWrap: "wrap" }}>
                   <Typography component="dt" fontWeight="bold" minWidth={200}>
                     {field.label}
                   </Typography>
@@ -41,7 +41,7 @@ export default function SettlementDetails({ settlement }: { settlement: Settleme
                   ) : (
                     <Typography>N/A</Typography>
                   )}
-                </Box>
+                </Stack>
               );
             } else {
               // Only allow string | number | undefined here
