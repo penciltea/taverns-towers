@@ -107,7 +107,7 @@ export default function ViewNpc({ npc }: NpcProps){
           />
       }
       extraContent={ 
-        <Stack  direction={{ xs: "column", sm: "row" }} spacing={2} mt={2}>
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2} mt={2}>
           <NpcPhysicalTraits npc={npc} />
           <NpcPersonality npc={npc} />
           <NpcDescriptions npc={npc} userId={npc.userId}/> 

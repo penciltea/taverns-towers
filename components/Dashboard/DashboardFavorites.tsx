@@ -2,16 +2,18 @@ import { useGetFavorites } from "@/hooks/user/user.query"
 import { Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import NextMuiLink from "../Common/NextMuiLink";
 import { RecentItem } from "@/interfaces/user.interface";
+import { useAuthStore } from "@/store/authStore";
 
 export default function DashboardFavorites(){
-    const { data: activityResult, isLoading, isError } = useGetFavorites();
+    const user = useAuthStore(state => state.user);
+    const { data: activityResult, isLoading, isError } = useGetFavorites(user?.id);
 
     const items: RecentItem[] = activityResult ? activityResult : [];
 
     return (
         <Box>
             {isLoading && <Typography>Loading favorite items...</Typography>}
-            {isError && <Typography color="error">Something went wrong loading your featured items.</Typography>}
+            {isError && <Typography color="error">Something went wrong loading your featured items</Typography>}
 
             {!isLoading && !isError && (
                 <>

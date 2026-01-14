@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress, Stack } from "@mui/material";
 import { useAuthStore } from "@/store/authStore";
 import { isUserVerified } from "@/lib/util/isUserVerified";
 
@@ -36,12 +36,24 @@ export default function FormActions({ mode, entityName, isSubmitting, onCancel }
   }
   
   return (
-    <Box sx={{ my: 2, display: 'flex', justifyContent: 'space-between' }}>
+    <Stack
+      direction={{ xs: "column", sm: "row" }}
+      justifyContent={{ xs: "center", sm: "space-between" }}
+      alignItems={{ xs: "center", sm: "center" }}
+      sx={{ my: 2 }}
+    >
       
       <Button
         type="button"
         variant="outlined"
-        sx={{ mt: 3, ml: 3 }}
+        sx={{ 
+          md: { ml: 3 },
+          mt: 3, 
+          width: {
+            xs: '100%', // Full width on extra-small screens and up
+            md: 'auto',  // Auto width on medium screens and up
+          }
+        }}
         size="small"
         
         onClick={onCancel || (() => history.back())}
@@ -53,11 +65,17 @@ export default function FormActions({ mode, entityName, isSubmitting, onCancel }
         type="submit" 
         variant="contained" 
         disabled={!isEnabled()}
-        sx={{ mt: 3 }} 
+        sx={{ 
+          mt: 3,  
+          width: {
+            xs: '100%', // Full width on extra-small screens and up
+            md: 'auto',  // Auto width on medium screens and up
+          }
+        }} 
         size="large"
       >
         {buttonContent}
       </Button>
-    </Box>
+    </Stack>
   );
 }

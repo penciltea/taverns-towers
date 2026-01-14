@@ -4,7 +4,20 @@ import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import { useUIStore } from '@/store/uiStore';
 import { useAuthStore } from '@/store/authStore';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Divider, IconButton, Box, useTheme } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+  Divider,
+  IconButton,
+  Box,
+  useTheme,
+  Stack,
+  useMediaQuery,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import { capitalizeFirstLetter } from '@/lib/util/stringFormats';
@@ -14,6 +27,8 @@ import UserAvatar from '../Common/UserAvatar';
 export default function Header() {
   const router = useRouter();
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const toggleDrawer = useUIStore((state) => state.toggleDrawer);
   const anchorEl = useUIStore(state => state.userMenuAnchor);
   const setAnchorEl = useUIStore(state => state.setUserMenuAnchor);
@@ -38,10 +53,12 @@ export default function Header() {
     router.push('/');
   };
 
-  const headerTextColor = theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
+  const headerTextColor =
+    theme.palette.mode === "light" ? "#1d2a3b" : "inherit";
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      {/* === TOP ROW (always horizontal) === */}
       <Toolbar>
         <IconButton
           aria-label="open drawer"
@@ -51,46 +68,96 @@ export default function Header() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1, color: headerTextColor }}>
-          <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>RealmFoundry</Link>
+
+        <Typography variant="h6" sx={{ color: headerTextColor }}>
+          <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+            RealmFoundry
+          </Link>
         </Typography>
 
-        {user ? (
-          <>
-            <Button
-              color="inherit"
-              onClick={(e) => setAnchorEl(e.currentTarget)}
-              aria-controls={anchorEl ? 'user-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
-            >
-              <UserAvatar username={ user.username } avatar={ user.avatar ?? "" } width={26} height={26} />
-              Hi, {displayName}!
-            </Button>
+        <Box sx={{ flexGrow: 1 }} />
 
-            <Menu
-              id="user-menu"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={closeUserMenu}
-            >
-              <MenuItem disabled>Tier: {displayTier}</MenuItem>
-              <Divider />
-              <MenuItem onClick={() => { handleNavigate('/account/dashboard'); closeUserMenu(); }}>Account Dashboard</MenuItem>
-              <MenuItem onClick={() => { handleSignOut(); closeUserMenu(); }}>Logout</MenuItem>
-            </Menu>
+        {/* Desktop-only actions */}
+        {!isMobile && (
+          <>
+            {user ? (
+              <>
+                <Button
+                  color="inherit"
+                  onClick={(e) => setAnchorEl(e.currentTarget)}
+                >
+                  <UserAvatar
+                    username={user.username}
+                    avatar={user.avatar ?? ""}
+                    width={26}
+                    height={26}
+                  />
+                  Hi, {displayName}!
+                </Button>
+
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={closeUserMenu}
+                >
+                  <MenuItem disabled>Tier: {displayTier}</MenuItem>
+                  <Divider />
+                  <MenuItem onClick={() => handleNavigate('/account/dashboard')}>
+                    Account Dashboard
+                  </MenuItem>
+                  <MenuItem onClick={handleSignOut}>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <Stack direction="row" spacing={1}>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                  sx={{ color: headerTextColor }}
+                  onClick={() => handleNavigate('/auth/login')}
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => handleNavigate('/auth/register')}
+                >
+                  Register
+                </Button>
+              </Stack>
+            )}
           </>
-        ) : (
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-            <Button variant="outlined" color="inherit" size="small" sx={{ color: headerTextColor }} onClick={() => handleNavigate('/auth/login')}>
-              Login
-            </Button>
-            <Button variant="contained" color="secondary" size="small" onClick={() => handleNavigate('/auth/register')}>
-              Register
-            </Button>
-          </Box>
         )}
       </Toolbar>
+
+      {/* === MOBILE STACKED ACTIONS === */}
+      {isMobile && !user && (
+        <Box sx={{ px: 2, pb: 2 }}>
+          <Stack spacing={1}>
+            <Button
+              variant="outlined"
+              color="inherit"
+              fullWidth
+              onClick={() => handleNavigate('/auth/login')}
+            >
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              fullWidth
+              onClick={() => handleNavigate('/auth/register')}
+            >
+              Register
+            </Button>
+          </Stack>
+        </Box>
+      )}
     </AppBar>
   );
 }

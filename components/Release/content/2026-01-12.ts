@@ -1,6 +1,6 @@
-export const release20260123 = {
+export const release20260112 = {
   title: "Version 0.3.1-beta",
-  date: "2026-01-23",
+  date: "2026-01-12",
   features: [
     "NPCs have received a massive update! New fields, new generation logic, and more!",
     "Added 'Copy' functionality for NPCs, Sites, and Settlements, allowing users to duplicate their existing content",
