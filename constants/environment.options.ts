@@ -40,11 +40,11 @@ export const TERRAIN_TYPES = [
 ];
 
 export const CLIMATE_TYPES = [
+    "Continental",
+    "Dry",
     "Polar",
     "Temperate",
     "Tropical",
-    "Dry",
-    "Continental",
 ];
 
 export type TagTypes = (typeof TAG_TYPES)[number]

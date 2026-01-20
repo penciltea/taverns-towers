@@ -1,28 +1,27 @@
 export const SETTLEMENT_TABS = ["Basics", "Law & Economics", "Culture & Society", "NPC Connections", "Configuration"];
 
 export const SIZE_TYPES = [
-    "Encampment",
-    "Thorp",
-    "Hamlet",
-    "Village",
-    "Town",
     "City",
-    "Metropolis"
+    "Encampment",
+    "Hamlet",
+    "Metropolis",
+    "Town",
+    "Village"
 ];
 
 export const WEALTH_LEVELS = [
-    "Impoverished",
-    "Struggling",
-    "Modest",
-    "Wealthy",
     "Affluent",
+    "Impoverished",
+    "Modest",
+    "Struggling",
+    "Wealthy",
 ];
   
 export const MAGIC_LEVELS = [
     "None",
+    "High",
     "Low",
     "Moderate",
-    "High",
     "Mythic",
 ];
   

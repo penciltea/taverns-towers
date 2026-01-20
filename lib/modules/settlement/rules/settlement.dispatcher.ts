@@ -21,6 +21,7 @@ import { applyTradeNotesRule } from "./trade.rules";
 import { applyHolidaysByConditions } from "./holiday.rules";
 import { applyFolkloreByConditions } from "./folklore.rules";
 import { generateEnvironment } from "@/lib/actions/environmentGenerator.actions";
+import { applySettlementDescriptionRule } from "./description/description.rules";
 
 // List of rules to apply sequentially to normalized settlement input data.
 // Each rule enriches or modifies the settlement data based on various conditions.
@@ -37,6 +38,7 @@ const ruleFns = [
   applyDomainsByConditions,
   applyHolidaysByConditions,
   applyFolkloreByConditions,
+  applySettlementDescriptionRule
 ];
 
 /**

@@ -16,7 +16,13 @@ export type NormalizedSettlementInput =
     military: string[];
     tone: string[];
     theme: string[];
+    description: string;
 };
+
+
+export interface SettlementDescriptionType extends NormalizedSettlementInput {
+  sizeDescription?: string;
+}
 
 
 export function normalizeSettlementInput(data: Partial<Settlement>): NormalizedSettlementInput {
@@ -40,6 +46,7 @@ export function normalizeSettlementInput(data: Partial<Settlement>): NormalizedS
     tradeNotes: data.tradeNotes,
     holidays: data.holidays,
     folklore: data.folklore,
+    description: data.description ?? "",
     connections: data.connections?.length ? data.connections : []
   };
 }

@@ -71,7 +71,6 @@ export const TONE = [
   "Rustic",
   "Sacred / Reverent",
   "Somber",
-  "Whimsical",
   "Other"
 ];
 

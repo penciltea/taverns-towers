@@ -61,7 +61,7 @@ export function applyNpcDescriptionRule(data: ReturnType<typeof normalizeNpcInpu
     if(!shouldReplace(data.description)){
         return data;
     }
-    console.log("data: ", data);
+    
     setPronouns(data.pronouns);
 
     let pronounNoun = npcPronounNoun;
