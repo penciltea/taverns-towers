@@ -22,6 +22,8 @@ export type NormalizedSettlementInput =
 
 export interface SettlementDescriptionType extends NormalizedSettlementInput {
   sizeDescription?: string;
+  verbText?: string;
+  terrainText?: string;
 }
 
 

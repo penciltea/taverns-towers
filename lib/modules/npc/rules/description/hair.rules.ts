@@ -57,11 +57,10 @@ export function getHairTextureDescriptions(textures: string[]) {
 export function getHairStyleDescriptions(styles: string[]) {
     return styles.map(styleLabel => {
         if (!styleLabel) return "";
-            return getRandom(
-                NpcHairStyleText[styleLabel as keyof typeof NpcHairStyleText]
-            );
-        }
-    );
+        return getRandom(
+            NpcHairStyleText[styleLabel as keyof typeof NpcHairStyleText]
+        );
+    });
 }
 
 export function getHairColorDescriptions(colors: string[]){
